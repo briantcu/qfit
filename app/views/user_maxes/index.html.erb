@@ -1,0 +1,31 @@
+<h1>Listing user_maxes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Exercise</th>
+      <th>User</th>
+      <th>Max</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_maxes.each do |user_max| %>
+      <tr>
+        <td><%= user_max.exercise_id %></td>
+        <td><%= user_max.user_id %></td>
+        <td><%= user_max.max %></td>
+        <td><%= link_to 'Show', user_max %></td>
+        <td><%= link_to 'Edit', edit_user_max_path(user_max) %></td>
+        <td><%= link_to 'Destroy', user_max, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User max', new_user_max_path %>

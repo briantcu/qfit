@@ -1,0 +1,2 @@
+module GroupSchedulesHelper
+end

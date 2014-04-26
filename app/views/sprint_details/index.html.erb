@@ -1,0 +1,27 @@
+<h1>Listing sprint_details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Detail</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sprint_details.each do |sprint_detail| %>
+      <tr>
+        <td><%= sprint_detail.detail %></td>
+        <td><%= link_to 'Show', sprint_detail %></td>
+        <td><%= link_to 'Edit', edit_sprint_detail_path(sprint_detail) %></td>
+        <td><%= link_to 'Destroy', sprint_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sprint detail', new_sprint_detail_path %>

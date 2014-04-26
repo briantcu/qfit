@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group_id: 1
+  day_performed: 2014-04-26
+  program_day_id: 1
+  wt_day_id: 1
+  sp_day_id: 1
+  pl_day_id: 1
+  wu_day_id: 1
+  modified: false
+  pl_modified: false
+  wt_modified: false
+  wu_modified: false
+  sp_modified: false
+  changes_saved: false
+
+two:
+  group_id: 1
+  day_performed: 2014-04-26
+  program_day_id: 1
+  wt_day_id: 1
+  sp_day_id: 1
+  pl_day_id: 1
+  wu_day_id: 1
+  modified: false
+  pl_modified: false
+  wt_modified: false
+  wu_modified: false
+  sp_modified: false
+  changes_saved: false

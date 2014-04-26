@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Plyometric:</strong>
+  <%= @group_performed_plyo.plyometric_id %>
+</p>
+
+<p>
+  <strong>Routine:</strong>
+  <%= @group_performed_plyo.routine_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @group_performed_plyo.status %>
+</p>
+
+<%= link_to 'Edit', edit_group_performed_plyo_path(@group_performed_plyo) %> |
+<%= link_to 'Back', group_performed_plyos_path %>

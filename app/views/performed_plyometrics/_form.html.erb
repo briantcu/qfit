@@ -1,0 +1,45 @@
+<%= form_for(@performed_plyometric) do |f| %>
+  <% if @performed_plyometric.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@performed_plyometric.errors.count, "error") %> prohibited this performed_plyometric from being saved:</h2>
+
+      <ul>
+      <% @performed_plyometric.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :plyometric_id %><br>
+    <%= f.number_field :plyometric_id %>
+  </div>
+  <div class="field">
+    <%= f.label :routine_id %><br>
+    <%= f.number_field :routine_id %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :group_performed_plyometric_id %><br>
+    <%= f.number_field :group_performed_plyometric_id %>
+  </div>
+  <div class="field">
+    <%= f.label :performed_one %><br>
+    <%= f.check_box :performed_one %>
+  </div>
+  <div class="field">
+    <%= f.label :performed_two %><br>
+    <%= f.check_box :performed_two %>
+  </div>
+  <div class="field">
+    <%= f.label :performed_three %><br>
+    <%= f.check_box :performed_three %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

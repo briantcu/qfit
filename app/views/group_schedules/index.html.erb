@@ -1,0 +1,37 @@
+<h1>Listing group_schedules</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Program</th>
+      <th>Phase one start</th>
+      <th>Phase two start</th>
+      <th>Phase three start</th>
+      <th>Phase four start</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @group_schedules.each do |group_schedule| %>
+      <tr>
+        <td><%= group_schedule.group_id %></td>
+        <td><%= group_schedule.program_id %></td>
+        <td><%= group_schedule.phase_one_start %></td>
+        <td><%= group_schedule.phase_two_start %></td>
+        <td><%= group_schedule.phase_three_start %></td>
+        <td><%= group_schedule.phase_four_start %></td>
+        <td><%= link_to 'Show', group_schedule %></td>
+        <td><%= link_to 'Edit', edit_group_schedule_path(group_schedule) %></td>
+        <td><%= link_to 'Destroy', group_schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group schedule', new_group_schedule_path %>

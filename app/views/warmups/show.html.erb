@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @warmup.name %>
+</p>
+
+<p>
+  <strong>Is stretch:</strong>
+  <%= @warmup.is_stretch %>
+</p>
+
+<p>
+  <strong>Video link:</strong>
+  <%= @warmup.video_link %>
+</p>
+
+<%= link_to 'Edit', edit_warmup_path(@warmup) %> |
+<%= link_to 'Back', warmups_path %>

@@ -1,0 +1,41 @@
+<h1>Listing user_schedules</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Program</th>
+      <th>Program type</th>
+      <th>Phase one start</th>
+      <th>Phase two start</th>
+      <th>Phase three start</th>
+      <th>Phase four start</th>
+      <th>Sign up date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_schedules.each do |user_schedule| %>
+      <tr>
+        <td><%= user_schedule.user_id %></td>
+        <td><%= user_schedule.program_id %></td>
+        <td><%= user_schedule.program_type %></td>
+        <td><%= user_schedule.phase_one_start %></td>
+        <td><%= user_schedule.phase_two_start %></td>
+        <td><%= user_schedule.phase_three_start %></td>
+        <td><%= user_schedule.phase_four_start %></td>
+        <td><%= user_schedule.sign_up_date %></td>
+        <td><%= link_to 'Show', user_schedule %></td>
+        <td><%= link_to 'Edit', edit_user_schedule_path(user_schedule) %></td>
+        <td><%= link_to 'Destroy', user_schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User schedule', new_user_schedule_path %>

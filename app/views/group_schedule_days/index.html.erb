@@ -1,0 +1,35 @@
+<h1>Listing group_schedule_days</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group schedule</th>
+      <th>Weights</th>
+      <th>Plyos</th>
+      <th>Stretching</th>
+      <th>Sprinting</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @group_schedule_days.each do |group_schedule_day| %>
+      <tr>
+        <td><%= group_schedule_day.group_schedule_id %></td>
+        <td><%= group_schedule_day.weights %></td>
+        <td><%= group_schedule_day.plyos %></td>
+        <td><%= group_schedule_day.stretching %></td>
+        <td><%= group_schedule_day.sprinting %></td>
+        <td><%= link_to 'Show', group_schedule_day %></td>
+        <td><%= link_to 'Edit', edit_group_schedule_day_path(group_schedule_day) %></td>
+        <td><%= link_to 'Destroy', group_schedule_day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group schedule day', new_group_schedule_day_path %>

@@ -1,0 +1,31 @@
+<h1>Listing group_performed_sprints</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sprint</th>
+      <th>Status</th>
+      <th>Routine</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @group_performed_sprints.each do |group_performed_sprint| %>
+      <tr>
+        <td><%= group_performed_sprint.sprint_id %></td>
+        <td><%= group_performed_sprint.status %></td>
+        <td><%= group_performed_sprint.routine_id %></td>
+        <td><%= link_to 'Show', group_performed_sprint %></td>
+        <td><%= link_to 'Edit', edit_group_performed_sprint_path(group_performed_sprint) %></td>
+        <td><%= link_to 'Destroy', group_performed_sprint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group performed sprint', new_group_performed_sprint_path %>

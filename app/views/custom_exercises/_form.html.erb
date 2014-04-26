@@ -1,0 +1,41 @@
+<%= form_for(@custom_exercise) do |f| %>
+  <% if @custom_exercise.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@custom_exercise.errors.count, "error") %> prohibited this custom_exercise from being saved:</h2>
+
+      <ul>
+      <% @custom_exercise.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :rid %><br>
+    <%= f.number_field :rid %>
+  </div>
+  <div class="field">
+    <%= f.label :details %><br>
+    <%= f.text_field :details %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :gid %><br>
+    <%= f.number_field :gid %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.number_field :type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

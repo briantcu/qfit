@@ -1,0 +1,43 @@
+<h1>Listing groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Coach user</th>
+      <th>Name</th>
+      <th>Current phase</th>
+      <th>Sprint diff</th>
+      <th>Last weight day created</th>
+      <th>Last wu day created</th>
+      <th>Last pl day created</th>
+      <th>Last sp day created</th>
+      <th>Shared</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.coach_user_id %></td>
+        <td><%= group.name %></td>
+        <td><%= group.current_phase %></td>
+        <td><%= group.sprint_diff %></td>
+        <td><%= group.last_weight_day_created %></td>
+        <td><%= group.last_wu_day_created %></td>
+        <td><%= group.last_pl_day_created %></td>
+        <td><%= group.last_sp_day_created %></td>
+        <td><%= group.shared %></td>
+        <td><%= link_to 'Show', group %></td>
+        <td><%= link_to 'Edit', edit_group_path(group) %></td>
+        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group', new_group_path %>

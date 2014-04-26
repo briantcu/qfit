@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sprint_id: 1
+  detail_num: 1
+  order_num: 1
+
+two:
+  sprint_id: 1
+  detail_num: 1
+  order_num: 1

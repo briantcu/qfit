@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sprint_id: 1
+  status: 1
+  group_performed_sprint_id: 1
+  routine_id: 1
+
+two:
+  sprint_id: 1
+  status: 1
+  group_performed_sprint_id: 1
+  routine_id: 1

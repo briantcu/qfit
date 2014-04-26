@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Phase number:</strong>
+  <%= @program_phase_lookup.phase_number %>
+</p>
+
+<p>
+  <strong>Program type:</strong>
+  <%= @program_phase_lookup.program_type %>
+</p>
+
+<p>
+  <strong>Phase:</strong>
+  <%= @program_phase_lookup.phase_id %>
+</p>
+
+<%= link_to 'Edit', edit_program_phase_lookup_path(@program_phase_lookup) %> |
+<%= link_to 'Back', program_phase_lookups_path %>

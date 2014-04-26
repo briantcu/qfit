@@ -1,0 +1,21 @@
+<%= form_for(@sprint_detail) do |f| %>
+  <% if @sprint_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sprint_detail.errors.count, "error") %> prohibited this sprint_detail from being saved:</h2>
+
+      <ul>
+      <% @sprint_detail.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :detail %><br>
+    <%= f.text_area :detail %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

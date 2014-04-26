@@ -1,0 +1,2 @@
+module SprintDetailsHelper
+end

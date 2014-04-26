@@ -1,0 +1,2 @@
+module GroupPerformedExercisesHelper
+end

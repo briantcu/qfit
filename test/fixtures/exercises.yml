@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 1
+  video_link: MyString
+  look_up_value: 1
+  percent_of_luv: 1.5
+  category: 1
+  difficulty: 1
+  is_body_weight: false
+  name: MyString
+  is_image: false
+
+two:
+  type: 1
+  video_link: MyString
+  look_up_value: 1
+  percent_of_luv: 1.5
+  category: 1
+  difficulty: 1
+  is_body_weight: false
+  name: MyString
+  is_image: false

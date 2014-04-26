@@ -1,0 +1,41 @@
+<h1>Listing phases</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Male power sets</th>
+      <th>Male power reps</th>
+      <th>Male other sets</th>
+      <th>Male other reps</th>
+      <th>Fem power sets</th>
+      <th>Fem power reps</th>
+      <th>Fem other sets</th>
+      <th>Fem other reps</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @phases.each do |phase| %>
+      <tr>
+        <td><%= phase.male_power_sets %></td>
+        <td><%= phase.male_power_reps %></td>
+        <td><%= phase.male_other_sets %></td>
+        <td><%= phase.male_other_reps %></td>
+        <td><%= phase.fem_power_sets %></td>
+        <td><%= phase.fem_power_reps %></td>
+        <td><%= phase.fem_other_sets %></td>
+        <td><%= phase.fem_other_reps %></td>
+        <td><%= link_to 'Show', phase %></td>
+        <td><%= link_to 'Edit', edit_phase_path(phase) %></td>
+        <td><%= link_to 'Destroy', phase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Phase', new_phase_path %>

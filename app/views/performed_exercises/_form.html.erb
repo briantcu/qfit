@@ -1,0 +1,45 @@
+<%= form_for(@performed_exercise) do |f| %>
+  <% if @performed_exercise.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@performed_exercise.errors.count, "error") %> prohibited this performed_exercise from being saved:</h2>
+
+      <ul>
+      <% @performed_exercise.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :routine_id %><br>
+    <%= f.number_field :routine_id %>
+  </div>
+  <div class="field">
+    <%= f.label :exercise_id %><br>
+    <%= f.number_field :exercise_id %>
+  </div>
+  <div class="field">
+    <%= f.label :rest_period %><br>
+    <%= f.number_field :rest_period %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :one_rep_max %><br>
+    <%= f.number_field :one_rep_max %>
+  </div>
+  <div class="field">
+    <%= f.label :group_performed_exercise_id %><br>
+    <%= f.number_field :group_performed_exercise_id %>
+  </div>
+  <div class="field">
+    <%= f.label :exercise_type %><br>
+    <%= f.number_field :exercise_type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

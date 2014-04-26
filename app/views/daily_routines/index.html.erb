@@ -1,0 +1,63 @@
+<h1>Listing daily_routines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Group</th>
+      <th>Day performed</th>
+      <th>Weight</th>
+      <th>Power index</th>
+      <th>Count ex provided</th>
+      <th>Count ex completed</th>
+      <th>Program day</th>
+      <th>Wt day</th>
+      <th>Sp day</th>
+      <th>Pl day</th>
+      <th>Wu day</th>
+      <th>Modified</th>
+      <th>Pl modified</th>
+      <th>Wt modified</th>
+      <th>Wu modified</th>
+      <th>Sp modified</th>
+      <th>Changes saved</th>
+      <th>Closed</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @daily_routines.each do |daily_routine| %>
+      <tr>
+        <td><%= daily_routine.user_id %></td>
+        <td><%= daily_routine.group_id %></td>
+        <td><%= daily_routine.day_performed %></td>
+        <td><%= daily_routine.weight %></td>
+        <td><%= daily_routine.power_index %></td>
+        <td><%= daily_routine.count_ex_provided %></td>
+        <td><%= daily_routine.count_ex_completed %></td>
+        <td><%= daily_routine.program_day_id %></td>
+        <td><%= daily_routine.wt_day_id %></td>
+        <td><%= daily_routine.sp_day_id %></td>
+        <td><%= daily_routine.pl_day_id %></td>
+        <td><%= daily_routine.wu_day_id %></td>
+        <td><%= daily_routine.modified %></td>
+        <td><%= daily_routine.pl_modified %></td>
+        <td><%= daily_routine.wt_modified %></td>
+        <td><%= daily_routine.wu_modified %></td>
+        <td><%= daily_routine.sp_modified %></td>
+        <td><%= daily_routine.changes_saved %></td>
+        <td><%= daily_routine.closed %></td>
+        <td><%= link_to 'Show', daily_routine %></td>
+        <td><%= link_to 'Edit', edit_daily_routine_path(daily_routine) %></td>
+        <td><%= link_to 'Destroy', daily_routine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Daily routine', new_daily_routine_path %>

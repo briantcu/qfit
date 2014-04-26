@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lap_number: 1
+  performed_sprint_id: 1
+  completed: false
+
+two:
+  lap_number: 1
+  performed_sprint_id: 1
+  completed: false

@@ -1,0 +1,41 @@
+<%= form_for(@weight_set) do |f| %>
+  <% if @weight_set.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@weight_set.errors.count, "error") %> prohibited this weight_set from being saved:</h2>
+
+      <ul>
+      <% @weight_set.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :set_num %><br>
+    <%= f.number_field :set_num %>
+  </div>
+  <div class="field">
+    <%= f.label :performed_exercise_id %><br>
+    <%= f.number_field :performed_exercise_id %>
+  </div>
+  <div class="field">
+    <%= f.label :rec_weight %><br>
+    <%= f.text_field :rec_weight %>
+  </div>
+  <div class="field">
+    <%= f.label :rec_reps %><br>
+    <%= f.number_field :rec_reps %>
+  </div>
+  <div class="field">
+    <%= f.label :perf_weight %><br>
+    <%= f.text_field :perf_weight %>
+  </div>
+  <div class="field">
+    <%= f.label :perf_reps %><br>
+    <%= f.number_field :perf_reps %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

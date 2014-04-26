@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group schedule:</strong>
+  <%= @group_schedule_day.group_schedule_id %>
+</p>
+
+<p>
+  <strong>Weights:</strong>
+  <%= @group_schedule_day.weights %>
+</p>
+
+<p>
+  <strong>Plyos:</strong>
+  <%= @group_schedule_day.plyos %>
+</p>
+
+<p>
+  <strong>Stretching:</strong>
+  <%= @group_schedule_day.stretching %>
+</p>
+
+<p>
+  <strong>Sprinting:</strong>
+  <%= @group_schedule_day.sprinting %>
+</p>
+
+<%= link_to 'Edit', edit_group_schedule_day_path(@group_schedule_day) %> |
+<%= link_to 'Back', group_schedule_days_path %>

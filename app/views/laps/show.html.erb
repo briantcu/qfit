@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lap number:</strong>
+  <%= @lap.lap_number %>
+</p>
+
+<p>
+  <strong>Performed sprint:</strong>
+  <%= @lap.performed_sprint_id %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @lap.completed %>
+</p>
+
+<%= link_to 'Edit', edit_lap_path(@lap) %> |
+<%= link_to 'Back', laps_path %>

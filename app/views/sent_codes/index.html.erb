@@ -1,0 +1,31 @@
+<h1>Listing sent_codes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Receiver</th>
+      <th>Used</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sent_codes.each do |sent_code| %>
+      <tr>
+        <td><%= sent_code.code %></td>
+        <td><%= sent_code.receiver %></td>
+        <td><%= sent_code.used %></td>
+        <td><%= link_to 'Show', sent_code %></td>
+        <td><%= link_to 'Edit', edit_sent_code_path(sent_code) %></td>
+        <td><%= link_to 'Destroy', sent_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sent code', new_sent_code_path %>

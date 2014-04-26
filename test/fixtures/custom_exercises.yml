@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rid: 1
+  details: MyString
+  status: 1
+  gid: 1
+  name: MyString
+  type: 1
+
+two:
+  rid: 1
+  details: MyString
+  status: 1
+  gid: 1
+  name: MyString
+  type: 1

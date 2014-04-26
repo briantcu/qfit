@@ -1,0 +1,25 @@
+<%= form_for(@one_rep_max) do |f| %>
+  <% if @one_rep_max.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@one_rep_max.errors.count, "error") %> prohibited this one_rep_max from being saved:</h2>
+
+      <ul>
+      <% @one_rep_max.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :rep %><br>
+    <%= f.number_field :rep %>
+  </div>
+  <div class="field">
+    <%= f.label :percentage %><br>
+    <%= f.text_field :percentage %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

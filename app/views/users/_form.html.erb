@@ -1,0 +1,117 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :master_user_id %><br>
+    <%= f.number_field :master_user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :sex %><br>
+    <%= f.text_field :sex %>
+  </div>
+  <div class="field">
+    <%= f.label :administrator %><br>
+    <%= f.check_box :administrator %>
+  </div>
+  <div class="field">
+    <%= f.label :sub_user %><br>
+    <%= f.check_box :sub_user %>
+  </div>
+  <div class="field">
+    <%= f.label :knee_dom_max %><br>
+    <%= f.text_field :knee_dom_max %>
+  </div>
+  <div class="field">
+    <%= f.label :hor_push_max %><br>
+    <%= f.text_field :hor_push_max %>
+  </div>
+  <div class="field">
+    <%= f.label :hor_pull_max %><br>
+    <%= f.text_field :hor_pull_max %>
+  </div>
+  <div class="field">
+    <%= f.label :power_index %><br>
+    <%= f.number_field :power_index %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :current_phase %><br>
+    <%= f.number_field :current_phase %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :last_weight_day_created %><br>
+    <%= f.number_field :last_weight_day_created %>
+  </div>
+  <div class="field">
+    <%= f.label :last_warmup_day_created %><br>
+    <%= f.number_field :last_warmup_day_created %>
+  </div>
+  <div class="field">
+    <%= f.label :last_plyometric_day_created %><br>
+    <%= f.number_field :last_plyometric_day_created %>
+  </div>
+  <div class="field">
+    <%= f.label :last_sprint_day_created %><br>
+    <%= f.number_field :last_sprint_day_created %>
+  </div>
+  <div class="field">
+    <%= f.label :user_name %><br>
+    <%= f.text_field :user_name %>
+  </div>
+  <div class="field">
+    <%= f.label :sprint_diff %><br>
+    <%= f.number_field :sprint_diff %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :level %><br>
+    <%= f.number_field :level %>
+  </div>
+  <div class="field">
+    <%= f.label :program_type %><br>
+    <%= f.number_field :program_type %>
+  </div>
+  <div class="field">
+    <%= f.label :birth_year %><br>
+    <%= f.number_field :birth_year %>
+  </div>
+  <div class="field">
+    <%= f.label :subscription_date %><br>
+    <%= f.date_select :subscription_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

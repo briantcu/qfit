@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Set num:</strong>
+  <%= @weight_set.set_num %>
+</p>
+
+<p>
+  <strong>Performed exercise:</strong>
+  <%= @weight_set.performed_exercise_id %>
+</p>
+
+<p>
+  <strong>Rec weight:</strong>
+  <%= @weight_set.rec_weight %>
+</p>
+
+<p>
+  <strong>Rec reps:</strong>
+  <%= @weight_set.rec_reps %>
+</p>
+
+<p>
+  <strong>Perf weight:</strong>
+  <%= @weight_set.perf_weight %>
+</p>
+
+<p>
+  <strong>Perf reps:</strong>
+  <%= @weight_set.perf_reps %>
+</p>
+
+<%= link_to 'Edit', edit_weight_set_path(@weight_set) %> |
+<%= link_to 'Back', weight_sets_path %>

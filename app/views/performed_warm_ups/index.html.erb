@@ -1,0 +1,35 @@
+<h1>Listing performed_warm_ups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Routine</th>
+      <th>Warmup</th>
+      <th>Status</th>
+      <th>Group warmup</th>
+      <th>Completed</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @performed_warm_ups.each do |performed_warm_up| %>
+      <tr>
+        <td><%= performed_warm_up.routine_id %></td>
+        <td><%= performed_warm_up.warmup_id %></td>
+        <td><%= performed_warm_up.status %></td>
+        <td><%= performed_warm_up.group_warmup_id %></td>
+        <td><%= performed_warm_up.completed %></td>
+        <td><%= link_to 'Show', performed_warm_up %></td>
+        <td><%= link_to 'Edit', edit_performed_warm_up_path(performed_warm_up) %></td>
+        <td><%= link_to 'Destroy', performed_warm_up, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Performed warm up', new_performed_warm_up_path %>

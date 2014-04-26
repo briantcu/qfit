@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sprint:</strong>
+  <%= @performed_sprint.sprint_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @performed_sprint.status %>
+</p>
+
+<p>
+  <strong>Group performed sprint:</strong>
+  <%= @performed_sprint.group_performed_sprint_id %>
+</p>
+
+<p>
+  <strong>Routine:</strong>
+  <%= @performed_sprint.routine_id %>
+</p>
+
+<%= link_to 'Edit', edit_performed_sprint_path(@performed_sprint) %> |
+<%= link_to 'Back', performed_sprints_path %>

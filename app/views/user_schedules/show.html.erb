@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_schedule.user_id %>
+</p>
+
+<p>
+  <strong>Program:</strong>
+  <%= @user_schedule.program_id %>
+</p>
+
+<p>
+  <strong>Program type:</strong>
+  <%= @user_schedule.program_type %>
+</p>
+
+<p>
+  <strong>Phase one start:</strong>
+  <%= @user_schedule.phase_one_start %>
+</p>
+
+<p>
+  <strong>Phase two start:</strong>
+  <%= @user_schedule.phase_two_start %>
+</p>
+
+<p>
+  <strong>Phase three start:</strong>
+  <%= @user_schedule.phase_three_start %>
+</p>
+
+<p>
+  <strong>Phase four start:</strong>
+  <%= @user_schedule.phase_four_start %>
+</p>
+
+<p>
+  <strong>Sign up date:</strong>
+  <%= @user_schedule.sign_up_date %>
+</p>
+
+<%= link_to 'Edit', edit_user_schedule_path(@user_schedule) %> |
+<%= link_to 'Back', user_schedules_path %>

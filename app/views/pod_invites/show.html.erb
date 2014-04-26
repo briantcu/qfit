@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Inviter:</strong>
+  <%= @pod_invite.inviter %>
+</p>
+
+<p>
+  <strong>Sent to:</strong>
+  <%= @pod_invite.sent_to %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @pod_invite.status %>
+</p>
+
+<p>
+  <strong>Invitee:</strong>
+  <%= @pod_invite.invitee %>
+</p>
+
+<%= link_to 'Edit', edit_pod_invite_path(@pod_invite) %> |
+<%= link_to 'Back', pod_invites_path %>

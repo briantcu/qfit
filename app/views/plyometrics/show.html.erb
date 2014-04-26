@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @plyometric.name %>
+</p>
+
+<p>
+  <strong>Video link:</strong>
+  <%= @plyometric.video_link %>
+</p>
+
+<p>
+  <strong>Recommended:</strong>
+  <%= @plyometric.recommended %>
+</p>
+
+<%= link_to 'Edit', edit_plyometric_path(@plyometric) %> |
+<%= link_to 'Back', plyometrics_path %>

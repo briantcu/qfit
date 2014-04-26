@@ -1,0 +1,29 @@
+<%= form_for(@group_performed_sprint) do |f| %>
+  <% if @group_performed_sprint.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group_performed_sprint.errors.count, "error") %> prohibited this group_performed_sprint from being saved:</h2>
+
+      <ul>
+      <% @group_performed_sprint.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sprint_id %><br>
+    <%= f.number_field :sprint_id %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :routine_id %><br>
+    <%= f.number_field :routine_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

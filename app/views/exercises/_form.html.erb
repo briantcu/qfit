@@ -1,0 +1,53 @@
+<%= form_for(@exercise) do |f| %>
+  <% if @exercise.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@exercise.errors.count, "error") %> prohibited this exercise from being saved:</h2>
+
+      <ul>
+      <% @exercise.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.number_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :video_link %><br>
+    <%= f.text_field :video_link %>
+  </div>
+  <div class="field">
+    <%= f.label :look_up_value %><br>
+    <%= f.number_field :look_up_value %>
+  </div>
+  <div class="field">
+    <%= f.label :percent_of_luv %><br>
+    <%= f.text_field :percent_of_luv %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br>
+    <%= f.number_field :category %>
+  </div>
+  <div class="field">
+    <%= f.label :difficulty %><br>
+    <%= f.number_field :difficulty %>
+  </div>
+  <div class="field">
+    <%= f.label :is_body_weight %><br>
+    <%= f.check_box :is_body_weight %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :is_image %><br>
+    <%= f.check_box :is_image %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

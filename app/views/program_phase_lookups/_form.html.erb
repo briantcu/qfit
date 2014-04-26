@@ -1,0 +1,29 @@
+<%= form_for(@program_phase_lookup) do |f| %>
+  <% if @program_phase_lookup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@program_phase_lookup.errors.count, "error") %> prohibited this program_phase_lookup from being saved:</h2>
+
+      <ul>
+      <% @program_phase_lookup.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :phase_number %><br>
+    <%= f.number_field :phase_number %>
+  </div>
+  <div class="field">
+    <%= f.label :program_type %><br>
+    <%= f.number_field :program_type %>
+  </div>
+  <div class="field">
+    <%= f.label :phase_id %><br>
+    <%= f.number_field :phase_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

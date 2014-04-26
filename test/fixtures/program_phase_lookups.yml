@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  phase_number: 1
+  program_type: 1
+  phase_id: 1
+
+two:
+  phase_number: 1
+  program_type: 1
+  phase_id: 1

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @coach_account.user_id %>
+</p>
+
+<p>
+  <strong>Num accts:</strong>
+  <%= @coach_account.num_accts %>
+</p>
+
+<p>
+  <strong>Billing email:</strong>
+  <%= @coach_account.billing_email %>
+</p>
+
+<%= link_to 'Edit', edit_coach_account_path(@coach_account) %> |
+<%= link_to 'Back', coach_accounts_path %>

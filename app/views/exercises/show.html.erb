@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @exercise.type %>
+</p>
+
+<p>
+  <strong>Video link:</strong>
+  <%= @exercise.video_link %>
+</p>
+
+<p>
+  <strong>Look up value:</strong>
+  <%= @exercise.look_up_value %>
+</p>
+
+<p>
+  <strong>Percent of luv:</strong>
+  <%= @exercise.percent_of_luv %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @exercise.category %>
+</p>
+
+<p>
+  <strong>Difficulty:</strong>
+  <%= @exercise.difficulty %>
+</p>
+
+<p>
+  <strong>Is body weight:</strong>
+  <%= @exercise.is_body_weight %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @exercise.name %>
+</p>
+
+<p>
+  <strong>Is image:</strong>
+  <%= @exercise.is_image %>
+</p>
+
+<%= link_to 'Edit', edit_exercise_path(@exercise) %> |
+<%= link_to 'Back', exercises_path %>

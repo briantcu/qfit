@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Coach user:</strong>
+  <%= @group.coach_user_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @group.name %>
+</p>
+
+<p>
+  <strong>Current phase:</strong>
+  <%= @group.current_phase %>
+</p>
+
+<p>
+  <strong>Sprint diff:</strong>
+  <%= @group.sprint_diff %>
+</p>
+
+<p>
+  <strong>Last weight day created:</strong>
+  <%= @group.last_weight_day_created %>
+</p>
+
+<p>
+  <strong>Last wu day created:</strong>
+  <%= @group.last_wu_day_created %>
+</p>
+
+<p>
+  <strong>Last pl day created:</strong>
+  <%= @group.last_pl_day_created %>
+</p>
+
+<p>
+  <strong>Last sp day created:</strong>
+  <%= @group.last_sp_day_created %>
+</p>
+
+<p>
+  <strong>Shared:</strong>
+  <%= @group.shared %>
+</p>
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>

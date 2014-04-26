@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  difficulty: 1
+  name: MyString
+  sprint_type: 1
+  num_laps: 1
+
+two:
+  difficulty: 1
+  name: MyString
+  sprint_type: 1
+  num_laps: 1

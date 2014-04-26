@@ -44,3 +44,15 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'simple_form'
+
+gem 'devise'
+
+gem 'better_errors'
+
+gem 'annotate'
+
+gem 'mysql2'
+
+gem 'multi_json', '1.7.8'

@@ -1,0 +1,53 @@
+<%= form_for(@group) do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :coach_user_id %><br>
+    <%= f.number_field :coach_user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :current_phase %><br>
+    <%= f.number_field :current_phase %>
+  </div>
+  <div class="field">
+    <%= f.label :sprint_diff %><br>
+    <%= f.number_field :sprint_diff %>
+  </div>
+  <div class="field">
+    <%= f.label :last_weight_day_created %><br>
+    <%= f.number_field :last_weight_day_created %>
+  </div>
+  <div class="field">
+    <%= f.label :last_wu_day_created %><br>
+    <%= f.number_field :last_wu_day_created %>
+  </div>
+  <div class="field">
+    <%= f.label :last_pl_day_created %><br>
+    <%= f.number_field :last_pl_day_created %>
+  </div>
+  <div class="field">
+    <%= f.label :last_sp_day_created %><br>
+    <%= f.number_field :last_sp_day_created %>
+  </div>
+  <div class="field">
+    <%= f.label :shared %><br>
+    <%= f.check_box :shared %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

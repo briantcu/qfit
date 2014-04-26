@@ -1,0 +1,75 @@
+<h1>Listing users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Master user</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Sex</th>
+      <th>Administrator</th>
+      <th>Sub user</th>
+      <th>Knee dom max</th>
+      <th>Hor push max</th>
+      <th>Hor pull max</th>
+      <th>Power index</th>
+      <th>Password</th>
+      <th>Current phase</th>
+      <th>Phone</th>
+      <th>Last weight day created</th>
+      <th>Last warmup day created</th>
+      <th>Last plyometric day created</th>
+      <th>Last sprint day created</th>
+      <th>User name</th>
+      <th>Sprint diff</th>
+      <th>Weight</th>
+      <th>Level</th>
+      <th>Program type</th>
+      <th>Birth year</th>
+      <th>Subscription date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.master_user_id %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.sex %></td>
+        <td><%= user.administrator %></td>
+        <td><%= user.sub_user %></td>
+        <td><%= user.knee_dom_max %></td>
+        <td><%= user.hor_push_max %></td>
+        <td><%= user.hor_pull_max %></td>
+        <td><%= user.power_index %></td>
+        <td><%= user.password %></td>
+        <td><%= user.current_phase %></td>
+        <td><%= user.phone %></td>
+        <td><%= user.last_weight_day_created %></td>
+        <td><%= user.last_warmup_day_created %></td>
+        <td><%= user.last_plyometric_day_created %></td>
+        <td><%= user.last_sprint_day_created %></td>
+        <td><%= user.user_name %></td>
+        <td><%= user.sprint_diff %></td>
+        <td><%= user.weight %></td>
+        <td><%= user.level %></td>
+        <td><%= user.program_type %></td>
+        <td><%= user.birth_year %></td>
+        <td><%= user.subscription_date %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>

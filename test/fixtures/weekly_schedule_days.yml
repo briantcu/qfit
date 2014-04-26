@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day: 1
+  user_schedule_id: 1
+  weights: false
+  plyometrics: false
+  stretching: false
+  sprinting: false
+
+two:
+  day: 1
+  user_schedule_id: 1
+  weights: false
+  plyometrics: false
+  stretching: false
+  sprinting: false

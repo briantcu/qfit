@@ -1,0 +1,31 @@
+<h1>Listing group_performed_plyos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Plyometric</th>
+      <th>Routine</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @group_performed_plyos.each do |group_performed_plyo| %>
+      <tr>
+        <td><%= group_performed_plyo.plyometric_id %></td>
+        <td><%= group_performed_plyo.routine_id %></td>
+        <td><%= group_performed_plyo.status %></td>
+        <td><%= link_to 'Show', group_performed_plyo %></td>
+        <td><%= link_to 'Edit', edit_group_performed_plyo_path(group_performed_plyo) %></td>
+        <td><%= link_to 'Destroy', group_performed_plyo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group performed plyo', new_group_performed_plyo_path %>

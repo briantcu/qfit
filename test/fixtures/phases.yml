@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  male_power_sets: 1
+  male_power_reps: 1
+  male_other_sets: 1
+  male_other_reps: 1
+  fem_power_sets: 1
+  fem_power_reps: 1
+  fem_other_sets: 1
+  fem_other_reps: 1
+
+two:
+  male_power_sets: 1
+  male_power_reps: 1
+  male_other_sets: 1
+  male_other_reps: 1
+  fem_power_sets: 1
+  fem_power_reps: 1
+  fem_other_sets: 1
+  fem_other_reps: 1

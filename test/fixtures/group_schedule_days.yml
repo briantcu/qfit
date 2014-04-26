@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group_schedule_id: 1
+  weights: false
+  plyos: false
+  stretching: false
+  sprinting: false
+
+two:
+  group_schedule_id: 1
+  weights: false
+  plyos: false
+  stretching: false
+  sprinting: false

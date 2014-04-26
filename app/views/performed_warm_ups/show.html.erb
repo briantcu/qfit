@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Routine:</strong>
+  <%= @performed_warm_up.routine_id %>
+</p>
+
+<p>
+  <strong>Warmup:</strong>
+  <%= @performed_warm_up.warmup_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @performed_warm_up.status %>
+</p>
+
+<p>
+  <strong>Group warmup:</strong>
+  <%= @performed_warm_up.group_warmup_id %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @performed_warm_up.completed %>
+</p>
+
+<%= link_to 'Edit', edit_performed_warm_up_path(@performed_warm_up) %> |
+<%= link_to 'Back', performed_warm_ups_path %>

@@ -1,0 +1,2 @@
+module GroupScheduleDaysHelper
+end

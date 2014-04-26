@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @group_schedule.group_id %>
+</p>
+
+<p>
+  <strong>Program:</strong>
+  <%= @group_schedule.program_id %>
+</p>
+
+<p>
+  <strong>Phase one start:</strong>
+  <%= @group_schedule.phase_one_start %>
+</p>
+
+<p>
+  <strong>Phase two start:</strong>
+  <%= @group_schedule.phase_two_start %>
+</p>
+
+<p>
+  <strong>Phase three start:</strong>
+  <%= @group_schedule.phase_three_start %>
+</p>
+
+<p>
+  <strong>Phase four start:</strong>
+  <%= @group_schedule.phase_four_start %>
+</p>
+
+<%= link_to 'Edit', edit_group_schedule_path(@group_schedule) %> |
+<%= link_to 'Back', group_schedules_path %>

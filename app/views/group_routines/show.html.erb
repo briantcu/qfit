@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @group_routine.group_id %>
+</p>
+
+<p>
+  <strong>Day performed:</strong>
+  <%= @group_routine.day_performed %>
+</p>
+
+<p>
+  <strong>Program day:</strong>
+  <%= @group_routine.program_day_id %>
+</p>
+
+<p>
+  <strong>Wt day:</strong>
+  <%= @group_routine.wt_day_id %>
+</p>
+
+<p>
+  <strong>Sp day:</strong>
+  <%= @group_routine.sp_day_id %>
+</p>
+
+<p>
+  <strong>Pl day:</strong>
+  <%= @group_routine.pl_day_id %>
+</p>
+
+<p>
+  <strong>Wu day:</strong>
+  <%= @group_routine.wu_day_id %>
+</p>
+
+<p>
+  <strong>Modified:</strong>
+  <%= @group_routine.modified %>
+</p>
+
+<p>
+  <strong>Pl modified:</strong>
+  <%= @group_routine.pl_modified %>
+</p>
+
+<p>
+  <strong>Wt modified:</strong>
+  <%= @group_routine.wt_modified %>
+</p>
+
+<p>
+  <strong>Wu modified:</strong>
+  <%= @group_routine.wu_modified %>
+</p>
+
+<p>
+  <strong>Sp modified:</strong>
+  <%= @group_routine.sp_modified %>
+</p>
+
+<p>
+  <strong>Changes saved:</strong>
+  <%= @group_routine.changes_saved %>
+</p>
+
+<%= link_to 'Edit', edit_group_routine_path(@group_routine) %> |
+<%= link_to 'Back', group_routines_path %>

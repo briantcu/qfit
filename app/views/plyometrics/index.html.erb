@@ -1,0 +1,31 @@
+<h1>Listing plyometrics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Video link</th>
+      <th>Recommended</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plyometrics.each do |plyometric| %>
+      <tr>
+        <td><%= plyometric.name %></td>
+        <td><%= plyometric.video_link %></td>
+        <td><%= plyometric.recommended %></td>
+        <td><%= link_to 'Show', plyometric %></td>
+        <td><%= link_to 'Edit', edit_plyometric_path(plyometric) %></td>
+        <td><%= link_to 'Destroy', plyometric, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Plyometric', new_plyometric_path %>
