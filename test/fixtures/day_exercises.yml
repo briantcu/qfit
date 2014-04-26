@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: day_exercises
+#
+#  id             :integer          not null, primary key
+#  program_day_id :integer
+#  ex_type        :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
