@@ -1,4 +1,6 @@
 Qfit::Application.routes.draw do
+  resources :program_types
+
   devise_for :users
   resources :weekly_schedule_days
 

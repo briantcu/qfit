@@ -13,4 +13,7 @@
 #
 
 class Message < ActiveRecord::Base
+  has_many :likes
+  belongs_to :user, :foreign_key => :poster_id
+  belongs_to :user, :foreign_key => :to_id
 end

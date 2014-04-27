@@ -21,4 +21,9 @@
 #
 
 class GroupRoutine < ActiveRecord::Base
+  belongs_to :group
+  has_many :group_performed_exercises
+  has_many :group_performed_plyos
+  has_many :group_performed_sprints
+  has_many :group_performed_warmups
 end

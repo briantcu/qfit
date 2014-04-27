@@ -1,0 +1,17 @@
+# == Schema Information
+#
+# Table name: program_types
+#
+#  id           :integer          not null, primary key
+#  program_type :string(255)
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  program_type: MyString
+
+two:
+  program_type: MyString

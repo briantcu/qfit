@@ -46,4 +46,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  has_many :daily_routines
+  has_one :user_schedule
+  has_many :user_maxes
+  belongs_to :program_type
 end

@@ -10,7 +10,9 @@
 #  sprinting         :boolean
 #  created_at        :datetime
 #  updated_at        :datetime
+#  day               :integer
 #
 
 class GroupScheduleDay < ActiveRecord::Base
+  belongs_to :group_schedule
 end

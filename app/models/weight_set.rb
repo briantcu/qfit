@@ -14,4 +14,5 @@
 #
 
 class WeightSet < ActiveRecord::Base
+  belongs_to :performed_exercise
 end

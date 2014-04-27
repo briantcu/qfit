@@ -10,4 +10,6 @@
 #
 
 class Like < ActiveRecord::Base
+  belongs_to :user, :foreign_key => :liker
+  belongs_to :message
 end

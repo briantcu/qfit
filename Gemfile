@@ -56,3 +56,6 @@ gem 'annotate'
 gem 'mysql2'
 
 gem 'multi_json', '1.7.8'
+
+gem 'json'
+

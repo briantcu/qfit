@@ -14,4 +14,6 @@
 #
 
 class GroupSchedule < ActiveRecord::Base
+  belongs_to :group
+  has_many :group_schedule_days
 end

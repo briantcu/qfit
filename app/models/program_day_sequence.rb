@@ -20,4 +20,15 @@
 #
 
 class ProgramDaySequence < ActiveRecord::Base
+  belongs_to :program
+  belongs_to :program_day, :foreign_key => :one
+  belongs_to :program_day, :foreign_key => :two
+  belongs_to :program_day, :foreign_key => :three
+  belongs_to :program_day, :foreign_key => :four
+  belongs_to :program_day, :foreign_key => :five
+  belongs_to :program_day, :foreign_key => :six
+  belongs_to :program_day, :foreign_key => :seven
+  belongs_to :program_day, :foreign_key => :eight
+  belongs_to :program_day, :foreign_key => :nine
+  belongs_to :program_day, :foreign_key => :ten
 end

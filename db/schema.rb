@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426181709) do
+ActiveRecord::Schema.define(version: 20140426235905) do
 
   create_table "coach_accounts", force: true do |t|
     t.integer  "user_id"
@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 20140426181709) do
   end
 
   create_table "custom_exercises", force: true do |t|
-    t.integer  "rid"
+    t.integer  "routine_id"
     t.string   "details"
     t.integer  "status"
-    t.integer  "gid"
+    t.integer  "group_id"
     t.string   "name"
     t.integer  "type"
     t.datetime "created_at"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140426181709) do
     t.boolean  "closed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "group_routine_id"
   end
 
   create_table "day_exercises", force: true do |t|
@@ -70,7 +71,7 @@ ActiveRecord::Schema.define(version: 20140426181709) do
   end
 
   create_table "exercises", force: true do |t|
-    t.integer  "type"
+    t.integer  "exercise_type_id"
     t.string   "video_link"
     t.integer  "look_up_value"
     t.float    "percent_of_luv"
@@ -174,6 +175,7 @@ ActiveRecord::Schema.define(version: 20140426181709) do
     t.boolean  "sprinting"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "day"
   end
 
   create_table "group_schedules", force: true do |t|
@@ -344,6 +346,12 @@ ActiveRecord::Schema.define(version: 20140426181709) do
     t.integer  "phase_number"
     t.integer  "program_type"
     t.integer  "phase_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "program_types", force: true do |t|
+    t.string   "program_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -13,4 +13,5 @@
 #
 
 class GroupPerformedExercise < ActiveRecord::Base
+  belongs_to :group_routine
 end

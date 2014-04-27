@@ -11,4 +11,5 @@
 #
 
 class Lap < ActiveRecord::Base
+  belongs_to :performed_sprint
 end

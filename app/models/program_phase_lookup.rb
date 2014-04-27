@@ -11,4 +11,5 @@
 #
 
 class ProgramPhaseLookup < ActiveRecord::Base
+  belongs_to :phase
 end

@@ -24,7 +24,22 @@
 #  closed             :boolean
 #  created_at         :datetime
 #  updated_at         :datetime
+#  group_routine_id   :integer
 #
 
 class DailyRoutine < ActiveRecord::Base
+  belongs_to :user
+  has_many :custom_exercises, :foreign_key => :routine_id
+  has_many :performed_exercises, :foreign_key => :routine_id
+  has_many :performed_plyometrics, :foreign_key => :routine_id
+  has_many :performed_sprints, :foreign_key => :routine_id
+  has_many :performed_warm_ups, :foreign_key => :routine_id
+
+=begin
+  accepts_nested_attributes_for :custom_exercises, allow_destroy: true
+  accepts_nested_attributes_for :performed_warm_ups, allow_destroy: true
+  accepts_nested_attributes_for :performed_exercises, allow_destroy: true
+  accepts_nested_attributes_for :performed_plyometrics, allow_destroy: true
+  accepts_nested_attributes_for :performed_sprints, allow_destroy: true
+=end
 end

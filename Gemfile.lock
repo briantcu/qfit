@@ -135,6 +135,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 1.2)
   jquery-rails
+  json
   multi_json (= 1.7.8)
   mysql2
   rails (= 4.0.2)

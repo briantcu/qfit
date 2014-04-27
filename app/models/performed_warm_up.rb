@@ -13,4 +13,7 @@
 #
 
 class PerformedWarmUp < ActiveRecord::Base
+  belongs_to :daily_routine, :foreign_key => :routine_id
+  belongs_to :warmup
+  belongs_to :group_performed_warmup, :foreign_key => :group_warmup_id
 end

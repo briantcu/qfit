@@ -16,4 +16,8 @@
 #
 
 class UserSchedule < ActiveRecord::Base
+  belongs_to :user
+  has_many :weekly_schedule_days
+  belongs_to :program_type
+  belongs_to :program
 end

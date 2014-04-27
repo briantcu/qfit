@@ -17,4 +17,7 @@
 #
 
 class Group < ActiveRecord::Base
+  belongs_to :user, :foreign_key => :coach_user_id
+  has_many :users, :through => :group_joins
+  has_one :group_schedule
 end

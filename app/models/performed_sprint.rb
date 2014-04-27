@@ -12,4 +12,8 @@
 #
 
 class PerformedSprint < ActiveRecord::Base
+  belongs_to :daily_routine, :foreign_key => :routine_id
+  belongs_to :sprint
+  belongs_to :group_performed_sprint
+  has_many :laps
 end
