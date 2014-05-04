@@ -1,7 +1,17 @@
 Qfit::Application.routes.draw do
   resources :program_types
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+  devise_scope :user do
+    get 'sign_in', to: 'users/sessions#new'
+    post 'sign_in', to: 'users/sessions#create'
+
+    get 'sign_out', to: 'users/sessions#destroy'
+
+    get 'sign_up', to: 'users/registrations#new'
+    post 'users', to: 'users/registrations#create'
+  end
+
   resources :weekly_schedule_days
 
   resources :warmups
@@ -95,6 +105,5 @@ Qfit::Application.routes.draw do
   resources :coach_accounts
 
   root :to => "home#index"
-
 
 end

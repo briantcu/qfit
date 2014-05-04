@@ -42,6 +42,9 @@
 #
 
 class User < ActiveRecord::Base
+
+  before_save :ensure_authentication_token
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -50,4 +53,41 @@ class User < ActiveRecord::Base
   has_one :user_schedule
   has_many :user_maxes
   belongs_to :program_type
+
+  def self.try_login(email, password)
+    salt = '1lasfj3932kak3'
+    initial_hashed_pw = Digest::SHA1.hexdigest(salt+password)
+    hashed_pw = initial_hashed_pw[0..39]
+
+    user = User.where(email: email, password: hashed_pw).first
+    if user.nil?
+      #try again because you're a moron and you truncated the table once
+      hashed_pw = hashed_pw[0..24]
+      user = User.where(email: email, password: hashed_pw).first
+    end
+
+    unless user.nil?
+      #Update to use new password system (devise)
+      user.password = password
+      user.save
+    end
+    user
+  end
+
+  def ensure_authentication_token
+    if authentication_token.blank?
+      self.authentication_token = generate_authentication_token
+    end
+  end
+
+  private
+
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(authentication_token: token).first
+    end
+  end
+
+
 end
