@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   has_one :user_schedule
   has_many :user_maxes
   belongs_to :program_type
+  validates_presence_of :sex, :first_name, :last_name
 
   def self.try_login(email, password)
     salt = '1lasfj3932kak3'
