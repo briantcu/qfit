@@ -31,7 +31,9 @@ class UserSchedulesController < ApplicationController
       @user_schedule.setup_phases
       @user_schedule.sign_up_date = Date.current
       if @user_schedule.save
-        render json: @user_schedule, status: :created, location: @user_schedule
+        @user_schedule.create_weekly_schedule_days
+        User.update_program_info(@user_schedule)
+        render action: 'show', status: :created, location: @user_schedule
       else
         render json: @user_schedule.errors, status: :unprocessable_entity
       end
@@ -48,7 +50,8 @@ class UserSchedulesController < ApplicationController
     if @user_schedule.update(user_schedule_params)
       @user_schedule.setup_phases
       @user_schedule.save
-      render json: @user_schedule, status: :ok, location: @user_schedule
+      User.update_program_info(@user_schedule)
+      render action: 'show', status: :ok, location: @user_schedule
     else
       render json: @user_schedule.errors, status: :unprocessable_entity
     end
@@ -73,7 +76,7 @@ class UserSchedulesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_schedule_params
       params.require(:user_schedule).permit(:program_id, :program_type_id, :phase_one_start, :phase_two_start,
-                                            :phase_three_start, :phase_four_start,
+                                            :phase_three_start, :phase_four_start, :user_id,
                                             weekly_schedule_days_attributes: [:id, :day, :weights, :plyometrics, :stretching, :sprinting])
     end
 

@@ -31,4 +31,27 @@ class UserSchedule < ActiveRecord::Base
     self.phase_three_start = self.phase_two_start.advance(:weeks => 3)
     self.phase_four_start = self.phase_three_start.advance(:weeks => 3)
   end
+
+  def create_weekly_schedule_days
+    7.times{ |i|
+      WeeklyScheduleDay.create(day: i, user_schedule_id: self.id)
+    }
+  end
+
+  def get_current_phase
+    if Date.today.between?(self.phase_one_start, self.phase_two_start)
+      return 1
+    end
+
+    if Date.today.between?(self.phase_two_start, self.phase_three_start)
+      return 2
+    end
+
+    if Date.today.between?(self.phase_three_start, self.phase_four_start)
+      return 3
+    end
+
+    4
+
+  end
 end

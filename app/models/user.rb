@@ -108,6 +108,13 @@ class User < ActiveRecord::Base
     sub_user.administrator == current_user.id
   end
 
+  def self.update_program_info(user_schedule)
+    user = User.find(user_schedule.user.id)
+    user.program_type = user_schedule.program_type
+    user.current_phase = user_schedule.get_current_phase
+    user.save
+  end
+
   private
 
   def generate_authentication_token
