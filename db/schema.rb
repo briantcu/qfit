@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503202450) do
+ActiveRecord::Schema.define(version: 20140507005230) do
 
   create_table "coach_accounts", force: true do |t|
     t.integer  "user_id"
@@ -420,7 +420,7 @@ ActiveRecord::Schema.define(version: 20140503202450) do
   create_table "user_schedules", force: true do |t|
     t.integer  "user_id"
     t.integer  "program_id"
-    t.integer  "program_type"
+    t.integer  "program_type_id"
     t.date     "phase_one_start"
     t.date     "phase_two_start"
     t.date     "phase_three_start"

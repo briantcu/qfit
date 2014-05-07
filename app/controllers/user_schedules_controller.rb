@@ -1,5 +1,6 @@
 class UserSchedulesController < ApplicationController
   before_action :set_user_schedule, only: [:show, :edit, :update, :destroy]
+  before_filter :verify_is_logged_in_or_coach, only: [:create, :update]
 
   # GET /user_schedules
   # GET /user_schedules.json
@@ -21,33 +22,34 @@ class UserSchedulesController < ApplicationController
   def edit
   end
 
-  # POST /user_schedules
   # POST /user_schedules.json
   def create
-    @user_schedule = UserSchedule.new(user_schedule_params)
+    existing_user_schedule = UserSchedule.where(:user_id => params[:user_schedule][:user_id].to_i).first
 
-    respond_to do |format|
+    if existing_user_schedule.nil?
+      @user_schedule = UserSchedule.new(user_schedule_params)
+      @user_schedule.setup_phases
+      @user_schedule.sign_up_date = Date.current
       if @user_schedule.save
-        format.html { redirect_to @user_schedule, notice: 'User schedule was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user_schedule }
+        render json: @user_schedule, status: :created, location: @user_schedule
       else
-        format.html { render action: 'new' }
-        format.json { render json: @user_schedule.errors, status: :unprocessable_entity }
+        render json: @user_schedule.errors, status: :unprocessable_entity
       end
+
+    else
+      @user_schedule = existing_user_schedule
+      update
     end
+
   end
 
-  # PATCH/PUT /user_schedules/1
   # PATCH/PUT /user_schedules/1.json
   def update
-    respond_to do |format|
-      if @user_schedule.update(user_schedule_params)
-        format.html { redirect_to @user_schedule, notice: 'User schedule was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @user_schedule.errors, status: :unprocessable_entity }
-      end
+    @user_schedule.setup_phases
+    if @user_schedule.update(user_schedule_params)
+      head :no_content
+    else
+      render json: @user_schedule.errors, status: :unprocessable_entity
     end
   end
 
@@ -69,6 +71,15 @@ class UserSchedulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_schedule_params
-      params.require(:user_schedule).permit(:user_id, :program_id, :program_type, :phase_one_start, :phase_two_start, :phase_three_start, :phase_four_start, :sign_up_date)
+      params.require(:user_schedule).permit(:user_id, :program_id, :program_type_id, :phase_one_start, :phase_two_start, :phase_three_start, :phase_four_start, :sign_up_date)
+    end
+
+    def verify_is_logged_in_or_coach
+      (current_user.nil?) ? unauthorized : unauthorized unless
+          (current_user.id == params[:user_schedule][:user_id].to_i || (current_user.is_coach_of_user(current_user, params[:user_schedule][:user_id].to_i)) || (current_user.is_super_user))
+    end
+
+    def unauthorized
+      render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
     end
 end

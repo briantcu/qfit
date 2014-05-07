@@ -20,4 +20,14 @@ class UserSchedule < ActiveRecord::Base
   has_many :weekly_schedule_days
   belongs_to :program_type
   belongs_to :program
+  validates_presence_of :user_id, :program_id, :program_type_id, :phase_one_start, :phase_two_start, :phase_three_start,
+                        :phase_four_start, :sign_up_date
+
+  def setup_phases
+    now = Date.current
+    self.phase_one_start = now
+    self.phase_two_start = now.advance(:weeks => 3)
+    self.phase_three_start = self.phase_two_start.advance(:weeks => 3)
+    self.phase_four_start = self.phase_three_start.advance(:weeks => 3)
+  end
 end
