@@ -5,7 +5,7 @@
 #  id                :integer          not null, primary key
 #  user_id           :integer
 #  program_id        :integer
-#  program_type      :integer
+#  program_type_id   :integer
 #  phase_one_start   :date
 #  phase_two_start   :date
 #  phase_three_start :date
@@ -20,6 +20,7 @@ class UserSchedule < ActiveRecord::Base
   has_many :weekly_schedule_days
   belongs_to :program_type
   belongs_to :program
+  accepts_nested_attributes_for :weekly_schedule_days, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
   validates_presence_of :user_id, :program_id, :program_type_id, :phase_one_start, :phase_two_start, :phase_three_start,
                         :phase_four_start, :sign_up_date
 
