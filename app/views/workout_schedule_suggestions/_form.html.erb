@@ -1,0 +1,41 @@
+<%= form_for(@workout_schedule_suggestion) do |f| %>
+  <% if @workout_schedule_suggestion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@workout_schedule_suggestion.errors.count, "error") %> prohibited this workout_schedule_suggestion from being saved:</h2>
+
+      <ul>
+      <% @workout_schedule_suggestion.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :program_type %><br>
+    <%= f.number_field :program_type %>
+  </div>
+  <div class="field">
+    <%= f.label :weight_schedule %><br>
+    <%= f.number_field :weight_schedule %>
+  </div>
+  <div class="field">
+    <%= f.label :program_id %><br>
+    <%= f.number_field :program_id %>
+  </div>
+  <div class="field">
+    <%= f.label :num_weight_days %><br>
+    <%= f.number_field :num_weight_days %>
+  </div>
+  <div class="field">
+    <%= f.label :num_plyo_days %><br>
+    <%= f.number_field :num_plyo_days %>
+  </div>
+  <div class="field">
+    <%= f.label :num_sprint_days %><br>
+    <%= f.number_field :num_sprint_days %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

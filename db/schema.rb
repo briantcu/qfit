@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507005230) do
+ActiveRecord::Schema.define(version: 20140507014141) do
 
   create_table "coach_accounts", force: true do |t|
     t.integer  "user_id"
@@ -499,6 +499,17 @@ ActiveRecord::Schema.define(version: 20140507005230) do
     t.integer  "rec_reps"
     t.float    "perf_weight"
     t.integer  "perf_reps"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "workout_schedule_suggestions", force: true do |t|
+    t.integer  "program_type"
+    t.integer  "weight_schedule"
+    t.integer  "program_id"
+    t.integer  "num_weight_days"
+    t.integer  "num_plyo_days"
+    t.integer  "num_sprint_days"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

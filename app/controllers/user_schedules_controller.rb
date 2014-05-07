@@ -47,7 +47,7 @@ class UserSchedulesController < ApplicationController
   def update
     @user_schedule.setup_phases
     if @user_schedule.update(user_schedule_params)
-      head :no_content
+      render json: @user_schedule, status: :ok, location: @user_schedule
     else
       render json: @user_schedule.errors, status: :unprocessable_entity
     end

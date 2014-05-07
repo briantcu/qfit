@@ -1,4 +1,7 @@
 Qfit::Application.routes.draw do
+  resources :workout_schedule_suggestions
+  get '/schedule/program_type/:program_type_id/weight_schedule/:weight_schedule_id', to: 'workout_schedule_suggestions#retrieve_suggested_schedule'
+
   resources :program_types
 
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }

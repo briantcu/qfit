@@ -1,0 +1,37 @@
+<h1>Listing workout_schedule_suggestions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Program type</th>
+      <th>Weight schedule</th>
+      <th>Program</th>
+      <th>Num weight days</th>
+      <th>Num plyo days</th>
+      <th>Num sprint days</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @workout_schedule_suggestions.each do |workout_schedule_suggestion| %>
+      <tr>
+        <td><%= workout_schedule_suggestion.program_type %></td>
+        <td><%= workout_schedule_suggestion.weight_schedule %></td>
+        <td><%= workout_schedule_suggestion.program_id %></td>
+        <td><%= workout_schedule_suggestion.num_weight_days %></td>
+        <td><%= workout_schedule_suggestion.num_plyo_days %></td>
+        <td><%= workout_schedule_suggestion.num_sprint_days %></td>
+        <td><%= link_to 'Show', workout_schedule_suggestion %></td>
+        <td><%= link_to 'Edit', edit_workout_schedule_suggestion_path(workout_schedule_suggestion) %></td>
+        <td><%= link_to 'Destroy', workout_schedule_suggestion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Workout schedule suggestion', new_workout_schedule_suggestion_path %>
