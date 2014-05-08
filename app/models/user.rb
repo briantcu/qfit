@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
 
   def is_coach_of_user(current_user, id)
     sub_user = User.find(id)
-    sub_user.administrator == current_user.id
+    sub_user.master_user_id == current_user.id
   end
 
   def self.update_program_info(user_schedule)

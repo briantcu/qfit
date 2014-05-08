@@ -54,4 +54,19 @@ class UserSchedule < ActiveRecord::Base
     4
 
   end
+
+  def self.find_by_user_id(user_id)
+    UserSchedule.where(:user_id => user_id).first
+  end
+
+  def self.create_user_schedule(params)
+    user_schedule = UserSchedule.new(params)
+    user_schedule.setup_phases
+    user_schedule.sign_up_date = Date.current
+    if user_schedule.valid?
+      user_schedule.create_weekly_schedule_days
+    end
+    user_schedule
+  end
+
 end

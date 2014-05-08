@@ -1,21 +1,10 @@
 class UserSchedulesController < ApplicationController
-  before_action :set_user_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_schedule, only: [:show, :edit, :update]
   before_filter :verify_is_logged_in_or_coach, only: [:create, :update]
-
-  # GET /user_schedules
-  # GET /user_schedules.json
-  def index
-    @user_schedules = UserSchedule.all
-  end
 
   # GET /user_schedules/1
   # GET /user_schedules/1.json
   def show
-  end
-
-  # GET /user_schedules/new
-  def new
-    @user_schedule = UserSchedule.new
   end
 
   # GET /user_schedules/1/edit
@@ -24,20 +13,16 @@ class UserSchedulesController < ApplicationController
 
   # POST /user_schedules.json
   def create
-    existing_user_schedule = UserSchedule.where(:user_id => params[:user_schedule][:user_id].to_i).first
+    existing_user_schedule = UserSchedule.find_by_user_id(params[:user_schedule][:user_id].to_i)
 
     if existing_user_schedule.nil?
-      @user_schedule = UserSchedule.new(user_schedule_params)
-      @user_schedule.setup_phases
-      @user_schedule.sign_up_date = Date.current
+      @user_schedule = UserSchedule.create_user_schedule(user_schedule_params)
       if @user_schedule.save
-        @user_schedule.create_weekly_schedule_days
-        User.update_program_info(@user_schedule)
+        update_user_record
         render action: 'show', status: :created, location: @user_schedule
       else
         render json: @user_schedule.errors, status: :unprocessable_entity
       end
-
     else
       @user_schedule = existing_user_schedule
       update
@@ -50,20 +35,10 @@ class UserSchedulesController < ApplicationController
     if @user_schedule.update(user_schedule_params)
       @user_schedule.setup_phases
       @user_schedule.save
-      User.update_program_info(@user_schedule)
+      update_user_record
       render action: 'show', status: :ok, location: @user_schedule
     else
       render json: @user_schedule.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /user_schedules/1
-  # DELETE /user_schedules/1.json
-  def destroy
-    @user_schedule.destroy
-    respond_to do |format|
-      format.html { redirect_to user_schedules_url }
-      format.json { head :no_content }
     end
   end
 
@@ -77,7 +52,12 @@ class UserSchedulesController < ApplicationController
     def user_schedule_params
       params.require(:user_schedule).permit(:program_id, :program_type_id, :phase_one_start, :phase_two_start,
                                             :phase_three_start, :phase_four_start, :user_id,
-                                            weekly_schedule_days_attributes: [:id, :day, :weights, :plyometrics, :stretching, :sprinting])
+                                            weekly_schedule_days_attributes: [:id, :day, :weights, :plyometrics,
+                                                                              :stretching, :sprinting])
+    end
+
+    def update_user_record
+      User.update_program_info(@user_schedule)
     end
 
     def verify_is_logged_in_or_coach

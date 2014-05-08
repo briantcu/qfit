@@ -19,7 +19,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type: 1
+  exercise_type_id: 1
   video_link: MyString
   look_up_value: 1
   percent_of_luv: 1.5
@@ -30,7 +30,7 @@ one:
   is_image: false
 
 two:
-  type: 1
+  exercise_type_id: 1
   video_link: MyString
   look_up_value: 1
   percent_of_luv: 1.5

@@ -45,6 +45,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   master_user_id: 1
   first_name: MyString
   last_name: MyString
@@ -72,10 +73,95 @@ one:
   subscription_date: 2014-04-26
 
 two:
+  id: 2
   master_user_id: 1
   first_name: MyString
   last_name: MyString
-  email: MyString
+  email: MyString2
+  sex: MyString
+  administrator: false
+  sub_user: false
+  knee_dom_max: 1.5
+  hor_push_max: 1.5
+  hor_pull_max: 1.5
+  power_index: 1
+  password: MyString
+  current_phase: 1
+  phone: MyString
+  last_weight_day_created: 1
+  last_warmup_day_created: 1
+  last_plyometric_day_created: 1
+  last_sprint_day_created: 1
+  user_name: MyString
+  sprint_diff: 1
+  weight: 1.5
+  level: 1
+  program_type: 1
+  birth_year: 1
+  subscription_date: 2014-04-26
+
+super:
+  id: 3
+  master_user_id: 1
+  first_name: MyString
+  last_name: MyString
+  email: MyString3
+  sex: MyString
+  administrator: false
+  sub_user: false
+  knee_dom_max: 1.5
+  hor_push_max: 1.5
+  hor_pull_max: 1.5
+  power_index: 1
+  password: MyString
+  current_phase: 1
+  phone: MyString
+  last_weight_day_created: 1
+  last_warmup_day_created: 1
+  last_plyometric_day_created: 1
+  last_sprint_day_created: 1
+  user_name: MyString
+  sprint_diff: 1
+  weight: 1.5
+  level: 7
+  program_type: 1
+  birth_year: 1
+  subscription_date: 2014-04-26
+
+coach:
+  id: 4
+  master_user_id: 1
+  first_name: MyString
+  last_name: MyString
+  email: MyString4
+  sex: MyString
+  administrator: true
+  sub_user: false
+  knee_dom_max: 1.5
+  hor_push_max: 1.5
+  hor_pull_max: 1.5
+  power_index: 1
+  password: MyString
+  current_phase: 1
+  phone: MyString
+  last_weight_day_created: 1
+  last_warmup_day_created: 1
+  last_plyometric_day_created: 1
+  last_sprint_day_created: 1
+  user_name: MyString
+  sprint_diff: 1
+  weight: 1.5
+  level: 5
+  program_type: 1
+  birth_year: 1
+  subscription_date: 2014-04-26
+
+sub:
+  id: 5
+  master_user_id: 4
+  first_name: MyString
+  last_name: MyString
+  email: MyString5
   sex: MyString
   administrator: false
   sub_user: false

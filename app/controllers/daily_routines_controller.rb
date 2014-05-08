@@ -21,22 +21,6 @@ class DailyRoutinesController < ApplicationController
   def edit
   end
 
-  # POST /daily_routines
-  # POST /daily_routines.json
-  def create
-    @daily_routine = DailyRoutine.new(daily_routine_params)
-
-    respond_to do |format|
-      if @daily_routine.save
-        format.html { redirect_to @daily_routine, notice: 'Daily routine was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @daily_routine }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @daily_routine.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PATCH/PUT /daily_routines/1
   # PATCH/PUT /daily_routines/1.json
   def update
@@ -51,16 +35,6 @@ class DailyRoutinesController < ApplicationController
     end
   end
 
-  # DELETE /daily_routines/1
-  # DELETE /daily_routines/1.json
-  def destroy
-    @daily_routine.destroy
-    respond_to do |format|
-      format.html { redirect_to daily_routines_url }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_daily_routine
@@ -71,4 +45,5 @@ class DailyRoutinesController < ApplicationController
     def daily_routine_params
       params.require(:daily_routine).permit(:user_id, :group_id, :day_performed, :weight, :power_index, :count_ex_provided, :count_ex_completed, :program_day_id, :wt_day_id, :sp_day_id, :pl_day_id, :wu_day_id, :modified, :pl_modified, :wt_modified, :wu_modified, :sp_modified, :changes_saved, :closed)
     end
+
 end
