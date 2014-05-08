@@ -22,9 +22,9 @@ one:
   program_id: 1
   program_type: 1
   phase_one_start: 2014-04-26
-  phase_two_start: 2014-04-26
-  phase_three_start: 2014-04-26
-  phase_four_start: 2014-04-26
+  phase_two_start: 2014-04-28
+  phase_three_start: 2015-04-26
+  phase_four_start: 2016-04-26
   sign_up_date: 2014-04-26
 
 two:

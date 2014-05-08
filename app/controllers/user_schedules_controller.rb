@@ -18,6 +18,7 @@ class UserSchedulesController < ApplicationController
     if existing_user_schedule.nil?
       @user_schedule = UserSchedule.create_user_schedule(user_schedule_params)
       if @user_schedule.save
+        @user_schedule.create_weekly_schedule_days
         update_user_record
         render action: 'show', status: :created, location: @user_schedule
       else
