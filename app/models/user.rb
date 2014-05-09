@@ -46,6 +46,8 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token
 
+  SEX_OPTIONS = %w(male female)
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -54,7 +56,8 @@ class User < ActiveRecord::Base
   has_one :user_schedule
   has_many :user_maxes
   belongs_to :program_type
-  validates_presence_of :sex, :first_name, :last_name
+  validates_presence_of :first_name, :last_name
+  validates :sex, :inclusion => {:in => SEX_OPTIONS}
 
   def self.try_login(email, password)
     salt = '1lasfj3932kak3'

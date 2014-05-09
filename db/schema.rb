@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507174128) do
+ActiveRecord::Schema.define(version: 20140509003633) do
 
   create_table "coach_accounts", force: true do |t|
     t.integer  "user_id"
@@ -468,6 +468,7 @@ ActiveRecord::Schema.define(version: 20140507174128) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
+    t.integer  "experience_level"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

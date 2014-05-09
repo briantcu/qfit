@@ -34,7 +34,7 @@ class UserSchedule < ActiveRecord::Base
 
   def create_weekly_schedule_days
     7.times{ |i|
-      day = WeeklyScheduleDay.create(day: i, user_schedule_id: self.id)
+      WeeklyScheduleDay.create(day: i, user_schedule_id: self.id)
     }
   end
 

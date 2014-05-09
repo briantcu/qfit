@@ -24,6 +24,7 @@ Qfit::Application.routes.draw do
   resources :user_maxes
 
   resources :users
+  post '/users/:user_id/fitness', to: 'users#fitness_assessment'
 
   resources :tips
 

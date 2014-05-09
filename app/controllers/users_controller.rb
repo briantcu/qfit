@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_filter :auth_for_user_update, only: [:update]
+  before_filter :auth_for_fitness_submission, only: [:fitness_assessment]
 
   # GET /users
   # GET /users.json
@@ -40,6 +42,17 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST /users/1/fitness.json
+  def fitness_assessment
+    @fitness_assessment_submission = FitnessAssessmentSubmission.new(fitness_assessment_params)
+    if @fitness_assessment_submission.valid?
+      @user = @fitness_assessment_submission.process_submission
+      render action: 'show', status: :ok, location: @user
+    else
+      render json: @fitness_assessment_submission.errors, status: :unprocessable_entity
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -50,4 +63,27 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:master_user_id, :first_name, :last_name, :email, :sex, :administrator, :sub_user, :knee_dom_max, :hor_push_max, :hor_pull_max, :power_index, :password, :current_phase, :phone, :last_weight_day_created, :last_warmup_day_created, :last_plyometric_day_created, :last_sprint_day_created, :user_name, :sprint_diff, :weight, :level, :program_type, :birth_year, :subscription_date)
     end
+
+    def fitness_assessment_params
+      params.require(:fitness_assessment_submission).permit(:user_id, :weight, :bench_reps, :bench_weight, :squat_reps, :squat_weight, :pull_ups, :push_ups, :assisted_push_ups, :experience_level, :sex)
+    end
+
+    def auth_for_user_update
+      (current_user.nil?) ? unauthorized : unauthorized unless
+          (current_user.id == params[:user_schedule][:user_id].to_i ||
+              (current_user.is_coach_of_user(current_user, params[:user_schedule][:user_id].to_i)) ||
+              (current_user.is_super_user))
+    end
+
+    def auth_for_fitness_submission
+      (current_user.nil?) ? unauthorized : unauthorized unless
+          (current_user.id == params[:fitness_assessment_submission][:user_id].to_i ||
+              (current_user.is_coach_of_user(current_user, params[:fitness_assessment_submission][:user_id].to_i)) ||
+              (current_user.is_super_user))
+    end
+
+    def unauthorized
+      render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+    end
+
 end
