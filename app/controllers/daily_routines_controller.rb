@@ -43,7 +43,19 @@ class DailyRoutinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def daily_routine_params
-      params.require(:daily_routine).permit(:user_id, :group_id, :day_performed, :weight, :power_index, :count_ex_provided, :count_ex_completed, :program_day_id, :wt_day_id, :sp_day_id, :pl_day_id, :wu_day_id, :modified, :pl_modified, :wt_modified, :wu_modified, :sp_modified, :changes_saved, :closed)
+      params.require(:daily_routine).permit(:user_id, :group_id, :day_performed, :weight, :power_index,
+                                            :count_ex_provided, :count_ex_completed, :program_day_id, :wt_day_id,
+                                            :sp_day_id, :pl_day_id, :wu_day_id, :modified, :pl_modified, :wt_modified,
+                                            :wu_modified, :sp_modified, :changes_saved, :closed, :comments,
+                                            custom_exercises_attributes: [:id, :details],
+                                            performed_warm_ups_attributes: [:id, :completed],
+                                            performed_exercises_attributes: [:id,
+                                              weight_sets_attributes: [:id, :perf_weight, :perf_reps]
+                                            ],
+                                            performed_plyometrics_attributes: [:id, :performed_one, :performed_two,
+                                                                               :performed_three],
+                                            performed_sprints_attributes: [:id, laps_attributes: [:id, :completed]]
+      )
     end
 
 end

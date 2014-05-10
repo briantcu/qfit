@@ -20,4 +20,5 @@ class PerformedExercise < ActiveRecord::Base
   belongs_to :exercise_type, :foreign_key => :exercise_type
   belongs_to :exercise
   has_many :weight_sets, -> { order('set_num ASC') }
+  accepts_nested_attributes_for :weight_sets, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
 end

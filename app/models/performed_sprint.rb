@@ -15,5 +15,6 @@ class PerformedSprint < ActiveRecord::Base
   belongs_to :daily_routine, :foreign_key => :routine_id
   belongs_to :sprint
   belongs_to :group_performed_sprint
-  has_many :laps
+  has_many :laps, -> { order('id ASC') }
+  accepts_nested_attributes_for :laps, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
 end
