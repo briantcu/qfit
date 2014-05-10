@@ -25,6 +25,7 @@ Qfit::Application.routes.draw do
 
   resources :users
   post '/users/:user_id/fitness', to: 'users#fitness_assessment'
+  get '/users/:user_id/calendar/year/:year_id/month/:month_id', to: 'users#get_calendar'
 
   resources :tips
 

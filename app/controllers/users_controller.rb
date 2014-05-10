@@ -42,6 +42,17 @@ class UsersController < ApplicationController
     end
   end
 
+  #GET /users/:user_id/calendar/year/:year_id/month/:month_id
+  def get_calendar
+    @calendar = UserCalendar.new(:user_id => params[:user_id], :month_id => params[:month_id], :year_id => params[:year_id])
+    if @calendar.valid?
+      @calendar.populate_calendar
+      render :json => @calendar.as_json
+    else
+      render json: @calendar.errors, status: :unprocessable_entity
+    end
+  end
+
   # POST /users/1/fitness.json
   def fitness_assessment
     @fitness_assessment_submission = FitnessAssessmentSubmission.new(fitness_assessment_params)

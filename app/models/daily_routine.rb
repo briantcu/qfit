@@ -40,4 +40,19 @@ class DailyRoutine < ActiveRecord::Base
   accepts_nested_attributes_for :performed_exercises, allow_destroy: true
   accepts_nested_attributes_for :performed_plyometrics, allow_destroy: true
   accepts_nested_attributes_for :performed_sprints, allow_destroy: true
+
+  def self.get_routines_for_month(user_id, month, year)
+    first = Date.new(year, month, 1)
+    last = first.end_of_month
+    DailyRoutine.where(:user_id => user_id).where('day_performed >= ?', first).where('day_performed <= ?', last)
+  end
+
+  def get_workout_status
+    if self.closed
+      return 'closed'
+    end
+
+    'active'
+  end
+
 end

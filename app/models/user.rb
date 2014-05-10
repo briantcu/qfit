@@ -118,6 +118,10 @@ class User < ActiveRecord::Base
     user.save
   end
 
+  def will_workout_for_day(day)
+    self.user_schedule.weekly_schedule_days[day].stretching
+  end
+
   private
 
   def generate_authentication_token
