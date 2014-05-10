@@ -63,3 +63,8 @@ gem 'multi_json', '1.7.8'
 
 gem 'json'
 
+group :test do
+  gem 'webmock'
+end
+
+gem "mocha", :require => false

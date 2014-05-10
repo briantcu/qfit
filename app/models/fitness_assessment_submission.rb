@@ -41,9 +41,7 @@ class FitnessAssessmentSubmission
   end
 
   def adjust_for_experience
-    if self.experience_level == 1
-      multiplier = 0.75
-    end
+    multiplier = 0.75
     if self.experience_level == 2
       multiplier = 0.82
     end
