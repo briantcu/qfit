@@ -1,5 +1,5 @@
 class DailyRoutinesController < ApplicationController
-  before_action :set_daily_routine, only: [:show, :edit, :update, :destroy]
+  before_action :set_daily_routine, only: [:show, :edit, :update]
 
   # GET /daily_routines
   # GET /daily_routines.json

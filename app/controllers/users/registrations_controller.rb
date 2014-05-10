@@ -7,7 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if request.path_parameters[:format] == 'json'
 
       if user.save
-        render :json => {:auth_token=>user.authentication_token, :email=>user.email}, :status=>201
+        render :json => {:token=>user.authentication_token, :email=>user.email}, :status=>201
         return
       else
         warden.custom_failure!
