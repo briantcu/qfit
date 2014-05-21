@@ -102,6 +102,7 @@ Qfit::Application.routes.draw do
   resources :day_exercises
 
   resources :daily_routines
+  get '/daily_routines/year/:year/month/:month/day/:day', to: 'daily_routines#routine_by_date'
 
   resources :custom_exercises
 

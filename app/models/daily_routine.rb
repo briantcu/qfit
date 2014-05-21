@@ -55,4 +55,9 @@ class DailyRoutine < ActiveRecord::Base
     'active'
   end
 
+  def self.get_routine_by_date(month, year, day)
+    date = DateTime.new(year.to_i, month.to_i, day.to_i)
+    DailyRoutine.where(day_performed: date).first
+  end
+
 end

@@ -12,6 +12,16 @@ class DailyRoutinesController < ApplicationController
   def show
   end
 
+  #GET /daily_routines/year/:year/month/:month/day/:day
+  def routine_by_date
+    @daily_routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day])
+    if @daily_routine.nil?
+      render :json => {:error => 'not-found'}.to_json, :status => 404
+    else
+      render 'show'
+    end
+  end
+
   # GET /daily_routines/new
   def new
     @daily_routine = DailyRoutine.new
