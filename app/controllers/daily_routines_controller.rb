@@ -1,5 +1,7 @@
 class DailyRoutinesController < ApplicationController
-  before_action :set_daily_routine, only: [:show, :edit, :update]
+  before_action :set_daily_routine, only: [:show, :edit, :update, :add_weight]
+  before_filter :verify_is_logged_in_or_coach, only: [:add_weight, :add_sprint, :add_warmup, :add_plyo, :update]
+
 
   # GET /daily_routines
   # GET /daily_routines.json
@@ -45,6 +47,26 @@ class DailyRoutinesController < ApplicationController
     end
   end
 
+  # POST '/daily_routines/:id/weights/:exercise_id'
+  def add_weight
+
+  end
+
+  # POST '/daily_routines/:id/sprints/:sprint_id'
+  def add_sprint
+
+  end
+
+  # POST '/daily_routines/:id/warmups/:warmup_id'
+  def add_warmup
+
+  end
+
+  # POST '/daily_routines/:id/plyos/:plyometric_id'
+  def add_plyo
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_daily_routine
@@ -66,6 +88,11 @@ class DailyRoutinesController < ApplicationController
                                                                                :performed_three],
                                             performed_sprints_attributes: [:id, laps_attributes: [:id, :completed]]
       )
+    end
+
+    def verify_is_logged_in_or_coach
+      (current_user.nil?) ? unauthorized : unauthorized unless
+          (current_user.owns_workout(params[:id]))
     end
 
 end

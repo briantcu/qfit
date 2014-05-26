@@ -131,4 +131,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def owns_workout(daily_routine_id)
+    owns = false
+    daily_routine = DailyRoutine.find_by daily_routine_id: daily_routine_id
+    if daily_routine.present?
+      owns = ((daily_routine.user_id == self.id) ||
+          (daily_routine.user.master_user_id == self.id))
+    end
+    owns
+  end
+
 end

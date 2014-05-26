@@ -103,6 +103,10 @@ Qfit::Application.routes.draw do
 
   resources :daily_routines
   get '/daily_routines/year/:year/month/:month/day/:day', to: 'daily_routines#routine_by_date'
+  post '/daily_routines/:id/weights/:exercise_id', to: 'daily_routines#add_weight'
+  post '/daily_routines/:id/sprinting/:sprint_id', to: 'daily_routines#add_sprint'
+  post '/daily_routines/:id/warmups/:warmup_id', to: 'daily_routines#add_warmup'
+  post '/daily_routines/:id/plyos/:plyometric_id', to: 'daily_routines#add_plyo'
 
   resources :custom_exercises
 
