@@ -12,7 +12,8 @@ class UserScheduleTest < ActiveSupport::TestCase
   end
 
   test 'should create weekly schedule days' do
-    user_schedule = user_schedules(:one)
+    user_schedule = user_schedules(:two)
+    assert(user_schedule.weekly_schedule_days.count == 0)
     user_schedule.create_weekly_schedule_days
     assert(user_schedule.weekly_schedule_days.count == 7)
   end
@@ -28,5 +29,13 @@ class UserScheduleTest < ActiveSupport::TestCase
     user_schedule = UserSchedule.new
     user_schedule.setup_phases
     assert(user_schedule.get_current_phase == 1)
+  end
+
+  test 'should maintain phases' do
+    user_schedule = UserSchedule.find(2)
+    date = Date.new(2014, 5, 18)
+    phase = user_schedule.maintain_phases(date)
+    assert(phase == 1)
+    assert(user_schedule.phase_one_start == Date.new(2014, 5, 17))
   end
 end

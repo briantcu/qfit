@@ -20,4 +20,15 @@ class Group < ActiveRecord::Base
   belongs_to :user, :foreign_key => :coach_user_id
   has_many :users, :through => :group_joins
   has_one :group_schedule
+  has_many :group_routines
+
+  def get_schedule
+    self.group_schedule
+  end
+
+  def create_routine(date)
+    if self.group_schedule.is_valid_workout_day?(date)
+
+    end
+  end
 end

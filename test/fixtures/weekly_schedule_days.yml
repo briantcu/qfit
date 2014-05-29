@@ -21,7 +21,7 @@ one:
   weights: false
   plyometrics: false
   stretching: false
-  sprinting: false
+  sprinting: true
 
 two:
   day: 1

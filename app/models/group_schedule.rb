@@ -16,4 +16,13 @@
 class GroupSchedule < ActiveRecord::Base
   belongs_to :group
   has_many :group_schedule_days
+
+  def is_valid_workout_day? (date)
+
+  end
+
+  def maintain_phases
+
+  end
+
 end

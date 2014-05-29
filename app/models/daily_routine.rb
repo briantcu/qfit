@@ -55,9 +55,17 @@ class DailyRoutine < ActiveRecord::Base
     'active'
   end
 
-  def self.get_routine_by_date(month, year, day)
-    date = DateTime.new(year.to_i, month.to_i, day.to_i)
-    DailyRoutine.where(day_performed: date).first
+  def self.get_routine_by_date(month, year, day, user_id)
+    date = Date.new(year.to_i, month.to_i, day.to_i)
+    DailyRoutine.where(day_performed: date, user_id: user_id).first
+  end
+
+  def self.create_routine(user_id, date)
+    old_routine = DailyRoutine.where(day_performed: date, user_id: user_id).first
+    if !old_routine.nil?
+      old_routine.destroy
+    end
+    return DailyRoutine.create(user_id: user_id, day_performed: date)
   end
 
 end

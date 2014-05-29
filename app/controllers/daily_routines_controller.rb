@@ -1,6 +1,7 @@
 class DailyRoutinesController < ApplicationController
   before_action :set_daily_routine, only: [:show, :edit, :update, :add_weight]
   before_filter :verify_is_logged_in_or_coach, only: [:add_weight, :add_sprint, :add_warmup, :add_plyo, :update]
+  before_filter :verify_is_logged_in, only: [:routine_by_date]
 
 
   # GET /daily_routines
@@ -14,9 +15,9 @@ class DailyRoutinesController < ApplicationController
   def show
   end
 
-  #GET /daily_routines/year/:year/month/:month/day/:day
+  #GET /users/:user_id/daily_routines/year/:year/month/:month/day/:day
   def routine_by_date
-    @daily_routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day])
+    @daily_routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], params[:user_id])
     if @daily_routine.nil?
       render :json => {:error => 'not-found'}.to_json, :status => 404
     else
@@ -94,5 +95,10 @@ class DailyRoutinesController < ApplicationController
       (current_user.nil?) ? unauthorized : unauthorized unless
           (current_user.owns_workout(params[:id]))
     end
+
+  def verify_is_logged_in
+    unauthorized unless !current_user.nil?
+  end
+
 
 end

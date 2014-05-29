@@ -25,7 +25,7 @@
 #  sprint_diff                 :integer
 #  weight                      :float
 #  level                       :integer
-#  program_type                :integer
+#  program_type_id             :integer
 #  birth_year                  :integer
 #  subscription_date           :date
 #  created_at                  :datetime
@@ -40,6 +40,7 @@
 #  current_sign_in_ip          :string(255)
 #  last_sign_in_ip             :string(255)
 #  authentication_token        :string(255)
+#  experience_level            :integer
 #
 
 class User < ActiveRecord::Base
@@ -122,15 +123,6 @@ class User < ActiveRecord::Base
     self.user_schedule.weekly_schedule_days[day].stretching
   end
 
-  private
-
-  def generate_authentication_token
-    loop do
-      token = Devise.friendly_token
-      break token unless User.where(authentication_token: token).first
-    end
-  end
-
   def owns_workout(daily_routine_id)
     owns = false
     daily_routine = DailyRoutine.find_by daily_routine_id: daily_routine_id
@@ -139,6 +131,25 @@ class User < ActiveRecord::Base
           (daily_routine.user.master_user_id == self.id))
     end
     owns
+  end
+
+  def get_schedule
+    self.user_schedule
+  end
+
+  def create_routine(date)
+    if self.user_schedule.is_valid_workout_day?(date)
+      return DailyRoutine.create_routine(self.id, date)
+    end
+  end
+
+  private
+
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(authentication_token: token).first
+    end
   end
 
 end

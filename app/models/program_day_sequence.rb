@@ -31,4 +31,8 @@ class ProgramDaySequence < ActiveRecord::Base
   belongs_to :program_day, :foreign_key => :eight
   belongs_to :program_day, :foreign_key => :nine
   belongs_to :program_day, :foreign_key => :ten
+
+  def get_next_day(current_day)
+
+  end
 end

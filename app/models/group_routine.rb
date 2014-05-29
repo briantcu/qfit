@@ -22,8 +22,9 @@
 
 class GroupRoutine < ActiveRecord::Base
   belongs_to :group
-  has_many :group_performed_exercises
-  has_many :group_performed_plyos
-  has_many :group_performed_sprints
-  has_many :group_performed_warmups
+  has_many :group_performed_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
+  has_many :group_performed_plyos, -> { order('id ASC') }, :foreign_key => :routine_id
+  has_many :group_performed_sprints, -> { order('id ASC') }, :foreign_key => :routine_id
+  has_many :group_performed_warmups, -> { order('id ASC') }, :foreign_key => :routine_id
+  has_many :group_custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
 end

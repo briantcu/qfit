@@ -1,0 +1,2 @@
+class CustomExerciseService
+end
