@@ -16,6 +16,12 @@
 #
 
 class UserSchedule < ActiveRecord::Base
+
+  STRETCHING = 4
+  WEIGHTS = 1
+  PLYOS = 2
+  SPRINTING = 3
+
   belongs_to :user
   has_many :weekly_schedule_days, -> { order('day ASC') }
   belongs_to :program_type
@@ -102,6 +108,21 @@ class UserSchedule < ActiveRecord::Base
   def get_schedule_day(date)
     #day is base 0, Sun - Sat
     self.weekly_schedule_days.at(date.wday)
+  end
+
+  def get_total_days_of_pillar(type)
+    total_days = 0
+    case type
+      when STRETCHING
+        total_days = self.weekly_schedule_days.where(:stretching => true).size
+      when WEIGHTS
+        total_days = self.weekly_schedule_days.where(:weights => true).size
+      when PLYOS
+        total_days = self.weekly_schedule_days.where(:plyometrics => true).size
+      when SPRINTING
+        total_days = self.weekly_schedule_days.where(:sprinting => true).size
+    end
+    total_days
   end
 
 end

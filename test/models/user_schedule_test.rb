@@ -38,4 +38,12 @@ class UserScheduleTest < ActiveSupport::TestCase
     assert(phase == 1)
     assert(user_schedule.phase_one_start == Date.new(2014, 5, 17))
   end
+
+  test 'should return total days of pillar' do
+    user_schedule = UserSchedule.find(3)
+    assert(user_schedule.get_total_days_of_pillar(1) == 3)
+    assert(user_schedule.get_total_days_of_pillar(2) == 1)
+    assert(user_schedule.get_total_days_of_pillar(3) == 2)
+    assert(user_schedule.get_total_days_of_pillar(4) == 2)
+  end
 end
