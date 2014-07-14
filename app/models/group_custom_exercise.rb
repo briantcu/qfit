@@ -14,4 +14,9 @@
 
 class GroupCustomExercise < ActiveRecord::Base
   belongs_to :group_routine
+
+
+  def self.add_exercise(routine_id, name, type)
+    GroupCustomExercise.create(routine_id: routine_id, name: name, ex_type: type)
+  end
 end
