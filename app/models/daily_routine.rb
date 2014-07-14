@@ -28,6 +28,13 @@
 #
 
 class DailyRoutine < ActiveRecord::Base
+
+  STRETCHING = 4
+  WEIGHTS = 1
+  PLYOS = 2
+  SPRINTING = 3
+
+
   belongs_to :user
   has_many :custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
   has_many :performed_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
@@ -66,6 +73,57 @@ class DailyRoutine < ActiveRecord::Base
       old_routine.destroy
     end
     return DailyRoutine.create(user_id: user_id, day_performed: date)
+  end
+
+  def self.get_matching_routine_since(date, type, day_id, user_id)
+    matching = nil
+    case type
+      when STRETCHING
+        matching = DailyRoutine.where(:user_id => user_id).where('day_performed > ?', date).where(:wu_day_id => day_id).order(day_performed: :desc).first
+      when WEIGHTS
+        matching = DailyRoutine.where(:user_id => user_id).where('day_performed > ?', date).where(:wt_day_id => day_id).order(day_performed: :desc).first
+      when PLYOS
+        matching = DailyRoutine.where(:user_id => user_id).where('day_performed > ?', date).where(:pl_day_id => day_id).order(day_performed: :desc).first
+      when SPRINTING
+        matching = DailyRoutine.where(:user_id => user_id).where('day_performed > ?', date).where(:sp_day_id => day_id).order(day_performed: :desc).first
+    end
+    matching
+  end
+
+  def note_warmup_changes_saved
+    self.wu_modified = true
+    self.changes_saved = true
+    self.save
+  end
+
+  def self.get_routine_from_group_routine_id(routine_id, group_id, user_id)
+    DailyRoutine.where(:group_routine_id => routine_id, :group_id => group_id, :user_id => user_id).first
+  end
+
+  def get_warmups_without_changes_saved
+    self.performed_warm_ups.where('status == 2 or status == 3').order(id: :asc)
+  end
+
+  def add_warmup(exercise_id, status, group_performed_ex_id)
+    PerformedWarmUp.add_exercise(exercise_id, status, self.id, group_performed_ex_id)
+  end
+
+  def note_day_created(day_id, type)
+    case type
+      when STRETCHING
+        self.wu_day_id = day_id
+      when WEIGHTS
+        self.wt_day_id = day_id
+      when PLYOS
+        self.pl_day_id = day_id
+      when SPRINTING
+        self.sp_day_id = day_id
+    end
+    self.save
+  end
+
+  def add_custom_exercise(name, type, group_performed_id)
+    CustomExercise.add_exercise(self.id, name, type, group_performed_id)
   end
 
 end

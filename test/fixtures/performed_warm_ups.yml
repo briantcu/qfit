@@ -27,3 +27,17 @@ two:
   status: 1
   group_warmup_id: 1
   completed: false
+
+three:
+  routine_id: 3
+  warmup_id: 4
+  status: 2
+  group_warmup_id: 1
+  completed: false
+
+four:
+  routine_id: 3
+  warmup_id: 2
+  status: 3
+  group_warmup_id: 1
+  completed: false
