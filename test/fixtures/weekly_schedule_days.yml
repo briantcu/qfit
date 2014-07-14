@@ -70,3 +70,45 @@ seven:
   plyometrics: false
   stretching: false
   sprinting: false
+
+
+
+eight:
+  day: 0
+  user_schedule_id: 3
+  weights: true
+  plyometrics: false
+  stretching: true
+  sprinting: true
+
+nine:
+  day: 1
+  user_schedule_id: 3
+  weights: true
+  plyometrics: false
+  stretching: true
+  sprinting: false
+
+ten:
+  day: 2
+  user_schedule_id: 3
+  weights: true
+  plyometrics: false
+  stretching: false
+  sprinting: false
+
+eleven:
+  day: 3
+  user_schedule_id: 3
+  weights: false
+  plyometrics: true
+  stretching: false
+  sprinting: false
+
+twelve:
+  day: 4
+  user_schedule_id: 3
+  weights: false
+  plyometrics: false
+  stretching: false
+  sprinting: true

@@ -38,3 +38,14 @@ two:
   phase_three_start: 2014-04-26
   phase_four_start: 2014-04-26
   sign_up_date: 2014-04-26
+
+three:
+  user_id: 2
+  id: 3
+  program_id: 1
+  program_type: 1
+  phase_one_start: 2014-04-26
+  phase_two_start: 2014-04-26
+  phase_three_start: 2014-04-26
+  phase_four_start: 2014-04-26
+  sign_up_date: 2014-04-26

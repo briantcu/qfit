@@ -89,7 +89,7 @@ two:
   password: MyString
   current_phase: 1
   phone: MyString
-  last_weight_day_created: 1
+  last_weight_day_created: 3
   last_warmup_day_created: 1
   last_plyometric_day_created: 1
   last_sprint_day_created: 1

@@ -51,6 +51,7 @@ one:
   closed: false
 
 two:
+  id: 2
   user_id: 1
   group_id: 1
   day_performed: 2014-04-26
@@ -70,3 +71,4 @@ two:
   sp_modified: false
   changes_saved: false
   closed: false
+  group_routine_id: 2
