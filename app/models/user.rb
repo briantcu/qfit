@@ -47,12 +47,20 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token
 
+  STRETCHING = 4
+  WEIGHTS = 1
+  PLYOS = 2
+  SPRINTING = 3
+
+
   SEX_OPTIONS = %w(male female )
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  has_many :group_joins
+  has_many :groups, through: :group_joins
   has_many :daily_routines
   has_one :user_schedule
   has_many :user_maxes
@@ -107,6 +115,10 @@ class User < ActiveRecord::Base
     self.level == 2
   end
 
+  def is_group
+    false
+  end
+
   def is_coach_of_user(current_user, id)
     sub_user = User.find(id)
     sub_user.master_user_id == current_user.id
@@ -141,6 +153,20 @@ class User < ActiveRecord::Base
     if self.user_schedule.is_valid_workout_day?(date)
       return DailyRoutine.create_routine(self.id, date)
     end
+  end
+
+  def note_last_day_created(day_id, type)
+    case type
+      when STRETCHING
+        self.last_warmup_day_created = day_id
+      when WEIGHTS
+        self.last_weight_day_created = day_id
+      when PLYOS
+        self.last_plyometric_day_created = day_id
+      when SPRINTING
+        self.last_sprint_day_created = day_id
+    end
+    self.save
   end
 
   private
