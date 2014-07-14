@@ -19,6 +19,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   coach_user_id: 1
   name: MyString
   current_phase: 1
