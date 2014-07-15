@@ -34,9 +34,17 @@ class Group < ActiveRecord::Base
     self.group_schedule
   end
 
+  def is_group
+    true
+  end
+
   def create_routine(date)
     if self.group_schedule.is_valid_workout_day?(date)
-
+      group_routine = GroupRoutine.create_routine(self.id, date)
+      self.users.each do |user|
+        DailyRoutine.create_routine(user.id, date, group_routine.id)
+      end
+      return group_routine
     end
   end
 

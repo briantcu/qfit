@@ -151,7 +151,7 @@ class User < ActiveRecord::Base
 
   def create_routine(date)
     if self.user_schedule.is_valid_workout_day?(date)
-      return DailyRoutine.create_routine(self.id, date)
+      DailyRoutine.create_routine(self.id, date, 0)
     end
   end
 

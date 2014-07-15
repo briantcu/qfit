@@ -85,4 +85,12 @@ class RoutineServiceTest < ActiveSupport::TestCase
     assert(routine.performed_warm_ups.size == 1)
   end
 
+  test 'should create a routine for a group' do
+    date = Date.new(2014, 7, 13)
+    @group = Group.find(2)
+    @routine_service = RoutineService.new(@group, 'CRON', date, false)
+    routine = @routine_service.create_routine
+    assert(routine != nil)
+  end
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140714215354) do
+ActiveRecord::Schema.define(version: 20140715031509) do
 
   create_table "coach_accounts", force: true do |t|
     t.integer  "user_id"
@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(version: 20140714215354) do
   create_table "group_schedule_days", force: true do |t|
     t.integer  "group_schedule_id"
     t.boolean  "weights"
-    t.boolean  "plyos"
+    t.boolean  "plyometrics"
     t.boolean  "stretching"
     t.boolean  "sprinting"
     t.datetime "created_at"

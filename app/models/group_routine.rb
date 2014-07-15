@@ -51,6 +51,14 @@ class GroupRoutine < ActiveRecord::Base
     matching
   end
 
+  def self.create_routine(group_id, date)
+    old_routine = GroupRoutine.where(day_performed: date, group_id: group_id).first
+    if !old_routine.nil?
+      old_routine.destroy
+    end
+    return GroupRoutine.create(group_id: group_id, day_performed: date)
+  end
+
   def note_warmup_changes_saved
     self.changes_saved = true
     self.wu_modified = true

@@ -67,12 +67,12 @@ class DailyRoutine < ActiveRecord::Base
     DailyRoutine.where(day_performed: date, user_id: user_id).first
   end
 
-  def self.create_routine(user_id, date)
+  def self.create_routine(user_id, date, group_routine_id)
     old_routine = DailyRoutine.where(day_performed: date, user_id: user_id).first
     if !old_routine.nil?
       old_routine.destroy
     end
-    return DailyRoutine.create(user_id: user_id, day_performed: date)
+    return DailyRoutine.create(user_id: user_id, day_performed: date, group_routine_id: group_routine_id)
   end
 
   def self.get_matching_routine_since(date, type, day_id, user_id)

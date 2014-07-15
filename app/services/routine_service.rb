@@ -59,13 +59,25 @@ class RoutineService
     next_day = 0
     case type
       when STRETCHING
-        next_day = @entity.last_warmup_day_created
+        if @entity.is_group
+          next_day = @entity.last_wu_day_created
+        else
+          next_day = @entity.last_warmup_day_created
+        end
       when WEIGHTS
         next_day = @entity.last_weight_day_created
       when PLYOS
-        next_day = @entity.last_plyometric_day_created
+        if @entity.is_group
+          next_day = @entity.last_pl_day_created
+        else
+          next_day = @entity.last_plyometric_day_created
+        end
       when SPRINTING
-        next_day = @entity.last_sprint_day_created
+        if @entity.is_group
+          next_day = @entity.last_sp_day_created
+        else
+          next_day = @entity.last_sprint_day_created
+        end
     end
 
     if !@sched_update || (next_day == 0)
@@ -142,7 +154,7 @@ class RoutineService
     valid = valid && (@entity.get_schedule.program_id != nil)
 
     #Make sure that if we're dealing with an individual, they have a program type
-    valid && ((@entity.get_schedule.program_type_id != nil) || (@entity.instance_of? Group))
+    valid && ((@entity.instance_of? Group) || (@entity.get_schedule.program_type_id != nil))
   end
 
   def cleanup
