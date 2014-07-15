@@ -32,7 +32,7 @@ two:
 three:
   group_schedule_id: 2
   weights: true
-  plyometrics: false
+  plyometrics: true
   stretching: true
   sprinting: false
   day: 0

@@ -96,6 +96,12 @@ class DailyRoutine < ActiveRecord::Base
     self.save
   end
 
+  def note_plyometric_changes_saved
+    self.pl_modified = true
+    self.changes_saved = true
+    self.save
+  end
+
   def self.get_routine_from_group_routine_id(routine_id, group_id, user_id)
     DailyRoutine.where(:group_routine_id => routine_id, :group_id => group_id, :user_id => user_id).first
   end
@@ -104,8 +110,16 @@ class DailyRoutine < ActiveRecord::Base
     self.performed_warm_ups.where('status == 2 or status == 3').order(id: :asc)
   end
 
+  def get_plyometrics_without_changes_saved
+    self.performed_plyometrics.where('status == 2 or status == 3').order(id: :asc)
+  end
+
   def add_warmup(exercise_id, status, group_performed_ex_id)
-    PerformedWarmUp.add_exercise(exercise_id, status, self.id, group_performed_ex_id)
+    self.performed_warm_ups << PerformedWarmUp.add_exercise(exercise_id, status, self.id, group_performed_ex_id)
+  end
+
+  def add_plyometric(exercise_id, status, group_performed_ex_id)
+    self.performed_plyometrics << PerformedPlyometric.add_exercise(exercise_id, status, self.id, group_performed_ex_id)
   end
 
   def note_day_created(day_id, type)
@@ -123,7 +137,18 @@ class DailyRoutine < ActiveRecord::Base
   end
 
   def add_custom_exercise(name, type, group_performed_id)
-    CustomExercise.add_exercise(self.id, name, type, group_performed_id)
+    self.custom_exercises << CustomExercise.add_exercise(self.id, name, type, group_performed_id)
+  end
+
+  def has_plyo(exercise)
+    contains = false
+    self.performed_plyometrics.each do |plyo|
+      if plyo.plyometric.id == exercise.id
+        contains = true
+        break
+      end
+    end
+    contains
   end
 
 end

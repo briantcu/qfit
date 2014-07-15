@@ -13,11 +13,38 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   name: MyString
   video_link: MyString
   recommended: MyText
 
 two:
+  id: 2
   name: MyString
   video_link: MyString
   recommended: MyText
+
+three:
+  id: 3
+  name: MyString
+  video_link: MyString
+  recommended: MyText
+
+four:
+  id: 4
+  name: MyString
+  video_link: MyString
+  recommended: MyText
+
+five:
+  id: 5
+  name: MyString
+  video_link: MyString
+  recommended: MyText
+
+six:
+  id: 6
+  name: MyString
+  video_link: MyString
+  recommended: MyText
+

@@ -19,7 +19,7 @@
 one:
   plyometric_id: 1
   routine_id: 1
-  status: 1
+  status: 2
   group_performed_plyometric_id: 1
   performed_one: false
   performed_two: false
@@ -28,7 +28,7 @@ one:
 two:
   plyometric_id: 1
   routine_id: 1
-  status: 1
+  status: 3
   group_performed_plyometric_id: 1
   performed_one: false
   performed_two: false

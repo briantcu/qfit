@@ -71,13 +71,33 @@ class GroupRoutine < ActiveRecord::Base
     end
   end
 
+  def note_plyometric_changes_saved
+    self.pl_modified = true
+    self.changes_saved = true
+    self.save
+    self.group.users.each do |user|
+      user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
+      if !user_routine.nil?
+        user_routine.note_plyometric_changes_saved
+      end
+    end
+  end
+
   def get_warmups_without_changes_saved
     self.group_performed_warmups.where('status == 2 or status == 3').order(id: :asc)
   end
 
   def add_warmup(exercise_id, status, not_used)
     exercise = GroupPerformedWarmup.add_exercise(exercise_id, status, self.id)
-    add_for_users(PerformedWarmUp, exercise.id)
+    self.group_performed_warmups << exercise
+    add_for_users(PerformedWarmUp, exercise, exercise_id)
+    exercise
+  end
+
+  def add_plyometric(exercise_id, status, not_used)
+    exercise = GroupPerformedPlyo.add_exercise(exercise_id, status, self.id)
+    self.group_performed_plyos << exercise
+    add_for_users(PerformedPlyometric, exercise, exercise_id)
     exercise
   end
 
@@ -103,6 +123,7 @@ class GroupRoutine < ActiveRecord::Base
 
   def add_custom_exercise(name, type, not_used)
     group_exercise = GroupCustomExercise.add_exercise(self.id, name, type)
+    self.group_custom_exercises << group_exercise
     self.group.users.each do |user|
       user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
       if !user_routine.nil?
@@ -111,13 +132,24 @@ class GroupRoutine < ActiveRecord::Base
     end
   end
 
+  def has_plyo(exercise)
+    contains = false
+    self.group_performed_plyos.each do |plyo|
+      if plyo.plyometric.id == exercise.id
+        contains = true
+        break
+      end
+    end
+    contains
+  end
+
   private
 
-  def add_for_users(performed_entity, performed_id)
+  def add_for_users(performed_entity, exercise, exercise_id)
     self.group.users.each do |user|
       user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
       if !user_routine.nil?
-        performed_entity.add_exercise(exercise_id, status, user_routine.id, performed_id)
+        performed_entity.add_exercise(exercise_id, exercise.status, user_routine.id, exercise.id)
       end
     end
   end
