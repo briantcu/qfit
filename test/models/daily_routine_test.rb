@@ -22,4 +22,11 @@ class DailyRoutineTest < ActiveSupport::TestCase
     exercises = routine.get_warmups_without_changes_saved
     assert(exercises.size == 2)
   end
+
+  test 'adds sprint' do
+    routine = DailyRoutine.find(3)
+    routine.add_sprint(2 ,3, 2)
+    assert(routine.performed_sprints.size == 1)
+    assert(routine.performed_sprints.first.laps.size == 3)
+  end
 end

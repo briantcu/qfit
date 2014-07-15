@@ -34,5 +34,5 @@ three:
   weights: true
   plyometrics: true
   stretching: true
-  sprinting: false
+  sprinting: true
   day: 0

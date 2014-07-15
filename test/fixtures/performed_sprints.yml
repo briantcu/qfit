@@ -15,7 +15,7 @@
 
 one:
   sprint_id: 1
-  status: 1
+  status: 2
   group_performed_sprint_id: 1
   routine_id: 1
 

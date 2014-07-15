@@ -102,6 +102,12 @@ class DailyRoutine < ActiveRecord::Base
     self.save
   end
 
+  def note_sprint_changes_saved
+    self.changes_saved = true
+    self.sp_modified = true
+    self.save
+  end
+
   def self.get_routine_from_group_routine_id(routine_id, group_id, user_id)
     DailyRoutine.where(:group_routine_id => routine_id, :group_id => group_id, :user_id => user_id).first
   end
@@ -114,12 +120,25 @@ class DailyRoutine < ActiveRecord::Base
     self.performed_plyometrics.where('status == 2 or status == 3').order(id: :asc)
   end
 
+  def get_sprints_without_changes_saved
+    self.performed_sprints.where('status == 2 or status == 3').order(id: :asc)
+  end
+
   def add_warmup(exercise_id, status, group_performed_ex_id)
     self.performed_warm_ups << PerformedWarmUp.add_exercise(exercise_id, status, self.id, group_performed_ex_id)
   end
 
   def add_plyometric(exercise_id, status, group_performed_ex_id)
     self.performed_plyometrics << PerformedPlyometric.add_exercise(exercise_id, status, self.id, group_performed_ex_id)
+  end
+
+  def add_sprint(exercise_id, status, group_performed_ex_id)
+    sprint = PerformedSprint.add_exercise(exercise_id, status, self.id, group_performed_ex_id)
+    self.performed_sprints << sprint
+    num_laps = sprint.sprint.num_laps
+    for i in 1..num_laps
+      Lap.create_lap(sprint.id, i)
+    end
   end
 
   def note_day_created(day_id, type)

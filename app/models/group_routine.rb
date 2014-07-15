@@ -71,6 +71,18 @@ class GroupRoutine < ActiveRecord::Base
     end
   end
 
+  def note_sprint_changes_saved
+    self.changes_saved = true
+    self.sp_modified = true
+    self.save
+    self.group.users.each do |user|
+      user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
+      if !user_routine.nil?
+        user_routine.note_sprint_changes_saved
+      end
+    end
+  end
+
   def note_plyometric_changes_saved
     self.pl_modified = true
     self.changes_saved = true
@@ -87,6 +99,14 @@ class GroupRoutine < ActiveRecord::Base
     self.group_performed_warmups.where('status == 2 or status == 3').order(id: :asc)
   end
 
+  def get_sprints_without_changes_saved
+    self.group_performed_sprints.where('status == 2 or status == 3').order(id: :asc)
+  end
+
+  def get_plyometrics_without_changes_saved
+    self.group_performed_plyos.where('status == 2 or status == 3').order(id: :asc)
+  end
+
   def add_warmup(exercise_id, status, not_used)
     exercise = GroupPerformedWarmup.add_exercise(exercise_id, status, self.id)
     self.group_performed_warmups << exercise
@@ -98,6 +118,13 @@ class GroupRoutine < ActiveRecord::Base
     exercise = GroupPerformedPlyo.add_exercise(exercise_id, status, self.id)
     self.group_performed_plyos << exercise
     add_for_users(PerformedPlyometric, exercise, exercise_id)
+    exercise
+  end
+
+  def add_sprint(exercise_id, status, not_used)
+    exercise = GroupPerformedSprint.add_exercise(exercise_id, status, self.id)
+    self.group_performed_sprints << exercise
+    add_for_users(PerformedSprint, exercise, exercise_id)
     exercise
   end
 

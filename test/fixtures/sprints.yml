@@ -20,7 +20,8 @@ one:
   num_laps: 1
 
 two:
+  id: 2
   difficulty: 1
   name: MyString
   sprint_type: 1
-  num_laps: 1
+  num_laps: 3
