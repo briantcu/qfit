@@ -23,6 +23,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   group_id: 1
   day_performed: 2014-04-26
   program_day_id: 1
