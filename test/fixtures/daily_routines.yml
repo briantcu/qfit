@@ -75,3 +75,47 @@ two:
 
 three:
   id: 3
+
+four:
+  id: 4
+  user_id: 1
+  group_id: 1
+  day_performed: 2014-04-26
+  weight: 1
+  power_index: 1
+  program_day_id: 1
+  wt_day_id: 4
+  sp_day_id: 4
+  pl_day_id: 4
+  wu_day_id: 4
+  modified: false
+  pl_modified: false
+  wt_modified: false
+  wu_modified: false
+  sp_modified: false
+  changes_saved: false
+  closed: false
+  group_routine_id: 2
+
+five:
+  id: 5
+  user_id: 1
+  group_id: 1
+  day_performed: 2014-04-26
+  weight: 1
+  power_index: 1
+  count_ex_provided: 1
+  count_ex_completed: 1
+  program_day_id: 1
+  wt_day_id: 1
+  sp_day_id: 1
+  pl_day_id: 1
+  wu_day_id: 2
+  modified: false
+  pl_modified: false
+  wt_modified: false
+  wu_modified: false
+  sp_modified: false
+  changes_saved: false
+  closed: false
+  group_routine_id: 2

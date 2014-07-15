@@ -20,7 +20,7 @@ one:
   user_schedule_id: 1
   weights: false
   plyometrics: false
-  stretching: false
+  stretching: true
   sprinting: true
 
 two:
@@ -28,7 +28,7 @@ two:
   user_schedule_id: 1
   weights: false
   plyometrics: false
-  stretching: false
+  stretching: true
   sprinting: false
 
 three:

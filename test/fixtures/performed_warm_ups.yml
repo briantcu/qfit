@@ -41,3 +41,10 @@ four:
   status: 3
   group_warmup_id: 1
   completed: false
+
+five:
+  routine_id: 5
+  warmup_id: 2
+  status: 3
+  group_warmup_id: 1
+  completed: false
