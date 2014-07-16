@@ -18,7 +18,7 @@
 one:
   day: 0
   user_schedule_id: 1
-  weights: false
+  weights: true
   plyometrics: true
   stretching: true
   sprinting: true

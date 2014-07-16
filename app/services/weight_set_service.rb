@@ -28,7 +28,7 @@ class WeightSetService
   def create_sets
     program_type = @entity.get_schedule.program_type
     phase_number = @entity.get_schedule.get_phase_by_date(@routine.day_performed)
-    phase_id = ProgramPhaseLookup.get_phase_id(phase_number, program_type)
+    phase_id = ProgramPhaseLookup.get_phase_id(phase_number, program_type.id)
     get_num_sets_and_reps(phase_id)
     set_rest_period
     calculate_recommended_loads

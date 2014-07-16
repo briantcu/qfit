@@ -2,28 +2,25 @@
 #
 # Table name: group_performed_exercises
 #
-#  id                    :integer          not null, primary key
-#  performed_exercise_id :integer
-#  routine_id            :integer
-#  exercise_id           :integer
-#  status                :integer
-#  exercise_type         :integer
-#  created_at            :datetime
-#  updated_at            :datetime
+#  id               :integer          not null, primary key
+#  routine_id       :integer
+#  exercise_id      :integer
+#  status           :integer
+#  exercise_type_id :integer
+#  created_at       :datetime
+#  updated_at       :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  performed_exercise_id: 1
   routine_id: 1
   exercise_id: 1
   status: 1
-  exercise_type: 1
+  exercise_type_id: 1
 
 two:
-  performed_exercise_id: 1
   routine_id: 1
   exercise_id: 1
   status: 1
-  exercise_type: 1
+  exercise_type_id: 1
