@@ -9,6 +9,12 @@ class ExerciseValidatorService
     true
   end
 
+  def self.is_valid_exercise(entity, routine, exercise)
+    #equipment
+    #experience
+    #strength level
 
+    true
+  end
 
 end

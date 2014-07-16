@@ -108,6 +108,12 @@ class DailyRoutine < ActiveRecord::Base
     self.save
   end
 
+  def note_weight_changes_saved
+    self.changes_saved = true
+    self.wt_modified = true
+    self.save
+  end
+
   def self.get_routine_from_group_routine_id(routine_id, group_id, user_id)
     DailyRoutine.where(:group_routine_id => routine_id, :group_id => group_id, :user_id => user_id).first
   end
@@ -122,6 +128,10 @@ class DailyRoutine < ActiveRecord::Base
 
   def get_sprints_without_changes_saved
     self.performed_sprints.where('status == 2 or status == 3').order(id: :asc)
+  end
+
+  def get_weights_without_changes_saved
+    self.performed_exercises.where('status == 2 or status == 3').order(id: :asc)
   end
 
   def add_warmup(exercise_id, status, group_performed_ex_id)
@@ -139,6 +149,12 @@ class DailyRoutine < ActiveRecord::Base
     for i in 1..num_laps
       Lap.create_lap(sprint.id, i)
     end
+  end
+
+  def add_weights(exercise, status, group_performed_ex_id)
+    perf_exercise = PerformedExercise.add_exercise(exercise.id, status, self.id, exercise.exercise_type.id, group_performed_ex_id)
+    self.performed_exercises << perf_exercise
+    #@TODO add sets
   end
 
   def note_day_created(day_id, type)

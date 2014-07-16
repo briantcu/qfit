@@ -13,5 +13,10 @@
 #
 
 class GroupPerformedExercise < ActiveRecord::Base
-  belongs_to :group_routine
+  belongs_to :group_routine, :foreign_key => :routine_id
+  belongs_to :exercise
+
+  def self.add_exercise(exercise_id, status, routine_id, exercise_type)
+    GroupPerformedExercise.create(routine_id: routine_id, performed_exercise_id: exercise_id, status: status, exercise_type: exercise_type)
+  end
 end

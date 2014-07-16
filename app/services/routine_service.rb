@@ -36,7 +36,8 @@ class RoutineService
       end
 
       if weekly_schedule_day.weights
-        add_exercises(WeightsService, WEIGHTS)
+        weight_service = WeightsService.new(@entity, @routine, @phase_number, @sched_update, self)
+        weight_service.add_weights
       end
 
       if weekly_schedule_day.plyometrics
@@ -133,7 +134,7 @@ class RoutineService
   end
 
   def maybe_add_custom_exercises
-
+    #@TODO
   end
 
   def valid_entity_and_open_date?

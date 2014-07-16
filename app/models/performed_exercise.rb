@@ -21,4 +21,8 @@ class PerformedExercise < ActiveRecord::Base
   belongs_to :exercise
   has_many :weight_sets, -> { order('set_num ASC') }
   accepts_nested_attributes_for :weight_sets, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
+
+  def self.add_exercise(exercise_id, status, routine_id, exercise_type, group_exercise_id)
+    GroupPerformedExercise.create(routine_id: routine_id, performed_exercise_id: exercise_id, status: status, exercise_type: exercise_type, group_performed_exercise_id: group_exercise_id)
+  end
 end

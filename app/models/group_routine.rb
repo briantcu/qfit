@@ -63,36 +63,28 @@ class GroupRoutine < ActiveRecord::Base
     self.changes_saved = true
     self.wu_modified = true
     self.save
-    self.group.users.each do |user|
-      user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
-      if !user_routine.nil?
-        user_routine.note_warmup_changes_saved
-      end
-    end
+    note_changes_for_users(STRETCHING)
   end
 
   def note_sprint_changes_saved
     self.changes_saved = true
     self.sp_modified = true
     self.save
-    self.group.users.each do |user|
-      user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
-      if !user_routine.nil?
-        user_routine.note_sprint_changes_saved
-      end
-    end
+    note_changes_for_users(SPRINTING)
   end
 
   def note_plyometric_changes_saved
     self.pl_modified = true
     self.changes_saved = true
     self.save
-    self.group.users.each do |user|
-      user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
-      if !user_routine.nil?
-        user_routine.note_plyometric_changes_saved
-      end
-    end
+    note_changes_for_users(PLYOS)
+  end
+
+  def note_weight_changes_saved
+    self.changes_saved = true
+    self.wt_modified = true
+    self.save
+    note_changes_for_users(WEIGHTS)
   end
 
   def get_warmups_without_changes_saved
@@ -107,25 +99,41 @@ class GroupRoutine < ActiveRecord::Base
     self.group_performed_plyos.where('status == 2 or status == 3').order(id: :asc)
   end
 
+  def get_weights_without_changes_saved
+    self.group_performed_exercises.where('status == 2 or status == 3').order(id: :asc)
+  end
+
   def add_warmup(exercise_id, status, not_used)
     exercise = GroupPerformedWarmup.add_exercise(exercise_id, status, self.id)
     self.group_performed_warmups << exercise
-    add_for_users(PerformedWarmUp, exercise, exercise_id)
+    add_for_users(STRETCHING, exercise, exercise_id)
     exercise
   end
 
   def add_plyometric(exercise_id, status, not_used)
     exercise = GroupPerformedPlyo.add_exercise(exercise_id, status, self.id)
     self.group_performed_plyos << exercise
-    add_for_users(PerformedPlyometric, exercise, exercise_id)
+    add_for_users(PLYOS, exercise, exercise_id)
     exercise
   end
 
   def add_sprint(exercise_id, status, not_used)
     exercise = GroupPerformedSprint.add_exercise(exercise_id, status, self.id)
     self.group_performed_sprints << exercise
-    add_for_users(PerformedSprint, exercise, exercise_id)
+    add_for_users(SPRINTING, exercise, exercise_id)
     exercise
+  end
+
+  def add_weights(exercise, status, not_used)
+    perf_exercise = GroupPerformedExercise.add_exercise(exercise.id, status, self.id, exercise.exercise_type.id)
+    self.group_performed_exercises << perf_exercise
+    self.group.users.each do |user|
+      user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
+      if !user_routine.nil?
+        user_routine.add_weights(exercise, perf_exercise.status, perf_exercise.id)
+      end
+    end
+    perf_exercise
   end
 
   def note_day_created(day_id, type)
@@ -172,13 +180,39 @@ class GroupRoutine < ActiveRecord::Base
 
   private
 
-  def add_for_users(performed_entity, exercise, exercise_id)
+  def add_for_users(type, exercise, exercise_id)
     self.group.users.each do |user|
       user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
       if !user_routine.nil?
-        performed_entity.add_exercise(exercise_id, exercise.status, user_routine.id, exercise.id)
+        case type
+          when STRETCHING
+            user_routine.add_warmup(exercise_id, exercise.status, exercise.id)
+          when PLYOS
+            user_routine.add_plyometric(exercise_id, exercise.status, exercise.id)
+          when SPRINTING
+            user_routine.add_sprint(exercise_id, exercise.status, exercise.id)
+        end
       end
     end
   end
+
+  def note_changes_for_users(type)
+    self.group.users.each do |user|
+      user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
+      if !user_routine.nil?
+        case type
+          when STRETCHING
+            user_routine.note_warmup_changes_saved
+          when WEIGHTS
+            user_routine.note_weight_changes_saved
+          when PLYOS
+            user_routine.note_plyometric_changes_saved
+          when SPRINTING
+            user_routine.note_sprint_changes_saved
+        end
+      end
+    end
+  end
+
 
 end
