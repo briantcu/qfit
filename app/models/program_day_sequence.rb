@@ -33,7 +33,7 @@ class ProgramDaySequence < ActiveRecord::Base
   belongs_to :program_day, :foreign_key => :ten
 
   def self.get_program_day_id(index, program_id)
-    program_day_sequence = ProgramDaySequence.where(:program_id => program_id)
+    program_day_sequence = ProgramDaySequence.where(:program_id => program_id).first
     program_day_id = 1
     case index
       when 1
@@ -62,7 +62,7 @@ class ProgramDaySequence < ActiveRecord::Base
   end
 
   def self.get_total_days(program_id)
-    program_day_sequence = ProgramDaySequence.where(:program_id => program_id)
+    program_day_sequence = ProgramDaySequence.where(:program_id => program_id).first
     program_day_sequence.number_of_days
   end
 end

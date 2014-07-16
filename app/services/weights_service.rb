@@ -35,8 +35,8 @@ class WeightsService
 
   def add_exercises(program_day_id)
     exercise_types = DayExercise.get_exercises_for_day(program_day_id)
-    exercise_types.each do |exercise_type|
-      exercises = exercise_type.get_exercises
+    exercise_types.each do |day_exercise|
+      exercises = day_exercise.exercise_type.get_exercises
       total_count_for_index = exercises.size - 1
       while true
         index = rand(0..(total_count_for_index))
