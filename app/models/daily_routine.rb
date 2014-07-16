@@ -154,7 +154,8 @@ class DailyRoutine < ActiveRecord::Base
   def add_weights(exercise, status, group_performed_ex_id)
     perf_exercise = PerformedExercise.add_exercise(exercise.id, status, self.id, exercise.exercise_type.id, group_performed_ex_id)
     self.performed_exercises << perf_exercise
-    #@TODO add sets
+    weight_set_service = WeightSetService.new(self.user, self, perf_exercise)
+    weight_set_service.create_sets
   end
 
   def note_day_created(day_id, type)
