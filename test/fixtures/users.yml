@@ -54,10 +54,10 @@ one:
   sex: MyString
   administrator: false
   sub_user: false
-  knee_dom_max: 1.5
-  hor_push_max: 1.5
-  hor_pull_max: 1.5
-  power_index: 1
+  knee_dom_max: 250
+  hor_push_max: 130
+  hor_pull_max: 150
+  power_index: 32
   password: MyString
   current_phase: 1
   phone: MyString
@@ -67,7 +67,7 @@ one:
   last_sprint_day_created: 1
   user_name: MyString
   sprint_diff: 1
-  weight: 1.5
+  weight: 150
   level: 1
   program_type: 1
   birth_year: 1

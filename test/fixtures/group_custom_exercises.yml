@@ -7,7 +7,7 @@
 #  details    :text
 #  status     :integer
 #  name       :string(255)
-#  ex_type       :integer
+#  ex_type    :integer
 #  created_at :datetime
 #  updated_at :datetime
 #

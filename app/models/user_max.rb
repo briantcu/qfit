@@ -13,4 +13,8 @@
 class UserMax < ActiveRecord::Base
   belongs_to :user
   belongs_to :exercise
+
+  def self.get_max(user_id, exercise_id)
+    UserMax.where(:user_id => user_id, :exercise_id => exercise_id).first
+  end
 end

@@ -10,8 +10,10 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+power:
+  id: 1
   type_name: MyString
 
-two:
+other:
+  id: 2
   type_name: MyString

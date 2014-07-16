@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715031509) do
+ActiveRecord::Schema.define(version: 20140716163241) do
 
   create_table "coach_accounts", force: true do |t|
     t.integer  "user_id"
@@ -253,7 +253,7 @@ ActiveRecord::Schema.define(version: 20140715031509) do
     t.integer  "status"
     t.integer  "one_rep_max"
     t.integer  "group_performed_exercise_id"
-    t.integer  "exercise_type"
+    t.integer  "exercise_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

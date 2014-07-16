@@ -5,7 +5,7 @@
 #  id                :integer          not null, primary key
 #  group_schedule_id :integer
 #  weights           :boolean
-#  plyos             :boolean
+#  plyometrics       :boolean
 #  stretching        :boolean
 #  sprinting         :boolean
 #  created_at        :datetime

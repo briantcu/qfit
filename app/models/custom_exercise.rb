@@ -8,7 +8,7 @@
 #  status     :integer
 #  group_id   :integer
 #  name       :string(255)
-#  type       :integer
+#  ex_type    :integer
 #  created_at :datetime
 #  updated_at :datetime
 #

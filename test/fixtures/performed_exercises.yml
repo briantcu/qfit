@@ -9,7 +9,7 @@
 #  status                      :integer
 #  one_rep_max                 :integer
 #  group_performed_exercise_id :integer
-#  exercise_type               :integer
+#  exercise_type_id            :integer
 #  created_at                  :datetime
 #  updated_at                  :datetime
 #
@@ -17,13 +17,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   routine_id: 1
-  exercise_id: 1
+  exercise_id: 3
   rest_period: 1
   status: 1
   one_rep_max: 1
   group_performed_exercise_id: 1
-  exercise_type: 1
+  exercise_type_id: 1
 
 two:
   routine_id: 1
@@ -32,4 +33,54 @@ two:
   status: 1
   one_rep_max: 1
   group_performed_exercise_id: 1
-  exercise_type: 1
+  exercise_type_id: 1
+
+med_ball:
+  id: 3
+  routine_id: 1
+  exercise_id: 4
+  rest_period: 1
+  status: 1
+  one_rep_max: 1
+  group_performed_exercise_id: 1
+  exercise_type_id: 2
+
+body_weight:
+  id: 4
+  routine_id: 1
+  exercise_id: 54
+  rest_period: 1
+  status: 1
+  one_rep_max: 1
+  group_performed_exercise_id: 1
+  exercise_type_id: 2
+
+belted_body_weight:
+  id: 5
+  routine_id: 1
+  exercise_id: 135
+  rest_period: 1
+  status: 1
+  one_rep_max: 1
+  group_performed_exercise_id: 1
+  exercise_type_id: 2
+
+plate_exercise:
+  id: 6
+  routine_id: 1
+  exercise_id: 5
+  rest_period: 1
+  status: 1
+  one_rep_max: 1
+  group_performed_exercise_id: 1
+  exercise_type_id: 2
+
+existing:
+  id: 7
+  routine_id: 1
+  exercise_id: 2
+  rest_period: 1
+  status: 1
+  one_rep_max: 1
+  group_performed_exercise_id: 1
+  exercise_type_id: 2
