@@ -48,10 +48,43 @@ class DailyRoutine < ActiveRecord::Base
   accepts_nested_attributes_for :performed_plyometrics, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
   accepts_nested_attributes_for :performed_sprints, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
 
+  def get_warmups
+    self.performed_warm_ups
+  end
+
+  def get_weights
+    self.performed_exercises
+  end
+
+  def get_sprints
+    self.performed_sprints
+  end
+
+  def get_plyos
+    self.performed_plyometrics
+  end
+
+  def get_custom_exercises(type)
+    case type
+      when STRETCHING
+        return self.custom_exercises.where(ex_type: STRETCHING)
+      when WEIGHTS
+        return self.custom_exercises.where(ex_type: WEIGHTS)
+      when PLYOS
+        return self.custom_exercises.where(ex_type: PLYOS)
+      when SPRINTING
+        return self.custom_exercises.where(ex_type: SPRINTING)
+    end
+  end
+
   def self.get_routines_for_month(user_id, month, year)
     first = Date.new(year, month, 1)
     last = first.end_of_month
     DailyRoutine.where(:user_id => user_id).where('day_performed >= ?', first).where('day_performed <= ?', last)
+  end
+
+  def self.get_matching_routines(routine)
+    DailyRoutine.where(:wt_day_id => routine.wt_day_id, :sp_day_id => routine.sp_day_id, :pl_day_id => routine.pl_day_id, :wu_day_id => routine.wu_day_id, :user_id => routine.user.id).order(id: :desc)
   end
 
   def get_workout_status

@@ -50,7 +50,7 @@ class RoutineService
 
       cleanup
 
-      maybe_add_custom_exercises
+      maybe_add_custom_exercises(weekly_schedule_day)
 
       @routine
     end
@@ -104,6 +104,14 @@ class RoutineService
 
   private
 
+  def get_matching_routines
+    if @entity.is_group
+      GroupRoutine.get_matching_routines(@routine)
+    else
+      DailyRoutine.get_matching_routines(@routine)
+    end
+  end
+
   def add_exercises(service, type)
     day_id = self.get_next_day_id(type)
     previous_routine = self.get_previous_matching_routine(type, day_id)
@@ -133,8 +141,16 @@ class RoutineService
     prev_routine
   end
 
-  def maybe_add_custom_exercises
-    #@TODO
+  def maybe_add_custom_exercises(weekly_schedule_day)
+    previous_workouts = get_matching_routines
+    if previous_workouts.size > 1
+      previous_workout = previous_workouts[1]  #skip workout you just created
+      if previous_workout.changes_saved
+        complete_custom = false
+        custom_exercise_service = CustomExerciseService.new(weekly_schedule_day, complete_custom, self, previous_workout)
+        custom_exercise_service.add_custom_exercises
+      end
+    end
   end
 
   def valid_entity_and_open_date?

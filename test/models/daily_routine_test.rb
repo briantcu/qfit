@@ -29,4 +29,10 @@ class DailyRoutineTest < ActiveSupport::TestCase
     assert(routine.performed_sprints.size == 1)
     assert(routine.performed_sprints.first.laps.size == 3)
   end
+
+  test 'get custom exercises with filter' do
+    routine = DailyRoutine.find(3)
+    exes = routine.get_custom_exercises(2)
+    assert(exes.size == 2)
+  end
 end

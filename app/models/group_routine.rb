@@ -36,6 +36,35 @@ class GroupRoutine < ActiveRecord::Base
   has_many :group_custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
 
 
+  def get_warmups
+    self.group_performed_warmups
+  end
+
+  def get_weights
+    self.group_performed_exercises
+  end
+
+  def get_sprints
+    self.group_performed_sprints
+  end
+
+  def get_plyos
+    self.group_performed_plyos
+  end
+
+  def get_custom_exercises(type)
+    case type
+      when STRETCHING
+        return self.group_custom_exercises.where(exercise_types: STRETCHING)
+      when WEIGHTS
+        return self.group_custom_exercises.where(exercise_types: WEIGHTS)
+      when PLYOS
+        return self.group_custom_exercises.where(exercise_types: PLYOS)
+      when SPRINTING
+        return self.group_custom_exercises.where(exercise_types: SPRINTING)
+    end
+  end
+
   def self.get_matching_routine_since(date, type, day_id, group_id)
     matching = nil
     case type
@@ -57,6 +86,10 @@ class GroupRoutine < ActiveRecord::Base
       old_routine.destroy
     end
     return GroupRoutine.create(group_id: group_id, day_performed: date)
+  end
+
+  def self.get_matching_routines(routine)
+    GroupRoutine.where(:wt_day_id => routine.wt_day_id, :sp_day_id => routine.sp_day_id, :pl_day_id => routine.pl_day_id, :wu_day_id => routine.wu_day_id, :group_id => routine.group.id).order(id: :desc)
   end
 
   def note_warmup_changes_saved

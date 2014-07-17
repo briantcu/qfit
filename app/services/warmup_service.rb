@@ -56,7 +56,7 @@ class WarmupService
 
     if previous_routine.changes_saved && previous_routine.wu_modified
       #copy custom exercises
-      previous_routine.custom_exercises.each do |exercise|
+      previous_routine.get_custom_exercises(STRETCHING).each do |exercise|
         @routine.add_custom_exercise(exercise.name, STRETCHING, 0)
       end
     end

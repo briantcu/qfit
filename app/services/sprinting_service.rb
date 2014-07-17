@@ -51,7 +51,7 @@ class SprintingService
 
     if previous_routine.changes_saved && previous_routine.sp_modified
       #copy custom exercises
-      previous_routine.custom_exercises.each do |exercise|
+      previous_routine.get_custom_exercises(SPRINTING).each do |exercise|
         @routine.add_custom_exercise(exercise.name, SPRINTING, 0)
       end
     end

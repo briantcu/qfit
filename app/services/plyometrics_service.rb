@@ -54,7 +54,7 @@ class PlyometricsService
 
     if previous_routine.changes_saved && previous_routine.pl_modified
       #copy custom exercises
-      previous_routine.custom_exercises.each do |exercise|
+      previous_routine.get_custom_exercises(PLYOS).each do |exercise|
         @routine.add_custom_exercise(exercise.name, PLYOS, 0)
       end
     end

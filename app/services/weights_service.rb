@@ -27,8 +27,19 @@ class WeightsService
       add_exercises(program_day_id)
     else
       copy_exercises(previous_routine)
+      copy_custom(previous_routine)
     end
+    @routine.program_day_id = program_day_id
+    @routine.wt_day_id = weight_day_index
+    @routine.save
+    if !@sched_update
+      @entity.last_weight_day_created = weight_day_index
+      @entity.save
+    end
+  end
 
+  def copy_weights(previous_routine)
+    copy_exercises(previous_routine)
   end
 
   private
@@ -53,11 +64,7 @@ class WeightsService
   def copy_exercises(previous_routine)
 
     if previous_routine.changes_saved && previous_routine.wt_modified
-      if entity.is_group
-        previous_exercises = previous_routine.group_performed_exercises
-      else
-        previous_exercises = previous_routine.performed_exercises
-      end
+      previous_exercises = previous_routine.get_weights
       @routine.note_weight_changes_saved
     else
       previous_exercises = previous_routine.get_weights_without_changes_saved
@@ -73,13 +80,14 @@ class WeightsService
       end
       @routine.add_weights(exercise, status, 0) #0 = group performed exercise id
     end
+  end
 
+  def copy_custom(previous_routine)
     if previous_routine.changes_saved && previous_routine.wt_modified
-      previous_routine.custom_exercises.each do |exercise|
+      previous_routine.get_custom_exercises(WEIGHTS).each do |exercise|
         @routine.add_custom_exercise(exercise.name, WEIGHTS, 0)
       end
     end
-
   end
 
   def get_weight_day_index

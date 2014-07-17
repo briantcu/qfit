@@ -30,3 +30,19 @@ two:
   group_id: 1
   name: MyString
   ex_type: 1
+
+three:
+  routine_id: 3
+  details: MyString
+  status: 1
+  group_id: 1
+  name: MyString
+  ex_type: 2
+
+four:
+  routine_id: 3
+  details: MyString
+  status: 1
+  group_id: 1
+  name: MyString
+  ex_type: 2
