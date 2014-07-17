@@ -93,6 +93,7 @@ class RoutineService
   end
 
   def get_previous_matching_routine(type, day_id)
+    #Only applies to 1 pillar
     temp_date = @date - 15
     if @entity.is_group
       prev_routine  = GroupRoutine.get_matching_routine_since(temp_date, type, day_id, @entity.id)
@@ -105,6 +106,7 @@ class RoutineService
   private
 
   def get_matching_routines
+    #gets all routines EXACTLY like the one we're creating...all pillars are the same
     if @entity.is_group
       GroupRoutine.get_matching_routines(@routine)
     else
