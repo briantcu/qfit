@@ -69,22 +69,23 @@ class RoutineServiceTest < ActiveSupport::TestCase
     assert(next_day == 1)
   end
 
-  test 'should create routine with canned warm ups and plyos and sprints for user' do
+  test 'should create routine with canned warm ups and pull custom exercises from previous workout' do
     date = Date.new(2014, 5, 18)
     @user = User.find(1)
     @routine_service = RoutineService.new(@user, 'CRON', date, false)
     routine = @routine_service.create_routine
     assert(routine.performed_plyometrics.size == 4)
-    assert(routine.performed_warm_ups.size == 6)
+    assert(routine.performed_warm_ups.size == 7)
     assert(routine.performed_sprints.size == 1)
+    assert(routine.performed_exercises.size == 2)
   end
 
-  test 'should create routine with warm ups and plyos from previous workout' do
+  test 'should create routine with warm ups and plyos from previous workout and pull custom from prev workout' do
     date = Date.new(2014, 4, 27)
     @user = User.find(1)
     @routine_service = RoutineService.new(@user, 'CRON', date, false)
     routine = @routine_service.create_routine
-    assert(routine.performed_warm_ups.size == 1)
+    assert(routine.performed_warm_ups.size == 2)
     assert(routine.performed_plyometrics.size == 2)
     assert(routine.performed_sprints.size == 1)
   end
@@ -97,6 +98,7 @@ class RoutineServiceTest < ActiveSupport::TestCase
     assert(routine.group_performed_plyos.size == 4)
     assert(routine.group_performed_warmups.size == 6)
     assert(routine.group_performed_sprints.size == 1)
+    assert(routine.group_performed_exercises.size == 1)
   end
 
 end

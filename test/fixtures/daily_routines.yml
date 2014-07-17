@@ -117,7 +117,7 @@ five:
   wt_modified: false
   wu_modified: false
   sp_modified: false
-  changes_saved: false
+  changes_saved: true
   closed: false
   group_routine_id: 2
 
@@ -140,5 +140,5 @@ six:
   wt_modified: false
   wu_modified: false
   sp_modified: false
-  changes_saved: false
+  changes_saved: true
   closed: false
