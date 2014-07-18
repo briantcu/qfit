@@ -169,6 +169,19 @@ class User < ActiveRecord::Base
     self.save
   end
 
+  def get_last_day_created(type)
+    case type
+      when STRETCHING
+        self.last_warmup_day_created
+      when WEIGHTS
+        self.last_weight_day_created
+      when PLYOS
+        self.last_plyometric_day_created
+      when SPRINTING
+        self.last_sprint_day_created
+    end
+  end
+
   private
 
   def generate_authentication_token

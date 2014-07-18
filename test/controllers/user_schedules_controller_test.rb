@@ -6,10 +6,10 @@ class UserSchedulesControllerTest < ActionController::TestCase
   end
 
   test 'should create a new user schedule' do
-    user = users(:two)
+    user = users(:user_no_sched)
     sign_in user
 
-    post(:create, user_schedule: { user_id: 2, program_id: 3, program_type_id: 2})
+    post(:create, user_schedule: { user_id: 6, program_id: 3, program_type_id: 2})
     assert_response :created
     assert(@controller.instance_variable_get(:@user_schedule).id != nil)
     assert(@controller.instance_variable_get(:@user_schedule).sign_up_date == Date.current)

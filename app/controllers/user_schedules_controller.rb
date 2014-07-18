@@ -35,8 +35,10 @@ class UserSchedulesController < ApplicationController
   def update
     if @user_schedule.update(user_schedule_params)
       @user_schedule.setup_phases
+      @user_schedule.rollback_days_created
       @user_schedule.save
       update_user_record
+      RoutineService.sched_change_happened(@user_schedule.user)
       render action: 'show', status: :ok, location: @user_schedule
     else
       render json: @user_schedule.errors, status: :unprocessable_entity

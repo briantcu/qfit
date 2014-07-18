@@ -11,13 +11,57 @@ class RoutineService
   @phase_number # 1-4
   @sched_update
   @cause_of_new_routine #Cron job to create new workouts, or schedule/goals change, or new member/group creation,
-                        # or member removed from group. Cron, Sched, New, Removed
+                        # or member removed from group. CRON, SCHED, NEW, REMOVED
 
   def initialize(entity, cause_of_new_routine, date, sched_update)
     @entity = entity
     @cause_of_new_routine = cause_of_new_routine
     @date = date
     @sched_update = sched_update
+  end
+
+  def self.sched_change_happened(entity)
+    today = Date.today
+    delete_old_workouts(entity)
+    routine_service = RoutineService.new(entity, 'SCHED', today, true)
+    routine_service.create_routines
+  end
+
+  def self.get_open_workouts_start_today(entity)
+    if entity.is_group
+      GroupRoutine.get_open_workouts_start_today(entity)
+    else
+      DailyRoutine.get_open_workouts_start_today(entity)
+    end
+  end
+
+  def self.get_open_workouts(entity)
+    if entity.is_group
+      GroupRoutine.get_open_workouts(entity)
+    else
+      DailyRoutine.get_open_workouts(entity)
+    end
+  end
+
+  def self.has_open_workout_today(entity)
+    if entity.is_group
+      GroupRoutine.has_open_workout_today(entity)
+    else
+      DailyRoutine.has_open_workout_today(entity)
+    end
+
+  end
+
+  def self.has_closed_workout(entity, date)
+    if entity.is_group
+      false
+    else
+      DailyRoutine.has_closed_workout(entity, date)
+    end
+  end
+
+  def set_date(date)
+    @date = date
   end
 
   def create_routine
@@ -53,6 +97,14 @@ class RoutineService
       maybe_add_custom_exercises(weekly_schedule_day)
 
       @routine
+    end
+  end
+
+  def create_routines
+    dates = create_date_array
+    dates.each do |date|
+      self.set_date(date)
+      self.create_routine
     end
   end
 
@@ -104,6 +156,32 @@ class RoutineService
   end
 
   private
+
+  def create_date_array
+    dates = Array.new
+    date = Date.today
+    for i in 1..3
+      if !RoutineService.has_closed_workout(@entity, date)
+        dates.push(date)
+      end
+      date.advance(:days => 1)
+    end
+    dates
+  end
+
+  def self.delete_old_workouts(entity)
+
+    if RoutineService.has_open_workout_today(entity)
+      workouts = RoutineService.get_open_workouts_start_today(entity)
+    else
+      workouts = RoutineService.get_open_workouts(entity)
+    end
+
+    workouts.each do |workout|
+      workout.destroy
+    end
+
+  end
 
   def get_matching_routines
     #gets all routines EXACTLY like the one we're creating...all pillars are the same

@@ -65,6 +65,16 @@ class GroupRoutine < ActiveRecord::Base
     end
   end
 
+  def self.get_open_workouts_start_today(entity)
+    now = Date.today
+    GroupRoutine.where(:group_id => entity.id).where('day_performed >= ?', now)
+  end
+
+  def self.get_open_workouts(entity)
+    now = Date.today
+    GroupRoutine.where(:group_id => entity.id).where('day_performed > ?', now)
+  end
+
   def self.get_matching_routine_since(date, type, day_id, group_id)
     matching = nil
     case type

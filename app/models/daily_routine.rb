@@ -88,6 +88,27 @@ class DailyRoutine < ActiveRecord::Base
                        :wu_day_id => routine.wu_day_id, :user_id => routine.user.id).order(id: :desc)
   end
 
+  def self.get_open_workouts_start_today(entity)
+    now = Date.today
+    DailyRoutine.where(:user_id => entity.id, :closed => false).where('day_performed >= ?', now)
+  end
+
+  def self.get_open_workouts(entity)
+    now = Date.today
+    DailyRoutine.where(:user_id => entity.id, :closed => false).where('day_performed > ?', now)
+  end
+
+  def self.has_open_workout_today(entity)
+    now = Date.today
+    workouts = DailyRoutine.where(:user_id => entity.id, :closed => false, :day_performed => now)
+    workouts.size > 0
+  end
+
+  def self.has_closed_workout(entity, date)
+    workouts = DailyRoutine.where(:user_id => entity.id, :closed => true, :day_performed => date)
+    workouts.size > 0
+  end
+
   def get_workout_status
     if self.closed
       return 'closed'
@@ -102,6 +123,8 @@ class DailyRoutine < ActiveRecord::Base
   end
 
   def self.create_routine(user_id, date, group_routine_id)
+    #There are no checks at this point to see if the workout we're deleting is a closed workout.
+    #If this check needs to be made, it's done above this level
     old_routine = DailyRoutine.where(day_performed: date, user_id: user_id).first
     if !old_routine.nil?
       old_routine.destroy
