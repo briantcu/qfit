@@ -33,14 +33,14 @@ three:
   warmup_id: 4
   status: 2
   group_warmup_id: 1
-  completed: false
+  completed: true
 
 four:
   routine_id: 3
   warmup_id: 2
   status: 3
   group_warmup_id: 1
-  completed: false
+  completed: true
 
 five:
   routine_id: 5

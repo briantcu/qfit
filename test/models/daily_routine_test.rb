@@ -3,7 +3,7 @@ require 'test_helper'
 class DailyRoutineTest < ActiveSupport::TestCase
   test 'returns routines for the month' do
     routines = DailyRoutine.get_routines_for_month(1, 4, 2014)
-    assert(routines.count == 2)
+    assert(routines.count == 5)
   end
 
   test 'finds matching weights routine' do
@@ -35,4 +35,54 @@ class DailyRoutineTest < ActiveSupport::TestCase
     exes = routine.get_custom_exercises(2)
     assert(exes.size == 2)
   end
+
+  test 'should calculate num of completed plyos' do
+    routine = DailyRoutine.find(1)
+    num = routine.get_num_completed_plyos
+    assert(num == 1)
+    end
+
+  test 'should calculate num of completed warmups' do
+    routine = DailyRoutine.find(3)
+    num = routine.get_num_completed_warmups
+    assert(num == 1)
+  end
+
+  test 'should calculate num of completed laps' do
+    routine = DailyRoutine.find(1)
+    num = routine.get_num_completed_laps
+    assert(num == 1)
+  end
+
+  test 'should calculate num of completed sets' do
+    routine = DailyRoutine.find(1)
+    num = routine.get_num_completed_weight_sets
+    assert(num == 3)
+  end
+
+  test 'should calculate num of provided plyos' do
+    routine = DailyRoutine.find(1)
+    num = routine.get_num_provided_plyos
+    assert(num == 3)
+  end
+
+  test 'should calculate num of provided warmups' do
+    routine = DailyRoutine.find(3)
+    num = routine.get_num_provided_warmups
+    assert(num == 1)
+  end
+
+  test 'should calculate num of provided laps' do
+    routine = DailyRoutine.find(1)
+    num = routine.get_num_provided_laps
+    assert(num == 2)
+  end
+
+  test 'should calculate num of provided sets' do
+    routine = DailyRoutine.find(1)
+    num = routine.get_num_provided_weight_sets
+    assert(num == 4)
+  end
+
+
 end

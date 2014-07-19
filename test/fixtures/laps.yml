@@ -14,10 +14,10 @@
 
 one:
   lap_number: 1
-  performed_sprint_id: 1
+  performed_sprint_id: 2
   completed: false
 
 two:
   lap_number: 1
-  performed_sprint_id: 1
-  completed: false
+  performed_sprint_id: 2
+  completed: true

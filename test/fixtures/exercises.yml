@@ -55,49 +55,49 @@ three:
   is_image: false
 
 med_ball:
- id: 4
- exercise_type_id: 2
- video_link: MyString
- look_up_value: 1
- percent_of_luv: 1.5
- category: 6
- difficulty: 1
- is_body_weight: false
- name: MyString
- is_image: false
+  id: 4
+  exercise_type_id: 2
+  video_link: MyString
+  look_up_value: 1
+  percent_of_luv: 1.5
+  category: 6
+  difficulty: 1
+  is_body_weight: false
+  name: MyString
+  is_image: false
 
 assisted_pushups:
- id: 54
- exercise_type_id: 2
- video_link: MyString
- look_up_value: 1
- percent_of_luv: 1.5
- category: 7
- difficulty: 1
- is_body_weight: true
- name: MyString
- is_image: false
+  id: 54
+  exercise_type_id: 2
+  video_link: MyString
+  look_up_value: 1
+  percent_of_luv: 1.5
+  category: 7
+  difficulty: 1
+  is_body_weight: true
+  name: MyString
+  is_image: false
 
 belted_pullups:
- id: 135
- exercise_type_id: 2
- video_link: MyString
- look_up_value: 1
- percent_of_luv: 1.5
- category: 7
- difficulty: 1
- is_body_weight: true
- name: MyString
- is_image: false
+  id: 135
+  exercise_type_id: 2
+  video_link: MyString
+  look_up_value: 1
+  percent_of_luv: 1.5
+  category: 7
+  difficulty: 1
+  is_body_weight: true
+  name: MyString
+  is_image: false
 
-med_ball:
- id: 5
- exercise_type_id: 2
- video_link: MyString
- look_up_value: 1
- percent_of_luv: 1.5
- category: 9
- difficulty: 1
- is_body_weight: false
- name: MyString
- is_image: false
+single_plate:
+  id: 5
+  exercise_type_id: 2
+  video_link: MyString
+  look_up_value: 1
+  percent_of_luv: 1.5
+  category: 9
+  difficulty: 1
+  is_body_weight: false
+  name: MyString
+  is_image: false

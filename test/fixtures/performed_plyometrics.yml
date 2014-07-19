@@ -22,7 +22,7 @@ one:
   status: 2
   group_performed_plyometric_id: 1
   performed_one: false
-  performed_two: false
+  performed_two: true
   performed_three: false
 
 two:
@@ -32,4 +32,4 @@ two:
   group_performed_plyometric_id: 1
   performed_one: false
   performed_two: false
-  performed_three: false
+  performed_three: true

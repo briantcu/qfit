@@ -244,4 +244,68 @@ class DailyRoutine < ActiveRecord::Base
     contains
   end
 
+  def get_num_completed_plyos
+    completed_plyos = 0
+    perf_plyos = self.performed_plyometrics.where('status == 1 or status == 3')
+    perf_plyos.each do |perf_plyo|
+      completed_plyos = (perf_plyo.performed_one && (((perf_plyo.status == 1)) || (perf_plyo.status == 3))) ?
+          completed_plyos + 1 : completed_plyos
+      completed_plyos = (perf_plyo.performed_two && (((perf_plyo.status == 1)) || (perf_plyo.status == 3))) ?
+          completed_plyos + 1 : completed_plyos
+      completed_plyos = (perf_plyo.performed_three && (((perf_plyo.status == 1)) || (perf_plyo.status == 3))) ?
+          completed_plyos + 1 : completed_plyos
+    end
+    completed_plyos
+  end
+
+  def get_num_completed_weight_sets
+    total_sets = 0
+    perf_exes = self.performed_exercises.where('status == 1 or status == 3')
+    perf_exes.each do |ex|
+      total_sets = total_sets + ex.weight_sets.where('perf_reps != 0').size
+    end
+    total_sets
+  end
+
+  def get_num_completed_laps
+    total_laps = 0
+    perf_sprints = self.performed_sprints.where('status == 1 or status == 3')
+    perf_sprints.each do |sprint|
+      total_laps = total_laps + sprint.laps.where(:completed => true).size
+    end
+    total_laps
+  end
+
+  def get_num_completed_warmups
+    self.performed_warm_ups.where('status == 1 or status == 3').where(:completed => true).size
+  end
+
+  def get_num_provided_plyos
+    perf_plyos = self.performed_plyometrics.where('status == 1 or status == 3')
+    perf_plyos.size * 3
+  end
+
+  def get_num_provided_weight_sets
+    total_sets = 0
+    perf_exes = self.performed_exercises.where('status == 1 or status == 3')
+    perf_exes.each do |ex|
+      total_sets = total_sets + ex.weight_sets.size
+    end
+    total_sets
+  end
+
+  def get_num_provided_laps
+    total_laps = 0
+    perf_sprints = self.performed_sprints.where('status == 1 or status == 3')
+    perf_sprints.each do |sprint|
+      total_laps = total_laps + sprint.laps.size
+    end
+    total_laps
+  end
+
+  def get_num_provided_warmups
+    self.performed_warm_ups.where('status == 1 or status == 3').size
+  end
+
+
 end
