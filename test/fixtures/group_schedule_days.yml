@@ -17,7 +17,7 @@
 
 one:
   group_schedule_id: 1
-  weights: false
+  weights: true
   plyometrics: false
   stretching: false
   sprinting: false
@@ -25,7 +25,49 @@ one:
 two:
   group_schedule_id: 1
   weights: false
+  plyometrics: true
+  stretching: false
+  sprinting: false
+
+t:
+  group_schedule_id: 1
+  weights: true
   plyometrics: false
+  stretching: false
+  sprinting: false
+
+w:
+  group_schedule_id: 1
+  weights: false
+  plyometrics: true
+  stretching: false
+  sprinting: false
+
+r:
+  group_schedule_id: 1
+  weights: true
+  plyometrics: false
+  stretching: false
+  sprinting: false
+
+f:
+  group_schedule_id: 1
+  weights: false
+  plyometrics: true
+  stretching: false
+  sprinting: false
+
+sat:
+  group_schedule_id: 1
+  weights: true
+  plyometrics: false
+  stretching: false
+  sprinting: false
+
+two:
+  group_schedule_id: 1
+  weights: false
+  plyometrics: true
   stretching: false
   sprinting: false
 

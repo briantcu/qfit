@@ -124,11 +124,10 @@ class User < ActiveRecord::Base
     sub_user.master_user_id == current_user.id
   end
 
-  def self.update_program_info(user_schedule)
-    user = User.find(user_schedule.user.id)
-    user.program_type = user_schedule.program_type
-    user.current_phase = user_schedule.get_current_phase
-    user.save
+  def update_program_info
+    self.program_type = self.user_schedule.program_type
+    self.current_phase = self.user_schedule.get_current_phase
+    self.save
   end
 
   def will_workout_for_day(day)

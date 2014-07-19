@@ -44,7 +44,7 @@ class GroupSchedule < ActiveRecord::Base
 
   def create_weekly_schedule_days
     7.times{ |i|
-      GroupScheduleDay.create(day: i, group_schedule_id: self.id)
+      self.group_schedule_days << GroupScheduleDay.create(day: i, group_schedule_id: self.id)
     }
   end
 
@@ -118,6 +118,76 @@ class GroupSchedule < ActiveRecord::Base
         total_days = self.group_schedule_days.where(:sprinting => true).size
     end
     total_days
+  end
+
+  def rollback_days_created
+    weights = 0
+    warmup = 0
+    plyos = 0
+    sprints = 0
+    open_workouts = RoutineService.get_open_workouts_start_today(self.group)
+    open_workouts.each do |workout|
+      if workout.wt_day_id != 0
+        weights = weights + 1
+      end
+      if workout.pl_day_id != 0
+        plyos = plyos + 1
+      end
+      if workout.wu_day_id != 0
+        warmup = warmup + 1
+      end
+      if workout.sp_day_id != 0
+        sprints = sprints + 1
+      end
+    end
+
+    rollback_weights(weights)
+    rollback_pillar(warmup, STRETCHING)
+    rollback_pillar(sprints, SPRINTING)
+    rollback_pillar(plyos, PLYOS)
+
+  end
+
+  private
+
+  def rollback_weights(count)
+    if count > 0
+      last_day = self.group.get_last_day_created(WEIGHTS)
+      1..count do
+        if last_day == 1
+          rollback = ProgramDaySequence.get_total_days(self.program_id)
+        else
+          rollback = last_day - 1
+        end
+      end
+
+      if rollback <= 0
+        rollback = 1
+      end
+
+      self.group.note_last_day_created(rollback, WEIGHTS)
+    end
+  end
+
+  def rollback_pillar(count, type)
+    if count > 0
+      last_day = self.group.get_last_day_created(type)
+
+      1..count do
+        if last_day == 1
+          rollback = self.get_total_days_of_pillar(type)
+        else
+          rollback = last_day - 1
+        end
+      end
+
+      if rollback <= 0
+        rollback = 1
+      end
+
+      self.group.note_last_day_created(rollback, type)
+
+    end
   end
 
 end

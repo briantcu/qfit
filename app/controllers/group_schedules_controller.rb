@@ -1,10 +1,10 @@
 class GroupSchedulesController < ApplicationController
   before_action :set_group_schedule, only: [:show, :edit, :update, :destroy]
+  before_filter :verify_is_logged_in_or_coach, only: [:create, :update, :destroy]
 
   # GET /group_schedules
   # GET /group_schedules.json
   def index
-    @group_schedules = GroupSchedule.all
   end
 
   # GET /group_schedules/1
@@ -14,7 +14,6 @@ class GroupSchedulesController < ApplicationController
 
   # GET /group_schedules/new
   def new
-    @group_schedule = GroupSchedule.new
   end
 
   # GET /group_schedules/1/edit
@@ -24,31 +23,37 @@ class GroupSchedulesController < ApplicationController
   # POST /group_schedules
   # POST /group_schedules.json
   def create
-    @group_schedule = GroupSchedule.new(group_schedule_params)
+    existing_group_schedule = GroupSchedule.find_by_group_id(params[:group_schedule][:group_id].to_i)
 
-    respond_to do |format|
+    if existing_group_schedule.nil?
+      @group_schedule = GroupSchedule.create_group_schedule(group_schedule_params)
       if @group_schedule.save
-        format.html { redirect_to @group_schedule, notice: 'Group schedule was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @group_schedule }
+        @group_schedule.create_weekly_schedule_days
+        update_group_record
+        render action: 'show', status: :created, location: @group_schedule
       else
-        format.html { render action: 'new' }
-        format.json { render json: @group_schedule.errors, status: :unprocessable_entity }
+        render json: @group_schedule.errors, status: :unprocessable_entity
       end
+    else
+      @group_schedule = existing_group_schedule
+      update
     end
   end
 
   # PATCH/PUT /group_schedules/1
   # PATCH/PUT /group_schedules/1.json
   def update
-    respond_to do |format|
-      if @group_schedule.update(group_schedule_params)
-        format.html { redirect_to @group_schedule, notice: 'Group schedule was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @group_schedule.errors, status: :unprocessable_entity }
-      end
+    if @group_schedule.update(group_schedule_params)
+      @group_schedule.setup_phases
+      @group_schedule.rollback_days_created
+      @group_schedule.save
+      update_group_record
+      RoutineService.sched_change_happened(@group_schedule.group)
+      render action: 'show', status: :ok, location: @group_schedule
+    else
+      render json: @group_schedule.errors, status: :unprocessable_entity
     end
+
   end
 
   # DELETE /group_schedules/1
@@ -67,8 +72,24 @@ class GroupSchedulesController < ApplicationController
       @group_schedule = GroupSchedule.find(params[:id])
     end
 
+    def update_group_record
+      @group_schedule.group.update_program_info
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_schedule_params
       params.require(:group_schedule).permit(:group_id, :program_id, :phase_one_start, :phase_two_start, :phase_three_start, :phase_four_start)
     end
+
+    def verify_is_logged_in_or_coach
+      group_id = params[:group_schedule][:group_id].to_i
+      coach = Group.get_coach(group_id)
+      (current_user.nil? || coach.nil?) ? unauthorized : unauthorized unless
+          ((current_user.id == coach.id) || current_user.is_super_user)
+    end
+
+    def unauthorized
+      render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+    end
+
 end

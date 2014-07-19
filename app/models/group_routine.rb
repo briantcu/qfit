@@ -221,6 +221,12 @@ class GroupRoutine < ActiveRecord::Base
     contains
   end
 
+  def self.has_open_workout_today(entity)
+    now = Date.today
+    workouts = GroupRoutine.where(:group_id => entity.id, :day_performed => now)
+    workouts.size > 0
+  end
+
   private
 
   def add_for_users(type, exercise, exercise_id)

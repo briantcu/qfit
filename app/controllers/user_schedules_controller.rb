@@ -1,7 +1,6 @@
 class UserSchedulesController < ApplicationController
   before_action :set_user_schedule, only: [:show, :edit, :update]
   before_filter :verify_is_logged_in_or_coach, only: [:create, :update]
-
   # GET /user_schedules/1
   # GET /user_schedules/1.json
   def show
@@ -60,7 +59,7 @@ class UserSchedulesController < ApplicationController
     end
 
     def update_user_record
-      User.update_program_info(@user_schedule)
+      @user_schedule.user.update_program_info
     end
 
     def verify_is_logged_in_or_coach

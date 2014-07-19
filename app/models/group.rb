@@ -38,6 +38,15 @@ class Group < ActiveRecord::Base
     true
   end
 
+  def self.get_coach(group_id)
+    group = Group.find(group_id)
+    if !group.nil?
+      return group.user
+    else
+      return nil
+    end
+  end
+
   def create_routine(date)
     if self.group_schedule.is_valid_workout_day?(date)
       group_routine = GroupRoutine.create_routine(self.id, date)
@@ -46,6 +55,11 @@ class Group < ActiveRecord::Base
       end
       return group_routine
     end
+  end
+
+  def update_program_info
+    self.current_phase = self.group_schedule.get_current_phase
+    self.save
   end
 
   def note_last_day_created(day_id, type)
@@ -63,5 +77,18 @@ class Group < ActiveRecord::Base
       user.note_last_day_created(day_id, type)
     end
     self.save
+  end
+
+  def get_last_day_created(type)
+    case type
+      when STRETCHING
+        self.last_warmup_day_created
+      when WEIGHTS
+        self.last_weight_day_created
+      when PLYOS
+        self.last_plyometric_day_created
+      when SPRINTING
+        self.last_sprint_day_created
+    end
   end
 end

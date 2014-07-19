@@ -1,49 +1,43 @@
 require 'test_helper'
+include Devise::TestHelpers
 
 class GroupSchedulesControllerTest < ActionController::TestCase
-  setup do
-    @group_schedule = group_schedules(:one)
+  test 'should create a new group schedule' do
+    user = users(:coach)
+    sign_in user
+
+    post(:create, group_schedule: { group_id: 3, program_id: 3})
+    assert_response :created
+    assert(@controller.instance_variable_get(:@group_schedule).id != nil)
+    assert(@controller.instance_variable_get(:@group_schedule).phase_one_start == Date.current)
+    assert(@controller.instance_variable_get(:@group_schedule).group.current_phase ==
+               @controller.instance_variable_get(:@group_schedule).get_current_phase)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:group_schedules)
+  test 'should update an existing group schedule' do
+    user = users(:coach)
+    sign_in user
+
+    post(:create, group_schedule: { group_id: 1, program_id: 3, program_type_id: 2})
+    assert_response :ok
+    assert(@controller.instance_variable_get(:@group_schedule).id != nil)
+    assert(@controller.instance_variable_get(:@group_schedule).phase_one_start == Date.current)
+    assert(@controller.instance_variable_get(:@group_schedule).group.current_phase ==
+               @controller.instance_variable_get(:@group_schedule).get_current_phase)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
+  test 'should not allow updating a group schedule when coach does not own group' do
+    user = users(:sub)
+    sign_in user
+    post(:create, group_schedule: { group_id: 1, program_id: 3})
+    assert_response 401
   end
 
-  test "should create group_schedule" do
-    assert_difference('GroupSchedule.count') do
-      post :create, group_schedule: { group_id: @group_schedule.group_id, phase_four_start: @group_schedule.phase_four_start, phase_one_start: @group_schedule.phase_one_start, phase_three_start: @group_schedule.phase_three_start, phase_two_start: @group_schedule.phase_two_start, program_id: @group_schedule.program_id }
-    end
-
-    assert_redirected_to group_schedule_path(assigns(:group_schedule))
+  test 'should allow updating for super user' do
+    user = users(:super)
+    sign_in user
+    post(:create, group_schedule: { group_id: 1, program_id: 3})
+    assert_response :ok
   end
 
-  test "should show group_schedule" do
-    get :show, id: @group_schedule
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @group_schedule
-    assert_response :success
-  end
-
-  test "should update group_schedule" do
-    patch :update, id: @group_schedule, group_schedule: { group_id: @group_schedule.group_id, phase_four_start: @group_schedule.phase_four_start, phase_one_start: @group_schedule.phase_one_start, phase_three_start: @group_schedule.phase_three_start, phase_two_start: @group_schedule.phase_two_start, program_id: @group_schedule.program_id }
-    assert_redirected_to group_schedule_path(assigns(:group_schedule))
-  end
-
-  test "should destroy group_schedule" do
-    assert_difference('GroupSchedule.count', -1) do
-      delete :destroy, id: @group_schedule
-    end
-
-    assert_redirected_to group_schedules_path
-  end
 end
