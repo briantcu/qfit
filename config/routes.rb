@@ -107,6 +107,7 @@ Qfit::Application.routes.draw do
   post '/daily_routines/:id/sprinting/:sprint_id', to: 'daily_routines#add_sprint'
   post '/daily_routines/:id/warmups/:warmup_id', to: 'daily_routines#add_warmup'
   post '/daily_routines/:id/plyos/:plyometric_id', to: 'daily_routines#add_plyo'
+  put '/daily_routines/:id/close', to: 'daily_routines#close'
 
   resources :custom_exercises
 

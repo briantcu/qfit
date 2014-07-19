@@ -1,13 +1,12 @@
 class DailyRoutinesController < ApplicationController
   before_action :set_daily_routine, only: [:show, :edit, :update, :add_weight]
-  before_filter :verify_is_logged_in_or_coach, only: [:add_weight, :add_sprint, :add_warmup, :add_plyo, :update]
+  before_filter :verify_is_logged_in_or_coach, only: [:add_weight, :add_sprint, :add_warmup, :add_plyo, :update, :close]
   before_filter :verify_is_logged_in, only: [:routine_by_date]
 
 
   # GET /daily_routines
   # GET /daily_routines.json
   def index
-    @daily_routines = DailyRoutine.all
   end
 
   # GET /daily_routines/1
@@ -27,7 +26,6 @@ class DailyRoutinesController < ApplicationController
 
   # GET /daily_routines/new
   def new
-    @daily_routine = DailyRoutine.new
   end
 
   # GET /daily_routines/1/edit
@@ -45,6 +43,17 @@ class DailyRoutinesController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @daily_routine.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # PATCH/PUT /daily_routines/1/close.json
+  def close
+    if @daily_routine.update(daily_routine_params)
+      service = CloseRoutineService.new(@daily_routine)
+      @daily_routine = service.close_routine
+      render action: 'show', status: :ok, location: @daily_routine
+    else
+      render json: @daily_routine.errors, status: :unprocessable_entity
     end
   end
 
