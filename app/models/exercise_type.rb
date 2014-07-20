@@ -18,4 +18,8 @@ class ExerciseType < ActiveRecord::Base
       return self.exercises
     end
   end
+
+  def as_json(options={})
+    super(:include =>[:exercises])
+  end
 end
