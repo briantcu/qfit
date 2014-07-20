@@ -2,40 +2,9 @@ class PerformedExercisesController < ApplicationController
   before_action :set_performed_exercise, only: [:show, :edit, :update, :destroy]
   before_filter :verify_owns_workout, only: [:update]
 
-  # GET /performed_exercises
-  # GET /performed_exercises.json
-  def index
-    @performed_exercises = PerformedExercise.all
-  end
-
   # GET /performed_exercises/1
   # GET /performed_exercises/1.json
   def show
-  end
-
-  # GET /performed_exercises/new
-  def new
-    @performed_exercise = PerformedExercise.new
-  end
-
-  # GET /performed_exercises/1/edit
-  def edit
-  end
-
-  # POST /performed_exercises
-  # POST /performed_exercises.json
-  def create
-    @performed_exercise = PerformedExercise.new(performed_exercise_params)
-
-    respond_to do |format|
-      if @performed_exercise.save
-        format.html { redirect_to @performed_exercise, notice: 'Performed exercise was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @performed_exercise }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @performed_exercise.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /performed_exercises/1

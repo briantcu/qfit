@@ -1,53 +1,30 @@
 class PerformedSprintsController < ApplicationController
   before_action :set_performed_sprint, only: [:show, :edit, :update, :destroy]
-
-  # GET /performed_sprints
-  # GET /performed_sprints.json
-  def index
-    @performed_sprints = PerformedSprint.all
-  end
+  before_filter :verify_owns_workout, only: [:update]
 
   # GET /performed_sprints/1
   # GET /performed_sprints/1.json
   def show
   end
 
-  # GET /performed_sprints/new
-  def new
-    @performed_sprint = PerformedSprint.new
-  end
-
-  # GET /performed_sprints/1/edit
-  def edit
-  end
-
-  # POST /performed_sprints
-  # POST /performed_sprints.json
-  def create
-    @performed_sprint = PerformedSprint.new(performed_sprint_params)
-
-    respond_to do |format|
-      if @performed_sprint.save
-        format.html { redirect_to @performed_sprint, notice: 'Performed sprint was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @performed_sprint }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @performed_sprint.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PATCH/PUT /performed_sprints/1
   # PATCH/PUT /performed_sprints/1.json
   def update
-    respond_to do |format|
-      if @performed_sprint.update(performed_sprint_params)
-        format.html { redirect_to @performed_sprint, notice: 'Performed sprint was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @performed_sprint.errors, status: :unprocessable_entity }
+    need_to_create_laps = (@performed_sprint.sprint_id != params[:performed_sprint][:sprint_id])
+    if @performed_sprint.update(performed_sprint_params)
+      if need_to_create_laps
+        @performed_sprint.laps.each do |lap|
+          lap.destroy
+        end
+        @performed_sprint.laps = []
+        num_laps = @performed_sprint.sprint.num_laps
+        for i in 1..num_laps
+          @performed_sprint.laps << Lap.create_lap(@performed_sprint.id, i)
+        end
       end
+      render action: 'show', status: :ok, location: @performed_sprint
+    else
+      render json: @performed_sprint.errors, status: :unprocessable_entity
     end
   end
 
@@ -71,4 +48,13 @@ class PerformedSprintsController < ApplicationController
     def performed_sprint_params
       params.require(:performed_sprint).permit(:sprint_id, :status, :group_performed_sprint_id, :routine_id)
     end
+
+  def verify_owns_workout
+    (current_user.nil?) ? unauthorized : unauthorized unless
+        (current_user.owns_workout(params[:performed_sprint][:routine_id]))
+  end
+
+  def unauthorized
+    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+  end
 end
