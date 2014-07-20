@@ -1,1 +1,1 @@
-json.extract! @performed_exercise, :id, :routine_id, :exercise_id, :rest_period, :status, :one_rep_max, :group_performed_exercise_id, :exercise_type, :created_at, :updated_at
+json.extract! @performed_exercise, :id, :routine_id, :exercise, :exercise_id, :rest_period, :status, :weight_sets, :one_rep_max, :group_performed_exercise_id, :exercise_type_id, :created_at, :updated_at

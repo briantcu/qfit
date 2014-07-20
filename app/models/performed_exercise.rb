@@ -18,7 +18,7 @@ class PerformedExercise < ActiveRecord::Base
   belongs_to :daily_routine, :foreign_key => :routine_id
   belongs_to :group_performed_exercise
   belongs_to :exercise_type, :foreign_key => :exercise_type_id
-  belongs_to :exercise
+  belongs_to :exercise, :foreign_key => :exercise_id
   has_many :weight_sets, -> { order('set_num ASC') }
   accepts_nested_attributes_for :weight_sets, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
 
@@ -27,6 +27,6 @@ class PerformedExercise < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super(:include =>[:weight_sets, :exercise, :exercise_type])
+    super(:include =>[:weight_sets, :exercise], :exclude => [:exercise_type])
   end
 end

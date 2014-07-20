@@ -26,6 +26,7 @@ class WeightSetService
   end
 
   def create_sets
+    destroy_existing_sets
     program_type = @entity.get_schedule.program_type
     phase_number = @entity.get_schedule.get_phase_by_date(@routine.day_performed)
     phase_id = ProgramPhaseLookup.get_phase_id(phase_number, program_type.id)
@@ -37,6 +38,13 @@ class WeightSetService
   end
 
   private
+
+  def destroy_existing_sets
+    @exercise.weight_sets.each do |weight_set|
+      weight_set.destroy
+    end
+    @exercise.weight_sets = []
+  end
 
   def calculate_recommended_loads
     if (@exercise.exercise.category == 3) || (@exercise.exercise.category == 4)
