@@ -30,6 +30,9 @@ class GroupRoutinesController < ApplicationController
   def add_weight
     exercise = Exercise.find(params[:exercise_id])
     perf_ex = @group_routine.add_weights(exercise, 1, 0)
+    @group_routine.wt_modified = true
+    @group_routine.modified = true
+    @group_routine.save
     render json: perf_ex.to_json
   end
 
@@ -37,6 +40,9 @@ class GroupRoutinesController < ApplicationController
   def add_sprint
     sprint = Sprint.find(params[:sprint_id])
     perf_sprint = @group_routine.add_sprint(sprint.id, 1, 0)
+    @group_routine.sp_modified = true
+    @group_routine.modified = true
+    @group_routine.save
     render json: perf_sprint.to_json
   end
 
@@ -44,6 +50,9 @@ class GroupRoutinesController < ApplicationController
   def add_warmup
     warmup = Warmup.find(params[:warmup_id])
     perf_wu = @group_routine.add_warmup(warmup.id, 1, 0)
+    @group_routine.wu_modified = true
+    @group_routine.modified = true
+    @group_routine.save
     render json: perf_wu.to_json
   end
 
@@ -51,6 +60,9 @@ class GroupRoutinesController < ApplicationController
   def add_plyo
     plyo = Plyometric.find(params[:plyometric_id])
     perf_plyo = @group_routine.add_plyometric(plyo.id, 1, 0)
+    @group_routine.pl_modified = true
+    @group_routine.modified = true
+    @group_routine.save
     render json: perf_plyo.to_json
   end
 
