@@ -32,6 +32,7 @@ class WeightSetService
     get_num_sets_and_reps(phase_id)
     set_rest_period
     calculate_recommended_loads
+    @exercise.weight_sets << @sets
     @sets
   end
 

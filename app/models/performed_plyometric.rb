@@ -22,4 +22,8 @@ class PerformedPlyometric < ActiveRecord::Base
   def self.add_exercise(exercise_id, status, routine_id, group_performed_ex_id)
     PerformedPlyometric.create(routine_id: routine_id, plyometric_id: exercise_id, status: status, group_performed_plyometric_id: group_performed_ex_id)
   end
+
+  def as_json(options={})
+    super(:include =>[:plyometric])
+  end
 end

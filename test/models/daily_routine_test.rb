@@ -84,5 +84,10 @@ class DailyRoutineTest < ActiveSupport::TestCase
     assert(num == 4)
   end
 
+  test 'should get old open workouts for user' do
+    workouts = DailyRoutine.get_old_open_workouts_for_user(1)
+    assert(workouts.size == 5)
+  end
+
 
 end

@@ -35,6 +35,11 @@ class GroupRoutine < ActiveRecord::Base
   has_many :group_performed_warmups, -> { order('id ASC') }, :foreign_key => :routine_id
   has_many :group_custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
 
+  def self.get_routine_by_date(month, year, day, group_id)
+    date = Date.new(year.to_i, month.to_i, day.to_i)
+    GroupRoutine.where(day_performed: date, group_id: group_id).first
+  end
+
 
   def get_warmups
     self.group_performed_warmups

@@ -20,4 +20,8 @@ class PerformedWarmUp < ActiveRecord::Base
   def self.add_exercise(exercise_id, status, routine_id, group_performed_ex_id)
     PerformedWarmUp.create(routine_id: routine_id, warmup_id: exercise_id, status: status, group_warmup_id: group_performed_ex_id)
   end
+
+  def as_json(options={})
+    super(:include =>[:warmup])
+  end
 end

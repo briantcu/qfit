@@ -104,6 +104,12 @@ class DailyRoutine < ActiveRecord::Base
     workouts.size > 0
   end
 
+  def self.get_old_open_workouts_for_user(user_id)
+    now = Date.today
+    workouts = DailyRoutine.where(:user_id => user_id, :closed => false).where('day_performed < ?', now)
+    workouts
+  end
+
   def self.has_closed_workout(entity, date)
     workouts = DailyRoutine.where(:user_id => entity.id, :closed => true, :day_performed => date)
     workouts.size > 0
@@ -192,11 +198,15 @@ class DailyRoutine < ActiveRecord::Base
   end
 
   def add_warmup(exercise_id, status, group_performed_ex_id)
-    self.performed_warm_ups << PerformedWarmUp.add_exercise(exercise_id, status, self.id, group_performed_ex_id)
+    perf_wu = PerformedWarmUp.add_exercise(exercise_id, status, self.id, group_performed_ex_id)
+    self.performed_warm_ups << perf_wu
+    perf_wu
   end
 
   def add_plyometric(exercise_id, status, group_performed_ex_id)
-    self.performed_plyometrics << PerformedPlyometric.add_exercise(exercise_id, status, self.id, group_performed_ex_id)
+    perf_plyo = PerformedPlyometric.add_exercise(exercise_id, status, self.id, group_performed_ex_id)
+    self.performed_plyometrics << perf_plyo
+    perf_plyo
   end
 
   def add_sprint(exercise_id, status, group_performed_ex_id)
@@ -204,8 +214,9 @@ class DailyRoutine < ActiveRecord::Base
     self.performed_sprints << sprint
     num_laps = sprint.sprint.num_laps
     for i in 1..num_laps
-      Lap.create_lap(sprint.id, i)
+      sprint.laps << Lap.create_lap(sprint.id, i)
     end
+    sprint
   end
 
   def add_weights(exercise, status, group_performed_ex_id)
@@ -213,6 +224,7 @@ class DailyRoutine < ActiveRecord::Base
     self.performed_exercises << perf_exercise
     weight_set_service = WeightSetService.new(self.user, self, perf_exercise)
     weight_set_service.create_sets
+    perf_exercise
   end
 
   def note_day_created(day_id, type)

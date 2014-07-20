@@ -18,5 +18,16 @@ class CloseRoutineServiceTest < ActiveSupport::TestCase
     assert(routine.user.knee_dom_max > 2)
   end
 
+  test 'should skip workout' do
+    routine = DailyRoutine.find(1)
+    service = CloseRoutineService.new(routine)
+    assert(!routine.closed)
+    routine = service.skip_routine
+    assert(routine != nil)
+    assert(routine.closed)
+    assert(routine.count_ex_provided == 11)
+    assert(routine.count_ex_completed == 0)
+  end
+
 
 end

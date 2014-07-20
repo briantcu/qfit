@@ -136,12 +136,17 @@ class User < ActiveRecord::Base
 
   def owns_workout(daily_routine_id)
     owns = false
-    daily_routine = DailyRoutine.find_by daily_routine_id: daily_routine_id
+    daily_routine = DailyRoutine.find(daily_routine_id)
     if daily_routine.present?
-      owns = ((daily_routine.user_id == self.id) ||
+      owns = (((daily_routine.user_id == self.id) && !self.sub_user) ||
           (daily_routine.user.master_user_id == self.id))
     end
     owns
+  end
+
+  def owns_group(group_id)
+    group = Group.find(group_id)
+    group.coach_user_id == self.id
   end
 
   def get_schedule

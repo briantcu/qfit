@@ -25,4 +25,8 @@ class PerformedExercise < ActiveRecord::Base
   def self.add_exercise(exercise_id, status, routine_id, exercise_type, group_exercise_id)
     PerformedExercise.create(routine_id: routine_id, exercise_id: exercise_id, status: status, exercise_type_id: exercise_type, group_performed_exercise_id: group_exercise_id)
   end
+
+  def as_json(options={})
+    super(:include =>[:weight_sets, :exercise, :exercise_type])
+  end
 end

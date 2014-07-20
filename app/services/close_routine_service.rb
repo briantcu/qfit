@@ -20,12 +20,17 @@ class CloseRoutineService
     @routine = routine
   end
 
+  def set_routine(routine)
+    @routine = routine
+  end
+
   def close_routine
     note_as_closed
     update_user_weight
     process_user_maxes
     process_power_index
-    process_completed_provided
+    process_completed
+    process_provided
 
     #@TODO
     #return encouraging message and next workout date
@@ -37,6 +42,17 @@ class CloseRoutineService
 
     @routine.save
     @routine.user.save
+    @routine
+  end
+
+  def skip_routine
+    note_as_closed
+    @routine.count_ex_completed = 0
+    process_provided
+    @routine.save
+
+    #@TODO
+    #return encouraging message and next workout date
     @routine
   end
 
@@ -114,21 +130,22 @@ class CloseRoutineService
     @routine.power_index = power_index
   end
 
-  def process_completed_provided
+  def process_completed
     completed_plyos = @routine.get_num_completed_plyos
     completed_warmups = @routine.get_num_completed_warmups
     completed_laps = @routine.get_num_completed_laps
     completed_sets = @routine.get_num_completed_weight_sets
     total_completed = completed_plyos + completed_warmups + completed_laps + completed_sets
     @routine.count_ex_completed = total_completed
+  end
 
+  def process_provided
     provided_plyos = @routine.get_num_provided_plyos
     provided_warmups = @routine.get_num_provided_warmups
     provided_laps = @routine.get_num_provided_laps
     provided_sets = @routine.get_num_provided_weight_sets
     total_provided = provided_plyos + provided_warmups + provided_laps + provided_sets
     @routine.count_ex_provided = total_provided
-
   end
 
 end
