@@ -1,6 +1,8 @@
 class PerformedSprintsController < ApplicationController
-  before_action :set_performed_sprint, only: [:show, :edit, :update, :destroy]
-  before_filter :verify_owns_workout, only: [:update]
+  before_action :set_performed_sprint, only: [:show, :update, :destroy]
+  before_filter :verify_owns_workout, only: [:update, :destroy]
+
+  DELETED = 2
 
   # GET /performed_sprints/1
   # GET /performed_sprints/1.json
@@ -31,11 +33,10 @@ class PerformedSprintsController < ApplicationController
   # DELETE /performed_sprints/1
   # DELETE /performed_sprints/1.json
   def destroy
-    @performed_sprint.destroy
-    respond_to do |format|
-      format.html { redirect_to performed_sprints_url }
-      format.json { head :no_content }
-    end
+    @performed_sprint.status = DELETED
+    @performed_sprint.save
+    @performed_sprint.daily_routine.note_sprints_changed
+    render json: {success: true}
   end
 
   private

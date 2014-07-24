@@ -4,6 +4,7 @@ class RoutineService
   WEIGHTS = 1
   PLYOS = 2
   SPRINTING = 3
+  MAX_EXERCISES = 15
 
   @date
   @entity #Either a user or group
@@ -57,6 +58,19 @@ class RoutineService
       false
     else
       DailyRoutine.has_closed_workout(entity, date)
+    end
+  end
+
+  def self.has_exceeded_ex_count(routine, type)
+    case type
+      when STRETCHING
+        (routine.performed_warm_ups.size + routine.custom_exercises.where(:ex_type => type).size) >= MAX_EXERCISES
+      when WEIGHTS
+        (routine.performed_exercises.size + routine.custom_exercises.where(:ex_type => type).size) >= MAX_EXERCISES
+      when PLYOS
+        (routine.performed_plyometrics.size + routine.custom_exercises.where(:ex_type => type).size) >= MAX_EXERCISES
+      when SPRINTING
+        (routine.performed_sprints.size + routine.custom_exercises.where(:ex_type => type).size) >= MAX_EXERCISES
     end
   end
 

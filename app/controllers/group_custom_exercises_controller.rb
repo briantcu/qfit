@@ -1,24 +1,12 @@
 class GroupCustomExercisesController < ApplicationController
-  before_action :set_group_custom_exercise, only: [:show, :edit, :update, :destroy]
+  before_action :set_group_custom_exercise, only: [:show, :destroy]
+  before_filter :verify_owns_group, only: [:destroy]
 
-  # GET /group_custom_exercises
-  # GET /group_custom_exercises.json
-  def index
-    @group_custom_exercises = GroupCustomExercise.all
-  end
+
 
   # GET /group_custom_exercises/1
   # GET /group_custom_exercises/1.json
   def show
-  end
-
-  # GET /group_custom_exercises/new
-  def new
-    @group_custom_exercise = GroupCustomExercise.new
-  end
-
-  # GET /group_custom_exercises/1/edit
-  def edit
   end
 
   # POST /group_custom_exercises
@@ -37,28 +25,11 @@ class GroupCustomExercisesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /group_custom_exercises/1
-  # PATCH/PUT /group_custom_exercises/1.json
-  def update
-    respond_to do |format|
-      if @group_custom_exercise.update(group_custom_exercise_params)
-        format.html { redirect_to @group_custom_exercise, notice: 'Group custom exercise was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @group_custom_exercise.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /group_custom_exercises/1
   # DELETE /group_custom_exercises/1.json
   def destroy
     @group_custom_exercise.destroy
-    respond_to do |format|
-      format.html { redirect_to group_custom_exercises_url }
-      format.json { head :no_content }
-    end
+    render json: {success: true}
   end
 
   private
@@ -71,4 +42,13 @@ class GroupCustomExercisesController < ApplicationController
     def group_custom_exercise_params
       params.require(:group_custom_exercise).permit(:routine_id, :details, :status, :name, :type)
     end
+
+  def verify_owns_group
+    (current_user.nil?) ? unauthorized : unauthorized unless
+        (current_user.owns_group(params[:id]))
+  end
+
+  def unauthorized
+    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+  end
 end

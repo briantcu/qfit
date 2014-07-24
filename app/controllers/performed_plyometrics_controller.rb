@@ -1,7 +1,8 @@
 class PerformedPlyometricsController < ApplicationController
-  before_action :set_performed_plyometric, only: [:show, :edit, :update, :destroy]
-  before_filter :verify_owns_workout, only: [:update]
+  before_action :set_performed_plyometric, only: [:show, :update, :destroy]
+  before_filter :verify_owns_workout, only: [:update, :destroy]
 
+  DELETED = 2
   # GET /performed_plyometrics/1
   # GET /performed_plyometrics/1.json
   def show
@@ -20,11 +21,10 @@ class PerformedPlyometricsController < ApplicationController
   # DELETE /performed_plyometrics/1
   # DELETE /performed_plyometrics/1.json
   def destroy
-    @performed_plyometric.destroy
-    respond_to do |format|
-      format.html { redirect_to performed_plyometrics_url }
-      format.json { head :no_content }
-    end
+    @performed_plyometric.status = DELETED
+    @performed_plyometric.save
+    @performed_plyometric.daily_routine.note_plyos_changed
+    render json: {success: true}
   end
 
   private

@@ -1,6 +1,8 @@
 class PerformedExercisesController < ApplicationController
   before_action :set_performed_exercise, only: [:show, :edit, :update, :destroy]
-  before_filter :verify_owns_workout, only: [:update]
+  before_filter :verify_owns_workout, only: [:update, :destroy]
+
+  DELETED = 2
 
   # GET /performed_exercises/1
   # GET /performed_exercises/1.json
@@ -25,11 +27,10 @@ class PerformedExercisesController < ApplicationController
   # DELETE /performed_exercises/1
   # DELETE /performed_exercises/1.json
   def destroy
-    @performed_exercise.destroy
-    respond_to do |format|
-      format.html { redirect_to performed_exercises_url }
-      format.json { head :no_content }
-    end
+    @performed_exercise.status = DELETED
+    @performed_exercise.save
+    @performed_exercise.daily_routine.note_weights_changed
+    render json: {success: true}
   end
 
   private

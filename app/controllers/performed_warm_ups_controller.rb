@@ -1,6 +1,8 @@
 class PerformedWarmUpsController < ApplicationController
-  before_action :set_performed_warm_up, only: [:show, :edit, :update, :destroy]
-  before_filter :verify_owns_workout, only: [:update]
+  before_action :set_performed_warm_up, only: [:show, :update, :destroy]
+  before_filter :verify_owns_workout, only: [:update, :destroy]
+
+  DELETED = 2
 
   # GET /performed_warm_ups/1
   # GET /performed_warm_ups/1.json
@@ -20,11 +22,10 @@ class PerformedWarmUpsController < ApplicationController
   # DELETE /performed_warm_ups/1
   # DELETE /performed_warm_ups/1.json
   def destroy
-    @performed_warm_up.destroy
-    respond_to do |format|
-      format.html { redirect_to performed_warm_ups_url }
-      format.json { head :no_content }
-    end
+    @performed_warm_up.status = DELETED
+    @performed_warm_up.save
+    @performed_warm_up.daily_routine.note_warmups_changed
+    render json: {success: true}
   end
 
   private

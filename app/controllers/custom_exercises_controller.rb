@@ -1,40 +1,10 @@
 class CustomExercisesController < ApplicationController
   before_action :set_custom_exercise, only: [:show, :edit, :update, :destroy]
-
-  # GET /custom_exercises
-  # GET /custom_exercises.json
-  def index
-    @custom_exercises = CustomExercise.all
-  end
+  before_filter :verify_owns_workout, only: [:update, :destroy]
 
   # GET /custom_exercises/1
   # GET /custom_exercises/1.json
   def show
-  end
-
-  # GET /custom_exercises/new
-  def new
-    @custom_exercise = CustomExercise.new
-  end
-
-  # GET /custom_exercises/1/edit
-  def edit
-  end
-
-  # POST /custom_exercises
-  # POST /custom_exercises.json
-  def create
-    @custom_exercise = CustomExercise.new(custom_exercise_params)
-
-    respond_to do |format|
-      if @custom_exercise.save
-        format.html { redirect_to @custom_exercise, notice: 'Custom exercise was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @custom_exercise }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @custom_exercise.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /custom_exercises/1
@@ -55,10 +25,7 @@ class CustomExercisesController < ApplicationController
   # DELETE /custom_exercises/1.json
   def destroy
     @custom_exercise.destroy
-    respond_to do |format|
-      format.html { redirect_to custom_exercises_url }
-      format.json { head :no_content }
-    end
+    render json: {success: true}
   end
 
   private
@@ -71,4 +38,13 @@ class CustomExercisesController < ApplicationController
     def custom_exercise_params
       params.require(:custom_exercise).permit(:rid, :details, :status, :gid, :name, :type)
     end
+
+  def verify_owns_workout
+    (current_user.nil?) ? unauthorized : unauthorized unless
+        (current_user.owns_workout(params[:performed_sprint][:routine_id]))
+  end
+
+  def unauthorized
+    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+  end
 end

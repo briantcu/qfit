@@ -4,12 +4,24 @@ class DailyRoutinesController < ApplicationController
   before_filter :verify_is_logged_in, only: [:routine_by_date]
   before_filter :verify_is_logged_in_or_coach, only: [:skip_all]
 
+  STRETCHING = 4
+  WEIGHTS = 1
+  PLYOS = 2
+  SPRINTING = 3
+
   # GET /daily_routines
   def index
   end
 
   # GET /daily_routines/1
   def show
+  end
+
+  # POST /daily_routines.json
+  def create
+    daily_routine_parameters = daily_routine_params
+    @daily_routine = DailyRoutine.create_routine(daily_routine_parameters[:id], daily_routine_parameters[:day_performed], 0)
+    render action: 'show', status: :created, location: @daily_routine
   end
 
   #GET /users/:user_id/daily_routines/year/:year/month/:month/day/:day
@@ -66,48 +78,68 @@ class DailyRoutinesController < ApplicationController
 
   # POST '/daily_routines/:id/weights/:exercise_id'
   def add_weight
-    exercise = Exercise.find(params[:exercise_id])
-    perf_ex = @daily_routine.add_weights(exercise, 1, 0)
-    @daily_routine.wt_modified = true
-    @daily_routine.modified = true
-    @daily_routine.save
-    render json: perf_ex.to_json
+    if RoutineService.has_exceeded_ex_count(@daily_routine, WEIGHTS)
+      render json: { success: false, errors: 'Maxed out' }, :status => 406
+    else
+      exercise = Exercise.find(params[:exercise_id])
+      perf_ex = @daily_routine.add_weights(exercise, 1, 0)
+      @daily_routine.wt_modified = true
+      @daily_routine.modified = true
+      @daily_routine.save
+      render json: perf_ex.to_json
+    end
   end
 
   # POST '/daily_routines/:id/sprints/:sprint_id'
   def add_sprint
-    sprint = Sprint.find(params[:sprint_id])
-    perf_sprint = @daily_routine.add_sprint(sprint.id, 1, 0)
-    @daily_routine.sp_modified = true
-    @daily_routine.modified = true
-    @daily_routine.save
-    render json: perf_sprint.to_json
+    if RoutineService.has_exceeded_ex_count(@daily_routine, SPRINTING)
+      render json: { success: false, errors: 'Maxed out' }, :status => 406
+    else
+      sprint = Sprint.find(params[:sprint_id])
+      perf_sprint = @daily_routine.add_sprint(sprint.id, 1, 0)
+      @daily_routine.sp_modified = true
+      @daily_routine.modified = true
+      @daily_routine.save
+      render json: perf_sprint.to_json
+    end
   end
 
   # POST '/daily_routines/:id/warmups/:warmup_id'
   def add_warmup
-    warmup = Warmup.find(params[:warmup_id])
-    perf_wu = @daily_routine.add_warmup(warmup.id, 1, 0)
-    @daily_routine.wu_modified = true
-    @daily_routine.modified = true
-    @daily_routine.save
-    render json: perf_wu.to_json
+    if RoutineService.has_exceeded_ex_count(@daily_routine, STRETCHING)
+      render json: { success: false, errors: 'Maxed out' }, :status => 406
+    else
+      warmup = Warmup.find(params[:warmup_id])
+      perf_wu = @daily_routine.add_warmup(warmup.id, 1, 0)
+      @daily_routine.wu_modified = true
+      @daily_routine.modified = true
+      @daily_routine.save
+      render json: perf_wu.to_json
+    end
   end
 
   # POST '/daily_routines/:id/plyos/:plyometric_id'
   def add_plyo
-    plyo = Plyometric.find(params[:plyometric_id])
-    perf_plyo = @daily_routine.add_plyometric(plyo.id, 1, 0)
-    @daily_routine.pl_modified = true
-    @daily_routine.modified = true
-    @daily_routine.save
-    render json: perf_plyo.to_json
+    if RoutineService.has_exceeded_ex_count(@daily_routine, PLYOS)
+      render json: { success: false, errors: 'Maxed out' }, :status => 406
+    else
+      plyo = Plyometric.find(params[:plyometric_id])
+      perf_plyo = @daily_routine.add_plyometric(plyo.id, 1, 0)
+      @daily_routine.pl_modified = true
+      @daily_routine.modified = true
+      @daily_routine.save
+      render json: perf_plyo.to_json
+    end
   end
 
   # POST '/daily_routines/:id/custom/:type/:name'
   def add_custom
-    custom = @daily_routine.add_custom_exercise(params[:name], params[:type], 0)
-    render json: custom.to_json
+    if RoutineService.has_exceeded_ex_count(@daily_routine, params[:type])
+      render json: { success: false, errors: 'Maxed out' }, :status => 406
+    else
+      custom = @daily_routine.add_custom_exercise(params[:name], params[:type], 0)
+      render json: custom.to_json
+    end
   end
 
   private

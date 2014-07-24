@@ -154,25 +154,41 @@ class DailyRoutine < ActiveRecord::Base
   end
 
   def note_warmup_changes_saved
-    self.wu_modified = true
     self.changes_saved = true
+    note_warmups_changed
+  end
+
+  def note_warmups_changed
+    self.wu_modified = true
     self.save
   end
 
   def note_plyometric_changes_saved
-    self.pl_modified = true
     self.changes_saved = true
+    note_plyos_changed
+  end
+
+  def note_plyos_changed
+    self.pl_modified = true
     self.save
   end
 
   def note_sprint_changes_saved
-    self.changes_saved = true
+    self.sp_modified = true
+    note_sprints_saved
+  end
+
+  def note_sprints_changed
     self.sp_modified = true
     self.save
   end
 
   def note_weight_changes_saved
     self.changes_saved = true
+    note_weights_changed
+  end
+
+  def note_weights_changed
     self.wt_modified = true
     self.save
   end
@@ -242,6 +258,16 @@ class DailyRoutine < ActiveRecord::Base
   end
 
   def add_custom_exercise(name, type, group_performed_id)
+    case type
+      when STRETCHING
+        note_warmups_changed
+      when WEIGHTS
+        note_weights_changed
+      when PLYOS
+        note_plyos_changed
+      when SPRINTING
+        note_sprints_changed
+    end
     self.custom_exercises << CustomExercise.add_exercise(self.id, name, type, group_performed_id)
   end
 
