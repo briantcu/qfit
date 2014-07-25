@@ -1,6 +1,6 @@
 class DailyRoutinesController < ApplicationController
-  before_action :set_daily_routine, only: [:show, :edit, :update, :add_weight, :add_sprint, :add_warmup, :add_plyo, :close, :skip, :add_custom]
-  before_filter :verify_owns_workout, only: [:add_weight, :add_sprint, :add_warmup, :add_plyo, :update, :close, :skip, :add_custom]
+  before_action :set_daily_routine, only: [:show, :edit, :update, :add_weight, :add_sprint, :add_warmup, :add_plyo, :close, :skip, :add_custom, :reset]
+  before_filter :verify_owns_workout, only: [:add_weight, :add_sprint, :add_warmup, :add_plyo, :update, :close, :skip, :add_custom, :reset]
   before_filter :verify_is_logged_in, only: [:routine_by_date]
   before_filter :verify_is_logged_in_or_coach, only: [:skip_all]
 
@@ -132,6 +132,12 @@ class DailyRoutinesController < ApplicationController
       custom = @daily_routine.add_custom_exercise(params[:name], params[:type], 0)
       render json: custom.to_json
     end
+  end
+
+  # GET '/daily_routines/:id/reset'
+  def reset
+    @daily_routine.reset
+    render action: 'show', status: :ok, location: @daily_routine
   end
 
   private

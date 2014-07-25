@@ -275,7 +275,58 @@ class GroupRoutine < ActiveRecord::Base
     workouts.size > 0
   end
 
+  def reset
+    #Set all exercises with status == 2 (deleted) to 3 (provided, unmodified)
+    exes = self.group_performed_exercises.where(status: 2)
+    reset_exercises(exes)
+    exes = self.group_performed_warmups.where(status: 2)
+    reset_exercises(exes)
+    exes = self.group_performed_plyos.where(status: 2)
+    reset_exercises(exes)
+    exes = self.group_performed_sprints.where(status: 2)
+    reset_exercises(exes)
+
+    #Delete all exercises with status == 1 (added or custom)
+    exes = self.group_performed_exercises.where(status: 1)
+    destroy_exercises(exes)
+    exes = self.group_performed_warmups.where(status: 1)
+    destroy_exercises(exes)
+    exes = self.group_performed_plyos.where(status: 1)
+    destroy_exercises(exes)
+    exes = self.group_performed_sprints.where(status: 1)
+    destroy_exercises(exes)
+    exes = self.group_custom_exercises.where(status: 1)
+    destroy_exercises(exes)
+
+    #Reset modified flags
+    self.modified = false
+    self.pl_modified = false
+    self.wt_modified = false
+    self.wu_modified = false
+    self.sp_modified = false
+    self.save
+
+    DailyRoutine.where(group_routine_id: self.id).each do |routine|
+      routine.reset
+    end
+
+    self
+  end
+
   private
+
+  def reset_exercises(exes)
+    exes.each do |ex|
+      ex.status = 3
+      ex.save
+    end
+  end
+
+  def destroy_exercises(exes)
+    exes.each do |ex|
+      ex.destroy
+    end
+  end
 
   def add_for_users(type, exercise, exercise_id)
     self.group.users.each do |user|

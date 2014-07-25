@@ -349,5 +349,51 @@ class DailyRoutine < ActiveRecord::Base
     self.performed_warm_ups.where('status == 1 or status == 3').size
   end
 
+  def reset
+    #Set all exercises with status == 2 (deleted) to 3 (provided, unmodified)
+    exes = self.performed_exercises.where(status: 2)
+    reset_exercises(exes)
+    exes = self.performed_warm_ups.where(status: 2)
+    reset_exercises(exes)
+    exes = self.performed_plyometrics.where(status: 2)
+    reset_exercises(exes)
+    exes = self.performed_sprints.where(status: 2)
+    reset_exercises(exes)
 
+    #Delete all exercises with status == 1 (added or custom)
+    exes = self.performed_exercises.where(status: 1)
+    destroy_exercises(exes)
+    exes = self.performed_warm_ups.where(status: 1)
+    destroy_exercises(exes)
+    exes = self.performed_plyometrics.where(status: 1)
+    destroy_exercises(exes)
+    exes = self.performed_sprints.where(status: 1)
+    destroy_exercises(exes)
+    exes = self.custom_exercises.where(status: 1)
+    destroy_exercises(exes)
+
+    #Reset modified flags
+    self.modified = false
+    self.pl_modified = false
+    self.wt_modified = false
+    self.wu_modified = false
+    self.sp_modified = false
+    self.save
+    self
+  end
+
+  private
+
+  def reset_exercises(exes)
+    exes.each do |ex|
+      ex.status = 3
+      ex.save
+    end
+  end
+
+  def destroy_exercises(exes)
+    exes.each do |ex|
+      ex.destroy
+    end
+  end
 end

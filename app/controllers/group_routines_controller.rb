@@ -1,6 +1,6 @@
 class GroupRoutinesController < ApplicationController
-  before_action :set_group_routine, only: [:show, :edit, :update, :add_custom, :add_warmup, :add_plyo, :add_sprint, :add_weight]
-  before_filter :verify_owns_group, only: [:routine_by_date, :add_weight, :add_sprint, :add_warmup, :add_plyo, :update, :add_custom]
+  before_action :set_group_routine, only: [:show, :edit, :update, :add_custom, :add_warmup, :add_plyo, :add_sprint, :add_weight, :reset]
+  before_filter :verify_owns_group, only: [:routine_by_date, :add_weight, :add_sprint, :add_warmup, :add_plyo, :update, :add_custom, :reset]
 
   # GET /group_routines/1
   def show
@@ -64,6 +64,12 @@ class GroupRoutinesController < ApplicationController
     render json: custom.to_json
   end
 
+  def reset
+    @group_routine.reset
+    render action: 'show', status: :ok, location: @group_routine
+  end
+
+  # GET '/group_routines/:id/reset'
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_group_routine

@@ -84,6 +84,7 @@ Qfit::Application.routes.draw do
   post '/group_routines/:id/warmups/:warmup_id', to: 'group_routines#add_warmup'
   post '/group_routines/:id/plyos/:plyometric_id', to: 'group_routines#add_plyo'
   post '/group_routines/:id/custom/:type/:name', to: 'group_routines#add_custom'
+  get '/group_routines/:id/reset', to: 'group_routines#reset'
 
   resources :group_performed_warmups
 
@@ -117,6 +118,7 @@ Qfit::Application.routes.draw do
   put '/daily_routines/:id/skip', to: 'daily_routines#skip'
   get '/users/:user_id/daily_routines/skip_all', to: 'daily_routines#skip_all'
   post '/daily_routines/:id/custom/:type/:name', to: 'daily_routines#add_custom'
+  get '/daily_routines/:id/reset', to: 'daily_routines#reset'
 
   resources :custom_exercises
 
