@@ -12,12 +12,7 @@ class PerformedExercisesController < ApplicationController
   # PATCH/PUT /performed_exercises/1
   def update
     need_to_create_sets = (@performed_exercise.exercise_id != params[:performed_exercise][:exercise_id])
-    if @performed_exercise.update(performed_exercise_params)
-      if need_to_create_sets
-        weight_set_service = WeightSetService.new(@performed_exercise.daily_routine.user,
-                                                  @performed_exercise.daily_routine, @performed_exercise)
-        weight_set_service.create_sets
-      end
+    if @performed_exercise.update_ex(performed_exercise_params, need_to_create_sets)
       render action: 'show', status: :ok, location: @performed_exercise
     else
       render json: @performed_exercise.errors, status: :unprocessable_entity

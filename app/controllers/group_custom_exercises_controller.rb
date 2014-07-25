@@ -2,33 +2,15 @@ class GroupCustomExercisesController < ApplicationController
   before_action :set_group_custom_exercise, only: [:show, :destroy]
   before_filter :verify_owns_group, only: [:destroy]
 
-
-
   # GET /group_custom_exercises/1
   # GET /group_custom_exercises/1.json
   def show
   end
 
-  # POST /group_custom_exercises
-  # POST /group_custom_exercises.json
-  def create
-    @group_custom_exercise = GroupCustomExercise.new(group_custom_exercise_params)
-
-    respond_to do |format|
-      if @group_custom_exercise.save
-        format.html { redirect_to @group_custom_exercise, notice: 'Group custom exercise was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @group_custom_exercise }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @group_custom_exercise.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /group_custom_exercises/1
   # DELETE /group_custom_exercises/1.json
   def destroy
-    @group_custom_exercise.destroy
+    @group_custom_exercise.destroy_ex
     render json: {success: true}
   end
 

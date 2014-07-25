@@ -109,31 +109,64 @@ class GroupRoutine < ActiveRecord::Base
 
   def note_warmup_changes_saved
     self.changes_saved = true
-    self.wu_modified = true
-    self.save
-    note_changes_for_users(STRETCHING)
+    note_warmups_changed(false) #changes will be noted for users when we note changes saved
+    note_changes_saved_for_users(STRETCHING)
   end
 
   def note_sprint_changes_saved
     self.changes_saved = true
-    self.sp_modified = true
-    self.save
-    note_changes_for_users(SPRINTING)
+    note_sprints_changed(false) #changes will be noted for users when we note changes saved
+    note_changes_saved_for_users(SPRINTING)
   end
 
   def note_plyometric_changes_saved
-    self.pl_modified = true
     self.changes_saved = true
-    self.save
-    note_changes_for_users(PLYOS)
+    note_plyos_changed(false) #changes will be noted for users when we note changes saved
+    note_changes_saved_for_users(PLYOS)
   end
 
   def note_weight_changes_saved
     self.changes_saved = true
+    note_weights_changed(false) #changes will be noted for users when we note changes saved
+    note_changes_saved_for_users(WEIGHTS)
+  end
+
+  def note_warmups_changed(note_for_users)
+    self.wu_modified = true
+    self.modified = true
+    self.save
+    if note_for_users
+      note_changes_for_users(STRETCHING)
+    end
+  end
+
+  def note_plyos_changed(note_for_users)
+    self.pl_modified = true
+    self.modified = true
+    self.save
+    if note_for_users
+      note_changes_for_users(PLYOS)
+    end
+  end
+
+  def note_sprints_changed(note_for_users)
+    self.sp_modified = true
+    self.modified = true
+    self.save
+    if note_for_users
+      note_changes_for_users(SPRINTING)
+    end
+  end
+
+  def note_weights_changed(note_for_users)
+    self.modified = true
     self.wt_modified = true
     self.save
-    note_changes_for_users(WEIGHTS)
+    if note_for_users
+      note_changes_for_users(WEIGHTS)
+    end
   end
+
 
   def get_warmups_without_changes_saved
     self.group_performed_warmups.where('status == 2 or status == 3').order(id: :asc)
@@ -213,6 +246,16 @@ class GroupRoutine < ActiveRecord::Base
         user_routine.add_custom_exercise(name, type, group_exercise.id)
       end
     end
+    case type
+      when STRETCHING
+        note_warmups_changed(true)
+      when WEIGHTS
+        note_weights_changed(true)
+      when PLYOS
+        note_plyos_changed(true)
+      when SPRINTING
+        note_sprints_changed(true)
+    end
   end
 
   def has_plyo(exercise)
@@ -250,7 +293,7 @@ class GroupRoutine < ActiveRecord::Base
     end
   end
 
-  def note_changes_for_users(type)
+  def note_changes_saved_for_users(type)
     self.group.users.each do |user|
       user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
       if !user_routine.nil?
@@ -263,6 +306,24 @@ class GroupRoutine < ActiveRecord::Base
             user_routine.note_plyometric_changes_saved
           when SPRINTING
             user_routine.note_sprint_changes_saved
+        end
+      end
+    end
+  end
+
+  def note_changes_for_users(type)
+    self.group.users.each do |user|
+      user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
+      if !user_routine.nil?
+        case type
+          when STRETCHING
+            user_routine.note_warmups_changed
+          when WEIGHTS
+            user_routine.note_weights_changed
+          when PLYOS
+            user_routine.note_plyos_changed
+          when SPRINTING
+            user_routine.note_sprints_changed
         end
       end
     end

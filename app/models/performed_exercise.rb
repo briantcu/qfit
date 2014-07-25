@@ -29,4 +29,24 @@ class PerformedExercise < ActiveRecord::Base
   def as_json(options={})
     super(:include =>[:weight_sets, :exercise], :exclude => [:exercise_type])
   end
+
+  def update_ex(params, need_to_create_sets)
+    if self.update(params)
+      if need_to_create_sets
+        weight_set_service = WeightSetService.new(self.daily_routine.user, self.daily_routine, self)
+        weight_set_service.create_sets
+      end
+      true
+    else
+      false
+    end
+  end
+
+  def sync_with_group(exercise_id)
+    self.exercise_id = exercise_id
+    weight_set_service = WeightSetService.new(self.daily_routine.user, self.daily_routine, self)
+    weight_set_service.create_sets
+    self.save
+  end
+
 end

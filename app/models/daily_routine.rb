@@ -160,6 +160,7 @@ class DailyRoutine < ActiveRecord::Base
 
   def note_warmups_changed
     self.wu_modified = true
+    self.modified = true
     self.save
   end
 
@@ -170,16 +171,18 @@ class DailyRoutine < ActiveRecord::Base
 
   def note_plyos_changed
     self.pl_modified = true
+    self.modified = true
     self.save
   end
 
   def note_sprint_changes_saved
     self.sp_modified = true
-    note_sprints_saved
+    note_sprints_changed
   end
 
   def note_sprints_changed
     self.sp_modified = true
+    self.modified = true
     self.save
   end
 
@@ -189,6 +192,7 @@ class DailyRoutine < ActiveRecord::Base
   end
 
   def note_weights_changed
+    self.modified = true
     self.wt_modified = true
     self.save
   end

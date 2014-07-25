@@ -13,17 +13,7 @@ class PerformedSprintsController < ApplicationController
   # PATCH/PUT /performed_sprints/1.json
   def update
     need_to_create_laps = (@performed_sprint.sprint_id != params[:performed_sprint][:sprint_id])
-    if @performed_sprint.update(performed_sprint_params)
-      if need_to_create_laps
-        @performed_sprint.laps.each do |lap|
-          lap.destroy
-        end
-        @performed_sprint.laps = []
-        num_laps = @performed_sprint.sprint.num_laps
-        for i in 1..num_laps
-          @performed_sprint.laps << Lap.create_lap(@performed_sprint.id, i)
-        end
-      end
+    if @performed_sprint.update_ex(performed_sprint_params, need_to_create_laps)
       render action: 'show', status: :ok, location: @performed_sprint
     else
       render json: @performed_sprint.errors, status: :unprocessable_entity

@@ -19,4 +19,17 @@ class GroupCustomExercise < ActiveRecord::Base
   def self.add_exercise(routine_id, name, type)
     GroupCustomExercise.create(routine_id: routine_id, name: name, ex_type: type)
   end
+
+  def destroy_ex
+    get_user_exes.each do |ex|
+      ex.destroy
+    end
+    self.destroy
+  end
+
+  private
+
+  def get_user_exes
+    CustomExercise.where(group_id: self.id)
+  end
 end

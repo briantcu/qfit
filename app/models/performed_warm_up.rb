@@ -24,4 +24,10 @@ class PerformedWarmUp < ActiveRecord::Base
   def as_json(options={})
     super(:include =>[:warmup])
   end
+
+  def sync_with_group(warmup_id)
+    self.warmup_id = warmup_id
+    self.save
+  end
+
 end
