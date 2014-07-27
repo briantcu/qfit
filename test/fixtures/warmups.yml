@@ -8,6 +8,7 @@
 #  video_link :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  ex_type    :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

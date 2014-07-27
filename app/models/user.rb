@@ -14,7 +14,7 @@
 #  hor_push_max                :float
 #  hor_pull_max                :float
 #  power_index                 :integer
-#  password                    :string(255)
+#  old_password                :string(255)
 #  current_phase               :integer
 #  phone                       :string(255)
 #  last_weight_day_created     :integer
@@ -73,19 +73,28 @@ class User < ActiveRecord::Base
     initial_hashed_pw = Digest::SHA1.hexdigest(salt+password)
     hashed_pw = initial_hashed_pw[0..39]
 
-    user = User.where(email: email, password: hashed_pw).first
+    user = User.where(email: email, old_password: hashed_pw).first
     if user.nil?
       #try again because you're a moron and you truncated the table once
       hashed_pw = hashed_pw[0..24]
-      user = User.where(email: email, password: hashed_pw).first
+      user = User.where(email: email, old_password: hashed_pw).first
     end
 
-    unless user.nil?
+    if user.nil?
+      #Devise needs a user to proceed with login
+      user = User.where(email: email).first
+    else
       #Update to use new password system (devise)
       user.password = password
       user.save
     end
     user
+  end
+
+  def update_og_password(password)
+    password = password[0..24]
+    self.old_password = password
+    self.save
   end
 
   def ensure_authentication_token

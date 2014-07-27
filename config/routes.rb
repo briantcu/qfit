@@ -4,7 +4,7 @@ Qfit::Application.routes.draw do
 
   resources :program_types
 
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords' }
   devise_scope :user do
     get 'sign_in', to: 'users/sessions#new'
     post 'sign_in', to: 'users/sessions#create'
@@ -13,6 +13,8 @@ Qfit::Application.routes.draw do
 
     get 'sign_up', to: 'users/registrations#new'
     post 'users', to: 'users/registrations#create'
+
+    put 'users/:id/change_password', to: 'users/passwords#update'
   end
 
   resources :weekly_schedule_days
@@ -24,8 +26,8 @@ Qfit::Application.routes.draw do
   resources :user_maxes
 
   resources :users
-  post '/users/:user_id/fitness', to: 'users#fitness_assessment'
-  get '/users/:user_id/calendar/year/:year_id/month/:month_id', to: 'users#get_calendar'
+  post '/users/:id/fitness', to: 'users#fitness_assessment'
+  get '/users/:id/calendar/year/:year_id/month/:month_id', to: 'users#get_calendar'
 
   resources :tips
 

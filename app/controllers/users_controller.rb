@@ -72,7 +72,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:master_user_id, :first_name, :last_name, :email, :sex, :administrator, :sub_user, :knee_dom_max, :hor_push_max, :hor_pull_max, :power_index, :password, :current_phase, :phone, :last_weight_day_created, :last_warmup_day_created, :last_plyometric_day_created, :last_sprint_day_created, :user_name, :sprint_diff, :weight, :level, :program_type, :birth_year, :subscription_date)
+      params.require(:user).permit(:master_user_id, :first_name, :last_name, :email, :sex, :administrator, :sub_user, :knee_dom_max, :hor_push_max, :hor_pull_max, :power_index, :current_phase, :phone, :last_weight_day_created, :last_warmup_day_created, :last_plyometric_day_created, :last_sprint_day_created, :user_name, :sprint_diff, :weight, :level, :program_type, :birth_year, :subscription_date)
     end
 
     def fitness_assessment_params
@@ -84,6 +84,10 @@ class UsersController < ApplicationController
           (current_user.id == params[:user_schedule][:user_id].to_i ||
               (current_user.is_coach_of_user(current_user, params[:user_schedule][:user_id].to_i)) ||
               (current_user.is_super_user))
+    end
+
+    def verify_is_logged_in
+      unauthorized unless !current_user.nil? && (current_user.id == @user.id)
     end
 
     def auth_for_fitness_submission

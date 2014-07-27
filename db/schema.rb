@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140720193533) do
+ActiveRecord::Schema.define(version: 20140727222029) do
 
   create_table "coach_accounts", force: true do |t|
     t.integer  "user_id"
@@ -441,7 +441,7 @@ ActiveRecord::Schema.define(version: 20140720193533) do
     t.float    "hor_push_max"
     t.float    "hor_pull_max"
     t.integer  "power_index"
-    t.string   "password"
+    t.string   "old_password"
     t.integer  "current_phase"
     t.string   "phone"
     t.integer  "last_weight_day_created"

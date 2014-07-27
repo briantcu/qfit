@@ -14,7 +14,7 @@
 #  hor_push_max                :float
 #  hor_pull_max                :float
 #  power_index                 :integer
-#  password                    :string(255)
+#  old_password                :string(255)
 #  current_phase               :integer
 #  phone                       :string(255)
 #  last_weight_day_created     :integer
@@ -58,7 +58,7 @@ one:
   hor_push_max: 130
   hor_pull_max: 150
   power_index: 32
-  password: MyString
+  old_password: MyString
   current_phase: 1
   phone: MyString
   last_weight_day_created: 1
@@ -86,7 +86,7 @@ two:
   hor_push_max: 1.5
   hor_pull_max: 1.5
   power_index: 1
-  password: MyString
+  old_password: MyString
   current_phase: 1
   phone: MyString
   last_weight_day_created: 3
@@ -114,7 +114,7 @@ super:
   hor_push_max: 1.5
   hor_pull_max: 1.5
   power_index: 1
-  password: MyString
+  old_password: MyString
   current_phase: 1
   phone: MyString
   last_weight_day_created: 1
@@ -142,7 +142,7 @@ coach:
   hor_push_max: 1.5
   hor_pull_max: 1.5
   power_index: 1
-  password: MyString
+  old_password: MyString
   current_phase: 1
   phone: MyString
   last_weight_day_created: 1
@@ -170,7 +170,7 @@ sub:
   hor_push_max: 1.5
   hor_pull_max: 1.5
   power_index: 1
-  password: MyString
+  old_password: MyString
   current_phase: 1
   phone: MyString
   last_weight_day_created: 1
@@ -198,7 +198,7 @@ user_no_sched:
   hor_push_max: 1.5
   hor_pull_max: 1.5
   power_index: 1
-  password: MyString
+  old_password: MyString
   current_phase: 1
   phone: MyString
   last_weight_day_created: 1
