@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :change_email]
+  before_filter :verify_is_logged_in, only: [:change_email]
   before_filter :auth_for_user_update, only: [:update]
   before_filter :auth_for_fitness_submission, only: [:fitness_assessment]
 
@@ -64,6 +65,16 @@ class UsersController < ApplicationController
     end
   end
 
+  #PUT /users/1/change_email
+  def change_email
+    if @user.valid_password?(params[:user][:password]) && (params[:user][:email] == params[:user][:new_email])
+      @user.update_email(params[:user][:email])
+      render action: 'show', status: :ok, location: @user
+    else
+      unauthorized
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -100,5 +111,9 @@ class UsersController < ApplicationController
     def unauthorized
       render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
     end
+
+  def change_email_params
+    params.require(:user).permit(:password, :email, :new_email)
+  end
 
 end

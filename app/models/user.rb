@@ -162,6 +162,11 @@ class User < ActiveRecord::Base
     self.user_schedule
   end
 
+  def update_email(email)
+    self.email = email
+    self.save
+  end
+
   def create_routine(date)
     if self.user_schedule.is_valid_workout_day?(date)
       DailyRoutine.create_routine(self.id, date, 0)

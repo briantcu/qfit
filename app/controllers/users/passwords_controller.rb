@@ -5,6 +5,7 @@ class Users::PasswordsController < Devise::PasswordsController
   def update
     if @user.update_with_password(change_password_params)
       sign_in @user, :bypass => true
+      #Can be removed when every user is on new system
       @user.update_og_password(@user.encrypted_password)
       render :status => 201, :json => {}
     else
