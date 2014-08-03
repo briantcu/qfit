@@ -12,4 +12,6 @@
 
 class SignUpCode < ActiveRecord::Base
   belongs_to :user
+  scope :with_code, ->(code) { where(:code => code) }
+
 end

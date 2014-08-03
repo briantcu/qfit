@@ -57,15 +57,14 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :group_joins
   has_many :groups, through: :group_joins
   has_many :daily_routines
   has_one :user_schedule
   has_many :user_maxes
   belongs_to :program_type
-  validates_presence_of :first_name, :last_name
+  belongs_to :coach, :foreign_key => :master_user_id, :class_name => 'User'
   #validates :sex, :inclusion => {:in => SEX_OPTIONS}
 
   def self.try_login(email, password)
@@ -198,6 +197,11 @@ class User < ActiveRecord::Base
       when SPRINTING
         self.last_sprint_day_created
     end
+  end
+
+  def get_num_sub_users
+    sub_users = User.where(:master_user_id => self.id)
+    sub_users.length
   end
 
   private

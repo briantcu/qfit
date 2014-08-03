@@ -18,6 +18,6 @@ one:
   email: MyString
 
 two:
-  code: MyString
-  user_id: 1
+  code: MyString2
+  user_id: 2
   email: MyString

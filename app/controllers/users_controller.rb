@@ -87,7 +87,7 @@ class UsersController < ApplicationController
     end
 
     def fitness_assessment_params
-      params.require(:fitness_assessment_submission).permit(:user_id, :weight, :bench_reps, :bench_weight, :squat_reps, :squat_weight, :pull_ups, :push_ups, :assisted_push_ups, :experience_level, :sex)
+      params.require(:fitness_assessment_submission).permit(:user_id, :weight, :bench_reps, :bench_weight, :squat_reps, :squat_weight, :pull_ups, :push_ups, :assisted_push_ups, :experience_level, :sex, :first_name, :last_name)
     end
 
     def auth_for_user_update
