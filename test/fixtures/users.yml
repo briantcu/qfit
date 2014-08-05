@@ -190,7 +190,7 @@ user_no_sched:
   master_user_id: 4
   first_name: MyString
   last_name: MyString
-  email: MyString6
+  email: MyString6@a.com
   sex: MyString
   administrator: false
   sub_user: false
