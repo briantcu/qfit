@@ -14,10 +14,10 @@
 
 one:
   user_id: 1
-  num_accts: 1
+  num_accts: 5
   billing_email: MyString
 
 two:
-  user_id: 1
-  num_accts: 1
+  user_id: 2
+  num_accts: 0
   billing_email: MyString

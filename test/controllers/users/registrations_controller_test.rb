@@ -1,11 +1,14 @@
 require 'test_helper'
 
-class Users::RegistrationsControllerTest < ActionController::TestCase
+class RegistrationsControllerTest < ActionController::TestCase
+  tests Users::RegistrationsController
+
   setup do
-    @controller = RegistrationsController.new
+    @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
   test 'should create regular user account passing in empty sign up code' do
+
     post(:create, user: { email: 'a@b.com', password: 'password', password_confirmation: 'password',
                           first_name: 'brian', last_name: 'regan', sign_up_code: '', account_type: 'user'})
     assert_response :created
@@ -30,7 +33,7 @@ class Users::RegistrationsControllerTest < ActionController::TestCase
   test 'should not create regular user with invalid email' do
     post(:create, user: { email: 'b.com', password: 'password', password_confirmation: 'password',
                           first_name: 'brian', last_name: 'regan', account_type: 'user'})
-    assert_response :created
+    assert_response 422
   end
 
   test 'should not create regular user with email that exists' do
@@ -42,7 +45,7 @@ class Users::RegistrationsControllerTest < ActionController::TestCase
   test 'should not create user account with invalid sign up code' do
     post(:create, user: { email: 'a@b.com', password: 'password', password_confirmation: 'password',
                           first_name: 'brian', last_name: 'regan', sign_up_code: 'code', account_type: 'user'})
-    assert_response :created
+    assert_response 470
   end
 
   test 'should create coach account' do
@@ -83,8 +86,8 @@ class Users::RegistrationsControllerTest < ActionController::TestCase
 
   test 'should not create sub user when coach is maxed out' do
     post(:create, user: { email: 'a@b.com', password: 'password', password_confirmation: 'password',
-                          first_name: 'brian', last_name: 'regan', account_type: 'coach', sign_up_code: 'MyString'})
-    assert_response :created
+                          first_name: 'brian', last_name: 'regan', account_type: 'coach', sign_up_code: 'MyString2'})
+    assert_response 471
   end
 
 end

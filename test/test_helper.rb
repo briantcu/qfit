@@ -16,3 +16,7 @@ class ActiveSupport::TestCase
   require 'mocha/setup'
 end
 
+class ActionController::TestCase
+  include Devise::TestHelpers
+end
+

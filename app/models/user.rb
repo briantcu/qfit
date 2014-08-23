@@ -63,6 +63,7 @@ class User < ActiveRecord::Base
   has_many :daily_routines
   has_one :user_schedule
   has_many :user_maxes
+  has_one :coach_account
   belongs_to :program_type
   belongs_to :coach, :foreign_key => :master_user_id, :class_name => 'User'
   #validates :sex, :inclusion => {:in => SEX_OPTIONS}

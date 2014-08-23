@@ -9,7 +9,11 @@ class EmailService
 
   end
 
-  def self.send_new_sub_user_email(user, temp_password)
+  def self.send_new_sub_user_email_from_coach(user, temp_password)
+
+  end
+
+  def self.send_new_sub_user_email_from_self_sign_up(user)
 
   end
 

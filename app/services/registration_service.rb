@@ -17,12 +17,13 @@ class RegistrationService
         user.level = 1
         user.sub_user = true
         user.master_user_id = sign_up_code_record.user.id
-        EmailService.send_new_sub_user_email(user, temp_password)
-        EmailService.notify_coach_sub_signed_up(user, coach)
+        EmailService.send_new_sub_user_email_from_self_sign_up(user)
+        EmailService.notify_coach_sub_signed_up(user, sign_up_code_record.user)
       end
 
     end
     user.save
+    user
   end
 
   def self.register_user_for_coach(user, coach)
@@ -32,7 +33,7 @@ class RegistrationService
     temp_password = generate_password
     user.password = temp_password
     user.save
-    EmailService.send_new_sub_user_email(user, temp_password)
+    EmailService.send_new_sub_user_email_from_coach(user, temp_password)
   end
 
   private
