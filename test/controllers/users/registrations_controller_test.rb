@@ -72,16 +72,16 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test 'should create sub user from coaches corner' do
-    user = users(:one)
+    user = users(:coach)
     sign_in user
     post(:create, user: { email: 'a@b.com', first_name: 'brian', last_name: 'regan'})
     assert_response :created
     assert(@controller.instance_variable_get(:@user).id != nil)
     assert(@controller.instance_variable_get(:@user).level == 1)
-    assert(@controller.instance_variable_get(:@user).password == 'password')
-    assert(@controller.instance_variable_get(:@user).encrypted_password != 'password')
+    assert(@controller.instance_variable_get(:@user).password != nil)
+    assert(@controller.instance_variable_get(:@user).encrypted_password != nil)
     assert(@controller.instance_variable_get(:@user).sub_user)
-    assert(@controller.instance_variable_get(:@user).master_user_id == 1)
+    assert(@controller.instance_variable_get(:@user).master_user_id == 4)
   end
 
   test 'should not create sub user when coach is maxed out' do

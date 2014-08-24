@@ -21,3 +21,8 @@ two:
   user_id: 2
   num_accts: 0
   billing_email: MyString
+
+four:
+  user_id: 4
+  num_accts: 1
+  billing_email: MyString

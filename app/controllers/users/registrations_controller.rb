@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  prepend_before_filter :require_no_authentication, :only => [ :new, :create]
+  skip_before_filter :require_no_authentication
 
   @user
 
@@ -20,9 +20,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     @user = User.new(sign_up_params)
+
+    if is_coach_signed_in
+      temp_password = assign_temp_password
+    end
+
     if @user.save
       if is_coach_signed_in
-        @user = RegistrationService.register_user_for_coach(@user, current_user)
+        @user = RegistrationService.register_user_for_coach(@user, current_user, temp_password)
       else
         @user = RegistrationService.register_user(@user, sign_up_code, params[:user][:account_type])
       end
@@ -48,5 +53,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit( :email, :password, :password_confirmation, :first_name, :last_name)
   end
 
+  def assign_temp_password
+    temp_password = RegistrationService.generate_password
+    @user.password = temp_password
+    temp_password
+  end
 
 end

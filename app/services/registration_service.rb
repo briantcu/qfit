@@ -26,17 +26,14 @@ class RegistrationService
     user
   end
 
-  def self.register_user_for_coach(user, coach)
+  def self.register_user_for_coach(user, coach, temp_password)
     user.level = 1
     user.sub_user = true
     user.master_user_id = coach.id
-    temp_password = generate_password
-    user.password = temp_password
     user.save
     EmailService.send_new_sub_user_email_from_coach(user, temp_password)
+    user
   end
-
-  private
 
   def self.generate_password
     ('a'..'z').to_a.shuffle[0,8].join
