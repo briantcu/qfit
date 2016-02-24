@@ -44,20 +44,20 @@ class RoutineService
     end
   end
 
-  def self.has_open_workout_today(entity)
+  def self.has_open_workout_today?(entity)
     if entity.is_group
-      GroupRoutine.has_open_workout_today(entity)
+      GroupRoutine.has_open_workout_today?(entity)
     else
-      DailyRoutine.has_open_workout_today(entity)
+      DailyRoutine.has_open_workout_today?(entity)
     end
 
   end
 
-  def self.has_closed_workout(entity, date)
+  def self.has_closed_workout?(entity, date)
     if entity.is_group
       false
     else
-      DailyRoutine.has_closed_workout(entity, date)
+      DailyRoutine.has_closed_workout?(entity, date)
     end
   end
 
@@ -175,7 +175,7 @@ class RoutineService
     dates = Array.new
     date = Date.today
     for i in 1..3
-      if !RoutineService.has_closed_workout(@entity, date)
+      unless RoutineService.has_closed_workout?(@entity, date)
         dates.push(date)
       end
       date.advance(:days => 1)
@@ -185,7 +185,7 @@ class RoutineService
 
   def self.delete_old_workouts(entity)
 
-    if RoutineService.has_open_workout_today(entity)
+    if RoutineService.has_open_workout_today?(entity)
       workouts = RoutineService.get_open_workouts_start_today(entity)
     else
       workouts = RoutineService.get_open_workouts(entity)

@@ -258,7 +258,7 @@ class GroupRoutine < ActiveRecord::Base
     end
   end
 
-  def has_plyo(exercise)
+  def has_plyo?(exercise)
     contains = false
     self.group_performed_plyos.each do |plyo|
       if plyo.plyometric.id == exercise.id
@@ -269,7 +269,7 @@ class GroupRoutine < ActiveRecord::Base
     contains
   end
 
-  def self.has_open_workout_today(entity)
+  def self.has_open_workout_today?(entity)
     now = Date.today
     workouts = GroupRoutine.where(:group_id => entity.id, :day_performed => now)
     workouts.size > 0

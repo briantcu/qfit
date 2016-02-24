@@ -98,7 +98,7 @@ class DailyRoutine < ActiveRecord::Base
     DailyRoutine.where(:user_id => entity.id, :closed => false).where('day_performed > ?', now)
   end
 
-  def self.has_open_workout_today(entity)
+  def self.has_open_workout_today?(entity)
     now = Date.today
     workouts = DailyRoutine.where(:user_id => entity.id, :closed => false, :day_performed => now)
     workouts.size > 0
@@ -110,7 +110,7 @@ class DailyRoutine < ActiveRecord::Base
     workouts
   end
 
-  def self.has_closed_workout(entity, date)
+  def self.has_closed_workout?(entity, date)
     workouts = DailyRoutine.where(:user_id => entity.id, :closed => true, :day_performed => date)
     workouts.size > 0
   end
@@ -275,7 +275,7 @@ class DailyRoutine < ActiveRecord::Base
     self.custom_exercises << CustomExercise.add_exercise(self.id, name, type, group_performed_id)
   end
 
-  def has_plyo(exercise)
+  def has_plyo?(exercise)
     contains = false
     self.performed_plyometrics.each do |plyo|
       if plyo.plyometric.id == exercise.id
