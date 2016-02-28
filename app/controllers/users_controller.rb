@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :change_email]
   before_filter :verify_is_logged_in, only: [:change_email]
   before_filter :auth_for_user_update, only: [:update]
+  before_filter :auth_for_progress, only: [:get_progress]
   before_filter :auth_for_fitness_submission, only: [:fitness_assessment]
 
   # GET /users
@@ -75,46 +76,62 @@ class UsersController < ApplicationController
     end
   end
 
+  def get_progress
+    user_id = params[:id]
+    chart_type = params[:chart_type]
+    period = params[:period]
+    exercise_id = params[:exercise_id] rescue nil
+    ProgressService.new(user_id, chart_type, period, exercise_id).get_chart
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:master_user_id, :first_name, :last_name, :email, :sex, :administrator, :sub_user,
-                                   :knee_dom_max, :hor_push_max, :hor_pull_max, :power_index, :current_phase, :phone,
-                                   :last_weight_day_created, :last_warmup_day_created, :last_plyometric_day_created,
-                                   :last_sprint_day_created, :user_name, :sprint_diff, :weight, :level, :program_type,
-                                   :birth_year, :subscription_date, :displayed_user_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def fitness_assessment_params
-      params.require(:fitness_assessment_submission).permit(:user_id, :weight, :bench_reps, :bench_weight, :squat_reps, :squat_weight, :pull_ups, :push_ups, :assisted_push_ups, :experience_level, :sex, :first_name, :last_name)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:master_user_id, :first_name, :last_name, :email, :sex, :administrator, :sub_user,
+                                 :knee_dom_max, :hor_push_max, :hor_pull_max, :power_index, :current_phase, :phone,
+                                 :last_weight_day_created, :last_warmup_day_created, :last_plyometric_day_created,
+                                 :last_sprint_day_created, :user_name, :sprint_diff, :weight, :level, :program_type,
+                                 :birth_year, :subscription_date, :displayed_user_name)
+  end
 
-    def auth_for_user_update
-      (current_user.nil?) ? unauthorized : unauthorized unless
-          (current_user.id == params[:user_schedule][:user_id].to_i ||
-              (current_user.is_coach_of_user(current_user, params[:user_schedule][:user_id].to_i)) ||
-              (current_user.is_super_user))
-    end
+  def fitness_assessment_params
+    params.require(:fitness_assessment_submission).permit(:user_id, :weight, :bench_reps, :bench_weight, :squat_reps, :squat_weight, :pull_ups, :push_ups, :assisted_push_ups, :experience_level, :sex, :first_name, :last_name)
+  end
 
-    def verify_is_logged_in
-      unauthorized unless !current_user.nil? && (current_user.id == @user.id)
-    end
+  def auth_for_user_update
+    (current_user.nil?) ? unauthorized : unauthorized unless
+        (current_user.id == params[:user_schedule][:user_id].to_i ||
+            (current_user.is_coach_of_user(current_user, params[:user_schedule][:user_id].to_i)) ||
+            (current_user.is_super_user))
+  end
 
-    def auth_for_fitness_submission
-      (current_user.nil?) ? unauthorized : unauthorized unless
-          (current_user.id == params[:fitness_assessment_submission][:user_id].to_i ||
-              (current_user.is_coach_of_user(current_user, params[:fitness_assessment_submission][:user_id].to_i)) ||
-              (current_user.is_super_user))
-    end
+  def verify_is_logged_in
+    unauthorized unless !current_user.nil? && (current_user.id == @user.id)
+  end
 
-    def unauthorized
-      render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
-    end
+  def auth_for_fitness_submission
+    (current_user.nil?) ? unauthorized : unauthorized unless
+        (current_user.id == params[:fitness_assessment_submission][:user_id].to_i ||
+            (current_user.is_coach_of_user(current_user, params[:fitness_assessment_submission][:user_id].to_i)) ||
+            (current_user.is_super_user))
+  end
+
+  def auth_for_progress
+    (current_user.nil?) ? unauthorized : unauthorized unless
+        (current_user.id == params[:id].to_i ||
+            (current_user.is_coach_of_user(current_user, params[:id].to_i)) ||
+            (current_user.is_super_user))
+  end
+
+  def unauthorized
+    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+  end
 
   def change_email_params
     params.require(:user).permit(:password, :email, :new_email)
