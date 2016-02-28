@@ -24,7 +24,7 @@ class LeaderService
     male_leaders   = User.logged_in_recently.males.order(power_index: :desc).limit(5)
     female_leaders = User.logged_in_recently.females.order(power_index: :desc).limit(5)
     create_leaders(male_leaders, 1)
-    create_leaders(female_leaders, 1)
+    create_leaders(female_leaders, 2)
   end
 
   def insert_pi_ratio_leaders
@@ -41,17 +41,17 @@ class LeaderService
 
   def insert_most_plyos_performed
     leaders = User.logged_in_recently.most_plyos
-    create_leaders(leaders, 5)
+    create_leaders(leaders, 7)
   end
 
   def insert_most_sets_performed
     leaders = User.logged_in_recently.most_sets
-    create_leaders(leaders, 6)
+    create_leaders(leaders, 7)
   end
 
   def insert_most_reps_performed
     leaders = User.logged_in_recently.most_reps
-    create_leaders(leaders, 7)
+    create_leaders(leaders, 8)
   end
 
   def create_leaders(group, type)
