@@ -1,14 +1,5 @@
 class LeaderService
 
-  MALE_POWER_INDEX = 1
-  FEMALE_POWER_INDEX = 2
-  MALE_POWER_INDEX_RATIO = 3
-  FEMALE_POWER_INDEX_RATIO = 4
-  SPRINTS_PERFORMED = 5
-  PLYOS_PERFORMED = 6
-  SETS_PERFORMED = 7
-  REPS_PERFORMED = 8
-
   def populate_leaderboards
     insert_power_index_leaders
     insert_pi_ratio_leaders
@@ -23,35 +14,35 @@ class LeaderService
   def insert_power_index_leaders
     male_leaders   = User.logged_in_recently.males.order(power_index: :desc).limit(5)
     female_leaders = User.logged_in_recently.females.order(power_index: :desc).limit(5)
-    create_leaders(male_leaders, 1)
-    create_leaders(female_leaders, 2)
+    create_leaders(male_leaders, Leader::MALE_POWER_INDEX)
+    create_leaders(female_leaders, Leader::FEMALE_POWER_INDEX)
   end
 
   def insert_pi_ratio_leaders
     male_leaders   = User.logged_in_recently.males.select('*, (power_index/ weight) AS ratio ').order('ratio desc').limit(5)
     female_leaders = User.logged_in_recently.females.select('*, (power_index/ weight) AS ratio ').order('ratio desc').limit(5)
-    create_leaders(male_leaders, 3)
-    create_leaders(female_leaders, 4)
+    create_leaders(male_leaders, Leader::MALE_POWER_INDEX_RATIO)
+    create_leaders(female_leaders, Leader::FEMALE_POWER_INDEX_RATIO)
   end
 
   def insert_most_laps_sprinted
     leaders = User.logged_in_recently.most_sprinted
-    create_leaders(leaders, 5)
+    create_leaders(leaders, Leader::SPRINTS_PERFORMED)
   end
 
   def insert_most_plyos_performed
     leaders = User.logged_in_recently.most_plyos
-    create_leaders(leaders, 7)
+    create_leaders(leaders, Leader::PLYOS_PERFORMED)
   end
 
   def insert_most_sets_performed
     leaders = User.logged_in_recently.most_sets
-    create_leaders(leaders, 7)
+    create_leaders(leaders, Leader::SETS_PERFORMED)
   end
 
   def insert_most_reps_performed
     leaders = User.logged_in_recently.most_reps
-    create_leaders(leaders, 8)
+    create_leaders(leaders, Leader::REPS_PERFORMED)
   end
 
   def create_leaders(group, type)
