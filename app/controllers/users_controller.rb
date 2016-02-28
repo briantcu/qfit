@@ -83,7 +83,11 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:master_user_id, :first_name, :last_name, :email, :sex, :administrator, :sub_user, :knee_dom_max, :hor_push_max, :hor_pull_max, :power_index, :current_phase, :phone, :last_weight_day_created, :last_warmup_day_created, :last_plyometric_day_created, :last_sprint_day_created, :user_name, :sprint_diff, :weight, :level, :program_type, :birth_year, :subscription_date)
+      params.require(:user).permit(:master_user_id, :first_name, :last_name, :email, :sex, :administrator, :sub_user,
+                                   :knee_dom_max, :hor_push_max, :hor_pull_max, :power_index, :current_phase, :phone,
+                                   :last_weight_day_created, :last_warmup_day_created, :last_plyometric_day_created,
+                                   :last_sprint_day_created, :user_name, :sprint_diff, :weight, :level, :program_type,
+                                   :birth_year, :subscription_date, :displayed_user_name)
     end
 
     def fitness_assessment_params

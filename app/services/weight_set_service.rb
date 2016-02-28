@@ -182,6 +182,7 @@ class WeightSetService
       @rec_max_array.push(@rec_max_array.at(i-1) * atrophy)
     end
 
+    #@TODO make sure that atrophy is right
     @rec_max_array.reverse
   end
 

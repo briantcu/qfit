@@ -51,7 +51,7 @@ class Users::SessionsController < Devise::SessionsController
     if user.valid_password?(password)
       sign_in(:user, user)
       user.ensure_authentication_token
-      render :json=> {success: true, token: user.authentication_token, user_id: user.id}
+      render :json=> {success: true, token: user.authentication_token, user_id: user.id, user_name: user.displayed_user_name}
       return
     end
     failure

@@ -52,21 +52,48 @@ class User < ActiveRecord::Base
   PLYOS = 2
   SPRINTING = 3
 
-
   SEX_OPTIONS = %w(male female )
+
+  validates :displayed_user_name, uniqueness: true, presence: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+
   has_many :group_joins
   has_many :groups, through: :group_joins
   has_many :daily_routines
-  has_one :user_schedule
   has_many :user_maxes
+  has_many :custom_exercises, through: :daily_routines
+  has_many :performed_exercises, through: :daily_routines
+  has_many :performed_plyometrics, through: :daily_routines
+  has_many :performed_sprints, through: :daily_routines
+  has_many :performed_warm_ups
+  has_many :laps, through: :performed_sprints
+  has_many :weight_sets, through: :performed_exercises
+
+  has_one :user_schedule
   has_one :coach_account
+
   belongs_to :program_type
   belongs_to :coach, :foreign_key => :master_user_id, :class_name => 'User'
   #validates :sex, :inclusion => {:in => SEX_OPTIONS}
+
+  scope :logged_in_recently, -> {where('last_sign_in_at > ?', Time.now - 21.days)}
+  scope :males, -> {where(sex: 'male')}
+  scope :females, -> {where(sex: 'female')}
+  scope :most_sprinted, select('users.*, count(laps.lap_number) AS value').joins(:laps)
+                            .group('users.id').where('laps.completed = true').order('value DESC').limit(5)
+  scope :most_plyos, select('users.*, count(performed_plyometrics.id) AS value').joins(:performed_plyometrics)
+                            .group('users.id')
+                         .where('performed_plyometrics.performed_one = true')
+                         .where('performed_plyometrics.performed_two = true')
+                         .where('performed_plyometrics.performed_three = true')
+                         .order('value DESC').limit(5)
+  scope :most_sets_performed, select('users.*, count(weight_sets.id) AS value').joins(:weight_sets)
+                            .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)
+  scope :most_reps_performed, select('users.*, sum(weight_sets.perf_reps) AS value').joins(:weight_sets)
+                                  .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)
 
   def self.try_login(email, password)
     salt = '1lasfj3932kak3'
