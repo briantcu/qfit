@@ -129,6 +129,8 @@ Qfit::Application.routes.draw do
   resources :custom_exercises
 
   resources :groups
+  post '/groups/:id/users', to: 'groups#new_user'
+  delete '/groups/:id/users/:user_id', to: 'groups#remove_user'
 
   resources :coach_accounts
   delete '/user/:user_id', to: 'coach_accounts#delete_user'

@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_filter :verify_coach, only: [:create]
+  before_filter :verify_owns_group, only: [:destroy]
 
   # GET /groups
   # GET /groups.json
@@ -24,7 +26,8 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(group_params)
+
+    @group = current_user.build_group(group_params)
 
     respond_to do |format|
       if @group.save
@@ -61,14 +64,38 @@ class GroupsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_group
-      @group = Group.find(params[:id])
-    end
+  def new_user
+    user = User.find(params[:user_id])
+    return unauthorized unless current_user.is_coach_of_user?(user.id)
+    @group.add_user(user)
+    RoutineService.group_status_changed(user)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def group_params
-      params.require(:group).permit(:coach_user_id, :name, :current_phase, :sprint_diff, :last_weight_day_created, :last_wu_day_created, :last_pl_day_created, :last_sp_day_created, :shared)
-    end
+  def remove_user
+    user = User.find(params[:user_id])
+    return unauthorized unless current_user.is_coach_of_user?(user.id)
+    GroupJoin.find_by(group_id: @group.id, user_id: user.id).destroy!
+    RoutineService.group_status_changed(user)
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_group
+    @group = Group.find(params[:id])
+  end
+
+  def verify_coach
+    (current_user.nil?) ? unauthorized : unauthorized unless
+        (current_user.is_coach?)
+  end
+
+  def verify_owns_group
+    (current_user.nil?) ? unauthorized : unauthorized unless
+        (current_user.is_coach? && (@group.coach_user_id == current_user.id))
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def group_params
+    params.require(:group).permit(:coach_user_id, :name, :shared)
+  end
 end

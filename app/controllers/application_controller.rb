@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def unauthorized
+    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+  end
+
 end

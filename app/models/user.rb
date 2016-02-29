@@ -135,29 +135,29 @@ class User < ActiveRecord::Base
     save
   end
 
-  def is_coach
+  def is_coach?
     self.level == 5
   end
 
-  def is_super_user
+  def is_super_user?
     self.level == 7
   end
 
-  def is_sub_user
+  def is_sub_user?
     self.level == 1
   end
 
-  def is_individual
+  def is_individual?
     self.level == 2
   end
 
-  def is_group
+  def is_group?
     false
   end
 
-  def is_coach_of_user(current_user, id)
+  def is_coach_of_user?(current_user, id)
     sub_user = User.find(id)
-    sub_user.master_user_id == current_user.id
+    sub_user.master_user_id == self.id
   end
 
   def update_program_info

@@ -28,6 +28,15 @@ class RoutineService
     routine_service.create_routines
   end
 
+  def self.group_status_changed(user)
+    delete_old_workouts(entity)
+    if user.groups.present?
+      # sync with group workouts
+    else
+      # do nothing?
+    end
+  end
+
   def self.get_open_workouts_start_today(entity)
     if entity.is_group
       GroupRoutine.get_open_workouts_start_today(entity)

@@ -107,7 +107,7 @@ class UsersController < ApplicationController
   def auth_for_user_update
     (current_user.nil?) ? unauthorized : unauthorized unless
         (current_user.id == params[:user_schedule][:user_id].to_i ||
-            (current_user.is_coach_of_user(current_user, params[:user_schedule][:user_id].to_i)) ||
+            (current_user.is_coach_of_user(params[:user_schedule][:user_id].to_i)) ||
             (current_user.is_super_user))
   end
 
@@ -118,14 +118,14 @@ class UsersController < ApplicationController
   def auth_for_fitness_submission
     (current_user.nil?) ? unauthorized : unauthorized unless
         (current_user.id == params[:fitness_assessment_submission][:user_id].to_i ||
-            (current_user.is_coach_of_user(current_user, params[:fitness_assessment_submission][:user_id].to_i)) ||
+            (current_user.is_coach_of_user(params[:fitness_assessment_submission][:user_id].to_i)) ||
             (current_user.is_super_user))
   end
 
   def auth_for_progress
     (current_user.nil?) ? unauthorized : unauthorized unless
         (current_user.id == params[:id].to_i ||
-            (current_user.is_coach_of_user(current_user, params[:id].to_i)) ||
+            (current_user.is_coach_of_user(params[:id].to_i)) ||
             (current_user.is_super_user))
   end
 

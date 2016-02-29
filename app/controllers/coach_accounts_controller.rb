@@ -45,7 +45,7 @@ class CoachAccountsController < ApplicationController
 
   def verify_owns_user
     (current_user.nil?) ? unauthorized : unauthorized unless
-      (current_user.is_coach_of_user(current_user, params[:user_id].to_i))
+      (current_user.is_coach_of_user(params[:user_id].to_i))
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
