@@ -36,11 +36,11 @@ class DailyRoutine < ActiveRecord::Base
 
 
   belongs_to :user
-  has_many :custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :performed_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :performed_plyometrics, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :performed_sprints, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :performed_warm_ups, -> { order('id ASC') }, :foreign_key => :routine_id
+  has_many :custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :performed_exercises, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :performed_plyometrics, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :performed_sprints, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :performed_warm_ups, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
 
   accepts_nested_attributes_for :custom_exercises, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
   accepts_nested_attributes_for :performed_warm_ups, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }

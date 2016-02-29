@@ -46,7 +46,7 @@ class GroupSchedulesController < ApplicationController
     if @group_schedule.update(group_schedule_params)
       @group_schedule.setup_phases
       @group_schedule.rollback_days_created
-      @group_schedule.save
+      @group_schedule.save!
       update_group_record
       RoutineService.sched_change_happened(@group_schedule.group)
       render action: 'show', status: :ok, location: @group_schedule

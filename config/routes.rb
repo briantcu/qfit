@@ -131,6 +131,7 @@ Qfit::Application.routes.draw do
   resources :groups
 
   resources :coach_accounts
+  delete '/user/:user_id', to: 'coach_accounts#delete_user'
 
   root :to => "home#index"
 

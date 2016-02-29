@@ -6,6 +6,7 @@ class RegistrationService
       user.level = 5
       user.sub_user = false
       EmailService.send_new_coach_email(user)
+      user.build_coach_account(billing_email: user.email, num_accounts: 5)
     else
       if sign_up_code_record.nil?
         #Regular user
@@ -22,7 +23,7 @@ class RegistrationService
       end
 
     end
-    user.save
+    user.save!
     user
   end
 

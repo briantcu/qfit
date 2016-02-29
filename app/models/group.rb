@@ -25,10 +25,10 @@ class Group < ActiveRecord::Base
 
 
   belongs_to :user, :foreign_key => :coach_user_id
-  has_many :group_joins
+  has_many :group_joins, dependent: :destroy
   has_many :users, :through => :group_joins
-  has_one :group_schedule
-  has_many :group_routines
+  has_one :group_schedule, dependent: :destroy
+  has_many :group_routines, dependent: :destroy
 
   def get_schedule
     self.group_schedule

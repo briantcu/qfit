@@ -20,4 +20,8 @@ class EmailService
   def self.send_new_coach_email(user)
 
   end
+
+  def self.coach_deleted_you(email)
+
+  end
 end

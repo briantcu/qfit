@@ -60,10 +60,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :group_joins
+  has_many :group_joins, dependent: :destroy
   has_many :groups, through: :group_joins
-  has_many :daily_routines
-  has_many :user_maxes
+  has_many :daily_routines, dependent: :destroy
+  has_many :user_maxes, dependent: :destroy
   has_many :custom_exercises, through: :daily_routines
   has_many :performed_exercises, through: :daily_routines
   has_many :performed_plyometrics, through: :daily_routines
@@ -72,8 +72,8 @@ class User < ActiveRecord::Base
   has_many :laps, through: :performed_sprints
   has_many :weight_sets, through: :performed_exercises
 
-  has_one :user_schedule
-  has_one :coach_account
+  has_one :user_schedule, dependent: :destroy
+  has_one :coach_account, dependent: :destroy
 
   belongs_to :program_type
   belongs_to :coach, :foreign_key => :master_user_id, :class_name => 'User'

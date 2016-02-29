@@ -29,11 +29,11 @@ class GroupRoutine < ActiveRecord::Base
 
 
   belongs_to :group
-  has_many :group_performed_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :group_performed_plyos, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :group_performed_sprints, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :group_performed_warmups, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :group_custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
+  has_many :group_performed_exercises, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :group_performed_plyos, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :group_performed_sprints, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :group_performed_warmups, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :group_custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
 
   def self.get_routine_by_date(month, year, day, group_id)
     date = Date.new(year.to_i, month.to_i, day.to_i)
