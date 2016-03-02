@@ -30,15 +30,18 @@ class RoutineService
 
   def self.group_status_changed(user)
     delete_old_workouts(entity)
-    if user.groups.present?
+    if user.group.present?
       # sync with group workouts
+      group.copy_workouts_to_user(user)
     else
-      # do nothing?
+      today = Date.today
+      routine_service = RoutineService.new(user, 'REMOVED', today, true)
+      routine_service.create_routines
     end
   end
 
   def self.get_open_workouts_start_today(entity)
-    if entity.is_group
+    if entity.is_group?
       GroupRoutine.get_open_workouts_start_today(entity)
     else
       DailyRoutine.get_open_workouts_start_today(entity)
@@ -46,7 +49,7 @@ class RoutineService
   end
 
   def self.get_open_workouts(entity)
-    if entity.is_group
+    if entity.is_group?
       GroupRoutine.get_open_workouts(entity)
     else
       DailyRoutine.get_open_workouts(entity)
@@ -54,7 +57,7 @@ class RoutineService
   end
 
   def self.has_open_workout_today?(entity)
-    if entity.is_group
+    if entity.is_group?
       GroupRoutine.has_open_workout_today?(entity)
     else
       DailyRoutine.has_open_workout_today?(entity)
@@ -63,7 +66,7 @@ class RoutineService
   end
 
   def self.has_closed_workout?(entity, date)
-    if entity.is_group
+    if entity.is_group?
       false
     else
       DailyRoutine.has_closed_workout?(entity, date)
@@ -88,39 +91,37 @@ class RoutineService
   end
 
   def create_routine
-    if valid_entity_and_open_date?
-      @routine = @entity.create_routine(@date)
-      if @routine.nil?
-        return
-      end
+    return unless valid_entity_and_open_date?
 
-      @phase_number = @entity.get_schedule.maintain_phases(@date)
+    @routine = @entity.create_routine(@date)
+    return unless @routine.present?
 
-      weekly_schedule_day = @entity.get_schedule.get_schedule_day(@date)
+    @phase_number = @entity.get_schedule.maintain_phases(@date)
 
-      if weekly_schedule_day.stretching
-        add_exercises(WarmupService, STRETCHING)
-      end
+    weekly_schedule_day = @entity.get_schedule.get_schedule_day(@date)
 
-      if weekly_schedule_day.weights
-        weight_service = WeightsService.new(@entity, @routine, @phase_number, @sched_update, self)
-        weight_service.add_weights
-      end
-
-      if weekly_schedule_day.plyometrics
-        add_exercises(PlyometricsService, PLYOS)
-      end
-
-      if weekly_schedule_day.sprinting
-        add_exercises(SprintingService, SPRINTING)
-      end
-
-      cleanup
-
-      maybe_add_custom_exercises(weekly_schedule_day)
-
-      @routine
+    if weekly_schedule_day.stretching
+      add_exercises(WarmupService, STRETCHING)
     end
+
+    if weekly_schedule_day.weights
+      weight_service = WeightsService.new(@entity, @routine, @phase_number, @sched_update, self)
+      weight_service.add_weights
+    end
+
+    if weekly_schedule_day.plyometrics
+      add_exercises(PlyometricsService, PLYOS)
+    end
+
+    if weekly_schedule_day.sprinting
+      add_exercises(SprintingService, SPRINTING)
+    end
+
+    cleanup
+
+    maybe_add_custom_exercises(weekly_schedule_day)
+
+    @routine
   end
 
   def create_routines
@@ -135,7 +136,7 @@ class RoutineService
     next_day = 0
     case type
       when STRETCHING
-        if @entity.is_group
+        if @entity.is_group?
           next_day = @entity.last_wu_day_created
         else
           next_day = @entity.last_warmup_day_created
@@ -143,13 +144,13 @@ class RoutineService
       when WEIGHTS
         next_day = @entity.last_weight_day_created
       when PLYOS
-        if @entity.is_group
+        if @entity.is_group?
           next_day = @entity.last_pl_day_created
         else
           next_day = @entity.last_plyometric_day_created
         end
       when SPRINTING
-        if @entity.is_group
+        if @entity.is_group?
           next_day = @entity.last_sp_day_created
         else
           next_day = @entity.last_sprint_day_created
@@ -170,7 +171,7 @@ class RoutineService
   def get_previous_matching_routine(type, day_id)
     #Only applies to 1 pillar
     temp_date = @date - 15
-    if @entity.is_group
+    if @entity.is_group?
       prev_routine  = GroupRoutine.get_matching_routine_since(temp_date, type, day_id, @entity.id)
     else
       prev_routine  = DailyRoutine.get_matching_routine_since(temp_date, type, day_id, @entity.id)
@@ -183,11 +184,11 @@ class RoutineService
   def create_date_array
     dates = Array.new
     date = Date.today
-    for i in 1..3
+    3.times do
       unless RoutineService.has_closed_workout?(@entity, date)
         dates.push(date)
       end
-      date.advance(:days => 1)
+      date.advance(days: 1)
     end
     dates
   end
@@ -208,7 +209,7 @@ class RoutineService
 
   def get_matching_routines
     #gets all routines EXACTLY like the one we're creating...all pillars are the same
-    if @entity.is_group
+    if @entity.is_group?
       GroupRoutine.get_matching_routines(@routine)
     else
       DailyRoutine.get_matching_routines(@routine)
@@ -263,7 +264,7 @@ class RoutineService
     #check that if this is from cron, do not overwrite existing workout
     if @cause_of_new_routine == 'CRON'
       daily_routine = DailyRoutine.get_routine_by_date(@date.mon, @date.year, @date.mday, @entity.id)
-      if !daily_routine.nil?
+      unless daily_routine.nil?
         if daily_routine.program_day_id != 0
           valid = false
         end
@@ -285,6 +286,7 @@ class RoutineService
     if @routine.program_day_id == 0
       @routine.program_day_id = 99
     end
+    @routine.save
   end
 
 end

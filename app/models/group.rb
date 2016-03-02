@@ -34,7 +34,7 @@ class Group < ActiveRecord::Base
     self.group_schedule
   end
 
-  def is_group
+  def is_group?
     true
   end
 
@@ -53,7 +53,15 @@ class Group < ActiveRecord::Base
       self.users.each do |user|
         DailyRoutine.create_routine(user.id, date, group_routine.id)
       end
-      return group_routine
+      group_routine
+    end
+  end
+
+  def copy_workouts_to_user(user)
+    return unless user.group.id == self.id
+    open_workouts = RoutineService.get_open_workouts_start_today(self)
+    open_workouts.each do |workout|
+      workout.copy_to_user(user)
     end
   end
 

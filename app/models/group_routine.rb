@@ -97,7 +97,7 @@ class GroupRoutine < ActiveRecord::Base
 
   def self.create_routine(group_id, date)
     old_routine = GroupRoutine.where(day_performed: date, group_id: group_id).first
-    if !old_routine.nil?
+    unless old_routine.blank?
       old_routine.destroy
     end
     return GroupRoutine.create(group_id: group_id, day_performed: date)
@@ -105,6 +105,29 @@ class GroupRoutine < ActiveRecord::Base
 
   def self.get_matching_routines(routine)
     GroupRoutine.where(:wt_day_id => routine.wt_day_id, :sp_day_id => routine.sp_day_id, :pl_day_id => routine.pl_day_id, :wu_day_id => routine.wu_day_id, :group_id => routine.group.id).order(id: :desc)
+  end
+
+  def copy_to_user(user)
+    DailyRoutine.create_routine(user.id, self.day_performed, self.id)
+    self.group_performed_warmups.each do |gpw|
+      add_for_user(STRETCHING, gpw, gpw.warmup_id, user)
+    end
+
+    self.group_performed_plyos.each do |gpp|
+      add_for_user(PLYOS, gpp, gpp.plyometric_id, user)
+    end
+
+    self.group_performed_sprints.each do |gps|
+      add_for_user(SPRINTING, gps, gps.sprint_id, user)
+    end
+
+    self.group_performed_exercises.each do |gpe|
+      add_for_user(WEIGHTS, gpe, gpe.exercise_id, user)
+    end
+
+    self.group_custom_exercises.each do |c|
+      add_custom_for_user(c, c.ex_type, user)
+    end
   end
 
   def note_warmup_changes_saved
@@ -208,12 +231,7 @@ class GroupRoutine < ActiveRecord::Base
   def add_weights(exercise, status, not_used)
     perf_exercise = GroupPerformedExercise.add_exercise(exercise.id, status, self.id, exercise.exercise_type.id)
     self.group_performed_exercises << perf_exercise
-    self.group.users.each do |user|
-      user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
-      if !user_routine.nil?
-        user_routine.add_weights(exercise, perf_exercise.status, perf_exercise.id)
-      end
-    end
+    add_for_users(WEIGHTS, perf_exercise, exercise.id)
     perf_exercise
   end
 
@@ -241,10 +259,7 @@ class GroupRoutine < ActiveRecord::Base
     group_exercise = GroupCustomExercise.add_exercise(self.id, name, type)
     self.group_custom_exercises << group_exercise
     self.group.users.each do |user|
-      user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
-      if !user_routine.nil?
-        user_routine.add_custom_exercise(name, type, group_exercise.id)
-      end
+      add_custom_for_user(group_exercise, user)
     end
     case type
       when STRETCHING
@@ -255,6 +270,13 @@ class GroupRoutine < ActiveRecord::Base
         note_plyos_changed(true)
       when SPRINTING
         note_sprints_changed(true)
+    end
+  end
+
+  def add_custom_for_user(group_exercise, user)
+    user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
+    if !user_routine.nil?
+      user_routine.add_custom_exercise(group_exercise.name, group_exercise.ex_type, group_exercise.id)
     end
   end
 
@@ -330,16 +352,22 @@ class GroupRoutine < ActiveRecord::Base
 
   def add_for_users(type, exercise, exercise_id)
     self.group.users.each do |user|
-      user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
-      if !user_routine.nil?
-        case type
-          when STRETCHING
-            user_routine.add_warmup(exercise_id, exercise.status, exercise.id)
-          when PLYOS
-            user_routine.add_plyometric(exercise_id, exercise.status, exercise.id)
-          when SPRINTING
-            user_routine.add_sprint(exercise_id, exercise.status, exercise.id)
-        end
+      add_for_user(type, exercise, exercise_id, user)
+    end
+  end
+
+  def add_for_user(type, exercise, exercise_id, user)
+    user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
+    unless user_routine.nil?
+      case type
+        when STRETCHING
+          user_routine.add_warmup(exercise_id, exercise.status, exercise.id)
+        when PLYOS
+          user_routine.add_plyometric(exercise_id, exercise.status, exercise.id)
+        when SPRINTING
+          user_routine.add_sprint(exercise_id, exercise.status, exercise.id)
+        else
+          user_routine.add_weights(exercise_id, exercise.status, exercise.id)
       end
     end
   end

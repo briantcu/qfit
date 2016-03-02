@@ -128,14 +128,17 @@ class DailyRoutine < ActiveRecord::Base
     DailyRoutine.where(day_performed: date, user_id: user_id).first
   end
 
-  def self.create_routine(user_id, date, group_routine_id)
+  def self.create_routine(user_id, date, group_routine_id, override_current = true)
     #There are no checks at this point to see if the workout we're deleting is a closed workout.
     #If this check needs to be made, it's done above this level
-    old_routine = DailyRoutine.where(day_performed: date, user_id: user_id).first
-    if !old_routine.nil?
-      old_routine.destroy
+    if override_current
+      old_routine = DailyRoutine.where(day_performed: date, user_id: user_id).first
+      unless old_routine.blank?
+        old_routine.destroy
+      end
     end
-    return DailyRoutine.create(user_id: user_id, day_performed: date, group_routine_id: group_routine_id)
+
+    return DailyRoutine.find_or_create_by(user_id: user_id, day_performed: date, group_routine_id: group_routine_id)
   end
 
   def self.get_matching_routine_since(date, type, day_id, user_id)
