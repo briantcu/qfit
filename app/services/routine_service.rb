@@ -21,6 +21,21 @@ class RoutineService
     @sched_update = sched_update
   end
 
+  def self.nightly_workout_creation
+    groups = Group.all
+    groups.each do |group|
+      RoutineService.new(group, 'CRON', nil, false).create_routines
+    end
+    sub_users = User.sub_users.without_group
+    sub_users.each do |user|
+      RoutineService.new(user, 'CRON', nil, false).create_routines
+    end
+    users = User.regular_users.logged_in_recently
+    users.each do |user|
+      RoutineService.new(user, 'CRON', nil, false).create_routines
+    end
+  end
+
   def self.sched_change_happened(entity)
     today = Date.today
     delete_old_workouts(entity)

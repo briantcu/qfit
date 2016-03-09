@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     #Check validity of sign up code.
     sign_up_code = nil
-    if !params[:user][:sign_up_code].nil? && !params[:user][:sign_up_code].empty?
+    if params[:user][:sign_up_code].present?
       sign_up_code = SignUpCode.with_code(params[:user][:sign_up_code]).first
       if sign_up_code.nil?
         render :status => 470, :json => { :errors => 'Invalid sign up code'}

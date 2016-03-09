@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
 
   has_many :daily_routines, dependent: :destroy
   has_many :user_maxes, dependent: :destroy
+  has_many :coach_groups, foreign_key: :coach_user_id, class_name: Group
   has_many :custom_exercises, through: :daily_routines
   has_many :performed_exercises, through: :daily_routines
   has_many :performed_plyometrics, through: :daily_routines
@@ -79,6 +80,9 @@ class User < ActiveRecord::Base
   belongs_to :coach, :foreign_key => :master_user_id, :class_name => 'User'
   #validates :sex, :inclusion => {:in => SEX_OPTIONS}
 
+  scope :sub_users, -> {where(sub_user: true)}
+  scope :regular_users, -> {where(sub_user: false, administrator: false)}
+  scope :without_group, -> {where(:group.empty?)}
   scope :logged_in_recently, -> {where('last_sign_in_at > ?', Time.now - 21.days)}
   scope :males, -> {where(sex: 'male')}
   scope :females, -> {where(sex: 'female')}
