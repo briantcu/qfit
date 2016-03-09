@@ -6,11 +6,8 @@ class Users::SessionsController < Devise::SessionsController
     email = params[:email]
     password = params[:password]
 
-    #Needed to incorporate old login mechanism. Can be removed once all users have been migrated to new system.
-    user = User.try_login(email, password)
-
     if request.path_parameters[:format] == 'json'
-      process_api_sign_in(user, password)
+      process_api_sign_in(email, password)
     else
       super
     end
@@ -44,8 +41,9 @@ class Users::SessionsController < Devise::SessionsController
   end
 
 
-  def process_api_sign_in(user, password)
+  def process_api_sign_in(email, password)
 
+    user = User.find_by_email(email)
     return failure unless user
 
     if user.valid_password?(password)

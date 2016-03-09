@@ -41,6 +41,7 @@
 #  last_sign_in_ip             :string(255)
 #  authentication_token        :string(255)
 #  experience_level            :integer
+#  displayed_user_name         :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -98,35 +99,6 @@ class User < ActiveRecord::Base
                             .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)
   scope :most_reps_performed, select('users.*, sum(weight_sets.perf_reps) AS value').joins(:weight_sets)
                                   .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)
-
-  def self.try_login(email, password)
-    salt = '1lasfj3932kak3'
-    initial_hashed_pw = Digest::SHA1.hexdigest(salt+password)
-    hashed_pw = initial_hashed_pw[0..39]
-
-    user = User.where(email: email, old_password: hashed_pw).first
-    if user.nil?
-      #try again because you're a moron and you truncated the table once
-      hashed_pw = hashed_pw[0..24]
-      user = User.where(email: email, old_password: hashed_pw).first
-    end
-
-    if user.nil?
-      #Devise needs a user to proceed with login
-      user = User.where(email: email).first
-    else
-      #Update to use new password system (devise)
-      user.password = password
-      user.save
-    end
-    user
-  end
-
-  def update_og_password(password)
-    password = password[0..24]
-    self.old_password = password
-    self.save
-  end
 
   def ensure_authentication_token
     if authentication_token.blank?

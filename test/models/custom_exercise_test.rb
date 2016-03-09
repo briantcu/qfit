@@ -6,3 +6,18 @@ class CustomExerciseTest < ActiveSupport::TestCase
     assert(exercise != nil)
   end
 end
+
+# == Schema Information
+#
+# Table name: custom_exercises
+#
+#  id         :integer          not null, primary key
+#  routine_id :integer
+#  details    :string(255)
+#  status     :integer
+#  group_id   :integer
+#  name       :string(255)
+#  ex_type    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
