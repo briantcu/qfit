@@ -3,12 +3,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   before_filter :authenticate_user_from_token!
-  before_filter :authenticate_user!
 
   private
 
   def authenticate_user_from_token!
-    authenticate_or_request_with_http_basic do |username,password|
+    authenticate_with_http_basic do |username,password|
       if password.present?
         resource = User.find_by_email(username)
         if resource && resource.valid_password?(password)
@@ -25,6 +24,10 @@ class ApplicationController < ActionController::Base
 
   def unauthorized
     render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+  end
+
+  def verify_logged_in
+    unauthorized unless current_user.present?
   end
 
 end

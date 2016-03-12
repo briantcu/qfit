@@ -1,4 +1,5 @@
 class FriendsController < ApplicationController
+  before_filter :verify_logged_in
   before_action :set_friend, only: [:show, :edit, :update, :destroy]
 
   # GET /friends
