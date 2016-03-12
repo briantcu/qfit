@@ -11,12 +11,12 @@ class ApplicationController < ActionController::Base
       if password.present?
         resource = User.find_by_email(username)
         if resource && resource.valid_password?(password)
-          sign_in :user, store: false
+          sign_in resource, store: false
         end
       else
         resource = User.find_by_authentication_token(username)
         if resource.present?
-          sign_in :user, store: false
+          sign_in resource, store: false
         end
       end
     end

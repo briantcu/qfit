@@ -1,10 +1,11 @@
 class PodInvitesController < ApplicationController
+  before_filter :verify_logged_in
   before_action :set_pod_invite, only: [:show, :edit, :update, :destroy]
 
   # GET /pod_invites
   # GET /pod_invites.json
   def index
-    @pod_invites = PodInvite.all
+    @pod_invites = PodInvite.all.where(inviter: current_user.id)
   end
 
   # GET /pod_invites/1
