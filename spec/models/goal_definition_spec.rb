@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: goal_definitions
+#
+#  id            :integer          not null, primary key
+#  order         :integer
+#  goal_text     :text
+#  achieved_text :text
+#  points        :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 require 'rails_helper'
 
 RSpec.describe GoalDefinition, type: :model do

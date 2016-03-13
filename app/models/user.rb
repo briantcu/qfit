@@ -42,6 +42,7 @@
 #  authentication_token        :string(255)
 #  experience_level            :integer
 #  displayed_user_name         :string(255)
+#  points                      :integer
 #
 
 class User < ActiveRecord::Base
@@ -71,6 +72,7 @@ class User < ActiveRecord::Base
   has_many :performed_warm_ups
   has_many :laps, through: :performed_sprints
   has_many :weight_sets, through: :performed_exercises
+  has_many :user_goals
 
   has_one :group_join, dependent: :destroy
   has_one :group, through: :group_join
@@ -79,7 +81,7 @@ class User < ActiveRecord::Base
 
   belongs_to :program_type
   belongs_to :coach, foreign_key: :master_user_id, class_name: 'User'
-  #validates :sex, :inclusion => {:in => SEX_OPTIONS}
+  validates :sex, :inclusion => {:in => SEX_OPTIONS}
 
   scope :sub_users, -> {where(sub_user: true)}
   scope :regular_users, -> {where(sub_user: false, administrator: false)}

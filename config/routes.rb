@@ -25,6 +25,8 @@ Qfit::Application.routes.draw do
 
   resources :user_schedules
 
+  resources :user_goals
+
   resources :user_maxes
 
   resources :users

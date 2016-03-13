@@ -76,4 +76,5 @@ end
 #  authentication_token        :string(255)
 #  experience_level            :integer
 #  displayed_user_name         :string(255)
+#  points                      :integer
 #
