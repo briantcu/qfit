@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
 
   SEX_OPTIONS = %w(male female )
 
-  validates :displayed_user_name, uniqueness: true, presence: true
+  validates :displayed_user_name, uniqueness: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
   has_one :coach_account, dependent: :destroy
 
   belongs_to :program_type
-  belongs_to :coach, :foreign_key => :master_user_id, :class_name => 'User'
+  belongs_to :coach, foreign_key: :master_user_id, class_name: 'User'
   #validates :sex, :inclusion => {:in => SEX_OPTIONS}
 
   scope :sub_users, -> {where(sub_user: true)}
@@ -99,6 +99,11 @@ class User < ActiveRecord::Base
                             .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)
   scope :most_reps_performed, select('users.*, sum(weight_sets.perf_reps) AS value').joins(:weight_sets)
                                   .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)
+
+  def friends
+    User.where('users.id IN (SELECT CASE WHEN id_one=? THEN id_two ELSE id_one END FROM friends WHERE ? IN (id_one, id_two))',
+               self.id, self.id).to_a
+  end
 
   def ensure_authentication_token
     if authentication_token.blank?
