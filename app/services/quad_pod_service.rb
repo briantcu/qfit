@@ -27,9 +27,7 @@ class QuadPodService
     payload = JWT.decode token, Rails.application.config.token_salt, true, { :algorithm => 'HS256' }
     invite_data = payload[0]
     pod_invite = PodInvite.find(invite_data['id'])
-    pod_invite.invitee = user.user_id
-    pod_invite.status = 1
-    pod_invite.save!
+    pod_invite.update_attributes!(invitee: user.user_id, status: 1)
     if invite_data['sent_to'].validate(VALID_PHONE)
       user.update_attributes!(phone: invite_data['sent_to'])
     end
@@ -82,7 +80,7 @@ class QuadPodService
   end
 
   def create_token(invite)
-    payload = {inviter: invite.inviter, sent_to: invite.sent_to, id: invite.id}
+    payload = {sent_to: invite.sent_to, id: invite.id}
     JWT.encode payload, Rails.application.config.token_salt, 'HS256'
   end
 end
