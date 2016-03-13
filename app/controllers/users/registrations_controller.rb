@@ -21,6 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     @user = User.new(sign_up_params)
 
+    # Has to be done before user.save below because it assigns a password
     if is_coach_signed_in
       temp_password = assign_temp_password
     end
@@ -31,6 +32,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       else
         @user = RegistrationService.register_user(@user, sign_up_code, params[:user][:account_type])
       end
+      check_tokens
       render :json => @user.to_json, :status=>201
     else
       warden.custom_failure!
@@ -44,6 +46,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
+  def check_tokens
+    if params[:invite_token].present?
+      QuadPodService.new.accept_invite_new_user(params[:invite_token], @user)
+    end
+  end
 
   def is_coach_signed_in
     !current_user.nil? && current_user.is_coach
