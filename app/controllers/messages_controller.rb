@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_filter :verify_logged_in
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   # GET /messages
@@ -12,28 +13,16 @@ class MessagesController < ApplicationController
   def show
   end
 
-  # GET /messages/new
-  def new
-    @message = Message.new
-  end
-
-  # GET /messages/1/edit
-  def edit
-  end
-
   # POST /messages
   # POST /messages.json
   def create
     @message = Message.new(message_params)
+    @message.poster = current_user.id
 
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @message }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+    if @message.save!
+      format.json { render action: 'show', status: :created, location: @message }
+    else
+      format.json { render json: @message.errors, status: :unprocessable_entity }
     end
   end
 
@@ -69,6 +58,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:poster_id, :message, :parent_id, :to_id, :type)
+      params.require(:message).permit(:message, :parent_id, :to_id, :type)
     end
 end

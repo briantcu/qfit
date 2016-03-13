@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
 
   def friends
     User.where('users.id IN (SELECT CASE WHEN id_one=? THEN id_two ELSE id_one END FROM friends WHERE ? IN (id_one, id_two))',
-               self.id, self.id).to_a
+               self.id, self.id).preload(:daily_routines).to_a
   end
 
   def ensure_authentication_token
