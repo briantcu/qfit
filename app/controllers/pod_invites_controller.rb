@@ -1,6 +1,6 @@
 class PodInvitesController < ApplicationController
   before_filter :verify_logged_in
-  before_action :set_pod_invite, only: [:show, :accept, :destroy]
+  before_action :set_pod_invite, only: [:show, :accept, :deny]
 
   # GET /pod_invites
   # GET /pod_invites.json
@@ -36,16 +36,6 @@ class PodInvitesController < ApplicationController
   def deny
     QuadPodService.new.deny_invite(@pod_invite)
     render status: 201, json: {}
-  end
-
-  # DELETE /pod_invites/1
-  # DELETE /pod_invites/1.json
-  def destroy
-    @pod_invite.destroy
-    respond_to do |format|
-      format.html { redirect_to pod_invites_url }
-      format.json { head :no_content }
-    end
   end
 
   private

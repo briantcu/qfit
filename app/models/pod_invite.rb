@@ -12,6 +12,8 @@
 #
 
 class PodInvite < ActiveRecord::Base
+  validates uniqueness: :sent_to, scope: :inviter
+
   belongs_to :inviter, class: 'User', foreign_key: :inviter
   belongs_to :invitee, class: 'User', foreign_key: :invitee
 end

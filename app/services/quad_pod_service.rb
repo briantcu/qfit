@@ -4,6 +4,8 @@ class QuadPodService
   VALID_PHONE = /\A(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\z/
 
   def send_invite(invite)
+    invite.sent_to.gsub!(/[^0-9]/, "") if invite.sent_to.validate(VALID_PHONE) #Strip all non numbers if it's a phone
+
     pod_invite = PodInvite.where(inviter: current_user.id, sent_to: invite.sent_to).first
     if pod_invite.present?
       return { status: 'exists', message: 'A request has already been sent', pod_invite: pod_invite}
