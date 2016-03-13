@@ -33,4 +33,5 @@ Qfit::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  config.token_salt = 'lajdfl;euueu9387983hfah8lsjeinvidk'
 end

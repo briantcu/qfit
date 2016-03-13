@@ -56,6 +56,8 @@ Qfit::Application.routes.draw do
   resources :programs
 
   resources :pod_invites
+  put '/pod_invites/:id/accept', to: 'pod_invites#accept'
+  put '/pod_invites/:id/deny', to: 'pod_invites#deny'
 
   resources :plyometrics
 

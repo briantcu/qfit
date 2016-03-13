@@ -77,4 +77,5 @@ Qfit::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  config.token_salt = 'lajdfl;aldjfihlaj73739a98shdh98eio'
 end

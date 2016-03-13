@@ -1,6 +1,6 @@
 class PodInvitesController < ApplicationController
   before_filter :verify_logged_in
-  before_action :set_pod_invite, only: [:show, :edit, :update, :destroy]
+  before_action :set_pod_invite, only: [:show, :accept, :destroy]
 
   # GET /pod_invites
   # GET /pod_invites.json
@@ -13,43 +13,28 @@ class PodInvitesController < ApplicationController
   def show
   end
 
-  # GET /pod_invites/new
-  def new
-    @pod_invite = PodInvite.new
-  end
-
-  # GET /pod_invites/1/edit
-  def edit
-  end
-
   # POST /pod_invites
   # POST /pod_invites.json
   def create
     @pod_invite = PodInvite.new(pod_invite_params)
+    @pod_invite.inviter = current_user.id
+    response = QuadPodService.new.send_invite(@pod_invite)
 
-    respond_to do |format|
-      if @pod_invite.save
-        format.html { redirect_to @pod_invite, notice: 'Pod invite was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @pod_invite }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @pod_invite.errors, status: :unprocessable_entity }
-      end
+    if response[:status] == 'success'
+      render action: 'show', status: :created, location: response[:pod_invite]
+    else
+      render status: 400, json: { 'message' => response[:message] }
     end
   end
 
-  # PATCH/PUT /pod_invites/1
-  # PATCH/PUT /pod_invites/1.json
-  def update
-    respond_to do |format|
-      if @pod_invite.update(pod_invite_params)
-        format.html { redirect_to @pod_invite, notice: 'Pod invite was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @pod_invite.errors, status: :unprocessable_entity }
-      end
-    end
+  def accept
+    QuadPodService.new.accept_invite_existing_user(@pod_invite)
+    render status: 201, json: {}
+  end
+
+  def deny
+    QuadPodService.new.deny_invite(@pod_invite)
+    render status: 201, json: {}
   end
 
   # DELETE /pod_invites/1
@@ -70,6 +55,6 @@ class PodInvitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pod_invite_params
-      params.require(:pod_invite).permit(:inviter, :sent_to, :status, :invitee)
+      params.require(:pod_invite).permit(:sent_to)
     end
 end

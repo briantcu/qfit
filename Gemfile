@@ -9,6 +9,8 @@ gem 'sqlite3'
 
 gem 'pg'
 
+gem 'jwt'
+
 gem 'active_attr'
 
 # Use SCSS for stylesheets
