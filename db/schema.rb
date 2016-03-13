@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313045120) do
+ActiveRecord::Schema.define(version: 20160313062924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,15 @@ ActiveRecord::Schema.define(version: 20160313045120) do
   create_table "friends", force: true do |t|
     t.integer  "id_one"
     t.integer  "id_two"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "goal_definitions", force: true do |t|
+    t.integer  "order"
+    t.text     "goal_text"
+    t.text     "achieved_text"
+    t.integer  "points"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -407,6 +416,14 @@ ActiveRecord::Schema.define(version: 20160313045120) do
     t.integer  "exercise_type"
     t.text     "tip"
     t.integer  "exercise_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_goals", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "goal_definition_id"
+    t.json     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
