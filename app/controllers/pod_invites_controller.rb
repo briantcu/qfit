@@ -5,7 +5,8 @@ class PodInvitesController < ApplicationController
   # GET /pod_invites
   # GET /pod_invites.json
   def index
-    @pod_invites = PodInvite.all.where(inviter: current_user.id)
+    @pod_outgoing = PodInvite.all.where(inviter: current_user.id)
+    @pod_incoming = PodInvite.all.where(invitee: current_user.id)
   end
 
   # GET /pod_invites/1
