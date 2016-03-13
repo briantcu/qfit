@@ -28,14 +28,14 @@ class QuadPodService
     pod_invite.invitee = user_id
     pod_invite.status = 1
     pod_invite.save!
-    #@TODO call to friend service to make them friends
+    FriendService.new.make_friends(pod_invite.inviter, pod_invite.invitee)
   end
 
   def accept_invite_existing_user(invite)
     return unless invite.invitee == current_user.id && invite.status != 1 # Already accepted
     invite.status = 1
     invite.save!
-    #@TODO call to friend service to make them friends
+    FriendService.new.make_friends(invite.inviter, invite.invitee)
   end
 
   def deny_invite(invite)

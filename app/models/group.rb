@@ -23,10 +23,9 @@ class Group < ActiveRecord::Base
   PLYOS = 2
   SPRINTING = 3
 
-
-  belongs_to :user, :foreign_key => :coach_user_id
+  belongs_to :coach, class_name: 'User', foreign_key: :coach_user_id
   has_many :group_joins, dependent: :destroy
-  has_many :users, :through => :group_joins
+  has_many :members, class_name: 'User', through: :group_joins
   has_one :group_schedule, dependent: :destroy
   has_many :group_routines, dependent: :destroy
 

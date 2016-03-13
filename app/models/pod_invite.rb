@@ -12,6 +12,6 @@
 #
 
 class PodInvite < ActiveRecord::Base
-  belongs_to :user, :foreign_key => :inviter
-  belongs_to :user, :foreign_key => :invitee
+  belongs_to :inviter, class: 'User', foreign_key: :inviter
+  belongs_to :invitee, class: 'User', foreign_key: :invitee
 end
