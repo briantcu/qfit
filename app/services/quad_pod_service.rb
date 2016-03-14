@@ -77,6 +77,14 @@ class QuadPodService
       end
 
     end
+
+    unless UserGoal.where(user_id: invite.inviter, goal_definition_id: 6).first.present?
+      UserGoal.create!(user_id: invite.inviter, goal_definition_id: 6)
+      gd = GoalDefinition.find(6)
+      inviter = User.find(invite.inviter.id)
+      inviter.points += gd.points
+      inviter.save
+    end
   end
 
   def create_token(invite)

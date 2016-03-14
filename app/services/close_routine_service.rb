@@ -33,12 +33,24 @@ class CloseRoutineService
     process_provided
 
     #@TODO
+    #calculate personal bests
+
+    #@TODO
     #return encouraging message and next workout date
 
     #@TODO
     #post message to feed saying workout was completed
     # $message = "I just completed my workout: <a class='underlined' target='_blank' href='/share.html?r=rid'>
     # See it and make comments</a>"; PostToFeed($message, 3);
+
+    #@TODO
+    #add user points for workout completion
+
+    #@TODO
+    #add points for certain number of workouts completed in a row
+
+    #@TODO
+    #record a goal an assign points if this is their first closed workout. Make sure that percent completed is not 0
 
     @routine.save
     @routine.user.save

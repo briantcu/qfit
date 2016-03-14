@@ -56,6 +56,8 @@ class User < ActiveRecord::Base
 
   SEX_OPTIONS = %w(male female )
 
+  after_commit :check_user_name
+
   validates :displayed_user_name, uniqueness: true
 
   # Include default devise modules. Others available are:
@@ -101,6 +103,17 @@ class User < ActiveRecord::Base
                             .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)
   scope :most_reps_performed, select('users.*, sum(weight_sets.perf_reps) AS value').joins(:weight_sets)
                                   .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)
+
+  def check_user_name
+    if displayed_user_name.present?
+      unless UserGoal.where(user_id: self.id, goal_definition_id: 3).first.present?
+        UserGoal.create!(user_id: self.id, goal_definition_id: 3)
+        gd = GoalDefinition.find(3)
+        self.points += gd.points
+        self.save
+      end
+    end
+  end
 
   def friends
     User.where('users.id IN (SELECT CASE WHEN id_one=? THEN id_two ELSE id_one END FROM friends WHERE ? IN (id_one, id_two))',

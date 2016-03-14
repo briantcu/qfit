@@ -33,6 +33,7 @@ GEM
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
     arel (4.0.2)
+    awesome_print (1.6.1)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -162,6 +163,7 @@ PLATFORMS
 DEPENDENCIES
   active_attr
   annotate
+  awesome_print
   better_errors
   devise
   jbuilder (~> 1.2)
