@@ -19,12 +19,15 @@ class UserMax < ActiveRecord::Base
   end
 
   def self.set_max(user_id, exercise_id, max)
+    is_pb = false
     user_max = get_max(user_id, exercise_id)
     if user_max.nil?
       UserMax.create(exercise_id: exercise_id, max: max, user_id: user_id)
     else
-      user_max.max = max
+      user_max.max = [max, user_max.max].max
       user_max.save
+      is_pb = true if max > user_max.max
     end
+    is_pb
   end
 end

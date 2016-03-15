@@ -1,6 +1,7 @@
 class CloseRoutineService
 
   @routine
+  @pbs
 
   BARBELL = 1
   DUMBBELL = 2
@@ -32,28 +33,24 @@ class CloseRoutineService
     process_completed
     process_provided
 
-    #@TODO
-    #calculate personal bests
-
-    #@TODO
-    #return encouraging message and next workout date
-
-    #@TODO
     #post message to feed saying workout was completed
-    # $message = "I just completed my workout: <a class='underlined' target='_blank' href='/share.html?r=rid'>
-    # See it and make comments</a>"; PostToFeed($message, 3);
+    #@TODO fix message
+    message = "I just completed my workout: <a class='underlined' target='_blank' href='/share.html?r=rid'> See it and make comments</a>"
+    Message.create!(poster_id: @routine.user.id, type: 3, message: message)
 
-    #@TODO
-    #add user points for workout completion
+    # Get points based on the percentage of exercises completed
+    points = process_completed / process_provided * 100
+    @routine.user.points += points
 
-    #@TODO
-    #add points for certain number of workouts completed in a row
+    on_a_run = is_on_a_run?
+    is_first_workout = is_first_workout?
+    get_messages(true, on_a_run, is_first_workout)
 
-    #@TODO
-    #record a goal an assign points if this is their first closed workout. Make sure that percent completed is not 0
+    #return encouraging message and next workout date
+    @routine.routine_messages.create!(message: '')
 
-    @routine.save
-    @routine.user.save
+    @routine.save!
+    @routine.user.save!
     @routine
   end
 
@@ -63,12 +60,61 @@ class CloseRoutineService
     process_provided
     @routine.save
 
-    #@TODO
-    #return encouraging message and next workout date
+    get_messages(false, false, false)
     @routine
   end
 
   private
+
+  def get_messages(is_completed, is_on_run, is_first_workout)
+    unless is_completed
+      @routine.routine_messages.create!(message: "That's ok, everyone skips a workout every once in a while. Let's get it done next time!")
+    end
+
+    personal_bests = @pbs.take(3)
+    personal_bests.each do |pb|
+      Message.create!(poster_id: @routine.user.id, type: 3, message: "New personal best! #{pb[0].name}, #{pb[1]} estimated 1 rep max!")
+
+    end
+    @routine.routine_messages.create!(message: "Nice! You recorded personal bests for #{@pbs.map{|pb| pb[0].name}.join(', ')}")
+
+    if is_first_workout
+      @routine.routine_messages.create!(message: "CONGRATULATIONS!!! You finished your first Quadfit workout! Keep it going!!")
+    end
+
+    if is_on_run
+      @routine.routine_messages.create!(message: "You've completed 4+ workouts in a row! Keep up the momentum!!")
+    end
+
+    #@TODO fill in message
+    @routine.routine_messages.create!(message: "Your next workout is ")
+  end
+
+  def is_first_workout?
+    #record a goal and assign points if this is their first closed workout.
+    first_workout = false
+    if @routine.user.daily_routines.completed.count == 0
+      goal = GoalDefinition.find(4)
+      @routine.user.points += goal.points
+      UserGoal.create!(user_id: @routine.user.id, goal_definition_id: 4)
+      first_workout = true
+    end
+    first_workout
+  end
+
+  def is_on_a_run?
+    on_a_run = false
+    routines = @routine.user.daily_routines.offset(1).last(3)
+    if routines.count == 3
+      routines.each do |routine|
+        on_a_run = on_a_run && routine.completed?
+      end
+    end
+    if on_a_run
+      @routine.user.points += 15
+    end
+    on_a_run
+  end
 
   def note_as_closed
     @routine.closed = true
@@ -93,7 +139,8 @@ class CloseRoutineService
           perf_ex.one_rep_max = max
           perf_ex.save
         end
-        UserMax.set_max(@routine.user.id, perf_ex.exercise.id, max)
+        is_pb = UserMax.set_max(@routine.user.id, perf_ex.exercise.id, max)
+        @pbs << [perf_ex.exercise, max] if is_pb
         update_maxes_in_user_rec(max, perf_ex.exercise)
       end
 

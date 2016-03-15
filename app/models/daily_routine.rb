@@ -34,6 +34,7 @@ class DailyRoutine < ActiveRecord::Base
   PLYOS = 2
   SPRINTING = 3
 
+  scope :completed, -> {where('closed = 1 and count_ex_completed  > 0')}
 
   belongs_to :user
   has_many :custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
@@ -41,12 +42,17 @@ class DailyRoutine < ActiveRecord::Base
   has_many :performed_plyometrics, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
   has_many :performed_sprints, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
   has_many :performed_warm_ups, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :routine_messages, :foreign_key => :daily_routine_id, dependent: :destroy
 
   accepts_nested_attributes_for :custom_exercises, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
   accepts_nested_attributes_for :performed_warm_ups, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
   accepts_nested_attributes_for :performed_exercises, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
   accepts_nested_attributes_for :performed_plyometrics, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
   accepts_nested_attributes_for :performed_sprints, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
+
+  def completed?
+    self.closed && (self.count_ex_completed > 0)
+  end
 
   def get_warmups
     self.performed_warm_ups
