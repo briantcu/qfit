@@ -48,7 +48,7 @@
 
 class User < ActiveRecord::Base
 
-  mount_uploaders :avatars, AvatarUploader
+  mount_uploader :avatars, AvatarUploader
 
   before_save :ensure_authentication_token
 
@@ -78,6 +78,7 @@ class User < ActiveRecord::Base
   has_many :laps, through: :performed_sprints
   has_many :weight_sets, through: :performed_exercises
   has_many :user_goals
+  has_many :user_pointses
 
   has_one :group_join, dependent: :destroy
   has_one :group, through: :group_join

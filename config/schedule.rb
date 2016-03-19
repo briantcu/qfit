@@ -4,3 +4,7 @@ set :output, 'log/cron.log'
 every :day, at: '5:05am' do
   runner 'RoutineService.nightly_workout_creation'
 end
+
+every :month do
+  runner 'UserPointsService.record_monthly_points'
+end
