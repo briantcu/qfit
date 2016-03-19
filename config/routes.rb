@@ -17,6 +17,7 @@ Qfit::Application.routes.draw do
     put 'users/:id/change_password', to: 'users/passwords#update'
     get 'users/:id/reset_password', to: 'users/passwords#reset'
     post 'users/:id/password/edit', to: 'users/passwords#edit'
+    post 'forgot_password',         to: 'users/passwords#forgot'
   end
 
   resources :weekly_schedule_days

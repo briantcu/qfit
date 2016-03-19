@@ -40,6 +40,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def forgot
+    user = User.where(email: params[:email]).first
+    if user.present?
+      user.send_reset_password_instructions
+      head :no_content
+    else
+      render :status => 404, :json => { :errors => 'User with email not found'}
+    end
+  end
+
   #Returns form
   def new
     super
