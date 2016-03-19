@@ -43,6 +43,7 @@
 #  experience_level            :integer
 #  displayed_user_name         :string(255)
 #  points                      :integer
+#  avatars                     :json
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

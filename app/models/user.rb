@@ -43,9 +43,12 @@
 #  experience_level            :integer
 #  displayed_user_name         :string(255)
 #  points                      :integer
+#  avatars                     :json
 #
 
 class User < ActiveRecord::Base
+
+  mount_uploaders :avatars, AvatarUploader
 
   before_save :ensure_authentication_token
 

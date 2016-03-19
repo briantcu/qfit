@@ -77,4 +77,5 @@ end
 #  experience_level            :integer
 #  displayed_user_name         :string(255)
 #  points                      :integer
+#  avatars                     :json
 #

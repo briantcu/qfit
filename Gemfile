@@ -52,3 +52,9 @@ group :test do
 end
 
 gem "mocha", :require => false
+
+gem 'carrierwave'
+gem 'carrierwave-base64'
+gem 'fog'
+gem 'figaro'
+gem 'unf'

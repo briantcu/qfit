@@ -25,6 +25,7 @@
 #  created_at         :datetime
 #  updated_at         :datetime
 #  group_routine_id   :integer
+#  shared             :boolean          default(FALSE)
 #
 
 class DailyRoutine < ActiveRecord::Base
