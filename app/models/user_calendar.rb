@@ -30,7 +30,7 @@ class UserCalendar
 
       if routine.nil?
         workout_status = 'nothing'
-        if user.will_workout_for_day(normalize_day(day.cwday))
+        if user.will_workout_for_day?(normalize_day(day.cwday))
           workout_status = 'future'
         end
         self.calendar_month.days << CalendarDay.new(:day_of_month => d, :day_of_week => normalize_day(day.cwday),

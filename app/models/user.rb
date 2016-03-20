@@ -65,8 +65,6 @@ class User < ActiveRecord::Base
 
   validates :displayed_user_name, uniqueness: true
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   has_many :daily_routines, dependent: :destroy
@@ -177,11 +175,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def will_workout_for_day(day)
+  def will_workout_for_day?(day)
     self.user_schedule.weekly_schedule_days[day].stretching
   end
 
-  def owns_workout(daily_routine_id)
+  def owns_workout?(daily_routine_id)
     owns = false
     daily_routine = DailyRoutine.find(daily_routine_id)
     if daily_routine.present?
@@ -191,7 +189,7 @@ class User < ActiveRecord::Base
     owns
   end
 
-  def owns_group(group_id)
+  def owns_group?(group_id)
     group = Group.find(group_id)
     group.coach_user_id == self.id
   end

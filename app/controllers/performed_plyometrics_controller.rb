@@ -40,7 +40,7 @@ class PerformedPlyometricsController < ApplicationController
 
   def verify_owns_workout
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_workout(params[:performed_plyometric][:routine_id]))
+        (current_user.owns_workout?(params[:performed_plyometric][:routine_id]))
   end
 
   def unauthorized

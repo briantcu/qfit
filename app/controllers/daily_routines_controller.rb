@@ -173,7 +173,7 @@ class DailyRoutinesController < ApplicationController
 
   def verify_owns_workout
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_workout(params[:id]))
+        (current_user.owns_workout?(params[:id]))
   end
 
   def verify_is_logged_in_or_coach

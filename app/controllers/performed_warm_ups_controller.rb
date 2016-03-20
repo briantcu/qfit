@@ -41,7 +41,7 @@ class PerformedWarmUpsController < ApplicationController
 
   def verify_owns_workout
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_workout(params[:performed_warm_up][:routine_id]))
+        (current_user.owns_workout?(params[:performed_warm_up][:routine_id]))
   end
 
   def unauthorized

@@ -38,7 +38,7 @@ class GroupPerformedSprintsController < ApplicationController
 
   def verify_owns_group
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_group(params[:group_performed_sprint][:routine_id]))
+        (current_user.owns_group?(params[:group_performed_sprint][:routine_id]))
   end
 
   def unauthorized

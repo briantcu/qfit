@@ -27,7 +27,7 @@ class GroupCustomExercisesController < ApplicationController
 
   def verify_owns_group
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_group(params[:id]))
+        (current_user.owns_group?(params[:id]))
   end
 
   def unauthorized
