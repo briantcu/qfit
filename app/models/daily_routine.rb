@@ -36,6 +36,7 @@ class DailyRoutine < ActiveRecord::Base
   SPRINTING = 3
 
   scope :completed, -> {where('closed = 1 and count_ex_completed  > 0')}
+  scope :open, -> {where(closed: false)}
 
   belongs_to :user
   has_many :custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy

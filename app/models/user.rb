@@ -241,6 +241,20 @@ class User < ActiveRecord::Base
     sub_users.length
   end
 
+  def flag_text_for_coach
+    if self.user_schedule.blank?
+      return "You haven't set up this member's workouts yet."
+    end
+
+    open_workouts = self.daily_routines.open.where('created_at < ?', Time.now - 3.days)
+    if open_workouts.present?
+      return 'This member has an open workout that is at least 2 days old.  The results from the performed workout
+              should be entered, or the workout should be skipped.'
+    end
+
+    nil
+  end
+
   private
 
   def generate_authentication_token
