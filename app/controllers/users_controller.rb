@@ -1,23 +1,10 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :change_email]
-  before_filter :verify_is_logged_in, only: [:change_email]
-  before_filter :auth_for_user_update, only: [:update]
-  before_filter :auth_for_progress, only: [:get_progress]
-  before_filter :auth_for_fitness_submission, only: [:fitness_assessment]
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
+  before_action :set_user, only: [:show, :update, :get_calendar, :fitness_assessment, :get_progress]
+  before_filter :can_access_user, only: [:show, :update, :get_calendar, :fitness_assessment, :get_progress]
 
   # GET /users/1
   # GET /users/1.json
   def show
-  end
-
-  # GET /users/1/edit
-  def edit
   end
 
   # PATCH/PUT /users/1
@@ -27,16 +14,6 @@ class UsersController < ApplicationController
       head :no_content
     else
       render json: @user.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
     end
   end
 
@@ -59,16 +36,6 @@ class UsersController < ApplicationController
       render action: 'show', status: :ok, location: @user
     else
       render json: @fitness_assessment_submission.errors, status: :unprocessable_entity
-    end
-  end
-
-  #PUT /users/1/change_email
-  def change_email
-    if @user.valid_password?(params[:user][:password]) && (params[:user][:email] == params[:user][:new_email])
-      @user.update_email(params[:user][:email])
-      render action: 'show', status: :ok, location: @user
-    else
-      unauthorized
     end
   end
 
@@ -97,40 +64,20 @@ class UsersController < ApplicationController
   end
 
   def fitness_assessment_params
-    params.require(:fitness_assessment_submission).permit(:user_id, :weight, :bench_reps, :bench_weight, :squat_reps, :squat_weight, :pull_ups, :push_ups, :assisted_push_ups, :experience_level, :sex, :first_name, :last_name)
+    params.require(:fitness_assessment_submission).permit(:user_id, :weight, :bench_reps, :bench_weight, :squat_reps,
+                                                          :squat_weight, :pull_ups, :push_ups, :assisted_push_ups,
+                                                          :experience_level, :sex, :first_name, :last_name)
   end
 
-  def auth_for_user_update
+  def can_access_user
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.id == params[:user_schedule][:user_id].to_i ||
-            (current_user.is_coach_of_user(params[:user_schedule][:user_id].to_i)) ||
-            (current_user.is_super_user))
-  end
-
-  def verify_is_logged_in
-    unauthorized unless !current_user.nil? && (current_user.id == @user.id)
-  end
-
-  def auth_for_fitness_submission
-    (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.id == params[:fitness_assessment_submission][:user_id].to_i ||
-            (current_user.is_coach_of_user(params[:fitness_assessment_submission][:user_id].to_i)) ||
-            (current_user.is_super_user))
-  end
-
-  def auth_for_progress
-    (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.id == params[:id].to_i ||
-            (current_user.is_coach_of_user(params[:id].to_i)) ||
+        (current_user.id == @user.id ||
+            (current_user.is_coach_of_user(@user.id)) ||
             (current_user.is_super_user))
   end
 
   def unauthorized
     render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
-  end
-
-  def change_email_params
-    params.require(:user).permit(:password, :email, :new_email)
   end
 
   def split_base64(uri_str)

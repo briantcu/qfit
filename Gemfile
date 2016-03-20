@@ -51,6 +51,8 @@ group :test do
   gem 'webmock'
 end
 
+gem 'sidekiq'
+
 gem "mocha", :require => false
 
 gem 'carrierwave'

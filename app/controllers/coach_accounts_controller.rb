@@ -1,5 +1,5 @@
 class CoachAccountsController < ApplicationController
-  before_filter :verify_owns_account, only: [:show, :update]
+  before_filter :verify_owns_account, only: [:show, :update, :send_invite]
   before_filter :verify_owns_user, only: [:delete_user]
 
   # GET /coach_accounts/1
@@ -27,8 +27,15 @@ class CoachAccountsController < ApplicationController
 
   def delete_user
     user = User.find(params[:user_id])
-    EmailService.coach_deleted_you(user.email)
+    #@TODO check allowed accounts vs max and account status
+    EmailService.new.peform_async(:coach_deleted_you, {email: user.email})
     user.destroy!
+  end
+
+  def send_invite
+    #Check max accounts
+    send_to = params[:send_to]
+
   end
 
   private

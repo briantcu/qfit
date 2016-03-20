@@ -15,7 +15,6 @@ Qfit::Application.routes.draw do
     post 'users', to: 'users/registrations#create'
 
     put 'users/:id/change_password', to: 'users/passwords#update'
-    get 'users/:id/reset_password', to: 'users/passwords#reset'
     post 'users/:id/password/edit', to: 'users/passwords#edit'
     post 'forgot_password',         to: 'users/passwords#forgot'
   end
@@ -138,7 +137,8 @@ Qfit::Application.routes.draw do
   delete '/groups/:id/users/:user_id', to: 'groups#remove_user'
 
   resources :coach_accounts
-  delete '/user/:user_id', to: 'coach_accounts#delete_user'
+  delete '/coach_accounts/:id/users/:user_id', to: 'coach_accounts#delete_user'
+  post '/coach_accounts/:id/send_invite', to: 'coach_accounts#send_invite'
 
   root :to => "home#index"
 
