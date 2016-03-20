@@ -77,7 +77,7 @@ class UsersController < ApplicationController
     chart_type = params[:chart_type]
     period = params[:period]
     exercise_id = params[:exercise_id] rescue nil
-    ProgressService.new(user_id, chart_type, period, exercise_id).get_chart
+    @progress_data = ProgressService.new(user_id, chart_type, period, exercise_id).get_chart
   end
 
   private
