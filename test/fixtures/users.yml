@@ -44,6 +44,7 @@
 #  displayed_user_name         :string(255)
 #  points                      :integer
 #  avatars                     :json
+#  status                      :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

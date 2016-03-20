@@ -44,8 +44,10 @@
 #  displayed_user_name         :string(255)
 #  points                      :integer
 #  avatars                     :json
+#  status                      :integer
 #
 
+# Status: 1 = active, 2 = disabled
 class User < ActiveRecord::Base
 
   mount_uploader :avatars, AvatarUploader
@@ -79,6 +81,7 @@ class User < ActiveRecord::Base
   has_many :weight_sets, through: :performed_exercises
   has_many :user_goals
   has_many :user_pointses
+  has_many :players, class_name: User, foreign_key: :master_user_id
 
   has_one :group_join, dependent: :destroy
   has_one :group, through: :group_join
@@ -164,6 +167,14 @@ class User < ActiveRecord::Base
     self.program_type = self.user_schedule.program_type
     self.current_phase = self.user_schedule.get_current_phase
     self.save
+  end
+
+  def update_status(status)
+    self.status = status
+    self.save!
+    if self.is_coach?
+      self.players.update_all(status: status) if self.players.present?
+    end
   end
 
   def will_workout_for_day(day)
