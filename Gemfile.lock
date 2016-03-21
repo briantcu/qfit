@@ -48,6 +48,7 @@ GEM
       mime-types (>= 1.16)
     carrierwave-base64 (2.1.1)
       carrierwave (>= 0.8.0, < 0.11.0)
+    clockworksms (1.1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -311,6 +312,7 @@ DEPENDENCIES
   better_errors
   carrierwave
   carrierwave-base64
+  clockworksms
   devise
   figaro
   fog

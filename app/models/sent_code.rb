@@ -11,5 +11,5 @@
 #
 
 class SentCode < ActiveRecord::Base
-  belongs_to :user, :foreign_key => :receiver
+  belongs_to :sign_up_code, foreign_key: :code, primary_key: :code
 end

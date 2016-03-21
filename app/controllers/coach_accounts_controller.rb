@@ -1,5 +1,5 @@
 class CoachAccountsController < ApplicationController
-  before_filter :verify_owns_account, only: [:show, :update, :send_invite]
+  before_filter :verify_owns_account, only: [:show, :update, :send_invite, :delete_user]
   before_filter :verify_owns_user, only: [:delete_user]
 
   # GET /coach_accounts/1
@@ -7,21 +7,13 @@ class CoachAccountsController < ApplicationController
   def show
   end
 
-  # GET /coach_accounts/1/edit
-  def edit
-  end
-
   # PATCH/PUT /coach_accounts/1
   # PATCH/PUT /coach_accounts/1.json
   def update
-    respond_to do |format|
-      if @coach_account.update(coach_account_params)
-        format.html { redirect_to @coach_account, notice: 'Coach account was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @coach_account.errors, status: :unprocessable_entity }
-      end
+    if @coach_account.update(coach_account_params)
+      head :no_content
+    else
+      render json: @coach_account.errors, status: :unprocessable_entity
     end
   end
 
@@ -35,7 +27,7 @@ class CoachAccountsController < ApplicationController
   def send_invite
     #Check max accounts
     send_to = params[:send_to]
-
+    CoachInviteService.new.send_invite(send_to, @coach_account)
   end
 
   private
@@ -47,7 +39,7 @@ class CoachAccountsController < ApplicationController
   def verify_owns_account
     set_coach_account
     (current_user.nil?) ? unauthorized : unauthorized unless
-      @coach_account.user_id == current_user.id
+      @coach_account.user.id == current_user.id
   end
 
   def verify_owns_user

@@ -32,4 +32,21 @@ class Notifier < ActionMailer::Base
     @email = email
     mail(to: @email, subject: "Your Quadfit account has been deleted, but...")
   end
+
+  def send_existing_user_pod_invite(invite)
+    @inviter = invite.inviter
+    @invitee = invite.invitee
+    mail(to: @invitee.email, subject: "Quad Pod Invite from #{@inviter.first_name} #{@inviter_last_name}")
+  end
+
+  def send_new_user_pod_invite(invite, token)
+    @inviter = invite.inviter
+    @token = token
+    mail(to: invite.sent_to, subject: "Quad Pod Invite from #{@inviter.first_name} #{@inviter_last_name}")
+  end
+
+  def send_coach_sign_up_invite(to, coach)
+    subject = "#{coach.first_name} #{coach.last_name} wants to be your coach on Quadfit"
+    mail(to: to, subject: subject)
+  end
 end

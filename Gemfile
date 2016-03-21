@@ -53,6 +53,8 @@ end
 
 gem 'sidekiq'
 
+gem 'clockworksms'
+
 gem "mocha", :require => false
 
 gem 'carrierwave'
