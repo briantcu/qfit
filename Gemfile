@@ -62,3 +62,5 @@ gem 'carrierwave-base64'
 gem 'fog'
 gem 'figaro'
 gem 'unf'
+
+gem 'rollbar', '~> 2.7.1'
