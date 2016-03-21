@@ -35,12 +35,12 @@ class PerformedPlyometricsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def performed_plyometric_params
-      params.require(:performed_plyometric).permit(:plyometric_id, :routine_id, :status, :group_performed_plyometric_id, :performed_one, :performed_two, :performed_three)
+      params.require(:performed_plyometric).permit(:plyometric_id, :status, :performed_one, :performed_two, :performed_three)
     end
 
   def verify_owns_workout
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_workout?(params[:performed_plyometric][:routine_id]))
+        (current_user.owns_workout?(@performed_plyometric.routine_id))
   end
 
   def unauthorized

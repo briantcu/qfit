@@ -33,15 +33,11 @@ class GroupPerformedExercisesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_performed_exercise_params
-      params.require(:group_performed_exercise).permit(:performed_exercise_id, :routine_id, :exercise_id, :status, :exercise_type)
+      params.require(:group_performed_exercise).permit(:exercise_id, :status, :exercise_type_id)
     end
 
   def verify_owns_group
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_group?(params[:group_performed_exercise][:routine_id]))
-  end
-
-  def unauthorized
-    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+        (current_user.owns_group?(@group_performed_exercise.routine_id))
   end
 end

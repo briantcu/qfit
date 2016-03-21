@@ -27,10 +27,6 @@ class GroupCustomExercisesController < ApplicationController
 
   def verify_owns_group
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_group?(params[:id]))
-  end
-
-  def unauthorized
-    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+        (current_user.owns_group?(@group_custom_exercise.routine_id))
   end
 end

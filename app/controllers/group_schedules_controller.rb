@@ -1,23 +1,10 @@
 class GroupSchedulesController < ApplicationController
-  before_action :set_group_schedule, only: [:show, :edit, :update, :destroy]
-  before_filter :verify_is_logged_in_or_coach, only: [:create, :update, :destroy]
-
-  # GET /group_schedules
-  # GET /group_schedules.json
-  def index
-  end
+  before_action :set_group_schedule, only: [:show, :update]
+  before_filter :verify_is_logged_in_or_coach, only: [:create, :update]
 
   # GET /group_schedules/1
   # GET /group_schedules/1.json
   def show
-  end
-
-  # GET /group_schedules/new
-  def new
-  end
-
-  # GET /group_schedules/1/edit
-  def edit
   end
 
   # POST /group_schedules
@@ -54,16 +41,6 @@ class GroupSchedulesController < ApplicationController
       render json: @group_schedule.errors, status: :unprocessable_entity
     end
 
-  end
-
-  # DELETE /group_schedules/1
-  # DELETE /group_schedules/1.json
-  def destroy
-    @group_schedule.destroy
-    respond_to do |format|
-      format.html { redirect_to group_schedules_url }
-      format.json { head :no_content }
-    end
   end
 
   private

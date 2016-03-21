@@ -9,9 +9,9 @@ class LikesController < ApplicationController
     @like.liker = current_user.id
 
     if @like.save!
-      format.json { render action: 'show', status: :created, location: @like }
+      render action: 'show', status: :created, location: @like
     else
-      format.json { render json: @like.errors, status: :unprocessable_entity }
+      render json: @like.errors, status: :unprocessable_entity
     end
   end
 
@@ -19,10 +19,7 @@ class LikesController < ApplicationController
   # DELETE /likes/1.json
   def destroy
     @like.destroy
-    respond_to do |format|
-      format.html { redirect_to likes_url }
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private

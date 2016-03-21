@@ -36,13 +36,13 @@ class PerformedExercisesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def performed_exercise_params
-    params.require(:performed_exercise).permit(:routine_id, :exercise_id, :rest_period, :status, :one_rep_max,
-                                               :group_performed_exercise_id, :exercise_type)
+    params.require(:performed_exercise).permit(:exercise_id, :rest_period, :status, :one_rep_max,
+                                               :exercise_type)
   end
 
   def verify_owns_workout
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_workout?(params[:performed_exercise][:routine_id]))
+        (current_user.owns_workout?(@performed_exercise.routine_id))
   end
 
   def unauthorized

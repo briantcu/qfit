@@ -1,2 +1,0 @@
-module DayExercisesHelper
-end

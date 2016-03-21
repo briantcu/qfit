@@ -1,13 +1,11 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   skip_before_filter :require_no_authentication
 
-  @user
-
   def create
     #Check validity of sign up code.
     sign_up_code = nil
     if params[:user][:sign_up_code].present?
-      sign_up_code = SignUpCode.with_code(params[:user][:sign_up_code]).first
+      sign_up_code = SignUpCode.where(code: params[:user][:sign_up_code]).first
       if sign_up_code.nil?
         render :status => 470, :json => { :errors => 'Invalid sign up code'}
         return
@@ -40,11 +38,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  #Returns form
-  def new
-    super
-  end
-
   private
 
   def check_tokens
@@ -54,7 +47,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def is_coach_signed_in
-    !current_user.nil? && current_user.is_coach
+    current_user.present? && current_user.is_coach?
   end
 
   def sign_up_params

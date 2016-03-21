@@ -1,6 +1,6 @@
 class ExercisesController < ApplicationController
   before_filter :verify_logged_in
-  before_action :set_exercise, only: [:show, :edit]
+  before_action :set_exercise, only: [:show]
 
   # GET /exercises
   # GET /exercises.json

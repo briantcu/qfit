@@ -15,6 +15,6 @@ class CoachAccount < ActiveRecord::Base
   has_many :players, through: :user
 
   def is_maxed_out
-    self.num_accts <= self.user.get_num_sub_users
+    self.num_accts <= user.get_num_sub_users
   end
 end

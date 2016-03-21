@@ -1,7 +1,7 @@
 class DailyRoutinesController < ApplicationController
-  before_action :set_daily_routine, only: [:show, :edit, :update, :add_weight, :add_sprint, :add_warmup, :add_plyo, :close, :skip, :add_custom, :reset, :workout_shared]
+  before_action :set_daily_routine, only: [:show, :update, :add_weight, :add_sprint, :add_warmup, :add_plyo, :close, :skip, :add_custom, :reset, :workout_shared]
   before_filter :verify_owns_workout, only: [:add_weight, :add_sprint, :add_warmup, :add_plyo, :update, :close, :skip, :add_custom, :reset]
-  before_filter :verify_is_logged_in, only: [:routine_by_date]
+  before_filter :verify_logged_in, only: [:routine_by_date]
   before_filter :verify_is_logged_in_or_coach, only: [:skip_all]
 
   STRETCHING = 4
@@ -17,10 +17,11 @@ class DailyRoutinesController < ApplicationController
   def show
   end
 
+  # This would be for adding exercises to a day that doesn't have a routine yet. Maybe can go away
   # POST /daily_routines.json
   def create
     daily_routine_parameters = daily_routine_params
-    @daily_routine = DailyRoutine.create_routine(daily_routine_parameters[:id], daily_routine_parameters[:day_performed], 0)
+    @daily_routine = DailyRoutine.create_routine(daily_routine_parameters[:user_id], daily_routine_parameters[:day_performed], 0)
     render action: 'show', status: :created, location: @daily_routine
   end
 
@@ -181,14 +182,6 @@ class DailyRoutinesController < ApplicationController
         (current_user.id == params[:user_id].to_i ||
             (current_user.is_coach_of_user(params[:user_id].to_i)) ||
             (current_user.is_super_user))
-  end
-
-  def verify_is_logged_in
-    unauthorized unless !current_user.nil?
-  end
-
-  def unauthorized
-    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
   end
 
 end

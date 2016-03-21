@@ -1,7 +1,7 @@
 class Users::PasswordsController < Devise::PasswordsController
   before_action :set_user, only: [:update]
   before_filter :verify_is_logged_in, only: [:update]
-  prepend_before_filter :require_no_authentication, :only => [ :forgot, :edit]
+  prepend_before_filter :require_no_authentication, :only => [:forgot]
 
   def update
     if @user.update_with_password(change_password_params)
@@ -11,16 +11,6 @@ class Users::PasswordsController < Devise::PasswordsController
       render :status => 404, :json => {}
     end
 
-  end
-
-  def edit
-    user = User.reset_password_by_token(params)
-    if user.errors.empty? && user.email == params[:email]
-      sign_in user, :bypass => true
-      render :json=> {:success => true, :token => user.authentication_token}
-      return
-    end
-    render :status => 422, :json => { :errors => user.errors.full_messages }
   end
 
   def forgot

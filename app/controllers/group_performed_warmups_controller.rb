@@ -33,12 +33,12 @@ class GroupPerformedWarmupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_performed_warmup_params
-      params.require(:group_performed_warmup).permit(:routine_id, :warmup_id, :status)
+      params.require(:group_performed_warmup).permit(:warmup_id, :status)
     end
 
   def verify_owns_group
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_group?(params[:group_performed_warmup][:routine_id]))
+        (current_user.owns_group?(@group_performed_warmup.routine_id))
   end
 
   def unauthorized

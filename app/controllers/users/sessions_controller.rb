@@ -3,15 +3,7 @@ require 'digest/sha1'
 class Users::SessionsController < Devise::SessionsController
 
   def create
-    email = params[:email]
-    password = params[:password]
-
-    if request.path_parameters[:format] == 'json'
-      process_api_sign_in(email, password)
-    else
-      super
-    end
-
+    process_api_sign_in(params[:email], params[:password])
   end
 
   def destroy
@@ -23,12 +15,7 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
-  #Returns form
-  def new
-    super
-  end
-
-  after_filter :set_csrf_header, only: [:new, :create]
+  after_filter :set_csrf_header, only: [:create]
 
   protected
 
@@ -40,11 +27,9 @@ class Users::SessionsController < Devise::SessionsController
     render json: { success: false, errors: 'Invalid Login' }, :status => :unauthorized
   end
 
-
   def process_api_sign_in(email, password)
-
     user = User.find_by_email(email)
-    return failure unless user
+    return failure unless user.present?
 
     if user.valid_password?(password)
       sign_in(:user, user)

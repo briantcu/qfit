@@ -33,15 +33,11 @@ class GroupPerformedSprintsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_performed_sprint_params
-      params.require(:group_performed_sprint).permit(:sprint_id, :status, :routine_id)
+      params.require(:group_performed_sprint).permit(:sprint_id, :status)
     end
 
   def verify_owns_group
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_group?(params[:group_performed_sprint][:routine_id]))
-  end
-
-  def unauthorized
-    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+        (current_user.owns_group?(@group_performed_sprint.routine_id))
   end
 end

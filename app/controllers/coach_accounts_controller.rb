@@ -25,7 +25,7 @@ class CoachAccountsController < ApplicationController
   end
 
   def send_invite
-    #Check max accounts
+    #@TODO Check max accounts
     send_to = params[:send_to]
     CoachInviteService.new.send_invite(send_to, @coach_account)
   end
@@ -39,7 +39,7 @@ class CoachAccountsController < ApplicationController
   def verify_owns_account
     set_coach_account
     (current_user.nil?) ? unauthorized : unauthorized unless
-      @coach_account.user.id == current_user.id
+      @coach_account.user_id == current_user.id
   end
 
   def verify_owns_user

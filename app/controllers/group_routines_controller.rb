@@ -1,6 +1,6 @@
 class GroupRoutinesController < ApplicationController
-  before_action :set_group_routine, only: [:show, :edit, :update, :add_custom, :add_warmup, :add_plyo, :add_sprint, :add_weight, :reset]
-  before_filter :verify_owns_group, only: [:routine_by_date, :add_weight, :add_sprint, :add_warmup, :add_plyo, :update, :add_custom, :reset]
+  before_action :set_group_routine, only: [:show, :add_custom, :add_warmup, :add_plyo, :add_sprint, :add_weight, :reset]
+  before_filter :verify_owns_group, only: [:routine_by_date, :add_weight, :add_sprint, :add_warmup, :add_plyo, :add_custom, :reset]
 
   # GET /group_routines/1
   def show
@@ -13,16 +13,6 @@ class GroupRoutinesController < ApplicationController
       render :json => {:error => 'not-found'}.to_json, :status => 404
     else
       render 'show'
-    end
-  end
-
-  # PATCH/PUT /group_routines/1
-  # PATCH/PUT /group_routines/1.json
-  def update
-    if @group_routine.update(group_routine_params)
-      render action: 'show', status: :ok, location: @group_routine
-    else
-      render json: @group_routine.errors, status: :unprocessable_entity
     end
   end
 
@@ -76,16 +66,9 @@ class GroupRoutinesController < ApplicationController
     @group_routine = GroupRoutine.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def group_routine_params
-    params.require(:group_routine).permit(:group_id, :day_performed, :program_day_id, :wt_day_id, :sp_day_id, :pl_day_id,
-                                          :wu_day_id, :modified, :pl_modified, :wt_modified, :wu_modified, :sp_modified,
-                                          :changes_saved)
-  end
-
   def verify_owns_group
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_group?(params[:id]))
+        (current_user.owns_group?(@group_routine.group_id))
   end
 
   def unauthorized

@@ -37,12 +37,12 @@ class PerformedSprintsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def performed_sprint_params
-      params.require(:performed_sprint).permit(:sprint_id, :status, :group_performed_sprint_id, :routine_id)
+      params.require(:performed_sprint).permit(:sprint_id, :status)
     end
 
   def verify_owns_workout
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_workout?(params[:performed_sprint][:routine_id]))
+        (current_user.owns_workout?(@performed_sprint.routine_id))
   end
 
   def unauthorized

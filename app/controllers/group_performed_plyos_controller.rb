@@ -33,15 +33,11 @@ class GroupPerformedPlyosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_performed_plyo_params
-      params.require(:group_performed_plyo).permit(:plyometric_id, :routine_id, :status)
+      params.require(:group_performed_plyo).permit(:plyometric_id, :status)
     end
 
   def verify_owns_group
     (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_group?(params[:group_performed_plyo][:routine_id]))
-  end
-
-  def unauthorized
-    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+        (current_user.owns_group?(@group_performed_plyo.routine_id))
   end
 end
