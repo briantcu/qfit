@@ -143,7 +143,18 @@ class RoutineService
     dates = create_date_array
     dates.each do |date|
       self.set_date(date)
-      self.create_routine
+      create_routine
+    end
+    # Make sure a new user sees at least 1 workout
+    workouts = RoutineService.get_open_workouts(self.entity)
+    unless workouts.present?
+      date = dates.last + 1.days
+      10.times do
+        self.set_date(date)
+        routine = create_routine
+        break if routine.present?
+        date = date + 1.days
+      end
     end
   end
 
@@ -197,7 +208,7 @@ class RoutineService
   private
 
   def create_date_array
-    dates = Array.new
+    dates = []
     date = Date.today
     3.times do
       unless RoutineService.has_closed_workout?(@entity, date)

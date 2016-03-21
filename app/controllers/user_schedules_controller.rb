@@ -19,6 +19,7 @@ class UserSchedulesController < ApplicationController
       if @user_schedule.save
         @user_schedule.create_weekly_schedule_days
         update_user_record
+        RoutineService.new(@user_schedule.user, 'NEW', Date.today, false).create_routines
         render action: 'show', status: :created, location: @user_schedule
       else
         render json: @user_schedule.errors, status: :unprocessable_entity
@@ -35,7 +36,7 @@ class UserSchedulesController < ApplicationController
     if @user_schedule.update(user_schedule_params)
       @user_schedule.setup_phases
       @user_schedule.rollback_days_created
-      @user_schedule.save
+      @user_schedule.save!
       update_user_record
       RoutineService.sched_change_happened(@user_schedule.user)
       render action: 'show', status: :ok, location: @user_schedule

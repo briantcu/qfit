@@ -42,12 +42,8 @@ class CoachInviteService
       TextMessageService.new.perform_async(:coach_invite, {user_id: coach_account.user.id, phone: to})
     end
 
-    unless UserGoal.where(user_id: invite.inviter, goal_definition_id: 6).first.present?
-      UserGoal.create!(user_id: invite.inviter, goal_definition_id: 6)
-      gd = GoalDefinition.find(6)
-      inviter = User.find(invite.inviter.id)
-      inviter.points += gd.points
-      inviter.save
+    unless UserGoal.where(user_id: coach_account.user.id, goal_definition_id: 8).first.present?
+      UserGoal.create!(user_id: coach_account.user.id, goal_definition_id: 8)
     end
     sent_code
   end

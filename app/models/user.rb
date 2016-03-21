@@ -44,7 +44,7 @@
 #  displayed_user_name         :string(255)
 #  points                      :integer
 #  avatars                     :json
-#  status                      :integer
+#  status                      :integer          default(1)
 #
 
 # Status: 1 = active, 2 = disabled

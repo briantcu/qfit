@@ -9,6 +9,7 @@
 #  points        :integer
 #  created_at    :datetime
 #  updated_at    :datetime
+#  goal_type     :integer
 #
 
 require 'rails_helper'
