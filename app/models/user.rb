@@ -59,11 +59,9 @@ class User < ActiveRecord::Base
   PLYOS = 2
   SPRINTING = 3
 
-  SEX_OPTIONS = %w(male female )
-
   after_commit :check_user_name
 
-  validates :displayed_user_name, uniqueness: true
+  validates :displayed_user_name, uniqueness: true, allow_blank: true, allow_nil: true
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
@@ -88,7 +86,7 @@ class User < ActiveRecord::Base
 
   belongs_to :program_type
   belongs_to :coach, foreign_key: :master_user_id, class_name: 'User'
-  validates :sex, :inclusion => {:in => SEX_OPTIONS}
+  validates_inclusion_of :sex, in: %w( male female )
 
   scope :sub_users, -> {where(sub_user: true)}
   scope :regular_users, -> {where(sub_user: false, administrator: false)}

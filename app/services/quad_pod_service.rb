@@ -56,11 +56,11 @@ class QuadPodService
       if invitee.present?
         invite.invitee = invitee.id
         invite.save!
-        EmailService.new.perform_async(:existing_user_pod_invite, {invite_id: invite.id})
+        EmailService.perform_async(:existing_user_pod_invite, {invite_id: invite.id})
       else
         invite.save!
         token = create_token(invite)
-        EmailService.new.perform_async(:new_user_pod_invite, {invite_id: invite.id, token: token})
+        EmailService.perform_async(:new_user_pod_invite, {invite_id: invite.id, token: token})
       end
 
     else
@@ -69,11 +69,11 @@ class QuadPodService
       if invitee.present?
         invite.invitee = invitee.id
         invite.save!
-        TextMessageService.new.perform_async(:existing_user_pod_invite, {invite_id: invite.id})
+        TextMessageService.perform_async(:existing_user_pod_invite, {invite_id: invite.id})
       else
         invite.save!
         token = create_token(invite)
-        TextMessageService.new.perform_async(:new_user_pod_invite, {invite_id: invite.id, token: token})
+        TextMessageService.perform_async(:new_user_pod_invite, {invite_id: invite.id, token: token})
       end
 
     end

@@ -1,6 +1,7 @@
 class EmailService
 
   include Sidekiq::Worker
+
   def perform(type, options = {})
     case type
       when :new_user

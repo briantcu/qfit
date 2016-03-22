@@ -20,7 +20,7 @@ class CoachAccountsController < ApplicationController
   def delete_user
     user = User.find(params[:user_id])
     #@TODO check allowed accounts vs max and account status
-    EmailService.new.peform_async(:coach_deleted_you, {email: user.email})
+    EmailService.peform_async(:coach_deleted_you, {email: user.email})
     user.destroy!
   end
 

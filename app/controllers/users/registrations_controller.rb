@@ -9,9 +9,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   swagger_model :User do
     description "A User object."
+    property :user, :UserData, :required, "UserData"
+  end
+  swagger_model :UserData do
+    description "A User object."
     property :first_name, :string, :required, "First Name"
     property :last_name, :string, :required, "Last Name"
     property :email, :string, :required, "Email"
+    property :sex, :string, :required, "Sex - male/female"
     property :password, :string, :required, "Password"
   end
 
@@ -67,7 +72,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def sign_up_params
-    params.require(:user).permit( :email, :password, :password_confirmation, :first_name, :last_name)
+    params.require(:user).permit( :email, :password, :password_confirmation, :first_name, :last_name, :sex)
   end
 
   def assign_temp_password

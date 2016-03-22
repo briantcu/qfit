@@ -37,9 +37,9 @@ class CoachInviteService
   def process_invite(to, coach_account, type)
     sent_code = SentCode.create(code: coach_account.user.sign_up_code, receiver: to, used: false)
     if type == :email
-      EmailService.new.perform_async(:coach_invite, {user_id: coach_account.user.id, email: to})
+      EmailService.perform_async(:coach_invite, {user_id: coach_account.user.id, email: to})
     else
-      TextMessageService.new.perform_async(:coach_invite, {user_id: coach_account.user.id, phone: to})
+      TextMessageService.perform_async(:coach_invite, {user_id: coach_account.user.id, phone: to})
     end
 
     unless UserGoal.where(user_id: coach_account.user.id, goal_definition_id: 8).first.present?

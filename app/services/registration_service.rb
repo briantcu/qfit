@@ -7,22 +7,22 @@ class RegistrationService
       user.sub_user = false
       user.build_coach_account(billing_email: user.email, num_accounts: 5)
       user.save!
-      EmailService.new.perform_async(:new_coach, {user_id: user.id})
+      EmailService.perform_async(:new_coach, {user_id: user.id})
     else
       if sign_up_code_record.nil?
         #Regular user
         user.level = 2
         user.sub_user = false
         user.save!
-        EmailService.new.perform_async(:new_user, {user_id: user.id})
+        EmailService.perform_async(:new_user, {user_id: user.id})
       else
         #Sub user
         user.level = 1
         user.sub_user = true
         user.master_user_id = sign_up_code_record.user.id
         user.save!
-        EmailService.new.perform_async(:new_sub_email_from_self, {user_id: user.id})
-        EmailService.new.perform_async(:coach_sub_signed_up, {user_id: user.id, coach_id: sign_up_code_record.user.id})
+        EmailService.perform_async(:new_sub_email_from_self, {user_id: user.id})
+        EmailService.perform_async(:coach_sub_signed_up, {user_id: user.id, coach_id: sign_up_code_record.user.id})
       end
     end
     user
@@ -33,7 +33,7 @@ class RegistrationService
     user.sub_user = true
     user.master_user_id = coach.id
     user.save!
-    EmailService.new.perform_async(:new_sub_email_from_coach, {user_id: user.id, temp_password: temp_password})
+    EmailService.perform_async(:new_sub_email_from_coach, {user_id: user.id, temp_password: temp_password})
     user
   end
 
