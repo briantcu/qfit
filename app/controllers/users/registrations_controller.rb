@@ -1,12 +1,10 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   swagger_controller :users, "Registration"
-
   swagger_api :create do
     summary "Creates a new User"
     param :body, :user, :User, :required, "User"
     response :unauthorized
   end
-
   swagger_model :User do
     description "A User object."
     property :user, :UserData, :required, "UserData"
