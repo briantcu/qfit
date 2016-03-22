@@ -139,6 +139,6 @@ Qfit::Application.routes.draw do
   delete '/coach_accounts/:id/users/:user_id', to: 'coach_accounts#delete_user'
   post '/coach_accounts/:id/send_invite', to: 'coach_accounts#send_invite'
 
-  root :to => "home#index"
+  get '/api' => redirect('/swagger/dist/index.html?url=/apidocs/api-docs.json')
 
 end

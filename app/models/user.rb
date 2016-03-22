@@ -96,18 +96,18 @@ class User < ActiveRecord::Base
   scope :logged_in_recently, -> {where('last_sign_in_at > ?', Time.now - 21.days)}
   scope :males, -> {where(sex: 'male')}
   scope :females, -> {where(sex: 'female')}
-  scope :most_sprinted, select('users.*, count(laps.lap_number) AS value').joins(:laps)
-                            .group('users.id').where('laps.completed = true').order('value DESC').limit(5)
-  scope :most_plyos, select('users.*, count(performed_plyometrics.id) AS value').joins(:performed_plyometrics)
+  scope :most_sprinted, -> {select('users.*, count(laps.lap_number) AS value').joins(:laps)
+                            .group('users.id').where('laps.completed = true').order('value DESC').limit(5)}
+  scope :most_plyos, -> {select('users.*, count(performed_plyometrics.id) AS value').joins(:performed_plyometrics)
                             .group('users.id')
                          .where('performed_plyometrics.performed_one = true')
                          .where('performed_plyometrics.performed_two = true')
                          .where('performed_plyometrics.performed_three = true')
-                         .order('value DESC').limit(5)
-  scope :most_sets_performed, select('users.*, count(weight_sets.id) AS value').joins(:weight_sets)
-                            .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)
-  scope :most_reps_performed, select('users.*, sum(weight_sets.perf_reps) AS value').joins(:weight_sets)
-                                  .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)
+                         .order('value DESC').limit(5)}
+  scope :most_sets_performed, -> {select('users.*, count(weight_sets.id) AS value').joins(:weight_sets)
+                            .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)}
+  scope :most_reps_performed, -> {select('users.*, sum(weight_sets.perf_reps) AS value').joins(:weight_sets)
+                                  .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)}
 
   def check_user_name
     if displayed_user_name.present?

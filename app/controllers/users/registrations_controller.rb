@@ -1,4 +1,20 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  swagger_controller :users, "Registration"
+
+  swagger_api :create do
+    summary "Creates a new User"
+    param :body, :user, :User, :required, "User"
+    response :unauthorized
+  end
+
+  swagger_model :User do
+    description "A User object."
+    property :first_name, :string, :required, "First Name"
+    property :last_name, :string, :required, "Last Name"
+    property :email, :string, :required, "Email"
+    property :password, :string, :required, "Password"
+  end
+
   skip_before_filter :require_no_authentication
 
   def create

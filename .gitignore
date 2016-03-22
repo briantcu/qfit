@@ -24,3 +24,5 @@ public/.DS_Store
 
 .elasticbeanstalk
 .elasticbeanstalk/
+
+/public/apidocs/
