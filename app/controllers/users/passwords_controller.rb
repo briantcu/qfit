@@ -1,4 +1,5 @@
 class Users::PasswordsController < Devise::PasswordsController
+
   before_action :set_user, only: [:update]
   before_filter :verify_is_logged_in, only: [:update]
   prepend_before_filter :require_no_authentication, :only => [:forgot]
@@ -10,14 +11,13 @@ class Users::PasswordsController < Devise::PasswordsController
     else
       render :status => 404, :json => {}
     end
-
   end
 
   def forgot
     user = User.where(email: params[:email]).first
     if user.present?
       user.send_reset_password_instructions
-      if successfully_sent?(@user)
+      if successfully_sent?(user)
         head :status => 200
       else
         render :status => 422, :json => { :errors => 'A problem was encountered sending the password reset email.'}

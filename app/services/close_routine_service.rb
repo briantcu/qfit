@@ -1,8 +1,5 @@
 class CloseRoutineService
 
-  @routine
-  @pbs
-
   BARBELL = 1
   DUMBBELL = 2
   MAX_REPS = 3
