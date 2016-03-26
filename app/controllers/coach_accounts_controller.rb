@@ -7,16 +7,6 @@ class CoachAccountsController < ApplicationController
   def show
   end
 
-  # PATCH/PUT /coach_accounts/1
-  # PATCH/PUT /coach_accounts/1.json
-  def update
-    if @coach_account.update(coach_account_params)
-      head :no_content
-    else
-      render json: @coach_account.errors, status: :unprocessable_entity
-    end
-  end
-
   def delete_user
     user = User.find(params[:user_id])
     #@TODO check allowed accounts vs max and account status
@@ -45,10 +35,5 @@ class CoachAccountsController < ApplicationController
   def verify_owns_user
     (current_user.nil?) ? unauthorized : unauthorized unless
       (current_user.is_coach_of_user(params[:user_id].to_i))
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def coach_account_params
-    params.require(:coach_account).permit(:user_id, :num_accts, :billing_email)
   end
 end

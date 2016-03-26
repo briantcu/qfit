@@ -86,8 +86,7 @@ class User < ActiveRecord::Base
 
   belongs_to :program_type
   belongs_to :coach, foreign_key: :master_user_id, class_name: 'User'
-  validates_inclusion_of :sex, in: %w( male female )
-
+  validates_inclusion_of :sex, in: %w( male female ), :allow_blank => true
   scope :sub_users, -> {where(sub_user: true)}
   scope :regular_users, -> {where(sub_user: false, administrator: false)}
   scope :without_group, -> {where(:group.empty?)}

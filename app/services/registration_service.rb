@@ -3,10 +3,12 @@ class RegistrationService
     #If not creating from admin, send welcome email and log them in
     if account_type == 'coach'
       #Coach
-      user.level = 5
-      user.sub_user = false
-      user.build_coach_account(billing_email: user.email, num_accounts: 5)
-      user.save!
+      user.transaction do
+        user.level = 5
+        user.sub_user = false
+        user.build_coach_account(billing_email: user.email, num_accts: 5)
+        user.save!
+      end
       EmailService.perform_async(:new_coach, {user_id: user.id})
     else
       if sign_up_code_record.nil?

@@ -49,6 +49,7 @@ gem 'json'
 
 group :test do
   gem 'webmock'
+  gem 'test-unit'
 end
 
 gem 'sidekiq'

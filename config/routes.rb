@@ -14,8 +14,8 @@ Qfit::Application.routes.draw do
     get 'sign_up', to: 'users/registrations#new'
     post 'users', to: 'users/registrations#create'
 
-    put 'users/:id/change_password', to: 'users/passwords#update'
-    post 'forgot_password',         to: 'users/passwords#forgot'
+    put 'change_password', to: 'users/passwords#update'
+    post 'forgot_password', to: 'users/passwords#forgot'
   end
 
   resources :weekly_schedule_days
