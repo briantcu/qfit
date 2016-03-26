@@ -247,7 +247,7 @@ class GroupRoutine < ActiveRecord::Base
         self.sp_day_id = day_id
     end
     self.save
-    self.group.users.each do |user|
+    self.group.members.each do |user|
       user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
       if !user_routine.nil?
         user_routine.note_day_created(day_id, type)
@@ -258,7 +258,7 @@ class GroupRoutine < ActiveRecord::Base
   def add_custom_exercise(name, type, not_used)
     group_exercise = GroupCustomExercise.add_exercise(self.id, name, type)
     self.group_custom_exercises << group_exercise
-    self.group.users.each do |user|
+    self.group.members.each do |user|
       add_custom_for_user(group_exercise, user)
     end
     case type
@@ -351,7 +351,7 @@ class GroupRoutine < ActiveRecord::Base
   end
 
   def add_for_users(type, exercise, exercise_id)
-    self.group.users.each do |user|
+    self.group.members.each do |user|
       add_for_user(type, exercise, exercise_id, user)
     end
   end
@@ -373,9 +373,9 @@ class GroupRoutine < ActiveRecord::Base
   end
 
   def note_changes_saved_for_users(type)
-    self.group.users.each do |user|
+    self.group.members.each do |user|
       user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
-      if !user_routine.nil?
+      if user_routine.present?
         case type
           when STRETCHING
             user_routine.note_warmup_changes_saved
@@ -391,7 +391,7 @@ class GroupRoutine < ActiveRecord::Base
   end
 
   def note_changes_for_users(type)
-    self.group.users.each do |user|
+    self.group.members.each do |user|
       user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
       if !user_routine.nil?
         case type

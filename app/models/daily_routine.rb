@@ -121,7 +121,7 @@ class DailyRoutine < ActiveRecord::Base
 
   def self.has_closed_workout?(entity, date)
     workouts = DailyRoutine.where(:user_id => entity.id, :closed => true, :day_performed => date)
-    workouts.size > 0
+    workouts.count > 0
   end
 
   def get_workout_status
@@ -214,19 +214,19 @@ class DailyRoutine < ActiveRecord::Base
   end
 
   def get_warmups_without_changes_saved
-    self.performed_warm_ups.where('status == 2 or status == 3').order(id: :asc)
+    self.performed_warm_ups.where('status = 2 or status = 3').order(id: :asc)
   end
 
   def get_plyometrics_without_changes_saved
-    self.performed_plyometrics.where('status == 2 or status == 3').order(id: :asc)
+    self.performed_plyometrics.where('status = 2 or status = 3').order(id: :asc)
   end
 
   def get_sprints_without_changes_saved
-    self.performed_sprints.where('status == 2 or status == 3').order(id: :asc)
+    self.performed_sprints.where('status = 2 or status = 3').order(id: :asc)
   end
 
   def get_weights_without_changes_saved
-    self.performed_exercises.where('status == 2 or status == 3').order(id: :asc)
+    self.performed_exercises.where('status = 2 or status = 3').order(id: :asc)
   end
 
   def add_warmup(exercise_id, status, group_performed_ex_id)
@@ -300,7 +300,7 @@ class DailyRoutine < ActiveRecord::Base
 
   def get_num_completed_plyos
     completed_plyos = 0
-    perf_plyos = self.performed_plyometrics.where('status == 1 or status == 3')
+    perf_plyos = self.performed_plyometrics.where('status = 1 or status = 3')
     perf_plyos.each do |perf_plyo|
       completed_plyos = (perf_plyo.performed_one && (((perf_plyo.status == 1)) || (perf_plyo.status == 3))) ?
           completed_plyos + 1 : completed_plyos
@@ -314,51 +314,51 @@ class DailyRoutine < ActiveRecord::Base
 
   def get_num_completed_weight_sets
     total_sets = 0
-    perf_exes = self.performed_exercises.where('status == 1 or status == 3')
+    perf_exes = self.performed_exercises.where('status = 1 or status = 3')
     perf_exes.each do |ex|
-      total_sets = total_sets + ex.weight_sets.where('perf_reps != 0').size
+      total_sets = total_sets + ex.weight_sets.where('perf_reps != 0').count
     end
     total_sets
   end
 
   def get_num_completed_laps
     total_laps = 0
-    perf_sprints = self.performed_sprints.where('status == 1 or status == 3')
+    perf_sprints = self.performed_sprints.where('status = 1 or status = 3')
     perf_sprints.each do |sprint|
-      total_laps = total_laps + sprint.laps.where(:completed => true).size
+      total_laps = total_laps + sprint.laps.where(:completed => true).count
     end
     total_laps
   end
 
   def get_num_completed_warmups
-    self.performed_warm_ups.where('status == 1 or status == 3').where(:completed => true).size
+    self.performed_warm_ups.where('status = 1 or status = 3').where(:completed => true).count
   end
 
   def get_num_provided_plyos
-    perf_plyos = self.performed_plyometrics.where('status == 1 or status == 3')
-    perf_plyos.size * 3
+    perf_plyos = self.performed_plyometrics.where('status = 1 or status = 3')
+    perf_plyos.count * 3
   end
 
   def get_num_provided_weight_sets
     total_sets = 0
-    perf_exes = self.performed_exercises.where('status == 1 or status == 3')
+    perf_exes = self.performed_exercises.where('status = 1 or status = 3')
     perf_exes.each do |ex|
-      total_sets = total_sets + ex.weight_sets.size
+      total_sets = total_sets + ex.weight_sets.count
     end
     total_sets
   end
 
   def get_num_provided_laps
     total_laps = 0
-    perf_sprints = self.performed_sprints.where('status == 1 or status == 3')
+    perf_sprints = self.performed_sprints.where('status = 1 or status = 3')
     perf_sprints.each do |sprint|
-      total_laps = total_laps + sprint.laps.size
+      total_laps = total_laps + sprint.laps.count
     end
     total_laps
   end
 
   def get_num_provided_warmups
-    self.performed_warm_ups.where('status == 1 or status == 3').size
+    self.performed_warm_ups.where('status = 1 or status = 3').count
   end
 
   def reset

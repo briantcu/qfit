@@ -62,7 +62,7 @@ class GroupSchedulesController < ApplicationController
       group_id = params[:group_schedule][:group_id].to_i
       coach = Group.get_coach(group_id)
       (current_user.nil? || coach.nil?) ? unauthorized : unauthorized unless
-          ((current_user.id == coach.id) || current_user.is_super_user)
+          ((current_user.id == coach.id) || current_user.is_super_user?)
     end
 
     def unauthorized

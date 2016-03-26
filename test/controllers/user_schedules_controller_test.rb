@@ -22,6 +22,7 @@ class UserSchedulesControllerTest < ActionController::TestCase
   test 'should update an existing user schedule' do
     user = users(:one)
     sign_in user
+    RoutineService.any_instance.stubs(:create_routines).returns(true)
     post(:create, user_schedule: { user_id: 1, program_id: 3, program_type_id: 2})
     assert_response :ok
     assert(@controller.instance_variable_get(:@user_schedule).id != nil)
@@ -39,6 +40,7 @@ class UserSchedulesControllerTest < ActionController::TestCase
 
   test 'should allow updating for super user' do
     user = users(:super)
+    RoutineService.any_instance.stubs(:create_routines).returns(true)
     sign_in user
     post(:create, user_schedule: { user_id: 1, program_id: 3, program_type_id: 2})
     assert_response :ok

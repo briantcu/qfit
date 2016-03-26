@@ -180,8 +180,8 @@ class DailyRoutinesController < ApplicationController
   def verify_is_logged_in_or_coach
     (current_user.nil?) ? unauthorized : unauthorized unless
         (current_user.id == params[:user_id].to_i ||
-            (current_user.is_coach_of_user(params[:user_id].to_i)) ||
-            (current_user.is_super_user))
+            (current_user.is_coach_of_user?(params[:user_id].to_i)) ||
+            (current_user.is_super_user?))
   end
 
 end

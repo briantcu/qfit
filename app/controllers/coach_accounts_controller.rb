@@ -1,5 +1,5 @@
 class CoachAccountsController < ApplicationController
-  before_filter :verify_owns_account, only: [:show, :update, :send_invite, :delete_user]
+  before_filter :verify_owns_account, only: [:show, :send_invite, :delete_user]
   before_filter :verify_owns_user, only: [:delete_user]
 
   # GET /coach_accounts/1
@@ -34,6 +34,6 @@ class CoachAccountsController < ApplicationController
 
   def verify_owns_user
     (current_user.nil?) ? unauthorized : unauthorized unless
-      (current_user.is_coach_of_user(params[:user_id].to_i))
+      (current_user.is_coach_of_user?(params[:user_id]))
   end
 end

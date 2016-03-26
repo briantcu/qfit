@@ -39,8 +39,8 @@ class Group < ActiveRecord::Base
 
   def self.get_coach(group_id)
     group = Group.find(group_id)
-    if !group.nil?
-      return group.user
+    if group.present?
+      return group.coach
     else
       return nil
     end
@@ -49,7 +49,7 @@ class Group < ActiveRecord::Base
   def create_routine(date)
     if self.group_schedule.is_valid_workout_day?(date)
       group_routine = GroupRoutine.create_routine(self.id, date)
-      self.users.each do |user|
+      self.members.each do |user|
         DailyRoutine.create_routine(user.id, date, group_routine.id)
       end
       group_routine
@@ -66,7 +66,7 @@ class Group < ActiveRecord::Base
 
   def update_program_info
     self.current_phase = self.group_schedule.get_current_phase
-    self.save
+    self.save!
   end
 
   def note_last_day_created(day_id, type)
@@ -80,7 +80,7 @@ class Group < ActiveRecord::Base
       when SPRINTING
         self.last_sp_day_created = day_id
     end
-    self.users.each do |user|
+    self.members.each do |user|
       user.note_last_day_created(day_id, type)
     end
     self.save

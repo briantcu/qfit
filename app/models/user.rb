@@ -153,7 +153,7 @@ class User < ActiveRecord::Base
     false
   end
 
-  def is_coach_of_user?(current_user, id)
+  def is_coach_of_user?(id)
     sub_user = User.find(id)
     sub_user.master_user_id == self.id
   end

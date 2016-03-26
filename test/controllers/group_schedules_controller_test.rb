@@ -17,7 +17,7 @@ class GroupSchedulesControllerTest < ActionController::TestCase
   test 'should update an existing group schedule' do
     user = users(:coach)
     sign_in user
-
+    RoutineService.any_instance.stubs(:create_routines).returns(true)
     post(:create, group_schedule: { group_id: 1, program_id: 3, program_type_id: 2})
     assert_response :ok
     assert(@controller.instance_variable_get(:@group_schedule).id != nil)
@@ -36,6 +36,7 @@ class GroupSchedulesControllerTest < ActionController::TestCase
   test 'should allow updating for super user' do
     user = users(:super)
     sign_in user
+    RoutineService.any_instance.stubs(:create_routines).returns(true)
     post(:create, group_schedule: { group_id: 1, program_id: 3})
     assert_response :ok
   end

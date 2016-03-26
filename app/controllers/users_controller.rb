@@ -72,8 +72,8 @@ class UsersController < ApplicationController
   def can_access_user
     (current_user.nil?) ? unauthorized : unauthorized unless
         (current_user.id == @user.id ||
-            (current_user.is_coach_of_user(@user.id)) ||
-            (current_user.is_super_user))
+            (current_user.is_coach_of_user?(@user.id)) ||
+            (current_user.is_super_user?))
   end
 
   def unauthorized

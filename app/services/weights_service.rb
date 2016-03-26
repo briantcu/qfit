@@ -31,10 +31,10 @@ class WeightsService
     end
     @routine.program_day_id = program_day_id
     @routine.wt_day_id = weight_day_index
-    @routine.save
-    if !@sched_update
+    @routine.save!
+    unless @sched_update
       @entity.last_weight_day_created = weight_day_index
-      @entity.save
+      @entity.save!
     end
   end
 

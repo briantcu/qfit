@@ -3,7 +3,7 @@ json.user @coach_account.user, :id, :first_name, :last_name
 json.array! @coach_account.groups do |group|
   json.id group.id
   json.name group.name
-  json.array! group.users do |user|
+  json.array! group.members do |user|
     json.id user.id
     json.first_name user.first_name
     json.last_name user.last_name
