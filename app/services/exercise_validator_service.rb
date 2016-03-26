@@ -26,7 +26,7 @@ class ExerciseValidatorService
   private
 
   def self.matches_user_strength_level(entity, exercise)
-    if entity.is_group
+    if entity.is_group?
       return true
     end
 

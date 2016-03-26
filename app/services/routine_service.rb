@@ -91,13 +91,13 @@ class RoutineService
   def self.has_exceeded_ex_count(routine, type)
     case type
       when STRETCHING
-        (routine.performed_warm_ups.size + routine.custom_exercises.where(:ex_type => type).size) >= MAX_EXERCISES
+        (routine.performed_warm_ups.count + routine.custom_exercises.where(:ex_type => type).count) >= MAX_EXERCISES
       when WEIGHTS
-        (routine.performed_exercises.size + routine.custom_exercises.where(:ex_type => type).size) >= MAX_EXERCISES
+        (routine.performed_exercises.count + routine.custom_exercises.where(:ex_type => type).count) >= MAX_EXERCISES
       when PLYOS
-        (routine.performed_plyometrics.size + routine.custom_exercises.where(:ex_type => type).size) >= MAX_EXERCISES
+        (routine.performed_plyometrics.count + routine.custom_exercises.where(:ex_type => type).count) >= MAX_EXERCISES
       when SPRINTING
-        (routine.performed_sprints.size + routine.custom_exercises.where(:ex_type => type).size) >= MAX_EXERCISES
+        (routine.performed_sprints.count + routine.custom_exercises.where(:ex_type => type).count) >= MAX_EXERCISES
     end
   end
 
@@ -214,7 +214,7 @@ class RoutineService
       unless RoutineService.has_closed_workout?(@entity, date)
         dates.push(date)
       end
-      date.advance(days: 1)
+      date = date.advance(days: 1)
     end
     dates
   end
@@ -273,7 +273,7 @@ class RoutineService
 
   def maybe_add_custom_exercises(weekly_schedule_day)
     previous_workouts = get_matching_routines
-    if previous_workouts.size > 1
+    if previous_workouts.count > 1
       previous_workout = previous_workouts[1]  #skip workout you just created
       if previous_workout.changes_saved
         complete_custom = false

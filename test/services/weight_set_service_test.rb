@@ -10,7 +10,7 @@ class WeightSetServiceTest < ActiveSupport::TestCase
     wss = WeightSetService.new(user, routine, perf_ex)
     ProgramPhaseLookup.expects(:get_phase_id).times(1).returns(1)
     sets = wss.create_sets
-    assert(sets.size == 5)
+    assert(sets.count == 5)
     assert(sets.at(1).rec_weight == 0)
   end
 
@@ -22,7 +22,7 @@ class WeightSetServiceTest < ActiveSupport::TestCase
     wss = WeightSetService.new(user, routine, perf_ex)
     ProgramPhaseLookup.expects(:get_phase_id).times(1).returns(1)
     sets = wss.create_sets
-    assert(sets.size == 4)
+    assert(sets.count == 4)
     assert(sets.at(1).rec_weight == 6)
   end
 
@@ -34,7 +34,7 @@ class WeightSetServiceTest < ActiveSupport::TestCase
     wss = WeightSetService.new(user, routine, perf_ex)
     ProgramPhaseLookup.expects(:get_phase_id).times(1).returns(1)
     sets = wss.create_sets
-    assert(sets.size == 4)
+    assert(sets.count == 4)
     assert(sets.at(1).rec_weight == 0)
   end
 
@@ -46,7 +46,7 @@ class WeightSetServiceTest < ActiveSupport::TestCase
     wss = WeightSetService.new(user, routine, perf_ex)
     ProgramPhaseLookup.expects(:get_phase_id).times(1).returns(1)
     sets = wss.create_sets
-    assert(sets.size == 4)
+    assert(sets.count == 4)
     assert(sets.at(1).rec_weight != 0)
   end
 
@@ -58,7 +58,7 @@ class WeightSetServiceTest < ActiveSupport::TestCase
     wss = WeightSetService.new(user, routine, perf_ex)
     ProgramPhaseLookup.expects(:get_phase_id).times(1).returns(1)
     sets = wss.create_sets
-    assert(sets.size == 4)
+    assert(sets.count == 4)
     assert(sets.at(1).rec_weight == 45)
   end
 
@@ -70,7 +70,7 @@ class WeightSetServiceTest < ActiveSupport::TestCase
     wss = WeightSetService.new(user, routine, perf_ex)
     ProgramPhaseLookup.expects(:get_phase_id).times(1).returns(1)
     sets = wss.create_sets
-    assert(sets.size == 4)
+    assert(sets.count == 4)
     assert(sets.at(1).rec_weight != 0)
   end
 

@@ -114,13 +114,13 @@ class UserSchedule < ActiveRecord::Base
     total_days = 0
     case type
       when STRETCHING
-        total_days = self.weekly_schedule_days.where(:stretching => true).size
+        total_days = self.weekly_schedule_days.where(:stretching => true).count
       when WEIGHTS
-        total_days = self.weekly_schedule_days.where(:weights => true).size
+        total_days = self.weekly_schedule_days.where(:weights => true).count
       when PLYOS
-        total_days = self.weekly_schedule_days.where(:plyometrics => true).size
+        total_days = self.weekly_schedule_days.where(:plyometrics => true).count
       when SPRINTING
-        total_days = self.weekly_schedule_days.where(:sprinting => true).size
+        total_days = self.weekly_schedule_days.where(:sprinting => true).count
     end
     total_days
   end

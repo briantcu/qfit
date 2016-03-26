@@ -12,7 +12,7 @@ class PlyometricsService
     @entity = entity
     @routine = routine
     plyos = Plyometric.all
-    num_plyos_for_index = plyos.size - 1
+    num_plyos_for_index = plyos.count - 1
 
     (0..3).each do |i|
       while true

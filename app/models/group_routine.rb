@@ -294,7 +294,7 @@ class GroupRoutine < ActiveRecord::Base
   def self.has_open_workout_today?(entity)
     now = Date.today
     workouts = GroupRoutine.where(:group_id => entity.id, :day_performed => now)
-    workouts.size > 0
+    workouts.count > 0
   end
 
   def reset

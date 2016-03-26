@@ -15,7 +15,7 @@
 #
 
 class PerformedExercise < ActiveRecord::Base
-  belongs_to :daily_routine, :foreign_key => :routine_id
+  belongs_to :daily_routine, :foreign_key => :routine_id, dependent: :destroy
   belongs_to :group_performed_exercise
   belongs_to :exercise_type, :foreign_key => :exercise_type_id
   belongs_to :exercise, :foreign_key => :exercise_id

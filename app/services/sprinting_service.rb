@@ -12,12 +12,12 @@ class SprintingService
     @entity = entity
     @routine = routine
 
-    if @entity.sprint_diff > 5
+    if @entity.sprint_diff.to_i > 5
       @entity.sprint_diff = 5
     end
 
-    sprints = Sprint.where("difficulty <= ?", @entity.sprint_diff)
-    num_sprints_for_index = sprints.size - 1
+    sprints = Sprint.where("difficulty <= ?", @entity.sprint_diff.to_i)
+    num_sprints_for_index = sprints.count - 1
     index = rand(0..(num_sprints_for_index))
     sprint = sprints.at(index)
     @routine.add_sprint(sprint.id, 3, 0)

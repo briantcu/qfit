@@ -48,7 +48,7 @@ class WeightsService
     exercise_types = DayExercise.get_exercises_for_day(program_day_id)
     exercise_types.each do |day_exercise|
       exercises = day_exercise.exercise_type.get_exercises
-      total_count_for_index = exercises.size - 1
+      total_count_for_index = exercises.count - 1
       while true
         index = rand(0..(total_count_for_index))
         exercise = exercises.at(index)
@@ -92,6 +92,7 @@ class WeightsService
 
   def get_weight_day_index
     last_day = @entity.last_weight_day_created
+    last_day ||= 0
     if @sched_update
       current_day_index = (last_day == 0) ? 1 : last_day
     else

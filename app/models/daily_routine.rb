@@ -40,12 +40,12 @@ class DailyRoutine < ActiveRecord::Base
   scope :closed_since, -> (date) {where('closed = 1 and day_performed > ?', date)}
 
   belongs_to :user
-  has_many :custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
-  has_many :performed_exercises, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
-  has_many :performed_plyometrics, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
-  has_many :performed_sprints, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
-  has_many :performed_warm_ups, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
-  has_many :routine_messages, :foreign_key => :daily_routine_id, dependent: :destroy
+  has_many :custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
+  has_many :performed_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
+  has_many :performed_plyometrics, -> { order('id ASC') }, :foreign_key => :routine_id
+  has_many :performed_sprints, -> { order('id ASC') }, :foreign_key => :routine_id
+  has_many :performed_warm_ups, -> { order('id ASC') }, :foreign_key => :routine_id
+  has_many :routine_messages, :foreign_key => :daily_routine_id
 
   accepts_nested_attributes_for :custom_exercises, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
   accepts_nested_attributes_for :performed_warm_ups, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
@@ -110,7 +110,7 @@ class DailyRoutine < ActiveRecord::Base
   def self.has_open_workout_today?(entity)
     now = Date.today
     workouts = DailyRoutine.where(:user_id => entity.id, :closed => false, :day_performed => now)
-    workouts.size > 0
+    workouts.count > 0
   end
 
   def self.get_old_open_workouts_for_user(user_id)

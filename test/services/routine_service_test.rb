@@ -74,10 +74,10 @@ class RoutineServiceTest < ActiveSupport::TestCase
     @user = User.find(1)
     @routine_service = RoutineService.new(@user, 'CRON', date, false)
     routine = @routine_service.create_routine
-    assert(routine.performed_plyometrics.size == 4)
-    assert(routine.performed_warm_ups.size == 7)
-    assert(routine.performed_sprints.size == 1)
-    assert(routine.performed_exercises.size == 2)
+    assert(routine.performed_plyometrics.count == 4)
+    assert(routine.performed_warm_ups.count == 7)
+    assert(routine.performed_sprints.count == 1)
+    assert(routine.performed_exercises.count == 2)
   end
 
   test 'should create routine with warm ups and plyos from previous workout and pull custom from prev workout' do
@@ -85,9 +85,9 @@ class RoutineServiceTest < ActiveSupport::TestCase
     @user = User.find(1)
     @routine_service = RoutineService.new(@user, 'CRON', date, false)
     routine = @routine_service.create_routine
-    assert(routine.performed_warm_ups.size == 2)
-    assert(routine.performed_plyometrics.size == 2)
-    assert(routine.performed_sprints.size == 1)
+    assert(routine.performed_warm_ups.count == 2)
+    assert(routine.performed_plyometrics.count == 2)
+    assert(routine.performed_sprints.count == 1)
   end
 
   test 'should create a routine for a group' do
@@ -95,10 +95,10 @@ class RoutineServiceTest < ActiveSupport::TestCase
     @group = Group.find(2)
     @routine_service = RoutineService.new(@group, 'CRON', date, false)
     routine = @routine_service.create_routine
-    assert(routine.group_performed_plyos.size == 4)
-    assert(routine.group_performed_warmups.size == 6)
-    assert(routine.group_performed_sprints.size == 1)
-    assert(routine.group_performed_exercises.size == 1)
+    assert(routine.group_performed_plyos.count == 4)
+    assert(routine.group_performed_warmups.count == 6)
+    assert(routine.group_performed_sprints.count == 1)
+    assert(routine.group_performed_exercises.count == 1)
   end
 
 end

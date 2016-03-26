@@ -50,7 +50,7 @@ class CustomExerciseService
 
   def copy_sprints
     old_sprints = @previous_workout.get_sprints
-    if old_sprints.size > 0
+    if old_sprints.count > 0
       @routine.note_sprint_changes_saved
       old_sprints.each do |sprint|
         @routine.add_sprint(sprint.id, 1, 0)
@@ -64,7 +64,7 @@ class CustomExerciseService
 
   def copy_warmups
     old_warmups = @previous_workout.get_warmups
-    if old_warmups.size > 0
+    if old_warmups.count > 0
       @routine.note_warmup_changes_saved
       old_warmups.each do |warmup|
         @routine.add_warmup(warmup.id, 1, 0)
@@ -78,7 +78,7 @@ class CustomExerciseService
 
   def copy_plyos
     old_plyos = @previous_workout.get_plyos
-    if old_plyos.size > 0
+    if old_plyos.count > 0
       @routine.note_plyometric_changes_saved
       old_plyos.each do |plyo|
         @routine.add_plyometric(plyo.id, 1, 0)
@@ -92,7 +92,7 @@ class CustomExerciseService
 
   def copy_weights
     old_weights = @previous_workout.get_weights
-    if old_weights.size > 0
+    if old_weights.count > 0
       weight_service = WeightsService.new(@routine_service.instance_variable_get(:@entity), @routine,
                                           @routine_service.instance_variable_get(:@phase_number),
                                           @routine_service.instance_variable_get(:@sched_update), @routine_service)

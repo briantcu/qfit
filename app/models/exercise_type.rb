@@ -13,7 +13,7 @@ class ExerciseType < ActiveRecord::Base
 
   def get_exercises
     if self.id == 14
-      return Exercise.where('exercise_type_id == 14 or exercise_type_id == 15 or exercise_type_id == 16')
+      return Exercise.where('exercise_type_id = 14 or exercise_type_id = 15 or exercise_type_id = 16')
     else
       return self.exercises
     end

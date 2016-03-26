@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321001355) do
+ActiveRecord::Schema.define(version: 20160326224402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,11 +206,11 @@ ActiveRecord::Schema.define(version: 20160321001355) do
     t.integer  "coach_user_id"
     t.string   "name"
     t.integer  "current_phase"
-    t.integer  "sprint_diff"
-    t.integer  "last_weight_day_created"
-    t.integer  "last_wu_day_created"
-    t.integer  "last_pl_day_created"
-    t.integer  "last_sp_day_created"
+    t.integer  "sprint_diff",             default: 1
+    t.integer  "last_weight_day_created", default: 0
+    t.integer  "last_wu_day_created",     default: 0
+    t.integer  "last_pl_day_created",     default: 0
+    t.integer  "last_sp_day_created",     default: 0
     t.boolean  "shared"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -481,12 +481,12 @@ ActiveRecord::Schema.define(version: 20160321001355) do
     t.string   "old_password"
     t.integer  "current_phase"
     t.string   "phone"
-    t.integer  "last_weight_day_created"
-    t.integer  "last_warmup_day_created"
-    t.integer  "last_plyometric_day_created"
-    t.integer  "last_sprint_day_created"
+    t.integer  "last_weight_day_created",     default: 0
+    t.integer  "last_warmup_day_created",     default: 0
+    t.integer  "last_plyometric_day_created", default: 0
+    t.integer  "last_sprint_day_created",     default: 0
     t.string   "user_name"
-    t.integer  "sprint_diff"
+    t.integer  "sprint_diff",                 default: 1
     t.float    "weight"
     t.integer  "level"
     t.integer  "program_type_id"
@@ -506,7 +506,7 @@ ActiveRecord::Schema.define(version: 20160321001355) do
     t.string   "authentication_token"
     t.integer  "experience_level"
     t.string   "displayed_user_name"
-    t.integer  "points",                      default: 10
+    t.integer  "points"
     t.json     "avatars"
     t.integer  "status",                      default: 1
   end

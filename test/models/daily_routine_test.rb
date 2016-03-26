@@ -33,7 +33,7 @@ class DailyRoutineTest < ActiveSupport::TestCase
   test 'get custom exercises with filter' do
     routine = DailyRoutine.find(3)
     exes = routine.get_custom_exercises(2)
-    assert(exes.size == 2)
+    assert(exes.count == 2)
   end
 
   test 'should calculate num of completed plyos' do
@@ -86,7 +86,7 @@ class DailyRoutineTest < ActiveSupport::TestCase
 
   test 'should get old open workouts for user' do
     workouts = DailyRoutine.get_old_open_workouts_for_user(1)
-    assert(workouts.size == 5)
+    assert(workouts.count == 5)
   end
 
 

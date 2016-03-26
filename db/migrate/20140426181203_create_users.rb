@@ -20,7 +20,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :last_plyometric_day_created
       t.integer :last_sprint_day_created
       t.string :user_name
-      t.integer :sprint_diff
+      t.integer :sprint_diff, default: 1
       t.float :weight
       t.integer :level
       t.integer :program_type
