@@ -11,6 +11,7 @@ class DailyRoutinesController < ApplicationController
 
   # GET /daily_routines
   def index
+    current_user.daily_routines.order(created_at: :desc).limit(5)
   end
 
   # GET /daily_routines/1

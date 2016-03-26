@@ -252,6 +252,11 @@ class User < ActiveRecord::Base
     nil
   end
 
+  def needs_workout?
+    return true if last_sign_in_at.blank?
+    last_sign_in_at < Time.now - 20.days
+  end
+
   private
 
   def generate_authentication_token

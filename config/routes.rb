@@ -128,6 +128,7 @@ Qfit::Application.routes.draw do
   get '/users/:user_id/daily_routines/skip_all', to: 'daily_routines#skip_all'
   post '/daily_routines/:id/custom/:type/:name', to: 'daily_routines#add_custom'
   get '/daily_routines/:id/reset', to: 'daily_routines#reset'
+  get '/daily_routines', to: 'daily_routines#index'
 
   resources :custom_exercises
 

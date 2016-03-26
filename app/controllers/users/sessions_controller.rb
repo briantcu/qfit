@@ -34,6 +34,9 @@ class Users::SessionsController < Devise::SessionsController
     if user.valid_password?(password)
       sign_in(:user, user)
       user.ensure_authentication_token
+      if user.needs_workout?
+        RoutineService.new(user, 'CRON', Date.today, false).create_routines
+      end
       render json: {success: true, token: user.authentication_token, user_id: user.id, user_name: user.displayed_user_name}
       return
     end
