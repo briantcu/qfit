@@ -6,11 +6,11 @@
 #  coach_user_id           :integer
 #  name                    :string(255)
 #  current_phase           :integer
-#  sprint_diff             :integer
-#  last_weight_day_created :integer
-#  last_wu_day_created     :integer
-#  last_pl_day_created     :integer
-#  last_sp_day_created     :integer
+#  sprint_diff             :integer          default(1)
+#  last_weight_day_created :integer          default(0)
+#  last_wu_day_created     :integer          default(0)
+#  last_pl_day_created     :integer          default(0)
+#  last_sp_day_created     :integer          default(0)
 #  shared                  :boolean
 #  created_at              :datetime
 #  updated_at              :datetime

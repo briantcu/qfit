@@ -17,12 +17,12 @@
 #  old_password                :string(255)
 #  current_phase               :integer
 #  phone                       :string(255)
-#  last_weight_day_created     :integer
-#  last_warmup_day_created     :integer
-#  last_plyometric_day_created :integer
-#  last_sprint_day_created     :integer
+#  last_weight_day_created     :integer          default(0)
+#  last_warmup_day_created     :integer          default(0)
+#  last_plyometric_day_created :integer          default(0)
+#  last_sprint_day_created     :integer          default(0)
 #  user_name                   :string(255)
-#  sprint_diff                 :integer
+#  sprint_diff                 :integer          default(1)
 #  weight                      :float
 #  level                       :integer
 #  program_type_id             :integer
