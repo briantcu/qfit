@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327231235) do
+ActiveRecord::Schema.define(version: 20160328015829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20160327231235) do
     t.boolean  "is_image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "paid_tier",        default: 1
   end
 
   create_table "faqs", force: true do |t|
@@ -322,6 +323,7 @@ ActiveRecord::Schema.define(version: 20160327231235) do
     t.text     "recommended"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "paid_tier",   default: 1
   end
 
   create_table "pod_invites", force: true do |t|
@@ -510,6 +512,7 @@ ActiveRecord::Schema.define(version: 20160327231235) do
     t.integer  "points"
     t.json     "avatars"
     t.integer  "status",                      default: 1
+    t.integer  "paid_tier",                   default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

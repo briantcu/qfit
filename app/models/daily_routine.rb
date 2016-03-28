@@ -99,7 +99,7 @@ class DailyRoutine < ActiveRecord::Base
 
   def self.get_open_workouts_start_today(entity)
     now = Date.today
-    DailyRoutine.where(:user_id => entity.id, :closed => false).where('day_performed >= ?', now)
+    DailyRoutine.where(:user_id => entity.id, :closed => false).where('day_performed >= ?', now).order(day_performed: :asc)
   end
 
   def self.get_open_workouts(entity)

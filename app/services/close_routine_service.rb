@@ -41,13 +41,9 @@ class CloseRoutineService
 
     on_a_run = is_on_a_run?
     is_first_workout = is_first_workout?
-    get_messages(true, on_a_run, is_first_workout)
-
-    #return encouraging message and next workout date
-    @routine.routine_messages.create!(message: '')
-
     @routine.save!
     @routine.user.save!
+    get_messages(true, on_a_run, is_first_workout)
     @routine
   end
 
@@ -55,7 +51,7 @@ class CloseRoutineService
     note_as_closed
     @routine.count_ex_completed = 0
     process_provided
-    @routine.save
+    @routine.save!
 
     get_messages(false, false, false)
     @routine
@@ -75,16 +71,16 @@ class CloseRoutineService
     end
     @routine.routine_messages.create!(message: "Nice! You recorded personal bests for #{@pbs.map{|pb| pb[0].name}.join(', ')}")
 
-    if is_first_workout
-      @routine.routine_messages.create!(message: "CONGRATULATIONS!!! You finished your first Quadfit workout! Keep it going!!")
+    @routine.routine_messages.create!(message: "CONGRATULATIONS!!! You finished your first Quadfit workout! Keep it going!!") if is_first_workout
+
+    @routine.routine_messages.create!(message: "You've completed 4+ workouts in a row! Keep up the momentum!!") if is_on_run
+
+    next_open_workout = DailyRoutine.get_open_workouts_start_today(@routine.user).first
+    if next_open_workout.present?
+      #@TODO fix message
+      @routine.routine_messages.create!(message: "Your next workout is #{next_open_workout.day_performed}")
     end
 
-    if is_on_run
-      @routine.routine_messages.create!(message: "You've completed 4+ workouts in a row! Keep up the momentum!!")
-    end
-
-    #@TODO fill in message
-    @routine.routine_messages.create!(message: "Your next workout is ")
   end
 
   def is_first_workout?

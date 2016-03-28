@@ -12,7 +12,11 @@ class PlyometricsService
   def self.add_exercises(entity, routine)
     @entity = entity
     @routine = routine
-    plyos = Plyometric.all
+    if @entity.is_group?
+      plyos = Plyometric.all
+    else
+      plyos = Plyometric.where('paid_tier <= ?', @entity.paid_tier)
+    end
     num_plyos_for_index = plyos.count - 1
 
     (0..3).each do |i|

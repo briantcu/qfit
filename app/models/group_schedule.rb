@@ -92,9 +92,11 @@ class GroupSchedule < ActiveRecord::Base
     current_sprint_diff = self.group.sprint_diff
     #This is the first workout in the new phase
     if workout_phase != current_phase
-      current_sprint_diff = current_sprint_diff + 1
-      self.group.sprint_diff = current_sprint_diff
-      self.group.save
+      if current_phase % 2 == 0
+        current_sprint_diff = current_sprint_diff + 1
+        self.group.sprint_diff = current_sprint_diff
+        self.group.save!
+      end
     end
 
     workout_phase

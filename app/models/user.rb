@@ -48,6 +48,7 @@
 #
 
 # Status: 1 = active, 2 = disabled
+# Experience level = 1-3
 class User < ActiveRecord::Base
 
   mount_uploader :avatars, AvatarUploader
