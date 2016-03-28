@@ -34,9 +34,10 @@ class GroupsController < ApplicationController
 
   # DELETE /groups/1
   # DELETE /groups/1.json
-  #@TODO What to do with members that were a part of the group? have to loop through and call remove_user below
   def destroy
-    @group.destroy
+    members = @group.members
+    @group.destroy!
+    members.each { |member| RoutineService.group_status_changed(member)}
     head :no_content
   end
 

@@ -1,8 +1,15 @@
 class DailyRoutinesController < ApplicationController
-  before_action :set_daily_routine, only: [:show, :update, :add_weight, :add_sprint, :add_warmup, :add_plyo, :close, :skip, :add_custom, :reset, :workout_shared]
-  before_filter :verify_owns_workout, only: [:add_weight, :add_sprint, :add_warmup, :add_plyo, :update, :close, :skip, :add_custom, :reset]
-  before_filter :verify_logged_in, only: [:routine_by_date]
-  before_filter :verify_is_logged_in_or_coach, only: [:skip_all]
+  before_filter :verify_is_logged_in_or_coach, only: [
+      :index, :show, :create, :routine_by_date, :update, :close, :skip_all, :add_weight, :add_sprint, :add_warmup,
+      :add_plyo, :skip, :add_custom, :reset, :workout_shared
+  ]
+  before_filter :verify_owns_workout, only: [
+      :index, :show, :create, :routine_by_date, :update, :close, :skip_all, :add_weight, :add_sprint, :add_warmup,
+      :add_plyo, :skip, :add_custom, :reset, :workout_shared
+  ]
+  before_action :set_daily_routine, only: [
+      :show, :update, :add_weight, :add_sprint, :add_warmup, :add_plyo, :close, :skip, :add_custom, :reset, :workout_shared
+  ]
 
   STRETCHING = 4
   WEIGHTS = 1

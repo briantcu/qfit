@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326224402) do
+ActiveRecord::Schema.define(version: 20160327231235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160326224402) do
     t.string   "billing_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",        default: true
   end
 
   create_table "custom_exercises", force: true do |t|

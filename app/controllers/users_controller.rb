@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :get_calendar, :fitness_assessment, :get_progress]
   before_filter :can_access_user, only: [:show, :update, :get_calendar, :fitness_assessment, :get_progress]
+  before_action :set_user, only: [:show, :update, :get_calendar, :fitness_assessment, :get_progress]
 
   # GET /users/1
   # GET /users/1.json

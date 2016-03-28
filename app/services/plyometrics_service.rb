@@ -8,6 +8,7 @@ class PlyometricsService
   @entity
   @routine
 
+
   def self.add_exercises(entity, routine)
     @entity = entity
     @routine = routine

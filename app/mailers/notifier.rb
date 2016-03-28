@@ -49,4 +49,9 @@ class Notifier < ActionMailer::Base
     subject = "#{coach.first_name} #{coach.last_name} wants to be your coach on Quadfit"
     mail(to: to, subject: subject)
   end
+
+  def notify_coach_is_maxed(coach)
+    subject = "Sign up failed - Your Quadfit account is maxed out"
+    mail(to: coach.email, subject: subject)
+  end
 end

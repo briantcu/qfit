@@ -9,14 +9,14 @@ class FriendsController < ApplicationController
   end
 
   # GET /friends/1
-  # GET /friends/1.json \
+  # GET /friends/1.json
   #@TODO this endpoint can return profile detes for this user you're friends with. Need to verify you're friends
   def show
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_friend
-      @friend = Friend.find(params[:id])
-    end
+
+  def set_friend
+    @friend = Friend.find(params[:id])
+  end
 end

@@ -22,6 +22,8 @@ class EmailService
         send_new_user_pod_invite(options)
       when :coach_invite
         send_coach_sign_up_invite(options)
+      when :coach_maxed
+        notify_coach_is_maxed(options)
     end
   end
 
@@ -72,5 +74,10 @@ class EmailService
     coach = User.find(options[:user_id])
     to = options[:phone]
     Notifier.send_coach_sign_up_invite(to, coach).deliver
+  end
+
+  def notify_coach_is_maxed(options)
+    coach = User.find(options[:user_id])
+    Notifier.notify_coach_is_maxed(coach).deliver
   end
 end

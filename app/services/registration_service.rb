@@ -4,8 +4,7 @@ class RegistrationService
     if account_type == 'coach'
       #Coach
       user.transaction do
-        user.level = 5
-        user.sub_user = false
+        user.assign_attributes(level: 5, sub_user: false)
         user.build_coach_account(billing_email: user.email, num_accts: 5)
         user.save!
       end
@@ -13,29 +12,27 @@ class RegistrationService
     else
       if sign_up_code_record.nil?
         #Regular user
-        user.level = 2
-        user.sub_user = false
-        user.save!
-        EmailService.perform_async(:new_user, {user_id: user.id})
+        user.assign_attributes(level: 2, sub_user: false)
+        if user.save!
+          EmailService.perform_async(:new_user, {user_id: user.id})
+        end
       else
         #Sub user
-        user.level = 1
-        user.sub_user = true
-        user.master_user_id = sign_up_code_record.user.id
-        user.save!
-        EmailService.perform_async(:new_sub_email_from_self, {user_id: user.id})
-        EmailService.perform_async(:coach_sub_signed_up, {user_id: user.id, coach_id: sign_up_code_record.user.id})
+        user.assign_attributes(level: 1, sub_user: true, master_user_id: sign_up_code_record.user.id)
+        if user.save!
+          EmailService.perform_async(:new_sub_email_from_self, {user_id: user.id})
+          EmailService.perform_async(:coach_sub_signed_up, {user_id: user.id, coach_id: sign_up_code_record.user.id})
+        end
       end
     end
     user
   end
 
   def self.register_user_for_coach(user, coach, temp_password)
-    user.level = 1
-    user.sub_user = true
-    user.master_user_id = coach.id
-    user.save!
-    EmailService.perform_async(:new_sub_email_from_coach, {user_id: user.id, temp_password: temp_password})
+    user.assign_attributes(level: 1, sub_user: true, master_user_id: coach.id)
+    if user.save!
+      EmailService.perform_async(:new_sub_email_from_coach, {user_id: user.id, temp_password: temp_password})
+    end
     user
   end
 

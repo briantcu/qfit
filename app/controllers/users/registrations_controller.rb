@@ -11,7 +11,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         render :status => 470, :json => { :errors => 'Invalid sign up code'}
         return
       else
-        if sign_up_code.user.coach_account.is_maxed_out
+        if sign_up_code.user.coach_account.is_maxed_out?
+          EmailService.perform_async(:coach_maxed, {user_id: sign_up_code.user.id})
           render :status => 471, :json => { :errors => 'Coach is maxed out'}
           return
         end
@@ -20,22 +21,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     @user = User.new(sign_up_params)
 
-    # Has to be done before user.save below because it assigns a password
-    if is_coach_signed_in
-      temp_password = assign_temp_password
-    end
-
-    if @user.save
-      if is_coach_signed_in
-        @user = RegistrationService.register_user_for_coach(@user, current_user, temp_password)
-      else
-        @user = RegistrationService.register_user(@user, sign_up_code, params[:user][:account_type])
-      end
+    if RegistrationService.register_user(@user, sign_up_code, params[:user][:account_type])
       check_tokens
-      render :json => @user.to_json, :status=>201
+      render json: @user.to_json, status: 201
     else
       warden.custom_failure!
-      render :json => @user.errors, :status=>422
+      render json: @user.errors, status: 422
     end
   end
 
@@ -47,18 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def is_coach_signed_in
-    current_user.present? && current_user.is_coach?
-  end
-
   def sign_up_params
     params.require(:user).permit( :email, :password, :password_confirmation, :first_name, :last_name, :sex)
   end
-
-  def assign_temp_password
-    temp_password = RegistrationService.generate_password
-    @user.password = temp_password
-    temp_password
-  end
-
 end
