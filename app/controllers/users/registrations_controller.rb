@@ -21,10 +21,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     @user = User.new(sign_up_params)
 
-    if RegistrationService.register_user(@user, sign_up_code, params[:user][:account_type])
+    begin
+      RegistrationService.register_user(@user, sign_up_code, params[:user][:account_type])
       check_tokens
       render json: @user.to_json, status: 201
-    else
+    rescue
       warden.custom_failure!
       render json: @user.errors, status: 422
     end

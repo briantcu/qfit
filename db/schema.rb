@@ -509,7 +509,7 @@ ActiveRecord::Schema.define(version: 20160328015829) do
     t.string   "authentication_token"
     t.integer  "experience_level"
     t.string   "displayed_user_name"
-    t.integer  "points"
+    t.integer  "points",                      default: 10
     t.json     "avatars"
     t.integer  "status",                      default: 1
     t.integer  "paid_tier",                   default: 1
