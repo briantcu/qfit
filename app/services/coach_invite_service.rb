@@ -4,21 +4,21 @@ class CoachInviteService
   VALID_PHONE = /\A(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\z/
 
   def send_invite(to, coach_account)
-    to.gsub!(/[^0-9]/, "") if to.validate(VALID_PHONE) #Strip all non numbers if it's a phone
+    to.gsub!(/[^0-9]/, "") if VALID_PHONE.match(to) #Strip all non numbers if it's a phone
 
     sent_code = SentCode.where(receiver: to, code: coach_account.user.sign_up_code)
     if sent_code.present?
       return { status: 'exists', message: 'An invite has already been sent', sent_code: sent_code}
     end
 
-    if to.validate(VALID_EMAIL_REGEX)
+    if VALID_EMAIL_REGEX.match(to)
       invitee = User.where(email: to).first
       if invitee.present?
         return { status: 'invalid', message: 'A user with that contact info already exists'}
       else
         sent_code = process_invite(to, coach_account, :email)
       end
-    elsif to.validate(VALID_PHONE)
+    elsif VALID_PHONE.match(to)
       invitee = User.where(phone: to).first
       if invitee.present?
         return { status: 'invalid', message: 'A user with that contact info already exists'}

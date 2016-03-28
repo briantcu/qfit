@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328015829) do
+ActiveRecord::Schema.define(version: 20160328045930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -327,10 +327,10 @@ ActiveRecord::Schema.define(version: 20160328015829) do
   end
 
   create_table "pod_invites", force: true do |t|
-    t.integer  "inviter"
+    t.integer  "inviter_id"
     t.string   "sent_to"
     t.integer  "status"
-    t.integer  "invitee"
+    t.integer  "invitee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

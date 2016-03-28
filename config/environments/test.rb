@@ -13,8 +13,12 @@ Qfit::Application.configure do
   config.eager_load = false
 
   # Configure static asset server for tests with Cache-Control for performance.
-  config.serve_static_assets  = true
+  config.serve_static_files  = true
   config.static_cache_control = "public, max-age=3600"
+
+  config.active_record.raise_in_transactional_callbacks = true
+
+  config.active_support.test_order = :random
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true

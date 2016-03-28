@@ -47,7 +47,7 @@ class WeightsService
   def add_exercises(program_day_id)
     exercise_types = DayExercise.get_exercises_for_day(program_day_id)
     exercise_types.each do |day_exercise|
-      exercises = day_exercise.exercise_type.get_exercises(@entity.experience_level, @entity.try(:paid_tier))
+      exercises = day_exercise.exercise_type.get_exercises(@entity.try(:experience_level), @entity.try(:paid_tier))
       total_count_for_index = exercises.count - 1
       while true
         index = rand(0..(total_count_for_index))

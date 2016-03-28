@@ -4,16 +4,16 @@ class QuadPodService
   VALID_PHONE = /\A(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\z/
 
   def send_invite(invite)
-    invite.sent_to.gsub!(/[^0-9]/, "") if invite.sent_to.validate(VALID_PHONE) #Strip all non numbers if it's a phone
+    invite.sent_to.gsub!(/[^0-9]/, "") if VALID_PHONE.match(invite.sent_to) #Strip all non numbers if it's a phone
 
     pod_invite = PodInvite.where(inviter: current_user.id, sent_to: invite.sent_to).first
     if pod_invite.present?
       return { status: 'exists', message: 'A request has already been sent', pod_invite: pod_invite}
     end
 
-    if invite.sent_to.validate(VALID_EMAIL_REGEX)
+    if VALID_EMAIL_REGEX.match(invite.sent_to)
       pod_invite = process_invite(invite, :email)
-    elsif invite.sent_to.validate(VALID_PHONE)
+    elsif VALID_PHONE.match(invite.sent_to)
       pod_invite = process_invite(invite, :phone)
     else
       return { status: 'invalid', message: 'Please provide a valid email or phone number', pod_invite: invite}
@@ -27,22 +27,22 @@ class QuadPodService
     payload = JWT.decode token, Rails.application.config.token_salt, true, { :algorithm => 'HS256' }
     invite_data = payload[0]
     pod_invite = PodInvite.find(invite_data['id'])
-    pod_invite.update_attributes!(invitee: user.user_id, status: 1)
-    if invite_data['sent_to'].validate(VALID_PHONE)
+    pod_invite.update_attributes!(invitee: user, status: 1)
+    if VALID_PHONE.match(invite_data['sent_to'])
       user.update_attributes!(phone: invite_data['sent_to'])
     end
-    FriendService.new.make_friends(pod_invite.inviter, pod_invite.invitee)
+    FriendService.new.make_friends(pod_invite.inviter.id, pod_invite.invitee.id)
   end
 
   def accept_invite_existing_user(invite)
     return unless invite.invitee == current_user.id && invite.status != 1 # Already accepted
     invite.status = 1
     invite.save!
-    FriendService.new.make_friends(invite.inviter, invite.invitee)
+    FriendService.new.make_friends(invite.inviter.id, invite.invitee.id)
   end
 
   def deny_invite(invite)
-    return unless invite.invitee == current_user.id
+    return unless invite.invitee.id == current_user.id
     invite.status = 2
     invite.save!
   end
@@ -54,7 +54,7 @@ class QuadPodService
 
       invitee = User.where(email: invite.sent_to).first
       if invitee.present?
-        invite.invitee = invitee.id
+        invite.invitee.id = invitee.id
         invite.save!
         EmailService.perform_async(:existing_user_pod_invite, {invite_id: invite.id})
       else
@@ -67,7 +67,7 @@ class QuadPodService
 
       invitee = User.where(phone: invite.sent_to).first
       if invitee.present?
-        invite.invitee = invitee.id
+        invite.invitee.id = invitee.id
         invite.save!
         TextMessageService.perform_async(:existing_user_pod_invite, {invite_id: invite.id})
       else
