@@ -1,27 +1,19 @@
 class DailyRoutinesController < ApplicationController
-  before_filter :verify_is_logged_in_or_coach, only: [
-      :index, :show, :create, :routine_by_date, :update, :close, :skip_all, :add_weight, :add_sprint, :add_warmup,
-      :add_plyo, :skip, :add_custom, :reset, :workout_shared
-  ]
-  before_filter :verify_owns_workout, only: [
-      :index, :show, :create, :routine_by_date, :update, :close, :skip_all, :add_weight, :add_sprint, :add_warmup,
-      :add_plyo, :skip, :add_custom, :reset, :workout_shared
-  ]
-  before_action :set_daily_routine, only: [
-      :show, :update, :add_weight, :add_sprint, :add_warmup, :add_plyo, :close, :skip, :add_custom, :reset, :workout_shared
-  ]
+  before_filter :verify_logged_in, only: [:index]
+  before_filter :verify_is_logged_in_or_coach, only: [:create, :routine_by_date]
+  before_filter :verify_owns_workout, except: [:index, :create, :routine_by_date, :skip_all]
+  before_action :set_daily_routine, except: [:index, :create, :routine_by_date, :skip_all]
 
   STRETCHING = 4
   WEIGHTS = 1
   PLYOS = 2
   SPRINTING = 3
 
-  # GET /daily_routines
   def index
     @daily_routines = current_user.daily_routines.order(created_at: :desc).limit(5)
   end
 
-  # GET /daily_routines/1
+  #@TODO assume you have to own a workout to see it. Need to work out sharing later
   def show
   end
 
@@ -163,33 +155,27 @@ class DailyRoutinesController < ApplicationController
     @daily_routine = DailyRoutine.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def daily_routine_params
-    params.require(:daily_routine).permit(:user_id, :group_id, :day_performed, :weight, :power_index,
-                                          :count_ex_provided, :count_ex_completed, :program_day_id, :wt_day_id,
-                                          :sp_day_id, :pl_day_id, :wu_day_id, :modified, :pl_modified, :wt_modified,
-                                          :wu_modified, :sp_modified, :changes_saved, :closed, :comments,
-                                          custom_exercises_attributes: [:id, :details],
-                                          performed_warm_ups_attributes: [:id, :completed],
-                                          performed_exercises_attributes: [:id,
-                                            weight_sets_attributes: [:id, :perf_weight, :perf_reps]
-                                          ],
-                                          performed_plyometrics_attributes: [:id, :performed_one, :performed_two,
-                                                                             :performed_three],
-                                          performed_sprints_attributes: [:id, laps_attributes: [:id, :completed]]
+    params.require(:daily_routine)
+        .permit(:weight, :changes_saved,
+                custom_exercises_attributes: [:id, :details],
+                performed_warm_ups_attributes: [:id, :completed],
+                performed_exercises_attributes: [:id, weight_sets_attributes: [:id, :perf_weight, :perf_reps]],
+                performed_plyometrics_attributes: [:id, :performed_one, :performed_two, :performed_three],
+                performed_sprints_attributes: [:id, laps_attributes: [:id, :completed]]
     )
   end
 
   def verify_owns_workout
-    (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_workout?(params[:id]))
+    return unauthorized if current_user.nil?
+    unauthorized unless (current_user.owns_workout?(params[:id]))
   end
 
   def verify_is_logged_in_or_coach
-    (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.id == params[:user_id].to_i ||
-            (current_user.is_coach_of_user?(params[:user_id].to_i)) ||
-            (current_user.is_super_user?))
+    return unauthorized if current_user.nil?
+    unauthorized unless (current_user.id == params[:user_id].to_i ||
+        (current_user.is_coach_of_user?(params[:user_id].to_i)) ||
+        (current_user.is_super_user?))
   end
 
 end
