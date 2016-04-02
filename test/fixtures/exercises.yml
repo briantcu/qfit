@@ -14,6 +14,7 @@
 #  is_image         :boolean
 #  created_at       :datetime
 #  updated_at       :datetime
+#  paid_tier        :integer          default(1)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

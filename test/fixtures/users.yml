@@ -45,6 +45,7 @@
 #  points                      :integer
 #  avatars                     :json
 #  status                      :integer          default(1)
+#  paid_tier                   :integer          default(1)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

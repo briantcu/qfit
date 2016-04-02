@@ -11,32 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328045930) do
+ActiveRecord::Schema.define(version: 20160402231149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "coach_accounts", force: true do |t|
+  create_table "coach_accounts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "num_accts"
-    t.string   "billing_email"
+    t.string   "billing_email", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",        default: true
+    t.boolean  "active",                    default: true
   end
 
-  create_table "custom_exercises", force: true do |t|
+  create_table "custom_exercises", force: :cascade do |t|
     t.integer  "routine_id"
-    t.string   "details"
+    t.string   "details",    limit: 255
     t.integer  "status"
     t.integer  "group_id"
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.integer  "ex_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "daily_routines", force: true do |t|
+  create_table "daily_routines", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "group_id"
     t.date     "day_performed"
@@ -62,49 +62,49 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.boolean  "shared",             default: false
   end
 
-  create_table "day_exercises", force: true do |t|
+  create_table "day_exercises", force: :cascade do |t|
     t.integer  "program_day_id"
     t.integer  "exercise_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "exercise_types", force: true do |t|
-    t.string   "type_name"
+  create_table "exercise_types", force: :cascade do |t|
+    t.string   "type_name",  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "exercises", force: true do |t|
+  create_table "exercises", force: :cascade do |t|
     t.integer  "exercise_type_id"
-    t.string   "video_link"
+    t.string   "video_link",       limit: 255
     t.integer  "look_up_value"
     t.float    "percent_of_luv"
     t.integer  "category"
     t.integer  "difficulty"
     t.boolean  "is_body_weight"
-    t.string   "name"
+    t.string   "name",             limit: 255
     t.boolean  "is_image"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "paid_tier",        default: 1
+    t.integer  "paid_tier",                    default: 1
   end
 
-  create_table "faqs", force: true do |t|
+  create_table "faqs", force: :cascade do |t|
     t.text     "question"
     t.text     "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "friends", force: true do |t|
+  create_table "friends", force: :cascade do |t|
     t.integer  "id_one"
     t.integer  "id_two"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "goal_definitions", force: true do |t|
+  create_table "goal_definitions", force: :cascade do |t|
     t.integer  "order"
     t.text     "goal_text"
     t.text     "achieved_text"
@@ -114,24 +114,24 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.integer  "goal_type"
   end
 
-  create_table "group_custom_exercises", force: true do |t|
+  create_table "group_custom_exercises", force: :cascade do |t|
     t.integer  "routine_id"
     t.text     "details"
     t.integer  "status"
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.integer  "ex_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "group_joins", force: true do |t|
+  create_table "group_joins", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "group_performed_exercises", force: true do |t|
+  create_table "group_performed_exercises", force: :cascade do |t|
     t.integer  "routine_id"
     t.integer  "exercise_id"
     t.integer  "status"
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "group_performed_plyos", force: true do |t|
+  create_table "group_performed_plyos", force: :cascade do |t|
     t.integer  "plyometric_id"
     t.integer  "routine_id"
     t.integer  "status"
@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "group_performed_sprints", force: true do |t|
+  create_table "group_performed_sprints", force: :cascade do |t|
     t.integer  "sprint_id"
     t.integer  "status"
     t.integer  "routine_id"
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "group_performed_warmups", force: true do |t|
+  create_table "group_performed_warmups", force: :cascade do |t|
     t.integer  "routine_id"
     t.integer  "warmup_id"
     t.integer  "status"
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "group_routines", force: true do |t|
+  create_table "group_routines", force: :cascade do |t|
     t.integer  "group_id"
     t.date     "day_performed"
     t.integer  "program_day_id"
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "group_schedule_days", force: true do |t|
+  create_table "group_schedule_days", force: :cascade do |t|
     t.integer  "group_schedule_id"
     t.boolean  "weights"
     t.boolean  "plyometrics"
@@ -193,7 +193,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.integer  "day"
   end
 
-  create_table "group_schedules", force: true do |t|
+  create_table "group_schedules", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "program_id"
     t.date     "phase_one_start"
@@ -204,21 +204,21 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "groups", force: true do |t|
+  create_table "groups", force: :cascade do |t|
     t.integer  "coach_user_id"
-    t.string   "name"
+    t.string   "name",                    limit: 255
     t.integer  "current_phase"
-    t.integer  "sprint_diff",             default: 1
-    t.integer  "last_weight_day_created", default: 0
-    t.integer  "last_wu_day_created",     default: 0
-    t.integer  "last_pl_day_created",     default: 0
-    t.integer  "last_sp_day_created",     default: 0
+    t.integer  "sprint_diff",                         default: 1
+    t.integer  "last_weight_day_created",             default: 0
+    t.integer  "last_wu_day_created",                 default: 0
+    t.integer  "last_pl_day_created",                 default: 0
+    t.integer  "last_sp_day_created",                 default: 0
     t.boolean  "shared"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "laps", force: true do |t|
+  create_table "laps", force: :cascade do |t|
     t.integer  "lap_number"
     t.integer  "performed_sprint_id"
     t.boolean  "completed"
@@ -226,42 +226,42 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "leaders", force: true do |t|
+  create_table "leaders", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "value"
+    t.string   "first_name", limit: 255
+    t.string   "last_name",  limit: 255
+    t.string   "value",      limit: 255
     t.integer  "type"
     t.date     "created"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "likes", force: true do |t|
+  create_table "likes", force: :cascade do |t|
     t.integer  "liker"
     t.integer  "message_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "messages", force: true do |t|
+  create_table "messages", force: :cascade do |t|
     t.integer  "poster_id"
     t.text     "message"
     t.integer  "parent_id"
     t.integer  "to_id"
-    t.integer  "type"
+    t.integer  "message_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "one_rep_maxes", force: true do |t|
+  create_table "one_rep_maxes", force: :cascade do |t|
     t.integer  "rep"
     t.float    "percentage"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "performed_exercises", force: true do |t|
+  create_table "performed_exercises", force: :cascade do |t|
     t.integer  "routine_id"
     t.integer  "exercise_id"
     t.integer  "rest_period"
@@ -273,7 +273,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "performed_plyometrics", force: true do |t|
+  create_table "performed_plyometrics", force: :cascade do |t|
     t.integer  "plyometric_id"
     t.integer  "routine_id"
     t.integer  "status"
@@ -285,7 +285,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "performed_sprints", force: true do |t|
+  create_table "performed_sprints", force: :cascade do |t|
     t.integer  "sprint_id"
     t.integer  "status"
     t.integer  "group_performed_sprint_id"
@@ -294,7 +294,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "performed_warm_ups", force: true do |t|
+  create_table "performed_warm_ups", force: :cascade do |t|
     t.integer  "routine_id"
     t.integer  "warmup_id"
     t.integer  "status"
@@ -304,7 +304,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "phases", force: true do |t|
+  create_table "phases", force: :cascade do |t|
     t.integer  "male_power_sets"
     t.integer  "male_power_reps"
     t.integer  "male_other_sets"
@@ -317,25 +317,25 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "plyometrics", force: true do |t|
-    t.string   "name"
-    t.string   "video_link"
+  create_table "plyometrics", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "video_link",  limit: 255
     t.text     "recommended"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "paid_tier",   default: 1
+    t.integer  "paid_tier",               default: 1
   end
 
-  create_table "pod_invites", force: true do |t|
+  create_table "pod_invites", force: :cascade do |t|
     t.integer  "inviter_id"
-    t.string   "sent_to"
+    t.string   "sent_to",    limit: 255
     t.integer  "status"
     t.integer  "invitee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "program_day_sequences", force: true do |t|
+  create_table "program_day_sequences", force: :cascade do |t|
     t.integer  "program_id"
     t.integer  "number_of_days"
     t.integer  "one"
@@ -352,13 +352,13 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "program_days", force: true do |t|
-    t.string   "day_enumeration"
+  create_table "program_days", force: :cascade do |t|
+    t.string   "day_enumeration", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "program_phase_lookups", force: true do |t|
+  create_table "program_phase_lookups", force: :cascade do |t|
     t.integer  "phase_number"
     t.integer  "program_type"
     t.integer  "phase_id"
@@ -366,42 +366,42 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "program_types", force: true do |t|
-    t.string   "program_type"
+  create_table "program_types", force: :cascade do |t|
+    t.string   "program_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "programs", force: true do |t|
-    t.string   "program_name"
+  create_table "programs", force: :cascade do |t|
+    t.string   "program_name", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "routine_messages", force: true do |t|
+  create_table "routine_messages", force: :cascade do |t|
     t.integer  "daily_routine_id"
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "sent_codes", force: true do |t|
-    t.string   "code"
-    t.string   "receiver"
+  create_table "sent_codes", force: :cascade do |t|
+    t.string   "code",       limit: 255
+    t.string   "receiver",   limit: 255
     t.boolean  "used"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "sign_up_codes", force: true do |t|
-    t.string   "code"
+  create_table "sign_up_codes", force: :cascade do |t|
+    t.string   "code",       limit: 255
     t.integer  "user_id"
-    t.string   "email"
+    t.string   "email",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "sprint_detail_sequences", force: true do |t|
+  create_table "sprint_detail_sequences", force: :cascade do |t|
     t.integer  "sprint_id"
     t.integer  "detail_num"
     t.integer  "order_num"
@@ -409,22 +409,22 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "sprint_details", force: true do |t|
+  create_table "sprint_details", force: :cascade do |t|
     t.text     "detail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "sprints", force: true do |t|
+  create_table "sprints", force: :cascade do |t|
     t.integer  "difficulty"
-    t.string   "name"
+    t.string   "name",        limit: 255
     t.integer  "sprint_type"
     t.integer  "num_laps"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "tips", force: true do |t|
+  create_table "tips", force: :cascade do |t|
     t.integer  "exercise_type"
     t.text     "tip"
     t.integer  "exercise_id"
@@ -432,7 +432,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "user_goals", force: true do |t|
+  create_table "user_goals", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "goal_definition_id"
     t.json     "value"
@@ -440,7 +440,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "user_maxes", force: true do |t|
+  create_table "user_maxes", force: :cascade do |t|
     t.integer  "exercise_id"
     t.integer  "user_id"
     t.float    "max"
@@ -448,7 +448,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "user_points", force: true do |t|
+  create_table "user_points", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "points"
     t.datetime "created_at"
@@ -456,7 +456,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.integer  "diff"
   end
 
-  create_table "user_schedules", force: true do |t|
+  create_table "user_schedules", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "program_id"
     t.integer  "program_type_id"
@@ -469,27 +469,27 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.integer  "master_user_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "sex"
+    t.string   "first_name",                  limit: 255
+    t.string   "last_name",                   limit: 255
+    t.string   "email",                       limit: 255
+    t.string   "sex",                         limit: 255
     t.boolean  "administrator"
     t.boolean  "sub_user"
     t.float    "knee_dom_max"
     t.float    "hor_push_max"
     t.float    "hor_pull_max"
     t.integer  "power_index"
-    t.string   "old_password"
+    t.string   "old_password",                limit: 255
     t.integer  "current_phase"
-    t.string   "phone"
-    t.integer  "last_weight_day_created",     default: 0
-    t.integer  "last_warmup_day_created",     default: 0
-    t.integer  "last_plyometric_day_created", default: 0
-    t.integer  "last_sprint_day_created",     default: 0
-    t.string   "user_name"
-    t.integer  "sprint_diff",                 default: 1
+    t.string   "phone",                       limit: 255
+    t.integer  "last_weight_day_created",                 default: 0
+    t.integer  "last_warmup_day_created",                 default: 0
+    t.integer  "last_plyometric_day_created",             default: 0
+    t.integer  "last_sprint_day_created",                 default: 0
+    t.string   "user_name",                   limit: 255
+    t.integer  "sprint_diff",                             default: 1
     t.float    "weight"
     t.integer  "level"
     t.integer  "program_type_id"
@@ -497,37 +497,37 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.date     "subscription_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",          default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "encrypted_password",          limit: 255, default: "", null: false
+    t.string   "reset_password_token",        limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",               default: 0,  null: false
+    t.integer  "sign_in_count",                           default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "authentication_token"
+    t.string   "current_sign_in_ip",          limit: 255
+    t.string   "last_sign_in_ip",             limit: 255
+    t.string   "authentication_token",        limit: 255
     t.integer  "experience_level"
-    t.string   "displayed_user_name"
-    t.integer  "points",                      default: 10
+    t.string   "displayed_user_name",         limit: 255
+    t.integer  "points"
     t.json     "avatars"
-    t.integer  "status",                      default: 1
-    t.integer  "paid_tier",                   default: 1
+    t.integer  "status",                                  default: 1
+    t.integer  "paid_tier",                               default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "warmups", force: true do |t|
-    t.string   "name"
+  create_table "warmups", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.boolean  "is_stretch"
-    t.string   "video_link"
+    t.string   "video_link", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "ex_type"
   end
 
-  create_table "weekly_schedule_days", force: true do |t|
+  create_table "weekly_schedule_days", force: :cascade do |t|
     t.integer  "day"
     t.integer  "user_schedule_id"
     t.boolean  "weights"
@@ -538,7 +538,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "weight_sets", force: true do |t|
+  create_table "weight_sets", force: :cascade do |t|
     t.integer  "set_num"
     t.integer  "performed_exercise_id"
     t.float    "rec_weight"
@@ -549,7 +549,7 @@ ActiveRecord::Schema.define(version: 20160328045930) do
     t.datetime "updated_at"
   end
 
-  create_table "workout_schedule_suggestions", force: true do |t|
+  create_table "workout_schedule_suggestions", force: :cascade do |t|
     t.integer  "program_type"
     t.integer  "weight_schedule"
     t.integer  "program_id"

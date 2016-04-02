@@ -8,13 +8,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if params[:user][:sign_up_code].present?
       sign_up_code = SignUpCode.where(code: params[:user][:sign_up_code]).first
       if sign_up_code.nil?
-        render :status => 470, :json => { :errors => 'Invalid sign up code'}
-        return
+        render status: 470, json: { :errors => 'Invalid sign up code'} and return
       else
         if sign_up_code.user.coach_account.is_maxed_out?
           EmailService.perform_async(:coach_maxed, {user_id: sign_up_code.user.id})
-          render :status => 471, :json => { :errors => 'Coach is maxed out'}
-          return
+          render status: 471, json: { :errors => 'Coach is maxed out'} and return
         end
       end
     end
@@ -24,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     begin
       RegistrationService.register_user(@user, sign_up_code, params[:user][:account_type])
       check_tokens
-      render json: @user.to_json, status: 201
+      render json: @user.to_json, status: 201 and return
     rescue
       warden.custom_failure!
       render json: @user.errors, status: 422

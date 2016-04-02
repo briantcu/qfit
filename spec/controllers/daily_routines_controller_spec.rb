@@ -87,4 +87,14 @@ RSpec.describe DailyRoutinesController, type: :controller do
     expect(dr.reload.closed).to eq(true)
   end
 
+  it 'closes a workout' do
+    allow(GoalDefinition).to receive(:find).and_return(FactoryGirl.create(:goal_definition))
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    sign_in @user
+    put :close, id: dr.id, format: :json, daily_routine: { weight: 200, changes_saved: true }
+    body = JSON.parse(response.body)
+    expect(body['weight']).to eq(200)
+    expect(body['messages'].count).to eq(1)
+  end
+
 end

@@ -8,6 +8,7 @@
 #  recommended :text
 #  created_at  :datetime
 #  updated_at  :datetime
+#  paid_tier   :integer          default(1)
 #
 
 class Plyometric < ActiveRecord::Base

@@ -3,10 +3,10 @@
 # Table name: pod_invites
 #
 #  id         :integer          not null, primary key
-#  inviter    :integer
+#  inviter_id :integer
 #  sent_to    :string(255)
 #  status     :integer
-#  invitee    :integer
+#  invitee_id :integer
 #  created_at :datetime
 #  updated_at :datetime
 #

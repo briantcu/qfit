@@ -28,7 +28,7 @@ FactoryGirl.define do
     old_password nil
     paid_tier 1
     phone nil
-    points nil
+    points 0
     power_index nil
     program_type_id 3
     remember_created_at nil

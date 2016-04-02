@@ -8,6 +8,7 @@
 #  billing_email :string(255)
 #  created_at    :datetime
 #  updated_at    :datetime
+#  active        :boolean          default(TRUE)
 #
 
 class CoachAccount < ActiveRecord::Base

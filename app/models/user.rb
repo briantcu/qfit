@@ -45,6 +45,7 @@
 #  points                      :integer
 #  avatars                     :json
 #  status                      :integer          default(1)
+#  paid_tier                   :integer          default(1)
 #
 
 # Status: 1 = active, 2 = disabled

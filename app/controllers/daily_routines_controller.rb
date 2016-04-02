@@ -11,19 +11,17 @@ class DailyRoutinesController < ApplicationController
 
   def index
     @daily_routines = current_user.daily_routines.order(created_at: :desc).limit(5)
-    render json: @daily_routines
   end
 
   #@TODO assume you have to own a workout to see it. Need to work out sharing later
   def show
-    render json: @daily_routine
   end
 
   # POST /daily_routines.json
   def create
     date = Date.new(params[:daily_routine][:year].to_i, params[:daily_routine][:month].to_i, params[:daily_routine][:day].to_i)
     @daily_routine = DailyRoutine.create_routine(params[:daily_routine][:user_id], date, 0, false)
-    render action: :show, status: :created, location: @daily_routine, json: @daily_routine
+    render action: :show, status: :created, location: @daily_routine
   end
 
   #GET /users/:user_id/daily_routines/year/:year/month/:month/day/:day
@@ -32,7 +30,7 @@ class DailyRoutinesController < ApplicationController
     if @daily_routine.nil?
       render json: {}, status: 404
     else
-      render json: @daily_routine, action: 'show'
+      render action: :show
     end
   end
 
@@ -40,7 +38,7 @@ class DailyRoutinesController < ApplicationController
   def skip
     service = CloseRoutineService.new(@daily_routine)
     @daily_routine = service.skip_routine
-    render action: 'show', status: :ok, location: @daily_routine, json: @daily_routine
+    render action: :show, status: :ok, location: @daily_routine
   end
 
   #PUT /users/:user_id/daily_routines/skip_all
@@ -60,7 +58,7 @@ class DailyRoutinesController < ApplicationController
     if @daily_routine.update(daily_routine_params)
       service = CloseRoutineService.new(@daily_routine)
       @daily_routine = service.close_routine
-      render action: 'show', status: :ok, location: @daily_routine
+      render action: :show, status: :ok, location: @daily_routine
     else
       render json: @daily_routine.errors, status: :unprocessable_entity
     end

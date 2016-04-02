@@ -34,10 +34,10 @@ class CloseRoutineService
     #post message to feed saying workout was completed
     #@TODO fix message
     message = "I just completed my workout: <a class='underlined' target='_blank' href='/share.html?r=rid'> See it and make comments</a>"
-    Message.create!(poster_id: @routine.user.id, type: 3, message: message)
+    Message.create(poster_id: @routine.user.id, message_type: 3, message: message)
 
     # Get points based on the percentage of exercises completed
-    points = process_completed / process_provided * 100
+    points = process_completed / process_provided * 100 rescue 0
     @routine.user.points += points
 
     on_a_run = is_on_a_run?
@@ -69,7 +69,7 @@ class CloseRoutineService
     if @pbs.count > 0
       personal_bests = @pbs.take(3)
       personal_bests.each do |pb|
-        Message.create!(poster_id: @routine.user.id, type: 3, message: "New personal best! #{pb[0].name}, #{pb[1]} estimated 1 rep max!")
+        Message.create!(poster_id: @routine.user.id, message_type: 3, message: "New personal best! #{pb[0].name}, #{pb[1]} estimated 1 rep max!")
 
       end
       @routine.routine_messages.create(message: "Nice! You recorded personal bests for #{@pbs.map{|pb| pb[0].name}.join(', ')}")

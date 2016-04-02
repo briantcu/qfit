@@ -11,7 +11,6 @@ class CoachAccountsController < ApplicationController
     else
       @user = User.new(sign_up_params)
       @user = RegistrationService.instance.register_user_for_coach(@user, current_user, assign_temp_password)
-      render json: @user
     end
   end
 

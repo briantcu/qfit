@@ -2,14 +2,14 @@
 #
 # Table name: messages
 #
-#  id         :integer          not null, primary key
-#  poster_id  :integer
-#  message    :text
-#  parent_id  :integer
-#  to_id      :integer
-#  type       :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id           :integer          not null, primary key
+#  poster_id    :integer
+#  message      :text
+#  parent_id    :integer
+#  to_id        :integer
+#  message_type :integer
+#  created_at   :datetime
+#  updated_at   :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

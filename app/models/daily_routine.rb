@@ -37,7 +37,7 @@ class DailyRoutine < ActiveRecord::Base
 
   validates :day_performed, presence: true, uniqueness: { scope: :user_id}
 
-  scope :completed, -> {where('closed = 1 and count_ex_completed  > 0')}
+  scope :completed, -> {where('closed = true and count_ex_completed  > 0')}
   scope :open, -> {where(closed: false)}
   scope :closed_since, -> (date) {where('closed = 1 and day_performed > ?', date)}
 
