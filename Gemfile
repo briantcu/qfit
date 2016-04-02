@@ -49,7 +49,8 @@ group :test do
   gem 'webmock'
   gem 'test-unit'
   gem 'rspec-rails'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
+  gem 'to_factory'
 end
 
 gem 'sidekiq'

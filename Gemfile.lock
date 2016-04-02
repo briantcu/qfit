@@ -83,8 +83,11 @@ GEM
     erubis (2.7.0)
     excon (0.48.0)
     execjs (2.6.0)
-    factory_girl (4.7.0)
+    factory_girl (4.5.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.6.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     figaro (1.1.1)
       thor (~> 0.14)
     fission (0.5.0)
@@ -285,6 +288,11 @@ GEM
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    ruby2ruby (2.3.0)
+      ruby_parser (~> 3.1)
+      sexp_processor (~> 4.0)
+    ruby_parser (3.8.1)
+      sexp_processor (~> 4.1)
     safe_yaml (1.0.4)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -295,6 +303,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sexp_processor (4.7.0)
     sidekiq (4.1.1)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -314,6 +323,10 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    to_factory (2.1.0)
+      activerecord (> 4.0)
+      factory_girl (~> 4.5)
+      ruby2ruby
     trollop (2.1.2)
     turbolinks (2.5.3)
       coffee-rails
@@ -344,7 +357,7 @@ DEPENDENCIES
   carrierwave-base64
   clockworksms
   devise
-  factory_girl
+  factory_girl_rails
   figaro
   fog
   jbuilder (~> 1.2)
@@ -361,6 +374,7 @@ DEPENDENCIES
   sidekiq
   sqlite3
   test-unit
+  to_factory
   turbolinks
   uglifier (>= 1.3.0)
   unf
