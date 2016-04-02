@@ -35,6 +35,8 @@ class DailyRoutine < ActiveRecord::Base
   PLYOS = 2
   SPRINTING = 3
 
+  validates :day_performed, presence: true
+
   scope :completed, -> {where('closed = 1 and count_ex_completed  > 0')}
   scope :open, -> {where(closed: false)}
   scope :closed_since, -> (date) {where('closed = 1 and day_performed > ?', date)}

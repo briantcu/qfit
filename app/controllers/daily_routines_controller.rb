@@ -11,27 +11,29 @@ class DailyRoutinesController < ApplicationController
 
   def index
     @daily_routines = current_user.daily_routines.order(created_at: :desc).limit(5)
+    render json: @daily_routines
   end
 
   #@TODO assume you have to own a workout to see it. Need to work out sharing later
   def show
+    render json: @daily_routine
   end
 
   # This would be for adding exercises to a day that doesn't have a routine yet. Maybe can go away
   # POST /daily_routines.json
   def create
-    daily_routine_parameters = daily_routine_params
-    @daily_routine = DailyRoutine.create_routine(daily_routine_parameters[:user_id], daily_routine_parameters[:day_performed], 0)
-    render action: 'show', status: :created, location: @daily_routine
+    date = Date.new(params[:daily_routine][:year].to_i, params[:daily_routine][:month].to_i, params[:daily_routine][:day].to_i)
+    @daily_routine = DailyRoutine.create_routine(params[:daily_routine][:user_id], date, 0, false)
+    render action: :show, status: :created, location: @daily_routine, json: @daily_routine
   end
 
   #GET /users/:user_id/daily_routines/year/:year/month/:month/day/:day
   def routine_by_date
     @daily_routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], params[:user_id])
     if @daily_routine.nil?
-      render :json => {:error => 'not-found'}.to_json, :status => 404
+      render json: {}, status: 404
     else
-      render 'show'
+      render json: @daily_routine, action: 'show'
     end
   end
 
@@ -49,7 +51,7 @@ class DailyRoutinesController < ApplicationController
   # PATCH/PUT /daily_routines/1
   def update
     if @daily_routine.update(daily_routine_params)
-      render action: 'show', status: :ok, location: @daily_routine
+      render action: 'show', status: :ok, location: @daily_routine, json: @daily_routine
     else
       render json: @daily_routine.errors, status: :unprocessable_entity
     end
@@ -173,8 +175,8 @@ class DailyRoutinesController < ApplicationController
 
   def verify_is_logged_in_or_coach
     return unauthorized if current_user.nil?
-    unauthorized unless (current_user.id == params[:user_id].to_i ||
-        (current_user.is_coach_of_user?(params[:user_id].to_i)) ||
+    unauthorized unless (current_user.id == params[:daily_routine][:user_id].to_i ||
+        (current_user.is_coach_of_user?(params[:daily_routine][:user_id].to_i)) ||
         (current_user.is_super_user?))
   end
 
