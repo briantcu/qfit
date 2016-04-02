@@ -50,6 +50,8 @@ group :test do
   gem 'test-unit'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+end
+group :test, :development do
   gem 'to_factory'
 end
 
