@@ -80,4 +80,11 @@ RSpec.describe DailyRoutinesController, type: :controller do
     expect(@user.daily_routines(true).select { |dr| !dr.closed}.count).to eq(0)
   end
 
+  it 'skips a single workout' do
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    sign_in @user
+    put :skip, id: dr.id, format: :json
+    expect(dr.reload.closed).to eq(true)
+  end
+
 end

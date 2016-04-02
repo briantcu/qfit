@@ -36,6 +36,13 @@ class DailyRoutinesController < ApplicationController
     end
   end
 
+  # PATCH/PUT /daily_routines/1/skip.json
+  def skip
+    service = CloseRoutineService.new(@daily_routine)
+    @daily_routine = service.skip_routine
+    render action: 'show', status: :ok, location: @daily_routine, json: @daily_routine
+  end
+
   #PUT /users/:user_id/daily_routines/skip_all
   def skip_all
     user_id = params[:user_id]
@@ -48,31 +55,11 @@ class DailyRoutinesController < ApplicationController
     render json: {}, status: 201
   end
 
-  # PATCH/PUT /daily_routines/1
-  def update
-    if @daily_routine.update(daily_routine_params)
-      render action: 'show', status: :ok, location: @daily_routine, json: @daily_routine
-    else
-      render json: @daily_routine.errors, status: :unprocessable_entity
-    end
-  end
-
   # PATCH/PUT /daily_routines/1/close.json
   def close
     if @daily_routine.update(daily_routine_params)
       service = CloseRoutineService.new(@daily_routine)
       @daily_routine = service.close_routine
-      render action: 'show', status: :ok, location: @daily_routine
-    else
-      render json: @daily_routine.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /daily_routines/1/skip.json
-  def skip
-    if @daily_routine.update(daily_routine_params)
-      service = CloseRoutineService.new(@daily_routine)
-      @daily_routine = service.skip_routine
       render action: 'show', status: :ok, location: @daily_routine
     else
       render json: @daily_routine.errors, status: :unprocessable_entity
