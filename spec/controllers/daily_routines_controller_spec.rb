@@ -7,12 +7,12 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   it 'returns the last 5 daily routines for a user' do
-    FactoryGirl.create(:daily_routine, user: @user)
-    FactoryGirl.create(:daily_routine, user: @user)
-    FactoryGirl.create(:daily_routine, user: @user)
-    FactoryGirl.create(:daily_routine, user: @user)
-    FactoryGirl.create(:daily_routine, user: @user)
-    FactoryGirl.create(:daily_routine, user: @user)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 1.days)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 2.days)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 3.days)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 4.days)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 5.days)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 6.days)
     sign_in @user
     get :index, format: :json
     body = JSON.parse(response.body)
@@ -69,6 +69,15 @@ RSpec.describe DailyRoutinesController, type: :controller do
     get :routine_by_date, user_id: @user.id, year: dr.day_performed.year, month: dr.day_performed.month, day: dr.day_performed.day, format: :json
     body = JSON.parse(response.body)
     expect(body['id']).to eq(dr.id)
+  end
+
+  it 'allows you to skip all workouts up to today' do
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 1.days)
+    expect(@user.daily_routines.select { |dr| !dr.closed}.count).to eq(2)
+    sign_in @user
+    put :skip_all, user_id: @user.id, format: :json
+    expect(@user.daily_routines(true).select { |dr| !dr.closed}.count).to eq(0)
   end
 
 end

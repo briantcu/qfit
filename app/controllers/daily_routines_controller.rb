@@ -19,7 +19,6 @@ class DailyRoutinesController < ApplicationController
     render json: @daily_routine
   end
 
-  # This would be for adding exercises to a day that doesn't have a routine yet. Maybe can go away
   # POST /daily_routines.json
   def create
     date = Date.new(params[:daily_routine][:year].to_i, params[:daily_routine][:month].to_i, params[:daily_routine][:day].to_i)
@@ -37,7 +36,7 @@ class DailyRoutinesController < ApplicationController
     end
   end
 
-  #GET /users/:user_id/daily_routines/skip_all
+  #PUT /users/:user_id/daily_routines/skip_all
   def skip_all
     user_id = params[:user_id]
     workouts = DailyRoutine.get_old_open_workouts_for_user(user_id)
@@ -46,6 +45,7 @@ class DailyRoutinesController < ApplicationController
       service.set_routine(workout)
       service.skip_routine
     end
+    render json: {}, status: 201
   end
 
   # PATCH/PUT /daily_routines/1
@@ -152,7 +152,6 @@ class DailyRoutinesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_daily_routine
     @daily_routine = DailyRoutine.find(params[:id])
   end

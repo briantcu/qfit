@@ -125,7 +125,7 @@ Qfit::Application.routes.draw do
   post '/daily_routines/:id/plyos/:plyometric_id', to: 'daily_routines#add_plyo'
   put '/daily_routines/:id/close', to: 'daily_routines#close'
   put '/daily_routines/:id/skip', to: 'daily_routines#skip'
-  get '/users/:user_id/daily_routines/skip_all', to: 'daily_routines#skip_all'
+  put '/users/:user_id/daily_routines/skip_all', to: 'daily_routines#skip_all'
   post '/daily_routines/:id/custom/:type/:name', to: 'daily_routines#add_custom'
   get '/daily_routines/:id/reset', to: 'daily_routines#reset'
   get '/daily_routines', to: 'daily_routines#index'

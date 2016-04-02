@@ -16,6 +16,7 @@ class CloseRoutineService
 
   def initialize(routine)
     @routine = routine
+    @pbs = []
   end
 
   def set_routine(routine)
@@ -62,18 +63,21 @@ class CloseRoutineService
   def get_messages(is_completed, is_on_run, is_first_workout)
     unless is_completed
       @routine.routine_messages.create(message: "That's ok, everyone skips a workout every once in a while. Let's get it done next time!")
+      return
     end
 
-    personal_bests = @pbs.take(3)
-    personal_bests.each do |pb|
-      Message.create!(poster_id: @routine.user.id, type: 3, message: "New personal best! #{pb[0].name}, #{pb[1]} estimated 1 rep max!")
+    if @pbs.count > 0
+      personal_bests = @pbs.take(3)
+      personal_bests.each do |pb|
+        Message.create!(poster_id: @routine.user.id, type: 3, message: "New personal best! #{pb[0].name}, #{pb[1]} estimated 1 rep max!")
 
+      end
+      @routine.routine_messages.create(message: "Nice! You recorded personal bests for #{@pbs.map{|pb| pb[0].name}.join(', ')}")
     end
-    @routine.routine_messages.create(message: "Nice! You recorded personal bests for #{@pbs.map{|pb| pb[0].name}.join(', ')}")
 
-    @routine.routine_messages.create(message: "CONGRATULATIONS!!! You finished your first Quadfit workout! Keep it going!!") if is_first_workout
+    @routine.routine_messages.create(message: "CONGRATULATIONS!!! You finished your first Quadfit workout! Keep it going!!") if is_first_workout && is_completed
 
-    @routine.routine_messages.create(message: "You've completed 4+ workouts in a row! Keep up the momentum!!") if is_on_run
+    @routine.routine_messages.create(message: "You've completed 4+ workouts in a row! Keep up the momentum!!") if is_on_run && is_completed
 
     next_open_workout = DailyRoutine.get_open_workouts_start_today(@routine.user).first
     if next_open_workout.present?

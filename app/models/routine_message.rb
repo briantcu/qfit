@@ -9,6 +9,6 @@
 #  updated_at       :datetime
 #
 
-class RoutineMessages < ActiveRecord::Base
+class RoutineMessage < ActiveRecord::Base
   belongs_to :daily_routine, dependent: :destroy
 end

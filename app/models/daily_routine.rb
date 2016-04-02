@@ -35,7 +35,7 @@ class DailyRoutine < ActiveRecord::Base
   PLYOS = 2
   SPRINTING = 3
 
-  validates :day_performed, presence: true
+  validates :day_performed, presence: true, uniqueness: { scope: :user_id}
 
   scope :completed, -> {where('closed = 1 and count_ex_completed  > 0')}
   scope :open, -> {where(closed: false)}
@@ -117,7 +117,7 @@ class DailyRoutine < ActiveRecord::Base
 
   def self.get_old_open_workouts_for_user(user_id)
     now = Date.today
-    workouts = DailyRoutine.where(:user_id => user_id, :closed => false).where('day_performed < ?', now)
+    workouts = DailyRoutine.where(user_id: user_id, closed: false).where('day_performed < ?', now)
     workouts
   end
 
