@@ -25,9 +25,22 @@ RSpec.describe CoachAccountsController, type: :controller do
     it 'should delete a user you own' do
       player = FactoryGirl.create(:user, level: 1, master_user_id: @coach.id)
       expect(@coach.players.count).to eq(1)
+      expect(EmailService).to receive(:perform_async).with(:coach_deleted_you, {email: player.email})
       delete :delete_user, id: @coach_account.id, user_id: player.id, format: :json
       expect(response.status).to eq(201)
       expect(@coach.players.count).to eq(0)
+    end
+
+    it 'should show your account' do
+      FactoryGirl.create(:user, level: 1, master_user_id: @coach.id)
+      expect(@coach.players.count).to eq(1)
+      get :show, id: @coach_account.id, format: :json
+      expect(response.status).to eq(200)
+    end
+
+    it 'should call coach invite service to send an invite' do
+      allow_any_instance_of(CoachInviteService).to receive(:send_invite).with('briantcu@gmail.com', @coach_account).and_return({ status: 'success', message: 'Success', sent_code: '123'})
+      post :send_invite, id: @coach_account.id, send_to: 'briantcu@gmail.com', format: :json
     end
   end
 
