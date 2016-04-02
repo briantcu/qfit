@@ -14,8 +14,6 @@ gem 'active_attr'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
-gem 'rspec-rails'
-
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -50,6 +48,8 @@ gem 'json'
 group :test do
   gem 'webmock'
   gem 'test-unit'
+  gem 'rspec-rails'
+  gem 'factory_girl'
 end
 
 gem 'sidekiq'
@@ -65,5 +65,3 @@ gem 'figaro'
 gem 'unf'
 
 gem 'rollbar', '~> 2.7.1'
-
-gem 'swagger-docs'
