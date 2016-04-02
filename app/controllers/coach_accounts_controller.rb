@@ -2,8 +2,6 @@ class CoachAccountsController < ApplicationController
   before_filter :verify_owns_account, only: [:show, :send_invite, :delete_user, :add_user]
   before_filter :verify_owns_user, only: [:delete_user]
 
-  # GET /coach_accounts/1
-  # GET /coach_accounts/1.json
   def show
   end
 
@@ -19,13 +17,14 @@ class CoachAccountsController < ApplicationController
 
   def delete_user
     user = User.find(params[:user_id])
-    EmailService.peform_async(:coach_deleted_you, {email: user.email})
+    EmailService.perform_async(:coach_deleted_you, {email: user.email})
     user.destroy!
+    render status: 201, json: {}
   end
 
   def send_invite
     send_to = params[:send_to]
-    CoachInviteService.instance.send_invite(send_to, @coach_account)
+    render json: CoachInviteService.instance.send_invite(send_to, @coach_account)
   end
 
   private
