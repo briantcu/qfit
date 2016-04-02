@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory(:user) do
-    administrator nil
+    administrator false
     authentication_token "vAxymkkMvBEC-uamQ1by"
     avatars nil
     birth_year nil
@@ -10,6 +10,7 @@ FactoryGirl.define do
     displayed_user_name nil
     email "bri.reg@gmail.com"
     encrypted_password "ToFactory: RubyParser exception parsing this attribute"
+    password 'password'
     experience_level nil
     first_name "Brian"
     hor_pull_max 150.0
@@ -22,7 +23,7 @@ FactoryGirl.define do
     last_sprint_day_created 1
     last_warmup_day_created 1
     last_weight_day_created 0
-    level nil
+    level 2
     master_user_id nil
     old_password nil
     paid_tier 1

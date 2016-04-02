@@ -12,9 +12,8 @@ class CoachAccountsController < ApplicationController
       render :status => 471, :json => { :errors => 'Coach is maxed out'}
     else
       @user = User.new(sign_up_params)
-      temp_password = assign_temp_password
-      @user = RegistrationService.register_user_for_coach(@user, current_user, temp_password)
-      render :json => @user.to_json, :status=>201
+      @user = RegistrationService.instance.register_user_for_coach(@user, current_user, assign_temp_password)
+      render json: @user
     end
   end
 
@@ -26,7 +25,7 @@ class CoachAccountsController < ApplicationController
 
   def send_invite
     send_to = params[:send_to]
-    CoachInviteService.new.send_invite(send_to, @coach_account)
+    CoachInviteService.instance.send_invite(send_to, @coach_account)
   end
 
   private
@@ -47,11 +46,11 @@ class CoachAccountsController < ApplicationController
   end
 
   def sign_up_params
-    params.require(:user).permit( :email, :password, :password_confirmation, :first_name, :last_name, :sex)
+    params.require(:user).permit( :email, :first_name, :last_name, :sex)
   end
 
   def assign_temp_password
-    temp_password = RegistrationService.generate_password
+    temp_password = RegistrationService.instance.generate_password
     @user.password = temp_password
     temp_password
   end

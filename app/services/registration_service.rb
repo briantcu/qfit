@@ -1,5 +1,9 @@
+require 'singleton'
+
 class RegistrationService
-  def self.register_user(user, sign_up_code_record, account_type)
+  include Singleton
+
+  def register_user(user, sign_up_code_record, account_type)
     #If not creating from admin, send welcome email and log them in
     if account_type == 'coach'
       #Coach
@@ -28,7 +32,7 @@ class RegistrationService
     user
   end
 
-  def self.register_user_for_coach(user, coach, temp_password)
+  def register_user_for_coach(user, coach, temp_password)
     user.assign_attributes(level: 1, sub_user: true, master_user_id: coach.id)
     if user.save!
       EmailService.perform_async(:new_sub_email_from_coach, {user_id: user.id, temp_password: temp_password})
@@ -36,7 +40,7 @@ class RegistrationService
     user
   end
 
-  def self.generate_password
+  def generate_password
     ('a'..'z').to_a.shuffle[0,8].join
   end
 end

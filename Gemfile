@@ -28,7 +28,7 @@ gem 'jwt', '1.5.4'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.4.1'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -40,10 +40,6 @@ gem 'devise'
 gem 'better_errors'
 
 gem 'annotate'
-
-gem 'multi_json', '1.7.8'
-
-gem 'json'
 
 group :test do
   gem 'webmock'
