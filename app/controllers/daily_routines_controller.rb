@@ -175,8 +175,13 @@ class DailyRoutinesController < ApplicationController
 
   def verify_is_logged_in_or_coach
     return unauthorized if current_user.nil?
-    unauthorized unless (current_user.id == params[:daily_routine][:user_id].to_i ||
-        (current_user.is_coach_of_user?(params[:daily_routine][:user_id].to_i)) ||
+    if request.request_method == 'GET'
+      user_id = params[:user_id].to_i
+    else
+      user_id = params[:daily_routine][:user_id].to_i
+    end
+    unauthorized unless (current_user.id == user_id.to_i ||
+        (current_user.is_coach_of_user?(user_id.to_i)) ||
         (current_user.is_super_user?))
   end
 

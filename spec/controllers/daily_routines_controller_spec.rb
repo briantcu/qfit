@@ -63,4 +63,12 @@ RSpec.describe DailyRoutinesController, type: :controller do
     expect(body['id']).to eq(dr.id)
   end
 
+  it 'returns a workout for a given date' do
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+    sign_in @user
+    get :routine_by_date, user_id: @user.id, year: dr.day_performed.year, month: dr.day_performed.month, day: dr.day_performed.day, format: :json
+    body = JSON.parse(response.body)
+    expect(body['id']).to eq(dr.id)
+  end
+
 end
