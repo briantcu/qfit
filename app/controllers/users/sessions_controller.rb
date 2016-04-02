@@ -8,11 +8,8 @@ class Users::SessionsController < Devise::SessionsController
 
   def destroy
     current_user.reset_authentication_token
-    if request.path_parameters[:format] == 'json'
-      sign_out
-      render :status => 200, :json => {}
-    end
-    super
+    sign_out
+    render :status => 200, :json => {}
   end
 
   after_filter :set_csrf_header, only: [:create]
@@ -24,7 +21,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def failure
-    render json: { success: false, errors: 'Invalid Login' }, :status => :unauthorized
+    render json: { success: false, errors: 'Invalid Login' }, status: :unauthorized
   end
 
   def process_api_sign_in(email, password)
