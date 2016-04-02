@@ -35,13 +35,13 @@ class CoachAccountsController < ApplicationController
 
   def verify_owns_account
     set_coach_account
-    (current_user.nil?) ? unauthorized : unauthorized unless
-      @coach_account.user_id == current_user.id
+    return unauthorized if current_user.nil?
+    unauthorized unless @coach_account.user_id == current_user.id
   end
 
   def verify_owns_user
-    (current_user.nil?) ? unauthorized : unauthorized unless
-      (current_user.is_coach_of_user?(params[:user_id]))
+    return unauthorized if current_user.nil?
+    unauthorized unless (current_user.is_coach_of_user?(params[:user_id]))
   end
 
   def sign_up_params

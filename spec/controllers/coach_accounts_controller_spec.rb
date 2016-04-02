@@ -44,4 +44,23 @@ RSpec.describe CoachAccountsController, type: :controller do
     end
   end
 
+  context 'invalid credentials' do
+    it 'should not allow a coach to delete a user they dont own' do
+      sign_in @coach
+      user = FactoryGirl.create(:user)
+      delete :delete_user, id: @coach_account.id, user_id: user.id, format: :json
+      expect(response.status).to eq(401)
+    end
+
+    it 'should not allow access to coach account' do
+      get :show, id: @coach_account.id, format: :json
+      expect(response.status).to eq(401)
+    end
+
+    it 'should not allow adding to coach account' do
+      post :add_user, id: @coach_account.id, user: {email: 'briantcu@gmail.com', first_name: 'brian', last_name: 'regan', sex: 'male'}, format: :json
+      expect(response.status).to eq(401)
+    end
+  end
+
 end

@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def unauthorized
-    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+    render json: { success: false, errors: 'Unauthorized' }, status: :unauthorized
   end
 
   def verify_logged_in
