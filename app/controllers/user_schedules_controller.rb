@@ -1,15 +1,11 @@
 class UserSchedulesController < ApplicationController
   before_filter :verify_logged_in
-  before_action :set_user_schedule, only: [:show, :edit, :update]
+  before_action :set_user_schedule, only: [:update]
   before_filter :verify_is_logged_in_or_coach, only: [:create, :update]
 
-  # GET /user_schedules/1
   # GET /user_schedules/1.json
   def show
-  end
-
-  # GET /user_schedules/1/edit
-  def edit
+    @user_schedule = current_user.user_schedule
   end
 
   # POST /user_schedules.json
@@ -61,8 +57,10 @@ class UserSchedulesController < ApplicationController
   end
 
   def verify_is_logged_in_or_coach
-    current_user.nil? ? unauthorized : unauthorized unless
-        (current_user.id == params[:user_schedule][:user_id].to_i || (current_user.is_coach_of_user?(params[:user_schedule][:user_id].to_i)) || (current_user.is_super_user?))
+    unauthorized unless
+        (current_user.id == params[:user_schedule][:user_id].to_i ||
+            (current_user.is_coach_of_user?(params[:user_schedule][:user_id].to_i)) ||
+            (current_user.is_super_user?))
   end
 
 end

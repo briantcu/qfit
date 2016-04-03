@@ -1,7 +1,5 @@
 class WorkoutScheduleSuggestionsController < ApplicationController
-
-  def show
-  end
+  before_filter :verify_logged_in
 
   def retrieve_suggested_schedule
     @workout_schedule_suggestion = WorkoutScheduleSuggestion
