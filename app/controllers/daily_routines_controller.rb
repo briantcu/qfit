@@ -84,7 +84,7 @@ class DailyRoutinesController < ApplicationController
       sprint = Sprint.find(params[:sprint_id])
       perf_sprint = @daily_routine.add_sprint(sprint.id, 1, 0)
       @daily_routine.note_sprints_changed
-      render json: perf_sprint
+      render json: perf_sprint, status: :created
     end
   end
 
@@ -96,7 +96,7 @@ class DailyRoutinesController < ApplicationController
       warmup = Warmup.find(params[:warmup_id])
       perf_wu = @daily_routine.add_warmup(warmup.id, 1, 0)
       @daily_routine.note_warmups_changed
-      render json: perf_wu.to_json
+      render json: perf_wu, status: :created
     end
   end
 
@@ -108,7 +108,7 @@ class DailyRoutinesController < ApplicationController
       plyo = Plyometric.find(params[:plyometric_id])
       perf_plyo = @daily_routine.add_plyometric(plyo.id, 1, 0)
       @daily_routine.note_plyos_changed
-      render json: perf_plyo.to_json
+      render json: perf_plyo, status: :created
     end
   end
 
@@ -118,7 +118,7 @@ class DailyRoutinesController < ApplicationController
       render json: { success: false, errors: 'Maxed out' }, :status => 406
     else
       custom = @daily_routine.add_custom_exercise(params[:name], params[:type], 0)
-      render json: custom.to_json
+      render json: custom, status: :created
     end
   end
 
@@ -128,12 +128,11 @@ class DailyRoutinesController < ApplicationController
     render action: 'show', status: :ok, location: @daily_routine
   end
 
-  def workout_shared
+  def shared
     @daily_routine.user.points += 10
     @daily_routine.user.save!
-    @daily_routine.shared = true
-    @daily_routine.save!
-    render action: 'show', status: :ok, location: @daily_routine
+    @daily_routine.update_attributes(shared: true)
+    render action: :show, status: :ok, location: @daily_routine
   end
 
   private

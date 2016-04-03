@@ -129,6 +129,7 @@ Qfit::Application.routes.draw do
   post '/daily_routines/:id/custom/:type/:name', to: 'daily_routines#add_custom'
   get '/daily_routines/:id/reset', to: 'daily_routines#reset'
   get '/daily_routines', to: 'daily_routines#index'
+  put 'daily_routines/:id/shared', to: 'daily_routines#shared'
 
   resources :custom_exercises
 

@@ -4,8 +4,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
 
   before(:each) do
     @user = FactoryGirl.create(:user)
-    program = FactoryGirl.create(:program_type)
-    FactoryGirl.create(:user_schedule, user: @user, program_type: program)
+    FactoryGirl.create(:user_schedule, user: @user, program_type_id: 1, program_id: 1)
   end
 
   it 'returns the last 5 daily routines for a user' do
@@ -101,13 +100,72 @@ RSpec.describe DailyRoutinesController, type: :controller do
 
   it 'adds a weights exercise' do
     dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
-    exercise = FactoryGirl.create(:exercise)
-    allow(Exercise).to receive(:find).and_return(exercise)
 
     sign_in @user
-    expect(dr).to receive(:note_weights_changed)
-    post :add_weight, id: dr.id, exercise_id: exercise.id, format: :json
-    expect(response.status).to eq(:created)
+    expect_any_instance_of(DailyRoutine).to receive(:note_weights_changed)
+    post :add_weight, id: dr.id, exercise_id: 3, format: :json
+    expect(response.status).to eq(201)
+    expect(dr.performed_exercises.count).to eq(1)
+  end
+
+  it 'adds a sprint' do
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+
+    sign_in @user
+    expect_any_instance_of(DailyRoutine).to receive(:note_sprints_changed)
+    post :add_sprint, id: dr.id, sprint_id: 2, format: :json
+    expect(response.status).to eq(201)
+    expect(dr.performed_sprints.count).to eq(1)
+  end
+
+  it 'adds a warmup' do
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+
+    sign_in @user
+    expect_any_instance_of(DailyRoutine).to receive(:note_warmups_changed)
+    post :add_warmup, id: dr.id, warmup_id: 2, format: :json
+    expect(response.status).to eq(201)
+    expect(dr.performed_warm_ups.count).to eq(1)
+  end
+
+  it 'adds a plyo' do
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+
+    sign_in @user
+    expect_any_instance_of(DailyRoutine).to receive(:note_plyos_changed)
+    post :add_plyo, id: dr.id, plyometric_id: 2, format: :json
+    expect(response.status).to eq(201)
+    expect(dr.performed_plyometrics.count).to eq(1)
+  end
+
+  it 'adds a custom exercise' do
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+
+    sign_in @user
+    post :add_custom, id: dr.id, name: 'my custom', type: 1, format: :json
+    expect(response.status).to eq(201)
+    expect(dr.custom_exercises.count).to eq(1)
+  end
+
+  it 'does not add an exercise if maxed out' do
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    15.times do
+      FactoryGirl.create(:performed_exercise, daily_routine: dr)
+    end
+    sign_in @user
+    post :add_weight, id: dr.id, exercise_id: 2, format: :json
+    expect(response.status).to eq(406)
+    expect(dr.performed_exercises.count).to eq(15)
+  end
+
+  it 'assigns user points and notes as shared' do
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    sign_in @user
+    put :shared, id: dr.id, format: :json
+    body = JSON.parse(response.body)
+    expect(response.status).to eq(200)
+    expect(body['shared']).to eq(true)
+    expect(@user.reload.points).to eq(10)
   end
 
 end
