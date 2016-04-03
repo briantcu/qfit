@@ -11,7 +11,7 @@ json.array! @coach_account.coach_groups do |group|
   end
 end
 json.array! @coach_account.players do |player|
-  json.id user.id
+  json.id player.id
   json.first_name player.first_name
   json.last_name player.last_name
   json.flag_text player.flag_text_for_coach
