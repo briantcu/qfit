@@ -1,11 +1,7 @@
 class GroupPerformedPlyosController < ApplicationController
-  before_action :set_group_performed_plyo, only: [:show, :update, :destroy]
+  before_filter :verify_logged_in
+  before_action :set_group_performed_plyo, only: [:update, :destroy]
   before_filter :verify_owns_group, only: [:update, :destroy]
-
-  # GET /group_performed_plyos/1
-  # GET /group_performed_plyos/1.json
-  def show
-  end
 
   # PATCH/PUT /group_performed_plyos/1
   # PATCH/PUT /group_performed_plyos/1.json
@@ -26,18 +22,15 @@ class GroupPerformedPlyosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_group_performed_plyo
-      @group_performed_plyo = GroupPerformedPlyo.find(params[:id])
-    end
+  def set_group_performed_plyo
+    @group_performed_plyo = GroupPerformedPlyo.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def group_performed_plyo_params
-      params.require(:group_performed_plyo).permit(:plyometric_id, :status)
-    end
+  def group_performed_plyo_params
+    params.require(:group_performed_plyo).permit(:plyometric_id, :status)
+  end
 
   def verify_owns_group
-    (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_group?(@group_performed_plyo.routine_id))
+    unauthorized unless (current_user.owns_group?(@group_performed_plyo.routine_id))
   end
 end
