@@ -18,7 +18,7 @@ class WarmupService
   @entity
   @routine
 
-  def self.add_exercises(entity, routine)
+  def add_exercises(entity, routine)
     @entity = entity
     @routine = routine
 
@@ -31,7 +31,7 @@ class WarmupService
 
   end
 
-  def self.copy_exercises(entity, routine, previous_routine)
+  def copy_exercises(entity, routine, previous_routine)
     @entity = entity
     @routine = routine
 
