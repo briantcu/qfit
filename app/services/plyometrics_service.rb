@@ -13,7 +13,7 @@ class PlyometricsService
   @routine
 
 
-  def self.add_exercises(entity, routine)
+  def add_exercises(entity, routine)
     @entity = entity
     @routine = routine
     if @entity.is_group?
@@ -35,7 +35,7 @@ class PlyometricsService
     end
   end
 
-  def self.copy_exercises(entity, routine, previous_routine)
+  def copy_exercises(entity, routine, previous_routine)
     @entity = entity
     @routine = routine
 
