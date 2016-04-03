@@ -1,6 +1,6 @@
 json.extract! @coach_account, :id, :num_accts, :billing_email, :created_at, :updated_at
 json.user @coach_account.user, :id, :first_name, :last_name
-json.array! @coach_account.groups do |group|
+json.array! @coach_account.coach_groups do |group|
   json.id group.id
   json.name group.name
   json.array! group.members do |user|
