@@ -82,6 +82,7 @@ class User < ActiveRecord::Base
   has_many :players, class_name: User, foreign_key: :master_user_id
 
   has_one :group_join, dependent: :destroy
+  has_one :sign_up_code, dependent: :destroy
   has_one :group, through: :group_join
   has_one :user_schedule, dependent: :destroy
   has_one :coach_account, dependent: :destroy
