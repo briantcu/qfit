@@ -49,6 +49,7 @@ group :test do
 end
 group :test, :development do
   gem 'to_factory'
+  gem 'db_fixtures_dump'
 end
 
 gem 'sidekiq'

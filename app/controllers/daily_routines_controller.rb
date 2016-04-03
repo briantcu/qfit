@@ -72,7 +72,7 @@ class DailyRoutinesController < ApplicationController
       exercise = Exercise.find(params[:exercise_id])
       perf_ex = @daily_routine.add_weights(exercise, 1, 0)
       @daily_routine.note_weights_changed
-      render json: perf_ex.to_json
+      render json: perf_ex, status: :created
     end
   end
 
@@ -84,7 +84,7 @@ class DailyRoutinesController < ApplicationController
       sprint = Sprint.find(params[:sprint_id])
       perf_sprint = @daily_routine.add_sprint(sprint.id, 1, 0)
       @daily_routine.note_sprints_changed
-      render json: perf_sprint.to_json
+      render json: perf_sprint
     end
   end
 

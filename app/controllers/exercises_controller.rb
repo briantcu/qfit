@@ -2,12 +2,6 @@ class ExercisesController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_exercise, only: [:show]
 
-  # GET /exercises
-  # GET /exercises.json
-  def index
-    @exercise_types = ExerciseType.all
-  end
-
   # GET /exercises/1
   # GET /exercises/1.json
   def show

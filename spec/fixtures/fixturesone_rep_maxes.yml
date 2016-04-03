@@ -1,0 +1,81 @@
+---
+OneRepMax_1:
+  id: 1
+  rep: 1
+  percentage: 1.0
+OneRepMax_2:
+  id: 2
+  rep: 2
+  percentage: 0.92
+OneRepMax_3:
+  id: 3
+  rep: 3
+  percentage: 0.9
+OneRepMax_4:
+  id: 4
+  rep: 4
+  percentage: 0.87
+OneRepMax_5:
+  id: 5
+  rep: 5
+  percentage: 0.85
+OneRepMax_6:
+  id: 6
+  rep: 6
+  percentage: 0.82
+OneRepMax_7:
+  id: 7
+  rep: 7
+  percentage: 0.8
+OneRepMax_8:
+  id: 8
+  rep: 8
+  percentage: 0.75
+OneRepMax_9:
+  id: 9
+  rep: 9
+  percentage: 0.73
+OneRepMax_10:
+  id: 10
+  rep: 10
+  percentage: 0.7
+OneRepMax_11:
+  id: 11
+  rep: 11
+  percentage: 0.68
+OneRepMax_12:
+  id: 12
+  rep: 12
+  percentage: 0.65
+OneRepMax_13:
+  id: 13
+  rep: 13
+  percentage: 0.62
+OneRepMax_14:
+  id: 14
+  rep: 14
+  percentage: 0.58
+OneRepMax_15:
+  id: 15
+  rep: 15
+  percentage: 0.54
+OneRepMax_16:
+  id: 16
+  rep: 16
+  percentage: 0.5
+OneRepMax_17:
+  id: 17
+  rep: 17
+  percentage: 0.46
+OneRepMax_18:
+  id: 18
+  rep: 18
+  percentage: 0.42
+OneRepMax_19:
+  id: 19
+  rep: 19
+  percentage: 0.38
+OneRepMax_20:
+  id: 20
+  rep: 20
+  percentage: 0.34

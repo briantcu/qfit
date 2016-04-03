@@ -1,0 +1,1397 @@
+---
+Exercise_1:
+  id: 1
+  exercise_type_id: 1
+  video_link: '83347318'
+  look_up_value: 1
+  percent_of_luv: 0.65
+  category: 1
+  is_body_weight: false
+  name: Clean Pull
+  is_image: false
+  paid_tier: 1
+Exercise_2:
+  id: 2
+  exercise_type_id: 1
+  video_link: '83085524'
+  look_up_value: 1
+  percent_of_luv: 0.25
+  category: 1
+  is_body_weight: false
+  name: Squat Jump
+  is_image: false
+  paid_tier: 1
+Exercise_3:
+  id: 3
+  exercise_type_id: 1
+  video_link: '83357080'
+  look_up_value: 1
+  percent_of_luv: 0.68
+  category: 1
+  is_body_weight: false
+  name: Snatch Pull
+  is_image: false
+  paid_tier: 1
+Exercise_4:
+  id: 4
+  exercise_type_id: 1
+  video_link: '83082802'
+  look_up_value: 2
+  percent_of_luv: 0.23
+  category: 2
+  is_body_weight: false
+  name: One Arm Dumbbell Snatch
+  is_image: false
+  paid_tier: 1
+Exercise_5:
+  id: 5
+  exercise_type_id: 1
+  video_link: '83079812'
+  look_up_value: 1
+  percent_of_luv: 0.71
+  category: 1
+  is_body_weight: false
+  name: Hang Jump Shrug
+  is_image: false
+  paid_tier: 1
+Exercise_6:
+  id: 6
+  exercise_type_id: 1
+  video_link: '83078151'
+  look_up_value: 1
+  percent_of_luv: 0.58
+  category: 1
+  is_body_weight: false
+  name: Clean High Pull
+  is_image: false
+  paid_tier: 1
+Exercise_7:
+  id: 7
+  exercise_type_id: 1
+  video_link: '83085296'
+  look_up_value: 1
+  percent_of_luv: 0.58
+  category: 1
+  is_body_weight: false
+  name: Snatch High Pull
+  is_image: false
+  paid_tier: 1
+Exercise_8:
+  id: 8
+  exercise_type_id: 1
+  video_link: '83347321'
+  look_up_value: 1
+  percent_of_luv: 0.48
+  category: 1
+  is_body_weight: false
+  name: Hang Power Clean
+  is_image: false
+  paid_tier: 1
+Exercise_9:
+  id: 9
+  exercise_type_id: 1
+  video_link: '83080931'
+  look_up_value: 1
+  percent_of_luv: 0.48
+  category: 1
+  is_body_weight: false
+  name: Hang Power Snatch
+  is_image: false
+  paid_tier: 1
+Exercise_10:
+  id: 10
+  exercise_type_id: 1
+  video_link: '83083262'
+  look_up_value: 1
+  percent_of_luv: 0.48
+  category: 1
+  is_body_weight: false
+  name: Power Clean
+  is_image: false
+  paid_tier: 1
+Exercise_11:
+  id: 11
+  exercise_type_id: 1
+  video_link: '83395098'
+  look_up_value: 1
+  percent_of_luv: 0.48
+  category: 1
+  is_body_weight: false
+  name: Power Snatch
+  is_image: false
+  paid_tier: 1
+Exercise_12:
+  id: 12
+  exercise_type_id: 2
+  video_link: '83079576'
+  look_up_value: 1
+  percent_of_luv: 0.48
+  category: 1
+  is_body_weight: false
+  name: Forward Lunge
+  is_image: false
+  paid_tier: 1
+Exercise_13:
+  id: 13
+  exercise_type_id: 2
+  video_link: '83083768'
+  look_up_value: 1
+  percent_of_luv: 0.5
+  category: 1
+  is_body_weight: false
+  name: Reverse Lunge
+  is_image: false
+  paid_tier: 1
+Exercise_14:
+  id: 14
+  exercise_type_id: 2
+  video_link: '83084249'
+  look_up_value: 1
+  percent_of_luv: 0.48
+  category: 1
+  is_body_weight: false
+  name: Side Lunge
+  is_image: false
+  paid_tier: 1
+Exercise_15:
+  id: 15
+  exercise_type_id: 2
+  video_link: '83079006'
+  look_up_value: 1
+  percent_of_luv: 0.52
+  category: 1
+  is_body_weight: false
+  name: Drop Lunge
+  is_image: false
+  paid_tier: 1
+Exercise_16:
+  id: 16
+  exercise_type_id: 2
+  video_link: '83085721'
+  look_up_value: 1
+  percent_of_luv: 0.55
+  category: 1
+  is_body_weight: false
+  name: Stepup
+  is_image: false
+  paid_tier: 1
+Exercise_17:
+  id: 17
+  exercise_type_id: 2
+  video_link: '83082122'
+  look_up_value: 1
+  percent_of_luv: 0.55
+  category: 1
+  is_body_weight: false
+  name: Lateral Stepup
+  is_image: false
+  paid_tier: 1
+Exercise_18:
+  id: 18
+  exercise_type_id: 2
+  video_link: '83077931'
+  look_up_value: 1
+  percent_of_luv: 0.48
+  category: 1
+  is_body_weight: false
+  name: Bulgarian Split Squat
+  is_image: false
+  paid_tier: 1
+Exercise_19:
+  id: 19
+  exercise_type_id: 2
+  video_link: '83077697'
+  look_up_value: 1
+  percent_of_luv: 0.49
+  category: 1
+  is_body_weight: false
+  name: Bulgarian Split Deadlift
+  is_image: false
+  paid_tier: 1
+Exercise_20:
+  id: 20
+  exercise_type_id: 2
+  video_link: '83085056'
+  look_up_value: 1
+  percent_of_luv: 0.32
+  category: 1
+  is_body_weight: false
+  name: Single Leg Squats
+  is_image: false
+  paid_tier: 1
+Exercise_21:
+  id: 21
+  exercise_type_id: 3
+  video_link: '83357082'
+  look_up_value: 1
+  percent_of_luv: 1.0
+  category: 1
+  is_body_weight: false
+  name: Squat
+  is_image: false
+  paid_tier: 1
+Exercise_22:
+  id: 22
+  exercise_type_id: 3
+  video_link: '83079809'
+  look_up_value: 1
+  percent_of_luv: 0.62
+  category: 1
+  is_body_weight: false
+  name: Front Squat
+  is_image: false
+  paid_tier: 1
+Exercise_23:
+  id: 23
+  exercise_type_id: 3
+  video_link: '83082985'
+  look_up_value: 2
+  percent_of_luv: 0.25
+  category: 1
+  is_body_weight: false
+  name: Overhead Squat
+  is_image: false
+  paid_tier: 1
+Exercise_24:
+  id: 24
+  exercise_type_id: 3
+  video_link: '83085523'
+  look_up_value: 1
+  percent_of_luv: 0.72
+  category: 1
+  is_body_weight: false
+  name: Split Squat
+  is_image: false
+  paid_tier: 1
+Exercise_25:
+  id: 25
+  exercise_type_id: 3
+  video_link: '83084250'
+  look_up_value: 1
+  percent_of_luv: 0.49
+  category: 1
+  is_body_weight: false
+  name: Side Squat
+  is_image: false
+  paid_tier: 1
+Exercise_26:
+  id: 26
+  exercise_type_id: 4
+  video_link: '83348003'
+  look_up_value: 1
+  percent_of_luv: 0.44
+  category: 1
+  is_body_weight: false
+  name: Single Leg Good Morning
+  is_image: false
+  paid_tier: 1
+Exercise_27:
+  id: 27
+  exercise_type_id: 4
+  video_link: '83357079'
+  look_up_value: 1
+  percent_of_luv: 0.36
+  category: 1
+  is_body_weight: false
+  name: Single Leg Romanian Deadlift
+  is_image: false
+  paid_tier: 1
+Exercise_28:
+  id: 28
+  exercise_type_id: 4
+  video_link: '83084856'
+  look_up_value: 1
+  percent_of_luv: 0.15
+  category: 9
+  is_body_weight: false
+  name: Single Leg Back Extension
+  is_image: false
+  paid_tier: 1
+Exercise_29:
+  id: 29
+  exercise_type_id: 4
+  video_link: '83085057'
+  category: 3
+  is_body_weight: false
+  name: Single Leg Supine Hip Extension
+  is_image: false
+  paid_tier: 1
+Exercise_30:
+  id: 30
+  exercise_type_id: 4
+  video_link: '83085058'
+  category: 3
+  is_body_weight: false
+  name: Single Leg Swiss Ball Pull In
+  is_image: false
+  paid_tier: 1
+Exercise_31:
+  id: 31
+  exercise_type_id: 5
+  video_link: '83083772'
+  look_up_value: 1
+  percent_of_luv: 0.77
+  category: 1
+  is_body_weight: false
+  name: Romanian Deadlift
+  is_image: false
+  paid_tier: 1
+Exercise_32:
+  id: 32
+  exercise_type_id: 5
+  video_link: '83079811'
+  look_up_value: 1
+  percent_of_luv: 0.55
+  category: 1
+  is_body_weight: false
+  name: Good Morning
+  is_image: false
+  paid_tier: 1
+Exercise_33:
+  id: 33
+  exercise_type_id: 6
+  video_link: '83082801'
+  look_up_value: 2
+  percent_of_luv: 0.4
+  category: 2
+  is_body_weight: false
+  name: One Arm Dumbbell Decline Press
+  is_image: false
+  paid_tier: 1
+Exercise_34:
+  id: 34
+  exercise_type_id: 5
+  video_link: '83076503'
+  look_up_value: 1
+  percent_of_luv: 0.19
+  category: 9
+  is_body_weight: false
+  name: Back Extension
+  is_image: false
+  paid_tier: 1
+Exercise_35:
+  id: 35
+  exercise_type_id: 5
+  video_link: '83085724'
+  category: 3
+  is_body_weight: false
+  name: Supine Hip Extension
+  is_image: false
+  paid_tier: 1
+Exercise_36:
+  id: 36
+  exercise_type_id: 5
+  video_link: '83085730'
+  category: 3
+  is_body_weight: false
+  name: Swiss Ball Pull In
+  is_image: false
+  paid_tier: 1
+Exercise_37:
+  id: 38
+  exercise_type_id: 6
+  video_link: '83079009'
+  look_up_value: 2
+  percent_of_luv: 0.45
+  category: 2
+  is_body_weight: false
+  name: Dumbbell Bench Press
+  is_image: false
+  paid_tier: 1
+Exercise_38:
+  id: 39
+  exercise_type_id: 6
+  video_link: '83079339'
+  look_up_value: 2
+  percent_of_luv: 0.3
+  category: 2
+  is_body_weight: false
+  name: Dumbbell Incline Press
+  is_image: false
+  paid_tier: 1
+Exercise_39:
+  id: 40
+  exercise_type_id: 6
+  video_link: '83079338'
+  look_up_value: 2
+  percent_of_luv: 0.4
+  category: 2
+  is_body_weight: false
+  name: Dumbbell Decline Press
+  is_image: false
+  paid_tier: 1
+Exercise_40:
+  id: 41
+  exercise_type_id: 6
+  video_link: '83076193'
+  look_up_value: 2
+  percent_of_luv: 0.45
+  category: 2
+  is_body_weight: false
+  name: Alternating Dumbbell Bench Press
+  is_image: false
+  paid_tier: 1
+Exercise_41:
+  id: 42
+  exercise_type_id: 6
+  video_link: '83076197'
+  look_up_value: 2
+  percent_of_luv: 0.27
+  category: 2
+  is_body_weight: false
+  name: Alternating Dumbbell Incline Press
+  is_image: false
+  paid_tier: 1
+Exercise_42:
+  id: 43
+  exercise_type_id: 6
+  video_link: '83076196'
+  look_up_value: 2
+  percent_of_luv: 0.3
+  category: 2
+  is_body_weight: false
+  name: Alternating Dumbbell Decline Press
+  is_image: false
+  paid_tier: 1
+Exercise_43:
+  id: 44
+  exercise_type_id: 6
+  video_link: '83084625'
+  look_up_value: 2
+  percent_of_luv: 0.45
+  category: 2
+  is_body_weight: false
+  name: One Arm Dumbbell Bench Press
+  is_image: false
+  paid_tier: 1
+Exercise_44:
+  id: 45
+  exercise_type_id: 6
+  video_link: '83084627'
+  look_up_value: 2
+  percent_of_luv: 0.3
+  category: 2
+  is_body_weight: false
+  name: One Arm Dumbbell Incline Press
+  is_image: false
+  paid_tier: 1
+Exercise_45:
+  id: 46
+  exercise_type_id: 6
+  video_link: '83082800'
+  look_up_value: 2
+  percent_of_luv: 0.52
+  category: 7
+  is_body_weight: false
+  name: One Arm Cable Chest Press
+  is_image: false
+  paid_tier: 1
+Exercise_46:
+  id: 47
+  exercise_type_id: 7
+  video_link: '83077356'
+  look_up_value: 2
+  percent_of_luv: 1.0
+  category: 1
+  is_body_weight: false
+  name: Bench Press
+  is_image: false
+  paid_tier: 1
+Exercise_47:
+  id: 48
+  exercise_type_id: 7
+  video_link: '83081676'
+  look_up_value: 2
+  percent_of_luv: 0.85
+  category: 1
+  is_body_weight: false
+  name: Incline Press
+  is_image: false
+  paid_tier: 1
+Exercise_48:
+  id: 49
+  exercise_type_id: 7
+  video_link: '83078730'
+  look_up_value: 2
+  percent_of_luv: 0.89
+  category: 1
+  is_body_weight: false
+  name: Decline Press
+  is_image: false
+  paid_tier: 1
+Exercise_49:
+  id: 50
+  exercise_type_id: 7
+  video_link: '83078154'
+  look_up_value: 2
+  percent_of_luv: 0.87
+  category: 1
+  is_body_weight: false
+  name: Close Grip Bench Press
+  is_image: false
+  paid_tier: 1
+Exercise_50:
+  id: 51
+  exercise_type_id: 7
+  video_link: '83078420'
+  look_up_value: 2
+  percent_of_luv: 0.67
+  category: 1
+  is_body_weight: false
+  name: Close Grip Incline Press
+  is_image: false
+  paid_tier: 1
+Exercise_51:
+  id: 52
+  exercise_type_id: 7
+  video_link: '83078419'
+  look_up_value: 2
+  percent_of_luv: 0.77
+  category: 1
+  is_body_weight: false
+  name: Close Grip Decline Press
+  is_image: false
+  paid_tier: 1
+Exercise_52:
+  id: 53
+  exercise_type_id: 7
+  video_link: '83083534'
+  category: 3
+  is_body_weight: true
+  name: Pushup
+  is_image: false
+  paid_tier: 1
+Exercise_53:
+  id: 54
+  exercise_type_id: 13
+  video_link: '83076497'
+  look_up_value: 3
+  percent_of_luv: 1.5
+  category: 7
+  is_body_weight: true
+  name: Assisted Pullup
+  is_image: false
+  paid_tier: 1
+Exercise_54:
+  id: 55
+  exercise_type_id: 7
+  video_link: '83078733'
+  category: 3
+  is_body_weight: true
+  name: Decline Pushup
+  is_image: false
+  paid_tier: 1
+Exercise_55:
+  id: 56
+  exercise_type_id: 7
+  video_link: '83081188'
+  category: 3
+  is_body_weight: true
+  name: Incline Pushup
+  is_image: false
+  paid_tier: 1
+Exercise_56:
+  id: 57
+  exercise_type_id: 7
+  video_link: '83078736'
+  category: 3
+  is_body_weight: true
+  name: Dip
+  is_image: false
+  paid_tier: 1
+Exercise_57:
+  id: 58
+  exercise_type_id: 7
+  video_link: '83076350'
+  look_up_value: 2
+  percent_of_luv: 1.25
+  category: 7
+  is_body_weight: true
+  name: Assisted Dip
+  is_image: false
+  paid_tier: 1
+Exercise_58:
+  id: 59
+  exercise_type_id: 7
+  video_link: '83078734'
+  look_up_value: 2
+  percent_of_luv: 1.5
+  category: 8
+  is_body_weight: true
+  name: Dip With Dip Belt
+  is_image: false
+  paid_tier: 1
+Exercise_59:
+  id: 60
+  exercise_type_id: 8
+  video_link: '83079007'
+  look_up_value: 2
+  percent_of_luv: 0.25
+  category: 2
+  is_body_weight: false
+  name: Dumbbell Alternating Press
+  is_image: false
+  paid_tier: 1
+Exercise_60:
+  id: 61
+  exercise_type_id: 8
+  video_link: '83079569'
+  look_up_value: 2
+  percent_of_luv: 0.25
+  category: 2
+  is_body_weight: false
+  name: Dumbbell Press
+  is_image: false
+  paid_tier: 1
+Exercise_61:
+  id: 62
+  exercise_type_id: 8
+  video_link: '83079344'
+  look_up_value: 2
+  percent_of_luv: 0.25
+  category: 2
+  is_body_weight: false
+  name: Dumbbell One Arm Press
+  is_image: false
+  paid_tier: 1
+Exercise_62:
+  id: 63
+  exercise_type_id: 8
+  video_link: '83084623'
+  category: 3
+  is_body_weight: true
+  name: Side To Side Jackknife Pushup
+  is_image: false
+  paid_tier: 1
+Exercise_63:
+  id: 64
+  exercise_type_id: 9
+  video_link: '83084242'
+  look_up_value: 2
+  percent_of_luv: 0.6
+  category: 1
+  is_body_weight: false
+  name: Shoulder Press
+  is_image: false
+  paid_tier: 1
+Exercise_64:
+  id: 65
+  exercise_type_id: 9
+  video_link: '83347999'
+  look_up_value: 2
+  percent_of_luv: 0.35
+  category: 1
+  is_body_weight: false
+  name: Push Jerk
+  is_image: false
+  paid_tier: 1
+Exercise_65:
+  id: 66
+  exercise_type_id: 9
+  video_link: '83357081'
+  look_up_value: 2
+  percent_of_luv: 0.35
+  category: 1
+  is_body_weight: false
+  name: Split Jerk
+  is_image: false
+  paid_tier: 1
+Exercise_66:
+  id: 67
+  exercise_type_id: 9
+  video_link: '83395245'
+  look_up_value: 2
+  percent_of_luv: 0.5
+  category: 1
+  is_body_weight: false
+  name: Push Press
+  is_image: false
+  paid_tier: 1
+Exercise_67:
+  id: 68
+  exercise_type_id: 9
+  video_link: '83081189'
+  category: 3
+  is_body_weight: true
+  name: Jackknife Pushup
+  is_image: false
+  paid_tier: 1
+Exercise_68:
+  id: 69
+  exercise_type_id: 10
+  video_link: '83077360'
+  look_up_value: 3
+  percent_of_luv: 0.54
+  category: 2
+  is_body_weight: false
+  name: Bent Over Dumbbell Alternating Row
+  is_image: false
+  paid_tier: 1
+Exercise_69:
+  id: 70
+  exercise_type_id: 10
+  video_link: '83077359'
+  look_up_value: 3
+  percent_of_luv: 0.5
+  category: 2
+  is_body_weight: false
+  name: Bent Over 2 Point Dumbbell Row
+  is_image: false
+  paid_tier: 1
+Exercise_70:
+  id: 71
+  exercise_type_id: 10
+  video_link: '83082984'
+  look_up_value: 3
+  percent_of_luv: 0.98
+  category: 7
+  is_body_weight: false
+  name: One Arm Standing Cable Row
+  is_image: false
+  paid_tier: 1
+Exercise_71:
+  id: 72
+  exercise_type_id: 10
+  video_link: '83080934'
+  category: 3
+  is_body_weight: false
+  name: Horizontal Side To Side Pullup
+  is_image: false
+  paid_tier: 1
+Exercise_72:
+  id: 73
+  exercise_type_id: 10
+  video_link: '83082804'
+  category: 3
+  is_body_weight: false
+  name: One Arm Horizontal Pullup
+  is_image: false
+  paid_tier: 1
+Exercise_73:
+  id: 74
+  exercise_type_id: 11
+  video_link: '83077362'
+  look_up_value: 3
+  percent_of_luv: 1.0
+  category: 1
+  is_body_weight: false
+  name: Bent Over Row
+  is_image: false
+  paid_tier: 1
+Exercise_74:
+  id: 75
+  exercise_type_id: 11
+  video_link: '83085966'
+  look_up_value: 3
+  percent_of_luv: 0.9
+  category: 8
+  is_body_weight: false
+  name: T Bar Row
+  is_image: false
+  paid_tier: 1
+Exercise_75:
+  id: 76
+  exercise_type_id: 11
+  video_link: '83080932'
+  category: 3
+  is_body_weight: false
+  name: Horizontal Pullup
+  is_image: false
+  paid_tier: 1
+Exercise_76:
+  id: 77
+  exercise_type_id: 11
+  video_link: '83079574'
+  category: 3
+  is_body_weight: false
+  name: Elevated Horizontal Pullup
+  is_image: false
+  paid_tier: 1
+Exercise_77:
+  id: 78
+  exercise_type_id: 11
+  video_link: '83085528'
+  look_up_value: 3
+  percent_of_luv: 1.27
+  category: 7
+  is_body_weight: false
+  name: Standing Cable Row To Abdomen
+  is_image: false
+  paid_tier: 1
+Exercise_78:
+  id: 79
+  exercise_type_id: 11
+  video_link: '83085720'
+  look_up_value: 3
+  percent_of_luv: 1.04
+  category: 7
+  is_body_weight: false
+  name: Standing Cable Row To Neck
+  is_image: false
+  paid_tier: 1
+Exercise_79:
+  id: 80
+  exercise_type_id: 12
+  video_link: '83084630'
+  look_up_value: 3
+  percent_of_luv: 0.72
+  category: 7
+  is_body_weight: false
+  name: Single Arm Pulldown
+  is_image: false
+  paid_tier: 1
+Exercise_80:
+  id: 81
+  exercise_type_id: 12
+  video_link: '83084624'
+  category: 3
+  is_body_weight: true
+  name: Side To Side Pullup
+  is_image: false
+  paid_tier: 1
+Exercise_81:
+  id: 82
+  exercise_type_id: 13
+  video_link: '83081883'
+  look_up_value: 3
+  percent_of_luv: 1.3
+  category: 7
+  is_body_weight: false
+  name: Lat Pulldown
+  is_image: false
+  paid_tier: 1
+Exercise_82:
+  id: 83
+  exercise_type_id: 13
+  video_link: '83078149'
+  category: 3
+  is_body_weight: true
+  name: Chinup
+  is_image: false
+  paid_tier: 1
+Exercise_83:
+  id: 84
+  exercise_type_id: 13
+  video_link: '83083529'
+  category: 3
+  is_body_weight: true
+  name: Pullup
+  is_image: false
+  paid_tier: 1
+Exercise_84:
+  id: 85
+  exercise_type_id: 13
+  video_link: '83085971'
+  category: 3
+  is_body_weight: true
+  name: Wide Grip Pullup
+  is_image: false
+  paid_tier: 1
+Exercise_85:
+  id: 86
+  exercise_type_id: 14
+  video_link: '83084240'
+  look_up_value: 3
+  percent_of_luv: 0.34
+  category: 9
+  is_body_weight: false
+  name: Seated Russian Twist
+  is_image: false
+  paid_tier: 1
+Exercise_86:
+  id: 87
+  exercise_type_id: 14
+  video_link: '83078426'
+  look_up_value: 2
+  percent_of_luv: 0.17
+  category: 9
+  is_body_weight: false
+  name: Corkscrew
+  is_image: false
+  paid_tier: 1
+Exercise_87:
+  id: 88
+  exercise_type_id: 14
+  video_link: '83085965'
+  look_up_value: 2
+  percent_of_luv: 0.1
+  category: 9
+  is_body_weight: false
+  name: Swiss Ball Weight Roll
+  is_image: false
+  paid_tier: 1
+Exercise_88:
+  id: 89
+  exercise_type_id: 14
+  video_link: '83086229'
+  category: 3
+  is_body_weight: false
+  name: Windshield Wiper
+  is_image: false
+  paid_tier: 1
+Exercise_89:
+  id: 90
+  exercise_type_id: 14
+  video_link: '83077937'
+  look_up_value: 2
+  percent_of_luv: 0.42
+  category: 7
+  is_body_weight: false
+  name: Cable Rotation
+  is_image: false
+  paid_tier: 1
+Exercise_90:
+  id: 91
+  exercise_type_id: 14
+  video_link: '83077939'
+  look_up_value: 2
+  percent_of_luv: 0.53
+  category: 7
+  is_body_weight: false
+  name: Cable Wood Chop
+  is_image: false
+  paid_tier: 1
+Exercise_91:
+  id: 92
+  exercise_type_id: 14
+  video_link: '83083764'
+  look_up_value: 2
+  percent_of_luv: 0.64
+  category: 7
+  is_body_weight: false
+  name: Reverse Cable Wood Chop
+  is_image: false
+  paid_tier: 1
+Exercise_92:
+  id: 93
+  exercise_type_id: 14
+  video_link: '83077933'
+  look_up_value: 2
+  percent_of_luv: 0.91
+  category: 7
+  is_body_weight: false
+  name: Cable Rotating Crunch
+  is_image: false
+  paid_tier: 1
+Exercise_93:
+  id: 94
+  exercise_type_id: 14
+  video_link: '83077936'
+  look_up_value: 2
+  percent_of_luv: 0.61
+  category: 7
+  is_body_weight: false
+  name: Cable Rotating Extension
+  is_image: false
+  paid_tier: 1
+Exercise_94:
+  id: 95
+  exercise_type_id: 14
+  video_link: '83082366'
+  look_up_value: 2
+  percent_of_luv: 1.0
+  category: 6
+  is_body_weight: false
+  name: Medicine Ball Standing Wall Throw
+  is_image: false
+  paid_tier: 1
+Exercise_95:
+  id: 96
+  exercise_type_id: 14
+  video_link: '83082363'
+  look_up_value: 2
+  percent_of_luv: 1.0
+  category: 6
+  is_body_weight: false
+  name: Medicine Ball 1-2-3 Throw
+  is_image: false
+  paid_tier: 1
+Exercise_96:
+  id: 97
+  exercise_type_id: 14
+  video_link: '83082365'
+  look_up_value: 2
+  percent_of_luv: 1.0
+  category: 6
+  is_body_weight: false
+  name: Med Ball Over The Shoulder Throw
+  is_image: false
+  paid_tier: 1
+Exercise_97:
+  id: 98
+  exercise_type_id: 15
+  video_link: https://s3.amazonaws.com/qfimg/4+point+plank.jpg
+  category: 4
+  is_body_weight: false
+  name: 4 Point Plank
+  is_image: true
+  paid_tier: 1
+Exercise_98:
+  id: 99
+  exercise_type_id: 15
+  video_link: https://s3.amazonaws.com/qfimg/3+point+plank.jpg
+  category: 4
+  is_body_weight: false
+  name: 3 Point Plank
+  is_image: true
+  paid_tier: 1
+Exercise_99:
+  id: 100
+  exercise_type_id: 15
+  video_link: https://s3.amazonaws.com/qfimg/2+point+plank.jpg
+  category: 4
+  is_body_weight: false
+  name: 2 Point Plank
+  is_image: true
+  paid_tier: 1
+Exercise_100:
+  id: 101
+  exercise_type_id: 15
+  video_link: https://s3.amazonaws.com/qfimg/side+bridge.jpg
+  category: 4
+  is_body_weight: false
+  name: Side Bridge
+  is_image: true
+  paid_tier: 1
+Exercise_101:
+  id: 102
+  exercise_type_id: 15
+  video_link: https://s3.amazonaws.com/qfimg/4+point+supine+bridge.jpg
+  category: 4
+  is_body_weight: false
+  name: 4 Point Supine Bridge
+  is_image: true
+  paid_tier: 1
+Exercise_102:
+  id: 103
+  exercise_type_id: 15
+  video_link: "/img/exImages/3 point supine bridge.jpg"
+  category: 4
+  is_body_weight: false
+  name: 3 Point Supine Bridge
+  is_image: true
+  paid_tier: 1
+Exercise_103:
+  id: 104
+  exercise_type_id: 15
+  video_link: '83079573'
+  category: 4
+  is_body_weight: false
+  name: Dynamic Plank
+  is_image: false
+  paid_tier: 1
+Exercise_104:
+  id: 105
+  exercise_type_id: 15
+  video_link: '83082988'
+  category: 4
+  is_body_weight: false
+  name: Plank w/ Elbow To Knee
+  is_image: false
+  paid_tier: 1
+Exercise_105:
+  id: 106
+  exercise_type_id: 15
+  video_link: '83084247'
+  category: 4
+  is_body_weight: false
+  name: Side Bridge and Reach
+  is_image: false
+  paid_tier: 1
+Exercise_106:
+  id: 107
+  exercise_type_id: 15
+  video_link: '83078424'
+  look_up_value: 3
+  percent_of_luv: 0.48
+  category: 2
+  is_body_weight: false
+  name: Core Row
+  is_image: false
+  paid_tier: 1
+Exercise_107:
+  id: 108
+  exercise_type_id: 15
+  video_link: '83076504'
+  category: 4
+  is_body_weight: false
+  name: Barbell Rollout
+  is_image: false
+  paid_tier: 1
+Exercise_108:
+  id: 109
+  exercise_type_id: 16
+  video_link: '83079005'
+  category: 3
+  is_body_weight: false
+  name: Double Crunch
+  is_image: false
+  paid_tier: 1
+Exercise_109:
+  id: 110
+  exercise_type_id: 16
+  video_link: '83082124'
+  category: 3
+  is_body_weight: false
+  name: Leg Raises
+  is_image: false
+  paid_tier: 1
+Exercise_110:
+  id: 111
+  exercise_type_id: 16
+  video_link: '83083766'
+  category: 3
+  is_body_weight: false
+  name: Reverse Crunch
+  is_image: false
+  paid_tier: 1
+Exercise_111:
+  id: 112
+  exercise_type_id: 16
+  video_link: '83084009'
+  category: 3
+  is_body_weight: false
+  name: Scissor Kick With Lift
+  is_image: false
+  paid_tier: 1
+Exercise_112:
+  id: 113
+  exercise_type_id: 16
+  video_link: '83084010'
+  category: 3
+  is_body_weight: false
+  name: Scissor Kick
+  is_image: false
+  paid_tier: 1
+Exercise_113:
+  id: 114
+  exercise_type_id: 16
+  video_link: '83085727'
+  category: 3
+  is_body_weight: false
+  name: Swiss Ball Crunch
+  is_image: false
+  paid_tier: 1
+Exercise_114:
+  id: 115
+  exercise_type_id: 16
+  video_link: '83078728'
+  category: 3
+  is_body_weight: false
+  name: Crunch
+  is_image: false
+  paid_tier: 1
+Exercise_115:
+  id: 116
+  exercise_type_id: 16
+  video_link: '83077366'
+  category: 3
+  is_body_weight: false
+  name: Bicycle
+  is_image: false
+  paid_tier: 1
+Exercise_116:
+  id: 117
+  exercise_type_id: 16
+  video_link: '83082989'
+  look_up_value: 2
+  percent_of_luv: 0.24
+  category: 9
+  is_body_weight: false
+  name: Plate Twists
+  is_image: false
+  paid_tier: 1
+Exercise_117:
+  id: 118
+  exercise_type_id: 7
+  video_link: '83083265'
+  category: 3
+  is_body_weight: true
+  name: Power Pushup
+  is_image: false
+  paid_tier: 1
+Exercise_118:
+  id: 119
+  exercise_type_id: 7
+  video_link: '83076499'
+  category: 3
+  is_body_weight: true
+  name: Assisted Pushup
+  is_image: false
+  paid_tier: 1
+Exercise_119:
+  id: 120
+  exercise_type_id: 13
+  video_link: '83082370'
+  look_up_value: 3
+  percent_of_luv: 1.22
+  category: 7
+  is_body_weight: false
+  name: Neutral Grip Pulldown
+  is_image: false
+  paid_tier: 1
+Exercise_120:
+  id: 121
+  exercise_type_id: 11
+  video_link: '83084012'
+  look_up_value: 3
+  percent_of_luv: 1.0
+  category: 7
+  is_body_weight: false
+  name: Seated Cable Row
+  is_image: false
+  paid_tier: 1
+Exercise_121:
+  id: 122
+  exercise_type_id: 2
+  video_link: '83078427'
+  look_up_value: 1
+  percent_of_luv: 0.5
+  category: 1
+  is_body_weight: false
+  name: Cross Lateral Stepup
+  is_image: false
+  paid_tier: 1
+Exercise_122:
+  id: 123
+  exercise_type_id: 2
+  video_link: '83079572'
+  look_up_value: 1
+  percent_of_luv: 0.23
+  category: 2
+  is_body_weight: false
+  name: Dumbbell Stepup
+  is_image: false
+  paid_tier: 1
+Exercise_123:
+  id: 124
+  exercise_type_id: 2
+  video_link: '83079340'
+  look_up_value: 1
+  percent_of_luv: 0.23
+  category: 2
+  is_body_weight: false
+  name: Dumbbell Lateral Stepup
+  is_image: false
+  paid_tier: 1
+Exercise_124:
+  id: 125
+  exercise_type_id: 2
+  video_link: '83079011'
+  look_up_value: 1
+  percent_of_luv: 0.2
+  category: 2
+  is_body_weight: false
+  name: Dumbbell Cross Lateral Stepup
+  is_image: false
+  paid_tier: 1
+Exercise_125:
+  id: 126
+  exercise_type_id: 1
+  video_link: '83347323'
+  look_up_value: 2
+  percent_of_luv: 0.35
+  category: 1
+  is_body_weight: false
+  name: Power Clean And Jerk
+  is_image: false
+  paid_tier: 1
+Exercise_126:
+  id: 127
+  exercise_type_id: 1
+  video_link: '83347991'
+  look_up_value: 2
+  percent_of_luv: 0.6
+  category: 1
+  is_body_weight: false
+  name: Power Clean And Press
+  is_image: false
+  paid_tier: 1
+Exercise_127:
+  id: 128
+  exercise_type_id: 1
+  video_link: '83347320'
+  look_up_value: 2
+  percent_of_luv: 0.35
+  category: 1
+  is_body_weight: false
+  name: Hang Power Clean And Jerk
+  is_image: false
+  paid_tier: 1
+Exercise_128:
+  id: 129
+  exercise_type_id: 1
+  video_link: '83347319'
+  look_up_value: 2
+  percent_of_luv: 0.5
+  category: 1
+  is_body_weight: false
+  name: Hang Power Clean And Press
+  is_image: false
+  paid_tier: 1
+Exercise_129:
+  id: 130
+  exercise_type_id: 9
+  video_link: '83085301'
+  look_up_value: 2
+  percent_of_luv: 0.48
+  category: 1
+  is_body_weight: false
+  name: Split Push Press
+  is_image: false
+  paid_tier: 1
+Exercise_130:
+  id: 131
+  exercise_type_id: 13
+  video_link: '83076198'
+  look_up_value: 3
+  percent_of_luv: 1.5
+  category: 7
+  is_body_weight: true
+  name: Assisted Chinup
+  is_image: false
+  paid_tier: 1
+Exercise_131:
+  id: 132
+  exercise_type_id: 13
+  video_link: '83076501'
+  look_up_value: 3
+  percent_of_luv: 1.3
+  category: 7
+  is_body_weight: true
+  name: Assisted Wide Grip Pullup
+  is_image: false
+  paid_tier: 1
+Exercise_132:
+  id: 133
+  exercise_type_id: 13
+  video_link: '83083271'
+  look_up_value: 3
+  percent_of_luv: 1.7
+  category: 8
+  is_body_weight: true
+  name: Pullup With Dip Belt
+  is_image: false
+  paid_tier: 1
+Exercise_133:
+  id: 134
+  exercise_type_id: 13
+  video_link: '83078147'
+  look_up_value: 3
+  percent_of_luv: 1.7
+  category: 8
+  is_body_weight: true
+  name: Chinup With Dip Belt
+  is_image: false
+  paid_tier: 1
+Exercise_134:
+  id: 135
+  exercise_type_id: 13
+  video_link: '83085974'
+  look_up_value: 3
+  percent_of_luv: 1.5
+  category: 8
+  is_body_weight: true
+  name: Wide Grip Pullup With Dip Belt
+  is_image: false
+  paid_tier: 1

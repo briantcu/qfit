@@ -1,0 +1,10 @@
+---
+ProgramType_1:
+  id: 1
+  program_type: PowerLean
+ProgramType_2:
+  id: 2
+  program_type: PowerMass
+ProgramType_3:
+  id: 3
+  program_type: PowerRip

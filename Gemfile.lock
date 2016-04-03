@@ -72,6 +72,7 @@ GEM
     connection_pool (2.2.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    db_fixtures_dump (0.1.1)
     devise (3.5.6)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -356,6 +357,7 @@ DEPENDENCIES
   carrierwave
   carrierwave-base64
   clockworksms
+  db_fixtures_dump
   devise
   factory_girl_rails
   figaro

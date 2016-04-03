@@ -1,0 +1,61 @@
+---
+ProgramPhaseLookup_1:
+  id: 1
+  phase_number: 1
+  program_type: 1
+  phase_id: 1
+ProgramPhaseLookup_2:
+  id: 2
+  phase_number: 1
+  program_type: 2
+  phase_id: 5
+ProgramPhaseLookup_3:
+  id: 3
+  phase_number: 1
+  program_type: 3
+  phase_id: 9
+ProgramPhaseLookup_4:
+  id: 4
+  phase_number: 2
+  program_type: 1
+  phase_id: 2
+ProgramPhaseLookup_5:
+  id: 5
+  phase_number: 2
+  program_type: 2
+  phase_id: 6
+ProgramPhaseLookup_6:
+  id: 6
+  phase_number: 2
+  program_type: 3
+  phase_id: 10
+ProgramPhaseLookup_7:
+  id: 7
+  phase_number: 3
+  program_type: 1
+  phase_id: 3
+ProgramPhaseLookup_8:
+  id: 8
+  phase_number: 3
+  program_type: 2
+  phase_id: 7
+ProgramPhaseLookup_9:
+  id: 9
+  phase_number: 3
+  program_type: 3
+  phase_id: 11
+ProgramPhaseLookup_10:
+  id: 10
+  phase_number: 4
+  program_type: 1
+  phase_id: 4
+ProgramPhaseLookup_11:
+  id: 11
+  phase_number: 4
+  program_type: 2
+  phase_id: 8
+ProgramPhaseLookup_12:
+  id: 12
+  phase_number: 4
+  program_type: 3
+  phase_id: 12

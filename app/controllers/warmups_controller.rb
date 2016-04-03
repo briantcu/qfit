@@ -13,13 +13,12 @@ class WarmupsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_warmup
-      @warmup = Warmup.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def warmup_params
-      params.require(:warmup).permit(:name, :is_stretch, :video_link)
-    end
+  def set_warmup
+    @warmup = Warmup.find(params[:id])
+  end
+
+  def warmup_params
+    params.require(:warmup).permit(:name, :is_stretch, :video_link)
+  end
 end

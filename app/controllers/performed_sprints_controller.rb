@@ -30,15 +30,15 @@ class PerformedSprintsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_performed_sprint
-      @performed_sprint = PerformedSprint.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_performed_sprint
+    @performed_sprint = PerformedSprint.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def performed_sprint_params
-      params.require(:performed_sprint).permit(:sprint_id, :status)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def performed_sprint_params
+    params.require(:performed_sprint).permit(:sprint_id, :status)
+  end
 
   def verify_owns_workout
     (current_user.nil?) ? unauthorized : unauthorized unless

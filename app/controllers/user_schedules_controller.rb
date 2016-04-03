@@ -44,29 +44,25 @@ class UserSchedulesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user_schedule
-      @user_schedule = UserSchedule.includes(:weekly_schedule_days).find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_schedule_params
-      params.require(:user_schedule).permit(:program_id, :program_type_id, :phase_one_start, :phase_two_start,
-                                            :phase_three_start, :phase_four_start, :user_id,
-                                            weekly_schedule_days_attributes: [:id, :day, :weights, :plyometrics,
-                                                                              :stretching, :sprinting])
-    end
+  def set_user_schedule
+    @user_schedule = UserSchedule.includes(:weekly_schedule_days).find(params[:id])
+  end
 
-    def update_user_record
-      @user_schedule.user.update_program_info
-    end
+  def user_schedule_params
+    params.require(:user_schedule).permit(:program_id, :program_type_id, :phase_one_start, :phase_two_start,
+                                          :phase_three_start, :phase_four_start, :user_id,
+                                          weekly_schedule_days_attributes: [:id, :day, :weights, :plyometrics,
+                                                                            :stretching, :sprinting])
+  end
 
-    def verify_is_logged_in_or_coach
-      current_user.nil? ? unauthorized : unauthorized unless
-          (current_user.id == params[:user_schedule][:user_id].to_i || (current_user.is_coach_of_user?(params[:user_schedule][:user_id].to_i)) || (current_user.is_super_user?))
-    end
+  def update_user_record
+    @user_schedule.user.update_program_info
+  end
 
-    def unauthorized
-      render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
-    end
+  def verify_is_logged_in_or_coach
+    current_user.nil? ? unauthorized : unauthorized unless
+        (current_user.id == params[:user_schedule][:user_id].to_i || (current_user.is_coach_of_user?(params[:user_schedule][:user_id].to_i)) || (current_user.is_super_user?))
+  end
+
 end

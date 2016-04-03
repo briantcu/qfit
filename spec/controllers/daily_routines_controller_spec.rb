@@ -4,6 +4,8 @@ RSpec.describe DailyRoutinesController, type: :controller do
 
   before(:each) do
     @user = FactoryGirl.create(:user)
+    program = FactoryGirl.create(:program_type)
+    FactoryGirl.create(:user_schedule, user: @user, program_type: program)
   end
 
   it 'returns the last 5 daily routines for a user' do
@@ -95,6 +97,17 @@ RSpec.describe DailyRoutinesController, type: :controller do
     body = JSON.parse(response.body)
     expect(body['weight']).to eq(200)
     expect(body['messages'].count).to eq(1)
+  end
+
+  it 'adds a weights exercise' do
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    exercise = FactoryGirl.create(:exercise)
+    allow(Exercise).to receive(:find).and_return(exercise)
+
+    sign_in @user
+    expect(dr).to receive(:note_weights_changed)
+    post :add_weight, id: dr.id, exercise_id: exercise.id, format: :json
+    expect(response.status).to eq(:created)
   end
 
 end

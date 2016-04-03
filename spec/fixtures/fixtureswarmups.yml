@@ -1,0 +1,109 @@
+---
+Warmup_1:
+  id: 1
+  name: Calf Stretch
+  is_stretch: true
+  video_link: https://s3.amazonaws.com/qfimg/calf+stretch.jpg
+  ex_type: 1
+Warmup_2:
+  id: 2
+  name: Hamstring Stretch
+  is_stretch: true
+  video_link: https://s3.amazonaws.com/qfimg/Hamstring+Stretch.jpg
+  ex_type: 1
+Warmup_3:
+  id: 3
+  name: Hip/Glute Stretch
+  is_stretch: true
+  video_link: https://s3.amazonaws.com/qfimg/hip-glute+stretch.jpg
+  ex_type: 1
+Warmup_4:
+  id: 4
+  name: Inner Thigh Stretch
+  is_stretch: true
+  video_link: https://s3.amazonaws.com/qfimg/Inner+Thigh+Stretch.jpg
+  ex_type: 1
+Warmup_5:
+  id: 5
+  name: Knee to Chest Stretch
+  is_stretch: true
+  video_link: https://s3.amazonaws.com/qfimg/Knee+to+Chest.jpg
+  ex_type: 1
+Warmup_6:
+  id: 6
+  name: Kneeling Hamstring Stretch
+  is_stretch: true
+  video_link: https://s3.amazonaws.com/qfimg/Kneeling+Hamstring+Stretch.jpg
+  ex_type: 1
+Warmup_7:
+  id: 7
+  name: Knees to Chest Stretch
+  is_stretch: true
+  video_link: https://s3.amazonaws.com/qfimg/Knees+to+Chest.jpg
+  ex_type: 1
+Warmup_8:
+  id: 8
+  name: Lunge Stretch
+  is_stretch: true
+  video_link: https://s3.amazonaws.com/qfimg/lunge+stretch.jpg
+  ex_type: 1
+Warmup_9:
+  id: 9
+  name: Piriformis Stretch
+  is_stretch: true
+  video_link: https://s3.amazonaws.com/qfimg/Piriformis+Stretch.jpg
+  ex_type: 1
+Warmup_10:
+  id: 10
+  name: Quad Stretch
+  is_stretch: true
+  video_link: https://s3.amazonaws.com/qfimg/Quad+Stretch.jpg
+  ex_type: 1
+Warmup_11:
+  id: 11
+  name: Exercise Bike
+  is_stretch: false
+  video_link: https://s3.amazonaws.com/qfimg/bike.jpg
+  ex_type: 3
+Warmup_12:
+  id: 12
+  name: Rowing Machine
+  is_stretch: false
+  video_link: '83083773'
+  ex_type: 3
+Warmup_13:
+  id: 13
+  name: Air Squat
+  is_stretch: false
+  video_link: '83076191'
+  ex_type: 2
+Warmup_14:
+  id: 14
+  name: Inchworm
+  is_stretch: false
+  video_link: '83081185'
+  ex_type: 2
+Warmup_15:
+  id: 15
+  name: Medicine Ball Lunge and Twist
+  is_stretch: false
+  video_link: '83082126'
+  ex_type: 2
+Warmup_16:
+  id: 16
+  name: Scorpion
+  is_stretch: false
+  video_link: '83084011'
+  ex_type: 2
+Warmup_17:
+  id: 17
+  name: Single Leg Touch
+  is_stretch: false
+  video_link: '83085059'
+  ex_type: 2
+Warmup_18:
+  id: 18
+  name: Slides With Band
+  is_stretch: false
+  video_link: '83085293'
+  ex_type: 2
