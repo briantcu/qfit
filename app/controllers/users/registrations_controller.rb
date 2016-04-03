@@ -20,10 +20,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(sign_up_params)
 
     begin
-      RegistrationService.register_user(@user, sign_up_code, params[:user][:account_type])
+      RegistrationService.instance.register_user(@user, sign_up_code, params[:user][:account_type])
       check_tokens
       render json: @user.to_json, status: 201 and return
-    rescue
+    rescue Exception => e #@TODO throw this to Rollbar?
       warden.custom_failure!
       render json: @user.errors, status: 422
     end

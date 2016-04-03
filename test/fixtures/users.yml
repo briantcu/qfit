@@ -55,8 +55,8 @@ one:
   master_user_id: 1
   first_name: MyString
   last_name: MyString
-  email: MyString
-  sex: MyString
+  email: MyString@a.com
+  sex: male
   administrator: false
   sub_user: false
   knee_dom_max: 250
@@ -75,17 +75,19 @@ one:
   sprint_diff: 1
   weight: 150
   level: 1
+  points: 0
   program_type: 1
   birth_year: 1
   subscription_date: 2014-04-26
 
 two:
+  points: 0
   id: 2
   master_user_id: 1
   first_name: MyString
   last_name: MyString
-  email: MyString2
-  sex: MyString
+  email: MyString2@b.com
+  sex: female
   administrator: false
   experience_level: 1
   sub_user: false
@@ -109,12 +111,13 @@ two:
   subscription_date: 2014-04-26
 
 super:
+  points: 0
   id: 3
   master_user_id: 1
   first_name: MyString
   last_name: MyString
-  email: MyString3
-  sex: MyString
+  email: MyString3@c.com
+  sex: male
   administrator: false
   experience_level: 1
   sub_user: false
@@ -139,11 +142,12 @@ super:
 
 coach:
   id: 4
+  points: 0
   master_user_id: 1
   first_name: MyString
   last_name: MyString
-  email: MyString4
-  sex: MyString
+  email: MyString4@e.com
+  sex: female
   administrator: true
   sub_user: false
   knee_dom_max: 1.5
@@ -171,8 +175,9 @@ sub:
   master_user_id: 4
   first_name: MyString
   last_name: MyString
-  email: MyString5
-  sex: MyString
+  email: MyString5@a.com
+  sex: male
+  points: 0
   administrator: false
   sub_user: false
   experience_level: 1
@@ -201,10 +206,11 @@ user_no_sched:
   first_name: MyString
   last_name: MyString
   email: MyString6@a.com
-  sex: MyString
+  sex: male
   administrator: false
   sub_user: false
   knee_dom_max: 1.5
+  points: 0
   hor_push_max: 1.5
   hor_pull_max: 1.5
   power_index: 1
