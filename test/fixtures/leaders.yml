@@ -20,7 +20,7 @@ one:
   first_name: MyString
   last_name: MyString
   value: MyString
-  type: 1
+  leader_type: 1
   created: 2014-04-26
 
 two:
@@ -28,5 +28,5 @@ two:
   first_name: MyString
   last_name: MyString
   value: MyString
-  type: 1
+  leader_type: 1
   created: 2014-04-26
