@@ -11,7 +11,7 @@ class UserCalendarTest < ActiveSupport::TestCase
       'active' == item.workout_status
     }
 
-    assert(active_day.day_of_month == 26)
+    assert(active_day.day_of_month == 24)
   end
 
   test 'finds routine for date' do
