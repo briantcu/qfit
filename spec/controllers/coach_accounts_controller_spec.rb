@@ -46,6 +46,7 @@ RSpec.describe CoachAccountsController, type: :controller do
 
     it 'should show your account' do
       FactoryGirl.create(:user, level: 1, master_user_id: @coach.id)
+      FactoryGirl.create(:sign_up_code, user: @coach)
       expect(@coach.players.count).to eq(1)
       get :show, id: @coach_account.id, format: :json
       expect(response.status).to eq(200)
