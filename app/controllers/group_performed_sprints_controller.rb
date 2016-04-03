@@ -27,7 +27,7 @@ class GroupPerformedSprintsController < ApplicationController
   end
 
   def group_performed_sprint_params
-    params.require(:group_performed_sprint).permit(:sprint_id, :status)
+    params.require(:group_performed_sprint).permit(:sprint_id)
   end
 
   def verify_owns_group

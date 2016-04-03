@@ -45,9 +45,9 @@ class LeaderService
     create_leaders(leaders, Leader::REPS_PERFORMED)
   end
 
-  def create_leaders(group, type)
+  def create_leaders(group, leader_type)
     group.each do |user|
-      Leader.create!(user_id: user.id, first_name: user.first_name, last_name: user.last_name, value: user.value, type: type)
+      Leader.create!(user_id: user.id, first_name: user.first_name, last_name: user.last_name, value: user.value, leader_type: leader_type)
     end
   end
 

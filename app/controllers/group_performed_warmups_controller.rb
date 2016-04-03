@@ -29,7 +29,7 @@ class GroupPerformedWarmupsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def group_performed_warmup_params
-    params.require(:group_performed_warmup).permit(:warmup_id, :status)
+    params.require(:group_performed_warmup).permit(:warmup_id)
   end
 
   def verify_owns_group

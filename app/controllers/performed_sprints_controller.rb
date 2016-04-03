@@ -1,15 +1,14 @@
 class PerformedSprintsController < ApplicationController
+  before_filter :verify_logged_in
   before_action :set_performed_sprint, only: [:show, :update, :destroy]
   before_filter :verify_owns_workout, only: [:update, :destroy]
 
   DELETED = 2
 
-  # GET /performed_sprints/1
   # GET /performed_sprints/1.json
   def show
   end
 
-  # PATCH/PUT /performed_sprints/1
   # PATCH/PUT /performed_sprints/1.json
   def update
     need_to_create_laps = (@performed_sprint.sprint_id != params[:performed_sprint][:sprint_id])
@@ -20,7 +19,6 @@ class PerformedSprintsController < ApplicationController
     end
   end
 
-  # DELETE /performed_sprints/1
   # DELETE /performed_sprints/1.json
   def destroy
     @performed_sprint.status = DELETED
@@ -37,15 +35,10 @@ class PerformedSprintsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def performed_sprint_params
-    params.require(:performed_sprint).permit(:sprint_id, :status)
+    params.require(:performed_sprint).permit(:sprint_id)
   end
 
   def verify_owns_workout
-    (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_workout?(@performed_sprint.routine_id))
-  end
-
-  def unauthorized
-    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
+    unauthorized unless (current_user.owns_workout?(@performed_sprint.routine_id))
   end
 end

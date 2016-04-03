@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402231149) do
+ActiveRecord::Schema.define(version: 20160403210618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,10 +228,10 @@ ActiveRecord::Schema.define(version: 20160402231149) do
 
   create_table "leaders", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "first_name", limit: 255
-    t.string   "last_name",  limit: 255
-    t.string   "value",      limit: 255
-    t.integer  "type"
+    t.string   "first_name",  limit: 255
+    t.string   "last_name",   limit: 255
+    t.string   "value",       limit: 255
+    t.integer  "leader_type"
     t.date     "created"
     t.datetime "created_at"
     t.datetime "updated_at"

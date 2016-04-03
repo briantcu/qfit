@@ -1,6 +1,7 @@
 class GroupRoutinesController < ApplicationController
-  before_action :set_group_routine, only: [:show, :add_custom, :add_warmup, :add_plyo, :add_sprint, :add_weight, :reset]
-  before_filter :verify_owns_group, only: [:routine_by_date, :add_weight, :add_sprint, :add_warmup, :add_plyo, :add_custom, :reset]
+  before_filter :verify_logged_in
+  before_action :set_group_routine, except: [:routine_by_date]
+  before_filter :verify_owns_group, except: [:show, :routine_by_date]
 
   # GET /group_routines/1
   def show
@@ -10,9 +11,9 @@ class GroupRoutinesController < ApplicationController
   def routine_by_date
     @group_routine = GroupRoutine.get_routine_by_date(params[:month], params[:year], params[:day], params[:group_id])
     if @group_routine.nil?
-      render :json => {:error => 'not-found'}.to_json, :status => 404
+      render json: {error: 'not-found'}, status: 404
     else
-      render 'show'
+      render :show
     end
   end
 
@@ -21,7 +22,7 @@ class GroupRoutinesController < ApplicationController
     exercise = Exercise.find(params[:exercise_id])
     perf_ex = @group_routine.add_weights(exercise, 1, 0)
     @group_routine.note_weights_changed(true)
-    render json: perf_ex.to_json
+    render json: perf_ex, status: :created
   end
 
   # POST '/group_routines/:id/sprints/:sprint_id'
@@ -29,7 +30,7 @@ class GroupRoutinesController < ApplicationController
     sprint = Sprint.find(params[:sprint_id])
     perf_sprint = @group_routine.add_sprint(sprint.id, 1, 0)
     @group_routine.note_sprints_changed(true)
-    render json: perf_sprint.to_json
+    render json: perf_sprint, status: :created
   end
 
   # POST '/group_routines/:id/warmups/:warmup_id'
@@ -45,21 +46,20 @@ class GroupRoutinesController < ApplicationController
     plyo = Plyometric.find(params[:plyometric_id])
     perf_plyo = @group_routine.add_plyometric(plyo.id, 1, 0)
     @group_routine.note_plyos_changed(true)
-    render json: perf_plyo.to_json
+    render json: perf_plyo, status: :created
   end
 
   # POST '/group_routines/:id/custom/:type/:name'
   def add_custom
     custom = @group_routine.add_custom_exercise(params[:name], params[:type], 0)
-    render json: custom.to_json
+    render json: custom, status: :created
   end
 
   def reset
     @group_routine.reset
-    render action: 'show', status: :ok, location: @group_routine
+    render action: :show, status: :ok, location: @group_routine
   end
 
-  # GET '/group_routines/:id/reset'
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_group_routine
@@ -67,11 +67,7 @@ class GroupRoutinesController < ApplicationController
   end
 
   def verify_owns_group
-    (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.owns_group?(@group_routine.group_id))
+    unauthorized unless (current_user.owns_group?(@group_routine.group_id))
   end
 
-  def unauthorized
-    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
-  end
 end

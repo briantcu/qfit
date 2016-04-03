@@ -3,7 +3,6 @@ class GroupPerformedPlyosController < ApplicationController
   before_action :set_group_performed_plyo, only: [:update, :destroy]
   before_filter :verify_owns_group, only: [:update, :destroy]
 
-  # PATCH/PUT /group_performed_plyos/1
   # PATCH/PUT /group_performed_plyos/1.json
   def update
     if @group_performed_plyo.plyometric_id != params[:group_performed_plyo][:plyometric_id]
@@ -14,7 +13,6 @@ class GroupPerformedPlyosController < ApplicationController
     end
   end
 
-  # DELETE /group_performed_plyos/1
   # DELETE /group_performed_plyos/1.json
   def destroy
     @group_performed_plyo.destroy_ex
@@ -27,7 +25,7 @@ class GroupPerformedPlyosController < ApplicationController
   end
 
   def group_performed_plyo_params
-    params.require(:group_performed_plyo).permit(:plyometric_id, :status)
+    params.require(:group_performed_plyo).permit(:plyometric_id)
   end
 
   def verify_owns_group

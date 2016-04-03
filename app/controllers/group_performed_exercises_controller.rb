@@ -3,7 +3,6 @@ class GroupPerformedExercisesController < ApplicationController
   before_action :set_group_performed_exercise, only: [:update, :destroy]
   before_filter :verify_owns_group, only: [:update, :destroy]
 
-  # PATCH/PUT /group_performed_exercises/1
   # PATCH/PUT /group_performed_exercises/1.json
   def update
     if @group_performed_exercise.exercise_id != params[:group_performed_exercise][:exercise_id]
@@ -14,7 +13,6 @@ class GroupPerformedExercisesController < ApplicationController
     end
   end
 
-  # DELETE /group_performed_exercises/1
   # DELETE /group_performed_exercises/1.json
   def destroy
     @group_performed_exercise.destroy_ex
@@ -22,14 +20,12 @@ class GroupPerformedExercisesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_group_performed_exercise
     @group_performed_exercise = GroupPerformedExercise.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def group_performed_exercise_params
-    params.require(:group_performed_exercise).permit(:exercise_id, :status, :exercise_type_id)
+    params.require(:group_performed_exercise).permit(:exercise_id)
   end
 
   def verify_owns_group

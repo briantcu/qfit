@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :update, :destroy]
+  before_filter :verify_logged_in
+  before_action :set_group, except: [:create]
   before_filter :verify_coach, only: [:create]
-  before_filter :verify_owns_group, only: [:show, :destroy]
+  before_filter :verify_owns_group, except: [:create]
 
   # GET /groups/1
   # GET /groups/1.json
@@ -11,7 +12,6 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-
     @group = current_user.build_group(group_params)
 
     @group.coach_user_id = current_user.id
@@ -62,13 +62,11 @@ class GroupsController < ApplicationController
   end
 
   def verify_coach
-    (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.is_coach?)
+    unauthorized unless (current_user.is_coach?)
   end
 
   def verify_owns_group
-    (current_user.nil?) ? unauthorized : unauthorized unless
-        (current_user.is_coach? && (@group.coach_user_id == current_user.id))
+    unauthorized unless (current_user.is_coach? && (@group.coach_user_id == current_user.id))
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

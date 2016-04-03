@@ -3,7 +3,6 @@ class GroupCustomExercisesController < ApplicationController
   before_action :set_group_custom_exercise, only: [:show, :destroy]
   before_filter :verify_owns_group, only: [:destroy]
 
-  # DELETE /group_custom_exercises/1
   # DELETE /group_custom_exercises/1.json
   def destroy
     @group_custom_exercise.destroy_ex
