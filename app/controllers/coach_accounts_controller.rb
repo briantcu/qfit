@@ -48,8 +48,7 @@ class CoachAccountsController < ApplicationController
   end
 
   def assign_temp_password
-    temp_password = RegistrationService.instance.generate_password
-    @user.password = temp_password
-    temp_password
+    @user.password = RegistrationService.instance.generate_password
+    @user.password
   end
 end

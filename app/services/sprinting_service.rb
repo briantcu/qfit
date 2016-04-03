@@ -11,7 +11,7 @@ class SprintingService
   @entity
   @routine
 
-  def self.add_exercises(entity, routine)
+  def add_exercises(entity, routine)
     @entity = entity
     @routine = routine
 
@@ -26,7 +26,7 @@ class SprintingService
     @routine.add_sprint(sprint.id, 3, 0)
   end
 
-  def self.copy_exercises(entity, routine, previous_routine)
+  def copy_exercises(entity, routine, previous_routine)
     @entity = entity
     @routine = routine
 
