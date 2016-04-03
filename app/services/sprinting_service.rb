@@ -1,4 +1,7 @@
+require 'singleton'
+
 class SprintingService
+  include Singleton
 
   STRETCHING = 4
   WEIGHTS = 1

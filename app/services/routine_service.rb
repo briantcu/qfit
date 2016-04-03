@@ -116,7 +116,7 @@ class RoutineService
     weekly_schedule_day = @entity.get_schedule.get_schedule_day(@date)
 
     if weekly_schedule_day.stretching
-      add_exercises(WarmupService, STRETCHING)
+      add_exercises(WarmupService.instance, STRETCHING)
     end
 
     if weekly_schedule_day.weights
@@ -125,11 +125,11 @@ class RoutineService
     end
 
     if weekly_schedule_day.plyometrics
-      add_exercises(PlyometricsService, PLYOS)
+      add_exercises(PlyometricsService.instance, PLYOS)
     end
 
     if weekly_schedule_day.sprinting
-      add_exercises(SprintingService, SPRINTING)
+      add_exercises(SprintingService.instance, SPRINTING)
     end
 
     cleanup

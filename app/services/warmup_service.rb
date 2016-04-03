@@ -1,4 +1,7 @@
+require 'singleton'
+
 class WarmupService
+  include Singleton
 
   STRETCHING = 4
   WEIGHTS = 1

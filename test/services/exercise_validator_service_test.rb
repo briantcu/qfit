@@ -8,7 +8,7 @@ class ExerciseValidatorServiceTest < ActiveSupport::TestCase
     user.power_index = 100
     exercise = Exercise.new
     exercise.is_body_weight = false
-    valid = ExerciseValidatorService.is_valid_exercise(user, routine, exercise)
+    valid = ExerciseValidatorService.instance.is_valid_exercise(user, routine, exercise)
     assert(valid)
   end
 
@@ -20,7 +20,7 @@ class ExerciseValidatorServiceTest < ActiveSupport::TestCase
     exercise = Exercise.new
     exercise.is_body_weight = true
     exercise.id = 55
-    valid = ExerciseValidatorService.is_valid_exercise(user, routine, exercise)
+    valid = ExerciseValidatorService.instance.is_valid_exercise(user, routine, exercise)
     assert(valid)
   end
 
@@ -32,7 +32,7 @@ class ExerciseValidatorServiceTest < ActiveSupport::TestCase
     exercise = Exercise.new
     exercise.is_body_weight = true
     exercise.id = 55
-    valid = ExerciseValidatorService.is_valid_exercise(user, routine, exercise)
+    valid = ExerciseValidatorService.instance.is_valid_exercise(user, routine, exercise)
     assert(!valid)
   end
 

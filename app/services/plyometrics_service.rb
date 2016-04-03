@@ -1,4 +1,8 @@
+require 'singleton'
+
 class PlyometricsService
+  include Singleton
+
 
   STRETCHING = 4
   WEIGHTS = 1
@@ -23,7 +27,7 @@ class PlyometricsService
       while true
         index = rand(0..(num_plyos_for_index))
         plyo = plyos.at(index)
-        if ExerciseValidatorService.is_valid_plyo(@entity, @routine, plyo)
+        if ExerciseValidatorService.instance.is_valid_plyo(@entity, @routine, plyo)
           @routine.add_plyometric(plyo.id, 3, 0)
           break
         end

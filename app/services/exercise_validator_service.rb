@@ -1,7 +1,9 @@
+require 'singleton'
+
 class ExerciseValidatorService
+  include Singleton
 
-
-  def self.is_valid_plyo(entity, routine, exercise)
+  def is_valid_plyo(entity, routine, exercise)
     if routine.has_plyo?(exercise)
       return false
     end
@@ -9,8 +11,9 @@ class ExerciseValidatorService
     true
   end
 
-  def self.is_valid_exercise(entity, routine, exercise)
+  def is_valid_exercise(entity, routine, exercise)
 
+    #@TODO
     #equipment
     #experience
     #strength level
@@ -25,7 +28,7 @@ class ExerciseValidatorService
 
   private
 
-  def self.matches_user_strength_level(entity, exercise)
+  def matches_user_strength_level(entity, exercise)
     if entity.is_group?
       return true
     end

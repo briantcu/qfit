@@ -52,7 +52,7 @@ class WeightsService
       while true
         index = rand(0..(total_count_for_index))
         exercise = exercises.at(index)
-        if ExerciseValidatorService.is_valid_exercise(@entity, @routine, exercise)
+        if ExerciseValidatorService.instance.is_valid_exercise(@entity, @routine, exercise)
           @routine.add_weights(exercise, 3, 0)
           break
         end
