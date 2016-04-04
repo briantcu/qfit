@@ -4,12 +4,12 @@ RSpec.describe PodInvitesController, type: :controller do
 
   it 'should send a new invite' do
     user_one = FactoryGirl.create(:user)
-    user_two = FactoryGirl.create(:user)
-
+    allow_any_instance_of(QuadPodService).to receive(:send_invite).and_return({status: 'success'})
     sign_in user_one
-    post :create, message: { message: "sup", to_id: user_two.id, message_type: 2 }, format: :json
-    expect(user_one.outbox.count).to eq(1)
-    expect(user_two.inbox.count).to eq(1)
+    post :create, pod_invite: {sent_to: 'bri.reg@gmail.com'}, format: :json
+    body = JSON.parse(response.body)
+    expect(body['inviter_id']).to eq(user_one.id)
+    expect(body['sent_to']).to eq('bri.reg@gmail.com')
   end
 
 end
