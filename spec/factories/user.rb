@@ -7,7 +7,6 @@ FactoryGirl.define do
     current_phase 1
     current_sign_in_at "2016-03-27T17:34 CDT"
     current_sign_in_ip "ToFactory: RubyParser exception parsing this attribute"
-    displayed_user_name nil
     sequence(:email){|n| "user#{n}@factory.com" }
     encrypted_password "ToFactory: RubyParser exception parsing this attribute"
     password 'password'

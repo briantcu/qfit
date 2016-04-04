@@ -2,12 +2,10 @@ class UsersController < ApplicationController
   before_filter :can_access_user, only: [:show, :update, :get_calendar, :fitness_assessment, :get_progress]
   before_action :set_user, only: [:show, :update, :get_calendar, :fitness_assessment, :get_progress]
 
-  # GET /users/1
   # GET /users/1.json
   def show
   end
 
-  # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
     if @user.update(convert_data_uri_to_upload(user_params))
@@ -54,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :sex, :phone, :user_name, :weight, :birth_year, :displayed_user_name)
+    params.require(:user).permit(:first_name, :last_name, :email, :sex, :phone, :user_name, :weight, :birth_year)
   end
 
   def fitness_assessment_params

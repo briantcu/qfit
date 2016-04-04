@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
 
   after_commit :check_user_name
 
-  validates :displayed_user_name, uniqueness: true, allow_blank: true, allow_nil: true
+  validates :user_name, uniqueness: true, allow_blank: true, allow_nil: true
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
                                   .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)}
 
   def check_user_name
-    if displayed_user_name.present?
+    if user_name.present?
       unless UserGoal.where(user_id: self.id, goal_definition_id: 3).first.present?
         UserGoal.create!(user_id: self.id, goal_definition_id: 3)
         gd = GoalDefinition.find(3)

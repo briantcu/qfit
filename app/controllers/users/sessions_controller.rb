@@ -36,7 +36,7 @@ class Users::SessionsController < Devise::SessionsController
       if RoutineService.get_open_workouts_start_today(user).count == 0
         RoutineService.new(user, 'CRON', Date.today, false).create_routines
       end
-      render json: {success: true, token: user.authentication_token, user_id: user.id, user_name: user.displayed_user_name} and return
+      render json: {success: true, token: user.authentication_token, user_id: user.id, user_name: user.user_name} and return
     end
     failure
   end
