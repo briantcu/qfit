@@ -34,14 +34,14 @@ class QuadPodService
     if VALID_PHONE.match(invite_data['sent_to'])
       user.update_attributes!(phone: invite_data['sent_to'])
     end
-    FriendService.new.make_friends(pod_invite.inviter.id, pod_invite.invitee.id)
+    FriendService.instance.make_friends(pod_invite.inviter.id, pod_invite.invitee.id)
   end
 
   def accept_invite_existing_user(invite)
     return unless invite.invitee == current_user.id && invite.status != 1 # Already accepted
     invite.status = 1
     invite.save!
-    FriendService.new.make_friends(invite.inviter.id, invite.invitee.id)
+    FriendService.instance.make_friends(invite.inviter.id, invite.invitee.id)
   end
 
   def deny_invite(invite)

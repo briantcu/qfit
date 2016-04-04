@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_message, only: [:show, :destroy]
   before_filter :verify_owns_message, only: [:show]
+  before_filter :are_friends_for_dm, only: [:create]
 
   # GET /messages.json
   def index
@@ -39,6 +40,11 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:message, :parent_id, :to_id, :message_type)
+  end
+
+  def are_friends_for_dm
+    unauthorized unless params[:message][:message_type] == 2
+    unauthorized unless FriendService.instance.are_friends?(current_user.id, params[:message][:to_id])
   end
 
   def set_message
