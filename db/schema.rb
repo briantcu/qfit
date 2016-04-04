@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403210618) do
+ActiveRecord::Schema.define(version: 20160404025016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -481,7 +481,6 @@ ActiveRecord::Schema.define(version: 20160403210618) do
     t.float    "hor_push_max"
     t.float    "hor_pull_max"
     t.integer  "power_index"
-    t.string   "old_password",                limit: 255
     t.integer  "current_phase"
     t.string   "phone",                       limit: 255
     t.integer  "last_weight_day_created",                 default: 0
@@ -508,7 +507,6 @@ ActiveRecord::Schema.define(version: 20160403210618) do
     t.string   "last_sign_in_ip",             limit: 255
     t.string   "authentication_token",        limit: 255
     t.integer  "experience_level"
-    t.string   "displayed_user_name",         limit: 255
     t.integer  "points"
     t.json     "avatars"
     t.integer  "status",                                  default: 1

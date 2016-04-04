@@ -64,7 +64,6 @@ one:
   hor_pull_max: 150
   power_index: 32
   experience_level: 1
-  old_password: MyString
   current_phase: 1
   phone: MyString
   last_weight_day_created: 1
@@ -95,7 +94,6 @@ two:
   hor_push_max: 1.5
   hor_pull_max: 1.5
   power_index: 1
-  old_password: MyString
   current_phase: 1
   phone: MyString
   last_weight_day_created: 3
@@ -125,7 +123,6 @@ super:
   hor_push_max: 1.5
   hor_pull_max: 1.5
   power_index: 1
-  old_password: MyString
   current_phase: 1
   phone: MyString
   last_weight_day_created: 1
@@ -154,7 +151,6 @@ coach:
   hor_push_max: 1.5
   hor_pull_max: 1.5
   power_index: 1
-  old_password: MyString
   current_phase: 1
   experience_level: 1
   phone: MyString
@@ -185,7 +181,6 @@ sub:
   hor_push_max: 1.5
   hor_pull_max: 1.5
   power_index: 1
-  old_password: MyString
   current_phase: 1
   phone: MyString
   last_weight_day_created: 1
@@ -214,7 +209,6 @@ user_no_sched:
   hor_push_max: 1.5
   hor_pull_max: 1.5
   power_index: 1
-  old_password: MyString
   current_phase: 1
   experience_level: 1
   phone: MyString
