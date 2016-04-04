@@ -17,7 +17,7 @@ class Message < ActiveRecord::Base
   # 1 - Post to feed
   # 2 - DM
   # 3 - Automated completed workout to feed
-  # 4 - Like
+  # 4 - Like notification
   # 5 - Workout Comment
   # 6 - Workout comment notification
   # 7 - Goal Completed

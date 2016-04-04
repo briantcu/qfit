@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
-    @message.poster = current_user.id
+    @message.poster = current_user
 
     if @message.save!
       render action: 'show', status: :created, location: @message
@@ -35,6 +35,10 @@ class MessagesController < ApplicationController
 
   def verify_owns_message
     unauthorized unless (@message.poster_id == current_user.id) || (@message.to_id == current_user.id)
+  end
+
+  def message_params
+    params.require(:message).permit(:message, :parent_id, :to_id, :message_type)
   end
 
   def set_message
