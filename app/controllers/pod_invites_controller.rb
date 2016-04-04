@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: pod_invites
+#
+#  id         :integer          not null, primary key
+#  inviter_id :integer
+#  sent_to    :string(255)
+#  status     :integer
+#  invitee_id :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class PodInvitesController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_pod_invite, only: [:show, :accept, :deny]

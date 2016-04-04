@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: messages
+#
+#  id           :integer          not null, primary key
+#  poster_id    :integer
+#  message      :text
+#  parent_id    :integer
+#  to_id        :integer
+#  message_type :integer
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class MessagesController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_message, only: [:show, :destroy]
