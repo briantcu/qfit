@@ -15,8 +15,8 @@ class PodInvitesController < ApplicationController
   # POST /pod_invites.json
   def create
     @pod_invite = PodInvite.new(pod_invite_params)
-    @pod_invite.inviter = current_user.id
-    response = QuadPodService.new.send_invite(@pod_invite)
+    @pod_invite.inviter = current_user
+    response = QuadPodService.instance.send_invite(@pod_invite)
 
     if response[:status] == 'success'
       render action: 'show', status: :created, location: response[:pod_invite]
@@ -26,12 +26,12 @@ class PodInvitesController < ApplicationController
   end
 
   def accept
-    QuadPodService.new.accept_invite_existing_user(@pod_invite)
+    QuadPodService.instance.accept_invite_existing_user(@pod_invite)
     render status: 201, json: {}
   end
 
   def deny
-    QuadPodService.new.deny_invite(@pod_invite)
+    QuadPodService.instance.deny_invite(@pod_invite)
     render status: 201, json: {}
   end
 
