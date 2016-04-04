@@ -1,25 +1,3 @@
-# == Schema Information
-#
-# Table name: group_routines
-#
-#  id             :integer          not null, primary key
-#  group_id       :integer
-#  day_performed  :date
-#  program_day_id :integer
-#  wt_day_id      :integer
-#  sp_day_id      :integer
-#  pl_day_id      :integer
-#  wu_day_id      :integer
-#  modified       :boolean
-#  pl_modified    :boolean
-#  wt_modified    :boolean
-#  wu_modified    :boolean
-#  sp_modified    :boolean
-#  changes_saved  :boolean
-#  created_at     :datetime
-#  updated_at     :datetime
-#
-
 class GroupRoutinesController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_group_routine, except: [:routine_by_date]

@@ -1,15 +1,3 @@
-# == Schema Information
-#
-# Table name: user_points
-#
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  points     :integer
-#  created_at :datetime
-#  updated_at :datetime
-#  diff       :integer
-#
-
 class UserPoints < ActiveRecord::Base
   belongs_to :user
 

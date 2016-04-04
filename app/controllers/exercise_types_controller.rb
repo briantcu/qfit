@@ -1,13 +1,3 @@
-# == Schema Information
-#
-# Table name: exercise_types
-#
-#  id         :integer          not null, primary key
-#  type_name  :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class ExerciseTypesController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_exercise_type, only: [:show]

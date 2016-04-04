@@ -1,14 +1,3 @@
-# == Schema Information
-#
-# Table name: friends
-#
-#  id         :integer          not null, primary key
-#  id_one     :integer
-#  id_two     :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

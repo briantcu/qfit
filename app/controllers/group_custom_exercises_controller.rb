@@ -1,17 +1,3 @@
-# == Schema Information
-#
-# Table name: group_custom_exercises
-#
-#  id         :integer          not null, primary key
-#  routine_id :integer
-#  details    :text
-#  status     :integer
-#  name       :string(255)
-#  ex_type    :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class GroupCustomExercisesController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_group_custom_exercise, only: [:show, :destroy]

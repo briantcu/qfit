@@ -1,14 +1,3 @@
-# == Schema Information
-#
-# Table name: likes
-#
-#  id         :integer          not null, primary key
-#  liker      :integer
-#  message_id :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class LikesController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_like, only: [:destroy]
