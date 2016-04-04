@@ -80,6 +80,8 @@ class User < ActiveRecord::Base
   has_many :user_goals
   has_many :user_pointses
   has_many :players, class_name: User, foreign_key: :master_user_id
+  has_many :inbox, class_name: Message, foreign_key: :to_id
+  has_many :outbox, class_name: Message, foreign_key: :poster_id
 
   has_one :group_join, dependent: :destroy
   has_one :sign_up_code, dependent: :destroy
@@ -88,8 +90,9 @@ class User < ActiveRecord::Base
   has_one :coach_account, dependent: :destroy
 
   belongs_to :program_type
-  belongs_to :coach, foreign_key: :master_user_id, class_name: 'User'
+  belongs_to :coach, foreign_key: :master_user_id, class_name: User
   validates_inclusion_of :sex, in: %w( male female ), :allow_blank => true
+
   scope :sub_users, -> {where(sub_user: true)}
   scope :regular_users, -> {where(sub_user: false, administrator: false)}
   scope :without_group, -> {where(:group.empty?)}

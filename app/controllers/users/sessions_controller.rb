@@ -16,6 +16,7 @@ class Users::SessionsController < Devise::SessionsController
 
   protected
 
+  #@TODO needed?
   def set_csrf_header
     response.headers['X-CSRF-Token'] = form_authenticity_token
   end

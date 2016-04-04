@@ -1,10 +1,12 @@
 class MessagesController < ApplicationController
   before_filter :verify_logged_in
-  before_action :set_message, only: [:show, :update, :destroy]
+  before_action :set_message, only: [:show, :destroy]
+  before_filter :verify_owns_message, only: [:show]
 
   # GET /messages.json
   def index
-    @messages = Message.all
+    @inbox = current_user.inbox.order(id: :desc).limit(10)
+    @outbox = current_user.outbox.order(id: :desc).limit(10)
   end
 
   # GET /messages/1.json
@@ -23,15 +25,6 @@ class MessagesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /messages/1.json
-  def update
-    if @message.update(message_params)
-      head :no_content
-    else
-      render json: @message.errors, status: :unprocessable_entity
-    end
-  end
-
   # DELETE /messages/1.json
   def destroy
     @message.destroy
@@ -39,11 +32,12 @@ class MessagesController < ApplicationController
   end
 
   private
-  def set_message
-    @message = Message.find(params[:id])
+
+  def verify_owns_message
+    unauthorized unless (@message.poster_id == current_user.id) || (@message.to_id == current_user.id)
   end
 
-  def message_params
-    params.require(:message).permit(:message, :parent_id, :to_id, :message_type)
+  def set_message
+    @message = Message.find(params[:id])
   end
 end

@@ -4,12 +4,10 @@ class GroupsController < ApplicationController
   before_filter :verify_coach, only: [:create]
   before_filter :verify_owns_group, except: [:create]
 
-  # GET /groups/1
   # GET /groups/1.json
   def show
   end
 
-  # POST /groups
   # POST /groups.json
   def create
     @group = current_user.build_group(group_params)
@@ -22,7 +20,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /groups/1
   # PATCH/PUT /groups/1.json
   def update
     if @group.update(group_params)
@@ -32,7 +29,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
     members = @group.members

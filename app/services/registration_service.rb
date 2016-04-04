@@ -32,10 +32,11 @@ class RegistrationService
     user
   end
 
-  def register_user_for_coach(user, coach, temp_password)
-    user.assign_attributes(level: 1, sub_user: true, master_user_id: coach.id)
+  def register_user_for_coach(user, coach)
+    password = generate_password
+    user.assign_attributes(level: 1, sub_user: true, master_user_id: coach.id, password: password)
     if user.save!
-      EmailService.perform_async(:new_sub_email_from_coach, {user_id: user.id, temp_password: temp_password})
+      EmailService.perform_async(:new_sub_email_from_coach, {user_id: user.id, temp_password: password})
     end
     user
   end

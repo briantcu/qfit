@@ -1,5 +1,5 @@
 class CoachAccountsController < ApplicationController
-  before_filter :verify_owns_account, only: [:show, :send_invite, :delete_user, :add_user]
+  before_filter :verify_owns_account
   before_filter :verify_owns_user, only: [:delete_user]
 
   def show
@@ -44,11 +44,7 @@ class CoachAccountsController < ApplicationController
   end
 
   def sign_up_params
-    params.require(:user).permit( :email, :first_name, :last_name, :sex)
+    params.require(:user).permit(:email, :first_name, :last_name, :sex)
   end
 
-  def assign_temp_password
-    @user.password = RegistrationService.instance.generate_password
-    @user.password
-  end
 end
