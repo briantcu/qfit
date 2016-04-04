@@ -10,7 +10,7 @@ class CoachAccountsController < ApplicationController
       render status: 471, json: { errors: 'Coach is maxed out'}
     else
       @user = User.new(sign_up_params)
-      @user = RegistrationService.instance.register_user_for_coach(@user, current_user, assign_temp_password)
+      @user = RegistrationService.instance.register_user_for_coach(@user, current_user)
     end
   end
 
