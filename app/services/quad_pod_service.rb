@@ -54,31 +54,21 @@ class QuadPodService
 
   def process_invite(invite, type)
     if type == :email
-
       invitee = User.where(email: invite.sent_to).first
-      if invitee.present?
-        invite.invitee.id = invitee.id
-        invite.save!
-        EmailService.perform_async(:existing_user_pod_invite, {invite_id: invite.id})
-      else
-        invite.save!
-        token = create_token(invite)
-        EmailService.perform_async(:new_user_pod_invite, {invite_id: invite.id, token: token})
-      end
-
+      service = EmailService
     else
-
       invitee = User.where(phone: invite.sent_to).first
-      if invitee.present?
-        invite.invitee.id = invitee.id
-        invite.save!
-        TextMessageService.perform_async(:existing_user_pod_invite, {invite_id: invite.id})
-      else
-        invite.save!
-        token = create_token(invite)
-        TextMessageService.perform_async(:new_user_pod_invite, {invite_id: invite.id, token: token})
-      end
+      service = TextMessageService
+    end
 
+    if invitee.present?
+      invite.invitee_id = invitee.id
+      invite.save!
+      service.perform_async(:existing_user_pod_invite, {invite_id: invite.id})
+    else
+      invite.save!
+      token = create_token(invite)
+      service.perform_async(:new_user_pod_invite, {invite_id: invite.id, token: token})
     end
 
     unless UserGoal.where(user_id: invite.inviter, goal_definition_id: 6).first.present?
