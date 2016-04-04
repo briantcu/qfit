@@ -25,6 +25,19 @@ RSpec.describe Users::SessionsController, type: :controller do
       expect(body['token']).not_to eq(nil)
       expect(body['user_id']).to eq(100)
     end
+
+    it 'calls to create a workout if you need one' do
+      allow_any_instance_of(RoutineService).to receive(:create_routines)
+      FactoryGirl.create(:user, email: 'brian@quadfit.com', password: 'password', id: 100)
+      post :create, { email: 'brian@quadfit.com', password: 'password'}
+    end
+
+    it 'does not call to create a workout if you need one' do
+      expect_any_instance_of(RoutineService).not_to receive(:create_routines)
+      user = FactoryGirl.create(:user, email: 'brian@quadfit.com', password: 'password', id: 100)
+      FactoryGirl.create(:daily_routine, user: user, day_performed: Date.today)
+      post :create, { email: 'brian@quadfit.com', password: 'password'}
+    end
   end
 
   context 'sign out' do
