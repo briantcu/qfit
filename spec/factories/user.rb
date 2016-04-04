@@ -24,7 +24,6 @@ FactoryGirl.define do
     last_weight_day_created 0
     level 2
     master_user_id nil
-    old_password nil
     paid_tier 1
     phone nil
     points 0
