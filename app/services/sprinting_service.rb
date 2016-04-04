@@ -31,7 +31,7 @@ class SprintingService
     @routine = routine
 
     if previous_routine.changes_saved && previous_routine.sp_modified
-      if entity.is_group
+      if entity.is_group?
         previous_exercises = previous_routine.group_performed_sprints
       else
         previous_exercises = previous_routine.performed_sprints
@@ -44,7 +44,7 @@ class SprintingService
     previous_exercises.each do |exercise|
       status = exercise.status
       #If changes were not saved, make invisible default exercises visible.
-      if !previous_routine.changes_saved
+      unless previous_routine.changes_saved
         if status == 2
           status = 3
         end

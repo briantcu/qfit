@@ -1,5 +1,10 @@
 class RoutineService
 
+  attr_accessor :routine
+  attr_accessor :entity  #Either a user or group
+  attr_accessor :phase_number # 1-4
+  attr_accessor :sched_update
+
   STRETCHING = 4
   WEIGHTS = 1
   PLYOS = 2
@@ -7,10 +12,6 @@ class RoutineService
   MAX_EXERCISES = 15
 
   @date
-  @entity #Either a user or group
-  @routine
-  @phase_number # 1-4
-  @sched_update
   @cause_of_new_routine #Cron job to create new workouts, or schedule/goals change, or new member/group creation,
                         # or member removed from group. CRON, SCHED, NEW, REMOVED
 

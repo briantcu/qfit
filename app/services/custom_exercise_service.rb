@@ -27,7 +27,7 @@ class CustomExerciseService
       copy_sprints
     else
       #this is called at the tail end of creating a regular workout day
-      @routine = @routine_service.instance_variable_get(:@routine)
+      @routine = @routine_service.routine
       if @previous_workout.changes_saved
         if @weekly_schedule_day.stretching
           copy_warmups
@@ -93,9 +93,9 @@ class CustomExerciseService
   def copy_weights
     old_weights = @previous_workout.get_weights
     if old_weights.count > 0
-      weight_service = WeightsService.new(@routine_service.instance_variable_get(:@entity), @routine,
-                                          @routine_service.instance_variable_get(:@phase_number),
-                                          @routine_service.instance_variable_get(:@sched_update), @routine_service)
+      weight_service = WeightsService.new(@routine_service.entity, @routine,
+                                          @routine_service.phase_number,
+                                          @routine_service..sched_update, @routine_service)
       weight_service.copy_weights(@previous_workout)
     end
 
