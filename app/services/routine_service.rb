@@ -5,10 +5,10 @@ class RoutineService
   attr_accessor :phase_number # 1-4
   attr_accessor :sched_update
 
-  STRETCHING = 4
   WEIGHTS = 1
   PLYOS = 2
   SPRINTING = 3
+  STRETCHING = 4
   MAX_EXERCISES = 15
 
   @date
@@ -116,27 +116,13 @@ class RoutineService
 
     weekly_schedule_day = @entity.get_schedule.get_schedule_day(@date)
 
-    if weekly_schedule_day.stretching
-      add_exercises(WarmupService.instance, STRETCHING)
-    end
-
-    if weekly_schedule_day.weights
-      weight_service = WeightsService.new(@entity, @routine, @phase_number, @sched_update, self)
-      weight_service.add_weights
-    end
-
-    if weekly_schedule_day.plyometrics
-      add_exercises(PlyometricsService.instance, PLYOS)
-    end
-
-    if weekly_schedule_day.sprinting
-      add_exercises(SprintingService.instance, SPRINTING)
-    end
+    add_exercises(WarmupService.instance, STRETCHING) if weekly_schedule_day.stretching
+    WeightsService.new(@entity, @routine, @phase_number, @sched_update, self).add_weights if weekly_schedule_day.weights
+    add_exercises(PlyometricsService.instance, PLYOS) if weekly_schedule_day.plyometrics
+    add_exercises(SprintingService.instance, SPRINTING) if weekly_schedule_day.sprinting
 
     cleanup
-
     maybe_add_custom_exercises(weekly_schedule_day)
-
     @routine
   end
 
@@ -203,7 +189,13 @@ class RoutineService
     else
       prev_routine  = DailyRoutine.get_matching_routine_since(temp_date, type, day_id, @entity.id)
     end
-    validate_routine_matches(prev_routine)
+    return nil if prev_routine.nil?
+
+    prev_phase = @entity.get_schedule.get_phase_by_date(prev_routine.day_performed)
+    return nil if prev_phase != @phase_number
+    return nil if prev_routine.id == @routine.id
+
+    prev_routine
   end
 
   private
@@ -244,8 +236,8 @@ class RoutineService
   end
 
   def add_exercises(service, type)
-    day_id = self.get_next_day_id(type)
-    previous_routine = self.get_previous_matching_routine(type, day_id)
+    day_id = get_next_day_id(type)
+    previous_routine = get_previous_matching_routine(type, day_id)
     if previous_routine.nil?
       service.add_exercises(@entity, @routine)
     else
@@ -253,23 +245,6 @@ class RoutineService
     end
     @entity.note_last_day_created(day_id, type)
     @routine.note_day_created(day_id, type)
-  end
-
-  def validate_routine_matches(prev_routine)
-    if prev_routine.nil?
-      return nil
-    end
-
-    prev_phase = @entity.get_schedule.get_phase_by_date(prev_routine.day_performed)
-    if prev_phase != @phase_number
-      return nil
-    end
-
-    if prev_routine.id == @routine.id
-      return nil
-    end
-
-    prev_routine
   end
 
   def maybe_add_custom_exercises(weekly_schedule_day)

@@ -1,9 +1,9 @@
 class WeightsService
 
-  STRETCHING = 4
   WEIGHTS = 1
   PLYOS = 2
   SPRINTING = 3
+  STRETCHING = 4
 
   @entity
   @routine

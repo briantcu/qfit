@@ -3,10 +3,13 @@ require 'singleton'
 class SprintingService
   include Singleton
 
-  STRETCHING = 4
   WEIGHTS = 1
   PLYOS = 2
   SPRINTING = 3
+  STRETCHING = 4
+
+  DELETED = 2
+  VISIBLE = 3
 
   @entity
   @routine

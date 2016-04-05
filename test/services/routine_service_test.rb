@@ -2,10 +2,6 @@ require 'test_helper'
 
 class RoutineServiceTest < ActiveSupport::TestCase
 
-  setup do
-
-  end
-
   test 'should do nothing with nil user' do
     @user = User.new
     @routine_service = RoutineService.new(@user, 'Cron', Date.today, false)
@@ -71,26 +67,4 @@ class RoutineServiceTest < ActiveSupport::TestCase
     assert(routine.performed_sprints.count == 1)
     assert(routine.performed_exercises.count == 2)
   end
-
-  # test 'should create routine with warm ups and plyos from previous workout and pull custom from prev workout' do
-  #   date = Date.new(2014, 4, 26)
-  #   @user = User.find(1)
-  #   @routine_service = RoutineService.new(@user, 'CRON', date, false)
-  #   routine = @routine_service.create_routine
-  #   assert(routine.performed_warm_ups.count == 2)
-  #   assert(routine.performed_plyometrics.count == 2)
-  #   assert(routine.performed_sprints.count == 1)
-  # end
-  #
-  # test 'should create a routine for a group' do
-  #   date = Date.new(2014, 7, 13)
-  #   @group = Group.find(2)
-  #   @routine_service = RoutineService.new(@group, 'CRON', date, false)
-  #   routine = @routine_service.create_routine
-  #   assert(routine.group_performed_plyos.count == 4)
-  #   assert(routine.group_performed_warmups.count == 6)
-  #   assert(routine.group_performed_sprints.count == 1)
-  #   assert(routine.group_performed_exercises.count == 1)
-  # end
-
 end
