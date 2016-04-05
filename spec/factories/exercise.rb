@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory(:exercise) do
     category 1
-    difficulty nil
+    difficulty 1
     exercise_type_id 1
     is_body_weight false
     is_image false
