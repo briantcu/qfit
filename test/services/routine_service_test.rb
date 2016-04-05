@@ -56,15 +56,4 @@ class RoutineServiceTest < ActiveSupport::TestCase
     next_day = @routine_service.get_next_day_id(4)
     assert(next_day == 1)
   end
-
-  test 'should create routine with canned warm ups and pull custom exercises from previous workout' do
-    date = Date.new(2014, 5, 18)
-    @user = User.find(1)
-    @routine_service = RoutineService.new(@user, 'CRON', date, false)
-    routine = @routine_service.create_routine
-    assert(routine.performed_plyometrics.count == 4)
-    assert(routine.performed_warm_ups.count == 6)
-    assert(routine.performed_sprints.count == 1)
-    assert(routine.performed_exercises.count == 2)
-  end
 end

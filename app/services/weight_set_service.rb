@@ -43,7 +43,6 @@ class WeightSetService
     @exercise.weight_sets.each do |weight_set|
       weight_set.destroy
     end
-    @exercise.weight_sets = []
   end
 
   def calculate_recommended_loads

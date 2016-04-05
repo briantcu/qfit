@@ -105,7 +105,7 @@ class UserSchedule < ActiveRecord::Base
     workout_phase = get_phase_by_date(workout_date)
     current_sprint_diff = self.user.sprint_diff
     #This is the first workout in the new phase
-    if workout_phase != current_phase && !user.is_sub_user?
+    if workout_phase != current_phase
       # Bump up the sprint diff if you're changing phases and you've completed 8 sprints of the current difficulty
       completed_sprints = PerformedSprint.joins(:laps, :sprints).where(
           laps: {completed: true},

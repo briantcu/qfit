@@ -213,7 +213,6 @@ class RoutineService
   end
 
   def self.delete_old_workouts(entity)
-
     if RoutineService.has_open_workout_today?(entity)
       workouts = RoutineService.get_open_workouts_start_today(entity)
     else
@@ -223,7 +222,6 @@ class RoutineService
     workouts.each do |workout|
       workout.destroy
     end
-
   end
 
   def get_matching_routines
@@ -282,13 +280,13 @@ class RoutineService
 
   def cleanup
     @entity.current_phase = @phase_number
-    @entity.save
+    @entity.save!
 
     #0 is a custom day, 99 is a Quadfit generated day with no weights
     if @routine.program_day_id == 0
       @routine.program_day_id = 99
     end
-    @routine.save
+    @routine.save!
   end
 
 end

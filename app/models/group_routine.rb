@@ -126,7 +126,7 @@ class GroupRoutine < ActiveRecord::Base
     end
 
     self.group_custom_exercises.each do |c|
-      add_custom_for_user(c, c.ex_type, user)
+      add_custom_for_user(c, user)
     end
   end
 
@@ -189,7 +189,6 @@ class GroupRoutine < ActiveRecord::Base
       note_changes_for_users(WEIGHTS)
     end
   end
-
 
   def get_warmups_without_changes_saved
     self.group_performed_warmups.where('status == 2 or status == 3').order(id: :asc)
@@ -275,7 +274,7 @@ class GroupRoutine < ActiveRecord::Base
 
   def add_custom_for_user(group_exercise, user)
     user_routine = DailyRoutine.get_routine_from_group_routine_id(self.id, self.group.id, user.id)
-    if !user_routine.nil?
+    unless user_routine.nil?
       user_routine.add_custom_exercise(group_exercise.name, group_exercise.ex_type, group_exercise.id)
     end
   end
