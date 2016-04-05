@@ -107,7 +107,7 @@ class UserSchedule < ActiveRecord::Base
     #This is the first workout in the new phase
     if workout_phase != current_phase
       # Bump up the sprint diff if you're changing phases and you've completed 8 sprints of the current difficulty
-      completed_sprints = PerformedSprint.joins(:laps, :sprints).where(
+      completed_sprints = user.performed_sprints.joins(:laps).joins(:sprint).where(
           laps: {completed: true},
           sprints: {difficulty: current_sprint_diff}
       ).distinct.count
