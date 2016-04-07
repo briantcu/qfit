@@ -20,6 +20,7 @@ class GroupSchedule < ActiveRecord::Base
   PLYOS = 2
   SPRINTING = 3
 
+  after_save :create_weekly_schedule_days, on: :create
   belongs_to :group
   has_many :group_schedule_days, -> { order('day ASC') }
   accepts_nested_attributes_for :group_schedule_days, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }

@@ -133,8 +133,12 @@ class RoutineService
       create_routine
     end
     # Make sure a new user sees at least 1 workout
-    workouts = RoutineService.get_open_workouts(@entity)
-    unless workouts.present?
+    if @entity.is_group?
+      workout_count = @entity.group_routines.count
+    else
+      workout_count = @entity.daily_routines.count
+    end
+    unless workout_count > 0
       date = dates.last + 1.days
       10.times do
         self.set_date(date)
