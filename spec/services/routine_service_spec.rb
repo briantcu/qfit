@@ -5,7 +5,6 @@ RSpec.describe RoutineService do
   before(:each) do
     @user = FactoryGirl.create(:user)
     @user_schedule = FactoryGirl.create(:user_schedule, user: @user)
-    @user_schedule.create_weekly_schedule_days
     @user_schedule.setup_phases
     @user_schedule.save!
   end
@@ -42,7 +41,7 @@ RSpec.describe RoutineService do
     it 'creates workouts for groups and members get the workout' do
       group = FactoryGirl.create(:group)
       group_schedule = FactoryGirl.create(:group_schedule, group: group)
-      group_schedule.create_weekly_schedule_days
+      #group_schedule.create_weekly_schedule_days
       group_schedule.setup_phases
       group_schedule.save!
       sub_user = FactoryGirl.create(:user, sub_user: true)
@@ -66,28 +65,6 @@ RSpec.describe RoutineService do
   end
 
   context 'previous matching routine' do
-    context 'for group' do
-      it 'should copy over the exercises if the workout was not modified' do
-
-      end
-
-      it 'should copy over the added exercises if changes were saved and carry forward saved flag' do
-
-      end
-
-      it 'should not copy over added exercises if the changes were not saved' do
-
-      end
-
-      it 'should keep deleted exercises deleted if changes were saved' do
-
-      end
-
-      it 'copies over a completely custom day with changes saved and has the right program day id' do
-
-      end
-    end
-
     context 'for user' do
       it 'should copy over the exercises if the workout was not modified' do
 
@@ -110,6 +87,27 @@ RSpec.describe RoutineService do
       end
     end
 
+    context 'for group' do
+      it 'should copy over the exercises if the workout was not modified' do
+
+      end
+
+      it 'should copy over the added exercises if changes were saved and carry forward saved flag' do
+
+      end
+
+      it 'should not copy over added exercises if the changes were not saved' do
+
+      end
+
+      it 'should keep deleted exercises deleted if changes were saved' do
+
+      end
+
+      it 'copies over a completely custom day with changes saved and has the right program day id' do
+
+      end
+    end
   end
 
   context 'no previous matching routine' do
