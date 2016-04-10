@@ -25,11 +25,18 @@ RSpec.describe RoutineService do
       expect(@user.reload.daily_routines.count).to eq(3)
     end
 
-    it 'creates workouts for sub users without a group' do
+    it 'creates workouts for sub users without a group, regardless of last logged in' do
       @user.sub_user = true
       @user.save!
 
+      allow_any_instance_of(UserSchedule).to receive(:is_valid_workout_day?).and_return(true)
+      allow_any_instance_of(WeeklyScheduleDay).to receive(:stretching).and_return(true)
+      allow_any_instance_of(WeeklyScheduleDay).to receive(:sprinting).and_return(true)
+      allow_any_instance_of(WeeklyScheduleDay).to receive(:plyometrics).and_return(true)
+      allow_any_instance_of(WeeklyScheduleDay).to receive(:weights).and_return(true)
 
+      RoutineService.nightly_workout_creation
+      expect(@user.reload.daily_routines.count).to eq(3)
     end
 
     it 'creates workouts for groups and members get the workout' do

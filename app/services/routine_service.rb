@@ -23,6 +23,7 @@ class RoutineService
   end
 
   def self.nightly_workout_creation
+    #@TODO Make sure that coach account is active for groups and sub users. Modify tests
     groups = Group.all
     groups.each do |group|
       RoutineService.new(group, 'CRON', nil, false).create_routines
