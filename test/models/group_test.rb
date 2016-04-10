@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GroupTest < ActiveSupport::TestCase
   test 'should note day created' do
-    group = Group.find(1)
+    group = FactoryGirl.create(:group)
     group.note_last_day_created(2, 1)
     assert(group.last_weight_day_created == 2)
 

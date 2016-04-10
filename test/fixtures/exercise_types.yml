@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-power:
-  id: 1
-  type_name: MyString
-
-other:
-  id: 2
-  type_name: MyString

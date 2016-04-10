@@ -3,6 +3,7 @@ require 'test_helper'
 class FitnessAssessmentSubmissionTest < ActiveSupport::TestCase
 
   test 'processes submission correctly' do
+    FactoryGirl.create(:user, id: 1)
     fitness_assessment_submission = FitnessAssessmentSubmission.new(:user_id => 1, :weight => 150, :bench_reps => 10,
       :bench_weight => 200, :squat_reps => 11, :squat_weight => 300, :push_ups => 30, :assisted_push_ups => 50,
       :experience_level => 3, :sex => 'male', :pull_ups => 30)
@@ -21,6 +22,7 @@ class FitnessAssessmentSubmissionTest < ActiveSupport::TestCase
   end
 
   test 'processes submission using push ups only' do
+    FactoryGirl.create(:user, id: 1)
     fitness_assessment_submission = FitnessAssessmentSubmission.new(:user_id => 1, :weight => 150, :bench_reps => 0,
                                                                     :bench_weight => 0, :squat_reps => 0, :squat_weight => 0,
                                                                     :push_ups => 30, :assisted_push_ups => 50,

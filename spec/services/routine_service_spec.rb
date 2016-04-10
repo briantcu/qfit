@@ -41,7 +41,6 @@ RSpec.describe RoutineService do
     it 'creates workouts for groups and members get the workout' do
       group = FactoryGirl.create(:group)
       group_schedule = FactoryGirl.create(:group_schedule, group: group)
-      #group_schedule.create_weekly_schedule_days
       group_schedule.setup_phases
       group_schedule.save!
       sub_user = FactoryGirl.create(:user, sub_user: true)

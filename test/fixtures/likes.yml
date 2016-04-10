@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  liker: 1
-  message_id: 1
-
-two:
-  liker: 1
-  message_id: 1
