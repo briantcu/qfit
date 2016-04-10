@@ -19,6 +19,78 @@
 #  updated_at     :datetime
 #
 
+# ProgramDaySequence_1:
+#     id: 1
+# program_id: 1   FULL
+# number_of_days: 2
+# one: 1
+# two: 2
+# three: 0
+# four: 0
+# five: 0
+# six: 0
+# seven: 0
+# eight: 0
+# nine: 0
+# ten: 0
+# ProgramDaySequence_2:
+#     id: 2
+# program_id: 2  HALF
+# number_of_days: 4
+# one: 3
+# two: 4
+# three: 5
+# four: 6
+# five: 0
+# six: 0
+# seven: 0
+# eight: 0
+# nine: 0
+# ten: 0
+# ProgramDaySequence_3:
+#     id: 3
+# program_id: 3   3 DAY MIXED
+# number_of_days: 6
+# one: 3
+# two: 2
+# three: 4
+# four: 5
+# five: 1
+# six: 6
+# seven: 0
+# eight: 0
+# nine: 0
+# ten: 0
+# ProgramDaySequence_4:
+#     id: 4
+# program_id: 4    4 DAY MIXED
+# number_of_days: 8
+# one: 3
+# two: 2
+# three: 4
+# four: 1
+# five: 5
+# six: 2
+# seven: 6
+# eight: 1
+# nine: 0
+# ten: 0
+# ProgramDaySequence_5:
+#     id: 5
+# program_id: 5   T4P
+# number_of_days: 4
+# one: 7
+# two: 8
+# three: 9
+# four: 10
+# five: 0
+# six: 0
+# seven: 0
+# eight: 0
+# nine: 0
+# ten: 0
+
+
 class ProgramDaySequence < ActiveRecord::Base
   belongs_to :program
   belongs_to :program_day, :foreign_key => :one

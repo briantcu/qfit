@@ -2,23 +2,27 @@ require 'rails_helper'
 
 RSpec.describe RoutineService do
 
-  before(:each) do
-    @user = FactoryGirl.create(:user)
-    @user_schedule = FactoryGirl.create(:user_schedule, user: @user)
-    @user_schedule.setup_phases
-    @user_schedule.save!
-  end
-
   context 'cron job' do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      @user_schedule = FactoryGirl.create(:user_schedule, user: @user)
+      @user_schedule.setup_phases
+      @user_schedule.save!
+      day_index = Date.today.wday
+      3.times do
+        wsd = @user_schedule.weekly_schedule_days.at(day_index)
+        wsd.stretching = true
+        wsd.plyometrics = true
+        wsd.weights = true
+        wsd.sprinting = true
+        wsd.save
+        day_index += 1
+      end
+    end
+
     it 'creates workouts for all eligible users' do
       @user.last_sign_in_at = Time.now - 20.days
       @user.save!
-
-      allow_any_instance_of(UserSchedule).to receive(:is_valid_workout_day?).and_return(true)
-      allow_any_instance_of(WeeklyScheduleDay).to receive(:stretching).and_return(true)
-      allow_any_instance_of(WeeklyScheduleDay).to receive(:sprinting).and_return(true)
-      allow_any_instance_of(WeeklyScheduleDay).to receive(:plyometrics).and_return(true)
-      allow_any_instance_of(WeeklyScheduleDay).to receive(:weights).and_return(true)
 
       RoutineService.nightly_workout_creation
       expect(@user.reload.daily_routines.count).to eq(3)
@@ -26,13 +30,8 @@ RSpec.describe RoutineService do
 
     it 'creates workouts for sub users without a group, regardless of last logged in' do
       @user.sub_user = true
+      @user.last_sign_in_at = Time.now - 22.days
       @user.save!
-
-      allow_any_instance_of(UserSchedule).to receive(:is_valid_workout_day?).and_return(true)
-      allow_any_instance_of(WeeklyScheduleDay).to receive(:stretching).and_return(true)
-      allow_any_instance_of(WeeklyScheduleDay).to receive(:sprinting).and_return(true)
-      allow_any_instance_of(WeeklyScheduleDay).to receive(:plyometrics).and_return(true)
-      allow_any_instance_of(WeeklyScheduleDay).to receive(:weights).and_return(true)
 
       RoutineService.nightly_workout_creation
       expect(@user.reload.daily_routines.count).to eq(3)
@@ -43,14 +42,20 @@ RSpec.describe RoutineService do
       group_schedule = FactoryGirl.create(:group_schedule, group: group)
       group_schedule.setup_phases
       group_schedule.save!
+
+      day_index = Date.today.wday
+      3.times do
+        wsd = group_schedule.group_schedule_days.at(day_index)
+        wsd.stretching = true
+        wsd.plyometrics = true
+        wsd.weights = true
+        wsd.sprinting = true
+        wsd.save!
+        day_index += 1
+      end
+
       sub_user = FactoryGirl.create(:user, sub_user: true)
       group.add_member(sub_user)
-
-      allow_any_instance_of(GroupSchedule).to receive(:is_valid_workout_day?).and_return(true)
-      allow_any_instance_of(GroupScheduleDay).to receive(:stretching).and_return(true)
-      allow_any_instance_of(GroupScheduleDay).to receive(:sprinting).and_return(true)
-      allow_any_instance_of(GroupScheduleDay).to receive(:plyometrics).and_return(true)
-      allow_any_instance_of(GroupScheduleDay).to receive(:weights).and_return(true)
 
       RoutineService.nightly_workout_creation
       expect(sub_user.reload.daily_routines.count).to eq(3)
@@ -58,6 +63,8 @@ RSpec.describe RoutineService do
 
     it 'does not create workouts for users that have not logged in recently' do
       allow(@user_schedule).to receive(:is_valid_workout_day?).and_return(true)
+      @user.last_sign_in_at = Time.now - 22.days
+      @user.save!
       RoutineService.nightly_workout_creation
       expect(@user.reload.daily_routines.count).to eq(0)
     end

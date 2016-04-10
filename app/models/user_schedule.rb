@@ -92,6 +92,7 @@ class UserSchedule < ActiveRecord::Base
   end
 
   def is_valid_workout_day? (date)
+    weekly_schedule_day = self.weekly_schedule_days.at(date.wday)
     weekly_schedule_day.weights || weekly_schedule_day.plyometrics || weekly_schedule_day.sprinting
   end
 

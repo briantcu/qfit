@@ -38,8 +38,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   # config.before(:suite) do
-  #   ActiveRecord::Base.subclasses.each(&:delete_all)
-  #   DatabaseCleaner.strategy = :truncation
+  #   DatabaseCleaner.strategy = :transaction
   # end
   #
   # config.before(:each) do

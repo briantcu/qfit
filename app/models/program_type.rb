@@ -8,5 +8,6 @@
 #  updated_at   :datetime
 #
 
+#(1,'PowerLean'),(2,'PowerMass'),(3,'PowerRip');
 class ProgramType < ActiveRecord::Base
 end
