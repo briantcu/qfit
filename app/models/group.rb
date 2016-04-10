@@ -30,7 +30,7 @@ class Group < ActiveRecord::Base
   has_many :group_routines, dependent: :destroy
 
   def get_schedule
-    self.group_schedule
+    group_schedule
   end
 
   def is_group?
@@ -97,5 +97,10 @@ class Group < ActiveRecord::Base
       when SPRINTING
         self.last_sprint_day_created
     end
+  end
+
+  def add_member(member)
+    self.members << member
+    self.save!
   end
 end

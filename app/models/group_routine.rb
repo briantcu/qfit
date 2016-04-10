@@ -191,19 +191,19 @@ class GroupRoutine < ActiveRecord::Base
   end
 
   def get_warmups_without_changes_saved
-    self.group_performed_warmups.where('status == 2 or status == 3').order(id: :asc)
+    self.group_performed_warmups.where('status = 2 or status = 3').order(id: :asc)
   end
 
   def get_sprints_without_changes_saved
-    self.group_performed_sprints.where('status == 2 or status == 3').order(id: :asc)
+    self.group_performed_sprints.where('status = 2 or status = 3').order(id: :asc)
   end
 
   def get_plyometrics_without_changes_saved
-    self.group_performed_plyos.where('status == 2 or status == 3').order(id: :asc)
+    self.group_performed_plyos.where('status = 2 or status = 3').order(id: :asc)
   end
 
   def get_weights_without_changes_saved
-    self.group_performed_exercises.where('status == 2 or status == 3').order(id: :asc)
+    self.group_performed_exercises.where('status = 2 or status = 3').order(id: :asc)
   end
 
   def add_warmup(exercise_id, status, not_used)

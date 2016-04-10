@@ -14,5 +14,7 @@
 #
 
 class GroupScheduleDay < ActiveRecord::Base
+  attr_accessor :stretching, :weights, :plyometrics, :sprinting
+
   belongs_to :group_schedule
 end

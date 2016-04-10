@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
   def new_user
     user = User.find(params[:user_id])
     return unauthorized unless current_user.is_coach_of_user?(user.id)
-    @group.add_user(user)
+    @group.add_member(user)
     RoutineService.group_status_changed(user)
   end
 

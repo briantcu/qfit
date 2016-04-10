@@ -20,7 +20,7 @@ class GroupSchedule < ActiveRecord::Base
   PLYOS = 2
   SPRINTING = 3
 
-  after_save :create_weekly_schedule_days, on: :create
+  after_commit :create_weekly_schedule_days, on: :create
   belongs_to :group
   has_many :group_schedule_days, -> { order('day ASC') }
   accepts_nested_attributes_for :group_schedule_days, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
@@ -44,7 +44,7 @@ class GroupSchedule < ActiveRecord::Base
 
   def create_weekly_schedule_days
     7.times{ |i|
-      self.group_schedule_days << GroupScheduleDay.create(day: i, group_schedule_id: self.id)
+      GroupScheduleDay.find_or_create_by(day: i, group_schedule_id: self.id)
     }
   end
 

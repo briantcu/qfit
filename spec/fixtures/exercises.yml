@@ -10,6 +10,7 @@ Exercise_1:
   name: Clean Pull
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_2:
   id: 2
   exercise_type_id: 1
@@ -21,6 +22,7 @@ Exercise_2:
   name: Squat Jump
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_3:
   id: 3
   exercise_type_id: 1
@@ -32,6 +34,7 @@ Exercise_3:
   name: Snatch Pull
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_4:
   id: 4
   exercise_type_id: 1
@@ -43,6 +46,7 @@ Exercise_4:
   name: One Arm Dumbbell Snatch
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_5:
   id: 5
   exercise_type_id: 1
@@ -54,6 +58,7 @@ Exercise_5:
   name: Hang Jump Shrug
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_6:
   id: 6
   exercise_type_id: 1
@@ -65,6 +70,7 @@ Exercise_6:
   name: Clean High Pull
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_7:
   id: 7
   exercise_type_id: 1
@@ -76,6 +82,7 @@ Exercise_7:
   name: Snatch High Pull
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_8:
   id: 8
   exercise_type_id: 1
@@ -87,6 +94,7 @@ Exercise_8:
   name: Hang Power Clean
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_9:
   id: 9
   exercise_type_id: 1
@@ -98,6 +106,7 @@ Exercise_9:
   name: Hang Power Snatch
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_10:
   id: 10
   exercise_type_id: 1
@@ -109,6 +118,7 @@ Exercise_10:
   name: Power Clean
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_11:
   id: 11
   exercise_type_id: 1
@@ -120,6 +130,7 @@ Exercise_11:
   name: Power Snatch
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_12:
   id: 12
   exercise_type_id: 2
@@ -131,6 +142,7 @@ Exercise_12:
   name: Forward Lunge
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_13:
   id: 13
   exercise_type_id: 2
@@ -142,6 +154,7 @@ Exercise_13:
   name: Reverse Lunge
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_14:
   id: 14
   exercise_type_id: 2
@@ -153,6 +166,7 @@ Exercise_14:
   name: Side Lunge
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_15:
   id: 15
   exercise_type_id: 2
@@ -164,6 +178,7 @@ Exercise_15:
   name: Drop Lunge
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_16:
   id: 16
   exercise_type_id: 2
@@ -175,6 +190,7 @@ Exercise_16:
   name: Stepup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_17:
   id: 17
   exercise_type_id: 2
@@ -186,6 +202,7 @@ Exercise_17:
   name: Lateral Stepup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_18:
   id: 18
   exercise_type_id: 2
@@ -197,6 +214,7 @@ Exercise_18:
   name: Bulgarian Split Squat
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_19:
   id: 19
   exercise_type_id: 2
@@ -208,6 +226,7 @@ Exercise_19:
   name: Bulgarian Split Deadlift
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_20:
   id: 20
   exercise_type_id: 2
@@ -219,6 +238,7 @@ Exercise_20:
   name: Single Leg Squats
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_21:
   id: 21
   exercise_type_id: 3
@@ -230,6 +250,7 @@ Exercise_21:
   name: Squat
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_22:
   id: 22
   exercise_type_id: 3
@@ -241,6 +262,7 @@ Exercise_22:
   name: Front Squat
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_23:
   id: 23
   exercise_type_id: 3
@@ -252,6 +274,7 @@ Exercise_23:
   name: Overhead Squat
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_24:
   id: 24
   exercise_type_id: 3
@@ -263,6 +286,7 @@ Exercise_24:
   name: Split Squat
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_25:
   id: 25
   exercise_type_id: 3
@@ -274,6 +298,7 @@ Exercise_25:
   name: Side Squat
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_26:
   id: 26
   exercise_type_id: 4
@@ -285,6 +310,7 @@ Exercise_26:
   name: Single Leg Good Morning
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_27:
   id: 27
   exercise_type_id: 4
@@ -296,6 +322,7 @@ Exercise_27:
   name: Single Leg Romanian Deadlift
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_28:
   id: 28
   exercise_type_id: 4
@@ -307,6 +334,7 @@ Exercise_28:
   name: Single Leg Back Extension
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_29:
   id: 29
   exercise_type_id: 4
@@ -316,6 +344,7 @@ Exercise_29:
   name: Single Leg Supine Hip Extension
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_30:
   id: 30
   exercise_type_id: 4
@@ -325,6 +354,7 @@ Exercise_30:
   name: Single Leg Swiss Ball Pull In
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_31:
   id: 31
   exercise_type_id: 5
@@ -336,6 +366,7 @@ Exercise_31:
   name: Romanian Deadlift
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_32:
   id: 32
   exercise_type_id: 5
@@ -347,6 +378,7 @@ Exercise_32:
   name: Good Morning
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_33:
   id: 33
   exercise_type_id: 6
@@ -358,6 +390,7 @@ Exercise_33:
   name: One Arm Dumbbell Decline Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_34:
   id: 34
   exercise_type_id: 5
@@ -369,6 +402,7 @@ Exercise_34:
   name: Back Extension
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_35:
   id: 35
   exercise_type_id: 5
@@ -378,6 +412,7 @@ Exercise_35:
   name: Supine Hip Extension
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_36:
   id: 36
   exercise_type_id: 5
@@ -387,6 +422,7 @@ Exercise_36:
   name: Swiss Ball Pull In
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_37:
   id: 38
   exercise_type_id: 6
@@ -398,6 +434,7 @@ Exercise_37:
   name: Dumbbell Bench Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_38:
   id: 39
   exercise_type_id: 6
@@ -409,6 +446,7 @@ Exercise_38:
   name: Dumbbell Incline Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_39:
   id: 40
   exercise_type_id: 6
@@ -420,6 +458,7 @@ Exercise_39:
   name: Dumbbell Decline Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_40:
   id: 41
   exercise_type_id: 6
@@ -431,6 +470,7 @@ Exercise_40:
   name: Alternating Dumbbell Bench Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_41:
   id: 42
   exercise_type_id: 6
@@ -442,6 +482,7 @@ Exercise_41:
   name: Alternating Dumbbell Incline Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_42:
   id: 43
   exercise_type_id: 6
@@ -453,6 +494,7 @@ Exercise_42:
   name: Alternating Dumbbell Decline Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_43:
   id: 44
   exercise_type_id: 6
@@ -464,6 +506,7 @@ Exercise_43:
   name: One Arm Dumbbell Bench Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_44:
   id: 45
   exercise_type_id: 6
@@ -475,6 +518,7 @@ Exercise_44:
   name: One Arm Dumbbell Incline Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_45:
   id: 46
   exercise_type_id: 6
@@ -486,6 +530,7 @@ Exercise_45:
   name: One Arm Cable Chest Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_46:
   id: 47
   exercise_type_id: 7
@@ -497,6 +542,7 @@ Exercise_46:
   name: Bench Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_47:
   id: 48
   exercise_type_id: 7
@@ -508,6 +554,7 @@ Exercise_47:
   name: Incline Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_48:
   id: 49
   exercise_type_id: 7
@@ -519,6 +566,7 @@ Exercise_48:
   name: Decline Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_49:
   id: 50
   exercise_type_id: 7
@@ -530,6 +578,7 @@ Exercise_49:
   name: Close Grip Bench Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_50:
   id: 51
   exercise_type_id: 7
@@ -541,6 +590,7 @@ Exercise_50:
   name: Close Grip Incline Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_51:
   id: 52
   exercise_type_id: 7
@@ -552,6 +602,7 @@ Exercise_51:
   name: Close Grip Decline Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_52:
   id: 53
   exercise_type_id: 7
@@ -561,6 +612,7 @@ Exercise_52:
   name: Pushup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_53:
   id: 54
   exercise_type_id: 13
@@ -572,6 +624,7 @@ Exercise_53:
   name: Assisted Pullup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_54:
   id: 55
   exercise_type_id: 7
@@ -581,6 +634,7 @@ Exercise_54:
   name: Decline Pushup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_55:
   id: 56
   exercise_type_id: 7
@@ -590,6 +644,7 @@ Exercise_55:
   name: Incline Pushup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_56:
   id: 57
   exercise_type_id: 7
@@ -599,6 +654,7 @@ Exercise_56:
   name: Dip
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_57:
   id: 58
   exercise_type_id: 7
@@ -610,6 +666,7 @@ Exercise_57:
   name: Assisted Dip
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_58:
   id: 59
   exercise_type_id: 7
@@ -621,6 +678,7 @@ Exercise_58:
   name: Dip With Dip Belt
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_59:
   id: 60
   exercise_type_id: 8
@@ -632,6 +690,7 @@ Exercise_59:
   name: Dumbbell Alternating Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_60:
   id: 61
   exercise_type_id: 8
@@ -643,6 +702,7 @@ Exercise_60:
   name: Dumbbell Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_61:
   id: 62
   exercise_type_id: 8
@@ -654,6 +714,7 @@ Exercise_61:
   name: Dumbbell One Arm Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_62:
   id: 63
   exercise_type_id: 8
@@ -663,6 +724,7 @@ Exercise_62:
   name: Side To Side Jackknife Pushup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_63:
   id: 64
   exercise_type_id: 9
@@ -674,6 +736,7 @@ Exercise_63:
   name: Shoulder Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_64:
   id: 65
   exercise_type_id: 9
@@ -685,6 +748,7 @@ Exercise_64:
   name: Push Jerk
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_65:
   id: 66
   exercise_type_id: 9
@@ -696,6 +760,7 @@ Exercise_65:
   name: Split Jerk
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_66:
   id: 67
   exercise_type_id: 9
@@ -707,6 +772,7 @@ Exercise_66:
   name: Push Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_67:
   id: 68
   exercise_type_id: 9
@@ -716,6 +782,7 @@ Exercise_67:
   name: Jackknife Pushup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_68:
   id: 69
   exercise_type_id: 10
@@ -727,6 +794,7 @@ Exercise_68:
   name: Bent Over Dumbbell Alternating Row
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_69:
   id: 70
   exercise_type_id: 10
@@ -738,6 +806,7 @@ Exercise_69:
   name: Bent Over 2 Point Dumbbell Row
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_70:
   id: 71
   exercise_type_id: 10
@@ -749,6 +818,7 @@ Exercise_70:
   name: One Arm Standing Cable Row
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_71:
   id: 72
   exercise_type_id: 10
@@ -758,6 +828,7 @@ Exercise_71:
   name: Horizontal Side To Side Pullup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_72:
   id: 73
   exercise_type_id: 10
@@ -767,6 +838,7 @@ Exercise_72:
   name: One Arm Horizontal Pullup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_73:
   id: 74
   exercise_type_id: 11
@@ -778,6 +850,7 @@ Exercise_73:
   name: Bent Over Row
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_74:
   id: 75
   exercise_type_id: 11
@@ -789,6 +862,7 @@ Exercise_74:
   name: T Bar Row
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_75:
   id: 76
   exercise_type_id: 11
@@ -798,6 +872,7 @@ Exercise_75:
   name: Horizontal Pullup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_76:
   id: 77
   exercise_type_id: 11
@@ -807,6 +882,7 @@ Exercise_76:
   name: Elevated Horizontal Pullup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_77:
   id: 78
   exercise_type_id: 11
@@ -818,6 +894,7 @@ Exercise_77:
   name: Standing Cable Row To Abdomen
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_78:
   id: 79
   exercise_type_id: 11
@@ -829,6 +906,7 @@ Exercise_78:
   name: Standing Cable Row To Neck
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_79:
   id: 80
   exercise_type_id: 12
@@ -840,6 +918,7 @@ Exercise_79:
   name: Single Arm Pulldown
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_80:
   id: 81
   exercise_type_id: 12
@@ -849,6 +928,7 @@ Exercise_80:
   name: Side To Side Pullup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_81:
   id: 82
   exercise_type_id: 13
@@ -860,6 +940,7 @@ Exercise_81:
   name: Lat Pulldown
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_82:
   id: 83
   exercise_type_id: 13
@@ -869,6 +950,7 @@ Exercise_82:
   name: Chinup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_83:
   id: 84
   exercise_type_id: 13
@@ -878,6 +960,7 @@ Exercise_83:
   name: Pullup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_84:
   id: 85
   exercise_type_id: 13
@@ -887,6 +970,7 @@ Exercise_84:
   name: Wide Grip Pullup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_85:
   id: 86
   exercise_type_id: 14
@@ -898,6 +982,7 @@ Exercise_85:
   name: Seated Russian Twist
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_86:
   id: 87
   exercise_type_id: 14
@@ -909,6 +994,7 @@ Exercise_86:
   name: Corkscrew
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_87:
   id: 88
   exercise_type_id: 14
@@ -920,6 +1006,7 @@ Exercise_87:
   name: Swiss Ball Weight Roll
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_88:
   id: 89
   exercise_type_id: 14
@@ -929,6 +1016,7 @@ Exercise_88:
   name: Windshield Wiper
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_89:
   id: 90
   exercise_type_id: 14
@@ -940,6 +1028,7 @@ Exercise_89:
   name: Cable Rotation
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_90:
   id: 91
   exercise_type_id: 14
@@ -951,6 +1040,7 @@ Exercise_90:
   name: Cable Wood Chop
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_91:
   id: 92
   exercise_type_id: 14
@@ -962,6 +1052,7 @@ Exercise_91:
   name: Reverse Cable Wood Chop
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_92:
   id: 93
   exercise_type_id: 14
@@ -973,6 +1064,7 @@ Exercise_92:
   name: Cable Rotating Crunch
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_93:
   id: 94
   exercise_type_id: 14
@@ -984,6 +1076,7 @@ Exercise_93:
   name: Cable Rotating Extension
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_94:
   id: 95
   exercise_type_id: 14
@@ -995,6 +1088,7 @@ Exercise_94:
   name: Medicine Ball Standing Wall Throw
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_95:
   id: 96
   exercise_type_id: 14
@@ -1006,6 +1100,7 @@ Exercise_95:
   name: Medicine Ball 1-2-3 Throw
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_96:
   id: 97
   exercise_type_id: 14
@@ -1017,6 +1112,7 @@ Exercise_96:
   name: Med Ball Over The Shoulder Throw
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_97:
   id: 98
   exercise_type_id: 15
@@ -1026,6 +1122,7 @@ Exercise_97:
   name: 4 Point Plank
   is_image: true
   paid_tier: 1
+  difficulty: 1
 Exercise_98:
   id: 99
   exercise_type_id: 15
@@ -1035,6 +1132,7 @@ Exercise_98:
   name: 3 Point Plank
   is_image: true
   paid_tier: 1
+  difficulty: 1
 Exercise_99:
   id: 100
   exercise_type_id: 15
@@ -1044,6 +1142,7 @@ Exercise_99:
   name: 2 Point Plank
   is_image: true
   paid_tier: 1
+  difficulty: 1
 Exercise_100:
   id: 101
   exercise_type_id: 15
@@ -1053,6 +1152,7 @@ Exercise_100:
   name: Side Bridge
   is_image: true
   paid_tier: 1
+  difficulty: 1
 Exercise_101:
   id: 102
   exercise_type_id: 15
@@ -1062,6 +1162,7 @@ Exercise_101:
   name: 4 Point Supine Bridge
   is_image: true
   paid_tier: 1
+  difficulty: 1
 Exercise_102:
   id: 103
   exercise_type_id: 15
@@ -1071,6 +1172,7 @@ Exercise_102:
   name: 3 Point Supine Bridge
   is_image: true
   paid_tier: 1
+  difficulty: 1
 Exercise_103:
   id: 104
   exercise_type_id: 15
@@ -1080,6 +1182,7 @@ Exercise_103:
   name: Dynamic Plank
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_104:
   id: 105
   exercise_type_id: 15
@@ -1089,6 +1192,7 @@ Exercise_104:
   name: Plank w/ Elbow To Knee
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_105:
   id: 106
   exercise_type_id: 15
@@ -1098,6 +1202,7 @@ Exercise_105:
   name: Side Bridge and Reach
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_106:
   id: 107
   exercise_type_id: 15
@@ -1109,6 +1214,7 @@ Exercise_106:
   name: Core Row
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_107:
   id: 108
   exercise_type_id: 15
@@ -1118,6 +1224,7 @@ Exercise_107:
   name: Barbell Rollout
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_108:
   id: 109
   exercise_type_id: 16
@@ -1127,6 +1234,7 @@ Exercise_108:
   name: Double Crunch
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_109:
   id: 110
   exercise_type_id: 16
@@ -1136,6 +1244,7 @@ Exercise_109:
   name: Leg Raises
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_110:
   id: 111
   exercise_type_id: 16
@@ -1145,6 +1254,7 @@ Exercise_110:
   name: Reverse Crunch
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_111:
   id: 112
   exercise_type_id: 16
@@ -1154,6 +1264,7 @@ Exercise_111:
   name: Scissor Kick With Lift
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_112:
   id: 113
   exercise_type_id: 16
@@ -1163,6 +1274,7 @@ Exercise_112:
   name: Scissor Kick
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_113:
   id: 114
   exercise_type_id: 16
@@ -1172,6 +1284,7 @@ Exercise_113:
   name: Swiss Ball Crunch
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_114:
   id: 115
   exercise_type_id: 16
@@ -1181,6 +1294,7 @@ Exercise_114:
   name: Crunch
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_115:
   id: 116
   exercise_type_id: 16
@@ -1190,6 +1304,7 @@ Exercise_115:
   name: Bicycle
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_116:
   id: 117
   exercise_type_id: 16
@@ -1201,6 +1316,7 @@ Exercise_116:
   name: Plate Twists
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_117:
   id: 118
   exercise_type_id: 7
@@ -1210,6 +1326,7 @@ Exercise_117:
   name: Power Pushup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_118:
   id: 119
   exercise_type_id: 7
@@ -1219,6 +1336,7 @@ Exercise_118:
   name: Assisted Pushup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_119:
   id: 120
   exercise_type_id: 13
@@ -1230,6 +1348,7 @@ Exercise_119:
   name: Neutral Grip Pulldown
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_120:
   id: 121
   exercise_type_id: 11
@@ -1241,6 +1360,7 @@ Exercise_120:
   name: Seated Cable Row
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_121:
   id: 122
   exercise_type_id: 2
@@ -1252,6 +1372,7 @@ Exercise_121:
   name: Cross Lateral Stepup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_122:
   id: 123
   exercise_type_id: 2
@@ -1263,6 +1384,7 @@ Exercise_122:
   name: Dumbbell Stepup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_123:
   id: 124
   exercise_type_id: 2
@@ -1274,6 +1396,7 @@ Exercise_123:
   name: Dumbbell Lateral Stepup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_124:
   id: 125
   exercise_type_id: 2
@@ -1285,6 +1408,7 @@ Exercise_124:
   name: Dumbbell Cross Lateral Stepup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_125:
   id: 126
   exercise_type_id: 1
@@ -1296,6 +1420,7 @@ Exercise_125:
   name: Power Clean And Jerk
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_126:
   id: 127
   exercise_type_id: 1
@@ -1307,6 +1432,7 @@ Exercise_126:
   name: Power Clean And Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_127:
   id: 128
   exercise_type_id: 1
@@ -1318,6 +1444,7 @@ Exercise_127:
   name: Hang Power Clean And Jerk
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_128:
   id: 129
   exercise_type_id: 1
@@ -1329,6 +1456,7 @@ Exercise_128:
   name: Hang Power Clean And Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_129:
   id: 130
   exercise_type_id: 9
@@ -1340,6 +1468,7 @@ Exercise_129:
   name: Split Push Press
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_130:
   id: 131
   exercise_type_id: 13
@@ -1351,6 +1480,7 @@ Exercise_130:
   name: Assisted Chinup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_131:
   id: 132
   exercise_type_id: 13
@@ -1362,6 +1492,7 @@ Exercise_131:
   name: Assisted Wide Grip Pullup
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_132:
   id: 133
   exercise_type_id: 13
@@ -1373,6 +1504,7 @@ Exercise_132:
   name: Pullup With Dip Belt
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_133:
   id: 134
   exercise_type_id: 13
@@ -1384,6 +1516,7 @@ Exercise_133:
   name: Chinup With Dip Belt
   is_image: false
   paid_tier: 1
+  difficulty: 1
 Exercise_134:
   id: 135
   exercise_type_id: 13
@@ -1395,3 +1528,4 @@ Exercise_134:
   name: Wide Grip Pullup With Dip Belt
   is_image: false
   paid_tier: 1
+  difficulty: 1

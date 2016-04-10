@@ -36,7 +36,7 @@ FactoryGirl.define do
     sign_in_count 71
     sprint_diff 1
     status 1
-    sub_user nil
+    sub_user false
     subscription_date nil
     user_name nil
     weight nil
