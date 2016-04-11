@@ -40,7 +40,7 @@ class UserSchedule < ActiveRecord::Base
   end
 
   def setup_phases
-    now = Date.current
+    now = Date.today
     set_dates(now)
   end
 
@@ -87,7 +87,7 @@ class UserSchedule < ActiveRecord::Base
   def self.create_user_schedule(params)
     user_schedule = UserSchedule.new(params)
     user_schedule.setup_phases
-    user_schedule.sign_up_date = Date.current
+    user_schedule.sign_up_date = Date.today
     user_schedule.save!
     user_schedule
   end

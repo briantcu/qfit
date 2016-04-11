@@ -27,7 +27,7 @@ class GroupSchedule < ActiveRecord::Base
   validates_presence_of :group_id, :program_id, :phase_one_start, :phase_two_start, :phase_three_start, :phase_four_start
 
   def setup_phases
-    now = Date.current
+    now = Date.today
     set_dates(now)
   end
 
