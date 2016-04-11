@@ -5,7 +5,7 @@ FactoryGirl.define do
     count_ex_completed nil
     count_ex_provided nil
     day_performed "2016-03-27"
-    group_id nil
+    group_id 0
     group_routine_id 0
     modified false
     pl_day_id 1

@@ -149,7 +149,9 @@ class DailyRoutine < ActiveRecord::Base
       end
     end
 
-    return DailyRoutine.find_or_create_by(user_id: user_id, day_performed: date, group_routine_id: group_routine_id, program_day_id: 0, group_id: group_id)
+    dr = DailyRoutine.where(user_id: user_id, day_performed: date, group_routine_id: group_routine_id, group_id: group_id).first
+    return dr if dr.present?
+    return DailyRoutine.create(user_id: user_id, day_performed: date, group_routine_id: group_routine_id, program_day_id: 0, group_id: group_id)
   end
 
   def self.get_matching_routine_since(date, type, day_id, user_id)
