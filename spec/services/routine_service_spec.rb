@@ -105,8 +105,8 @@ RSpec.describe RoutineService do
         routine.note_sprints_changed
 
         # Delete exercises
-        routine.performed_plyometrics.first.status = 2
-        routine.performed_plyometrics.first.save
+        pp = routine.performed_plyometrics.first
+        pp.update_attributes(status: 2)
         routine.note_plyos_changed
 
         # Save changes
@@ -126,6 +126,7 @@ RSpec.describe RoutineService do
 
         expect(routine.performed_plyometrics.where(status: 3).count).to eq(copied_routine.performed_plyometrics.where(status: 3).count)
         expect(routine.performed_plyometrics.where(status: 2).count).to eq(copied_routine.performed_plyometrics.where(status: 2).count)
+        expect(routine.performed_plyometrics.where(status: 2).count).to eq(1)
         expect(routine.performed_plyometrics.where(status: 1).count).to eq(copied_routine.performed_plyometrics.where(status: 1).count)
 
         expect(copied_routine.custom_exercises.count).to eq(1)
@@ -141,7 +142,50 @@ RSpec.describe RoutineService do
 
       it 'should not copy over added exercises if the changes were not saved' do
 
-        # Assert total exercise count
+        # Create 2 workouts, to complete full weights schedule
+        RoutineService.nightly_workout_creation
+        routine = @user.reload.daily_routines.first
+
+        # Add exercises
+        exercise = Exercise.first
+        routine.add_weights(exercise, 1, 0)
+        routine.note_weights_changed
+
+        # Add custom sprint
+        routine.add_custom_exercise('my sprint', 3, 0)
+        routine.note_sprints_changed
+
+        # Delete exercises
+        routine.performed_plyometrics.first.update_attributes(status: 2)
+        routine.note_plyos_changed
+
+        # Save changes
+        routine.changes_saved = false
+        routine.closed = true
+        routine.save!
+
+        # Create workout of same type
+        date = Date.today + 7.days
+        copied_routine = RoutineService.new(@user, 'CRON', date, false).create_routine
+
+        expect(copied_routine.changes_saved).to eq(false)
+        expect(routine.performed_exercises.where(status: 3).count).to eq(copied_routine.performed_exercises.where(status: 3).count)
+        expect(copied_routine.performed_exercises.where(status: 2).count).to eq(0)
+        expect(copied_routine.performed_exercises.where(status: 1).count).to eq(0)
+
+        expect(routine.performed_plyometrics.where(status: 3).count + 1).to eq(copied_routine.performed_plyometrics.where(status: 3).count)
+        expect(copied_routine.performed_plyometrics.where(status: 2).count).to eq(0)
+        expect(copied_routine.performed_plyometrics.where(status: 1).count).to eq(0)
+
+        expect(copied_routine.custom_exercises.count).to eq(0)
+
+        expect(routine.performed_warm_ups.where(status: 3).count).to eq(copied_routine.performed_warm_ups.where(status: 3).count)
+        expect(copied_routine.performed_warm_ups.where(status: 2).count).to eq(0)
+        expect(copied_routine.performed_warm_ups.where(status: 1).count).to eq(0)
+
+        expect(routine.performed_sprints.where(status: 3).count).to eq(copied_routine.performed_sprints.where(status: 3).count)
+        expect(copied_routine.performed_sprints.where(status: 2).count).to eq(0)
+        expect(copied_routine.performed_sprints.where(status: 1).count).to eq(0)
 
       end
 

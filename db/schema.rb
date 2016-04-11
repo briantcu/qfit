@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160410201427) do
+ActiveRecord::Schema.define(version: 20160411011340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20160410201427) do
     t.boolean  "wt_modified"
     t.boolean  "wu_modified"
     t.boolean  "sp_modified"
-    t.boolean  "changes_saved"
+    t.boolean  "changes_saved",      default: false
     t.boolean  "closed"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -177,7 +177,7 @@ ActiveRecord::Schema.define(version: 20160410201427) do
     t.boolean  "wt_modified"
     t.boolean  "wu_modified"
     t.boolean  "sp_modified"
-    t.boolean  "changes_saved"
+    t.boolean  "changes_saved",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
