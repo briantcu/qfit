@@ -60,13 +60,13 @@ class GroupRoutine < ActiveRecord::Base
   def get_custom_exercises(type)
     case type
       when STRETCHING
-        return self.group_custom_exercises.where(exercise_types: STRETCHING)
+        return self.group_custom_exercises.where(ex_type: STRETCHING)
       when WEIGHTS
-        return self.group_custom_exercises.where(exercise_types: WEIGHTS)
+        return self.group_custom_exercises.where(ex_type: WEIGHTS)
       when PLYOS
-        return self.group_custom_exercises.where(exercise_types: PLYOS)
+        return self.group_custom_exercises.where(ex_type: PLYOS)
       when SPRINTING
-        return self.group_custom_exercises.where(exercise_types: SPRINTING)
+        return self.group_custom_exercises.where(ex_type: SPRINTING)
     end
   end
 
@@ -108,7 +108,7 @@ class GroupRoutine < ActiveRecord::Base
   end
 
   def copy_to_user(user)
-    DailyRoutine.create_routine(user.id, self.day_performed, self.id)
+    DailyRoutine.create_routine(user.id, self.day_performed, self.id, self.group_id)
     self.group_performed_warmups.each do |gpw|
       add_for_user(STRETCHING, gpw, gpw.warmup_id, user)
     end
@@ -230,7 +230,7 @@ class GroupRoutine < ActiveRecord::Base
   def add_weights(exercise, status, not_used)
     perf_exercise = GroupPerformedExercise.add_exercise(exercise.id, status, self.id, exercise.exercise_type.id)
     self.group_performed_exercises << perf_exercise
-    add_for_users(WEIGHTS, perf_exercise, exercise.id)
+    add_for_users(WEIGHTS, perf_exercise, exercise)
     perf_exercise
   end
 
@@ -366,6 +366,7 @@ class GroupRoutine < ActiveRecord::Base
         when SPRINTING
           user_routine.add_sprint(exercise_id, exercise.status, exercise.id)
         else
+          # Exercise_id here is actually an exercise. Hack
           user_routine.add_weights(exercise_id, exercise.status, exercise.id)
       end
     end

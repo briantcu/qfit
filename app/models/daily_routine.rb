@@ -42,12 +42,12 @@ class DailyRoutine < ActiveRecord::Base
   scope :closed_since, -> (date) {where('closed = 1 and day_performed > ?', date)}
 
   belongs_to :user
-  has_many :custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :performed_exercises, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :performed_plyometrics, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :performed_sprints, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :performed_warm_ups, -> { order('id ASC') }, :foreign_key => :routine_id
-  has_many :routine_messages, :foreign_key => :daily_routine_id
+  has_many :custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :performed_exercises, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :performed_plyometrics, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :performed_sprints, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :performed_warm_ups, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy
+  has_many :routine_messages, :foreign_key => :daily_routine_id, dependent: :destroy
 
   accepts_nested_attributes_for :custom_exercises, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
   accepts_nested_attributes_for :performed_warm_ups, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
@@ -139,7 +139,7 @@ class DailyRoutine < ActiveRecord::Base
     DailyRoutine.where(day_performed: date, user_id: user_id).first
   end
 
-  def self.create_routine(user_id, date, group_routine_id, override_current = true)
+  def self.create_routine(user_id, date, group_routine_id, group_id, override_current = true)
     #There are no checks at this point to see if the workout we're deleting is a closed workout.
     #If this check needs to be made, it's done above this level
     if override_current
@@ -149,7 +149,7 @@ class DailyRoutine < ActiveRecord::Base
       end
     end
 
-    return DailyRoutine.find_or_create_by(user_id: user_id, day_performed: date, group_routine_id: group_routine_id, program_day_id: 0)
+    return DailyRoutine.find_or_create_by(user_id: user_id, day_performed: date, group_routine_id: group_routine_id, program_day_id: 0, group_id: group_id)
   end
 
   def self.get_matching_routine_since(date, type, day_id, user_id)

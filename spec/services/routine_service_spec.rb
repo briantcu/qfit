@@ -190,7 +190,7 @@ RSpec.describe RoutineService do
       end
 
       it 'copies over a completely custom day with changes saved and has the right program day id' do
-        routine = DailyRoutine.create_routine(@user.id, Date.today + 3.days, 0) # When this user has nothing scheduled
+        routine = DailyRoutine.create_routine(@user.id, Date.today + 3.days, 0, 0) # When this user has nothing scheduled
         routine.add_custom_exercise('my sprint', 3, 0)
         routine.add_custom_exercise('my warmup', 4, 0)
         routine.add_custom_exercise('my plyo', 2, 0)
@@ -211,8 +211,74 @@ RSpec.describe RoutineService do
     end
 
     context 'for group' do
-      it 'if changes were saved, should copy over the added exercises, carry forward saved flag, keep deleted exercises deleted' do
+      before(:each) do
+        @group = FactoryGirl.create(:group)
+        @group_schedule = FactoryGirl.create(:group_schedule, group: @group)
+        @group_schedule.setup_phases
+        @group_schedule.program_id = 1
+        @group_schedule.save!
 
+        @sub_user = FactoryGirl.create(:user, sub_user: true)
+        UserSchedule.create_user_schedule({user_id: @sub_user.id, program_type_id: 1, program_id: 1})
+        @group.add_member(@sub_user)
+        day_index = Date.today.wday
+        2.times do
+          wsd = @group_schedule.group_schedule_days.at(day_index)
+          wsd.stretching = true
+          wsd.plyometrics = true
+          wsd.weights = true
+          wsd.sprinting = true
+          wsd.save
+          day_index += 1
+        end
+      end
+
+      it 'if changes were saved, should copy over the added exercises, carry forward saved flag, keep deleted exercises deleted' do
+        RoutineService.nightly_workout_creation
+        routine = @group.reload.group_routines.first
+
+        # Add exercises
+        exercise = Exercise.first
+        routine.add_weights(exercise, 1, 0)
+        routine.note_weights_changed(true)
+
+        # Add custom sprint
+        routine.add_custom_exercise('my sprint', 3, 0)
+        routine.note_sprints_changed(true)
+
+        # Delete exercises
+        routine.group_performed_plyos.first.destroy_ex
+        routine.note_plyos_changed(true)
+
+        # Save changes
+        routine.changes_saved = true
+        routine.save!
+
+        # Create workout of same type
+        date = Date.today + 7.days
+        RoutineService.new(@group, 'CRON', date, false).create_routine
+
+        routine = @sub_user.daily_routines.first
+        copied_routine = @sub_user.daily_routines.last
+
+        expect(routine.performed_exercises.where(status: 3).count).to eq(copied_routine.performed_exercises.where(status: 3).count)
+        expect(routine.performed_exercises.where(status: 2).count).to eq(copied_routine.performed_exercises.where(status: 2).count)
+        expect(routine.performed_exercises.where(status: 1).count).to eq(copied_routine.performed_exercises.where(status: 1).count)
+
+        expect(routine.performed_plyometrics.where(status: 3).count).to eq(copied_routine.performed_plyometrics.where(status: 3).count)
+        expect(routine.performed_plyometrics.where(status: 2).count).to eq(copied_routine.performed_plyometrics.where(status: 2).count)
+        expect(routine.performed_plyometrics.where(status: 2).count).to eq(1)
+        expect(routine.performed_plyometrics.where(status: 1).count).to eq(copied_routine.performed_plyometrics.where(status: 1).count)
+
+        expect(copied_routine.custom_exercises.count).to eq(1)
+
+        expect(routine.performed_warm_ups.where(status: 3).count).to eq(copied_routine.performed_warm_ups.where(status: 3).count)
+        expect(routine.performed_warm_ups.where(status: 2).count).to eq(copied_routine.performed_warm_ups.where(status: 2).count)
+        expect(routine.performed_warm_ups.where(status: 1).count).to eq(copied_routine.performed_warm_ups.where(status: 1).count)
+
+        expect(routine.performed_sprints.where(status: 3).count).to eq(copied_routine.performed_sprints.where(status: 3).count)
+        expect(routine.performed_sprints.where(status: 2).count).to eq(copied_routine.performed_sprints.where(status: 2).count)
+        expect(routine.performed_sprints.where(status: 1).count).to eq(copied_routine.performed_sprints.where(status: 1).count)
       end
 
       it 'should not copy over added exercises if the changes were not saved' do
@@ -224,11 +290,4 @@ RSpec.describe RoutineService do
       end
     end
   end
-
-  context 'no previous matching routine' do
-    it 'creates a routine with all quads' do
-      #pluck IDs of exercises and verify they're unique
-    end
-  end
-
 end

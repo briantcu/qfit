@@ -31,10 +31,12 @@ class GroupPerformedSprint < ActiveRecord::Base
   end
 
   def destroy_ex
-    get_user_exercises.each do |ex|
-      ex.destroy
+    get_user_exes.each do |ex|
+      ex.status = 2
+      ex.save
     end
-    self.destroy
+    self.status = 2
+    self.save
   end
 
   private

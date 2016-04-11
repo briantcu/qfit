@@ -34,9 +34,11 @@ class GroupPerformedExercise < ActiveRecord::Base
 
   def destroy_ex
     get_all_user_exercises.each do |ex|
-      ex.destroy
+      ex.status = 2
+      ex.save
     end
-    self.destroy
+    self.status = 2
+    self.save
   end
 
   private

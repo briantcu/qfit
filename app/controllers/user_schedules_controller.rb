@@ -13,8 +13,7 @@ class UserSchedulesController < ApplicationController
     existing_user_schedule = UserSchedule.find_by_user_id(params[:user_schedule][:user_id].to_i)
 
     if existing_user_schedule.nil?
-      @user_schedule = UserSchedule.create_user_schedule(user_schedule_params)
-      if @user_schedule.save!
+      if @user_schedule = UserSchedule.create_user_schedule(user_schedule_params)
         update_user_record
         RoutineService.new(@user_schedule.user, 'NEW', Date.today, false).create_routines
         render action: 'show', status: :created, location: @user_schedule

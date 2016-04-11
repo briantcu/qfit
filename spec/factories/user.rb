@@ -39,6 +39,6 @@ FactoryGirl.define do
     sub_user false
     subscription_date nil
     user_name nil
-    weight nil
+    weight 150
   end
 end

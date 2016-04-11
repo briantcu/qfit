@@ -20,7 +20,7 @@ class DailyRoutinesController < ApplicationController
   # POST /daily_routines.json
   def create
     date = Date.new(params[:daily_routine][:year].to_i, params[:daily_routine][:month].to_i, params[:daily_routine][:day].to_i)
-    @daily_routine = DailyRoutine.create_routine(params[:daily_routine][:user_id], date, 0, false)
+    @daily_routine = DailyRoutine.create_routine(params[:daily_routine][:user_id], date, 0, 0, false)
     render action: :show, status: :created, location: @daily_routine
   end
 

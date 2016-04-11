@@ -27,6 +27,7 @@ class RegistrationService
           EmailService.perform_async(:new_sub_email_from_self, {user_id: user.id})
           EmailService.perform_async(:coach_sub_signed_up, {user_id: user.id, coach_id: sign_up_code_record.user.id})
         end
+        UserSchedule.create_user_schedule({user_id: user.id, program_type_id: 1, program_id: 1})
       end
     end
     user
@@ -38,6 +39,7 @@ class RegistrationService
     if user.save!
       EmailService.perform_async(:new_sub_email_from_coach, {user_id: user.id, temp_password: password})
     end
+    UserSchedule.create_user_schedule({user_id: user.id, program_type_id: 1})
     user
   end
 

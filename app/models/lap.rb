@@ -11,7 +11,7 @@
 #
 
 class Lap < ActiveRecord::Base
-  belongs_to :performed_sprint, dependent: :destroy
+  belongs_to :performed_sprint
 
   scope :completed, -> {where(completed: true)}
 

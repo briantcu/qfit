@@ -15,7 +15,7 @@
 #
 
 class PerformedPlyometric < ActiveRecord::Base
-  belongs_to :daily_routine, :foreign_key => :routine_id, dependent: :destroy
+  belongs_to :daily_routine, :foreign_key => :routine_id
   belongs_to :plyometric
   belongs_to :group_performed_plyo, :foreign_key => :group_performed_plyometric_id
 

@@ -15,11 +15,11 @@
 #
 
 class PerformedExercise < ActiveRecord::Base
-  belongs_to :daily_routine, :foreign_key => :routine_id, dependent: :destroy
+  belongs_to :daily_routine, :foreign_key => :routine_id
   belongs_to :group_performed_exercise
   belongs_to :exercise_type, :foreign_key => :exercise_type_id
   belongs_to :exercise, :foreign_key => :exercise_id
-  has_many :weight_sets, -> { order('set_num ASC') }
+  has_many :weight_sets, -> { order('set_num ASC') }, dependent: :destroy
   accepts_nested_attributes_for :weight_sets, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
 
   def self.add_exercise(exercise_id, status, routine_id, exercise_type, group_exercise_id)
