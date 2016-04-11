@@ -52,7 +52,7 @@ class SprintingService
           status = 3
         end
       end
-      @routine.add_sprint(exercise.id, status, 0) #0 = group performed exercise id
+      @routine.add_sprint(exercise.sprint_id, status, 0) #0 = group performed exercise id
     end
 
     if previous_routine.changes_saved && previous_routine.sp_modified

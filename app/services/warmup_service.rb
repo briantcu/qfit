@@ -54,7 +54,7 @@ class WarmupService
           status = 3
         end
       end
-      @routine.add_warmup(exercise.id, status, 0) #0 = group performed exercise id
+      @routine.add_warmup(exercise.warmup_id, status, 0) #0 = group performed exercise id
     end
 
     if previous_routine.changes_saved && previous_routine.wu_modified

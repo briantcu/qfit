@@ -78,7 +78,7 @@ class WeightsService
           status = 3
         end
       end
-      @routine.add_weights(exercise, status, 0) #0 = group performed exercise id
+      @routine.add_weights(exercise.exercise, status, 0) #0 = group performed exercise id
     end
   end
 

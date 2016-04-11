@@ -58,7 +58,7 @@ class PlyometricsService
           status = 3
         end
       end
-      @routine.add_plyometric(exercise.id, status, 0) #0 = group performed exercise id
+      @routine.add_plyometric(exercise.plyometric_id, status, 0) #0 = group performed exercise id
     end
 
     if previous_routine.changes_saved && previous_routine.pl_modified

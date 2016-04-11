@@ -71,20 +71,77 @@ RSpec.describe RoutineService do
   end
 
   context 'previous matching routine' do
-    context 'for user' do
-      it 'should copy over the exercises if the workout was not modified' do
-
+    before(:each) do
+      @user = FactoryGirl.create(:user, last_sign_in_at: Time.now - 3.days)
+      @user_schedule = FactoryGirl.create(:user_schedule, user: @user)
+      @user_schedule.setup_phases
+      @user_schedule.program_id = 1
+      @user_schedule.save!
+      day_index = Date.today.wday
+      2.times do
+        wsd = @user_schedule.weekly_schedule_days.at(day_index)
+        wsd.stretching = true
+        wsd.plyometrics = true
+        wsd.weights = true
+        wsd.sprinting = true
+        wsd.save
+        day_index += 1
       end
+    end
 
-      it 'should copy over the added exercises if changes were saved and carry forward saved flag' do
+    context 'for user' do
+      it 'if changes were saved, should copy over the added exercises, carry forward saved flag, keep deleted exercises deleted' do
+        # Create 2 workouts, to complete full weights schedule
+        RoutineService.nightly_workout_creation
+        routine = @user.reload.daily_routines.first
 
+        # Add exercises
+        exercise = Exercise.first
+        routine.add_weights(exercise, 1, 0)
+        routine.note_weights_changed
+
+        # Add custom sprint
+        routine.add_custom_exercise('my sprint', 3, 0)
+        routine.note_sprints_changed
+
+        # Delete exercises
+        routine.performed_plyometrics.first.status = 2
+        routine.performed_plyometrics.first.save
+        routine.note_plyos_changed
+
+        # Save changes
+        routine.changes_saved = true
+        routine.closed = true
+        routine.save!
+
+        # Create workout of same type
+        date = Date.today + 7.days
+        copied_routine = RoutineService.new(@user, 'CRON', date, false).create_routine
+
+        # Expectations
+        expect(copied_routine.changes_saved).to eq(true)
+        expect(routine.performed_exercises.where(status: 3).count).to eq(copied_routine.performed_exercises.where(status: 3).count)
+        expect(routine.performed_exercises.where(status: 2).count).to eq(copied_routine.performed_exercises.where(status: 2).count)
+        expect(routine.performed_exercises.where(status: 1).count).to eq(copied_routine.performed_exercises.where(status: 1).count)
+
+        expect(routine.performed_plyometrics.where(status: 3).count).to eq(copied_routine.performed_plyometrics.where(status: 3).count)
+        expect(routine.performed_plyometrics.where(status: 2).count).to eq(copied_routine.performed_plyometrics.where(status: 2).count)
+        expect(routine.performed_plyometrics.where(status: 1).count).to eq(copied_routine.performed_plyometrics.where(status: 1).count)
+
+        expect(copied_routine.custom_exercises.count).to eq(1)
+
+        expect(routine.performed_warm_ups.where(status: 3).count).to eq(copied_routine.performed_warm_ups.where(status: 3).count)
+        expect(routine.performed_warm_ups.where(status: 2).count).to eq(copied_routine.performed_warm_ups.where(status: 2).count)
+        expect(routine.performed_warm_ups.where(status: 1).count).to eq(copied_routine.performed_warm_ups.where(status: 1).count)
+
+        expect(routine.performed_sprints.where(status: 3).count).to eq(copied_routine.performed_sprints.where(status: 3).count)
+        expect(routine.performed_sprints.where(status: 2).count).to eq(copied_routine.performed_sprints.where(status: 2).count)
+        expect(routine.performed_sprints.where(status: 1).count).to eq(copied_routine.performed_sprints.where(status: 1).count)
       end
 
       it 'should not copy over added exercises if the changes were not saved' do
 
-      end
-
-      it 'should keep deleted exercises deleted if changes were saved' do
+        # Assert total exercise count
 
       end
 
@@ -94,20 +151,12 @@ RSpec.describe RoutineService do
     end
 
     context 'for group' do
-      it 'should copy over the exercises if the workout was not modified' do
-
-      end
-
-      it 'should copy over the added exercises if changes were saved and carry forward saved flag' do
+      it 'if changes were saved, should copy over the added exercises, carry forward saved flag, keep deleted exercises deleted' do
 
       end
 
       it 'should not copy over added exercises if the changes were not saved' do
-
-      end
-
-      it 'should keep deleted exercises deleted if changes were saved' do
-
+        # Assert total exercise count
       end
 
       it 'copies over a completely custom day with changes saved and has the right program day id' do

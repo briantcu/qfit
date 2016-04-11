@@ -27,21 +27,23 @@ class CustomExerciseService
       copy_sprints
     else
       #this is called at the tail end of creating a regular workout day
+      # If you had a Quad for that day, custom exercises were already copied over. This is only if you didn't have
+      # a Quad scheduled, but you added exercises anyway.
       @routine = @routine_service.routine
       if @previous_workout.changes_saved
-        if @weekly_schedule_day.stretching
+        unless @weekly_schedule_day.stretching
           copy_warmups
         end
 
-        if @weekly_schedule_day.weights
+        unless @weekly_schedule_day.weights
           copy_weights
         end
 
-        if @weekly_schedule_day.plyometrics
+        unless @weekly_schedule_day.plyometrics
           copy_plyos
         end
 
-        if @weekly_schedule_day.sprinting
+        unless @weekly_schedule_day.sprinting
           copy_sprints
         end
       end
@@ -49,11 +51,13 @@ class CustomExerciseService
   end
 
   def copy_sprints
-    old_sprints = @previous_workout.get_sprints
-    if old_sprints.count > 0
-      @routine.note_sprint_changes_saved
-      old_sprints.each do |sprint|
-        @routine.add_sprint(sprint.id, 1, 0)
+    if @is_complete_custom
+      old_sprints = @previous_workout.get_sprints
+      if old_sprints.count > 0
+        @routine.note_sprint_changes_saved
+        old_sprints.each do |sprint|
+          @routine.add_sprint(sprint.id, 1, 0)
+        end
       end
     end
 
@@ -63,11 +67,13 @@ class CustomExerciseService
   end
 
   def copy_warmups
-    old_warmups = @previous_workout.get_warmups
-    if old_warmups.count > 0
-      @routine.note_warmup_changes_saved
-      old_warmups.each do |warmup|
-        @routine.add_warmup(warmup.id, 1, 0)
+    if @is_complete_custom
+      old_warmups = @previous_workout.get_warmups
+      if old_warmups.count > 0
+        @routine.note_warmup_changes_saved
+        old_warmups.each do |warmup|
+          @routine.add_warmup(warmup.id, 1, 0)
+        end
       end
     end
 
@@ -77,11 +83,13 @@ class CustomExerciseService
   end
 
   def copy_plyos
-    old_plyos = @previous_workout.get_plyos
-    if old_plyos.count > 0
-      @routine.note_plyometric_changes_saved
-      old_plyos.each do |plyo|
-        @routine.add_plyometric(plyo.id, 1, 0)
+    if @is_complete_custom
+      old_plyos = @previous_workout.get_plyos
+      if old_plyos.count > 0
+        @routine.note_plyometric_changes_saved
+        old_plyos.each do |plyo|
+          @routine.add_plyometric(plyo.id, 1, 0)
+        end
       end
     end
 
@@ -91,12 +99,14 @@ class CustomExerciseService
   end
 
   def copy_weights
-    old_weights = @previous_workout.get_weights
-    if old_weights.count > 0
-      weight_service = WeightsService.new(@routine_service.entity, @routine,
-                                          @routine_service.phase_number,
-                                          @routine_service..sched_update, @routine_service)
-      weight_service.copy_weights(@previous_workout)
+    if @is_complete_custom
+      old_weights = @previous_workout.get_weights
+      if old_weights.count > 0
+        weight_service = WeightsService.new(@routine_service.entity, @routine,
+                                            @routine_service.phase_number,
+                                            @routine_service.sched_update, @routine_service)
+        weight_service.copy_weights(@previous_workout)
+      end
     end
 
     @previous_workout.get_custom_exercises(WEIGHTS).each do |exercise|
