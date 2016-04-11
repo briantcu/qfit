@@ -111,19 +111,26 @@ class RoutineService
     return unless valid_entity_and_open_date?
 
     @routine = @entity.create_routine(@date)
-    return unless @routine.present?
-
     @phase_number = @entity.get_schedule.maintain_phases(@date)
 
-    weekly_schedule_day = @entity.get_schedule.get_schedule_day(@date)
+    if @routine.present? # Regular scheduled workout
+      weekly_schedule_day = @entity.get_schedule.get_schedule_day(@date)
 
-    add_exercises(WarmupService.instance, STRETCHING) if weekly_schedule_day.stretching
-    WeightsService.new(@entity, @routine, @phase_number, @sched_update, self).add_weights if weekly_schedule_day.weights
-    add_exercises(PlyometricsService.instance, PLYOS) if weekly_schedule_day.plyometrics
-    add_exercises(SprintingService.instance, SPRINTING) if weekly_schedule_day.sprinting
+      add_exercises(WarmupService.instance, STRETCHING) if weekly_schedule_day.stretching
+      WeightsService.new(@entity, @routine, @phase_number, @sched_update, self).add_weights if weekly_schedule_day.weights
+      add_exercises(PlyometricsService.instance, PLYOS) if weekly_schedule_day.plyometrics
+      add_exercises(SprintingService.instance, SPRINTING) if weekly_schedule_day.sprinting
 
-    cleanup
-    maybe_add_custom_exercises(weekly_schedule_day)
+      cleanup
+      maybe_add_custom_exercises(weekly_schedule_day)
+    else
+      # Check for complete custom exercise
+      last_weeks_routine = DailyRoutine.find_by(day_performed: @date - 7.days, program_day_id: 0, changes_saved: true)
+      return if last_weeks_routine.blank?
+      custom_exercise_service = CustomExerciseService.new(nil, true, self, last_weeks_routine)
+      @routine = custom_exercise_service.add_custom_exercises
+    end
+
     @routine
   end
 
@@ -148,6 +155,10 @@ class RoutineService
         date = date + 1.days
       end
     end
+  end
+
+  def create_custom_routine
+    @entity.create_routine(@date, true)
   end
 
   def get_next_day_id(type)

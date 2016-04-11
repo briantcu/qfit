@@ -100,7 +100,7 @@ class GroupRoutine < ActiveRecord::Base
     unless old_routine.blank?
       old_routine.destroy
     end
-    return GroupRoutine.create(group_id: group_id, day_performed: date)
+    return GroupRoutine.create(group_id: group_id, day_performed: date, program_day_id: 0)
   end
 
   def self.get_matching_routines(routine)

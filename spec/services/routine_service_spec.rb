@@ -190,7 +190,23 @@ RSpec.describe RoutineService do
       end
 
       it 'copies over a completely custom day with changes saved and has the right program day id' do
+        routine = DailyRoutine.create_routine(@user.id, Date.today + 3.days, 0) # When this user has nothing scheduled
+        routine.add_custom_exercise('my sprint', 3, 0)
+        routine.add_custom_exercise('my warmup', 4, 0)
+        routine.add_custom_exercise('my plyo', 2, 0)
+        routine.add_custom_exercise('my weights', 1, 0)
+        routine.note_warmups_changed
+        routine.note_plyos_changed
+        routine.note_sprints_changed
+        routine.note_weights_changed
+        routine.changes_saved = true
+        routine.closed = true
+        routine.save!
 
+        date = Date.today + 10.days
+        copied_routine = RoutineService.new(@user, 'CRON', date, false).create_routine
+        expect(copied_routine.custom_exercises.count).to eq(4)
+        expect(copied_routine.changes_saved).to eq(false)
       end
     end
 

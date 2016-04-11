@@ -20,7 +20,7 @@ class CustomExerciseService
 
   def add_custom_exercises
     if @is_complete_custom
-      @routine = @routine_service.create_routine
+      @routine = @routine_service.create_custom_routine
       copy_warmups
       copy_weights
       copy_plyos
@@ -48,6 +48,7 @@ class CustomExerciseService
         end
       end
     end
+    @routine
   end
 
   def copy_sprints

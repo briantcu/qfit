@@ -96,7 +96,7 @@ class DailyRoutine < ActiveRecord::Base
 
   def self.get_matching_routines(routine)
     DailyRoutine.where(:wt_day_id => routine.wt_day_id, :sp_day_id => routine.sp_day_id, :pl_day_id => routine.pl_day_id,
-                       :wu_day_id => routine.wu_day_id, :user_id => routine.user.id).order(id: :desc)
+                       :wu_day_id => routine.wu_day_id, :user_id => routine.user.id).order(id: :desc).limit(5)
   end
 
   def self.get_open_workouts_start_today(entity)
@@ -149,7 +149,7 @@ class DailyRoutine < ActiveRecord::Base
       end
     end
 
-    return DailyRoutine.find_or_create_by(user_id: user_id, day_performed: date, group_routine_id: group_routine_id)
+    return DailyRoutine.find_or_create_by(user_id: user_id, day_performed: date, group_routine_id: group_routine_id, program_day_id: 0)
   end
 
   def self.get_matching_routine_since(date, type, day_id, user_id)
