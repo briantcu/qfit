@@ -283,11 +283,71 @@ RSpec.describe RoutineService do
       end
 
       it 'should not copy over added exercises if the changes were not saved' do
-        # Assert total exercise count
+        RoutineService.nightly_workout_creation
+        routine = @group.reload.group_routines.first
+
+        # Add exercises
+        exercise = Exercise.first
+        routine.add_weights(exercise, 1, 0)
+        routine.note_weights_changed(true)
+
+        # Add custom sprint
+        routine.add_custom_exercise('my sprint', 3, 0)
+        routine.note_sprints_changed(true)
+
+        # Delete exercises
+        routine.group_performed_plyos.first.destroy_ex
+        routine.note_plyos_changed(true)
+
+        # Save changes
+        routine.changes_saved = false
+        routine.save!
+
+        # Create workout of same type
+        date = Date.today + 7.days
+        RoutineService.new(@group, 'CRON', date, false).create_routine
+
+        routine = @sub_user.daily_routines.first
+        copied_routine = @sub_user.daily_routines.last
+        expect(copied_routine.changes_saved).to eq(false)
+        expect(routine.performed_exercises.where(status: 3).count).to eq(copied_routine.performed_exercises.where(status: 3).count)
+        expect(copied_routine.performed_exercises.where(status: 2).count).to eq(0)
+        expect(copied_routine.performed_exercises.where(status: 1).count).to eq(0)
+
+        expect(routine.performed_plyometrics.where(status: 3).count + 1).to eq(copied_routine.performed_plyometrics.where(status: 3).count)
+        expect(copied_routine.performed_plyometrics.where(status: 2).count).to eq(0)
+        expect(copied_routine.performed_plyometrics.where(status: 1).count).to eq(0)
+
+        expect(copied_routine.custom_exercises.count).to eq(0)
+
+        expect(routine.performed_warm_ups.where(status: 3).count).to eq(copied_routine.performed_warm_ups.where(status: 3).count)
+        expect(copied_routine.performed_warm_ups.where(status: 2).count).to eq(0)
+        expect(copied_routine.performed_warm_ups.where(status: 1).count).to eq(0)
+
+        expect(routine.performed_sprints.where(status: 3).count).to eq(copied_routine.performed_sprints.where(status: 3).count)
+        expect(copied_routine.performed_sprints.where(status: 2).count).to eq(0)
+        expect(copied_routine.performed_sprints.where(status: 1).count).to eq(0)
+
       end
 
       it 'copies over a completely custom day with changes saved and has the right program day id' do
+        routine = GroupRoutine.create_routine(@group.id, Date.today + 3.days) # When this user has nothing scheduled
+        routine.add_custom_exercise('my sprint', 3, 0)
+        routine.add_custom_exercise('my warmup', 4, 0)
+        routine.add_custom_exercise('my plyo', 2, 0)
+        routine.add_custom_exercise('my weights', 1, 0)
+        routine.note_warmups_changed(true)
+        routine.note_plyos_changed(true)
+        routine.note_sprints_changed(true)
+        routine.note_weights_changed(true)
+        routine.changes_saved = true
+        routine.save!
 
+        date = Date.today + 10.days
+        RoutineService.new(@group, 'CRON', date, false).create_routine
+        copied_routine = @sub_user.daily_routines.last
+        expect(copied_routine.custom_exercises.count).to eq(4)
+        expect(copied_routine.changes_saved).to eq(false)
       end
     end
   end
