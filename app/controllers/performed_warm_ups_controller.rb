@@ -20,9 +20,13 @@ class PerformedWarmUpsController < ApplicationController
 
   # DELETE /performed_warm_ups/1.json
   def destroy
-    @performed_warm_up.status = DELETED
-    @performed_warm_up.save
-    @performed_warm_up.daily_routine.note_warmups_changed
+    if @performed_warm_up.status == 1 #Added exercise
+      @performed_warm_up.destroy
+    else
+      @performed_warm_up.status = DELETED
+      @performed_warm_up.save
+      @performed_warm_up.daily_routine.note_warmups_changed
+    end
     render json: {success: true}
   end
 

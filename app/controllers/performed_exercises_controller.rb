@@ -21,8 +21,13 @@ class PerformedExercisesController < ApplicationController
 
   # DELETE /performed_exercises/1.json
   def destroy
-    @performed_exercise.update_attributes(status: DELETED)
-    @performed_exercise.daily_routine.note_weights_changed
+    if @performed_exercise.status == 1 #Added exercise
+      @performed_exercise.destroy
+    else
+      @performed_exercise.update_attributes(status: DELETED)
+      @performed_exercise.daily_routine.note_weights_changed
+    end
+
     render json: {success: true}
   end
 

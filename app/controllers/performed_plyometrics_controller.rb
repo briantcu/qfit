@@ -20,9 +20,14 @@ class PerformedPlyometricsController < ApplicationController
 
   # DELETE /performed_plyometrics/1.json
   def destroy
-    @performed_plyometric.status = DELETED
-    @performed_plyometric.save
-    @performed_plyometric.daily_routine.note_plyos_changed
+    if @performed_plyometric.status == 1 #Added exercise
+      @performed_plyometric.destroy
+    else
+      @performed_plyometric.status = DELETED
+      @performed_plyometric.save
+      @performed_plyometric.daily_routine.note_plyos_changed
+    end
+
     render json: {success: true}
   end
 
