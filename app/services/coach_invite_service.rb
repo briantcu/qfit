@@ -8,7 +8,7 @@ class CoachInviteService
   def send_invite(to, coach_account)
     to.gsub!(/[^0-9]/, "") if VALID_PHONE.match(to) #Strip all non numbers if it's a phone
 
-    sent_code = SentCode.where(receiver: to, code: coach_account.user.sign_up_code)
+    sent_code = SentCode.where(receiver: to, code: coach_account.user.sign_up_code.code).first
     if sent_code.present?
       return { status: 'exists', message: 'An invite has already been sent', sent_code: sent_code}
     end
@@ -37,7 +37,7 @@ class CoachInviteService
   private
 
   def process_invite(to, coach_account, type)
-    sent_code = SentCode.create(code: coach_account.user.sign_up_code, receiver: to, used: false)
+    sent_code = SentCode.create(code: coach_account.user.sign_up_code.code, receiver: to, used: false)
     if type == :email
       EmailService.perform_async(:coach_invite, {user_id: coach_account.user.id, email: to})
     else
