@@ -124,21 +124,27 @@ RSpec.describe RoutineService do
         expect(routine.performed_exercises.where(status: 3).count).to eq(copied_routine.performed_exercises.where(status: 3).count)
         expect(routine.performed_exercises.where(status: 2).count).to eq(copied_routine.performed_exercises.where(status: 2).count)
         expect(routine.performed_exercises.where(status: 1).count).to eq(copied_routine.performed_exercises.where(status: 1).count)
+        expect(copied_routine.performed_exercises.count).to eq(9)
+        expect(copied_routine.performed_exercises.first.weight_sets.count).to eq(4)
 
         expect(routine.performed_plyometrics.where(status: 3).count).to eq(copied_routine.performed_plyometrics.where(status: 3).count)
         expect(routine.performed_plyometrics.where(status: 2).count).to eq(copied_routine.performed_plyometrics.where(status: 2).count)
         expect(routine.performed_plyometrics.where(status: 2).count).to eq(1)
         expect(routine.performed_plyometrics.where(status: 1).count).to eq(copied_routine.performed_plyometrics.where(status: 1).count)
+        expect(copied_routine.performed_plyometrics.count).to eq(4)
 
         expect(copied_routine.custom_exercises.count).to eq(1)
 
         expect(routine.performed_warm_ups.where(status: 3).count).to eq(copied_routine.performed_warm_ups.where(status: 3).count)
         expect(routine.performed_warm_ups.where(status: 2).count).to eq(copied_routine.performed_warm_ups.where(status: 2).count)
         expect(routine.performed_warm_ups.where(status: 1).count).to eq(copied_routine.performed_warm_ups.where(status: 1).count)
+        expect(copied_routine.performed_warm_ups.count).to eq(6)
 
         expect(routine.performed_sprints.where(status: 3).count).to eq(copied_routine.performed_sprints.where(status: 3).count)
         expect(routine.performed_sprints.where(status: 2).count).to eq(copied_routine.performed_sprints.where(status: 2).count)
         expect(routine.performed_sprints.where(status: 1).count).to eq(copied_routine.performed_sprints.where(status: 1).count)
+        expect(copied_routine.performed_sprints.count).to eq(1)
+        expect(copied_routine.performed_sprints.first.laps.count).to eq(4)
       end
 
       it 'should not copy over added exercises if the changes were not saved' do
@@ -173,20 +179,26 @@ RSpec.describe RoutineService do
         expect(routine.performed_exercises.where(status: 3).count).to eq(copied_routine.performed_exercises.where(status: 3).count)
         expect(copied_routine.performed_exercises.where(status: 2).count).to eq(0)
         expect(copied_routine.performed_exercises.where(status: 1).count).to eq(0)
+        expect(copied_routine.performed_exercises.count).to eq(8)
+        expect(copied_routine.performed_exercises.first.weight_sets.count).to eq(4)
 
         expect(routine.performed_plyometrics.where(status: 3).count + 1).to eq(copied_routine.performed_plyometrics.where(status: 3).count)
         expect(copied_routine.performed_plyometrics.where(status: 2).count).to eq(0)
         expect(copied_routine.performed_plyometrics.where(status: 1).count).to eq(0)
+        expect(copied_routine.performed_plyometrics.count).to eq(4)
 
         expect(copied_routine.custom_exercises.count).to eq(0)
 
         expect(routine.performed_warm_ups.where(status: 3).count).to eq(copied_routine.performed_warm_ups.where(status: 3).count)
         expect(copied_routine.performed_warm_ups.where(status: 2).count).to eq(0)
         expect(copied_routine.performed_warm_ups.where(status: 1).count).to eq(0)
+        expect(copied_routine.performed_warm_ups.count).to eq(6)
 
         expect(routine.performed_sprints.where(status: 3).count).to eq(copied_routine.performed_sprints.where(status: 3).count)
         expect(copied_routine.performed_sprints.where(status: 2).count).to eq(0)
         expect(copied_routine.performed_sprints.where(status: 1).count).to eq(0)
+        expect(copied_routine.performed_sprints.count).to eq(1)
+        expect(copied_routine.performed_sprints.first.laps.count).to eq(4)
 
       end
 
@@ -265,21 +277,27 @@ RSpec.describe RoutineService do
         expect(routine.performed_exercises.where(status: 3).count).to eq(copied_routine.performed_exercises.where(status: 3).count)
         expect(routine.performed_exercises.where(status: 2).count).to eq(copied_routine.performed_exercises.where(status: 2).count)
         expect(routine.performed_exercises.where(status: 1).count).to eq(copied_routine.performed_exercises.where(status: 1).count)
+        expect(copied_routine.performed_exercises.count).to eq(9)
+        expect(copied_routine.performed_exercises.first.weight_sets.count).to eq(4)
 
         expect(routine.performed_plyometrics.where(status: 3).count).to eq(copied_routine.performed_plyometrics.where(status: 3).count)
         expect(routine.performed_plyometrics.where(status: 2).count).to eq(copied_routine.performed_plyometrics.where(status: 2).count)
         expect(routine.performed_plyometrics.where(status: 2).count).to eq(1)
         expect(routine.performed_plyometrics.where(status: 1).count).to eq(copied_routine.performed_plyometrics.where(status: 1).count)
+        expect(copied_routine.performed_plyometrics.count).to eq(4)
 
         expect(copied_routine.custom_exercises.count).to eq(1)
 
         expect(routine.performed_warm_ups.where(status: 3).count).to eq(copied_routine.performed_warm_ups.where(status: 3).count)
         expect(routine.performed_warm_ups.where(status: 2).count).to eq(copied_routine.performed_warm_ups.where(status: 2).count)
         expect(routine.performed_warm_ups.where(status: 1).count).to eq(copied_routine.performed_warm_ups.where(status: 1).count)
+        expect(copied_routine.performed_warm_ups.count).to eq(6)
 
         expect(routine.performed_sprints.where(status: 3).count).to eq(copied_routine.performed_sprints.where(status: 3).count)
         expect(routine.performed_sprints.where(status: 2).count).to eq(copied_routine.performed_sprints.where(status: 2).count)
         expect(routine.performed_sprints.where(status: 1).count).to eq(copied_routine.performed_sprints.where(status: 1).count)
+        expect(copied_routine.performed_sprints.count).to eq(1)
+        expect(copied_routine.performed_sprints.first.laps.count).to eq(4)
       end
 
       it 'should not copy over added exercises if the changes were not saved' do
@@ -313,20 +331,26 @@ RSpec.describe RoutineService do
         expect(routine.performed_exercises.where(status: 3).count).to eq(copied_routine.performed_exercises.where(status: 3).count)
         expect(copied_routine.performed_exercises.where(status: 2).count).to eq(0)
         expect(copied_routine.performed_exercises.where(status: 1).count).to eq(0)
+        expect(copied_routine.performed_exercises.count).to eq(8)
+        expect(copied_routine.performed_exercises.first.weight_sets.count).to eq(4)
 
         expect(routine.performed_plyometrics.where(status: 3).count + 1).to eq(copied_routine.performed_plyometrics.where(status: 3).count)
         expect(copied_routine.performed_plyometrics.where(status: 2).count).to eq(0)
         expect(copied_routine.performed_plyometrics.where(status: 1).count).to eq(0)
+        expect(copied_routine.performed_plyometrics.count).to eq(4)
 
         expect(copied_routine.custom_exercises.count).to eq(0)
 
         expect(routine.performed_warm_ups.where(status: 3).count).to eq(copied_routine.performed_warm_ups.where(status: 3).count)
         expect(copied_routine.performed_warm_ups.where(status: 2).count).to eq(0)
         expect(copied_routine.performed_warm_ups.where(status: 1).count).to eq(0)
+        expect(copied_routine.performed_warm_ups.count).to eq(6)
 
         expect(routine.performed_sprints.where(status: 3).count).to eq(copied_routine.performed_sprints.where(status: 3).count)
         expect(copied_routine.performed_sprints.where(status: 2).count).to eq(0)
         expect(copied_routine.performed_sprints.where(status: 1).count).to eq(0)
+        expect(copied_routine.performed_sprints.count).to eq(1)
+        expect(copied_routine.performed_sprints.first.laps.count).to eq(4)
 
       end
 
