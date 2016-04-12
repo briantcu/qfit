@@ -8,14 +8,14 @@ RSpec.describe QuadPodService do
 
   it 'sends an invite via email' do
     allow(EmailService).to receive(:perform_async)
-    pi = PodInvite.create(inviter_id: @user.id, sent_to: 'bri.reg@gmail.com')
+    pi = PodInvite.new(inviter_id: @user.id, sent_to: 'bri.reg@gmail.com')
     response = QuadPodService.instance.send_invite(pi)
     expect(response[:status]).to eq('success')
   end
 
   it 'sends an invite via text' do
     allow(TextMessageService).to receive(:perform_async)
-    pi = PodInvite.create(inviter_id: @user.id, sent_to: 'bri.reg@gmail.com')
+    pi = PodInvite.new(inviter_id: @user.id, sent_to: 'bri.reg@gmail.com')
     response = QuadPodService.instance.send_invite(pi)
     expect(response[:status]).to eq('success')
   end
