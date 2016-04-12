@@ -1,6 +1,7 @@
 class PodInvitesController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_pod_invite, only: [:show, :accept, :deny]
+  before_filter :verify_invitee, only: [:accept, :deny]
 
   # GET /pod_invites.json
   def index
@@ -39,6 +40,10 @@ class PodInvitesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_pod_invite
     @pod_invite = PodInvite.find(params[:id])
+  end
+
+  def verify_invitee
+    return unauthorized unless @pod_invite.invitee.id == current_user.id
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

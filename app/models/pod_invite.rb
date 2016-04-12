@@ -11,6 +11,7 @@
 #  updated_at :datetime
 #
 
+# Status: 0-invited, 1 accepted, 2 denied
 class PodInvite < ActiveRecord::Base
   validates :sent_to, uniqueness: { scope: :inviter }
 

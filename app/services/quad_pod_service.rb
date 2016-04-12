@@ -9,7 +9,7 @@ class QuadPodService
   def send_invite(invite)
     invite.sent_to.gsub!(/[^0-9]/, "") if VALID_PHONE.match(invite.sent_to) #Strip all non numbers if it's a phone
 
-    pod_invite = PodInvite.where(inviter: current_user.id, sent_to: invite.sent_to).first
+    pod_invite = PodInvite.where(inviter_id: invite.inviter_id, sent_to: invite.sent_to).first
     if pod_invite.present?
       return { status: 'exists', message: 'A request has already been sent', pod_invite: pod_invite}
     end
@@ -38,14 +38,13 @@ class QuadPodService
   end
 
   def accept_invite_existing_user(invite)
-    return unless invite.invitee == current_user.id && invite.status != 1 # Already accepted
+    return unless invite.status != 1 # Already accepted
     invite.status = 1
     invite.save!
     FriendService.instance.make_friends(invite.inviter.id, invite.invitee.id)
   end
 
   def deny_invite(invite)
-    return unless invite.invitee.id == current_user.id
     invite.status = 2
     invite.save!
   end
@@ -53,6 +52,7 @@ class QuadPodService
   private
 
   def process_invite(invite, type)
+    invite.status = 0
     if type == :email
       invitee = User.where(email: invite.sent_to).first
       service = EmailService
