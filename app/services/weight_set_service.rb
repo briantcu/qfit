@@ -188,8 +188,8 @@ class WeightSetService
   def calculate_user_max
     user_max = UserMax.get_max(@entity.id, @exercise.exercise.id)
     if (!user_max.nil?) && (user_max.max != 0)
-      if (@routine.day_performed.to_datetime - user_max.created_at.to_datetime) > 21.days
-        return max
+      if ((@routine.day_performed.to_time - user_max.created_at)  / 60 / 60 / 24) < 21.days
+        return user_max.max
       end
     end
 
@@ -265,7 +265,7 @@ class WeightSetService
     end
 
     #This makes leg exercises in the Super Quad program 3 sets
-    if ((@entity.get_schedule.program.id == 5) && (exercise_should_be_three_sets(@exercise.exercise_type.id)))
+    if ((@entity.get_schedule.program_id == 5) && (exercise_should_be_three_sets(@exercise.exercise_type_id)))
       @num_sets = 3
     end
 
