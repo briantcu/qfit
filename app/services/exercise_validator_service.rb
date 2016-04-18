@@ -67,15 +67,15 @@ class ExerciseValidatorService
           when 133 #assisted wide grip pullup
             valid = (pi_to_weight < 0.13)
           when 134 #pullups with weight belt
-            valid = (pi_to_weight > 0.128)
+            valid = (pi_to_weight > 0.25)
           when 135 #chinups with weight belt
-            valid = (pi_to_weight > 0.128)
+            valid = (pi_to_weight > 0.25)
           when 136 #wide grip pullups with weight belt
-            valid = (pi_to_weight > 0.15)
+            valid = (pi_to_weight > 0.30)
           when 58 # assisted dips
             valid = (pi_to_weight < 0.053)
           when 59 #dips with weight belt
-            valid = (pi_to_weight > 0.064)
+            valid = (pi_to_weight > 0.14)
         end
       end
     else

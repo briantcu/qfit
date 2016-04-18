@@ -36,4 +36,16 @@ class ExerciseValidatorServiceTest < ActiveSupport::TestCase
     assert(!valid)
   end
 
+  test 'be invalid for chinups with belt unless you can do several reps' do
+    routine = DailyRoutine.new
+    user = User.new
+    user.weight = 180
+    user.power_index = 43
+    exercise = Exercise.new
+    exercise.is_body_weight = true
+    exercise.id = 135
+    valid = ExerciseValidatorService.instance.is_valid_exercise(user, routine, exercise)
+    assert(!valid)
+  end
+
 end
