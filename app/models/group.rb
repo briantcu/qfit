@@ -27,7 +27,7 @@ class Group < ActiveRecord::Base
   has_many :group_joins, dependent: :destroy
   has_many :members, class_name: 'User', through: :group_joins
   has_one :group_schedule, dependent: :destroy
-  has_many :group_routines, dependent: :destroy
+  has_many :group_routines
 
   def get_schedule
     group_schedule
