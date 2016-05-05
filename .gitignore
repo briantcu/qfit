@@ -26,3 +26,5 @@ public/.DS_Store
 .elasticbeanstalk/
 
 /public/apidocs/
+
+node_modules
