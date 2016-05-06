@@ -1,5 +1,7 @@
 Qfit::Application.routes.draw do
 
+  get '/sign-up', to: 'pages#sign_up'
+
   get '/schedule/program_type/:program_type_id/weight_schedule/:weight_schedule_id', to: 'workout_schedule_suggestions#retrieve_suggested_schedule'
 
   resources :program_types
@@ -141,7 +143,5 @@ Qfit::Application.routes.draw do
   delete '/coach_accounts/:id/users/:user_id', to: 'coach_accounts#delete_user'
   post '/coach_accounts/:id/send_invite', to: 'coach_accounts#send_invite'
   post '/coach_accounts/:id/add_user', to: 'coach_accounts#add_user'
-
-  get '/api' => redirect('/swagger/dist/index.html?url=/apidocs/api-docs.json')
 
 end

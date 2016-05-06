@@ -1,51 +1,52 @@
 var path = require('path'),
-    assets_path = path.join('app', 'assets', 'javascripts');
+    assets_path = path.join('app', 'assets', 'javascripts'),
+    bundle_path = path.join('public', 'js');
 
-//var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var config = {
     context: path.resolve(assets_path),
     entry: {
-        totes: './totes.js'
+        sign_up: './sign_up.jsx'
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(assets_path)
+        path: path.resolve(bundle_path)
     },
     externals: {
         jquery: 'var jQuery'
     },
     resolve: {
         extensions: ['', '.js', '.jsx'],
-        root: path.resolve('app/assets/webpack')
+        root: path.resolve('app/assets/javascripts')
     },
     module: {
         loaders: [
             { test: /\.js$/, exclude: /node_modules/, loader: '6to5-loader' },
-            { test: /\.jsx$/, exclude: /node_modules/, loader: '6to5-loader' },
-            { test: /\.js$/, exclude: /node_modules/, loader: "eslint-loader"},
-            { test: /\.scss$/, loaders: ['style', 'css', 'sass']}
-            //{ test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass')}
+            { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel' },
+            { test: /\.scss$/, loaders: ['style', 'css', 'sass']},
+            { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass')}
+            //{ test: /\.js$/, exclude: /node_modules/, loader: "eslint-loader"},
         ],
-        preLoaders: [
-            {
-                test: /\.jsx?$/,
-                loaders: ['eslint'],
-                include: [
-                    path.resolve(__dirname, 'app/assets/webpack')
-                ]
-            }
-        ]
+        //preLoaders: [
+        //    {
+        //        test: /\.jsx?$/,
+        //        loaders: ['eslint'],
+        //        include: [
+        //            path.resolve(__dirname, 'app/assets/javascripts')
+        //        ]
+        //    }
+        //]
     },
     eslint: {
         failOnError: false,
         emitError: false
-    }/*,
+    },
     plugins: [
-        new ExtractTextPlugin('public/style.css', {
+        new ExtractTextPlugin('../css/style.css', {
             allChunks: true
         })
-    ]*/
+    ]
 };
 
 module.exports = config;
