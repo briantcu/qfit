@@ -42,9 +42,9 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!*********************!*\
-  !*** ./sign_up.jsx ***!
-  \*********************/
+/*!***************************!*\
+  !*** ./pages/sign_up.jsx ***!
+  \***************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -67,30 +67,34 @@
 	
 	__webpack_require__(/*! sign_up.scss */ 168);
 	
-	var App = function (_React$Component) {
-	    _inherits(App, _React$Component);
+	var AthleteSignUp = function (_React$Component) {
+	    _inherits(AthleteSignUp, _React$Component);
 	
-	    function App() {
-	        _classCallCheck(this, App);
+	    function AthleteSignUp() {
+	        _classCallCheck(this, AthleteSignUp);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(AthleteSignUp).apply(this, arguments));
 	    }
 	
-	    _createClass(App, [{
+	    _createClass(AthleteSignUp, [{
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'p',
-	                null,
-	                ' Hello React!'
+	                'div',
+	                { className: 'athlete-sign-up row' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-xs-6' },
+	                    _react2.default.createElement('img', { src: 'https://s3.amazonaws.com/quadfit/runner-13.png', className: 'img-responsive' })
+	                )
 	            );
 	        }
 	    }]);
 	
-	    return App;
+	    return AthleteSignUp;
 	}(_react2.default.Component);
 	
-	(0, _reactDom.render)(_react2.default.createElement(App, null), document.getElementById('app'));
+	(0, _reactDom.render)(_react2.default.createElement(AthleteSignUp, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
