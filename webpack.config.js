@@ -18,7 +18,10 @@ var config = {
     },
     resolve: {
         extensions: ['', '.js', '.jsx'],
-        root: path.resolve('app/assets/javascripts')
+        root: [
+            path.resolve('app/assets/javascripts'),
+            path.resolve('app/assets/styles')
+        ]
     },
     module: {
         loaders: [
