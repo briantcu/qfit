@@ -5,6 +5,11 @@ body {
     height: 100%;
 }
 
+.full-logo {
+    padding-top: 25px;
+    padding-left: 25px;
+}
+
 @media all and (max-width: 480px)  {
     body {
         background: url(https://s3.amazonaws.com/quadfit/backgrounds-runner-mobile.jpg);
