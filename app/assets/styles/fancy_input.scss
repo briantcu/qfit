@@ -7,3 +7,43 @@ input.transparent-input{
   height: 50px;
   outline: none !important;
 }
+
+.floatl {
+  position: relative;
+}
+
+.floatl--focused .floatl__label {
+  color: $purple;
+}
+
+.floatl--active .floatl__label {
+  opacity: 1;
+  visibility: visible;
+  top: -20px;
+}
+
+.floatl--active .floatl__input {
+}
+
+.floatl__label {
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  display: inline-block;
+  padding: 5px 3px 3px 0px;
+  font-size: 10px;
+  line-height: 1em;
+  color: $dark-purple;
+}
+
+.floatl__input {
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+}
+

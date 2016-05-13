@@ -30,6 +30,37 @@ input.transparent-input {
   width: 100%;
   height: 50px;
   outline: none !important; }
+
+.floatl {
+  position: relative; }
+
+.floatl--focused .floatl__label {
+  color: #7953aa; }
+
+.floatl--active .floatl__label {
+  opacity: 1;
+  visibility: visible;
+  top: -20px; }
+
+.floatl__label {
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  display: inline-block;
+  padding: 5px 3px 3px 0px;
+  font-size: 10px;
+  line-height: 1em;
+  color: #271b37; }
+
+.floatl__input {
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none; }
 h1 {
   font-family: OpenSans-Light;
   font-size: 48px;
@@ -70,3 +101,5 @@ h1 {
 
 .athlete-sign-up .form {
   max-width: 458px; }
+
+/*# sourceMappingURL=style.css.map*/
