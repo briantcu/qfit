@@ -1,0 +1,31 @@
+@import 'colors';
+
+h1 {
+  font-family: OpenSans-Light;
+  font-size: 48px;
+  letter-spacing: -1.1px;
+  color: $dark-purple;
+}
+
+.form-text {
+  font-family: OpenSans;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: $dark-purple;
+}
+
+.form-info {
+  font-family: OpenSans-Semibold;
+  font-size: 12px;
+  letter-spacing: -0.3px;
+  color: $light-gray;
+}
+
+.form-help {
+  font-family: OpenSans;
+  font-size: 14px;
+  line-height: 3.4;
+  letter-spacing: -0.3px;
+  color: $dark-purple;
+}

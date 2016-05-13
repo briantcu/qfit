@@ -1,0 +1,9 @@
+@import "common";
+
+input.transparent-input{
+  background-color: transparent !important;
+  border: none !important;
+  width: 100%;
+  height: 50px;
+  outline: none !important;
+}
