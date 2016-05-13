@@ -5,10 +5,7 @@ require('sign_up.scss');
 class AthleteSignUp extends React.Component {
     render () {
         return <div className="athlete-sign-up row">
-                <div className="col-xs-6">
-                    <img src="https://s3.amazonaws.com/quadfit/runner-13.png" className="img-responsive"/>
-                </div>
-                <div className="col-xs-5">
+                <div className="col-xs-5 col-xs-offset-6">
                     <div className="row">
                         <div className="col-xs-12">
                             Sign up as an Athlete
