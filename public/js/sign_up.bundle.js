@@ -102,7 +102,7 @@
 	                            ),
 	                            _react2.default.createElement(
 	                                'a',
-	                                { href: '', className: 'form-info' },
+	                                { href: '', className: 'form-info link' },
 	                                'Are you a coach? Sign up here.'
 	                            )
 	                        )
@@ -122,14 +122,20 @@
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'row' },
+	                        { className: 'row buffer' },
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'col-xs-12 text-center' },
 	                            _react2.default.createElement(
 	                                'span',
-	                                { className: 'text-uppercase form-info' },
-	                                'or sign up with an email address'
+	                                { className: 'purple-bot-container' },
+	                                _react2.default.createElement('hr', { className: 'hr-left' }),
+	                                _react2.default.createElement(
+	                                    'span',
+	                                    { className: 'text-uppercase form-info' },
+	                                    'or sign up with an email address'
+	                                ),
+	                                _react2.default.createElement('hr', { className: 'hr-right' })
 	                            )
 	                        )
 	                    ),
@@ -139,7 +145,11 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'col-xs-12' },
-	                            _react2.default.createElement(_fancy_input2.default, null)
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'purple-bot-container' },
+	                                _react2.default.createElement(_fancy_input2.default, null)
+	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -148,7 +158,11 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'col-xs-12' },
-	                            _react2.default.createElement(_fancy_input2.default, null)
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'purple-bot-container' },
+	                                _react2.default.createElement(_fancy_input2.default, null)
+	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -157,7 +171,11 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'col-xs-12' },
-	                            _react2.default.createElement(_fancy_input2.default, null)
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'purple-bot-container' },
+	                                _react2.default.createElement(_fancy_input2.default, null)
+	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -166,7 +184,11 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'col-xs-12' },
-	                            _react2.default.createElement(_fancy_input2.default, null)
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'purple-bot-container' },
+	                                _react2.default.createElement(_fancy_input2.default, null)
+	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -175,7 +197,11 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'col-xs-12' },
-	                            _react2.default.createElement(_fancy_input2.default, null)
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'purple-bot-container' },
+	                                _react2.default.createElement(_fancy_input2.default, null)
+	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -184,7 +210,11 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'col-xs-12' },
-	                            'Slider'
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'purple-bot-container' },
+	                                'Slider'
+	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(

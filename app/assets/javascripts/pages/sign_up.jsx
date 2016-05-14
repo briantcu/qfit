@@ -10,7 +10,7 @@ class AthleteSignUp extends React.Component {
                     <div className="row">
                         <div className="col-xs-12">
                             <h1>Sign up as an Athlete</h1>
-                            <a href="" className="form-info">Are you a coach? Sign up here.</a>
+                            <a href="" className="form-info link">Are you a coach? Sign up here.</a>
                         </div>
                     </div>
                     <div className="row">
@@ -18,39 +18,55 @@ class AthleteSignUp extends React.Component {
                             <span className="fb-button text-center">Sign up with Facebook</span>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row buffer">
                         <div className="col-xs-12 text-center">
-                            <span className="text-uppercase form-info">or sign up with an email address</span>
+                            <span className="purple-bot-container">
+                                <hr className="hr-left" />
+                                <span className="text-uppercase form-info">or sign up with an email address</span>
+                                <hr className="hr-right" />
+                            </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-12">
-                            <FancyInput/>
+                            <span className="purple-bot-container">
+                                <FancyInput/>
+                            </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-12">
-                            <FancyInput/>
+                            <span className="purple-bot-container">
+                                <FancyInput/>
+                            </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-12">
-                            <FancyInput/>
+                            <span className="purple-bot-container">
+                                <FancyInput/>
+                            </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-12">
-                            <FancyInput/>
+                            <span className="purple-bot-container">
+                                <FancyInput/>
+                            </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-12">
-                            <FancyInput/>
+                            <span className="purple-bot-container">
+                                <FancyInput/>
+                            </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-12">
-                            Slider
+                            <span className="purple-bot-container">
+                                Slider
+                            </span>
                         </div>
                     </div>
                     <div className="row">

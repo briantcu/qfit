@@ -12,14 +12,10 @@ input.transparent-input{
   position: relative;
 }
 
-.floatl--focused .floatl__label {
-  color: $purple;
-}
-
 .floatl--active .floatl__label {
   opacity: 1;
   visibility: visible;
-  top: -20px;
+  top: -17px;
 }
 
 .floatl--active .floatl__input {
@@ -35,7 +31,7 @@ input.transparent-input{
   padding: 5px 3px 3px 0px;
   font-size: 10px;
   line-height: 1em;
-  color: $dark-purple;
+  color: $light-purple;
 }
 
 .floatl__input {
@@ -45,5 +41,21 @@ input.transparent-input{
   -moz-appearance: none;
   appearance: none;
   outline: none;
+}
+
+::-webkit-input-placeholder {
+  color: $dark-purple;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: $dark-purple;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: $dark-purple;
+}
+
+:-ms-input-placeholder {
+  color: $dark-purple;
 }
 

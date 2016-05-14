@@ -2,6 +2,11 @@
 
 .athlete-sign-up {
 
+  .buffer {
+    height: 80px;
+    padding-top: 35px;
+  }
+
   .fb-button {
     width: 100%;
     height: 50px;
@@ -14,10 +19,44 @@
     color: white;
     display: block;
     cursor: pointer;
+    margin-top: 35px;
+    padding-top: 11px;
   }
 
   .form {
     max-width: 460px;
+  }
+
+  .purple-bot-container {
+    @include border-bottom;
+    height: 50px;
+    display: block;
+  }
+
+  h1 {
+    margin-bottom: 4px;
+  }
+
+  hr.hr-left {
+    display: inline-block;
+    margin-top: 0.8em;
+    margin-bottom: 0.5em;
+    margin-right: 5px;
+    border-style: inset;
+    float: left;
+    width: 100px;
+    border-top: 1px solid $light-gray;
+  }
+
+  hr.hr-right {
+    display: inline-block;
+    margin-top: 0.8em;
+    margin-bottom: 0.5em;
+    margin-left: 5px;
+    border-style: inset;
+    border-top: 1px solid $light-gray;
+    float: right;
+    width: 100px;
   }
 
 

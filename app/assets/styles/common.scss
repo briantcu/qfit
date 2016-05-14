@@ -33,3 +33,16 @@ h1 {
   letter-spacing: -0.3px;
   color: $dark-purple;
 }
+
+@mixin border-bottom {
+  border-bottom: 1px solid $purple;
+}
+
+.link {
+  color: $light-gray;
+  text-decoration: underline;
+  &:hover {
+    color: $purple;
+  }
+}
+
