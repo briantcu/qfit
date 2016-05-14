@@ -11,7 +11,7 @@ class AthleteSignUp extends React.Component {
                     <div className="row">
                         <div className="col-xs-12">
                             <h1>Sign up as an Athlete</h1>
-                            <a href="" className="form-info link">Are you a coach? Sign up here.</a>
+                            <a href="" className="info-text subtle-link">Are you a coach? Sign up here.</a>
                         </div>
                     </div>
                     <div className="row">
@@ -23,7 +23,7 @@ class AthleteSignUp extends React.Component {
                         <div className="col-xs-12 text-center">
                             <span className="purple-bot-container">
                                 <hr className="hr-left" />
-                                <span className="text-uppercase form-info">or sign up with an email address</span>
+                                <span className="text-uppercase info-text">or sign up with an email address</span>
                                 <hr className="hr-right" />
                             </span>
                         </div>
@@ -70,9 +70,9 @@ class AthleteSignUp extends React.Component {
                             </span>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row submit-row">
                         <div className="col-xs-12">
-                            Button
+                            <span className="submit-button purple-text">Sign Up</span><a href="" className="help-text bold-link">Have an account? Login here.</a>
                         </div>
                     </div>
                 </div>

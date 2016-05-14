@@ -17,7 +17,7 @@ class FancyInput extends React.Component {
     render () {
         return <span ref="fancyInput" className="floatl">
                     <label className="floatl__label">Name</label>
-                    <input type="text" className="transparent-input form-text floatl__input" placeholder="Name" />
+                    <input type="text" className="transparent-input standard-text floatl__input" placeholder="Name" />
             </span>;
     }
 }

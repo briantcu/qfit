@@ -10,10 +10,10 @@ class Slider extends React.Component {
     }
 
     render () {
-        return <div className="switch">
-            <input id="cmn-toggle-4" className="cmn-toggle cmn-toggle-round-flat" type="checkbox" />
+        return <span><div className="switch">
+                <input id="cmn-toggle-4" className="cmn-toggle cmn-toggle-round-flat" type="checkbox" />
                 <label htmlFor="cmn-toggle-4" />
-        </div>;
+        </div><span className="selected-text standard-text">Male</span></span>;
     }
 }
 export default Slider;

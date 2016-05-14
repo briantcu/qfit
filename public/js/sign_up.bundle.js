@@ -106,7 +106,7 @@
 	                            ),
 	                            _react2.default.createElement(
 	                                'a',
-	                                { href: '', className: 'form-info link' },
+	                                { href: '', className: 'info-text subtle-link' },
 	                                'Are you a coach? Sign up here.'
 	                            )
 	                        )
@@ -136,7 +136,7 @@
 	                                _react2.default.createElement('hr', { className: 'hr-left' }),
 	                                _react2.default.createElement(
 	                                    'span',
-	                                    { className: 'text-uppercase form-info' },
+	                                    { className: 'text-uppercase info-text' },
 	                                    'or sign up with an email address'
 	                                ),
 	                                _react2.default.createElement('hr', { className: 'hr-right' })
@@ -223,11 +223,20 @@
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'row' },
+	                        { className: 'row submit-row' },
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'col-xs-12' },
-	                            'Button'
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'submit-button purple-text' },
+	                                'Sign Up'
+	                            ),
+	                            _react2.default.createElement(
+	                                'a',
+	                                { href: '', className: 'help-text bold-link' },
+	                                'Have an account? Login here.'
+	                            )
 	                        )
 	                    )
 	                )
@@ -20889,7 +20898,7 @@
 	                    { className: 'floatl__label' },
 	                    'Name'
 	                ),
-	                _react2.default.createElement('input', { type: 'text', className: 'transparent-input form-text floatl__input', placeholder: 'Name' })
+	                _react2.default.createElement('input', { type: 'text', className: 'transparent-input standard-text floatl__input', placeholder: 'Name' })
 	            );
 	        }
 	    }]);
@@ -21451,10 +21460,19 @@
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'div',
-	                { className: 'switch' },
-	                _react2.default.createElement('input', { id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox' }),
-	                _react2.default.createElement('label', { htmlFor: 'cmn-toggle-4' })
+	                'span',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'switch' },
+	                    _react2.default.createElement('input', { id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox' }),
+	                    _react2.default.createElement('label', { htmlFor: 'cmn-toggle-4' })
+	                ),
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'selected-text standard-text' },
+	                    'Male'
+	                )
 	            );
 	        }
 	    }]);

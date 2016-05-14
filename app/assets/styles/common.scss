@@ -8,7 +8,7 @@ h1 {
   color: $dark-purple;
 }
 
-.form-text {
+.standard-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -17,7 +17,7 @@ h1 {
   color: $dark-purple;
 }
 
-.form-info {
+.info-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   font-size: 12px;
@@ -25,7 +25,7 @@ h1 {
   color: $light-gray;
 }
 
-.form-help {
+.help-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 14px;
@@ -34,12 +34,28 @@ h1 {
   color: $dark-purple;
 }
 
+.purple-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: $purple;
+}
+
 @mixin border-bottom {
   border-bottom: 1px solid $purple;
 }
 
-.link {
+.subtle-link {
   color: $light-gray;
+  text-decoration: underline;
+  &:hover {
+    color: $purple;
+  }
+}
+
+.bold-link {
+  color: $dark-purple;
   text-decoration: underline;
   &:hover {
     color: $purple;
