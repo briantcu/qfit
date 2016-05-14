@@ -1,24 +1,28 @@
 h1 {
-  font-family: OpenSans-Light;
+  font-family: 'Open Sans', sans-serif;
   font-size: 48px;
+  font-weight: 300;
   letter-spacing: -1.1px;
   color: #271b37; }
 
 .form-text {
-  font-family: OpenSans;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 2.9;
   letter-spacing: -0.4px;
   color: #271b37; }
 
 .form-info {
-  font-family: OpenSans-Semibold;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
   font-size: 12px;
   letter-spacing: -0.3px;
   color: #9fa9ba; }
 
 .form-help {
-  font-family: OpenSans;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
   font-size: 14px;
   line-height: 3.4;
   letter-spacing: -0.3px;
@@ -62,26 +66,30 @@ input.transparent-input {
   appearance: none;
   outline: none; }
 h1 {
-  font-family: OpenSans-Light;
+  font-family: 'Open Sans', sans-serif;
   font-size: 48px;
+  font-weight: 300;
   letter-spacing: -1.1px;
   color: #271b37; }
 
 .form-text {
-  font-family: OpenSans;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
   font-size: 18px;
   line-height: 2.9;
   letter-spacing: -0.4px;
   color: #271b37; }
 
 .form-info {
-  font-family: OpenSans-Semibold;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
   font-size: 12px;
   letter-spacing: -0.3px;
   color: #9fa9ba; }
 
 .form-help {
-  font-family: OpenSans;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
   font-size: 14px;
   line-height: 3.4;
   letter-spacing: -0.3px;
@@ -92,7 +100,8 @@ h1 {
   height: 50px;
   border-radius: 3px;
   background-color: #3a61b3;
-  font-family: OpenSans-Bold;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
   font-size: 18px;
   letter-spacing: -0.4px;
   color: white;
@@ -100,6 +109,6 @@ h1 {
   cursor: pointer; }
 
 .athlete-sign-up .form {
-  max-width: 458px; }
+  max-width: 460px; }
 
 /*# sourceMappingURL=style.css.map*/
