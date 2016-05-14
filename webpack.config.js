@@ -1,6 +1,7 @@
 var path = require('path'),
     assets_path = path.join('app', 'assets', 'javascripts'),
-    bundle_path = path.join('public', 'js');
+    bundle_path = path.join('public', 'js'),
+    LiveReloadPlugin = require('webpack-livereload-plugin');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -11,7 +12,8 @@ var config = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(bundle_path)
+        path: path.resolve(bundle_path),
+        publicPath: "/public/",
     },
     externals: {
         jquery: 'var jQuery'
@@ -30,7 +32,7 @@ var config = {
             { test: /\.scss$/, loaders: ['style', 'css', 'sass']},
             { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass')}
             //{ test: /\.js$/, exclude: /node_modules/, loader: "eslint-loader"},
-        ],
+        ]
         //preLoaders: [
         //    {
         //        test: /\.jsx?$/,
@@ -48,7 +50,8 @@ var config = {
     plugins: [
         new ExtractTextPlugin('../css/style.css', {
             allChunks: true
-        })
+        }),
+        new LiveReloadPlugin()
     ]
 };
 
