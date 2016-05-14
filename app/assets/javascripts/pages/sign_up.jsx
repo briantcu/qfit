@@ -1,6 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
-import FancyInput from 'views/common/fancy_input'
+import FancyInput from 'views/common/fancy_input';
+import Slider from 'views/common/slider';
 require('sign_up.scss');
 
 class AthleteSignUp extends React.Component {
@@ -65,7 +66,7 @@ class AthleteSignUp extends React.Component {
                     <div className="row">
                         <div className="col-xs-12">
                             <span className="purple-bot-container">
-                                Slider
+                                <Slider />
                             </span>
                         </div>
                     </div>

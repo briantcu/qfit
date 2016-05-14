@@ -2,7 +2,6 @@ import React from 'react';
 import {render} from 'react-dom';
 
 import Floatl from 'floatl';
-var $ = require("jQuery");
 require('fancy_input.scss');
 
 class FancyInput extends React.Component {
