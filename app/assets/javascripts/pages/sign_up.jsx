@@ -24,10 +24,17 @@ class AthleteSignUp extends React.Component {
 
     componentDidMount () {
         SignUpStore.addChangeListener(this.onChange.bind(this));
+        var that = this;
+        $(document).keypress(function(e) {
+            if(e.which == 13) {
+                that.submit();
+            }
+        });
     }
 
     componentWillUnmount () {
         SignUpStore.removeChangeListener(this.onChange.bind(this));
+        $(document).off("keypress");
     }
 
     onChange () {
@@ -45,12 +52,19 @@ class AthleteSignUp extends React.Component {
 
         this.setState({
             signUpStatus: data.signUpStatus
-        })
+        });
+
+        this.state.formSubmitted = false;
     }
 
     submit () {
-        if (!this.hasErrors()) {
-            SignUpActions.signUp(this.packageData());
+        if (!this.state.formSubmitted) {
+            this.state.formSubmitted = true;
+            if (!this.hasErrors()) {
+                SignUpActions.signUp(this.packageData());
+            } else {
+                this.state.formSubmitted = false;
+            }
         }
     }
 
@@ -64,8 +78,7 @@ class AthleteSignUp extends React.Component {
         user['sex'] = this.refs.sex.getValue();
         user['account_type'] = 'user';
         user['user_name'] = this.refs.username.getValue();
-        var payload = {user: user, invite_token: ''};
-        return payload;
+        return {user: user, invite_token: ''};
     }
 
     evalUsername(username) {

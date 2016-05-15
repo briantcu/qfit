@@ -47,7 +47,7 @@
   \***************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	/* WEBPACK VAR INJECTION */(function(React, $) {'use strict';
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -111,11 +111,18 @@
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            _sign_up_store2.default.addChangeListener(this.onChange.bind(this));
+	            var that = this;
+	            $(document).keypress(function (e) {
+	                if (e.which == 13) {
+	                    that.submit();
+	                }
+	            });
 	        }
 	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
 	            _sign_up_store2.default.removeChangeListener(this.onChange.bind(this));
+	            $(document).off("keypress");
 	        }
 	    }, {
 	        key: 'onChange',
@@ -135,12 +142,19 @@
 	            this.setState({
 	                signUpStatus: data.signUpStatus
 	            });
+	
+	            this.state.formSubmitted = false;
 	        }
 	    }, {
 	        key: 'submit',
 	        value: function submit() {
-	            if (!this.hasErrors()) {
-	                _sign_up_actions2.default.signUp(this.packageData());
+	            if (!this.state.formSubmitted) {
+	                this.state.formSubmitted = true;
+	                if (!this.hasErrors()) {
+	                    _sign_up_actions2.default.signUp(this.packageData());
+	                } else {
+	                    this.state.formSubmitted = false;
+	                }
 	            }
 	        }
 	    }, {
@@ -155,8 +169,7 @@
 	            user['sex'] = this.refs.sex.getValue();
 	            user['account_type'] = 'user';
 	            user['user_name'] = this.refs.username.getValue();
-	            var payload = { user: user, invite_token: '' };
-	            return payload;
+	            return { user: user, invite_token: '' };
 	        }
 	    }, {
 	        key: 'evalUsername',
@@ -378,7 +391,7 @@
 	}(React.Component);
 	
 	(0, _reactDom.render)(React.createElement(AthleteSignUp, null), document.getElementById('app'));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! jquery */ 241)))
 
 /***/ },
 /* 1 */
