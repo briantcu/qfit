@@ -5,6 +5,10 @@ import Slider from 'views/common/slider';
 require('sign_up.scss');
 
 class AthleteSignUp extends React.Component {
+    submit () {
+        //console.log('submit')
+    }
+
     render () {
         return <div className="athlete-sign-up row">
                 <div className="col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form">
@@ -31,48 +35,49 @@ class AthleteSignUp extends React.Component {
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <FancyInput/>
+                                <FancyInput ref="username" placeholder="Username"/>
                             </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <FancyInput/>
+                                <FancyInput ref="firstName" placeholder="First Name"/>
                             </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <FancyInput/>
+                                <FancyInput ref="lastName" placeholder="Last Name"/>
                             </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <FancyInput/>
+                                <FancyInput ref="email" placeholder="Email Address"/>
                             </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <FancyInput/>
+                                <FancyInput ref="password" placeholder="Password"/>
                             </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <Slider />
+                                <Slider ref="sex" />
                             </span>
                         </div>
                     </div>
                     <div className="row submit-row">
                         <div className="col-md-12">
-                            <span className="submit-button purple-text">Sign Up</span><a href="" className="help-text bold-link">Have an account? Login here.</a>
+                            <span onClick={this.submit} className="submit-button purple-text">Sign Up</span>
+                            <a href="" className="help-text bold-link">Have an account? Login here.</a>
                         </div>
                     </div>
                 </div>

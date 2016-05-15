@@ -61,7 +61,7 @@
 	
 	var _fancy_input2 = _interopRequireDefault(_fancy_input);
 	
-	var _slider = __webpack_require__(/*! views/common/slider */ 177);
+	var _slider = __webpack_require__(/*! views/common/slider */ 174);
 	
 	var _slider2 = _interopRequireDefault(_slider);
 	
@@ -73,7 +73,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! sign_up.scss */ 175);
+	__webpack_require__(/*! sign_up.scss */ 177);
 	
 	var AthleteSignUp = function (_React$Component) {
 	    _inherits(AthleteSignUp, _React$Component);
@@ -85,6 +85,11 @@
 	    }
 	
 	    _createClass(AthleteSignUp, [{
+	        key: 'submit',
+	        value: function submit() {
+	            //console.log('submit')
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -152,7 +157,7 @@
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
-	                                _react2.default.createElement(_fancy_input2.default, null)
+	                                _react2.default.createElement(_fancy_input2.default, { ref: 'username', placeholder: 'Username' })
 	                            )
 	                        )
 	                    ),
@@ -165,7 +170,7 @@
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
-	                                _react2.default.createElement(_fancy_input2.default, null)
+	                                _react2.default.createElement(_fancy_input2.default, { ref: 'firstName', placeholder: 'First Name' })
 	                            )
 	                        )
 	                    ),
@@ -178,7 +183,7 @@
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
-	                                _react2.default.createElement(_fancy_input2.default, null)
+	                                _react2.default.createElement(_fancy_input2.default, { ref: 'lastName', placeholder: 'Last Name' })
 	                            )
 	                        )
 	                    ),
@@ -191,7 +196,7 @@
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
-	                                _react2.default.createElement(_fancy_input2.default, null)
+	                                _react2.default.createElement(_fancy_input2.default, { ref: 'email', placeholder: 'Email Address' })
 	                            )
 	                        )
 	                    ),
@@ -204,7 +209,7 @@
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
-	                                _react2.default.createElement(_fancy_input2.default, null)
+	                                _react2.default.createElement(_fancy_input2.default, { ref: 'password', placeholder: 'Password' })
 	                            )
 	                        )
 	                    ),
@@ -217,7 +222,7 @@
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
-	                                _react2.default.createElement(_slider2.default, null)
+	                                _react2.default.createElement(_slider2.default, { ref: 'sex' })
 	                            )
 	                        )
 	                    ),
@@ -229,7 +234,7 @@
 	                            { className: 'col-md-12' },
 	                            _react2.default.createElement(
 	                                'span',
-	                                { className: 'submit-button purple-text' },
+	                                { onClick: this.submit, className: 'submit-button purple-text' },
 	                                'Sign Up'
 	                            ),
 	                            _react2.default.createElement(
@@ -20871,7 +20876,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! fancy_input.scss */ 171);
+	__webpack_require__(/*! fancy_input.scss */ 170);
 	
 	var FancyInput = function (_React$Component) {
 	    _inherits(FancyInput, _React$Component);
@@ -20888,6 +20893,11 @@
 	            new _floatl2.default(this.refs.fancyInput);
 	        }
 	    }, {
+	        key: 'getValue',
+	        value: function getValue() {
+	            return this.refs.inputField.value;
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -20896,9 +20906,9 @@
 	                _react2.default.createElement(
 	                    'label',
 	                    { className: 'floatl__label' },
-	                    'Name'
+	                    this.props.placeholder
 	                ),
-	                _react2.default.createElement('input', { type: 'text', className: 'transparent-input standard-text floatl__input', placeholder: 'Name' })
+	                _react2.default.createElement('input', { ref: 'inputField', type: 'text', className: 'transparent-input standard-text floatl__input', placeholder: '' + this.props.placeholder })
 	            );
 	        }
 	    }]);
@@ -21010,8 +21020,7 @@
 	});
 
 /***/ },
-/* 170 */,
-/* 171 */
+/* 170 */
 /*!**********************************!*\
   !*** ../styles/fancy_input.scss ***!
   \**********************************/
@@ -21020,10 +21029,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/sass-loader!./../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../~/css-loader!./../../../~/sass-loader!./fancy_input.scss */ 172);
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/sass-loader!./../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../~/css-loader!./../../../~/sass-loader!./fancy_input.scss */ 171);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 173)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -21040,13 +21049,13 @@
 	}
 
 /***/ },
-/* 172 */
+/* 171 */
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/fancy_input.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 172)();
 	// imports
 	
 	
@@ -21057,7 +21066,7 @@
 
 
 /***/ },
-/* 173 */
+/* 172 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader/lib/css-base.js ***!
   \********************************************************************/
@@ -21116,7 +21125,7 @@
 
 
 /***/ },
-/* 174 */
+/* 173 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/style-loader/addStyles.js ***!
   \*******************************************************************/
@@ -21371,53 +21380,7 @@
 
 
 /***/ },
-/* 175 */
-/*!******************************!*\
-  !*** ../styles/sign_up.scss ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/sass-loader!./../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../~/css-loader!./../../../~/sass-loader!./sign_up.scss */ 176);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 174)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./sign_up.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./sign_up.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 176 */
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/sign_up.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 173)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 177 */
+/* 174 */
 /*!*********************************!*\
   !*** ./views/common/slider.jsx ***!
   \*********************************/
@@ -21445,7 +21408,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! slider.scss */ 178);
+	__webpack_require__(/*! slider.scss */ 175);
 	
 	var Slider = function (_React$Component) {
 	    _inherits(Slider, _React$Component);
@@ -21457,6 +21420,11 @@
 	    }
 	
 	    _createClass(Slider, [{
+	        key: 'getValue',
+	        value: function getValue() {
+	            return this.refs.sex.value;
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -21465,7 +21433,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'switch' },
-	                    _react2.default.createElement('input', { id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox' }),
+	                    _react2.default.createElement('input', { ref: 'sex', id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox' }),
 	                    _react2.default.createElement('label', { htmlFor: 'cmn-toggle-4' })
 	                ),
 	                _react2.default.createElement(
@@ -21483,7 +21451,7 @@
 	exports.default = Slider;
 
 /***/ },
-/* 178 */
+/* 175 */
 /*!*****************************!*\
   !*** ../styles/slider.scss ***!
   \*****************************/
@@ -21492,10 +21460,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/sass-loader!./../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../~/css-loader!./../../../~/sass-loader!./slider.scss */ 179);
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/sass-loader!./../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../~/css-loader!./../../../~/sass-loader!./slider.scss */ 176);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 173)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -21512,13 +21480,59 @@
 	}
 
 /***/ },
-/* 179 */
+/* 176 */
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/slider.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 172)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 177 */
+/*!******************************!*\
+  !*** ../styles/sign_up.scss ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/sass-loader!./../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../~/css-loader!./../../../~/sass-loader!./sign_up.scss */ 178);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 173)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./sign_up.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./sign_up.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 178 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/sign_up.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 172)();
 	// imports
 	
 	

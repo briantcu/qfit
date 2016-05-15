@@ -14,10 +14,14 @@ class FancyInput extends React.Component {
         new Floatl(this.refs.fancyInput);
     }
 
+    getValue() {
+        return this.refs.inputField.value
+    }
+
     render () {
         return <span ref="fancyInput" className="floatl">
-                    <label className="floatl__label">Name</label>
-                    <input type="text" className="transparent-input standard-text floatl__input" placeholder="Name" />
+                    <label className="floatl__label">{this.props.placeholder}</label>
+                    <input ref="inputField" type="text" className="transparent-input standard-text floatl__input" placeholder={`${this.props.placeholder}`} />
             </span>;
     }
 }
