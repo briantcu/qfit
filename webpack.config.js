@@ -13,7 +13,7 @@ var config = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(bundle_path),
-        publicPath: "/public/",
+        publicPath: "/public/"
     },
     externals: {
         jquery: 'var jQuery'

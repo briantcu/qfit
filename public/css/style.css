@@ -47,23 +47,23 @@ h1 {
   .bold-link:hover {
     color: #7953aa; }
 
-input.transparent-input {
+.fancy-input input.transparent-input {
   background-color: transparent !important;
   border: none !important;
   width: 100%;
   height: 50px;
   outline: none !important; }
 
-.floatl {
+.fancy-input .floatl {
   position: relative; }
 
-.floatl--active .floatl__label {
+.fancy-input .floatl--active .floatl__label {
   opacity: 1;
   visibility: visible;
   top: -20px;
   left: 2px; }
 
-.floatl__label {
+.fancy-input .floatl__label {
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
   visibility: hidden;
@@ -75,7 +75,7 @@ input.transparent-input {
   line-height: 1em;
   color: rgba(121, 83, 170, 0.5); }
 
-.floatl__input {
+.fancy-input .floatl__input {
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
   -webkit-appearance: none;
@@ -83,19 +83,36 @@ input.transparent-input {
   appearance: none;
   outline: none; }
 
-::-webkit-input-placeholder {
+.fancy-input ::-webkit-input-placeholder {
   color: #271b37; }
 
-:-moz-placeholder {
+.fancy-input :-moz-placeholder {
   /* Firefox 18- */
   color: #271b37; }
 
-::-moz-placeholder {
+.fancy-input ::-moz-placeholder {
   /* Firefox 19+ */
   color: #271b37; }
 
-:-ms-input-placeholder {
+.fancy-input :-ms-input-placeholder {
   color: #271b37; }
+
+.fancy-input .pw-strength {
+  right: -408px;
+  position: relative;
+  top: -40px; }
+
+.fancy-input .indicator {
+  display: block;
+  width: 21px;
+  height: 4px;
+  border-color: #7953aa;
+  border-style: solid;
+  border-width: 1px;
+  margin-top: 2px; }
+
+.fancy-input .full {
+  background-color: #7953aa; }
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;

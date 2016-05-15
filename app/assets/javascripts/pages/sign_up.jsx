@@ -2,11 +2,20 @@ import React from 'react';
 import {render} from 'react-dom';
 import FancyInput from 'views/common/fancy_input';
 import Slider from 'views/common/slider';
+import validator from 'validator';
+
 require('sign_up.scss');
 
 class AthleteSignUp extends React.Component {
     submit () {
-        //console.log('submit')
+        //account_type = "user"
+        //password_confirmation = "user"
+        //trim all
+        //convert sex to lowercase
+    }
+
+    evalUsername(username) {
+        //call to see if username is unique
     }
 
     render () {
@@ -35,35 +44,36 @@ class AthleteSignUp extends React.Component {
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <FancyInput ref="username" placeholder="Username"/>
+                                <FancyInput ref="username" name="displayed_user_name" placeholder="Username" type="text"
+                                changedCallback={this.evalUsername} />
                             </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <FancyInput ref="firstName" placeholder="First Name"/>
+                                <FancyInput ref="firstName" name="first_name" placeholder="First Name" type="text"/>
                             </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <FancyInput ref="lastName" placeholder="Last Name"/>
+                                <FancyInput ref="lastName" name="last_name" placeholder="Last Name" type="text"/>
                             </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <FancyInput ref="email" placeholder="Email Address"/>
+                                <FancyInput ref="email" name="email" placeholder="Email Address" type="text"/>
                             </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <FancyInput ref="password" placeholder="Password"/>
+                                <FancyInput ref="password" name="password" placeholder="Password" type="password"/>
                             </span>
                         </div>
                     </div>
@@ -76,7 +86,7 @@ class AthleteSignUp extends React.Component {
                     </div>
                     <div className="row submit-row">
                         <div className="col-md-12">
-                            <span onClick={this.submit} className="submit-button purple-text">Sign Up</span>
+                            <span onClick={ () => this.submit()} className="submit-button purple-text">Sign Up</span>
                             <a href="" className="help-text bold-link">Have an account? Login here.</a>
                         </div>
                     </div>
