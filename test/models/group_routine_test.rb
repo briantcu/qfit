@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: group_routines
+#
+#  id             :integer          not null, primary key
+#  group_id       :integer
+#  day_performed  :date
+#  program_day_id :integer
+#  wt_day_id      :integer
+#  sp_day_id      :integer
+#  pl_day_id      :integer
+#  wu_day_id      :integer
+#  modified       :boolean
+#  pl_modified    :boolean
+#  wt_modified    :boolean
+#  wu_modified    :boolean
+#  sp_modified    :boolean
+#  changes_saved  :boolean          default(FALSE)
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
 require 'test_helper'
 
 class GroupRoutineTest < ActiveSupport::TestCase

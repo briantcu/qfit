@@ -14,7 +14,6 @@
 #  hor_push_max                :float
 #  hor_pull_max                :float
 #  power_index                 :integer
-#  old_password                :string(255)
 #  current_phase               :integer
 #  phone                       :string(255)
 #  last_weight_day_created     :integer          default(0)
@@ -41,7 +40,6 @@
 #  last_sign_in_ip             :string(255)
 #  authentication_token        :string(255)
 #  experience_level            :integer
-#  displayed_user_name         :string(255)
 #  points                      :integer
 #  avatars                     :json
 #  status                      :integer          default(1)

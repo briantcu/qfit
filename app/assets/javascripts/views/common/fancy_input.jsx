@@ -1,5 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
+import util from 'helpers/util';
 
 import Floatl from 'floatl';
 require('fancy_input.scss');
@@ -25,13 +26,21 @@ class FancyInput extends React.Component {
         }
 
         if (this.props.type == 'password') {
-            this.setState({strength: 2});
+            var strength = util.getPasswordStrength(this.getValue());
+            this.setState({strength: strength});
         }
     }
 
     render () {
-        return <span ref="fancyInput" className="floatl fancy-input">
-                    <label className="floatl__label">{this.props.placeholder}</label>
+        return <span ref="fancyInput" className={`floatl fancy-input ${this.props.errors && this.props.errors.length > 0 ? ' floatl--active' : null}`}>
+                    <Choose>
+                        <When condition={this.props.errors && this.props.errors.length > 0} >
+                            <label className="floatl__label error-text">{this.props.errors.join(', ')}</label>
+                        </When>
+                        <When condition={!this.props.errors || this.props.errors.length == 0} >
+                            <label className="floatl__label">{this.props.placeholder}</label>
+                        </When>
+                    </Choose>
                     <input ref="inputField" type={this.props.type} className="transparent-input standard-text floatl__input"
                            name={`${this.props.name}`} placeholder={`${this.props.placeholder}`} onChange={() => this.changed()}/>
                     <If condition={this.props.type == 'password'}>

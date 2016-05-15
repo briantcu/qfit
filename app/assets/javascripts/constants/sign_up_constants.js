@@ -1,5 +1,8 @@
 var keyMirror = require('helpers/KeyMirror');
 
 module.exports = keyMirror({
-    ACTIVE_TOTE: null
+    SIGN_UP: null,
+    UNIQUE_USERNAME: null,
+    SUCCESS: null,
+    FAILURE: null
 });

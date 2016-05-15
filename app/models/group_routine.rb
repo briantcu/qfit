@@ -15,7 +15,7 @@
 #  wt_modified    :boolean
 #  wu_modified    :boolean
 #  sp_modified    :boolean
-#  changes_saved  :boolean
+#  changes_saved  :boolean          default(FALSE)
 #  created_at     :datetime
 #  updated_at     :datetime
 #

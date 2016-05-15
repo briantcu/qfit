@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: group_performed_sprints
+#
+#  id         :integer          not null, primary key
+#  sprint_id  :integer
+#  status     :integer
+#  routine_id :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class GroupPerformedSprintsController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_group_performed_sprint, only: [:update, :destroy]

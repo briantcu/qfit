@@ -4,9 +4,9 @@
 #
 #  id                :integer          not null, primary key
 #  group_schedule_id :integer
-#  weights           :boolean
-#  plyometrics       :boolean
-#  stretching        :boolean
+#  weights           :boolean          default(FALSE)
+#  plyometrics       :boolean          default(FALSE)
+#  stretching        :boolean          default(FALSE)
 #  sprinting         :boolean
 #  created_at        :datetime
 #  updated_at        :datetime

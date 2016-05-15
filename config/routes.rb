@@ -35,6 +35,7 @@ Qfit::Application.routes.draw do
   get '/users/:id/calendar/year/:year_id/month/:month_id', to: 'users#get_calendar'
   get 'users/:id/progress/:chart_type/:period', to: 'users#get_progress'
   put '/users/:id/change_email', to: 'users#change_email'
+  get '/username_exists/:username', to: 'users#username_exists'
 
   resources :tips
 

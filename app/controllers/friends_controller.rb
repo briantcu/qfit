@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: friends
+#
+#  id         :integer          not null, primary key
+#  id_one     :integer
+#  id_two     :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class FriendsController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_friend, only: [:show]

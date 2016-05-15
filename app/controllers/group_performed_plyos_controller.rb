@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: group_performed_plyos
+#
+#  id            :integer          not null, primary key
+#  plyometric_id :integer
+#  routine_id    :integer
+#  status        :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 class GroupPerformedPlyosController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_group_performed_plyo, only: [:update, :destroy]

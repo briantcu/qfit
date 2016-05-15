@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: group_performed_warmups
+#
+#  id         :integer          not null, primary key
+#  routine_id :integer
+#  warmup_id  :integer
+#  status     :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class GroupPerformedWarmupsController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_group_performed_warmup, only: [:update, :destroy]

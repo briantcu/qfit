@@ -76,7 +76,23 @@ var util = {
     },
     historyReplaceState: function(url, state){
         window.history.replaceState(state, document.title, url);
+    },
+
+    getPasswordStrength: function (pwd) {
+        var score   = 0;
+
+        if (pwd.length > 6) score++;
+
+        if ( ( pwd.match(/[a-z]/) ) && ( pwd.match(/[A-Z]/) ) ) score++;
+
+        if (pwd.match(/\d+/)) score++;
+
+        if ( pwd.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/) ) score++;
+
+        if (pwd.length > 12) score++;
+
+        return score;
     }
 };
 
-module.exports = util;
+export default util;
