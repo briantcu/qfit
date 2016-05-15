@@ -222,7 +222,7 @@
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
-	                                _react2.default.createElement(_slider2.default, { ref: 'sex' })
+	                                _react2.default.createElement(_slider2.default, { ref: 'sex', checked: 'Female', unchecked: 'Male' })
 	                            )
 	                        )
 	                    ),
@@ -21416,30 +21416,51 @@
 	    function Slider(props) {
 	        _classCallCheck(this, Slider);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Slider).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Slider).call(this, props));
+	
+	        _this.state = { label: _this.props.unchecked };
+	        return _this;
 	    }
 	
 	    _createClass(Slider, [{
 	        key: 'getValue',
 	        value: function getValue() {
-	            return this.refs.sex.value;
+	            if (this.refs.slider.checked) {
+	                return this.props.checked;
+	            }
+	
+	            return this.props.unchecked;
+	        }
+	    }, {
+	        key: 'handleLabel',
+	        value: function handleLabel() {
+	            console.log(this.refs.slider.checked);
+	            if (this.refs.slider.checked) {
+	                this.setState({ label: this.props.checked });
+	            } else {
+	                this.setState({ label: this.props.unchecked });
+	            }
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+	
 	            return _react2.default.createElement(
 	                'span',
 	                null,
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'switch' },
-	                    _react2.default.createElement('input', { ref: 'sex', id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox' }),
+	                    _react2.default.createElement('input', { ref: 'slider', id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox', onChange: function onChange() {
+	                            return _this2.handleLabel();
+	                        } }),
 	                    _react2.default.createElement('label', { htmlFor: 'cmn-toggle-4' })
 	                ),
 	                _react2.default.createElement(
 	                    'span',
 	                    { className: 'selected-text standard-text' },
-	                    'Male'
+	                    this.state.label
 	                )
 	            );
 	        }

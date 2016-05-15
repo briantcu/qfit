@@ -70,7 +70,7 @@ class AthleteSignUp extends React.Component {
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <Slider ref="sex" />
+                                <Slider ref="sex" checked="Female" unchecked="Male"/>
                             </span>
                         </div>
                     </div>
