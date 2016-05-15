@@ -7,7 +7,13 @@ var SignUpStore = new Store({
     isUsernameUnique: true,
 
     setSignUpStatus: function(params){
-        this.signUpStatus = params;
+        if (params.success) {
+            this.signUpStatus.status = C.SUCCESS;
+        } else {
+            this.signUpStatus.status = C.FAILURE;
+            this.signUpStatus.errors = params;
+        }
+        delete params.success;
     },
 
     setIsUsernameUnique: function(isUnique) {

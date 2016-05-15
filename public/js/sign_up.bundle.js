@@ -121,14 +121,15 @@
 	        key: 'onChange',
 	        value: function onChange() {
 	            var data = _sign_up_store2.default.getData();
+	
 	            if (data.signUpStatus.status == _sign_up_constants2.default.SUCCESS) {
 	                location.href = '/next';
 	            }
 	
-	            if (!data.isUsernameUnique) {
-	                this.setState({ usernameErrors: ["Username isn't available."] });
-	            } else {
+	            if (data.isUsernameUnique) {
 	                this.setState({ usernameErrors: [] });
+	            } else {
+	                this.setState({ usernameErrors: ["Username isn't available."] });
 	            }
 	
 	            this.setState({
@@ -138,10 +139,24 @@
 	    }, {
 	        key: 'submit',
 	        value: function submit() {
-	            //account_type = "user"
-	            //password_confirmation = "user"
-	            //trim all
-	            //convert sex to lowercase
+	            if (!this.hasErrors()) {
+	                _sign_up_actions2.default.signUp(this.packageData());
+	            }
+	        }
+	    }, {
+	        key: 'packageData',
+	        value: function packageData() {
+	            var user = {};
+	            user['email'] = this.refs.email.getValue();
+	            user['first_name'] = this.refs.firstName.getValue();
+	            user['last_name'] = this.refs.lastName.getValue();
+	            user['password'] = this.refs.password.getValue();
+	            user['password_confirmation'] = this.refs.password.getValue();
+	            user['sex'] = this.refs.sex.getValue();
+	            user['account_type'] = 'user';
+	            user['user_name'] = this.refs.username.getValue();
+	            var payload = { user: user, invite_token: '' };
+	            return payload;
 	        }
 	    }, {
 	        key: 'evalUsername',
@@ -151,9 +166,39 @@
 	            }
 	        }
 	    }, {
-	        key: 'evalErrors',
-	        value: function evalErrors() {
+	        key: 'hasErrors',
+	        value: function hasErrors() {
 	            var hasErrors = false;
+	            var username = this.refs.username.getValue();
+	            if (!_validator2.default.isLength(username, { min: 5 })) {
+	                this.setState({ usernameErrors: ['Username must be at least 5 characters'] });
+	                hasErrors = true;
+	            }
+	
+	            var firstName = this.refs.firstName.getValue();
+	            if (!_validator2.default.isLength(firstName, { min: 2 })) {
+	                this.setState({ firstNameErrors: ['Please enter a valid first name'] });
+	                hasErrors = true;
+	            }
+	
+	            var lastName = this.refs.lastName.getValue();
+	            if (!_validator2.default.isLength(lastName, { min: 2 })) {
+	                this.setState({ lastNameErrors: ['Please enter a valid first name'] });
+	                hasErrors = true;
+	            }
+	
+	            var email = this.refs.email.getValue();
+	            if (!_validator2.default.isEmail(email)) {
+	                this.setState({ emailErrors: ['Please enter a valid email'] });
+	                hasErrors = true;
+	            }
+	
+	            var strength = this.refs.password.getStrength();
+	            if (strength < 2) {
+	                this.setState({ passwordErrors: ['Your password is too weak'] });
+	                hasErrors = true;
+	            }
+	            return hasErrors;
 	        }
 	    }, {
 	        key: 'render',
@@ -295,7 +340,7 @@
 	                            React.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
-	                                React.createElement(_slider2.default, { ref: 'sex', checked: 'Female', unchecked: 'Male' })
+	                                React.createElement(_slider2.default, { ref: 'sex', checked: 'female', unchecked: 'male' })
 	                            )
 	                        )
 	                    ),
@@ -308,7 +353,7 @@
 	                            this.state.signUpStatus.status == _sign_up_constants2.default.FAILURE ? React.createElement(
 	                                'div',
 	                                null,
-	                                this.signUpStatus.errors.join(', ')
+	                                this.state.signUpStatus.errors.join(', ')
 	                            ) : null,
 	                            React.createElement(
 	                                'span',
@@ -20983,7 +21028,7 @@
 	    }, {
 	        key: 'getValue',
 	        value: function getValue() {
-	            return this.refs.inputField.value;
+	            return this.refs.inputField.value.trim();
 	        }
 	    }, {
 	        key: 'changed',
@@ -20996,6 +21041,11 @@
 	                var strength = _util2.default.getPasswordStrength(this.getValue());
 	                this.setState({ strength: strength });
 	            }
+	        }
+	    }, {
+	        key: 'getStrength',
+	        value: function getStrength() {
+	            return _util2.default.getPasswordStrength(this.getValue());
 	        }
 	    }, {
 	        key: 'render',
@@ -24318,18 +24368,23 @@
 	
 	var SignUpActions = {
 	
-	    signUp: function (params) {
-	        console.log(params);
+	    signUp: function (payload) {
+	        var data = JSON.stringify(payload);
 	        $.ajax({
 	            type: "post",
-	            data: params,
+	            data: data,
 	            url: "/users.json",
 	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
 	            success: function (results) {
-	                dispatcher.dispatch(C.ACTIVE_TOTE, results);
+	                var payload = results;
+	                payload.success = true;
+	                dispatcher.dispatch(C.SIGN_UP, payload);
 	            },
-	            error: function (request) {
-	                alert(JSON.parse(request.responseText).message);
+	            error: function (results) {
+	                var payload = results.responseJSON;
+	                payload.success = false;
+	                dispatcher.dispatch(C.SIGN_UP, payload);
 	            }
 	        });
 	    },
@@ -24346,7 +24401,7 @@
 	                if (response.status == 404) {
 	                    dispatcher.dispatch(C.UNIQUE_USERNAME, { isUnique: true });
 	                } else {
-	                    alert(JSON.parse(response.responseText).message);
+	                    alert(JSON.parse(response.responseJSON));
 	                }
 	            }
 	        });
@@ -34439,7 +34494,13 @@
 	    isUsernameUnique: true,
 	
 	    setSignUpStatus: function (params) {
-	        this.signUpStatus = params;
+	        if (params.success) {
+	            this.signUpStatus.status = C.SUCCESS;
+	        } else {
+	            this.signUpStatus.status = C.FAILURE;
+	            this.signUpStatus.errors = params;
+	        }
+	        delete params.success;
 	    },
 	
 	    setIsUsernameUnique: function (isUnique) {

@@ -23,9 +23,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       RegistrationService.instance.register_user(@user, sign_up_code, params[:user][:account_type])
       check_tokens
       render json: @user.to_json, status: 201 and return
-    rescue Exception => e #@TODO throw this to Rollbar?
+    rescue Exception => e
+      Rollbar.error(e)
       warden.custom_failure!
-      render json: @user.errors, status: 422
+      render json: @user.errors.full_messages, status: 422
     end
   end
 
@@ -38,6 +39,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :sex)
+    params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :sex, :user_name)
   end
 end

@@ -32,14 +32,15 @@ class AthleteSignUp extends React.Component {
 
     onChange () {
         var data = SignUpStore.getData();
+
         if (data.signUpStatus.status == C.SUCCESS) {
             location.href = '/next';
         }
 
-        if (!data.isUsernameUnique) {
-            this.setState({usernameErrors: ["Username isn't available."]})
+        if (data.isUsernameUnique) {
+            this.setState({usernameErrors: []});
         } else {
-            this.setState({usernameErrors: []})
+            this.setState({usernameErrors: ["Username isn't available."]});
         }
 
         this.setState({
@@ -48,10 +49,23 @@ class AthleteSignUp extends React.Component {
     }
 
     submit () {
-        //account_type = "user"
-        //password_confirmation = "user"
-        //trim all
-        //convert sex to lowercase
+        if (!this.hasErrors()) {
+            SignUpActions.signUp(this.packageData());
+        }
+    }
+
+    packageData () {
+        var user = {};
+        user['email'] = this.refs.email.getValue();
+        user['first_name'] = this.refs.firstName.getValue();
+        user['last_name'] = this.refs.lastName.getValue();
+        user['password'] = this.refs.password.getValue();
+        user['password_confirmation'] = this.refs.password.getValue();
+        user['sex'] = this.refs.sex.getValue();
+        user['account_type'] = 'user';
+        user['user_name'] = this.refs.username.getValue();
+        var payload = {user: user, invite_token: ''};
+        return payload;
     }
 
     evalUsername(username) {
@@ -60,9 +74,38 @@ class AthleteSignUp extends React.Component {
         }
     }
 
-    evalErrors () {
+    hasErrors () {
         var hasErrors = false;
+        var username = this.refs.username.getValue();
+        if (!validator.isLength(username, {min: 5})) {
+            this.setState({usernameErrors: ['Username must be at least 5 characters']});
+            hasErrors = true;
+        }
 
+        var firstName = this.refs.firstName.getValue();
+        if (!validator.isLength(firstName, {min: 2})) {
+            this.setState({firstNameErrors: ['Please enter a valid first name']});
+            hasErrors = true;
+        }
+
+        var lastName = this.refs.lastName.getValue();
+        if (!validator.isLength(lastName, {min: 2})) {
+            this.setState({lastNameErrors: ['Please enter a valid first name']});
+            hasErrors = true;
+        }
+
+        var email = this.refs.email.getValue();
+        if (!validator.isEmail(email)) {
+            this.setState({emailErrors: ['Please enter a valid email']});
+            hasErrors = true;
+        }
+
+        var strength = this.refs.password.getStrength();
+        if (strength < 2) {
+            this.setState({passwordErrors: ['Your password is too weak']});
+            hasErrors = true;
+        }
+        return hasErrors;
     }
 
     render () {
@@ -131,14 +174,14 @@ class AthleteSignUp extends React.Component {
                     <div className="row">
                         <div className="col-md-12">
                             <span className="purple-bot-container">
-                                <Slider ref="sex" checked="Female" unchecked="Male"/>
+                                <Slider ref="sex" checked="female" unchecked="male"/>
                             </span>
                         </div>
                     </div>
                     <div className="row submit-row">
                         <div className="col-md-12">
                             <If condition={this.state.signUpStatus.status == C.FAILURE}>
-                                <div>{this.signUpStatus.errors.join(', ')}</div>
+                                <div>{this.state.signUpStatus.errors.join(', ')}</div>
                             </If>
                             <span onClick={ () => this.submit()} className="submit-button purple-text">Sign Up</span>
                             <a href="" className="help-text bold-link">Have an account? Login here.</a>

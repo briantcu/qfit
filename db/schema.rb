@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504021937) do
+ActiveRecord::Schema.define(version: 20160515220117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -508,7 +508,7 @@ ActiveRecord::Schema.define(version: 20160504021937) do
     t.string   "last_sign_in_ip",             limit: 255
     t.string   "authentication_token",        limit: 255
     t.integer  "experience_level"
-    t.integer  "points"
+    t.integer  "points",                                  default: 10
     t.json     "avatars"
     t.integer  "status",                                  default: 1
     t.integer  "paid_tier",                               default: 1

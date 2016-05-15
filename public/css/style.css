@@ -254,7 +254,8 @@ input.cmn-toggle-round-flat:checked + label:after {
   background-color: white; }
 
 .selected-text {
-  padding-left: 8px; }
+  padding-left: 8px;
+  text-transform: capitalize; }
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;

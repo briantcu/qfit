@@ -17,7 +17,7 @@ class FancyInput extends React.Component {
     }
 
     getValue() {
-        return this.refs.inputField.value
+        return this.refs.inputField.value.trim();
     }
 
     changed() {
@@ -29,6 +29,10 @@ class FancyInput extends React.Component {
             var strength = util.getPasswordStrength(this.getValue());
             this.setState({strength: strength});
         }
+    }
+
+    getStrength() {
+        return util.getPasswordStrength(this.getValue());
     }
 
     render () {
