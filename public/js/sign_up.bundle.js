@@ -92,13 +92,13 @@
 	                { className: 'athlete-sign-up row' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'col-xs-5 col-xs-offset-6 form' },
+	                    { className: 'col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form' },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'row' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'col-xs-12' },
+	                            { className: 'col-md-12' },
 	                            _react2.default.createElement(
 	                                'h1',
 	                                null,
@@ -116,7 +116,7 @@
 	                        { className: 'row' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'col-xs-12' },
+	                            { className: 'col-md-12' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'fb-button text-center' },
@@ -129,7 +129,7 @@
 	                        { className: 'row buffer' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'col-xs-12 text-center' },
+	                            { className: 'col-md-12 text-center' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
@@ -148,7 +148,7 @@
 	                        { className: 'row' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'col-xs-12' },
+	                            { className: 'col-md-12' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
@@ -161,7 +161,7 @@
 	                        { className: 'row' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'col-xs-12' },
+	                            { className: 'col-md-12' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
@@ -174,7 +174,7 @@
 	                        { className: 'row' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'col-xs-12' },
+	                            { className: 'col-md-12' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
@@ -187,7 +187,7 @@
 	                        { className: 'row' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'col-xs-12' },
+	                            { className: 'col-md-12' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
@@ -200,7 +200,7 @@
 	                        { className: 'row' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'col-xs-12' },
+	                            { className: 'col-md-12' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
@@ -213,7 +213,7 @@
 	                        { className: 'row' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'col-xs-12' },
+	                            { className: 'col-md-12' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'purple-bot-container' },
@@ -226,7 +226,7 @@
 	                        { className: 'row submit-row' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'col-xs-12' },
+	                            { className: 'col-md-12' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'submit-button purple-text' },
