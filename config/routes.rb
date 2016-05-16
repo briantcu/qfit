@@ -1,7 +1,13 @@
 Qfit::Application.routes.draw do
 
-  get '/sign-up', to: 'pages#sign_up'
 
+  #***************** WEBSITE ******************
+  get '/sign-up', to: 'pages#sign_up'
+  get '/get-started', to: 'pages#get_started'
+  get '/login', to: 'pages#sign_up'
+
+
+  #****************** API *********************
   get '/schedule/program_type/:program_type_id/weight_schedule/:weight_schedule_id', to: 'workout_schedule_suggestions#retrieve_suggested_schedule'
 
   resources :program_types

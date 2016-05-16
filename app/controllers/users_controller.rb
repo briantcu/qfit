@@ -126,10 +126,6 @@ class UsersController < ApplicationController
         (current_user.is_super_user?))
   end
 
-  def unauthorized
-    render json: { success: false, errors: 'Unauthorized' }, :status => :unauthorized
-  end
-
   def split_base64(uri_str)
     if uri_str.match(%r{^data:(.*?);(.*?),(.*)$})
       uri = Hash.new

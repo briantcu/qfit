@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  protect_from_forgery with: :null_session
+  #protect_from_forgery with: :null_session
 
   before_filter :authenticate_user_from_token!
 
@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
 
   def verify_logged_in
     unauthorized unless current_user.present?
+  end
+
+  def verify_logged_in_html
+    redirect_to('/login') unless current_user.present?
   end
 
 end

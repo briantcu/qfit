@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+  include Devise::Controllers::Rememberable
   skip_before_filter :require_no_authentication
 
   def create
@@ -22,6 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     begin
       RegistrationService.instance.register_user(@user, sign_up_code, params[:user][:account_type])
       check_tokens
+      handle_session
       render json: @user.to_json, status: 201 and return
     rescue Exception => e
       Rollbar.error(e)
@@ -31,6 +33,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
+  def handle_session
+    sign_in @user
+    session[:current_user_id] = @user.id
+    session[:user_id] = @user.id
+  end
 
   def check_tokens
     if params[:invite_token].present?

@@ -24,6 +24,7 @@ class CoachAccountsController < ApplicationController
     else
       @user = User.new(sign_up_params)
       @user = RegistrationService.instance.register_user_for_coach(@user, current_user)
+      session[:current_user_id] = @user.id
     end
   end
 

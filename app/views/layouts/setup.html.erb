@@ -7,21 +7,22 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
   <link rel='stylesheet' type='text/css' href='<%= Qfit::Application.config.assets_prefix %>/css/bootstrap.min.css' />
   <link rel='stylesheet' type='text/css' href='<%= Qfit::Application.config.assets_prefix %>/css/full-page.css' />
+  <link rel='stylesheet' type='text/css' href='<%= Qfit::Application.config.assets_prefix %>/css/style.css' />
   <% if Rails.env.development? %>
-      <script src="http://localhost:35729/livereload.js"></script>
+    <script src="http://localhost:35729/livereload.js"></script>
   <% end %>
 
   <%= yield :head %>
 </head>
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-0 col-xs-6 col-xs-offset-3 full-logo text-center">
-        <img src="https://s3.amazonaws.com/quadfit/logo-dark.png" />
-      </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2 col-sm-offset-0 col-xs-6 col-xs-offset-3 full-logo text-center">
+      <img src="https://s3.amazonaws.com/quadfit/logo-dark.png" />
     </div>
-
-    <%= yield %>
   </div>
+
+  <%= yield %>
+</div>
 </body>
 </html>
