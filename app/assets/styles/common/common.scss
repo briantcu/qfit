@@ -42,6 +42,15 @@ h1 {
   color: $purple;
 }
 
+.bold-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: $purple;
+}
+
 @mixin border-bottom {
   border-bottom: 1px solid $purple;
 }

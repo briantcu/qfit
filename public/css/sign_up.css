@@ -35,6 +35,14 @@ h1 {
   letter-spacing: -0.4px;
   color: #7953aa; }
 
+.bold-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
 .subtle-link {
   color: #9fa9ba;
   text-decoration: underline; }
@@ -150,6 +158,14 @@ h1 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.bold-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 2.9;
   letter-spacing: -0.4px;
   color: #7953aa; }
 
@@ -290,6 +306,14 @@ h1 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.bold-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 2.9;
   letter-spacing: -0.4px;
   color: #7953aa; }
 

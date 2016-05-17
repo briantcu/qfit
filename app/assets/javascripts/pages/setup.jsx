@@ -1,5 +1,6 @@
 import {render} from 'react-dom';
 import Header from 'views/common/header';
+import Subnav from 'views/setup/subnav';
 import UserStore from 'stores/user_store';
 import UserActions from 'actions/user_actions';
 
@@ -33,6 +34,7 @@ class Setup extends React.Component {
     render () {
         return <div className="setup">
             <Header user={this.state.user} />
+            <Subnav  />
             <div className="row">
                 <div className="container">
                     <div className="row">

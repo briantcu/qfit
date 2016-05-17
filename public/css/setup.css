@@ -35,6 +35,14 @@ h1 {
   letter-spacing: -0.4px;
   color: #7953aa; }
 
+.bold-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
 .subtle-link {
   color: #9fa9ba;
   text-decoration: underline; }
@@ -85,6 +93,79 @@ h1 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.bold-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.subtle-link {
+  color: #9fa9ba;
+  text-decoration: underline; }
+  .subtle-link:hover {
+    color: #7953aa; }
+
+.bold-link {
+  color: #271b37;
+  text-decoration: underline; }
+  .bold-link:hover {
+    color: #7953aa; }
+
+.subnav {
+  height: 52px;
+  background-color: #fbf8fc;
+  border: solid 1px #e6e6e6;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #9fa9ba; }
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: -1.1px;
+  color: #271b37; }
+
+.standard-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #271b37; }
+
+.info-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: -0.3px;
+  color: #9fa9ba; }
+
+.help-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 3.4;
+  letter-spacing: -0.3px;
+  color: #271b37; }
+
+.purple-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.bold-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 2.9;
   letter-spacing: -0.4px;
   color: #7953aa; }
 

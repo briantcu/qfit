@@ -57,6 +57,10 @@
 	
 	var _header2 = _interopRequireDefault(_header);
 	
+	var _subnav = __webpack_require__(/*! views/setup/subnav */ 267);
+	
+	var _subnav2 = _interopRequireDefault(_subnav);
+	
 	var _user_store = __webpack_require__(/*! stores/user_store */ 252);
 	
 	var _user_store2 = _interopRequireDefault(_user_store);
@@ -116,6 +120,7 @@
 	                'div',
 	                { className: 'setup' },
 	                React.createElement(_header2.default, { user: this.state.user }),
+	                React.createElement(_subnav2.default, null),
 	                React.createElement(
 	                    'div',
 	                    { className: 'row' },
@@ -31752,6 +31757,130 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 174)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 267 */
+/*!********************************!*\
+  !*** ./views/setup/subnav.jsx ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 33);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! views/setup/subnav.scss */ 268);
+	
+	var Subnav = function (_React$Component) {
+	    _inherits(Subnav, _React$Component);
+	
+	    function Subnav(props) {
+	        _classCallCheck(this, Subnav);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Subnav).call(this, props));
+	    }
+	
+	    _createClass(Subnav, [{
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'div',
+	                { className: 'row subnav' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-1 col-xs-offset-3 text-center bold-text' },
+	                            'Setup'
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-2 text-center' },
+	                            'Fitness Assessment'
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-2 text-center' },
+	                            'Program Selection'
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-2 text-center' },
+	                            'Scheduling'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Subnav;
+	}(React.Component);
+	
+	exports.default = Subnav;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 268 */
+/*!*****************************************!*\
+  !*** ../styles/views/setup/subnav.scss ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./subnav.scss */ 269);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 175)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./subnav.scss", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./subnav.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 269 */
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/subnav.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 174)();
 	// imports
 	
 	
