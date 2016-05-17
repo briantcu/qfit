@@ -14,7 +14,7 @@ var SignUpActions = {
             success: function(results) {
                 var payload = results;
                 payload.success = true;
-                dispatcher.dispatch(C.SIGN_UP, payload)
+                dispatcher.dispatch(C.SIGN_UP, payload);
             },
             error: function(results) {
                 var payload = results.responseJSON;

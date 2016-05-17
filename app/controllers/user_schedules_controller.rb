@@ -23,6 +23,9 @@ class UserSchedulesController < ApplicationController
   # GET /user_schedules/1.json
   def show
     @user_schedule = current_user.user_schedule
+    if @user_schedule.blank?
+      render status: 404, json: {}
+    end
   end
 
   # POST /user_schedules.json
