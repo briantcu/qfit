@@ -3,6 +3,8 @@ import Header from 'views/common/header';
 import UserStore from 'stores/user_store';
 import UserActions from 'actions/user_actions';
 
+require('pages/setup.scss');
+
 class Setup extends React.Component {
     constructor(props) {
         super(props);
@@ -29,9 +31,17 @@ class Setup extends React.Component {
     }
 
     render () {
-        return <div class="container">
-            <Header />
-            <div class="row">{this.state.user.first_name}</div>
+        return <div className="setup">
+            <Header user={this.state.user} />
+            <div className="row">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xs-2">
+                            {this.state.user.first_name}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     }
 

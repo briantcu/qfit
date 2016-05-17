@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-require('slider.scss');
+require('common/slider.scss');
 
 class Slider extends React.Component {
 

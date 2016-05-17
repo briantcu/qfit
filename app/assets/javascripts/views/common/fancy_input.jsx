@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import util from 'helpers/util';
 
 import Floatl from 'floatl';
-require('fancy_input.scss');
+require('common/fancy_input.scss');
 
 class FancyInput extends React.Component {
 

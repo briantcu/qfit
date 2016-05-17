@@ -6,7 +6,7 @@ import SignUpActions from 'actions/sign_up_actions';
 import SignUpStore from 'stores/sign_up_store';
 import C from 'constants/sign_up_constants';
 
-require('sign_up.scss');
+require('pages/sign_up.scss');
 
 class AthleteSignUp extends React.Component {
     constructor(props) {
