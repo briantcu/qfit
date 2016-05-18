@@ -7,13 +7,11 @@
   .circle-check {
     width: 28px;
     height: 28px;
-    background: #fcfff4;
     margin: 20px auto;
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px;
     position: relative;
-
     .label-text {
       font-family: 'Open Sans', sans-serif;
       font-size: 24px;
@@ -35,34 +33,29 @@
     border-radius: 50px;
     left: 4px;
     top: 4px;
-
-    -webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
-    -moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
-    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
-
+    border: 3px solid $purple;
   }
 
   .circle-check label:after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
     opacity: 0;
     content: '';
     position: absolute;
-    width: 16px;
-    height: 16px;
-    background: #00bf00;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 5px;
+    left: 4px;
+    border: 3px solid $purple;
+    border-top: none;
+    border-right: none;
 
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    border-radius: 50px;
-    top: 2px;
-    left: 2px;
-
-  }
-
-  .circle-check label:hover::after {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-    filter: alpha(opacity=30);
-    opacity: 0.3;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
   }
 
   .circle-check input[type=checkbox]:checked + label:after {
