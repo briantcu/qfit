@@ -55,6 +55,9 @@ h1 {
   .bold-link:hover {
     color: #7953aa; }
 
+.purple {
+  color: #7953aa; }
+
 input.transparent-input {
   background-color: transparent !important;
   border: none !important;
@@ -180,6 +183,9 @@ h1 {
   text-decoration: underline; }
   .bold-link:hover {
     color: #7953aa; }
+
+.purple {
+  color: #7953aa; }
 
 .cmn-toggle {
   position: absolute;
@@ -328,6 +334,9 @@ h1 {
   text-decoration: underline; }
   .bold-link:hover {
     color: #7953aa; }
+
+.purple {
+  color: #7953aa; }
 
 .athlete-sign-up .buffer {
   height: 80px;

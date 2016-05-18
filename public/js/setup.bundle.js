@@ -69,6 +69,10 @@
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
+	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 270);
+	
+	var _circle_check2 = _interopRequireDefault(_circle_check);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -114,8 +118,13 @@
 	            });
 	        }
 	    }, {
+	        key: 'submit',
+	        value: function submit() {}
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+	
 	            return React.createElement(
 	                'div',
 	                { className: 'setup' },
@@ -132,8 +141,72 @@
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
-	                                { className: 'col-xs-2' },
-	                                this.state.user.first_name
+	                                { className: 'col-xs-6 col-xs-offset-4' },
+	                                React.createElement(
+	                                    'h1',
+	                                    { className: 'purple' },
+	                                    'Let\'s Get Started'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-6 col-xs-offset-4 header-text' },
+	                                'Which of the Quads of the Quadfit program would you like to add to your program? (Stretching will be added automatically)'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { id: 'strength', label: 'Strength Training' })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { id: 'plyo', label: 'Plyometrics' })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { id: 'sprinting', label: 'Sprinting' })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { id: 'stretching', label: 'Stretching (Default)' })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(
+	                                    'span',
+	                                    { onClick: function onClick() {
+	                                            return _this2.submit();
+	                                        }, className: 'submit-button purple-text' },
+	                                    'Continue'
+	                                )
 	                            )
 	                        )
 	                    )
@@ -31881,6 +31954,119 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 174)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 270 */
+/*!***************************************!*\
+  !*** ./views/common/circle_check.jsx ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 33);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/circle_check.scss */ 271);
+	
+	var CircleCheck = function (_React$Component) {
+	    _inherits(CircleCheck, _React$Component);
+	
+	    function CircleCheck(props) {
+	        _classCallCheck(this, CircleCheck);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(CircleCheck).call(this, props));
+	    }
+	
+	    _createClass(CircleCheck, [{
+	        key: 'getValue',
+	        value: function getValue() {
+	            return this.refs.check.checked;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'span',
+	                { className: 'circle-check' },
+	                _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id }),
+	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'label-text' },
+	                    this.props.label
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return CircleCheck;
+	}(_react2.default.Component);
+	
+	exports.default = CircleCheck;
+
+/***/ },
+/* 271 */
+/*!******************************************!*\
+  !*** ../styles/common/circle_check.scss ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./circle_check.scss */ 272);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 175)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 272 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/circle_check.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 174)();
 	// imports
 	
 	

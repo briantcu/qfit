@@ -55,6 +55,9 @@ h1 {
   .bold-link:hover {
     color: #7953aa; }
 
+.purple {
+  color: #7953aa; }
+
 .header {
   height: 100px;
   background-color: #271b37;
@@ -115,6 +118,9 @@ h1 {
   text-decoration: underline; }
   .bold-link:hover {
     color: #7953aa; }
+
+.purple {
+  color: #7953aa; }
 
 .subnav {
   height: 52px;
@@ -180,5 +186,134 @@ h1 {
   text-decoration: underline; }
   .bold-link:hover {
     color: #7953aa; }
+
+.purple {
+  color: #7953aa; }
+
+input[type=checkbox] {
+  visibility: hidden; }
+
+.circle-check {
+  width: 28px;
+  height: 28px;
+  background: #fcfff4;
+  margin: 20px auto;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  position: relative; }
+  .circle-check .label-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    line-height: 2.9;
+    letter-spacing: -0.4px;
+    color: #4a4a4a;
+    margin-left: 30px; }
+
+.circle-check label {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  max-width: none !important;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  left: 4px;
+  top: 4px;
+  -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
+  -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white; }
+
+.circle-check label:after {
+  filter: alpha(opacity=0);
+  opacity: 0;
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #00bf00;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  top: 2px;
+  left: 2px; }
+
+.circle-check label:hover::after {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=30);
+  opacity: 0.3; }
+
+.circle-check input[type=checkbox]:checked + label:after {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  opacity: 1; }
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: -1.1px;
+  color: #271b37; }
+
+.standard-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #271b37; }
+
+.info-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: -0.3px;
+  color: #9fa9ba; }
+
+.help-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 3.4;
+  letter-spacing: -0.3px;
+  color: #271b37; }
+
+.purple-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.bold-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.subtle-link {
+  color: #9fa9ba;
+  text-decoration: underline; }
+  .subtle-link:hover {
+    color: #7953aa; }
+
+.bold-link {
+  color: #271b37;
+  text-decoration: underline; }
+  .bold-link:hover {
+    color: #7953aa; }
+
+.purple {
+  color: #7953aa; }
+
+.setup .header-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.7;
+  letter-spacing: -0.4px;
+  color: #4a4a4a; }
 
 /*# sourceMappingURL=setup.css.map*/
