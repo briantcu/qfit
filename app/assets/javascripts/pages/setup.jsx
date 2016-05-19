@@ -1,11 +1,13 @@
+import { Router, Route, Link, browserHistory } from 'react-router'
 import {render} from 'react-dom';
+import Fitness from 'views/setup/fitness';
 import Header from 'views/common/header';
 import Subnav from 'views/setup/subnav';
+import CircleCheck from 'views/common/circle_check';
 import UserStore from 'stores/user_store';
 import UserActions from 'actions/user_actions';
-import CircleCheck from 'views/common/circle_check';
-import { Router, Route, Link, browserHistory } from 'react-router'
-import Fitness from 'views/setup/fitness';
+import FitnessAssessmentActions from 'actions/fitness_assessment_actions';
+var C = require('constants/fitness_assessment_constants.js');
 
 require('pages/setup.scss');
 
@@ -27,7 +29,9 @@ class Setup extends React.Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.state = {
-            user: {}
+            user: {},
+            step: 'one',
+            goal: C.MASS
         }
     }
 
@@ -47,14 +51,27 @@ class Setup extends React.Component {
         });
     }
 
+    next () {
+        FitnessAssessmentActions.setQuads();
+        this.setState({step: 'two'});
+    }
+
     submit () {
         if (!this.state.formSubmitted) {
             this.state.formSubmitted = true;
             var strength = this.refs.strength.getValue();
-            var plyo = this.refs.plyo.getValue();
+            var plyos = this.refs.plyo.getValue();
             var sprinting = this.refs.sprinting.getValue();
             var valid = strength || plyo || sprinting;
             if (valid) {
+                FitnessAssessmentActions.setQuads(
+                    {
+                        strength: strength,
+                        plyos: plyos,
+                        sprinting: sprinting,
+                        stretching: true
+                    }
+                );
                 browserHistory.push('/fitness');
             } else {
                 this.setState({valid: false, formSubmitted: false});
@@ -67,49 +84,79 @@ class Setup extends React.Component {
         return <div className="setup">
             <Header user={this.state.user} />
             <Subnav  />
-            <div className="row">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xs-6 col-xs-offset-4">
-                            <h1 className="purple">Let's Get Started</h1>
+            <If condition={this.state.step == 'one'}>
+                <div className="row">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xs-6 col-xs-offset-3 text-center">
+                                <h1 className="purple">What's Your Main Goal?</h1>
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-6 col-xs-offset-4 header-text">
-                            Which of the Quads of the Quadfit program would you like to add to your program?
-                            (Stretching will be added automatically)
+                        <div className="row">
+                            <div className="col-xs-6 col-xs-offset-3 header-text text-center">
+                                This will help us build your customized workout program.
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
-                            <CircleCheck ref="strength"  id={'strength'} label={'Strength Training'} />
+                        <div className="row">
+                            <div className="col-xs-10 col-xs-offset-1">
+                                <input type="radio" name="goal" value="MASS" defaultChecked={this.state.goal == C.MASS}/> Add Muscle
+                                <input type="radio" name="goal" value="RIP" defaultChecked={this.state.goal == C.RIP} /> Moderate muscle gains, while lowering body fat percentage
+                                <input type="radio" name="goal" value="LEAN" defaultChecked={this.state.goal == C.LEAN} /> Lose Weight, Build Endurance
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
-                            <CircleCheck ref="plyo" id={'plyo'} label={'Plyometrics'} />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
-                            <CircleCheck ref="sprinting" id={'sprinting'} label={'Sprinting'} />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
-                            <CircleCheck id={'stretching'} label={'Stretching (Default)'} disabled={true} />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
-                            <If condition={this.state.valid == false}>
-                                <span>You must choose at least one Quad.</span>
-                            </If>
-                            <span onClick={ () => this.submit()} className="continue-button purple-text">Continue</span>
+                        <div className="row">
+                            <div className="col-xs-2 col-xs-offset-5">
+                                <span onClick={ () => this.next()} className="continue-button purple-text">Continue</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </If>
+            <If condition={this.state.step == 'two'}>
+                <div className="row">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xs-6 col-xs-offset-4">
+                                <h1 className="purple">Let's Get Started</h1>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-6 col-xs-offset-4 header-text">
+                                Which of the Quads of the Quadfit program would you like to add to your program?
+                                (Stretching will be added automatically)
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-4 col-xs-offset-4">
+                                <CircleCheck ref="strength"  id={'strength'} label={'Strength Training'} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-4 col-xs-offset-4">
+                                <CircleCheck ref="plyo" id={'plyo'} label={'Plyometrics'} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-4 col-xs-offset-4">
+                                <CircleCheck ref="sprinting" id={'sprinting'} label={'Sprinting'} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-4 col-xs-offset-4">
+                                <CircleCheck id={'stretching'} label={'Stretching (Default)'} disabled={true} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-4 col-xs-offset-4">
+                                <If condition={this.state.valid == false}>
+                                    <span>You must choose at least one Quad.</span>
+                                </If>
+                                <span onClick={ () => this.submit()} className="continue-button purple-text">Continue</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </If>
         </div>
     }
 

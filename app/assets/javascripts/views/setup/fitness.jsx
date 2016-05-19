@@ -18,10 +18,10 @@ class Fitness extends React.Component {
     }
 
     onChange () {
-        var data = UserStore.getData();
+        var userData = UserStore.getData();
 
         this.setState({
-            user: data.user
+            user: userData.user
         });
     }
 

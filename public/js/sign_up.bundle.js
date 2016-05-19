@@ -53,27 +53,27 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 33);
 	
-	var _fancy_input = __webpack_require__(/*! views/common/fancy_input */ 254);
+	var _fancy_input = __webpack_require__(/*! views/common/fancy_input */ 256);
 	
 	var _fancy_input2 = _interopRequireDefault(_fancy_input);
 	
-	var _slider = __webpack_require__(/*! views/common/slider */ 258);
+	var _slider = __webpack_require__(/*! views/common/slider */ 260);
 	
 	var _slider2 = _interopRequireDefault(_slider);
 	
-	var _validator = __webpack_require__(/*! validator */ 261);
+	var _validator = __webpack_require__(/*! validator */ 263);
 	
 	var _validator2 = _interopRequireDefault(_validator);
 	
-	var _sign_up_actions = __webpack_require__(/*! actions/sign_up_actions */ 324);
+	var _sign_up_actions = __webpack_require__(/*! actions/sign_up_actions */ 326);
 	
 	var _sign_up_actions2 = _interopRequireDefault(_sign_up_actions);
 	
-	var _sign_up_store = __webpack_require__(/*! stores/sign_up_store */ 326);
+	var _sign_up_store = __webpack_require__(/*! stores/sign_up_store */ 328);
 	
 	var _sign_up_store2 = _interopRequireDefault(_sign_up_store);
 	
-	var _sign_up_constants = __webpack_require__(/*! constants/sign_up_constants */ 325);
+	var _sign_up_constants = __webpack_require__(/*! constants/sign_up_constants */ 327);
 	
 	var _sign_up_constants2 = _interopRequireDefault(_sign_up_constants);
 	
@@ -85,7 +85,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! pages/sign_up.scss */ 327);
+	__webpack_require__(/*! pages/sign_up.scss */ 329);
 	
 	var AthleteSignUp = function (_React$Component) {
 	    _inherits(AthleteSignUp, _React$Component);
@@ -31761,7 +31761,9 @@
 /* 251 */,
 /* 252 */,
 /* 253 */,
-/* 254 */
+/* 254 */,
+/* 255 */,
+/* 256 */
 /*!**************************************!*\
   !*** ./views/common/fancy_input.jsx ***!
   \**************************************/
@@ -31785,7 +31787,7 @@
 	
 	var _util2 = _interopRequireDefault(_util);
 	
-	var _floatl = __webpack_require__(/*! floatl */ 255);
+	var _floatl = __webpack_require__(/*! floatl */ 257);
 	
 	var _floatl2 = _interopRequireDefault(_floatl);
 	
@@ -31797,7 +31799,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/fancy_input.scss */ 256);
+	__webpack_require__(/*! common/fancy_input.scss */ 258);
 	
 	var FancyInput = function (_React$Component) {
 	    _inherits(FancyInput, _React$Component);
@@ -31877,7 +31879,7 @@
 	exports.default = FancyInput;
 
 /***/ },
-/* 255 */
+/* 257 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/floatl/dist/js/floatl.js ***!
   \******************************************************************/
@@ -31978,7 +31980,7 @@
 	});
 
 /***/ },
-/* 256 */
+/* 258 */
 /*!*****************************************!*\
   !*** ../styles/common/fancy_input.scss ***!
   \*****************************************/
@@ -31987,7 +31989,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./fancy_input.scss */ 257);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./fancy_input.scss */ 259);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 172)(content, {});
@@ -32007,7 +32009,7 @@
 	}
 
 /***/ },
-/* 257 */
+/* 259 */
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/fancy_input.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -32024,7 +32026,7 @@
 
 
 /***/ },
-/* 258 */
+/* 260 */
 /*!*********************************!*\
   !*** ./views/common/slider.jsx ***!
   \*********************************/
@@ -32052,7 +32054,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/slider.scss */ 259);
+	__webpack_require__(/*! common/slider.scss */ 261);
 	
 	var Slider = function (_React$Component) {
 	    _inherits(Slider, _React$Component);
@@ -32116,7 +32118,7 @@
 	exports.default = Slider;
 
 /***/ },
-/* 259 */
+/* 261 */
 /*!************************************!*\
   !*** ../styles/common/slider.scss ***!
   \************************************/
@@ -32125,7 +32127,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./slider.scss */ 260);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./slider.scss */ 262);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 172)(content, {});
@@ -32145,7 +32147,7 @@
 	}
 
 /***/ },
-/* 260 */
+/* 262 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/slider.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -32162,7 +32164,7 @@
 
 
 /***/ },
-/* 261 */
+/* 263 */
 /*!************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/index.js ***!
   \************************************************************/
@@ -32174,239 +32176,239 @@
 	  value: true
 	});
 	
-	var _toDate = __webpack_require__(/*! ./lib/toDate */ 262);
+	var _toDate = __webpack_require__(/*! ./lib/toDate */ 264);
 	
 	var _toDate2 = _interopRequireDefault(_toDate);
 	
-	var _toFloat = __webpack_require__(/*! ./lib/toFloat */ 264);
+	var _toFloat = __webpack_require__(/*! ./lib/toFloat */ 266);
 	
 	var _toFloat2 = _interopRequireDefault(_toFloat);
 	
-	var _toInt = __webpack_require__(/*! ./lib/toInt */ 265);
+	var _toInt = __webpack_require__(/*! ./lib/toInt */ 267);
 	
 	var _toInt2 = _interopRequireDefault(_toInt);
 	
-	var _toBoolean = __webpack_require__(/*! ./lib/toBoolean */ 266);
+	var _toBoolean = __webpack_require__(/*! ./lib/toBoolean */ 268);
 	
 	var _toBoolean2 = _interopRequireDefault(_toBoolean);
 	
-	var _equals = __webpack_require__(/*! ./lib/equals */ 267);
+	var _equals = __webpack_require__(/*! ./lib/equals */ 269);
 	
 	var _equals2 = _interopRequireDefault(_equals);
 	
-	var _contains = __webpack_require__(/*! ./lib/contains */ 268);
+	var _contains = __webpack_require__(/*! ./lib/contains */ 270);
 	
 	var _contains2 = _interopRequireDefault(_contains);
 	
-	var _matches = __webpack_require__(/*! ./lib/matches */ 270);
+	var _matches = __webpack_require__(/*! ./lib/matches */ 272);
 	
 	var _matches2 = _interopRequireDefault(_matches);
 	
-	var _isEmail = __webpack_require__(/*! ./lib/isEmail */ 271);
+	var _isEmail = __webpack_require__(/*! ./lib/isEmail */ 273);
 	
 	var _isEmail2 = _interopRequireDefault(_isEmail);
 	
-	var _isURL = __webpack_require__(/*! ./lib/isURL */ 275);
+	var _isURL = __webpack_require__(/*! ./lib/isURL */ 277);
 	
 	var _isURL2 = _interopRequireDefault(_isURL);
 	
-	var _isMACAddress = __webpack_require__(/*! ./lib/isMACAddress */ 277);
+	var _isMACAddress = __webpack_require__(/*! ./lib/isMACAddress */ 279);
 	
 	var _isMACAddress2 = _interopRequireDefault(_isMACAddress);
 	
-	var _isIP = __webpack_require__(/*! ./lib/isIP */ 276);
+	var _isIP = __webpack_require__(/*! ./lib/isIP */ 278);
 	
 	var _isIP2 = _interopRequireDefault(_isIP);
 	
-	var _isFQDN = __webpack_require__(/*! ./lib/isFQDN */ 274);
+	var _isFQDN = __webpack_require__(/*! ./lib/isFQDN */ 276);
 	
 	var _isFQDN2 = _interopRequireDefault(_isFQDN);
 	
-	var _isBoolean = __webpack_require__(/*! ./lib/isBoolean */ 278);
+	var _isBoolean = __webpack_require__(/*! ./lib/isBoolean */ 280);
 	
 	var _isBoolean2 = _interopRequireDefault(_isBoolean);
 	
-	var _isAlpha = __webpack_require__(/*! ./lib/isAlpha */ 279);
+	var _isAlpha = __webpack_require__(/*! ./lib/isAlpha */ 281);
 	
 	var _isAlpha2 = _interopRequireDefault(_isAlpha);
 	
-	var _isAlphanumeric = __webpack_require__(/*! ./lib/isAlphanumeric */ 281);
+	var _isAlphanumeric = __webpack_require__(/*! ./lib/isAlphanumeric */ 283);
 	
 	var _isAlphanumeric2 = _interopRequireDefault(_isAlphanumeric);
 	
-	var _isNumeric = __webpack_require__(/*! ./lib/isNumeric */ 282);
+	var _isNumeric = __webpack_require__(/*! ./lib/isNumeric */ 284);
 	
 	var _isNumeric2 = _interopRequireDefault(_isNumeric);
 	
-	var _isLowercase = __webpack_require__(/*! ./lib/isLowercase */ 283);
+	var _isLowercase = __webpack_require__(/*! ./lib/isLowercase */ 285);
 	
 	var _isLowercase2 = _interopRequireDefault(_isLowercase);
 	
-	var _isUppercase = __webpack_require__(/*! ./lib/isUppercase */ 284);
+	var _isUppercase = __webpack_require__(/*! ./lib/isUppercase */ 286);
 	
 	var _isUppercase2 = _interopRequireDefault(_isUppercase);
 	
-	var _isAscii = __webpack_require__(/*! ./lib/isAscii */ 285);
+	var _isAscii = __webpack_require__(/*! ./lib/isAscii */ 287);
 	
 	var _isAscii2 = _interopRequireDefault(_isAscii);
 	
-	var _isFullWidth = __webpack_require__(/*! ./lib/isFullWidth */ 286);
+	var _isFullWidth = __webpack_require__(/*! ./lib/isFullWidth */ 288);
 	
 	var _isFullWidth2 = _interopRequireDefault(_isFullWidth);
 	
-	var _isHalfWidth = __webpack_require__(/*! ./lib/isHalfWidth */ 287);
+	var _isHalfWidth = __webpack_require__(/*! ./lib/isHalfWidth */ 289);
 	
 	var _isHalfWidth2 = _interopRequireDefault(_isHalfWidth);
 	
-	var _isVariableWidth = __webpack_require__(/*! ./lib/isVariableWidth */ 288);
+	var _isVariableWidth = __webpack_require__(/*! ./lib/isVariableWidth */ 290);
 	
 	var _isVariableWidth2 = _interopRequireDefault(_isVariableWidth);
 	
-	var _isMultibyte = __webpack_require__(/*! ./lib/isMultibyte */ 289);
+	var _isMultibyte = __webpack_require__(/*! ./lib/isMultibyte */ 291);
 	
 	var _isMultibyte2 = _interopRequireDefault(_isMultibyte);
 	
-	var _isSurrogatePair = __webpack_require__(/*! ./lib/isSurrogatePair */ 290);
+	var _isSurrogatePair = __webpack_require__(/*! ./lib/isSurrogatePair */ 292);
 	
 	var _isSurrogatePair2 = _interopRequireDefault(_isSurrogatePair);
 	
-	var _isInt = __webpack_require__(/*! ./lib/isInt */ 291);
+	var _isInt = __webpack_require__(/*! ./lib/isInt */ 293);
 	
 	var _isInt2 = _interopRequireDefault(_isInt);
 	
-	var _isFloat = __webpack_require__(/*! ./lib/isFloat */ 292);
+	var _isFloat = __webpack_require__(/*! ./lib/isFloat */ 294);
 	
 	var _isFloat2 = _interopRequireDefault(_isFloat);
 	
-	var _isDecimal = __webpack_require__(/*! ./lib/isDecimal */ 293);
+	var _isDecimal = __webpack_require__(/*! ./lib/isDecimal */ 295);
 	
 	var _isDecimal2 = _interopRequireDefault(_isDecimal);
 	
-	var _isHexadecimal = __webpack_require__(/*! ./lib/isHexadecimal */ 294);
+	var _isHexadecimal = __webpack_require__(/*! ./lib/isHexadecimal */ 296);
 	
 	var _isHexadecimal2 = _interopRequireDefault(_isHexadecimal);
 	
-	var _isDivisibleBy = __webpack_require__(/*! ./lib/isDivisibleBy */ 295);
+	var _isDivisibleBy = __webpack_require__(/*! ./lib/isDivisibleBy */ 297);
 	
 	var _isDivisibleBy2 = _interopRequireDefault(_isDivisibleBy);
 	
-	var _isHexColor = __webpack_require__(/*! ./lib/isHexColor */ 296);
+	var _isHexColor = __webpack_require__(/*! ./lib/isHexColor */ 298);
 	
 	var _isHexColor2 = _interopRequireDefault(_isHexColor);
 	
-	var _isJSON = __webpack_require__(/*! ./lib/isJSON */ 297);
+	var _isJSON = __webpack_require__(/*! ./lib/isJSON */ 299);
 	
 	var _isJSON2 = _interopRequireDefault(_isJSON);
 	
-	var _isNull = __webpack_require__(/*! ./lib/isNull */ 298);
+	var _isNull = __webpack_require__(/*! ./lib/isNull */ 300);
 	
 	var _isNull2 = _interopRequireDefault(_isNull);
 	
-	var _isLength = __webpack_require__(/*! ./lib/isLength */ 299);
+	var _isLength = __webpack_require__(/*! ./lib/isLength */ 301);
 	
 	var _isLength2 = _interopRequireDefault(_isLength);
 	
-	var _isByteLength = __webpack_require__(/*! ./lib/isByteLength */ 273);
+	var _isByteLength = __webpack_require__(/*! ./lib/isByteLength */ 275);
 	
 	var _isByteLength2 = _interopRequireDefault(_isByteLength);
 	
-	var _isUUID = __webpack_require__(/*! ./lib/isUUID */ 300);
+	var _isUUID = __webpack_require__(/*! ./lib/isUUID */ 302);
 	
 	var _isUUID2 = _interopRequireDefault(_isUUID);
 	
-	var _isMongoId = __webpack_require__(/*! ./lib/isMongoId */ 301);
+	var _isMongoId = __webpack_require__(/*! ./lib/isMongoId */ 303);
 	
 	var _isMongoId2 = _interopRequireDefault(_isMongoId);
 	
-	var _isDate = __webpack_require__(/*! ./lib/isDate */ 302);
+	var _isDate = __webpack_require__(/*! ./lib/isDate */ 304);
 	
 	var _isDate2 = _interopRequireDefault(_isDate);
 	
-	var _isAfter = __webpack_require__(/*! ./lib/isAfter */ 304);
+	var _isAfter = __webpack_require__(/*! ./lib/isAfter */ 306);
 	
 	var _isAfter2 = _interopRequireDefault(_isAfter);
 	
-	var _isBefore = __webpack_require__(/*! ./lib/isBefore */ 305);
+	var _isBefore = __webpack_require__(/*! ./lib/isBefore */ 307);
 	
 	var _isBefore2 = _interopRequireDefault(_isBefore);
 	
-	var _isIn = __webpack_require__(/*! ./lib/isIn */ 306);
+	var _isIn = __webpack_require__(/*! ./lib/isIn */ 308);
 	
 	var _isIn2 = _interopRequireDefault(_isIn);
 	
-	var _isCreditCard = __webpack_require__(/*! ./lib/isCreditCard */ 307);
+	var _isCreditCard = __webpack_require__(/*! ./lib/isCreditCard */ 309);
 	
 	var _isCreditCard2 = _interopRequireDefault(_isCreditCard);
 	
-	var _isISIN = __webpack_require__(/*! ./lib/isISIN */ 308);
+	var _isISIN = __webpack_require__(/*! ./lib/isISIN */ 310);
 	
 	var _isISIN2 = _interopRequireDefault(_isISIN);
 	
-	var _isISBN = __webpack_require__(/*! ./lib/isISBN */ 309);
+	var _isISBN = __webpack_require__(/*! ./lib/isISBN */ 311);
 	
 	var _isISBN2 = _interopRequireDefault(_isISBN);
 	
-	var _isMobilePhone = __webpack_require__(/*! ./lib/isMobilePhone */ 310);
+	var _isMobilePhone = __webpack_require__(/*! ./lib/isMobilePhone */ 312);
 	
 	var _isMobilePhone2 = _interopRequireDefault(_isMobilePhone);
 	
-	var _isCurrency = __webpack_require__(/*! ./lib/isCurrency */ 311);
+	var _isCurrency = __webpack_require__(/*! ./lib/isCurrency */ 313);
 	
 	var _isCurrency2 = _interopRequireDefault(_isCurrency);
 	
-	var _isISO = __webpack_require__(/*! ./lib/isISO8601 */ 303);
+	var _isISO = __webpack_require__(/*! ./lib/isISO8601 */ 305);
 	
 	var _isISO2 = _interopRequireDefault(_isISO);
 	
-	var _isBase = __webpack_require__(/*! ./lib/isBase64 */ 312);
+	var _isBase = __webpack_require__(/*! ./lib/isBase64 */ 314);
 	
 	var _isBase2 = _interopRequireDefault(_isBase);
 	
-	var _isDataURI = __webpack_require__(/*! ./lib/isDataURI */ 313);
+	var _isDataURI = __webpack_require__(/*! ./lib/isDataURI */ 315);
 	
 	var _isDataURI2 = _interopRequireDefault(_isDataURI);
 	
-	var _ltrim = __webpack_require__(/*! ./lib/ltrim */ 314);
+	var _ltrim = __webpack_require__(/*! ./lib/ltrim */ 316);
 	
 	var _ltrim2 = _interopRequireDefault(_ltrim);
 	
-	var _rtrim = __webpack_require__(/*! ./lib/rtrim */ 315);
+	var _rtrim = __webpack_require__(/*! ./lib/rtrim */ 317);
 	
 	var _rtrim2 = _interopRequireDefault(_rtrim);
 	
-	var _trim = __webpack_require__(/*! ./lib/trim */ 316);
+	var _trim = __webpack_require__(/*! ./lib/trim */ 318);
 	
 	var _trim2 = _interopRequireDefault(_trim);
 	
-	var _escape = __webpack_require__(/*! ./lib/escape */ 317);
+	var _escape = __webpack_require__(/*! ./lib/escape */ 319);
 	
 	var _escape2 = _interopRequireDefault(_escape);
 	
-	var _unescape = __webpack_require__(/*! ./lib/unescape */ 318);
+	var _unescape = __webpack_require__(/*! ./lib/unescape */ 320);
 	
 	var _unescape2 = _interopRequireDefault(_unescape);
 	
-	var _stripLow = __webpack_require__(/*! ./lib/stripLow */ 319);
+	var _stripLow = __webpack_require__(/*! ./lib/stripLow */ 321);
 	
 	var _stripLow2 = _interopRequireDefault(_stripLow);
 	
-	var _whitelist = __webpack_require__(/*! ./lib/whitelist */ 321);
+	var _whitelist = __webpack_require__(/*! ./lib/whitelist */ 323);
 	
 	var _whitelist2 = _interopRequireDefault(_whitelist);
 	
-	var _blacklist = __webpack_require__(/*! ./lib/blacklist */ 320);
+	var _blacklist = __webpack_require__(/*! ./lib/blacklist */ 322);
 	
 	var _blacklist2 = _interopRequireDefault(_blacklist);
 	
-	var _isWhitelisted = __webpack_require__(/*! ./lib/isWhitelisted */ 322);
+	var _isWhitelisted = __webpack_require__(/*! ./lib/isWhitelisted */ 324);
 	
 	var _isWhitelisted2 = _interopRequireDefault(_isWhitelisted);
 	
-	var _normalizeEmail = __webpack_require__(/*! ./lib/normalizeEmail */ 323);
+	var _normalizeEmail = __webpack_require__(/*! ./lib/normalizeEmail */ 325);
 	
 	var _normalizeEmail2 = _interopRequireDefault(_normalizeEmail);
 	
-	var _toString = __webpack_require__(/*! ./lib/util/toString */ 269);
+	var _toString = __webpack_require__(/*! ./lib/util/toString */ 271);
 	
 	var _toString2 = _interopRequireDefault(_toString);
 	
@@ -32451,7 +32453,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 262 */
+/* 264 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/toDate.js ***!
   \*****************************************************************/
@@ -32464,7 +32466,7 @@
 	});
 	exports.default = toDate;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32478,7 +32480,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 263 */
+/* 265 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/util/assertString.js ***!
   \****************************************************************************/
@@ -32498,7 +32500,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 264 */
+/* 266 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/toFloat.js ***!
   \******************************************************************/
@@ -32511,7 +32513,7 @@
 	});
 	exports.default = toFloat;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32524,7 +32526,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 265 */
+/* 267 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/toInt.js ***!
   \****************************************************************/
@@ -32537,7 +32539,7 @@
 	});
 	exports.default = toInt;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32550,7 +32552,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 266 */
+/* 268 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/toBoolean.js ***!
   \********************************************************************/
@@ -32563,7 +32565,7 @@
 	});
 	exports.default = toBoolean;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32579,7 +32581,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 267 */
+/* 269 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/equals.js ***!
   \*****************************************************************/
@@ -32592,7 +32594,7 @@
 	});
 	exports.default = equals;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32605,7 +32607,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 268 */
+/* 270 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/contains.js ***!
   \*******************************************************************/
@@ -32618,11 +32620,11 @@
 	});
 	exports.default = contains;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _toString = __webpack_require__(/*! ./util/toString */ 269);
+	var _toString = __webpack_require__(/*! ./util/toString */ 271);
 	
 	var _toString2 = _interopRequireDefault(_toString);
 	
@@ -32635,7 +32637,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 269 */
+/* 271 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/util/toString.js ***!
   \************************************************************************/
@@ -32665,7 +32667,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 270 */
+/* 272 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/matches.js ***!
   \******************************************************************/
@@ -32678,7 +32680,7 @@
 	});
 	exports.default = matches;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32694,7 +32696,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 271 */
+/* 273 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isEmail.js ***!
   \******************************************************************/
@@ -32707,19 +32709,19 @@
 	});
 	exports.default = isEmail;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _merge = __webpack_require__(/*! ./util/merge */ 272);
+	var _merge = __webpack_require__(/*! ./util/merge */ 274);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
-	var _isByteLength = __webpack_require__(/*! ./isByteLength */ 273);
+	var _isByteLength = __webpack_require__(/*! ./isByteLength */ 275);
 	
 	var _isByteLength2 = _interopRequireDefault(_isByteLength);
 	
-	var _isFQDN = __webpack_require__(/*! ./isFQDN */ 274);
+	var _isFQDN = __webpack_require__(/*! ./isFQDN */ 276);
 	
 	var _isFQDN2 = _interopRequireDefault(_isFQDN);
 	
@@ -32786,7 +32788,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 272 */
+/* 274 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/util/merge.js ***!
   \*********************************************************************/
@@ -32812,7 +32814,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 273 */
+/* 275 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isByteLength.js ***!
   \***********************************************************************/
@@ -32828,7 +32830,7 @@
 	
 	exports.default = isByteLength;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32853,7 +32855,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 274 */
+/* 276 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isFQDN.js ***!
   \*****************************************************************/
@@ -32866,11 +32868,11 @@
 	});
 	exports.default = isFDQN;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _merge = __webpack_require__(/*! ./util/merge */ 272);
+	var _merge = __webpack_require__(/*! ./util/merge */ 274);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
@@ -32918,7 +32920,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 275 */
+/* 277 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isURL.js ***!
   \****************************************************************/
@@ -32931,19 +32933,19 @@
 	});
 	exports.default = isURL;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _isFQDN = __webpack_require__(/*! ./isFQDN */ 274);
+	var _isFQDN = __webpack_require__(/*! ./isFQDN */ 276);
 	
 	var _isFQDN2 = _interopRequireDefault(_isFQDN);
 	
-	var _isIP = __webpack_require__(/*! ./isIP */ 276);
+	var _isIP = __webpack_require__(/*! ./isIP */ 278);
 	
 	var _isIP2 = _interopRequireDefault(_isIP);
 	
-	var _merge = __webpack_require__(/*! ./util/merge */ 272);
+	var _merge = __webpack_require__(/*! ./util/merge */ 274);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
@@ -33028,7 +33030,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 276 */
+/* 278 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isIP.js ***!
   \***************************************************************/
@@ -33041,7 +33043,7 @@
 	});
 	exports.default = isIP;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33117,7 +33119,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 277 */
+/* 279 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isMACAddress.js ***!
   \***********************************************************************/
@@ -33130,7 +33132,7 @@
 	});
 	exports.default = isMACAddress;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33145,7 +33147,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 278 */
+/* 280 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isBoolean.js ***!
   \********************************************************************/
@@ -33158,7 +33160,7 @@
 	});
 	exports.default = isBoolean;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33171,7 +33173,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 279 */
+/* 281 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isAlpha.js ***!
   \******************************************************************/
@@ -33184,11 +33186,11 @@
 	});
 	exports.default = isAlpha;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _alpha = __webpack_require__(/*! ./alpha */ 280);
+	var _alpha = __webpack_require__(/*! ./alpha */ 282);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33204,7 +33206,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 280 */
+/* 282 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/alpha.js ***!
   \****************************************************************/
@@ -33261,7 +33263,7 @@
 	}
 
 /***/ },
-/* 281 */
+/* 283 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isAlphanumeric.js ***!
   \*************************************************************************/
@@ -33274,11 +33276,11 @@
 	});
 	exports.default = isAlphanumeric;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _alpha = __webpack_require__(/*! ./alpha */ 280);
+	var _alpha = __webpack_require__(/*! ./alpha */ 282);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33294,7 +33296,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 282 */
+/* 284 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isNumeric.js ***!
   \********************************************************************/
@@ -33307,7 +33309,7 @@
 	});
 	exports.default = isNumeric;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33322,7 +33324,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 283 */
+/* 285 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isLowercase.js ***!
   \**********************************************************************/
@@ -33335,7 +33337,7 @@
 	});
 	exports.default = isLowercase;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33348,7 +33350,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 284 */
+/* 286 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isUppercase.js ***!
   \**********************************************************************/
@@ -33361,7 +33363,7 @@
 	});
 	exports.default = isUppercase;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33374,7 +33376,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 285 */
+/* 287 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isAscii.js ***!
   \******************************************************************/
@@ -33387,7 +33389,7 @@
 	});
 	exports.default = isAscii;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33402,7 +33404,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 286 */
+/* 288 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isFullWidth.js ***!
   \**********************************************************************/
@@ -33416,7 +33418,7 @@
 	exports.fullWidth = undefined;
 	exports.default = isFullWidth;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33430,7 +33432,7 @@
 	}
 
 /***/ },
-/* 287 */
+/* 289 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isHalfWidth.js ***!
   \**********************************************************************/
@@ -33444,7 +33446,7 @@
 	exports.halfWidth = undefined;
 	exports.default = isHalfWidth;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33458,7 +33460,7 @@
 	}
 
 /***/ },
-/* 288 */
+/* 290 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isVariableWidth.js ***!
   \**************************************************************************/
@@ -33471,13 +33473,13 @@
 	});
 	exports.default = isVariableWidth;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _isFullWidth = __webpack_require__(/*! ./isFullWidth */ 286);
+	var _isFullWidth = __webpack_require__(/*! ./isFullWidth */ 288);
 	
-	var _isHalfWidth = __webpack_require__(/*! ./isHalfWidth */ 287);
+	var _isHalfWidth = __webpack_require__(/*! ./isHalfWidth */ 289);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33488,7 +33490,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 289 */
+/* 291 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isMultibyte.js ***!
   \**********************************************************************/
@@ -33501,7 +33503,7 @@
 	});
 	exports.default = isMultibyte;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33516,7 +33518,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 290 */
+/* 292 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isSurrogatePair.js ***!
   \**************************************************************************/
@@ -33529,7 +33531,7 @@
 	});
 	exports.default = isSurrogatePair;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33544,7 +33546,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 291 */
+/* 293 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isInt.js ***!
   \****************************************************************/
@@ -33557,7 +33559,7 @@
 	});
 	exports.default = isInt;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33573,7 +33575,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 292 */
+/* 294 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isFloat.js ***!
   \******************************************************************/
@@ -33586,7 +33588,7 @@
 	});
 	exports.default = isFloat;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33605,7 +33607,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 293 */
+/* 295 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isDecimal.js ***!
   \********************************************************************/
@@ -33618,7 +33620,7 @@
 	});
 	exports.default = isDecimal;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33633,7 +33635,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 294 */
+/* 296 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isHexadecimal.js ***!
   \************************************************************************/
@@ -33646,7 +33648,7 @@
 	});
 	exports.default = isHexadecimal;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33661,7 +33663,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 295 */
+/* 297 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isDivisibleBy.js ***!
   \************************************************************************/
@@ -33674,11 +33676,11 @@
 	});
 	exports.default = isDivisibleBy;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _toFloat = __webpack_require__(/*! ./toFloat */ 264);
+	var _toFloat = __webpack_require__(/*! ./toFloat */ 266);
 	
 	var _toFloat2 = _interopRequireDefault(_toFloat);
 	
@@ -33691,7 +33693,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 296 */
+/* 298 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isHexColor.js ***!
   \*********************************************************************/
@@ -33704,7 +33706,7 @@
 	});
 	exports.default = isHexColor;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33719,7 +33721,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 297 */
+/* 299 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isJSON.js ***!
   \*****************************************************************/
@@ -33735,7 +33737,7 @@
 	
 	exports.default = isJSON;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33752,7 +33754,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 298 */
+/* 300 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isNull.js ***!
   \*****************************************************************/
@@ -33765,7 +33767,7 @@
 	});
 	exports.default = isNull;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33778,7 +33780,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 299 */
+/* 301 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isLength.js ***!
   \*******************************************************************/
@@ -33794,7 +33796,7 @@
 	
 	exports.default = isLength;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33820,7 +33822,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 300 */
+/* 302 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isUUID.js ***!
   \*****************************************************************/
@@ -33833,7 +33835,7 @@
 	});
 	exports.default = isUUID;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33856,7 +33858,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 301 */
+/* 303 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isMongoId.js ***!
   \********************************************************************/
@@ -33869,11 +33871,11 @@
 	});
 	exports.default = isMongoId;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _isHexadecimal = __webpack_require__(/*! ./isHexadecimal */ 294);
+	var _isHexadecimal = __webpack_require__(/*! ./isHexadecimal */ 296);
 	
 	var _isHexadecimal2 = _interopRequireDefault(_isHexadecimal);
 	
@@ -33886,7 +33888,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 302 */
+/* 304 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isDate.js ***!
   \*****************************************************************/
@@ -33899,11 +33901,11 @@
 	});
 	exports.default = isDate;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _isISO = __webpack_require__(/*! ./isISO8601 */ 303);
+	var _isISO = __webpack_require__(/*! ./isISO8601 */ 305);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33994,7 +33996,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 303 */
+/* 305 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isISO8601.js ***!
   \********************************************************************/
@@ -34012,7 +34014,7 @@
 	  return iso8601.test(str);
 	};
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34024,7 +34026,7 @@
 	/* eslint-enable max-len */
 
 /***/ },
-/* 304 */
+/* 306 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isAfter.js ***!
   \******************************************************************/
@@ -34037,11 +34039,11 @@
 	});
 	exports.default = isAfter;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _toDate = __webpack_require__(/*! ./toDate */ 262);
+	var _toDate = __webpack_require__(/*! ./toDate */ 264);
 	
 	var _toDate2 = _interopRequireDefault(_toDate);
 	
@@ -34058,7 +34060,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 305 */
+/* 307 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isBefore.js ***!
   \*******************************************************************/
@@ -34071,11 +34073,11 @@
 	});
 	exports.default = isBefore;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _toDate = __webpack_require__(/*! ./toDate */ 262);
+	var _toDate = __webpack_require__(/*! ./toDate */ 264);
 	
 	var _toDate2 = _interopRequireDefault(_toDate);
 	
@@ -34092,7 +34094,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 306 */
+/* 308 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isIn.js ***!
   \***************************************************************/
@@ -34108,11 +34110,11 @@
 	
 	exports.default = isIn;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _toString = __webpack_require__(/*! ./util/toString */ 269);
+	var _toString = __webpack_require__(/*! ./util/toString */ 271);
 	
 	var _toString2 = _interopRequireDefault(_toString);
 	
@@ -34139,7 +34141,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 307 */
+/* 309 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isCreditCard.js ***!
   \***********************************************************************/
@@ -34152,7 +34154,7 @@
 	});
 	exports.default = isCreditCard;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34192,7 +34194,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 308 */
+/* 310 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isISIN.js ***!
   \*****************************************************************/
@@ -34205,7 +34207,7 @@
 	});
 	exports.default = isISIN;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34248,7 +34250,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 309 */
+/* 311 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isISBN.js ***!
   \*****************************************************************/
@@ -34261,7 +34263,7 @@
 	});
 	exports.default = isISBN;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34313,7 +34315,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 310 */
+/* 312 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isMobilePhone.js ***!
   \************************************************************************/
@@ -34326,7 +34328,7 @@
 	});
 	exports.default = isMobilePhone;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34372,7 +34374,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 311 */
+/* 313 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isCurrency.js ***!
   \*********************************************************************/
@@ -34385,11 +34387,11 @@
 	});
 	exports.default = isCurrency;
 	
-	var _merge = __webpack_require__(/*! ./util/merge */ 272);
+	var _merge = __webpack_require__(/*! ./util/merge */ 274);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34468,7 +34470,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 312 */
+/* 314 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isBase64.js ***!
   \*******************************************************************/
@@ -34481,7 +34483,7 @@
 	});
 	exports.default = isBase64;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34501,7 +34503,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 313 */
+/* 315 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isDataURI.js ***!
   \********************************************************************/
@@ -34514,7 +34516,7 @@
 	});
 	exports.default = isDataURI;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34529,7 +34531,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 314 */
+/* 316 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/ltrim.js ***!
   \****************************************************************/
@@ -34542,7 +34544,7 @@
 	});
 	exports.default = ltrim;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34556,7 +34558,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 315 */
+/* 317 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/rtrim.js ***!
   \****************************************************************/
@@ -34569,7 +34571,7 @@
 	});
 	exports.default = rtrim;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34583,7 +34585,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 316 */
+/* 318 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/trim.js ***!
   \***************************************************************/
@@ -34596,7 +34598,7 @@
 	});
 	exports.default = trim;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34610,7 +34612,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 317 */
+/* 319 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/escape.js ***!
   \*****************************************************************/
@@ -34623,7 +34625,7 @@
 	});
 	exports.default = escape;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34636,7 +34638,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 318 */
+/* 320 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/unescape.js ***!
   \*******************************************************************/
@@ -34649,7 +34651,7 @@
 	});
 	exports.default = unescape;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34662,7 +34664,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 319 */
+/* 321 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/stripLow.js ***!
   \*******************************************************************/
@@ -34675,11 +34677,11 @@
 	});
 	exports.default = stripLow;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _blacklist = __webpack_require__(/*! ./blacklist */ 320);
+	var _blacklist = __webpack_require__(/*! ./blacklist */ 322);
 	
 	var _blacklist2 = _interopRequireDefault(_blacklist);
 	
@@ -34693,7 +34695,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 320 */
+/* 322 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/blacklist.js ***!
   \********************************************************************/
@@ -34706,7 +34708,7 @@
 	});
 	exports.default = blacklist;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34719,7 +34721,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 321 */
+/* 323 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/whitelist.js ***!
   \********************************************************************/
@@ -34732,7 +34734,7 @@
 	});
 	exports.default = whitelist;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34745,7 +34747,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 322 */
+/* 324 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isWhitelisted.js ***!
   \************************************************************************/
@@ -34758,7 +34760,7 @@
 	});
 	exports.default = isWhitelisted;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 263);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 265);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34776,7 +34778,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 323 */
+/* 325 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/normalizeEmail.js ***!
   \*************************************************************************/
@@ -34789,11 +34791,11 @@
 	});
 	exports.default = normalizeEmail;
 	
-	var _isEmail = __webpack_require__(/*! ./isEmail */ 271);
+	var _isEmail = __webpack_require__(/*! ./isEmail */ 273);
 	
 	var _isEmail2 = _interopRequireDefault(_isEmail);
 	
-	var _merge = __webpack_require__(/*! ./util/merge */ 272);
+	var _merge = __webpack_require__(/*! ./util/merge */ 274);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
@@ -34832,7 +34834,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 324 */
+/* 326 */
 /*!************************************!*\
   !*** ./actions/sign_up_actions.js ***!
   \************************************/
@@ -34841,7 +34843,7 @@
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 177);
-	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 325);
+	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 327);
 	
 	var SignUpActions = {
 	
@@ -34889,7 +34891,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 184)))
 
 /***/ },
-/* 325 */
+/* 327 */
 /*!****************************************!*\
   !*** ./constants/sign_up_constants.js ***!
   \****************************************/
@@ -34907,7 +34909,7 @@
 	});
 
 /***/ },
-/* 326 */
+/* 328 */
 /*!*********************************!*\
   !*** ./stores/sign_up_store.js ***!
   \*********************************/
@@ -34917,7 +34919,7 @@
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 177);
 	var Store = __webpack_require__(/*! ./store.js */ 179);
-	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 325);
+	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 327);
 	
 	var SignUpStore = new Store({
 	    signUpStatus: { status: "", errors: [] },
@@ -34962,7 +34964,7 @@
 	module.exports = SignUpStore;
 
 /***/ },
-/* 327 */
+/* 329 */
 /*!************************************!*\
   !*** ../styles/pages/sign_up.scss ***!
   \************************************/
@@ -34971,7 +34973,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./sign_up.scss */ 328);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./sign_up.scss */ 330);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 172)(content, {});
@@ -34991,7 +34993,7 @@
 	}
 
 /***/ },
-/* 328 */
+/* 330 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/sign_up.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************/
