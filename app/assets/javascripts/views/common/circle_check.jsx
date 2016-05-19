@@ -15,7 +15,7 @@ class CircleCheck extends React.Component {
 
     render () {
         return <span className="circle-check">
-                <input ref="check" type="checkbox" className="check" id={`${this.props.id}`}/>
+                <input ref="check" type="checkbox" className="check" id={`${this.props.id}`} checked={this.props.disabled} />
                 <label htmlFor={`${this.props.id}`} />
                 <span className="label-text">{this.props.label}</span>
             </span>;

@@ -4,6 +4,7 @@ import Subnav from 'views/setup/subnav';
 import UserStore from 'stores/user_store';
 import UserActions from 'actions/user_actions';
 import CircleCheck from 'views/common/circle_check';
+import { Router, Route, Link, browserHistory } from 'react-router'
 
 require('pages/setup.scss');
 
@@ -33,6 +34,18 @@ class Setup extends React.Component {
     }
 
     submit () {
+        if (!this.state.formSubmitted) {
+            this.state.formSubmitted = true;
+            var strength = this.refs.strength.getValue();
+            var plyo = this.refs.plyo.getValue();
+            var sprinting = this.refs.sprinting.getValue();
+            var valid = strength && plyo && sprinting;
+            if (valid) {
+
+            } else {
+                this.setState({valid: false, formSubmitted: false});
+            }
+        }
 
     }
 
@@ -55,27 +68,30 @@ class Setup extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-4 col-xs-offset-4">
-                            <CircleCheck id={'strength'} label={'Strength Training'} />
+                            <CircleCheck ref="strength"  id={'strength'} label={'Strength Training'} />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-4 col-xs-offset-4">
-                            <CircleCheck id={'plyo'} label={'Plyometrics'} />
+                            <CircleCheck ref="plyo" id={'plyo'} label={'Plyometrics'} />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-4 col-xs-offset-4">
-                            <CircleCheck id={'sprinting'} label={'Sprinting'} />
+                            <CircleCheck ref="sprinting" id={'sprinting'} label={'Sprinting'} />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-4 col-xs-offset-4">
-                            <CircleCheck id={'stretching'} label={'Stretching (Default)'} />
+                            <CircleCheck id={'stretching'} label={'Stretching (Default)'} disabled={true} />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-4 col-xs-offset-4">
-                            <span onClick={ () => this.submit()} className="submit-button purple-text">Continue</span>
+                            <If condition={this.state.valid == false}>
+                                <span>You must choose at least one Quad.</span>
+                            </If>
+                            <span onClick={ () => this.submit()} className="continue-button purple-text">Continue</span>
                         </div>
                     </div>
                 </div>
@@ -85,4 +101,8 @@ class Setup extends React.Component {
 
 }
 
-render(<Setup/>, document.getElementById('app'));
+render((
+    <Router history={browserHistory}>
+        <Route path="/get-started" component={Setup} />
+    </Router>
+), document.getElementById('app'));

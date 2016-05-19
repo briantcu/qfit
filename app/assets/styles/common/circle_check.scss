@@ -25,8 +25,8 @@
   .circle-check label {
     cursor: pointer;
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 43px;
+    height: 43px;
     max-width: none !important;
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
@@ -42,11 +42,11 @@
     opacity: 0;
     content: '';
     position: absolute;
-    width: 9px;
-    height: 5px;
+    width: 23px;
+    height: 11px;
     background: transparent;
-    top: 5px;
-    left: 4px;
+    top: 9px;
+    left: 8px;
     border: 3px solid $purple;
     border-top: none;
     border-right: none;
