@@ -25,13 +25,14 @@ class App extends React.Component {
 class Setup extends React.Component {
     constructor(props) {
         super(props);
+        this.onChange = this.onChange.bind(this);
         this.state = {
             user: {}
         }
     }
 
     componentDidMount () {
-        UserStore.addChangeListener(this.onChange.bind(this));
+        UserStore.addChangeListener(this.onChange);
     }
 
     componentWillUnmount () {

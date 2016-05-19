@@ -1,11 +1,28 @@
 import {render} from 'react-dom';
-
+import UserStore from 'stores/user_store';
 require('views/setup/fitness.scss');
 
 class Fitness extends React.Component {
 
     constructor(props) {
         super(props);
+        this.onChange = this.onChange.bind(this);
+    }
+
+    componentDidMount () {
+        UserStore.addChangeListener(this.onChange);
+    }
+
+    componentWillUnmount () {
+        UserStore.removeChangeListener(this.onChange);
+    }
+
+    onChange () {
+        var data = UserStore.getData();
+
+        this.setState({
+            user: data.user
+        });
     }
 
     render () {
