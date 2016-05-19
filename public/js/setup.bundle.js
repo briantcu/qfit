@@ -75,6 +75,10 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 273);
 	
+	var _fitness = __webpack_require__(/*! views/setup/fitness */ 334);
+	
+	var _fitness2 = _interopRequireDefault(_fitness);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85,30 +89,57 @@
 	
 	__webpack_require__(/*! pages/setup.scss */ 257);
 	
-	var Setup = function (_React$Component) {
-	    _inherits(Setup, _React$Component);
+	var App = function (_React$Component) {
+	    _inherits(App, _React$Component);
+	
+	    function App(props) {
+	        _classCallCheck(this, App);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+	    }
+	
+	    _createClass(App, [{
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps() {
+	            _user_actions2.default.getUser(gon.current_user_id);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'div',
+	                null,
+	                this.props.children
+	            );
+	        }
+	    }]);
+	
+	    return App;
+	}(React.Component);
+	
+	var Setup = function (_React$Component2) {
+	    _inherits(Setup, _React$Component2);
 	
 	    function Setup(props) {
 	        _classCallCheck(this, Setup);
 	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Setup).call(this, props));
+	        var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(Setup).call(this, props));
 	
-	        _this.state = {
+	        _this2.state = {
 	            user: {}
 	        };
-	        return _this;
+	        return _this2;
 	    }
 	
 	    _createClass(Setup, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            _user_store2.default.addChangeListener(this.onChange.bind(this));
-	            _user_actions2.default.getUser(gon.current_user_id);
 	        }
 	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
-	            _user_store2.default.removeChangeListener(this.onChange.bind(this));
+	            _user_store2.default.removeChangeListener(this.onChange);
 	        }
 	    }, {
 	        key: 'onChange',
@@ -127,8 +158,10 @@
 	                var strength = this.refs.strength.getValue();
 	                var plyo = this.refs.plyo.getValue();
 	                var sprinting = this.refs.sprinting.getValue();
-	                var valid = strength && plyo && sprinting;
-	                if (valid) {} else {
+	                var valid = strength || plyo || sprinting;
+	                if (valid) {
+	                    _reactRouter.browserHistory.push('/fitness');
+	                } else {
 	                    this.setState({ valid: false, formSubmitted: false });
 	                }
 	            }
@@ -136,7 +169,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
+	            var _this3 = this;
 	
 	            return React.createElement(
 	                'div',
@@ -221,7 +254,7 @@
 	                                React.createElement(
 	                                    'span',
 	                                    { onClick: function onClick() {
-	                                            return _this2.submit();
+	                                            return _this3.submit();
 	                                        }, className: 'continue-button purple-text' },
 	                                    'Continue'
 	                                )
@@ -239,7 +272,12 @@
 	(0, _reactDom.render)(React.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
-	    React.createElement(_reactRouter.Route, { path: '/get-started', component: Setup })
+	    React.createElement(
+	        _reactRouter.Route,
+	        { path: '/', component: App },
+	        React.createElement(_reactRouter.Route, { path: 'get-started', component: Setup }),
+	        React.createElement(_reactRouter.Route, { path: 'fitness', component: _fitness2.default })
+	    )
 	), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
@@ -37782,6 +37820,115 @@
 	
 	exports.default = (0, _createRouterHistory2.default)(_createHashHistory2.default);
 	module.exports = exports['default'];
+
+/***/ },
+/* 334 */
+/*!*********************************!*\
+  !*** ./views/setup/fitness.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 33);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! views/setup/fitness.scss */ 335);
+	
+	var Fitness = function (_React$Component) {
+	    _inherits(Fitness, _React$Component);
+	
+	    function Fitness(props) {
+	        _classCallCheck(this, Fitness);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Fitness).call(this, props));
+	    }
+	
+	    _createClass(Fitness, [{
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'div',
+	                { className: 'row subnav' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-1 col-xs-offset-3 text-center bold-text' },
+	                            'Setup'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Fitness;
+	}(React.Component);
+	
+	exports.default = Fitness;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 335 */
+/*!******************************************!*\
+  !*** ../styles/views/setup/fitness.scss ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./fitness.scss */ 336);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 175)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./fitness.scss", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./fitness.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 336 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/fitness.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 174)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
 
 /***/ }
 /******/ ]);

@@ -5,8 +5,22 @@ import UserStore from 'stores/user_store';
 import UserActions from 'actions/user_actions';
 import CircleCheck from 'views/common/circle_check';
 import { Router, Route, Link, browserHistory } from 'react-router'
+import Fitness from 'views/setup/fitness';
 
 require('pages/setup.scss');
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    componentWillReceiveProps () {
+        UserActions.getUser(gon.current_user_id);
+    }
+
+    render () {
+        return <div>{this.props.children}</div>
+    }
+}
 
 class Setup extends React.Component {
     constructor(props) {
@@ -18,11 +32,10 @@ class Setup extends React.Component {
 
     componentDidMount () {
         UserStore.addChangeListener(this.onChange.bind(this));
-        UserActions.getUser(gon.current_user_id);
     }
 
     componentWillUnmount () {
-        UserStore.removeChangeListener(this.onChange.bind(this));
+        UserStore.removeChangeListener(this.onChange);
     }
 
     onChange () {
@@ -39,9 +52,9 @@ class Setup extends React.Component {
             var strength = this.refs.strength.getValue();
             var plyo = this.refs.plyo.getValue();
             var sprinting = this.refs.sprinting.getValue();
-            var valid = strength && plyo && sprinting;
+            var valid = strength || plyo || sprinting;
             if (valid) {
-
+                browserHistory.push('/fitness');
             } else {
                 this.setState({valid: false, formSubmitted: false});
             }
@@ -103,6 +116,9 @@ class Setup extends React.Component {
 
 render((
     <Router history={browserHistory}>
-        <Route path="/get-started" component={Setup} />
+        <Route path="/" component={App}>
+            <Route path="get-started" component={Setup} />
+            <Route path="fitness" component={Fitness} />
+        </Route>
     </Router>
 ), document.getElementById('app'));
