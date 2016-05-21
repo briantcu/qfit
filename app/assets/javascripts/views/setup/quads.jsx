@@ -7,6 +7,9 @@ require('views/setup/quads.scss');
 class Quads extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            valid: true
+        }
     }
 
     submit () {

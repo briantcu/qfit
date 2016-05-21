@@ -9,7 +9,7 @@ var FitnessAssessmentActions = {
     },
 
     setGoal: function(goal) {
-        dispatcher.dispatch(C.GOAL, quads);
+        dispatcher.dispatch(C.GOAL, goal);
     }
 };
 

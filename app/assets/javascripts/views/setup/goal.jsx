@@ -14,8 +14,8 @@ class Goal extends React.Component {
         this.props.next("GOAL");
     }
 
-    onClick (e) {
-        console.log(e.target.value);
+    onClick (goal) {
+        FitnessAssessmentActions.setGoal(goal);
     }
 
     render () {
@@ -35,9 +35,9 @@ class Goal extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-10 col-xs-offset-1">
-                            <input onChange={this.onClick} type="radio" name="goal" value="MASS" defaultChecked={this.props.goal == C.MASS}/> Add Muscle
-                            <input onChange={this.onClick} type="radio" name="goal" value="RIP" defaultChecked={this.props.goal == C.RIP} /> Moderate muscle gains, while lowering body fat percentage
-                            <input onChange={this.onClick} type="radio" name="goal" value="LEAN" defaultChecked={this.props.goal == C.LEAN} /> Lose Weight, Build Endurance
+                            <input onChange={ () => this.onClick(C.MASS) } type="radio" name="goal" defaultChecked={this.props.goal == C.MASS}/> Add Muscle
+                            <input onChange={ () => this.onClick(C.RIP) } type="radio" name="goal" defaultChecked={this.props.goal == C.RIP} /> Moderate muscle gains, while lowering body fat percentage
+                            <input onChange={ () => this.onClick(C.LEAN) } type="radio" name="goal" defaultChecked={this.props.goal == C.LEAN} /> Lose Weight, Build Endurance
                         </div>
                     </div>
                     <div className="row">

@@ -79,6 +79,10 @@
 	
 	var _user_store2 = _interopRequireDefault(_user_store);
 	
+	var _fitness_assessment_store = __webpack_require__(/*! stores/fitness_assessment_store */ 337);
+	
+	var _fitness_assessment_store2 = _interopRequireDefault(_fitness_assessment_store);
+	
 	var _user_actions = __webpack_require__(/*! actions/user_actions */ 255);
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
@@ -107,6 +111,9 @@
 	            user: {},
 	            goal: C.MASS
 	        };
+	        _this.nextPage = _this.nextPage.bind(_this);
+	        _this.onChange = _this.onChange.bind(_this);
+	
 	        return _this;
 	    }
 	
@@ -115,26 +122,30 @@
 	        value: function nextPage(childView) {
 	            //Sees which child view called, evaluates the state, and calls to route to the next page
 	            if (childView == "GOAL") {
-	                _reactRouter.browserHistory.push('/quads');
+	                _reactRouter.browserHistory.push('/get-started/quads');
 	            }
 	        }
 	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            _user_store2.default.addChangeListener(this.onChange);
+	            _fitness_assessment_store2.default.addChangeListener(this.onChange);
 	        }
 	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
 	            _user_store2.default.removeChangeListener(this.onChange);
+	            _fitness_assessment_store2.default.removeChangeListener(this.onChange);
 	        }
 	    }, {
 	        key: 'onChange',
 	        value: function onChange() {
 	            var data = _user_store2.default.getData();
-	
+	            var fitness = _fitness_assessment_store2.default.getData();
 	            this.setState({
-	                user: data.user
+	                user: data.user,
+	                goal: fitness.goal,
+	                quads: fitness.quads
 	            });
 	        }
 	    }, {
@@ -148,7 +159,7 @@
 	            var _this2 = this;
 	
 	            var childrenWithProps = React.Children.map(this.props.children, function (child) {
-	                return React.cloneElement(child, Object.assign({}, _this2.state));
+	                return React.cloneElement(child, Object.assign({}, _this2.state, { next: _this2.nextPage }));
 	            });
 	
 	            return React.createElement(
@@ -27300,8 +27311,8 @@
 	        }
 	    }, {
 	        key: 'onClick',
-	        value: function onClick(e) {
-	            console.log(e.target.value);
+	        value: function onClick(goal) {
+	            _fitness_assessment_actions2.default.setGoal(goal);
 	        }
 	    }, {
 	        key: 'render',
@@ -27345,11 +27356,17 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-10 col-xs-offset-1' },
-	                                React.createElement('input', { onChange: this.onClick, type: 'radio', name: 'goal', value: 'MASS', defaultChecked: this.props.goal == C.MASS }),
+	                                React.createElement('input', { onChange: function onChange() {
+	                                        return _this2.onClick(C.MASS);
+	                                    }, type: 'radio', name: 'goal', defaultChecked: this.props.goal == C.MASS }),
 	                                ' Add Muscle',
-	                                React.createElement('input', { onChange: this.onClick, type: 'radio', name: 'goal', value: 'RIP', defaultChecked: this.props.goal == C.RIP }),
+	                                React.createElement('input', { onChange: function onChange() {
+	                                        return _this2.onClick(C.RIP);
+	                                    }, type: 'radio', name: 'goal', defaultChecked: this.props.goal == C.RIP }),
 	                                ' Moderate muscle gains, while lowering body fat percentage',
-	                                React.createElement('input', { onChange: this.onClick, type: 'radio', name: 'goal', value: 'LEAN', defaultChecked: this.props.goal == C.LEAN }),
+	                                React.createElement('input', { onChange: function onChange() {
+	                                        return _this2.onClick(C.LEAN);
+	                                    }, type: 'radio', name: 'goal', defaultChecked: this.props.goal == C.LEAN }),
 	                                ' Lose Weight, Build Endurance'
 	                            )
 	                        ),
@@ -27399,7 +27416,7 @@
 	    },
 	
 	    setGoal: function (goal) {
-	        dispatcher.dispatch(C.GOAL, quads);
+	        dispatcher.dispatch(C.GOAL, goal);
 	    }
 	};
 	
@@ -38104,7 +38121,12 @@
 	    function Quads(props) {
 	        _classCallCheck(this, Quads);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Quads).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Quads).call(this, props));
+	
+	        _this.state = {
+	            valid: true
+	        };
+	        return _this;
 	    }
 	
 	    _createClass(Quads, [{
@@ -38278,6 +38300,54 @@
 	
 	// exports
 
+
+/***/ },
+/* 337 */
+/*!********************************************!*\
+  !*** ./stores/fitness_assessment_store.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 245);
+	var Store = __webpack_require__(/*! ./store.js */ 252);
+	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 247);
+	
+	var FitnessAssessmentStore = new Store({
+	    quads: {}, //array of key/values for each quad
+	    goal: C.MASS,
+	    setQuads: function (quads) {
+	        this.quads = quads;
+	    },
+	
+	    setGoal: function (goal) {
+	        this.goal = goal;
+	    },
+	
+	    getData: function () {
+	        return {
+	            quads: this.quads,
+	            goal: this.goal
+	        };
+	    }
+	});
+	
+	dispatcher.register(C.QUADS, function (data) {
+	    if (data) {
+	        FitnessAssessmentStore.setQuads(data);
+	        FitnessAssessmentStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.GOAL, function (data) {
+	    if (data) {
+	        FitnessAssessmentStore.setGoal(data);
+	        FitnessAssessmentStore.change();
+	    }
+	});
+	
+	module.exports = FitnessAssessmentStore;
 
 /***/ }
 /******/ ]);

@@ -35,4 +35,4 @@ dispatcher.register(C.GOAL, function(data) {
     }
 });
 
-module.exports = FitnessAssessmentStore;
+export default FitnessAssessmentStore;

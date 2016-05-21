@@ -8,6 +8,7 @@ import Quads from 'views/setup/quads';
 import Weight from 'views/setup/weight';
 
 import UserStore from 'stores/user_store';
+import FitnessAssessmentStore from 'stores/fitness_assessment_store';
 import UserActions from 'actions/user_actions';
 
 var C = require('constants/fitness_assessment_constants.js');
@@ -20,29 +21,36 @@ class App extends React.Component {
         this.state = {
             user: {},
             goal: C.MASS
-        }
+        };
+        this.nextPage = this.nextPage.bind(this);
+        this.onChange = this.onChange.bind(this);
+
     }
 
     nextPage(childView) {
         //Sees which child view called, evaluates the state, and calls to route to the next page
         if (childView == "GOAL") {
-            browserHistory.push('/quads');
+            browserHistory.push('/get-started/quads');
         }
     }
 
     componentDidMount () {
         UserStore.addChangeListener(this.onChange);
+        FitnessAssessmentStore.addChangeListener(this.onChange);
     }
 
     componentWillUnmount () {
         UserStore.removeChangeListener(this.onChange);
+        FitnessAssessmentStore.removeChangeListener(this.onChange);
     }
 
     onChange () {
         var data = UserStore.getData();
-
+        var fitness = FitnessAssessmentStore.getData();
         this.setState({
-            user: data.user
+            user: data.user,
+            goal: fitness.goal,
+            quads: fitness.quads
         });
     }
 
@@ -52,7 +60,7 @@ class App extends React.Component {
 
     render () {
         const childrenWithProps = React.Children.map(this.props.children,
-            (child) => React.cloneElement(child, Object.assign({}, this.state))
+            (child) => React.cloneElement(child, Object.assign({}, this.state, {next: this.nextPage}))
         );
 
         return <div>
