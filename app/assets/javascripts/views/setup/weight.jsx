@@ -1,28 +1,10 @@
 import {render} from 'react-dom';
-import UserStore from 'stores/user_store';
 require('views/setup/fitness.scss');
 
-class Fitness extends React.Component {
+class Weight extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onChange = this.onChange.bind(this);
-    }
-
-    componentDidMount () {
-        UserStore.addChangeListener(this.onChange);
-    }
-
-    componentWillUnmount () {
-        UserStore.removeChangeListener(this.onChange);
-    }
-
-    onChange () {
-        var userData = UserStore.getData();
-
-        this.setState({
-            user: userData.user
-        });
     }
 
     render () {
@@ -39,4 +21,4 @@ class Fitness extends React.Component {
 
 }
 
-export default Fitness;
+export default Weight;

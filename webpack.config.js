@@ -9,8 +9,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var config = {
     context: path.resolve(assets_path),
     entry: {
-        sign_up: 'pages/sign_up.jsx',
-        setup: 'pages/setup.jsx'
+        sign_up: 'entry-points/sign_up.jsx',
+        setup: 'entry-points/setup.jsx'
     },
     output: {
         filename: '[name].bundle.js',
