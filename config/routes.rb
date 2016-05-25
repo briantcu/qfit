@@ -5,6 +5,7 @@ Qfit::Application.routes.draw do
   get '/sign-up', to: 'pages#sign_up'
   get '/login', to: 'pages#sign_up'
   get '/get-started/goal', to: 'pages#get_started'
+  get '/get-started/quads', to: 'pages#quads'
   get '/fitness', to: 'pages#get_started'
 
 

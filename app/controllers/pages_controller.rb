@@ -12,6 +12,10 @@ class PagesController < ApplicationController
              })
     render template: 'pages/setup'
   end
+  def quads
+    # Subview of the get_started SPA
+    redirect_to action: 'get_started'
+  end
 
   private
 

@@ -28,7 +28,7 @@ class Quads extends React.Component {
                         stretching: true
                     }
                 );
-                browserHistory.push('/fitness');
+                this.props.next("QUADS");
             } else {
                 this.setState({valid: false, formSubmitted: false});
             }

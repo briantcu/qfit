@@ -5,7 +5,7 @@ import Header from 'views/common/header';
 import Subnav from 'views/setup/subnav';
 import Goal from 'views/setup/goal';
 import Quads from 'views/setup/quads';
-import Weight from 'views/setup/weight';
+import Fitness from 'views/setup/fitness';
 
 import UserStore from 'stores/user_store';
 import FitnessAssessmentStore from 'stores/fitness_assessment_store';
@@ -31,6 +31,8 @@ class App extends React.Component {
         //Sees which child view called, evaluates the state, and calls to route to the next page
         if (childView == "GOAL") {
             browserHistory.push('/get-started/quads');
+        } else if (childView == "QUADS") {
+            browserHistory.push('/fitness');
         }
     }
 
@@ -78,19 +80,15 @@ render((
                 <Route path="goal" component={Goal} />
                 <Route path="quads" component={Quads} />
             </Route>
-            <Route path="fitness" >
-                <Route path="weight" component={Weight} />
-                <Route path="bench" component={Weight} />
-                <Route path="squat" component={Weight} />
-            </Route>
+            <Route path="fitness" component={Fitness} />
             <Route path="program" >
-                <Route path="module" component={Weight} />
-                <Route path="strength" component={Weight} />
+                <Route path="module" component={Fitness} />
+                <Route path="strength" component={Fitness} />
             </Route>
             <Route path="schedule" >
-                <Route path="plyos" component={Weight} />
-                <Route path="strength" component={Weight} />
-                <Route path="sprinting" component={Weight} />
+                <Route path="plyos" component={Fitness} />
+                <Route path="strength" component={Fitness} />
+                <Route path="sprinting" component={Fitness} />
             </Route>
         </Route>
     </Router>

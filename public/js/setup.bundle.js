@@ -71,9 +71,9 @@
 	
 	var _quads2 = _interopRequireDefault(_quads);
 	
-	var _weight = __webpack_require__(/*! views/setup/weight */ 229);
+	var _fitness = __webpack_require__(/*! views/setup/fitness */ 338);
 	
-	var _weight2 = _interopRequireDefault(_weight);
+	var _fitness2 = _interopRequireDefault(_fitness);
 	
 	var _user_store = __webpack_require__(/*! stores/user_store */ 251);
 	
@@ -123,6 +123,8 @@
 	            //Sees which child view called, evaluates the state, and calls to route to the next page
 	            if (childView == "GOAL") {
 	                _reactRouter.browserHistory.push('/get-started/quads');
+	            } else if (childView == "QUADS") {
+	                _reactRouter.browserHistory.push('/fitness');
 	            }
 	        }
 	    }, {
@@ -187,25 +189,19 @@
 	            React.createElement(_reactRouter.Route, { path: 'goal', component: _goal2.default }),
 	            React.createElement(_reactRouter.Route, { path: 'quads', component: _quads2.default })
 	        ),
-	        React.createElement(
-	            _reactRouter.Route,
-	            { path: 'fitness' },
-	            React.createElement(_reactRouter.Route, { path: 'weight', component: _weight2.default }),
-	            React.createElement(_reactRouter.Route, { path: 'bench', component: _weight2.default }),
-	            React.createElement(_reactRouter.Route, { path: 'squat', component: _weight2.default })
-	        ),
+	        React.createElement(_reactRouter.Route, { path: 'fitness', component: _fitness2.default }),
 	        React.createElement(
 	            _reactRouter.Route,
 	            { path: 'program' },
-	            React.createElement(_reactRouter.Route, { path: 'module', component: _weight2.default }),
-	            React.createElement(_reactRouter.Route, { path: 'strength', component: _weight2.default })
+	            React.createElement(_reactRouter.Route, { path: 'module', component: _fitness2.default }),
+	            React.createElement(_reactRouter.Route, { path: 'strength', component: _fitness2.default })
 	        ),
 	        React.createElement(
 	            _reactRouter.Route,
 	            { path: 'schedule' },
-	            React.createElement(_reactRouter.Route, { path: 'plyos', component: _weight2.default }),
-	            React.createElement(_reactRouter.Route, { path: 'strength', component: _weight2.default }),
-	            React.createElement(_reactRouter.Route, { path: 'sprinting', component: _weight2.default })
+	            React.createElement(_reactRouter.Route, { path: 'plyos', component: _fitness2.default }),
+	            React.createElement(_reactRouter.Route, { path: 'strength', component: _fitness2.default }),
+	            React.createElement(_reactRouter.Route, { path: 'sprinting', component: _fitness2.default })
 	        )
 	    )
 	), document.getElementById('app'));
@@ -26486,69 +26482,7 @@
 	module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ },
-/* 229 */
-/*!********************************!*\
-  !*** ./views/setup/weight.jsx ***!
-  \********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 94);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	__webpack_require__(/*! views/setup/fitness.scss */ 230);
-	
-	var Weight = function (_React$Component) {
-	    _inherits(Weight, _React$Component);
-	
-	    function Weight(props) {
-	        _classCallCheck(this, Weight);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Weight).call(this, props));
-	    }
-	
-	    _createClass(Weight, [{
-	        key: 'render',
-	        value: function render() {
-	            return React.createElement(
-	                'div',
-	                { className: 'row subnav' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'container' },
-	                    React.createElement(
-	                        'div',
-	                        { className: 'row' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-1 col-xs-offset-3 text-center bold-text' },
-	                            'Setup'
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Weight;
-	}(React.Component);
-	
-	exports.default = Weight;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
-
-/***/ },
+/* 229 */,
 /* 230 */
 /*!******************************************!*\
   !*** ../styles/views/setup/fitness.scss ***!
@@ -27417,7 +27351,21 @@
 	
 	    setGoal: function (goal) {
 	        dispatcher.dispatch(C.GOAL, goal);
-	    }
+	    },
+	
+	    setUserWeight: function (weight) {
+	        console.log(weight);
+	    },
+	
+	    setBench: function (weight, reps) {},
+	
+	    setSquat: function (weight, reps) {},
+	
+	    setPushUps: function (count) {},
+	
+	    setPullUps: function (count) {},
+	
+	    setAssistedPushUps: function (count) {}
 	};
 	
 	module.exports = FitnessAssessmentActions;
@@ -38145,7 +38093,7 @@
 	                        sprinting: sprinting,
 	                        stretching: true
 	                    });
-	                    browserHistory.push('/fitness');
+	                    this.props.next("QUADS");
 	                } else {
 	                    this.setState({ valid: false, formSubmitted: false });
 	                }
@@ -38348,6 +38296,138 @@
 	});
 	
 	module.exports = FitnessAssessmentStore;
+
+/***/ },
+/* 338 */
+/*!*********************************!*\
+  !*** ./views/setup/fitness.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React, $) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 244);
+	
+	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! views/setup/fitness.scss */ 230);
+	
+	var Fitness = function (_React$Component) {
+	    _inherits(Fitness, _React$Component);
+	
+	    function Fitness(props) {
+	        _classCallCheck(this, Fitness);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Fitness).call(this, props));
+	
+	        _this.state = {
+	            step: 1
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Fitness, [{
+	        key: 'changeStep',
+	        value: function changeStep(step) {
+	            this.setState({ step: step });
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            $(this.refs.userWeightNext).prop("disabled", "disabled");
+	        }
+	    }, {
+	        key: 'evalUserWeightInput',
+	        value: function evalUserWeightInput() {
+	            this.refs.userWeightNext.disabled = this.refs.userWeight.value.length <= 1;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            return React.createElement(
+	                'div',
+	                { className: 'row fitness' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    this.state.step == 1 ? [React.createElement(
+	                        'div',
+	                        { className: 'row', key: '0'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 ' },
+	                            'How much do you weigh? ',
+	                            React.createElement('input', { ref: 'userWeight', type: 'text', onChange: function onChange() {
+	                                    return _this2.evalUserWeightInput();
+	                                } }),
+	                            ' lbs.'
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '1'
+	                        },
+	                        React.createElement(
+	                            'button',
+	                            { ref: 'userWeightNext', type: 'submit', className: 'btn btn-default', onClick: function onClick() {
+	                                    return _this2.changeStep(2);
+	                                } },
+	                            'Next'
+	                        )
+	                    )] : null,
+	                    this.state.step == 2 ? React.createElement(
+	                        'div',
+	                        { className: 'col-xs-6 col-xs-offset-3' },
+	                        'Bench'
+	                    ) : null,
+	                    this.state.step == 3 ? React.createElement(
+	                        'div',
+	                        { className: 'col-xs-6 col-xs-offset-3' },
+	                        'Push Ups'
+	                    ) : null,
+	                    this.state.step == 4 ? React.createElement(
+	                        'div',
+	                        { className: 'col-xs-6 col-xs-offset-3' },
+	                        'Assisted Push Ups'
+	                    ) : null,
+	                    this.state.step == 5 ? React.createElement(
+	                        'div',
+	                        { className: 'col-xs-6 col-xs-offset-3' },
+	                        'Pull Ups'
+	                    ) : null,
+	                    this.state.step == 6 ? React.createElement(
+	                        'div',
+	                        { className: 'col-xs-6 col-xs-offset-3' },
+	                        'Squats'
+	                    ) : null
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Fitness;
+	}(React.Component);
+	
+	exports.default = Fitness;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! jquery */ 256)))
 
 /***/ }
 /******/ ]);
