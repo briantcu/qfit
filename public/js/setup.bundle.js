@@ -75,6 +75,14 @@
 	
 	var _fitness2 = _interopRequireDefault(_fitness);
 	
+	var _schedule = __webpack_require__(/*! views/setup/schedule */ 339);
+	
+	var _schedule2 = _interopRequireDefault(_schedule);
+	
+	var _program = __webpack_require__(/*! views/setup/program */ 342);
+	
+	var _program2 = _interopRequireDefault(_program);
+	
 	var _user_store = __webpack_require__(/*! stores/user_store */ 251);
 	
 	var _user_store2 = _interopRequireDefault(_user_store);
@@ -190,19 +198,8 @@
 	            React.createElement(_reactRouter.Route, { path: 'quads', component: _quads2.default })
 	        ),
 	        React.createElement(_reactRouter.Route, { path: 'fitness', component: _fitness2.default }),
-	        React.createElement(
-	            _reactRouter.Route,
-	            { path: 'program' },
-	            React.createElement(_reactRouter.Route, { path: 'module', component: _fitness2.default }),
-	            React.createElement(_reactRouter.Route, { path: 'strength', component: _fitness2.default })
-	        ),
-	        React.createElement(
-	            _reactRouter.Route,
-	            { path: 'schedule' },
-	            React.createElement(_reactRouter.Route, { path: 'plyos', component: _fitness2.default }),
-	            React.createElement(_reactRouter.Route, { path: 'strength', component: _fitness2.default }),
-	            React.createElement(_reactRouter.Route, { path: 'sprinting', component: _fitness2.default })
-	        )
+	        React.createElement(_reactRouter.Route, { path: 'program', component: _program2.default }),
+	        React.createElement(_reactRouter.Route, { path: 'schedule', component: _schedule2.default })
 	    )
 	), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
@@ -38428,6 +38425,144 @@
 	
 	exports.default = Fitness;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! jquery */ 256)))
+
+/***/ },
+/* 339 */
+/*!**********************************!*\
+  !*** ./views/setup/schedule.jsx ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! views/setup/schedule.scss */ 340);
+	
+	var Schedule = function (_React$Component) {
+	    _inherits(Schedule, _React$Component);
+	
+	    function Schedule(props) {
+	        _classCallCheck(this, Schedule);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Schedule).call(this, props));
+	    }
+	
+	    _createClass(Schedule, [{
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement('div', { className: 'schedule' });
+	        }
+	    }]);
+	
+	    return Schedule;
+	}(React.Component);
+	
+	exports.default = Schedule;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 340 */
+/*!*******************************************!*\
+  !*** ../styles/views/setup/schedule.scss ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./schedule.scss */ 341);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./schedule.scss", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./schedule.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 341 */
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/schedule.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 232)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 342 */
+/*!*********************************!*\
+  !*** ./views/setup/program.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Program = function (_React$Component) {
+	    _inherits(Program, _React$Component);
+	
+	    function Program(props) {
+	        _classCallCheck(this, Program);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Program).call(this, props));
+	    }
+	
+	    _createClass(Program, [{
+	        key: "render",
+	        value: function render() {
+	            return React.createElement("div", { className: "program" });
+	        }
+	    }]);
+	
+	    return Program;
+	}(React.Component);
+	
+	exports.default = Program;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ }
 /******/ ]);

@@ -6,6 +6,8 @@ import Subnav from 'views/setup/subnav';
 import Goal from 'views/setup/goal';
 import Quads from 'views/setup/quads';
 import Fitness from 'views/setup/fitness';
+import Schedule from 'views/setup/schedule';
+import Program from 'views/setup/program';
 
 import UserStore from 'stores/user_store';
 import FitnessAssessmentStore from 'stores/fitness_assessment_store';
@@ -81,15 +83,8 @@ render((
                 <Route path="quads" component={Quads} />
             </Route>
             <Route path="fitness" component={Fitness} />
-            <Route path="program" >
-                <Route path="module" component={Fitness} />
-                <Route path="strength" component={Fitness} />
-            </Route>
-            <Route path="schedule" >
-                <Route path="plyos" component={Fitness} />
-                <Route path="strength" component={Fitness} />
-                <Route path="sprinting" component={Fitness} />
-            </Route>
+            <Route path="program" component={Program} />
+            <Route path="schedule" component={Schedule} />
         </Route>
     </Router>
 ), document.getElementById('app'));
