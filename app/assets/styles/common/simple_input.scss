@@ -1,0 +1,26 @@
+@import "common";
+
+.simpleInput {
+
+  input {
+    background-color: transparent !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    height: 35px;
+    outline: none !important;
+    border-bottom: 4px solid $lightning;
+  }
+
+  .inputLabel {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 0.8;
+    letter-spacing: -0.8px;
+    text-align: center;
+    color: $gray3;
+  }
+
+
+}

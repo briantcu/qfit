@@ -1,0 +1,20 @@
+@import "../../common/common";
+
+.fitness {
+
+  .question {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 0.7;
+    letter-spacing: -0.8px;
+    color: $gray3;
+    margin-top: 200px;
+    margin-bottom: 35px;
+  }
+
+  .buttonRow {
+    margin-top: 200px;
+  }
+
+}

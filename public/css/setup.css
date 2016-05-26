@@ -468,6 +468,222 @@ h1 {
 .purple {
   color: #7953aa; }
 
+.simpleInput input {
+  background-color: transparent !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  height: 35px;
+  outline: none !important;
+  border-bottom: 4px solid #d5de22; }
+
+.simpleInput .inputLabel {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 0.8;
+  letter-spacing: -0.8px;
+  text-align: center;
+  color: #4a4a4a; }
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: -1.1px;
+  color: #271b37; }
+
+.standard-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #271b37; }
+
+.info-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: -0.3px;
+  color: #9fa9ba; }
+
+.help-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 3.4;
+  letter-spacing: -0.3px;
+  color: #271b37; }
+
+.purple-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.bold-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.subtle-link {
+  color: #9fa9ba;
+  text-decoration: underline; }
+  .subtle-link:hover {
+    color: #7953aa; }
+
+.bold-link {
+  color: #271b37;
+  text-decoration: underline; }
+  .bold-link:hover {
+    color: #7953aa; }
+
+.purple {
+  color: #7953aa; }
+
+.qfButton {
+  padding: 12px 40px;
+  border: solid 3px #7953aa;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: -1.1px;
+  color: #271b37; }
+
+.standard-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #271b37; }
+
+.info-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: -0.3px;
+  color: #9fa9ba; }
+
+.help-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 3.4;
+  letter-spacing: -0.3px;
+  color: #271b37; }
+
+.purple-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.bold-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.subtle-link {
+  color: #9fa9ba;
+  text-decoration: underline; }
+  .subtle-link:hover {
+    color: #7953aa; }
+
+.bold-link {
+  color: #271b37;
+  text-decoration: underline; }
+  .bold-link:hover {
+    color: #7953aa; }
+
+.purple {
+  color: #7953aa; }
+
+.fitness .question {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 0.7;
+  letter-spacing: -0.8px;
+  color: #4a4a4a;
+  margin-top: 200px;
+  margin-bottom: 35px; }
+
+.fitness .buttonRow {
+  margin-top: 200px; }
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: -1.1px;
+  color: #271b37; }
+
+.standard-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #271b37; }
+
+.info-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: -0.3px;
+  color: #9fa9ba; }
+
+.help-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 3.4;
+  letter-spacing: -0.3px;
+  color: #271b37; }
+
+.purple-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.bold-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.subtle-link {
+  color: #9fa9ba;
+  text-decoration: underline; }
+  .subtle-link:hover {
+    color: #7953aa; }
+
+.bold-link {
+  color: #271b37;
+  text-decoration: underline; }
+  .bold-link:hover {
+    color: #7953aa; }
+
+.purple {
+  color: #7953aa; }
+
 .setup .header-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
