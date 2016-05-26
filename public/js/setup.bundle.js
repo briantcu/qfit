@@ -133,6 +133,15 @@
 	                _reactRouter.browserHistory.push('/get-started/quads');
 	            } else if (childView == "QUADS") {
 	                _reactRouter.browserHistory.push('/fitness');
+	            } else if (childView == "FITNESS") {
+	                var weights = _fitness_assessment_store2.default.getData().quads.strength;
+	                if (weights) {
+	                    _reactRouter.browserHistory.push('/program');
+	                } else {
+	                    _reactRouter.browserHistory.push('/schedule');
+	                }
+	            } else if (childView == "PROGRAM") {
+	                _reactRouter.browserHistory.push('/schedule');
 	            }
 	        }
 	    }, {
@@ -27851,19 +27860,31 @@
 	
 	        _this.state = {
 	            step: 1,
-	            userWeightNextDisabled: true
+	            userWeightNextDisabled: true,
+	            benchNextDisabled: true,
+	            squatNextDisabled: true,
+	            pushupsNextDisabled: true
 	        };
+	        _this.stepStack = [1];
 	        return _this;
 	    }
 	
 	    _createClass(Fitness, [{
 	        key: 'changeStep',
 	        value: function changeStep(step) {
+	            this.stepStack.push(step);
 	            this.setState({ step: step });
 	        }
 	    }, {
-	        key: 'evalUserWeightInput',
-	        value: function evalUserWeightInput() {
+	        key: 'back',
+	        value: function back() {
+	            this.stepStack.pop();
+	            var step = this.stepStack[this.stepStack.length - 1];
+	            this.setState({ step: step });
+	        }
+	    }, {
+	        key: 'userWeightChanged',
+	        value: function userWeightChanged() {
 	            this.setState({
 	                userWeightNextDisabled: this.refs.userWeight.getValue().length <= 1
 	            });
@@ -27874,6 +27895,48 @@
 	            _fitness_assessment_actions2.default.setUserWeight(this.refs.userWeight.getValue());
 	            this.changeStep(2);
 	        }
+	    }, {
+	        key: 'benchChanged',
+	        value: function benchChanged() {
+	            this.setState({
+	                benchNextDisabled: this.refs.benchWeight.getValue().length == 0 || this.refs.benchReps.getValue().length == 0
+	            });
+	        }
+	    }, {
+	        key: 'benchSubmitted',
+	        value: function benchSubmitted() {
+	            _fitness_assessment_actions2.default.setBench(this.refs.benchWeight.getValue(), this.refs.benchReps.getValue());
+	            this.changeStep(5);
+	        }
+	    }, {
+	        key: 'squatChanged',
+	        value: function squatChanged() {
+	            this.setState({
+	                squatNextDisabled: this.refs.squatWeight.getValue().length == 0 || this.refs.squatReps.getValue().length == 0
+	            });
+	        }
+	    }, {
+	        key: 'squatSubmitted',
+	        value: function squatSubmitted() {
+	            _fitness_assessment_actions2.default.setSquat(this.refs.squatWeight.getValue(), this.refs.squatReps.getValue());
+	            this.done();
+	        }
+	    }, {
+	        key: 'pushupsChanged',
+	        value: function pushupsChanged() {
+	            this.setState({
+	                pushupsNextDisabled: this.refs.pushups.getValue().length == 0
+	            });
+	        }
+	    }, {
+	        key: 'pushupsSubmitted',
+	        value: function pushupsSubmitted() {
+	            _fitness_assessment_actions2.default.setPushUps(this.refs.pushups.getValue());
+	            this.changeStep(5);
+	        }
+	    }, {
+	        key: 'done',
+	        value: function done() {}
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -27898,7 +27961,7 @@
 	                                'How much do you weigh?'
 	                            ),
 	                            React.createElement(_simple_input2.default, { ref: 'userWeight', onChange: function onChange() {
-	                                    return _this2.evalUserWeightInput();
+	                                    return _this2.userWeightChanged();
 	                                }, label: 'lbs.' })
 	                        )
 	                    ), React.createElement(
@@ -27908,37 +27971,199 @@
 	                        React.createElement(
 	                            'div',
 	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { ref: 'userWeightNext', buttonText: 'Next', onClick: function onClick() {
+	                            React.createElement(_button2.default, { ref: 'userWeightNext', buttonText: 'Continue', onClick: function onClick() {
 	                                    return _this2.userWeightSubmitted();
 	                                },
 	                                disabled: this.state.userWeightNextDisabled })
 	                        )
 	                    )] : null,
-	                    this.state.step == 2 ? React.createElement(
+	                    this.state.step == 2 ? [React.createElement(
 	                        'div',
-	                        { className: 'col-xs-6 col-xs-offset-3' },
-	                        'Bench'
-	                    ) : null,
-	                    this.state.step == 3 ? React.createElement(
+	                        { className: 'row', key: '0'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How much can you bench press?'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'benchWeight', onChange: function onChange() {
+	                                    return _this2.benchChanged();
+	                                }, label: 'lbs.' }),
+	                            React.createElement(_simple_input2.default, { ref: 'benchReps', onChange: function onChange() {
+	                                    return _this2.benchChanged();
+	                                }, label: 'times' })
+	                        )
+	                    ), React.createElement(
 	                        'div',
-	                        { className: 'col-xs-6 col-xs-offset-3' },
-	                        'Push Ups'
-	                    ) : null,
-	                    this.state.step == 4 ? React.createElement(
+	                        { className: 'row', key: '1'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
+	                                    return _this2.back();
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { ref: 'benchSkip', buttonText: 'Skip', onClick: function onClick() {
+	                                    return _this2.changeStep(3);
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { ref: 'benchNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.benchSubmitted();
+	                                },
+	                                disabled: this.state.benchNextDisabled })
+	                        )
+	                    )] : null,
+	                    this.state.step == 3 ? [React.createElement(
 	                        'div',
-	                        { className: 'col-xs-6 col-xs-offset-3' },
-	                        'Assisted Push Ups'
-	                    ) : null,
-	                    this.state.step == 5 ? React.createElement(
+	                        { className: 'row', key: '0'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How many push ups can you do?'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'pushups', onChange: function onChange() {
+	                                    return _this2.pushupsChanged();
+	                                }, label: '' })
+	                        )
+	                    ), React.createElement(
 	                        'div',
-	                        { className: 'col-xs-6 col-xs-offset-3' },
-	                        'Pull Ups'
-	                    ) : null,
-	                    this.state.step == 6 ? React.createElement(
+	                        { className: 'row', key: '1'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
+	                                    return _this2.back();
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { buttonText: 'I can\'t do any', onClick: function onClick() {
+	                                    return _this2.changeStep(4);
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { ref: 'pushupsNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.pushupsSubmitted();
+	                                },
+	                                disabled: this.state.pushupsNextDisabled })
+	                        )
+	                    )] : null,
+	                    this.state.step == 4 ? [React.createElement(
 	                        'div',
-	                        { className: 'col-xs-6 col-xs-offset-3' },
-	                        'Squats'
-	                    ) : null
+	                        { className: 'row', key: '0'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How many assisted push ups can you do?'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'pushups', onChange: function onChange() {
+	                                    return _this2.pushupsChanged();
+	                                }, label: '' })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '1'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
+	                                    return _this2.back();
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { ref: 'pushupsNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.pushupsSubmitted();
+	                                },
+	                                disabled: this.state.pushupsNextDisabled })
+	                        )
+	                    )] : null,
+	                    this.state.step == 5 ? [React.createElement(
+	                        'div',
+	                        { className: 'row', key: '0'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How many pull ups can you do?'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'pushups', onChange: function onChange() {
+	                                    return _this2.pushupsChanged();
+	                                }, label: '' })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '1'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
+	                                    return _this2.back();
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { buttonText: 'I can\'t do any', onClick: function onClick() {
+	                                    return _this2.changeStep(6);
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { ref: 'pushupsNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.pushupsSubmitted();
+	                                },
+	                                disabled: this.state.pushupsNextDisabled })
+	                        )
+	                    )] : null,
+	                    this.state.step == 6 ? [React.createElement(
+	                        'div',
+	                        { className: 'row', key: '0'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How much can you squat?'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'squatWeight', onChange: function onChange() {
+	                                    return _this2.squatChanged();
+	                                }, label: 'lbs.' }),
+	                            React.createElement(_simple_input2.default, { ref: 'squatReps', onChange: function onChange() {
+	                                    return _this2.squatChanged();
+	                                }, label: 'times' })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '1'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
+	                                    return _this2.back();
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { buttonText: 'Skip', onClick: function onClick() {
+	                                    return _this2.done();
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { ref: 'benchNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.squatSubmitted();
+	                                },
+	                                disabled: this.state.squatNextDisabled })
+	                        )
+	                    )] : null
 	                )
 	            );
 	        }
@@ -38631,7 +38856,7 @@
 	                'span',
 	                { ref: 'simpleInput', className: 'simpleInput' },
 	                _react2.default.createElement('input', { ref: 'inputField', type: this.props.type, className: 'transparent-input standard-text',
-	                    name: '' + this.props.name, placeholder: '' + this.props.placeholder, onChange: this.props.onChange }),
+	                    name: '' + this.props.name, onChange: this.props.onChange }),
 	                _react2.default.createElement(
 	                    'span',
 	                    { className: 'inputLabel' },

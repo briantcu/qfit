@@ -473,9 +473,12 @@ h1 {
   border-top: none !important;
   border-left: none !important;
   border-right: none !important;
-  height: 35px;
+  height: 45px;
   outline: none !important;
-  border-bottom: 4px solid #d5de22; }
+  border-bottom: 4px solid #d5de22;
+  font-size: 32px;
+  top: -8px;
+  position: relative; }
 
 .simpleInput .inputLabel {
   font-family: 'Open Sans', sans-serif;

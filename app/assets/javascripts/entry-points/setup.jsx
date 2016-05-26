@@ -35,6 +35,15 @@ class App extends React.Component {
             browserHistory.push('/get-started/quads');
         } else if (childView == "QUADS") {
             browserHistory.push('/fitness');
+        } else if (childView == "FITNESS") {
+            var weights = FitnessAssessmentStore.getData().quads.strength;
+            if (weights) {
+                browserHistory.push('/program');
+            } else {
+                browserHistory.push('/schedule');
+            }
+        } else if (childView == "PROGRAM") {
+            browserHistory.push('/schedule');
         }
     }
 
