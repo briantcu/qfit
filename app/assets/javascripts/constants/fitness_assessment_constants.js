@@ -6,4 +6,10 @@ module.exports = keyMirror({
     LEAN: null, // module enum
     RIP: null, // module enum
     MASS: null, // module enum
+    USER_WEIGHT: null,
+    BENCH: null,
+    PULLUPS: null,
+    PUSHUPS: null,
+    ASSISTED_PUSHUPS: null,
+    SQUAT: null
 });

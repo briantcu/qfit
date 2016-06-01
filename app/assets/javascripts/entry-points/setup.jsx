@@ -63,7 +63,15 @@ class App extends React.Component {
         this.setState({
             user: data.user,
             goal: fitness.goal,
-            quads: fitness.quads
+            quads: fitness.quads,
+            userWeight: fitness.userWeight,
+            benchWeight: fitness.benchWeight,
+            benchReps: fitness.benchReps,
+            pushups: fitness.pushups,
+            pullups: fitness.pullups,
+            assistedPushups: fitness.assistedPushups,
+            squatWeight: fitness.squatWeight,
+            squatReps: fitness.squatReps
         });
     }
 

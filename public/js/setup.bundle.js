@@ -164,7 +164,15 @@
 	            this.setState({
 	                user: data.user,
 	                goal: fitness.goal,
-	                quads: fitness.quads
+	                quads: fitness.quads,
+	                userWeight: fitness.userWeight,
+	                benchWeight: fitness.benchWeight,
+	                benchReps: fitness.benchReps,
+	                pushups: fitness.pushups,
+	                pullups: fitness.pullups,
+	                assistedPushups: fitness.assistedPushups,
+	                squatWeight: fitness.squatWeight,
+	                squatReps: fitness.squatReps
 	            });
 	        }
 	    }, {
@@ -27200,18 +27208,28 @@
 	    },
 	
 	    setUserWeight: function (weight) {
-	        console.log(weight);
+	        dispatcher.dispatch(C.USER_WEIGHT, weight);
 	    },
 	
-	    setBench: function (weight, reps) {},
+	    setBench: function (weight, reps) {
+	        dispatcher.dispatch(C.BENCH, { weight: weight, reps: reps });
+	    },
 	
-	    setSquat: function (weight, reps) {},
+	    setSquat: function (weight, reps) {
+	        dispatcher.dispatch(C.SQUAT, { weight: weight, reps: reps });
+	    },
 	
-	    setPushUps: function (count) {},
+	    setPushUps: function (count) {
+	        dispatcher.dispatch(C.PUSHUPS, count);
+	    },
 	
-	    setPullUps: function (count) {},
+	    setPullUps: function (count) {
+	        dispatcher.dispatch(C.PULLUPS, count);
+	    },
 	
-	    setAssistedPushUps: function (count) {}
+	    setAssistedPushUps: function (count) {
+	        dispatcher.dispatch(C.ASSISTED_PUSHUPS, count);
+	    }
 	};
 	
 	module.exports = FitnessAssessmentActions;
@@ -27409,8 +27427,14 @@
 	    GOAL: null, // the goal the user chose
 	    LEAN: null, // module enum
 	    RIP: null, // module enum
-	    MASS: null });
-	// module enum
+	    MASS: null, // module enum
+	    USER_WEIGHT: null,
+	    BENCH: null,
+	    PULLUPS: null,
+	    PUSHUPS: null,
+	    ASSISTED_PUSHUPS: null,
+	    SQUAT: null
+	});
 
 /***/ },
 /* 242 */
@@ -27861,9 +27885,11 @@
 	        _this.state = {
 	            step: 1,
 	            userWeightNextDisabled: true,
-	            benchNextDisabled: true,
-	            squatNextDisabled: true,
-	            pushupsNextDisabled: true
+	            benchNextDisabled: false,
+	            squatNextDisabled: false,
+	            pushupsNextDisabled: false,
+	            assistedNextDisabled: true,
+	            pullupsNextDisabled: false
 	        };
 	        _this.stepStack = [1];
 	        return _this;
@@ -27905,8 +27931,14 @@
 	    }, {
 	        key: 'benchSubmitted',
 	        value: function benchSubmitted() {
-	            _fitness_assessment_actions2.default.setBench(this.refs.benchWeight.getValue(), this.refs.benchReps.getValue());
-	            this.changeStep(5);
+	            var benchWeight = this.refs.benchWeight.getValue();
+	            var benchReps = this.refs.benchReps.getValue();
+	            if (benchWeight && benchReps) {
+	                _fitness_assessment_actions2.default.setBench(benchWeight, benchReps);
+	                this.changeStep(5);
+	            } else {
+	                this.changeStep(3);
+	            }
 	        }
 	    }, {
 	        key: 'squatChanged',
@@ -27933,6 +27965,32 @@
 	        value: function pushupsSubmitted() {
 	            _fitness_assessment_actions2.default.setPushUps(this.refs.pushups.getValue());
 	            this.changeStep(5);
+	        }
+	    }, {
+	        key: 'assistedChanged',
+	        value: function assistedChanged() {
+	            this.setState({
+	                pushupsNextDisabled: this.refs.assisted.getValue().length == 0
+	            });
+	        }
+	    }, {
+	        key: 'assistedSubmitted',
+	        value: function assistedSubmitted() {
+	            _fitness_assessment_actions2.default.setAssistedPushUps(this.refs.assisted.getValue());
+	            this.changeStep(5);
+	        }
+	    }, {
+	        key: 'pullupsChanged',
+	        value: function pullupsChanged() {
+	            this.setState({
+	                pushupsNextDisabled: this.refs.pullups.getValue().length == 0
+	            });
+	        }
+	    }, {
+	        key: 'pullupsSubmitted',
+	        value: function pullupsSubmitted() {
+	            _fitness_assessment_actions2.default.setPullUps(this.refs.pullups.getValue());
+	            this.changeStep(6);
 	        }
 	    }, {
 	        key: 'done',
@@ -27962,7 +28020,7 @@
 	                            ),
 	                            React.createElement(_simple_input2.default, { ref: 'userWeight', onChange: function onChange() {
 	                                    return _this2.userWeightChanged();
-	                                }, label: 'lbs.' })
+	                                }, label: 'lbs.', value: this.props.userWeight })
 	                        )
 	                    ), React.createElement(
 	                        'div',
@@ -27991,10 +28049,10 @@
 	                            ),
 	                            React.createElement(_simple_input2.default, { ref: 'benchWeight', onChange: function onChange() {
 	                                    return _this2.benchChanged();
-	                                }, label: 'lbs.' }),
+	                                }, label: 'lbs.', value: this.props.benchWeight }),
 	                            React.createElement(_simple_input2.default, { ref: 'benchReps', onChange: function onChange() {
 	                                    return _this2.benchChanged();
-	                                }, label: 'times' })
+	                                }, label: 'times', value: this.props.benchReps })
 	                        )
 	                    ), React.createElement(
 	                        'div',
@@ -28005,10 +28063,6 @@
 	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
 	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
 	                                    return _this2.back();
-	                                },
-	                                disabled: false }),
-	                            React.createElement(_button2.default, { ref: 'benchSkip', buttonText: 'Skip', onClick: function onClick() {
-	                                    return _this2.changeStep(3);
 	                                },
 	                                disabled: false }),
 	                            React.createElement(_button2.default, { ref: 'benchNext', buttonText: 'Continue', onClick: function onClick() {
@@ -28031,7 +28085,7 @@
 	                            ),
 	                            React.createElement(_simple_input2.default, { ref: 'pushups', onChange: function onChange() {
 	                                    return _this2.pushupsChanged();
-	                                }, label: '' })
+	                                }, label: '', value: this.props.pushups })
 	                        )
 	                    ), React.createElement(
 	                        'div',
@@ -28066,9 +28120,9 @@
 	                                { className: 'question' },
 	                                'How many assisted push ups can you do?'
 	                            ),
-	                            React.createElement(_simple_input2.default, { ref: 'pushups', onChange: function onChange() {
-	                                    return _this2.pushupsChanged();
-	                                }, label: '' })
+	                            React.createElement(_simple_input2.default, { ref: 'assisted', onChange: function onChange() {
+	                                    return _this2.assistedChanged();
+	                                }, label: '', value: this.props.assistedPushups })
 	                        )
 	                    ), React.createElement(
 	                        'div',
@@ -28081,10 +28135,10 @@
 	                                    return _this2.back();
 	                                },
 	                                disabled: false }),
-	                            React.createElement(_button2.default, { ref: 'pushupsNext', buttonText: 'Continue', onClick: function onClick() {
-	                                    return _this2.pushupsSubmitted();
+	                            React.createElement(_button2.default, { ref: 'assistedNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.assistedSubmitted();
 	                                },
-	                                disabled: this.state.pushupsNextDisabled })
+	                                disabled: this.state.assistedNextDisabled })
 	                        )
 	                    )] : null,
 	                    this.state.step == 5 ? [React.createElement(
@@ -28099,9 +28153,9 @@
 	                                { className: 'question' },
 	                                'How many pull ups can you do?'
 	                            ),
-	                            React.createElement(_simple_input2.default, { ref: 'pushups', onChange: function onChange() {
-	                                    return _this2.pushupsChanged();
-	                                }, label: '' })
+	                            React.createElement(_simple_input2.default, { ref: 'pullups', onChange: function onChange() {
+	                                    return _this2.pullupsChanged();
+	                                }, label: '', value: this.props.pullups })
 	                        )
 	                    ), React.createElement(
 	                        'div',
@@ -28118,10 +28172,10 @@
 	                                    return _this2.changeStep(6);
 	                                },
 	                                disabled: false }),
-	                            React.createElement(_button2.default, { ref: 'pushupsNext', buttonText: 'Continue', onClick: function onClick() {
-	                                    return _this2.pushupsSubmitted();
+	                            React.createElement(_button2.default, { ref: 'pullupsNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.pullupsSubmitted();
 	                                },
-	                                disabled: this.state.pushupsNextDisabled })
+	                                disabled: this.state.pullupsNextDisabled })
 	                        )
 	                    )] : null,
 	                    this.state.step == 6 ? [React.createElement(
@@ -28138,10 +28192,10 @@
 	                            ),
 	                            React.createElement(_simple_input2.default, { ref: 'squatWeight', onChange: function onChange() {
 	                                    return _this2.squatChanged();
-	                                }, label: 'lbs.' }),
+	                                }, label: 'lbs.', value: this.props.squatWeight }),
 	                            React.createElement(_simple_input2.default, { ref: 'squatReps', onChange: function onChange() {
 	                                    return _this2.squatChanged();
-	                                }, label: 'times' })
+	                                }, label: 'times', value: this.props.squatReps })
 	                        )
 	                    ), React.createElement(
 	                        'div',
@@ -28152,10 +28206,6 @@
 	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
 	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
 	                                    return _this2.back();
-	                                },
-	                                disabled: false }),
-	                            React.createElement(_button2.default, { buttonText: 'Skip', onClick: function onClick() {
-	                                    return _this2.done();
 	                                },
 	                                disabled: false }),
 	                            React.createElement(_button2.default, { ref: 'benchNext', buttonText: 'Continue', onClick: function onClick() {
@@ -38617,6 +38667,15 @@
 	var FitnessAssessmentStore = new Store({
 	    quads: {}, //array of key/values for each quad
 	    goal: C.MASS,
+	    userWeight: null,
+	    benchWeight: null,
+	    benchReps: null,
+	    pushups: null,
+	    pullups: null,
+	    assistedPushups: null,
+	    squatWeight: null,
+	    squatReps: null,
+	
 	    setQuads: function (quads) {
 	        this.quads = quads;
 	    },
@@ -38625,10 +38684,44 @@
 	        this.goal = goal;
 	    },
 	
+	    setUserWeight: function (weight) {
+	        this.userWeight = weight;
+	    },
+	
+	    setBench: function (data) {
+	        this.benchWeight = data.weight;
+	        this.benchReps = data.reps;
+	    },
+	
+	    setSquat: function (data) {
+	        this.squatWeight = data.weight;
+	        this.squatReps = data.reps;
+	    },
+	
+	    setPushUps: function (count) {
+	        this.pushups = count;
+	    },
+	
+	    setPullUps: function (count) {
+	        this.pullups = count;
+	    },
+	
+	    setAssistedPushUps: function (count) {
+	        this.assistedPushups = count;
+	    },
+	
 	    getData: function () {
 	        return {
 	            quads: this.quads,
-	            goal: this.goal
+	            goal: this.goal,
+	            userWeight: this.userWeight,
+	            benchWeight: this.benchWeight,
+	            benchReps: this.benchReps,
+	            pushups: this.pushups,
+	            pullups: this.pullups,
+	            assistedPushups: this.assistedPushups,
+	            squatWeight: this.squatWeight,
+	            squatReps: this.squatReps
 	        };
 	    }
 	});
@@ -38643,6 +38736,48 @@
 	dispatcher.register(C.GOAL, function (data) {
 	    if (data) {
 	        FitnessAssessmentStore.setGoal(data);
+	        FitnessAssessmentStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.USER_WEIGHT, function (data) {
+	    if (data) {
+	        FitnessAssessmentStore.setUserWeight(data);
+	        FitnessAssessmentStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.BENCH, function (data) {
+	    if (data) {
+	        FitnessAssessmentStore.setBench(data);
+	        FitnessAssessmentStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.SQUAT, function (data) {
+	    if (data) {
+	        FitnessAssessmentStore.setSquat(data);
+	        FitnessAssessmentStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.PUSHUPS, function (data) {
+	    if (data) {
+	        FitnessAssessmentStore.setPushUps(data);
+	        FitnessAssessmentStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.PULLUPS, function (data) {
+	    if (data) {
+	        FitnessAssessmentStore.setPullUps(data);
+	        FitnessAssessmentStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.ASSISTED_PUSHUPS, function (data) {
+	    if (data) {
+	        FitnessAssessmentStore.assistedPushups(data);
 	        FitnessAssessmentStore.change();
 	    }
 	});
@@ -38856,7 +38991,7 @@
 	                'span',
 	                { ref: 'simpleInput', className: 'simpleInput' },
 	                _react2.default.createElement('input', { ref: 'inputField', type: this.props.type, className: 'transparent-input standard-text',
-	                    name: '' + this.props.name, onChange: this.props.onChange }),
+	                    name: '' + this.props.name, onChange: this.props.onChange, value: this.props.value }),
 	                _react2.default.createElement(
 	                    'span',
 	                    { className: 'inputLabel' },

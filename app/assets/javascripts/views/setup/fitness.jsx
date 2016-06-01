@@ -12,9 +12,11 @@ class Fitness extends React.Component {
         this.state = {
             step: 1,
             userWeightNextDisabled: true,
-            benchNextDisabled: true,
-            squatNextDisabled: true,
-            pushupsNextDisabled: true
+            benchNextDisabled: false,
+            squatNextDisabled: false,
+            pushupsNextDisabled: false,
+            assistedNextDisabled: true,
+            pullupsNextDisabled: false
         };
         this.stepStack = [1];
     }
@@ -46,8 +48,14 @@ class Fitness extends React.Component {
         });
     }
     benchSubmitted() {
-        FitnessAssessmentActions.setBench(this.refs.benchWeight.getValue(), this.refs.benchReps.getValue());
-        this.changeStep(5);
+        var benchWeight = this.refs.benchWeight.getValue();
+        var benchReps = this.refs.benchReps.getValue();
+        if (benchWeight && benchReps) {
+            FitnessAssessmentActions.setBench(benchWeight, benchReps);
+            this.changeStep(5);
+        } else {
+            this.changeStep(3);
+        }
     }
 
     squatChanged() {
@@ -70,6 +78,26 @@ class Fitness extends React.Component {
         this.changeStep(5);
     }
 
+    assistedChanged() {
+        this.setState({
+            pushupsNextDisabled: this.refs.assisted.getValue().length == 0
+        });
+    }
+    assistedSubmitted() {
+        FitnessAssessmentActions.setAssistedPushUps(this.refs.assisted.getValue());
+        this.changeStep(5);
+    }
+
+    pullupsChanged() {
+        this.setState({
+            pushupsNextDisabled: this.refs.pullups.getValue().length == 0
+        });
+    }
+    pullupsSubmitted() {
+        FitnessAssessmentActions.setPullUps(this.refs.pullups.getValue());
+        this.changeStep(6);
+    }
+
     done() {
 
     }
@@ -81,7 +109,7 @@ class Fitness extends React.Component {
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center">
                             <div className="question">How much do you weigh?</div>
-                            <SimpleInput ref="userWeight" onChange={ () => this.userWeightChanged() } label="lbs." />
+                            <SimpleInput ref="userWeight" onChange={ () => this.userWeightChanged() } label="lbs." value={this.props.userWeight} />
                         </div>
                     </div>
                     <div className="row">
@@ -96,15 +124,13 @@ class Fitness extends React.Component {
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center">
                             <div className="question">How much can you bench press?</div>
-                            <SimpleInput ref="benchWeight" onChange={ () => this.benchChanged() } label="lbs." />
-                            <SimpleInput ref="benchReps" onChange={ () => this.benchChanged() } label="times" />
+                            <SimpleInput ref="benchWeight" onChange={ () => this.benchChanged() } label="lbs." value={this.props.benchWeight} />
+                            <SimpleInput ref="benchReps" onChange={ () => this.benchChanged() } label="times" value={this.props.benchReps} />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
                             <Button buttonText="Back" onClick={ () => this.back() }
-                                    disabled={false} />
-                            <Button ref="benchSkip" buttonText="Skip" onClick={ () => this.changeStep(3) }
                                     disabled={false} />
                             <Button ref="benchNext" buttonText="Continue" onClick={ () => this.benchSubmitted() }
                                     disabled={this.state.benchNextDisabled} />
@@ -116,7 +142,7 @@ class Fitness extends React.Component {
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center">
                             <div className="question">How many push ups can you do?</div>
-                            <SimpleInput ref="pushups" onChange={ () => this.pushupsChanged() } label="" />
+                            <SimpleInput ref="pushups" onChange={ () => this.pushupsChanged() } label="" value={this.props.pushups} />
                         </div>
                     </div>
                     <div className="row">
@@ -135,15 +161,15 @@ class Fitness extends React.Component {
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center">
                             <div className="question">How many assisted push ups can you do?</div>
-                            <SimpleInput ref="pushups" onChange={ () => this.pushupsChanged() } label="" />
+                            <SimpleInput ref="assisted" onChange={ () => this.assistedChanged() } label="" value={this.props.assistedPushups} />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
                             <Button buttonText="Back" onClick={ () => this.back() }
                                     disabled={false} />
-                            <Button ref="pushupsNext" buttonText="Continue" onClick={ () => this.pushupsSubmitted() }
-                                    disabled={this.state.pushupsNextDisabled} />
+                            <Button ref="assistedNext" buttonText="Continue" onClick={ () => this.assistedSubmitted() }
+                                    disabled={this.state.assistedNextDisabled} />
                         </div>
                     </div>
                 </If>
@@ -152,7 +178,7 @@ class Fitness extends React.Component {
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center">
                             <div className="question">How many pull ups can you do?</div>
-                            <SimpleInput ref="pushups" onChange={ () => this.pushupsChanged() } label="" />
+                            <SimpleInput ref="pullups" onChange={ () => this.pullupsChanged() } label="" value={this.props.pullups} />
                         </div>
                     </div>
                     <div className="row">
@@ -161,8 +187,8 @@ class Fitness extends React.Component {
                                     disabled={false} />
                             <Button buttonText="I can't do any" onClick={ () => this.changeStep(6) }
                                     disabled={false} />
-                            <Button ref="pushupsNext" buttonText="Continue" onClick={ () => this.pushupsSubmitted() }
-                                    disabled={this.state.pushupsNextDisabled} />
+                            <Button ref="pullupsNext" buttonText="Continue" onClick={ () => this.pullupsSubmitted() }
+                                    disabled={this.state.pullupsNextDisabled} />
                         </div>
                     </div>
                 </If>
@@ -171,15 +197,13 @@ class Fitness extends React.Component {
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center">
                             <div className="question">How much can you squat?</div>
-                            <SimpleInput ref="squatWeight" onChange={ () => this.squatChanged() } label="lbs." />
-                            <SimpleInput ref="squatReps" onChange={ () => this.squatChanged() } label="times" />
+                            <SimpleInput ref="squatWeight" onChange={ () => this.squatChanged() } label="lbs." value={this.props.squatWeight} />
+                            <SimpleInput ref="squatReps" onChange={ () => this.squatChanged() } label="times" value={this.props.squatReps} />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
                             <Button buttonText="Back" onClick={ () => this.back() }
-                                    disabled={false} />
-                            <Button buttonText="Skip" onClick={ () => this.done() }
                                     disabled={false} />
                             <Button ref="benchNext" buttonText="Continue" onClick={ () => this.squatSubmitted() }
                                     disabled={this.state.squatNextDisabled} />
