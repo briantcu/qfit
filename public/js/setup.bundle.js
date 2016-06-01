@@ -95,6 +95,10 @@
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
+	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 238);
+	
+	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -117,11 +121,12 @@
 	
 	        _this.state = {
 	            user: {},
-	            goal: C.MASS
+	            goal: C.MASS,
+	            fitnessSubmitted: false
 	        };
 	        _this.nextPage = _this.nextPage.bind(_this);
 	        _this.onChange = _this.onChange.bind(_this);
-	
+	        _this.fitnessSubmitted = _this.fitnessSubmitted.bind(_this);
 	        return _this;
 	    }
 	
@@ -133,13 +138,6 @@
 	                _reactRouter.browserHistory.push('/get-started/quads');
 	            } else if (childView == "QUADS") {
 	                _reactRouter.browserHistory.push('/fitness');
-	            } else if (childView == "FITNESS") {
-	                var weights = _fitness_assessment_store2.default.getData().quads.strength;
-	                if (weights) {
-	                    _reactRouter.browserHistory.push('/program');
-	                } else {
-	                    _reactRouter.browserHistory.push('/schedule');
-	                }
 	            } else if (childView == "PROGRAM") {
 	                _reactRouter.browserHistory.push('/schedule');
 	            }
@@ -149,6 +147,7 @@
 	        value: function componentDidMount() {
 	            _user_store2.default.addChangeListener(this.onChange);
 	            _fitness_assessment_store2.default.addChangeListener(this.onChange);
+	            _user_actions2.default.getUser(gon.current_user_id);
 	        }
 	    }, {
 	        key: 'componentWillUnmount',
@@ -174,11 +173,21 @@
 	                squatWeight: fitness.squatWeight,
 	                squatReps: fitness.squatReps
 	            });
+	            if (fitness.complete && !this.state.fitnessSubmitted) {
+	                this.setState({ fitnessSubmitted: true });
+	                _fitness_assessment_actions2.default.submit(this.state, this.fitnessSubmitted);
+	            }
 	        }
 	    }, {
-	        key: 'componentWillReceiveProps',
-	        value: function componentWillReceiveProps() {
-	            _user_actions2.default.getUser(gon.current_user_id);
+	        key: 'fitnessSubmitted',
+	        value: function fitnessSubmitted() {
+	            this.setState({ fitnessSubmitted: false });
+	            var weights = _fitness_assessment_store2.default.getData().quads.strength;
+	            if (weights) {
+	                _reactRouter.browserHistory.push('/program');
+	            } else {
+	                _reactRouter.browserHistory.push('/schedule');
+	            }
 	        }
 	    }, {
 	        key: 'render',
@@ -27192,10 +27201,11 @@
   \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 239);
 	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 241);
+	var UC = __webpack_require__(/*! constants/user_constants.js */ 262);
 	
 	var FitnessAssessmentActions = {
 	
@@ -27229,10 +27239,43 @@
 	
 	    setAssistedPushUps: function (count) {
 	        dispatcher.dispatch(C.ASSISTED_PUSHUPS, count);
+	    },
+	
+	    submit: function (data, callback) {
+	        var local_data = {};
+	        local_data.fitness_assessment_submission = {};
+	        local_data.fitness_assessment_submission.user_id = data.user.id;
+	        local_data.fitness_assessment_submission.weight = data.userWeight;
+	        local_data.fitness_assessment_submission.bench_reps = data.userWeight;
+	        local_data.fitness_assessment_submission.bench_weight = data.userWeight;
+	        local_data.fitness_assessment_submission.squat_weight = data.squatWeight;
+	        local_data.fitness_assessment_submission.squat_reps = data.squatReps;
+	        local_data.fitness_assessment_submission.push_ups = data.pushups;
+	        local_data.fitness_assessment_submission.pull_ups = data.pullups;
+	        local_data.fitness_assessment_submission.assisted_push_ups = data.assistedPushups;
+	        local_data.fitness_assessment_submission.experience_level = 2;
+	        local_data.fitness_assessment_submission.sex = data.user.sex;
+	        var payload = JSON.stringify(local_data);
+	
+	        $.ajax({
+	            type: "post",
+	            url: "/users/" + data.user.id + "/fitness.json",
+	            dataType: "json",
+	            data: payload,
+	            contentType: "application/json; charset=utf-8",
+	            success: function (user) {
+	                dispatcher.dispatch(UC.LOADED, user);
+	                callback();
+	            },
+	            error: function (results) {
+	                alert("Something went wrong!");
+	            }
+	        });
 	    }
 	};
 	
 	module.exports = FitnessAssessmentActions;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 252)))
 
 /***/ },
 /* 239 */
@@ -27951,7 +27994,6 @@
 	        key: 'squatSubmitted',
 	        value: function squatSubmitted() {
 	            _fitness_assessment_actions2.default.setSquat(this.refs.squatWeight.getValue(), this.refs.squatReps.getValue());
-	            this.done();
 	        }
 	    }, {
 	        key: 'pushupsChanged',
@@ -27992,9 +28034,6 @@
 	            _fitness_assessment_actions2.default.setPullUps(this.refs.pullups.getValue());
 	            this.changeStep(6);
 	        }
-	    }, {
-	        key: 'done',
-	        value: function done() {}
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -38667,14 +38706,15 @@
 	var FitnessAssessmentStore = new Store({
 	    quads: {}, //array of key/values for each quad
 	    goal: C.MASS,
-	    userWeight: null,
-	    benchWeight: null,
-	    benchReps: null,
-	    pushups: null,
-	    pullups: null,
-	    assistedPushups: null,
-	    squatWeight: null,
-	    squatReps: null,
+	    userWeight: undefined,
+	    benchWeight: undefined,
+	    benchReps: undefined,
+	    pushups: undefined,
+	    pullups: undefined,
+	    assistedPushups: undefined,
+	    squatWeight: undefined,
+	    squatReps: undefined,
+	    complete: false,
 	
 	    setQuads: function (quads) {
 	        this.quads = quads;
@@ -38696,6 +38736,7 @@
 	    setSquat: function (data) {
 	        this.squatWeight = data.weight;
 	        this.squatReps = data.reps;
+	        this.complete = true;
 	    },
 	
 	    setPushUps: function (count) {
@@ -38721,7 +38762,8 @@
 	            pullups: this.pullups,
 	            assistedPushups: this.assistedPushups,
 	            squatWeight: this.squatWeight,
-	            squatReps: this.squatReps
+	            squatReps: this.squatReps,
+	            complete: this.complete
 	        };
 	    }
 	});

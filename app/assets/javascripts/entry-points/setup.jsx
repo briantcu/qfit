@@ -12,6 +12,7 @@ import Program from 'views/setup/program';
 import UserStore from 'stores/user_store';
 import FitnessAssessmentStore from 'stores/fitness_assessment_store';
 import UserActions from 'actions/user_actions';
+import FitnessAssessmentActions from 'actions/fitness_assessment_actions';
 
 var C = require('constants/fitness_assessment_constants.js');
 
@@ -22,11 +23,12 @@ class App extends React.Component {
         super(props);
         this.state = {
             user: {},
-            goal: C.MASS
+            goal: C.MASS,
+            fitnessSubmitted: false
         };
         this.nextPage = this.nextPage.bind(this);
         this.onChange = this.onChange.bind(this);
-
+        this.fitnessSubmitted = this.fitnessSubmitted.bind(this);
     }
 
     nextPage(childView) {
@@ -35,13 +37,6 @@ class App extends React.Component {
             browserHistory.push('/get-started/quads');
         } else if (childView == "QUADS") {
             browserHistory.push('/fitness');
-        } else if (childView == "FITNESS") {
-            var weights = FitnessAssessmentStore.getData().quads.strength;
-            if (weights) {
-                browserHistory.push('/program');
-            } else {
-                browserHistory.push('/schedule');
-            }
         } else if (childView == "PROGRAM") {
             browserHistory.push('/schedule');
         }
@@ -50,6 +45,7 @@ class App extends React.Component {
     componentDidMount () {
         UserStore.addChangeListener(this.onChange);
         FitnessAssessmentStore.addChangeListener(this.onChange);
+        UserActions.getUser(gon.current_user_id);
     }
 
     componentWillUnmount () {
@@ -73,10 +69,20 @@ class App extends React.Component {
             squatWeight: fitness.squatWeight,
             squatReps: fitness.squatReps
         });
+        if (fitness.complete && !this.state.fitnessSubmitted) {
+            this.setState({fitnessSubmitted: true});
+            FitnessAssessmentActions.submit(this.state, this.fitnessSubmitted);
+        }
     }
 
-    componentWillReceiveProps () {
-        UserActions.getUser(gon.current_user_id);
+    fitnessSubmitted() {
+        this.setState({fitnessSubmitted: false});
+        var weights = FitnessAssessmentStore.getData().quads.strength;
+        if (weights) {
+            browserHistory.push('/program');
+        } else {
+            browserHistory.push('/schedule');
+        }
     }
 
     render () {

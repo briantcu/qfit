@@ -5,14 +5,15 @@ var C = require('constants/fitness_assessment_constants.js');
 var FitnessAssessmentStore = new Store({
     quads: {}, //array of key/values for each quad
     goal: C.MASS,
-    userWeight: null,
-    benchWeight: null,
-    benchReps: null,
-    pushups: null,
-    pullups: null,
-    assistedPushups: null,
-    squatWeight: null,
-    squatReps: null,
+    userWeight: undefined,
+    benchWeight: undefined,
+    benchReps: undefined,
+    pushups: undefined,
+    pullups: undefined,
+    assistedPushups: undefined,
+    squatWeight: undefined,
+    squatReps: undefined,
+    complete: false,
 
     setQuads: function(quads){
         this.quads = quads;
@@ -34,6 +35,7 @@ var FitnessAssessmentStore = new Store({
     setSquat: function(data) {
         this.squatWeight = data.weight;
         this.squatReps = data.reps;
+        this.complete = true;
     },
 
     setPushUps: function(count) {
@@ -59,7 +61,8 @@ var FitnessAssessmentStore = new Store({
             pullups: this.pullups,
             assistedPushups: this.assistedPushups,
             squatWeight: this.squatWeight,
-            squatReps: this.squatReps
+            squatReps: this.squatReps,
+            complete: this.complete
         };
     }
 });

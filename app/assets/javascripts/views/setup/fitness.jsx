@@ -65,7 +65,6 @@ class Fitness extends React.Component {
     }
     squatSubmitted() {
         FitnessAssessmentActions.setSquat(this.refs.squatWeight.getValue(), this.refs.squatReps.getValue());
-        this.done();
     }
 
     pushupsChanged() {
@@ -96,10 +95,6 @@ class Fitness extends React.Component {
     pullupsSubmitted() {
         FitnessAssessmentActions.setPullUps(this.refs.pullups.getValue());
         this.changeStep(6);
-    }
-
-    done() {
-
     }
 
     render () {
