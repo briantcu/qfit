@@ -38509,7 +38509,7 @@
   \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -38518,6 +38518,12 @@
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 248);
+	
+	var _circle_check2 = _interopRequireDefault(_circle_check);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -38535,9 +38541,100 @@
 	    }
 	
 	    _createClass(Program, [{
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
-	            return React.createElement("div", { className: "program" });
+	            var _this2 = this;
+	
+	            return React.createElement(
+	                'div',
+	                { className: 'program' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'container' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-6 col-xs-offset-4' },
+	                                React.createElement(
+	                                    'h1',
+	                                    { className: 'purple' },
+	                                    'Let\'s Get Started'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-6 col-xs-offset-4 header-text' },
+	                                'Which of the Quads of the Quadfit program would you like to add to your program? (Stretching will be added automatically)'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { ref: 'strength', id: 'strength', label: 'Strength Training' })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { ref: 'plyo', id: 'plyo', label: 'Plyometrics' })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { ref: 'sprinting', id: 'sprinting', label: 'Sprinting' })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { id: 'stretching', label: 'Stretching (Default)', disabled: true })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                this.state.valid == false ? React.createElement(
+	                                    'span',
+	                                    null,
+	                                    'You must choose at least one Quad.'
+	                                ) : null,
+	                                React.createElement(
+	                                    'span',
+	                                    { onClick: function onClick() {
+	                                            return _this2.submit();
+	                                        }, className: 'continue-button purple-text' },
+	                                    'Continue'
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            );
 	        }
 	    }]);
 	
@@ -38610,7 +38707,7 @@
 	        key: 'commitmentSubmitted',
 	        value: function commitmentSubmitted() {
 	            _program_actions2.default.setCommitment({ days: this.refs.frequency.getValue(), minutes: this.refs.length.getValue() });
-	            this.next('COMMITMENT');
+	            this.props.next('COMMITMENT');
 	        }
 	    }, {
 	        key: 'render',

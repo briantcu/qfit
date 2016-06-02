@@ -22,7 +22,7 @@ class Commitment extends React.Component {
 
     commitmentSubmitted() {
         ProgramActions.setCommitment({days: this.refs.frequency.getValue(), minutes: this.refs.length.getValue()});
-        this.next('COMMITMENT');
+        this.props.next('COMMITMENT');
     }
 
     render () {
