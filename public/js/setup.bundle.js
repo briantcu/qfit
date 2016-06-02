@@ -67,31 +67,39 @@
 	
 	var _goal2 = _interopRequireDefault(_goal);
 	
-	var _quads = __webpack_require__(/*! views/setup/quads */ 245);
+	var _quads = __webpack_require__(/*! views/setup/quads */ 247);
 	
 	var _quads2 = _interopRequireDefault(_quads);
 	
-	var _fitness = __webpack_require__(/*! views/setup/fitness */ 251);
+	var _fitness = __webpack_require__(/*! views/setup/fitness */ 253);
 	
 	var _fitness2 = _interopRequireDefault(_fitness);
 	
-	var _schedule = __webpack_require__(/*! views/setup/schedule */ 255);
+	var _schedule = __webpack_require__(/*! views/setup/schedule */ 262);
 	
 	var _schedule2 = _interopRequireDefault(_schedule);
 	
-	var _program = __webpack_require__(/*! views/setup/program */ 258);
+	var _program = __webpack_require__(/*! views/setup/program */ 265);
 	
 	var _program2 = _interopRequireDefault(_program);
 	
-	var _user_store = __webpack_require__(/*! stores/user_store */ 259);
+	var _commitment = __webpack_require__(/*! views/setup/commitment */ 266);
+	
+	var _commitment2 = _interopRequireDefault(_commitment);
+	
+	var _user_store = __webpack_require__(/*! stores/user_store */ 269);
 	
 	var _user_store2 = _interopRequireDefault(_user_store);
 	
-	var _fitness_assessment_store = __webpack_require__(/*! stores/fitness_assessment_store */ 263);
+	var _fitness_assessment_store = __webpack_require__(/*! stores/fitness_assessment_store */ 272);
 	
 	var _fitness_assessment_store2 = _interopRequireDefault(_fitness_assessment_store);
 	
-	var _user_actions = __webpack_require__(/*! actions/user_actions */ 264);
+	var _program_store = __webpack_require__(/*! stores/program_store */ 353);
+	
+	var _program_store2 = _interopRequireDefault(_program_store);
+	
+	var _user_actions = __webpack_require__(/*! actions/user_actions */ 273);
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
@@ -107,9 +115,9 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 241);
+	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 242);
 	
-	__webpack_require__(/*! pages/setup.scss */ 265);
+	__webpack_require__(/*! pages/setup.scss */ 274);
 	
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
@@ -121,7 +129,8 @@
 	
 	        _this.state = {
 	            user: {},
-	            goal: C.MASS
+	            goal: C.MASS,
+	            program: {}
 	        };
 	        _this.nextPage = _this.nextPage.bind(_this);
 	        _this.onChange = _this.onChange.bind(_this);
@@ -137,6 +146,8 @@
 	                _reactRouter.browserHistory.push('/get-started/quads');
 	            } else if (childView == "QUADS") {
 	                _reactRouter.browserHistory.push('/fitness');
+	            } else if (childView == "COMMITMENT") {
+	                _reactRouter.browserHistory.push('/program');
 	            } else if (childView == "PROGRAM") {
 	                _reactRouter.browserHistory.push('/schedule');
 	            }
@@ -145,6 +156,7 @@
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            _user_store2.default.addChangeListener(this.onChange);
+	            _program_store2.default.addChangeListener(this.onChange);
 	            _fitness_assessment_store2.default.addChangeListener(this.onChange);
 	            _user_actions2.default.getUser(gon.current_user_id);
 	        }
@@ -152,6 +164,7 @@
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
 	            _user_store2.default.removeChangeListener(this.onChange);
+	            _program_store2.default.removeChangeListener(this.onChange);
 	            _fitness_assessment_store2.default.removeChangeListener(this.onChange);
 	        }
 	    }, {
@@ -159,6 +172,7 @@
 	        value: function onChange() {
 	            var data = _user_store2.default.getData();
 	            var fitness = _fitness_assessment_store2.default.getData();
+	            var program = _program_store2.default.getData();
 	            this.setState({
 	                user: data.user,
 	                goal: fitness.goal,
@@ -170,7 +184,8 @@
 	                pullups: fitness.pullups,
 	                assistedPushups: fitness.assistedPushups,
 	                squatWeight: fitness.squatWeight,
-	                squatReps: fitness.squatReps
+	                squatReps: fitness.squatReps,
+	                program: program
 	            });
 	            if (fitness.complete) {
 	                _fitness_assessment_actions2.default.submit(this.state, this.fitnessSubmitted);
@@ -180,7 +195,7 @@
 	        key: 'fitnessSubmitted',
 	        value: function fitnessSubmitted() {
 	            if (_fitness_assessment_store2.default.getData().quads.strength) {
-	                _reactRouter.browserHistory.push('/program');
+	                _reactRouter.browserHistory.push('/commitment');
 	            } else {
 	                _reactRouter.browserHistory.push('/schedule');
 	            }
@@ -220,6 +235,7 @@
 	            React.createElement(_reactRouter.Route, { path: 'quads', component: _quads2.default })
 	        ),
 	        React.createElement(_reactRouter.Route, { path: 'fitness', component: _fitness2.default }),
+	        React.createElement(_reactRouter.Route, { path: 'commitment', component: _commitment2.default }),
 	        React.createElement(_reactRouter.Route, { path: 'program', component: _program2.default }),
 	        React.createElement(_reactRouter.Route, { path: 'schedule', component: _schedule2.default })
 	    )
@@ -27081,9 +27097,9 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 241);
+	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 242);
 	
-	__webpack_require__(/*! views/setup/goal.scss */ 243);
+	__webpack_require__(/*! views/setup/goal.scss */ 245);
 	
 	var Goal = function (_React$Component) {
 	    _inherits(Goal, _React$Component);
@@ -27199,9 +27215,9 @@
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 239);
-	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 241);
-	var UC = __webpack_require__(/*! constants/user_constants.js */ 262);
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
+	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 242);
+	var UC = __webpack_require__(/*! constants/user_constants.js */ 244);
 	
 	var FitnessAssessmentActions = {
 	
@@ -27272,998 +27288,10 @@
 	};
 	
 	module.exports = FitnessAssessmentActions;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 252)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 239)))
 
 /***/ },
 /* 239 */
-/*!******************************!*\
-  !*** ./global_dispatcher.js ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var util = __webpack_require__(/*! helpers/util.js */ 240);
-	
-	var Dispatcher = function () {
-	    this.callbacks = {};
-	};
-	
-	Dispatcher.prototype = {
-	    __add: function (name, fn) {
-	        if (hasOwn.call(this.callbacks, name)) this.callbacks[name].push(fn);else this.callbacks[name] = [fn];
-	    },
-	    __invoke: function (name, payload, clone) {
-	        // default to cloningt the payload
-	        if (clone === undefined) {
-	            clone = true;
-	        }
-	
-	        if (!hasOwn.call(this.callbacks, name)) {
-	            if (this.logging) {
-	                console.warn("DISPATCHER: \"" + name + "\" dispatched but there are no registered callbacks.");
-	            }
-	            return;
-	        }
-	
-	        var group = this.callbacks[name];
-	        // clone object payload incase its mutated by a store
-	        if (payload && clone) {
-	            payload = JSON.parse(JSON.stringify(payload));
-	        }
-	
-	        for (var i = 0; i < group.length; i++) {
-	            // clone object payload incase its mutated by a store
-	            group[i].apply(this, [payload]);
-	        }
-	    },
-	    register: function (actionType, fn) {
-	        if (util.empty(actionType)) throw Error("Invalid action type.");
-	
-	        this.__add(actionType, fn);
-	        return this;
-	    },
-	    dispatch: function (action /*, payload, clone */) {
-	        var actionType,
-	            payload,
-	            clone = arguments[2];
-	
-	        if (util.isString(action)) {
-	            actionType = action;
-	            payload = arguments[1];
-	        } else if (action && hasOwn.call(action, "actionType") && !util.empty(action.actionType)) {
-	            actionType = action.actionType;
-	            if (hasOwn.call(action, "payload")) payload = action.payload;
-	        } else {
-	            if (this.logging) {
-	                console.warn("DISPATCHER: \"" + JSON.stringify(action) + "\" is invalid to dispatch. Did you specify an `actionType`?.");
-	            }
-	            return;
-	        }
-	
-	        this.__invoke(actionType, payload, clone);
-	        return this;
-	    }
-	};
-	
-	
-	var hasOwn = Object.prototype.hasOwnProperty;
-	
-	module.exports = new Dispatcher();
-
-/***/ },
-/* 240 */
-/*!*************************!*\
-  !*** ./helpers/util.js ***!
-  \*************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var util = {
-	    timeAgo: function (timeString, diffOnly) {
-	        var time = new Date(timeString);
-	        var units = [{ name: "second", limit: 60, in_seconds: 1 }, { name: "minute", limit: 3600, in_seconds: 60 }, { name: "hour", limit: 86400, in_seconds: 3600 }, { name: "day", limit: 604800, in_seconds: 86400 }, { name: "week", limit: 2629743, in_seconds: 604800 }, { name: "month", limit: 31556926, in_seconds: 2629743 }, { name: "year", limit: null, in_seconds: 31556926 }];
-	
-	        var diff = (new Date() - time) / 1000;
-	        if (diffOnly) {
-	            return diff;
-	        }
-	        if (diff < 5) return "a few seconds";
-	
-	        var i = 0,
-	            unit;
-	
-	        while (unit = units[i++]) {
-	            if (diff < unit.limit || !unit.limit) {
-	                diff = Math.floor(diff / unit.in_seconds);
-	                return diff + " " + unit.name + (diff > 1 ? "s" : "");
-	            }
-	        }
-	    },
-	    getParameterByName: function (name) {
-	        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-	        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-	            results = regex.exec(location.search);
-	        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	    },
-	    isString: function (obj) {
-	        return typeof obj === "string";
-	    },
-	    empty: function (str) {
-	        return !(str && util.isString(str) && str.length > 0);
-	    },
-	    notEmpty: function (str) {
-	        return !util.empty(str);
-	    },
-	    isXss: function (str) {
-	        return /j\s*?a\s*?v\s*?a\s*?s\s*?c\s*?r\s*?i\s*?p\s*?t\s*?\:|<script/ig.test(str);
-	    },
-	    setCookie: function (name, value, days) {
-	        var expires;
-	        if (days) {
-	            var date = new Date();
-	            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-	            expires = "; expires=" + date.toGMTString();
-	        } else {
-	            expires = "";
-	        }
-	        document.cookie = name + "=" + value + expires + "; path=/";
-	    },
-	    getCookie: function (c_name) {
-	        if (document.cookie.length > 0) {
-	            var c_start = document.cookie.indexOf(c_name + "=");
-	            if (c_start != -1) {
-	                c_start = c_start + c_name.length + 1;
-	                var c_end = document.cookie.indexOf(";", c_start);
-	                if (c_end == -1) {
-	                    c_end = document.cookie.length;
-	                }
-	                return window.unescape(document.cookie.substring(c_start, c_end));
-	            }
-	        }
-	        return "";
-	    },
-	    // TODO: add browser support check
-	    historyPushState: function (url, state) {
-	        window.history.pushState(state, document.title, url);
-	    },
-	    historyReplaceState: function (url, state) {
-	        window.history.replaceState(state, document.title, url);
-	    },
-	
-	    getPasswordStrength: function (pwd) {
-	        var score = 0;
-	
-	        if (pwd.length > 6) score++;
-	
-	        if (pwd.match(/[a-z]/) && pwd.match(/[A-Z]/)) score++;
-	
-	        if (pwd.match(/\d+/)) score++;
-	
-	        if (pwd.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)) score++;
-	
-	        if (pwd.length > 12) score++;
-	
-	        return score;
-	    }
-	};
-	
-	module.exports = util;
-
-/***/ },
-/* 241 */
-/*!***************************************************!*\
-  !*** ./constants/fitness_assessment_constants.js ***!
-  \***************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 242);
-	
-	module.exports = keyMirror({
-	    QUADS: null, // which quads the user chose
-	    GOAL: null, // the goal the user chose
-	    LEAN: null, // module enum
-	    RIP: null, // module enum
-	    MASS: null, // module enum
-	    USER_WEIGHT: null,
-	    BENCH: null,
-	    PULLUPS: null,
-	    PUSHUPS: null,
-	    ASSISTED_PUSHUPS: null,
-	    SQUAT: null,
-	    RESET: null
-	});
-
-/***/ },
-/* 242 */
-/*!******************************!*\
-  !*** ./helpers/KeyMirror.js ***!
-  \******************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var keyMirror = function (obj) {
-	    for (var k in obj) {
-	        if (!obj.hasOwnProperty(k)) continue;
-	
-	        if (obj[k] === null) obj[k] = k;else if (typeof obj[k] === "object") obj[k] = keyMirror(obj[k]);
-	    }
-	    return obj;
-	};
-	module.exports = keyMirror;
-
-/***/ },
-/* 243 */
-/*!***************************************!*\
-  !*** ../styles/views/setup/goal.scss ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./goal.scss */ 244);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./goal.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./goal.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 244 */
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/goal.scss ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 232)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 245 */
-/*!*******************************!*\
-  !*** ./views/setup/quads.jsx ***!
-  \*******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 94);
-	
-	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 246);
-	
-	var _circle_check2 = _interopRequireDefault(_circle_check);
-	
-	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 238);
-	
-	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	__webpack_require__(/*! views/setup/quads.scss */ 249);
-	
-	var Quads = function (_React$Component) {
-	    _inherits(Quads, _React$Component);
-	
-	    function Quads(props) {
-	        _classCallCheck(this, Quads);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Quads).call(this, props));
-	
-	        _this.state = {
-	            valid: true
-	        };
-	        return _this;
-	    }
-	
-	    _createClass(Quads, [{
-	        key: 'submit',
-	        value: function submit() {
-	            if (!this.state.formSubmitted) {
-	                this.state.formSubmitted = true;
-	                var strength = this.refs.strength.getValue();
-	                var plyos = this.refs.plyo.getValue();
-	                var sprinting = this.refs.sprinting.getValue();
-	                var valid = strength || plyos || sprinting;
-	                if (valid) {
-	                    _fitness_assessment_actions2.default.setQuads({
-	                        strength: strength,
-	                        plyos: plyos,
-	                        sprinting: sprinting,
-	                        stretching: true
-	                    });
-	                    this.props.next("QUADS");
-	                } else {
-	                    this.setState({ valid: false, formSubmitted: false });
-	                }
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-	
-	            return React.createElement(
-	                'div',
-	                { className: 'quads' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'row' },
-	                    React.createElement(
-	                        'div',
-	                        { className: 'container' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'row' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'col-xs-6 col-xs-offset-4' },
-	                                React.createElement(
-	                                    'h1',
-	                                    { className: 'purple' },
-	                                    'Let\'s Get Started'
-	                                )
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'row' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'col-xs-6 col-xs-offset-4 header-text' },
-	                                'Which of the Quads of the Quadfit program would you like to add to your program? (Stretching will be added automatically)'
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'row' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { ref: 'strength', id: 'strength', label: 'Strength Training' })
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'row' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { ref: 'plyo', id: 'plyo', label: 'Plyometrics' })
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'row' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { ref: 'sprinting', id: 'sprinting', label: 'Sprinting' })
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'row' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { id: 'stretching', label: 'Stretching (Default)', disabled: true })
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'row' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                this.state.valid == false ? React.createElement(
-	                                    'span',
-	                                    null,
-	                                    'You must choose at least one Quad.'
-	                                ) : null,
-	                                React.createElement(
-	                                    'span',
-	                                    { onClick: function onClick() {
-	                                            return _this2.submit();
-	                                        }, className: 'continue-button purple-text' },
-	                                    'Continue'
-	                                )
-	                            )
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Quads;
-	}(React.Component);
-	
-	exports.default = Quads;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
-
-/***/ },
-/* 246 */
-/*!***************************************!*\
-  !*** ./views/common/circle_check.jsx ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 94);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	__webpack_require__(/*! common/circle_check.scss */ 247);
-	
-	var CircleCheck = function (_React$Component) {
-	    _inherits(CircleCheck, _React$Component);
-	
-	    function CircleCheck(props) {
-	        _classCallCheck(this, CircleCheck);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(CircleCheck).call(this, props));
-	    }
-	
-	    _createClass(CircleCheck, [{
-	        key: 'getValue',
-	        value: function getValue() {
-	            return this.refs.check.checked;
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'span',
-	                { className: 'circle-check' },
-	                _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id, checked: this.props.disabled }),
-	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
-	                _react2.default.createElement(
-	                    'span',
-	                    { className: 'label-text' },
-	                    this.props.label
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return CircleCheck;
-	}(_react2.default.Component);
-	
-	exports.default = CircleCheck;
-
-/***/ },
-/* 247 */
-/*!******************************************!*\
-  !*** ../styles/common/circle_check.scss ***!
-  \******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./circle_check.scss */ 248);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 248 */
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/circle_check.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 249 */
-/*!****************************************!*\
-  !*** ../styles/views/setup/quads.scss ***!
-  \****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./quads.scss */ 250);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./quads.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./quads.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 250 */
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/quads.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 232)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 251 */
-/*!*********************************!*\
-  !*** ./views/setup/fitness.jsx ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 94);
-	
-	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 238);
-	
-	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
-	
-	var _simple_input = __webpack_require__(/*! views/common/simple_input */ 342);
-	
-	var _simple_input2 = _interopRequireDefault(_simple_input);
-	
-	var _button = __webpack_require__(/*! views/common/button */ 345);
-	
-	var _button2 = _interopRequireDefault(_button);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	__webpack_require__(/*! views/setup/fitness.scss */ 253);
-	
-	var Fitness = function (_React$Component) {
-	    _inherits(Fitness, _React$Component);
-	
-	    function Fitness(props) {
-	        _classCallCheck(this, Fitness);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Fitness).call(this, props));
-	
-	        _this.state = {
-	            step: 1,
-	            userWeightNextDisabled: true,
-	            benchNextDisabled: false,
-	            squatNextDisabled: false,
-	            pushupsNextDisabled: false,
-	            assistedNextDisabled: true,
-	            pullupsNextDisabled: false
-	        };
-	        _this.stepStack = [1];
-	        return _this;
-	    }
-	
-	    _createClass(Fitness, [{
-	        key: 'changeStep',
-	        value: function changeStep(step) {
-	            this.stepStack.push(step);
-	            this.setState({ step: step });
-	        }
-	    }, {
-	        key: 'back',
-	        value: function back() {
-	            this.stepStack.pop();
-	            var step = this.stepStack[this.stepStack.length - 1];
-	            this.setState({ step: step });
-	        }
-	    }, {
-	        key: 'userWeightChanged',
-	        value: function userWeightChanged() {
-	            this.setState({
-	                userWeightNextDisabled: this.refs.userWeight.getValue().length <= 1
-	            });
-	        }
-	    }, {
-	        key: 'userWeightSubmitted',
-	        value: function userWeightSubmitted() {
-	            _fitness_assessment_actions2.default.setUserWeight(this.refs.userWeight.getValue());
-	            this.changeStep(2);
-	        }
-	    }, {
-	        key: 'benchChanged',
-	        value: function benchChanged() {
-	            this.setState({
-	                benchNextDisabled: this.refs.benchWeight.getValue().length == 0 || this.refs.benchReps.getValue().length == 0
-	            });
-	        }
-	    }, {
-	        key: 'benchSubmitted',
-	        value: function benchSubmitted() {
-	            var benchWeight = this.refs.benchWeight.getValue();
-	            var benchReps = this.refs.benchReps.getValue();
-	            if (benchWeight && benchReps) {
-	                _fitness_assessment_actions2.default.setBench(benchWeight, benchReps);
-	                this.changeStep(5);
-	            } else {
-	                this.changeStep(3);
-	            }
-	        }
-	    }, {
-	        key: 'squatChanged',
-	        value: function squatChanged() {
-	            this.setState({
-	                squatNextDisabled: this.refs.squatWeight.getValue().length == 0 || this.refs.squatReps.getValue().length == 0
-	            });
-	        }
-	    }, {
-	        key: 'squatSubmitted',
-	        value: function squatSubmitted() {
-	            _fitness_assessment_actions2.default.setSquat(this.refs.squatWeight.getValue(), this.refs.squatReps.getValue());
-	        }
-	    }, {
-	        key: 'pushupsChanged',
-	        value: function pushupsChanged() {
-	            this.setState({
-	                pushupsNextDisabled: this.refs.pushups.getValue().length == 0
-	            });
-	        }
-	    }, {
-	        key: 'pushupsSubmitted',
-	        value: function pushupsSubmitted() {
-	            _fitness_assessment_actions2.default.setPushUps(this.refs.pushups.getValue());
-	            this.changeStep(5);
-	        }
-	    }, {
-	        key: 'assistedChanged',
-	        value: function assistedChanged() {
-	            this.setState({
-	                pushupsNextDisabled: this.refs.assisted.getValue().length == 0
-	            });
-	        }
-	    }, {
-	        key: 'assistedSubmitted',
-	        value: function assistedSubmitted() {
-	            _fitness_assessment_actions2.default.setAssistedPushUps(this.refs.assisted.getValue());
-	            this.changeStep(5);
-	        }
-	    }, {
-	        key: 'pullupsChanged',
-	        value: function pullupsChanged() {
-	            this.setState({
-	                pushupsNextDisabled: this.refs.pullups.getValue().length == 0
-	            });
-	        }
-	    }, {
-	        key: 'pullupsSubmitted',
-	        value: function pullupsSubmitted() {
-	            _fitness_assessment_actions2.default.setPullUps(this.refs.pullups.getValue());
-	            this.changeStep(6);
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-	
-	            return React.createElement(
-	                'div',
-	                { className: 'row fitness' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'container' },
-	                    this.state.step == 1 ? [React.createElement(
-	                        'div',
-	                        { className: 'row', key: '0'
-	                        },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'question' },
-	                                'How much do you weigh?'
-	                            ),
-	                            React.createElement(_simple_input2.default, { ref: 'userWeight', onChange: function onChange() {
-	                                    return _this2.userWeightChanged();
-	                                }, label: 'lbs.', value: this.props.userWeight })
-	                        )
-	                    ), React.createElement(
-	                        'div',
-	                        { className: 'row', key: '1'
-	                        },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { ref: 'userWeightNext', buttonText: 'Continue', onClick: function onClick() {
-	                                    return _this2.userWeightSubmitted();
-	                                },
-	                                disabled: this.state.userWeightNextDisabled })
-	                        )
-	                    )] : null,
-	                    this.state.step == 2 ? [React.createElement(
-	                        'div',
-	                        { className: 'row', key: '0'
-	                        },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'question' },
-	                                'How much can you bench press?'
-	                            ),
-	                            React.createElement(_simple_input2.default, { ref: 'benchWeight', onChange: function onChange() {
-	                                    return _this2.benchChanged();
-	                                }, label: 'lbs.', value: this.props.benchWeight }),
-	                            React.createElement(_simple_input2.default, { ref: 'benchReps', onChange: function onChange() {
-	                                    return _this2.benchChanged();
-	                                }, label: 'times', value: this.props.benchReps })
-	                        )
-	                    ), React.createElement(
-	                        'div',
-	                        { className: 'row', key: '1'
-	                        },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
-	                                    return _this2.back();
-	                                },
-	                                disabled: false }),
-	                            React.createElement(_button2.default, { ref: 'benchNext', buttonText: 'Continue', onClick: function onClick() {
-	                                    return _this2.benchSubmitted();
-	                                },
-	                                disabled: this.state.benchNextDisabled })
-	                        )
-	                    )] : null,
-	                    this.state.step == 3 ? [React.createElement(
-	                        'div',
-	                        { className: 'row', key: '0'
-	                        },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'question' },
-	                                'How many push ups can you do?'
-	                            ),
-	                            React.createElement(_simple_input2.default, { ref: 'pushups', onChange: function onChange() {
-	                                    return _this2.pushupsChanged();
-	                                }, label: '', value: this.props.pushups })
-	                        )
-	                    ), React.createElement(
-	                        'div',
-	                        { className: 'row', key: '1'
-	                        },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
-	                                    return _this2.back();
-	                                },
-	                                disabled: false }),
-	                            React.createElement(_button2.default, { buttonText: 'I can\'t do any', onClick: function onClick() {
-	                                    return _this2.changeStep(4);
-	                                },
-	                                disabled: false }),
-	                            React.createElement(_button2.default, { ref: 'pushupsNext', buttonText: 'Continue', onClick: function onClick() {
-	                                    return _this2.pushupsSubmitted();
-	                                },
-	                                disabled: this.state.pushupsNextDisabled })
-	                        )
-	                    )] : null,
-	                    this.state.step == 4 ? [React.createElement(
-	                        'div',
-	                        { className: 'row', key: '0'
-	                        },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'question' },
-	                                'How many assisted push ups can you do?'
-	                            ),
-	                            React.createElement(_simple_input2.default, { ref: 'assisted', onChange: function onChange() {
-	                                    return _this2.assistedChanged();
-	                                }, label: '', value: this.props.assistedPushups })
-	                        )
-	                    ), React.createElement(
-	                        'div',
-	                        { className: 'row', key: '1'
-	                        },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
-	                                    return _this2.back();
-	                                },
-	                                disabled: false }),
-	                            React.createElement(_button2.default, { ref: 'assistedNext', buttonText: 'Continue', onClick: function onClick() {
-	                                    return _this2.assistedSubmitted();
-	                                },
-	                                disabled: this.state.assistedNextDisabled })
-	                        )
-	                    )] : null,
-	                    this.state.step == 5 ? [React.createElement(
-	                        'div',
-	                        { className: 'row', key: '0'
-	                        },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'question' },
-	                                'How many pull ups can you do?'
-	                            ),
-	                            React.createElement(_simple_input2.default, { ref: 'pullups', onChange: function onChange() {
-	                                    return _this2.pullupsChanged();
-	                                }, label: '', value: this.props.pullups })
-	                        )
-	                    ), React.createElement(
-	                        'div',
-	                        { className: 'row', key: '1'
-	                        },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
-	                                    return _this2.back();
-	                                },
-	                                disabled: false }),
-	                            React.createElement(_button2.default, { buttonText: 'I can\'t do any', onClick: function onClick() {
-	                                    return _this2.changeStep(6);
-	                                },
-	                                disabled: false }),
-	                            React.createElement(_button2.default, { ref: 'pullupsNext', buttonText: 'Continue', onClick: function onClick() {
-	                                    return _this2.pullupsSubmitted();
-	                                },
-	                                disabled: this.state.pullupsNextDisabled })
-	                        )
-	                    )] : null,
-	                    this.state.step == 6 ? [React.createElement(
-	                        'div',
-	                        { className: 'row', key: '0'
-	                        },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'question' },
-	                                'How much can you squat?'
-	                            ),
-	                            React.createElement(_simple_input2.default, { ref: 'squatWeight', onChange: function onChange() {
-	                                    return _this2.squatChanged();
-	                                }, label: 'lbs.', value: this.props.squatWeight }),
-	                            React.createElement(_simple_input2.default, { ref: 'squatReps', onChange: function onChange() {
-	                                    return _this2.squatChanged();
-	                                }, label: 'times', value: this.props.squatReps })
-	                        )
-	                    ), React.createElement(
-	                        'div',
-	                        { className: 'row', key: '1'
-	                        },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
-	                                    return _this2.back();
-	                                },
-	                                disabled: false }),
-	                            React.createElement(_button2.default, { ref: 'benchNext', buttonText: 'Continue', onClick: function onClick() {
-	                                    return _this2.squatSubmitted();
-	                                },
-	                                disabled: this.state.squatNextDisabled })
-	                        )
-	                    )] : null
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Fitness;
-	}(React.Component);
-	
-	exports.default = Fitness;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
-
-/***/ },
-/* 252 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/jquery/dist/jquery.js ***!
   \***************************************************************/
@@ -38114,7 +37142,1229 @@
 
 
 /***/ },
+/* 240 */
+/*!******************************!*\
+  !*** ./global_dispatcher.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var util = __webpack_require__(/*! helpers/util.js */ 241);
+	
+	var Dispatcher = function () {
+	    this.callbacks = {};
+	};
+	
+	Dispatcher.prototype = {
+	    __add: function (name, fn) {
+	        if (hasOwn.call(this.callbacks, name)) this.callbacks[name].push(fn);else this.callbacks[name] = [fn];
+	    },
+	    __invoke: function (name, payload, clone) {
+	        // default to cloningt the payload
+	        if (clone === undefined) {
+	            clone = true;
+	        }
+	
+	        if (!hasOwn.call(this.callbacks, name)) {
+	            if (this.logging) {
+	                console.warn("DISPATCHER: \"" + name + "\" dispatched but there are no registered callbacks.");
+	            }
+	            return;
+	        }
+	
+	        var group = this.callbacks[name];
+	        // clone object payload incase its mutated by a store
+	        if (payload && clone) {
+	            payload = JSON.parse(JSON.stringify(payload));
+	        }
+	
+	        for (var i = 0; i < group.length; i++) {
+	            // clone object payload incase its mutated by a store
+	            group[i].apply(this, [payload]);
+	        }
+	    },
+	    register: function (actionType, fn) {
+	        if (util.empty(actionType)) throw Error("Invalid action type.");
+	
+	        this.__add(actionType, fn);
+	        return this;
+	    },
+	    dispatch: function (action /*, payload, clone */) {
+	        var actionType,
+	            payload,
+	            clone = arguments[2];
+	
+	        if (util.isString(action)) {
+	            actionType = action;
+	            payload = arguments[1];
+	        } else if (action && hasOwn.call(action, "actionType") && !util.empty(action.actionType)) {
+	            actionType = action.actionType;
+	            if (hasOwn.call(action, "payload")) payload = action.payload;
+	        } else {
+	            if (this.logging) {
+	                console.warn("DISPATCHER: \"" + JSON.stringify(action) + "\" is invalid to dispatch. Did you specify an `actionType`?.");
+	            }
+	            return;
+	        }
+	
+	        this.__invoke(actionType, payload, clone);
+	        return this;
+	    }
+	};
+	
+	
+	var hasOwn = Object.prototype.hasOwnProperty;
+	
+	module.exports = new Dispatcher();
+
+/***/ },
+/* 241 */
+/*!*************************!*\
+  !*** ./helpers/util.js ***!
+  \*************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var util = {
+	    timeAgo: function (timeString, diffOnly) {
+	        var time = new Date(timeString);
+	        var units = [{ name: "second", limit: 60, in_seconds: 1 }, { name: "minute", limit: 3600, in_seconds: 60 }, { name: "hour", limit: 86400, in_seconds: 3600 }, { name: "day", limit: 604800, in_seconds: 86400 }, { name: "week", limit: 2629743, in_seconds: 604800 }, { name: "month", limit: 31556926, in_seconds: 2629743 }, { name: "year", limit: null, in_seconds: 31556926 }];
+	
+	        var diff = (new Date() - time) / 1000;
+	        if (diffOnly) {
+	            return diff;
+	        }
+	        if (diff < 5) return "a few seconds";
+	
+	        var i = 0,
+	            unit;
+	
+	        while (unit = units[i++]) {
+	            if (diff < unit.limit || !unit.limit) {
+	                diff = Math.floor(diff / unit.in_seconds);
+	                return diff + " " + unit.name + (diff > 1 ? "s" : "");
+	            }
+	        }
+	    },
+	    getParameterByName: function (name) {
+	        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	            results = regex.exec(location.search);
+	        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	    },
+	    isString: function (obj) {
+	        return typeof obj === "string";
+	    },
+	    empty: function (str) {
+	        return !(str && util.isString(str) && str.length > 0);
+	    },
+	    notEmpty: function (str) {
+	        return !util.empty(str);
+	    },
+	    isXss: function (str) {
+	        return /j\s*?a\s*?v\s*?a\s*?s\s*?c\s*?r\s*?i\s*?p\s*?t\s*?\:|<script/ig.test(str);
+	    },
+	    setCookie: function (name, value, days) {
+	        var expires;
+	        if (days) {
+	            var date = new Date();
+	            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+	            expires = "; expires=" + date.toGMTString();
+	        } else {
+	            expires = "";
+	        }
+	        document.cookie = name + "=" + value + expires + "; path=/";
+	    },
+	    getCookie: function (c_name) {
+	        if (document.cookie.length > 0) {
+	            var c_start = document.cookie.indexOf(c_name + "=");
+	            if (c_start != -1) {
+	                c_start = c_start + c_name.length + 1;
+	                var c_end = document.cookie.indexOf(";", c_start);
+	                if (c_end == -1) {
+	                    c_end = document.cookie.length;
+	                }
+	                return window.unescape(document.cookie.substring(c_start, c_end));
+	            }
+	        }
+	        return "";
+	    },
+	    // TODO: add browser support check
+	    historyPushState: function (url, state) {
+	        window.history.pushState(state, document.title, url);
+	    },
+	    historyReplaceState: function (url, state) {
+	        window.history.replaceState(state, document.title, url);
+	    },
+	
+	    getPasswordStrength: function (pwd) {
+	        var score = 0;
+	
+	        if (pwd.length > 6) score++;
+	
+	        if (pwd.match(/[a-z]/) && pwd.match(/[A-Z]/)) score++;
+	
+	        if (pwd.match(/\d+/)) score++;
+	
+	        if (pwd.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)) score++;
+	
+	        if (pwd.length > 12) score++;
+	
+	        return score;
+	    }
+	};
+	
+	module.exports = util;
+
+/***/ },
+/* 242 */
+/*!***************************************************!*\
+  !*** ./constants/fitness_assessment_constants.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 243);
+	
+	module.exports = keyMirror({
+	    QUADS: null, // which quads the user chose
+	    GOAL: null, // the goal the user chose
+	    LEAN: null, // module enum
+	    RIP: null, // module enum
+	    MASS: null, // module enum
+	    USER_WEIGHT: null,
+	    BENCH: null,
+	    PULLUPS: null,
+	    PUSHUPS: null,
+	    ASSISTED_PUSHUPS: null,
+	    SQUAT: null,
+	    RESET: null
+	});
+
+/***/ },
+/* 243 */
+/*!******************************!*\
+  !*** ./helpers/KeyMirror.js ***!
+  \******************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var keyMirror = function (obj) {
+	    for (var k in obj) {
+	        if (!obj.hasOwnProperty(k)) continue;
+	
+	        if (obj[k] === null) obj[k] = k;else if (typeof obj[k] === "object") obj[k] = keyMirror(obj[k]);
+	    }
+	    return obj;
+	};
+	module.exports = keyMirror;
+
+/***/ },
+/* 244 */
+/*!*************************************!*\
+  !*** ./constants/user_constants.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 243);
+	
+	module.exports = keyMirror({
+	    LOADED: null
+	});
+
+/***/ },
+/* 245 */
+/*!***************************************!*\
+  !*** ../styles/views/setup/goal.scss ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./goal.scss */ 246);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./goal.scss", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./goal.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 246 */
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/goal.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 232)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 247 */
+/*!*******************************!*\
+  !*** ./views/setup/quads.jsx ***!
+  \*******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 248);
+	
+	var _circle_check2 = _interopRequireDefault(_circle_check);
+	
+	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 238);
+	
+	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! views/setup/quads.scss */ 251);
+	
+	var Quads = function (_React$Component) {
+	    _inherits(Quads, _React$Component);
+	
+	    function Quads(props) {
+	        _classCallCheck(this, Quads);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Quads).call(this, props));
+	
+	        _this.state = {
+	            valid: true
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Quads, [{
+	        key: 'submit',
+	        value: function submit() {
+	            if (!this.state.formSubmitted) {
+	                this.state.formSubmitted = true;
+	                var strength = this.refs.strength.getValue();
+	                var plyos = this.refs.plyo.getValue();
+	                var sprinting = this.refs.sprinting.getValue();
+	                var valid = strength || plyos || sprinting;
+	                if (valid) {
+	                    _fitness_assessment_actions2.default.setQuads({
+	                        strength: strength,
+	                        plyos: plyos,
+	                        sprinting: sprinting,
+	                        stretching: true
+	                    });
+	                    this.props.next("QUADS");
+	                } else {
+	                    this.setState({ valid: false, formSubmitted: false });
+	                }
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            return React.createElement(
+	                'div',
+	                { className: 'quads' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'container' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-6 col-xs-offset-4' },
+	                                React.createElement(
+	                                    'h1',
+	                                    { className: 'purple' },
+	                                    'Let\'s Get Started'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-6 col-xs-offset-4 header-text' },
+	                                'Which of the Quads of the Quadfit program would you like to add to your program? (Stretching will be added automatically)'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { ref: 'strength', id: 'strength', label: 'Strength Training' })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { ref: 'plyo', id: 'plyo', label: 'Plyometrics' })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { ref: 'sprinting', id: 'sprinting', label: 'Sprinting' })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { id: 'stretching', label: 'Stretching (Default)', disabled: true })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                this.state.valid == false ? React.createElement(
+	                                    'span',
+	                                    null,
+	                                    'You must choose at least one Quad.'
+	                                ) : null,
+	                                React.createElement(
+	                                    'span',
+	                                    { onClick: function onClick() {
+	                                            return _this2.submit();
+	                                        }, className: 'continue-button purple-text' },
+	                                    'Continue'
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Quads;
+	}(React.Component);
+	
+	exports.default = Quads;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 248 */
+/*!***************************************!*\
+  !*** ./views/common/circle_check.jsx ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/circle_check.scss */ 249);
+	
+	var CircleCheck = function (_React$Component) {
+	    _inherits(CircleCheck, _React$Component);
+	
+	    function CircleCheck(props) {
+	        _classCallCheck(this, CircleCheck);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(CircleCheck).call(this, props));
+	    }
+	
+	    _createClass(CircleCheck, [{
+	        key: 'getValue',
+	        value: function getValue() {
+	            return this.refs.check.checked;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'span',
+	                { className: 'circle-check' },
+	                _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id, checked: this.props.disabled }),
+	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'label-text' },
+	                    this.props.label
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return CircleCheck;
+	}(_react2.default.Component);
+	
+	exports.default = CircleCheck;
+
+/***/ },
+/* 249 */
+/*!******************************************!*\
+  !*** ../styles/common/circle_check.scss ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./circle_check.scss */ 250);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 250 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/circle_check.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 251 */
+/*!****************************************!*\
+  !*** ../styles/views/setup/quads.scss ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./quads.scss */ 252);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./quads.scss", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./quads.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 252 */
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/quads.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 232)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
 /* 253 */
+/*!*********************************!*\
+  !*** ./views/setup/fitness.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 238);
+	
+	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
+	
+	var _simple_input = __webpack_require__(/*! views/common/simple_input */ 254);
+	
+	var _simple_input2 = _interopRequireDefault(_simple_input);
+	
+	var _button = __webpack_require__(/*! views/common/button */ 257);
+	
+	var _button2 = _interopRequireDefault(_button);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! views/setup/fitness.scss */ 260);
+	
+	var Fitness = function (_React$Component) {
+	    _inherits(Fitness, _React$Component);
+	
+	    function Fitness(props) {
+	        _classCallCheck(this, Fitness);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Fitness).call(this, props));
+	
+	        _this.state = {
+	            step: 1,
+	            userWeightNextDisabled: true,
+	            benchNextDisabled: false,
+	            squatNextDisabled: false,
+	            pushupsNextDisabled: false,
+	            assistedNextDisabled: true,
+	            pullupsNextDisabled: false
+	        };
+	        _this.stepStack = [1];
+	        return _this;
+	    }
+	
+	    _createClass(Fitness, [{
+	        key: 'changeStep',
+	        value: function changeStep(step) {
+	            this.stepStack.push(step);
+	            this.setState({ step: step });
+	        }
+	    }, {
+	        key: 'back',
+	        value: function back() {
+	            this.stepStack.pop();
+	            var step = this.stepStack[this.stepStack.length - 1];
+	            this.setState({ step: step });
+	        }
+	    }, {
+	        key: 'userWeightChanged',
+	        value: function userWeightChanged() {
+	            this.setState({
+	                userWeightNextDisabled: this.refs.userWeight.getValue().length <= 1
+	            });
+	        }
+	    }, {
+	        key: 'userWeightSubmitted',
+	        value: function userWeightSubmitted() {
+	            _fitness_assessment_actions2.default.setUserWeight(this.refs.userWeight.getValue());
+	            this.changeStep(2);
+	        }
+	    }, {
+	        key: 'benchChanged',
+	        value: function benchChanged() {
+	            this.setState({
+	                benchNextDisabled: this.refs.benchWeight.getValue().length == 0 || this.refs.benchReps.getValue().length == 0
+	            });
+	        }
+	    }, {
+	        key: 'benchSubmitted',
+	        value: function benchSubmitted() {
+	            var benchWeight = this.refs.benchWeight.getValue();
+	            var benchReps = this.refs.benchReps.getValue();
+	            if (benchWeight && benchReps) {
+	                _fitness_assessment_actions2.default.setBench(benchWeight, benchReps);
+	                this.changeStep(5);
+	            } else {
+	                this.changeStep(3);
+	            }
+	        }
+	    }, {
+	        key: 'squatChanged',
+	        value: function squatChanged() {
+	            this.setState({
+	                squatNextDisabled: this.refs.squatWeight.getValue().length == 0 || this.refs.squatReps.getValue().length == 0
+	            });
+	        }
+	    }, {
+	        key: 'squatSubmitted',
+	        value: function squatSubmitted() {
+	            _fitness_assessment_actions2.default.setSquat(this.refs.squatWeight.getValue(), this.refs.squatReps.getValue());
+	        }
+	    }, {
+	        key: 'pushupsChanged',
+	        value: function pushupsChanged() {
+	            this.setState({
+	                pushupsNextDisabled: this.refs.pushups.getValue().length == 0
+	            });
+	        }
+	    }, {
+	        key: 'pushupsSubmitted',
+	        value: function pushupsSubmitted() {
+	            _fitness_assessment_actions2.default.setPushUps(this.refs.pushups.getValue());
+	            this.changeStep(5);
+	        }
+	    }, {
+	        key: 'assistedChanged',
+	        value: function assistedChanged() {
+	            this.setState({
+	                assistedNextDisabled: this.refs.assisted.getValue().length == 0
+	            });
+	        }
+	    }, {
+	        key: 'assistedSubmitted',
+	        value: function assistedSubmitted() {
+	            _fitness_assessment_actions2.default.setAssistedPushUps(this.refs.assisted.getValue());
+	            this.changeStep(5);
+	        }
+	    }, {
+	        key: 'pullupsChanged',
+	        value: function pullupsChanged() {
+	            this.setState({
+	                pushupsNextDisabled: this.refs.pullups.getValue().length == 0
+	            });
+	        }
+	    }, {
+	        key: 'pullupsSubmitted',
+	        value: function pullupsSubmitted() {
+	            _fitness_assessment_actions2.default.setPullUps(this.refs.pullups.getValue());
+	            this.changeStep(6);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            return React.createElement(
+	                'div',
+	                { className: 'row fitness' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    this.state.step == 1 ? [React.createElement(
+	                        'div',
+	                        { className: 'row', key: '0'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How much do you weigh?'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'userWeight', onChange: function onChange() {
+	                                    return _this2.userWeightChanged();
+	                                }, label: 'lbs.', value: this.props.userWeight })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '1'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                            React.createElement(_button2.default, { ref: 'userWeightNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.userWeightSubmitted();
+	                                },
+	                                disabled: this.state.userWeightNextDisabled })
+	                        )
+	                    )] : null,
+	                    this.state.step == 2 ? [React.createElement(
+	                        'div',
+	                        { className: 'row', key: '0'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How much can you bench press?'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'benchWeight', onChange: function onChange() {
+	                                    return _this2.benchChanged();
+	                                }, label: 'lbs.', value: this.props.benchWeight }),
+	                            React.createElement(_simple_input2.default, { ref: 'benchReps', onChange: function onChange() {
+	                                    return _this2.benchChanged();
+	                                }, label: 'times', value: this.props.benchReps })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '1'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
+	                                    return _this2.back();
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { ref: 'benchNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.benchSubmitted();
+	                                },
+	                                disabled: this.state.benchNextDisabled })
+	                        )
+	                    )] : null,
+	                    this.state.step == 3 ? [React.createElement(
+	                        'div',
+	                        { className: 'row', key: '0'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How many push ups can you do?'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'pushups', onChange: function onChange() {
+	                                    return _this2.pushupsChanged();
+	                                }, label: '', value: this.props.pushups })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '1'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
+	                                    return _this2.back();
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { buttonText: 'I can\'t do any', onClick: function onClick() {
+	                                    return _this2.changeStep(4);
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { ref: 'pushupsNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.pushupsSubmitted();
+	                                },
+	                                disabled: this.state.pushupsNextDisabled })
+	                        )
+	                    )] : null,
+	                    this.state.step == 4 ? [React.createElement(
+	                        'div',
+	                        { className: 'row', key: '0'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How many assisted push ups can you do?'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'assisted', onChange: function onChange() {
+	                                    return _this2.assistedChanged();
+	                                }, label: '', value: this.props.assistedPushups })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '1'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
+	                                    return _this2.back();
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { ref: 'assistedNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.assistedSubmitted();
+	                                },
+	                                disabled: this.state.assistedNextDisabled })
+	                        )
+	                    )] : null,
+	                    this.state.step == 5 ? [React.createElement(
+	                        'div',
+	                        { className: 'row', key: '0'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How many pull ups can you do?'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'pullups', onChange: function onChange() {
+	                                    return _this2.pullupsChanged();
+	                                }, label: '', value: this.props.pullups })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '1'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
+	                                    return _this2.back();
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { buttonText: 'I can\'t do any', onClick: function onClick() {
+	                                    return _this2.changeStep(6);
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { ref: 'pullupsNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.pullupsSubmitted();
+	                                },
+	                                disabled: this.state.pullupsNextDisabled })
+	                        )
+	                    )] : null,
+	                    this.state.step == 6 ? [React.createElement(
+	                        'div',
+	                        { className: 'row', key: '0'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How much can you squat?'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'squatWeight', onChange: function onChange() {
+	                                    return _this2.squatChanged();
+	                                }, label: 'lbs.', value: this.props.squatWeight }),
+	                            React.createElement(_simple_input2.default, { ref: 'squatReps', onChange: function onChange() {
+	                                    return _this2.squatChanged();
+	                                }, label: 'times', value: this.props.squatReps })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '1'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
+	                                    return _this2.back();
+	                                },
+	                                disabled: false }),
+	                            React.createElement(_button2.default, { ref: 'benchNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.squatSubmitted();
+	                                },
+	                                disabled: this.state.squatNextDisabled })
+	                        )
+	                    )] : null
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Fitness;
+	}(React.Component);
+	
+	exports.default = Fitness;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 254 */
+/*!***************************************!*\
+  !*** ./views/common/simple_input.jsx ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/simple_input.scss */ 255);
+	
+	var SimpleInput = function (_React$Component) {
+	    _inherits(SimpleInput, _React$Component);
+	
+	    function SimpleInput(props) {
+	        _classCallCheck(this, SimpleInput);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SimpleInput).call(this, props));
+	    }
+	
+	    _createClass(SimpleInput, [{
+	        key: 'getValue',
+	        value: function getValue() {
+	            return this.refs.inputField.value.trim();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'span',
+	                { ref: 'simpleInput', className: 'simpleInput' },
+	                _react2.default.createElement('input', { ref: 'inputField', type: this.props.type, className: 'transparent-input standard-text',
+	                    name: '' + this.props.name, onChange: this.props.onChange, value: this.props.value }),
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'inputLabel' },
+	                    this.props.label
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return SimpleInput;
+	}(_react2.default.Component);
+	
+	exports.default = SimpleInput;
+
+/***/ },
+/* 255 */
+/*!******************************************!*\
+  !*** ../styles/common/simple_input.scss ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./simple_input.scss */ 256);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./simple_input.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./simple_input.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 256 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/simple_input.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 257 */
+/*!*********************************!*\
+  !*** ./views/common/button.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/button.scss */ 258);
+	
+	var Button = function (_React$Component) {
+	    _inherits(Button, _React$Component);
+	
+	    function Button(props) {
+	        _classCallCheck(this, Button);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Button).call(this, props));
+	    }
+	
+	    _createClass(Button, [{
+	        key: 'isDisabled',
+	        value: function isDisabled() {}
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'button',
+	                { ref: 'button', disabled: this.props.disabled, type: 'submit',
+	                    className: 'btn btn-default qfButton', onClick: this.props.onClick },
+	                this.props.buttonText
+	            );
+	        }
+	    }]);
+	
+	    return Button;
+	}(_react2.default.Component);
+	
+	exports.default = Button;
+
+/***/ },
+/* 258 */
+/*!************************************!*\
+  !*** ../styles/common/button.scss ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./button.scss */ 259);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./button.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./button.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 259 */
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/button.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 260 */
 /*!******************************************!*\
   !*** ../styles/views/setup/fitness.scss ***!
   \******************************************/
@@ -38123,7 +38373,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./fitness.scss */ 254);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./fitness.scss */ 261);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -38143,7 +38393,7 @@
 	}
 
 /***/ },
-/* 254 */
+/* 261 */
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/fitness.scss ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -38160,7 +38410,7 @@
 
 
 /***/ },
-/* 255 */
+/* 262 */
 /*!**********************************!*\
   !*** ./views/setup/schedule.jsx ***!
   \**********************************/
@@ -38182,7 +38432,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/setup/schedule.scss */ 256);
+	__webpack_require__(/*! views/setup/schedule.scss */ 263);
 	
 	var Schedule = function (_React$Component) {
 	    _inherits(Schedule, _React$Component);
@@ -38207,7 +38457,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 256 */
+/* 263 */
 /*!*******************************************!*\
   !*** ../styles/views/setup/schedule.scss ***!
   \*******************************************/
@@ -38216,7 +38466,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./schedule.scss */ 257);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./schedule.scss */ 264);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -38236,7 +38486,7 @@
 	}
 
 /***/ },
-/* 257 */
+/* 264 */
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/schedule.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -38253,7 +38503,7 @@
 
 
 /***/ },
-/* 258 */
+/* 265 */
 /*!*********************************!*\
   !*** ./views/setup/program.jsx ***!
   \*********************************/
@@ -38298,7 +38548,184 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 259 */
+/* 266 */
+/*!************************************!*\
+  !*** ./views/setup/commitment.jsx ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	var _simple_input = __webpack_require__(/*! views/common/simple_input */ 254);
+	
+	var _simple_input2 = _interopRequireDefault(_simple_input);
+	
+	var _button = __webpack_require__(/*! views/common/button */ 257);
+	
+	var _button2 = _interopRequireDefault(_button);
+	
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 351);
+	
+	var _program_actions2 = _interopRequireDefault(_program_actions);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! views/setup/commitment.scss */ 267);
+	
+	var Commitment = function (_React$Component) {
+	    _inherits(Commitment, _React$Component);
+	
+	    function Commitment(props) {
+	        _classCallCheck(this, Commitment);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Commitment).call(this, props));
+	
+	        _this.state = {
+	            commitmentNextDisabled: true
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Commitment, [{
+	        key: 'inputChanged',
+	        value: function inputChanged() {
+	            var disabled = this.refs.frequency.getValue().length == 0 || this.refs.length.getValue().length == 0;
+	            this.setState({ commitmentNextDisabled: disabled });
+	        }
+	    }, {
+	        key: 'commitmentSubmitted',
+	        value: function commitmentSubmitted() {
+	            _program_actions2.default.setCommitment({ days: this.refs.frequency.getValue(), minutes: this.refs.length.getValue() });
+	            this.next('COMMITMENT');
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            return React.createElement(
+	                'div',
+	                { className: 'row commitment' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How many days per week can you exercise? The more you work, the easier it\'ll be to reach your goals!'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'frequency', onChange: function onChange() {
+	                                    return _this2.inputChanged();
+	                                }, label: '', value: this.props.program.days })
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'question' },
+	                                'How much time do you have to exercise per day?'
+	                            ),
+	                            React.createElement(_simple_input2.default, { ref: 'length', onChange: function onChange() {
+	                                    return _this2.inputChanged();
+	                                }, label: 'minutes', value: this.props.program.minutes })
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                            React.createElement(_button2.default, { ref: 'commitmentNext', buttonText: 'Continue', onClick: function onClick() {
+	                                    return _this2.commitmentSubmitted();
+	                                },
+	                                disabled: this.state.commitmentNextDisabled })
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Commitment;
+	}(React.Component);
+	
+	exports.default = Commitment;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 267 */
+/*!*********************************************!*\
+  !*** ../styles/views/setup/commitment.scss ***!
+  \*********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./commitment.scss */ 268);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./commitment.scss", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./commitment.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 268 */
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/commitment.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 232)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 269 */
 /*!******************************!*\
   !*** ./stores/user_store.js ***!
   \******************************/
@@ -38306,9 +38733,9 @@
 
 	"use strict";
 	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 239);
-	var Store = __webpack_require__(/*! ./store.js */ 260);
-	var C = __webpack_require__(/*! constants/user_constants.js */ 262);
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
+	var Store = __webpack_require__(/*! ./store.js */ 270);
+	var C = __webpack_require__(/*! constants/user_constants.js */ 244);
 	
 	var UserStore = new Store({
 	    user: {},
@@ -38335,7 +38762,7 @@
 	module.exports = UserStore;
 
 /***/ },
-/* 260 */
+/* 270 */
 /*!*************************!*\
   !*** ./stores/store.js ***!
   \*************************/
@@ -38344,7 +38771,7 @@
 	"use strict";
 	
 	var assign = __webpack_require__(/*! object-assign */ 4);
-	var EventEmitter = __webpack_require__(/*! events */ 261).EventEmitter;
+	var EventEmitter = __webpack_require__(/*! events */ 271).EventEmitter;
 	
 	var Store = function (extend) {
 	    if (extend) {
@@ -38367,7 +38794,7 @@
 	module.exports = Store;
 
 /***/ },
-/* 261 */
+/* 271 */
 /*!**********************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/events/events.js ***!
   \**********************************************************/
@@ -38674,22 +39101,7 @@
 
 
 /***/ },
-/* 262 */
-/*!*************************************!*\
-  !*** ./constants/user_constants.js ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 242);
-	
-	module.exports = keyMirror({
-	    LOADED: null
-	});
-
-/***/ },
-/* 263 */
+/* 272 */
 /*!********************************************!*\
   !*** ./stores/fitness_assessment_store.js ***!
   \********************************************/
@@ -38697,9 +39109,9 @@
 
 	"use strict";
 	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 239);
-	var Store = __webpack_require__(/*! ./store.js */ 260);
-	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 241);
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
+	var Store = __webpack_require__(/*! ./store.js */ 270);
+	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 242);
 	
 	var FitnessAssessmentStore = new Store({
 	    quads: {}, //array of key/values for each quad
@@ -38834,7 +39246,7 @@
 	module.exports = FitnessAssessmentStore;
 
 /***/ },
-/* 264 */
+/* 273 */
 /*!*********************************!*\
   !*** ./actions/user_actions.js ***!
   \*********************************/
@@ -38842,8 +39254,8 @@
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 239);
-	var C = __webpack_require__(/*! constants/user_constants.js */ 262);
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
+	var C = __webpack_require__(/*! constants/user_constants.js */ 244);
 	
 	var UserActions = {
 	
@@ -38865,10 +39277,10 @@
 	};
 	
 	module.exports = UserActions;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 252)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 239)))
 
 /***/ },
-/* 265 */
+/* 274 */
 /*!**********************************!*\
   !*** ../styles/pages/setup.scss ***!
   \**********************************/
@@ -38877,7 +39289,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./setup.scss */ 266);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./setup.scss */ 275);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -38897,7 +39309,7 @@
 	}
 
 /***/ },
-/* 266 */
+/* 275 */
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/setup.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -38914,15 +39326,6 @@
 
 
 /***/ },
-/* 267 */,
-/* 268 */,
-/* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */,
-/* 273 */,
-/* 274 */,
-/* 275 */,
 /* 276 */,
 /* 277 */,
 /* 278 */,
@@ -38989,223 +39392,89 @@
 /* 339 */,
 /* 340 */,
 /* 341 */,
-/* 342 */
-/*!***************************************!*\
-  !*** ./views/common/simple_input.jsx ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 94);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	__webpack_require__(/*! common/simple_input.scss */ 343);
-	
-	var SimpleInput = function (_React$Component) {
-	    _inherits(SimpleInput, _React$Component);
-	
-	    function SimpleInput(props) {
-	        _classCallCheck(this, SimpleInput);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SimpleInput).call(this, props));
-	    }
-	
-	    _createClass(SimpleInput, [{
-	        key: 'getValue',
-	        value: function getValue() {
-	            return this.refs.inputField.value.trim();
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'span',
-	                { ref: 'simpleInput', className: 'simpleInput' },
-	                _react2.default.createElement('input', { ref: 'inputField', type: this.props.type, className: 'transparent-input standard-text',
-	                    name: '' + this.props.name, onChange: this.props.onChange, value: this.props.value }),
-	                _react2.default.createElement(
-	                    'span',
-	                    { className: 'inputLabel' },
-	                    this.props.label
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return SimpleInput;
-	}(_react2.default.Component);
-	
-	exports.default = SimpleInput;
-
-/***/ },
-/* 343 */
-/*!******************************************!*\
-  !*** ../styles/common/simple_input.scss ***!
-  \******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./simple_input.scss */ 344);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./simple_input.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./simple_input.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 344 */
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/simple_input.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 345 */
-/*!*********************************!*\
-  !*** ./views/common/button.jsx ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 94);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	__webpack_require__(/*! common/button.scss */ 346);
-	
-	var Button = function (_React$Component) {
-	    _inherits(Button, _React$Component);
-	
-	    function Button(props) {
-	        _classCallCheck(this, Button);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Button).call(this, props));
-	    }
-	
-	    _createClass(Button, [{
-	        key: 'isDisabled',
-	        value: function isDisabled() {}
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'button',
-	                { ref: 'button', disabled: this.props.disabled, type: 'submit',
-	                    className: 'btn btn-default qfButton', onClick: this.props.onClick },
-	                this.props.buttonText
-	            );
-	        }
-	    }]);
-	
-	    return Button;
-	}(_react2.default.Component);
-	
-	exports.default = Button;
-
-/***/ },
-/* 346 */
+/* 342 */,
+/* 343 */,
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */,
+/* 348 */,
+/* 349 */,
+/* 350 */,
+/* 351 */
 /*!************************************!*\
-  !*** ../styles/common/button.scss ***!
+  !*** ./actions/program_actions.js ***!
   \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
+	"use strict";
 	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./button.scss */ 347);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./button.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./button.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
+	var C = __webpack_require__(/*! constants/program_constants.js */ 352);
+	
+	var ProgramActions = {
+	
+	    setCommitment: function (data) {
+	        dispatcher.dispatch(C.COMMITMENT, data);
+	    }
+	
+	};
+	
+	module.exports = ProgramActions;
 
 /***/ },
-/* 347 */
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/button.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/* 352 */
+/*!****************************************!*\
+  !*** ./constants/program_constants.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
-	// imports
+	"use strict";
 	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 243);
 	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
+	module.exports = keyMirror({
+	    COMMITMENT: null,
+	    PROGRAM: null,
+	    SCHEDULE: null
+	});
 
+/***/ },
+/* 353 */
+/*!*********************************!*\
+  !*** ./stores/program_store.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
+	var Store = __webpack_require__(/*! ./store.js */ 270);
+	var C = __webpack_require__(/*! constants/program_constants.js */ 352);
+	
+	var ProgramStore = new Store({
+	    days: undefined,
+	    minutes: undefined,
+	
+	    setCommitment: function (commitment) {
+	        this.days = commitment.days;
+	        this.minutes = commitment.minutes;
+	    },
+	
+	    getData: function () {
+	        return {
+	            days: this.days,
+	            minutes: this.minutes
+	        };
+	    }
+	});
+	
+	dispatcher.register(C.COMMITMENT, function (data) {
+	    ProgramStore.setCommitment(data);
+	    ProgramStore.change();
+	});
+	
+	module.exports = ProgramStore;
 
 /***/ }
 /******/ ]);

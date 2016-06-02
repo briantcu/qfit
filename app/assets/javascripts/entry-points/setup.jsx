@@ -8,9 +8,11 @@ import Quads from 'views/setup/quads';
 import Fitness from 'views/setup/fitness';
 import Schedule from 'views/setup/schedule';
 import Program from 'views/setup/program';
+import Commitment from 'views/setup/commitment';
 
 import UserStore from 'stores/user_store';
 import FitnessAssessmentStore from 'stores/fitness_assessment_store';
+import ProgramStore from 'stores/program_store';
 import UserActions from 'actions/user_actions';
 import FitnessAssessmentActions from 'actions/fitness_assessment_actions';
 
@@ -23,7 +25,8 @@ class App extends React.Component {
         super(props);
         this.state = {
             user: {},
-            goal: C.MASS
+            goal: C.MASS,
+            program: {}
         };
         this.nextPage = this.nextPage.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -36,6 +39,8 @@ class App extends React.Component {
             browserHistory.push('/get-started/quads');
         } else if (childView == "QUADS") {
             browserHistory.push('/fitness');
+        } else if (childView == "COMMITMENT") {
+            browserHistory.push('/program');
         } else if (childView == "PROGRAM") {
             browserHistory.push('/schedule');
         }
@@ -43,18 +48,21 @@ class App extends React.Component {
 
     componentDidMount () {
         UserStore.addChangeListener(this.onChange);
+        ProgramStore.addChangeListener(this.onChange);
         FitnessAssessmentStore.addChangeListener(this.onChange);
         UserActions.getUser(gon.current_user_id);
     }
 
     componentWillUnmount () {
         UserStore.removeChangeListener(this.onChange);
+        ProgramStore.removeChangeListener(this.onChange);
         FitnessAssessmentStore.removeChangeListener(this.onChange);
     }
 
     onChange () {
         var data = UserStore.getData();
         var fitness = FitnessAssessmentStore.getData();
+        var program = ProgramStore.getData();
         this.setState({
             user: data.user,
             goal: fitness.goal,
@@ -66,7 +74,8 @@ class App extends React.Component {
             pullups: fitness.pullups,
             assistedPushups: fitness.assistedPushups,
             squatWeight: fitness.squatWeight,
-            squatReps: fitness.squatReps
+            squatReps: fitness.squatReps,
+            program: program
         });
         if (fitness.complete) {
             FitnessAssessmentActions.submit(this.state, this.fitnessSubmitted);
@@ -75,7 +84,7 @@ class App extends React.Component {
 
     fitnessSubmitted() {
         if (FitnessAssessmentStore.getData().quads.strength) {
-            browserHistory.push('/program');
+            browserHistory.push('/commitment');
         } else {
             browserHistory.push('/schedule');
         }
@@ -102,6 +111,7 @@ render((
                 <Route path="quads" component={Quads} />
             </Route>
             <Route path="fitness" component={Fitness} />
+            <Route path="commitment" component={Commitment} />
             <Route path="program" component={Program} />
             <Route path="schedule" component={Schedule} />
         </Route>

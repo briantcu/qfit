@@ -79,7 +79,7 @@ class Fitness extends React.Component {
 
     assistedChanged() {
         this.setState({
-            pushupsNextDisabled: this.refs.assisted.getValue().length == 0
+            assistedNextDisabled: this.refs.assisted.getValue().length == 0
         });
     }
     assistedSubmitted() {
