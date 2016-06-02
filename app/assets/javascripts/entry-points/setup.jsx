@@ -23,8 +23,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             user: {},
-            goal: C.MASS,
-            fitnessSubmitted: false
+            goal: C.MASS
         };
         this.nextPage = this.nextPage.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -69,16 +68,13 @@ class App extends React.Component {
             squatWeight: fitness.squatWeight,
             squatReps: fitness.squatReps
         });
-        if (fitness.complete && !this.state.fitnessSubmitted) {
-            this.setState({fitnessSubmitted: true});
+        if (fitness.complete) {
             FitnessAssessmentActions.submit(this.state, this.fitnessSubmitted);
         }
     }
 
     fitnessSubmitted() {
-        this.setState({fitnessSubmitted: false});
-        var weights = FitnessAssessmentStore.getData().quads.strength;
-        if (weights) {
+        if (FitnessAssessmentStore.getData().quads.strength) {
             browserHistory.push('/program');
         } else {
             browserHistory.push('/schedule');

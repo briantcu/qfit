@@ -59,6 +59,7 @@ var FitnessAssessmentActions = {
             data: payload,
             contentType: "application/json; charset=utf-8",
             success: function(user) {
+                dispatcher.dispatch(C.RESET);
                 dispatcher.dispatch(UC.LOADED, user);
                 callback();
             },

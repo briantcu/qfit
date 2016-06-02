@@ -121,8 +121,7 @@
 	
 	        _this.state = {
 	            user: {},
-	            goal: C.MASS,
-	            fitnessSubmitted: false
+	            goal: C.MASS
 	        };
 	        _this.nextPage = _this.nextPage.bind(_this);
 	        _this.onChange = _this.onChange.bind(_this);
@@ -173,17 +172,14 @@
 	                squatWeight: fitness.squatWeight,
 	                squatReps: fitness.squatReps
 	            });
-	            if (fitness.complete && !this.state.fitnessSubmitted) {
-	                this.setState({ fitnessSubmitted: true });
+	            if (fitness.complete) {
 	                _fitness_assessment_actions2.default.submit(this.state, this.fitnessSubmitted);
 	            }
 	        }
 	    }, {
 	        key: 'fitnessSubmitted',
 	        value: function fitnessSubmitted() {
-	            this.setState({ fitnessSubmitted: false });
-	            var weights = _fitness_assessment_store2.default.getData().quads.strength;
-	            if (weights) {
+	            if (_fitness_assessment_store2.default.getData().quads.strength) {
 	                _reactRouter.browserHistory.push('/program');
 	            } else {
 	                _reactRouter.browserHistory.push('/schedule');
@@ -27264,6 +27260,7 @@
 	            data: payload,
 	            contentType: "application/json; charset=utf-8",
 	            success: function (user) {
+	                dispatcher.dispatch(C.RESET);
 	                dispatcher.dispatch(UC.LOADED, user);
 	                callback();
 	            },
@@ -27476,7 +27473,8 @@
 	    PULLUPS: null,
 	    PUSHUPS: null,
 	    ASSISTED_PUSHUPS: null,
-	    SQUAT: null
+	    SQUAT: null,
+	    RESET: null
 	});
 
 /***/ },
@@ -38751,6 +38749,10 @@
 	        this.assistedPushups = count;
 	    },
 	
+	    reset: function () {
+	        this.complete = false;
+	    },
+	
 	    getData: function () {
 	        return {
 	            quads: this.quads,
@@ -38822,6 +38824,11 @@
 	        FitnessAssessmentStore.assistedPushups(data);
 	        FitnessAssessmentStore.change();
 	    }
+	});
+	
+	dispatcher.register(C.RESET, function () {
+	    FitnessAssessmentStore.reset();
+	    FitnessAssessmentStore.change();
 	});
 	
 	module.exports = FitnessAssessmentStore;

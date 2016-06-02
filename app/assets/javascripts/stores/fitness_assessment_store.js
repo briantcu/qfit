@@ -50,6 +50,10 @@ var FitnessAssessmentStore = new Store({
         this.assistedPushups = count;
     },
 
+    reset: function() {
+        this.complete = false;
+    },
+
     getData: function(){
         return {
             quads: this.quads,
@@ -121,6 +125,11 @@ dispatcher.register(C.ASSISTED_PUSHUPS, function(data) {
         FitnessAssessmentStore.assistedPushups(data);
         FitnessAssessmentStore.change();
     }
+});
+
+dispatcher.register(C.RESET, function() {
+    FitnessAssessmentStore.reset();
+    FitnessAssessmentStore.change();
 });
 
 export default FitnessAssessmentStore;
