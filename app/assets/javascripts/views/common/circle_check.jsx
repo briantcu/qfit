@@ -10,15 +10,23 @@ class CircleCheck extends React.Component {
     }
 
     getValue() {
-        return this.refs.check.checked
+        return this.refs.check.checked;
     }
 
     render () {
         return <span className="circle-check">
-                <input ref="check" type="checkbox" className="check" id={`${this.props.id}`} checked={this.props.disabled} readOnly={this.props.disabled}/>
+                <If condition={!this.props.disabled}>
+                    <input ref="check" type="checkbox" className="check" id={`${this.props.id}`}
+                           checked={this.props.checked} onChange={ this.props.change}/>
+                </If>
+                <If condition={this.props.disabled}>
+                    <input ref="check" type="checkbox" className="check" id={`${this.props.id}`}
+                           checked={this.props.checked} readOnly={true}/>
+                </If>
                 <label htmlFor={`${this.props.id}`} />
                 <span className="label-text">{this.props.label}</span>
-            </span>;
+            </span>
+
     }
 }
 export default CircleCheck;

@@ -5,6 +5,10 @@ var ProgramActions = {
 
     setCommitment: function(data) {
         dispatcher.dispatch(C.COMMITMENT, data);
+    },
+
+    setStrengthProgram: function(program) {
+        dispatcher.dispatch(C.PROGRAM , program);
     }
 
 };

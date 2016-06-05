@@ -37564,7 +37564,7 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { id: 'stretching', label: 'Stretching (Default)', disabled: true })
+	                                React.createElement(_circle_check2.default, { id: 'stretching', label: 'Stretching (Default)', disabled: true, checked: true })
 	                            )
 	                        ),
 	                        React.createElement(
@@ -37650,7 +37650,10 @@
 	            return _react2.default.createElement(
 	                'span',
 	                { className: 'circle-check' },
-	                _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id, checked: this.props.disabled, readOnly: this.props.disabled }),
+	                !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
+	                    checked: this.props.checked, onChange: this.props.change }) : null,
+	                this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
+	                    checked: this.props.checked, readOnly: true }) : null,
 	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
 	                _react2.default.createElement(
 	                    'span',
@@ -38523,6 +38526,14 @@
 	
 	var _circle_check2 = _interopRequireDefault(_circle_check);
 	
+	var _button = __webpack_require__(/*! views/common/button */ 257);
+	
+	var _button2 = _interopRequireDefault(_button);
+	
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 267);
+	
+	var _program_actions2 = _interopRequireDefault(_program_actions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38543,10 +38554,20 @@
 	            valid: true,
 	            nextDisabled: true
 	        };
+	        _this.change = _this.change.bind(_this);
 	        return _this;
 	    }
 	
 	    _createClass(Program, [{
+	        key: 'change',
+	        value: function change(elem) {
+	            var check = this.refs[elem.target.id];
+	            if (check.getValue()) {
+	                this.setState({ nextDisabled: false });
+	                _program_actions2.default.setStrengthProgram(Number(check.props.id.slice(-1)));
+	            }
+	        }
+	    }, {
 	        key: 'submit',
 	        value: function submit() {}
 	    }, {
@@ -38591,7 +38612,8 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { ref: 'strength', id: 'strength', label: '2 30 minute days per week' })
+	                                React.createElement(_circle_check2.default, { ref: 'pro1', checked: this.props.program.strengthProgram == 1, id: 'pro1',
+	                                    label: '2 30 minute days per week', change: this.change })
 	                            )
 	                        ) : null,
 	                        this.props.program.days == 3 ? React.createElement(
@@ -38600,7 +38622,8 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { ref: 'plyo', id: 'plyo', label: '3 30 minute days per week' })
+	                                React.createElement(_circle_check2.default, { ref: 'pro2', checked: this.props.program.strengthProgram == 2, id: 'pro2',
+	                                    label: '3 30 minute days per week', change: this.change })
 	                            )
 	                        ) : null,
 	                        this.props.program.days == 2 && this.props.program.long ? React.createElement(
@@ -38609,7 +38632,8 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { ref: 'sprinting', id: 'sprinting', label: '2 45 minute days per week' })
+	                                React.createElement(_circle_check2.default, { ref: 'pro3', checked: this.props.program.strengthProgram == 3, id: 'pro3', l: true,
+	                                    abel: '2 45 minute days per week', change: this.change })
 	                            )
 	                        ) : null,
 	                        this.props.program.days == 3 && this.props.program.long ? React.createElement(
@@ -38618,7 +38642,8 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { id: 'stretching', label: '2 30 minute days per week, and 1 45 minute day per week' })
+	                                React.createElement(_circle_check2.default, { ref: 'pro4', checked: this.props.program.strengthProgram == 4, id: 'pro4',
+	                                    label: '2 30 minute days per week, and 1 45 minute day per week', change: this.change })
 	                            )
 	                        ) : null,
 	                        this.props.program.days == 4 ? React.createElement(
@@ -38627,7 +38652,8 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { id: 'stretching', label: '4 30 minute days per week' })
+	                                React.createElement(_circle_check2.default, { ref: 'pro5', checked: this.props.program.strengthProgram == 5, id: 'pro5',
+	                                    label: '4 30 minute days per week', change: this.change })
 	                            )
 	                        ) : null,
 	                        this.props.program.days == 3 && this.props.program.long ? React.createElement(
@@ -38636,7 +38662,8 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { id: 'stretching', label: '3 45 minute days per week' })
+	                                React.createElement(_circle_check2.default, { ref: 'pro6', checked: this.props.program.strengthProgram == 6, id: 'pro6',
+	                                    label: '3 45 minute days per week', change: this.change })
 	                            )
 	                        ) : null,
 	                        this.props.program.days == 4 && this.props.program.long ? React.createElement(
@@ -38645,7 +38672,8 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { id: 'stretching', label: '2 30 minute days per week, and 2 45 minute days per week' })
+	                                React.createElement(_circle_check2.default, { ref: 'pro7', checked: this.props.program.strengthProgram == 7, id: 'pro7',
+	                                    label: '2 30 minute days per week, and 2 45 minute days per week', change: this.change })
 	                            )
 	                        ) : null,
 	                        this.props.program.days == 4 && this.props.program.long ? React.createElement(
@@ -38654,7 +38682,8 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { id: 'stretching', label: '4 45 minute days per week' })
+	                                React.createElement(_circle_check2.default, { ref: 'pro8', checked: this.props.program.strengthProgram == 8, id: 'pro8',
+	                                    label: '4 45 minute days per week', change: this.change })
 	                            )
 	                        ) : null,
 	                        React.createElement(
@@ -38666,9 +38695,9 @@
 	                                this.state.valid == false ? React.createElement(
 	                                    'span',
 	                                    null,
-	                                    'You must choose at least one Quad.'
+	                                    'You must choose a schedule.'
 	                                ) : null,
-	                                React.createElement(Button, { ref: 'programNext', buttonText: 'Continue', onClick: function onClick() {
+	                                React.createElement(_button2.default, { ref: 'programNext', buttonText: 'Continue', onClick: function onClick() {
 	                                        return _this2.submit();
 	                                    },
 	                                    disabled: this.state.nextDisabled })
@@ -38833,6 +38862,10 @@
 	
 	    setCommitment: function (data) {
 	        dispatcher.dispatch(C.COMMITMENT, data);
+	    },
+	
+	    setStrengthProgram: function (program) {
+	        dispatcher.dispatch(C.PROGRAM, program);
 	    }
 	
 	};
@@ -39439,22 +39472,36 @@
 	var ProgramStore = new Store({
 	    days: undefined,
 	    minutes: undefined,
+	    long: undefined,
+	    strengthProgram: undefined,
 	
 	    setCommitment: function (commitment) {
 	        this.days = commitment.days;
 	        this.long = commitment.minutes >= 45;
+	        this.minutes = commitment.minutes;
+	    },
+	
+	    setStrengthProgram: function (program) {
+	        this.strengthProgram = program;
 	    },
 	
 	    getData: function () {
 	        return {
 	            days: this.days,
-	            minutes: this.minutes
+	            minutes: this.minutes,
+	            long: this.long,
+	            strengthProgram: this.strengthProgram
 	        };
 	    }
 	});
 	
 	dispatcher.register(C.COMMITMENT, function (data) {
 	    ProgramStore.setCommitment(data);
+	    ProgramStore.change();
+	});
+	
+	dispatcher.register(C.PROGRAM, function (data) {
+	    ProgramStore.setStrengthProgram(data);
 	    ProgramStore.change();
 	});
 	
