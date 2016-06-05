@@ -8,7 +8,7 @@ var ProgramStore = new Store({
 
     setCommitment: function(commitment) {
         this.days = commitment.days;
-        this.minutes = commitment.minutes;
+        this.long = commitment.minutes >= 45;
     },
 
     getData: function(){

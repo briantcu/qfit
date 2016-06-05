@@ -87,19 +87,19 @@
 	
 	var _commitment2 = _interopRequireDefault(_commitment);
 	
-	var _user_store = __webpack_require__(/*! stores/user_store */ 269);
+	var _user_store = __webpack_require__(/*! stores/user_store */ 271);
 	
 	var _user_store2 = _interopRequireDefault(_user_store);
 	
-	var _fitness_assessment_store = __webpack_require__(/*! stores/fitness_assessment_store */ 272);
+	var _fitness_assessment_store = __webpack_require__(/*! stores/fitness_assessment_store */ 274);
 	
 	var _fitness_assessment_store2 = _interopRequireDefault(_fitness_assessment_store);
 	
-	var _program_store = __webpack_require__(/*! stores/program_store */ 353);
+	var _program_store = __webpack_require__(/*! stores/program_store */ 275);
 	
 	var _program_store2 = _interopRequireDefault(_program_store);
 	
-	var _user_actions = __webpack_require__(/*! actions/user_actions */ 273);
+	var _user_actions = __webpack_require__(/*! actions/user_actions */ 276);
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
@@ -117,7 +117,7 @@
 	
 	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 242);
 	
-	__webpack_require__(/*! pages/setup.scss */ 274);
+	__webpack_require__(/*! pages/setup.scss */ 277);
 	
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
@@ -37650,7 +37650,7 @@
 	            return _react2.default.createElement(
 	                'span',
 	                { className: 'circle-check' },
-	                _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id, checked: this.props.disabled }),
+	                _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id, checked: this.props.disabled, readOnly: this.props.disabled }),
 	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
 	                _react2.default.createElement(
 	                    'span',
@@ -38196,7 +38196,7 @@
 	                'span',
 	                { ref: 'simpleInput', className: 'simpleInput' },
 	                _react2.default.createElement('input', { ref: 'inputField', type: this.props.type, className: 'transparent-input standard-text',
-	                    name: '' + this.props.name, onChange: this.props.onChange, value: this.props.value }),
+	                    name: '' + this.props.name, onChange: this.props.onChange, defaultValue: this.props.value }),
 	                _react2.default.createElement(
 	                    'span',
 	                    { className: 'inputLabel' },
@@ -38537,10 +38537,19 @@
 	    function Program(props) {
 	        _classCallCheck(this, Program);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Program).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Program).call(this, props));
+	
+	        _this.state = {
+	            valid: true,
+	            nextDisabled: true
+	        };
+	        return _this;
 	    }
 	
 	    _createClass(Program, [{
+	        key: 'submit',
+	        value: function submit() {}
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -38563,7 +38572,7 @@
 	                                React.createElement(
 	                                    'h1',
 	                                    { className: 'purple' },
-	                                    'Let\'s Get Started'
+	                                    'Choose a Strength Training Program'
 	                                )
 	                            )
 	                        ),
@@ -38573,45 +38582,81 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-6 col-xs-offset-4 header-text' },
-	                                'Which of the Quads of the Quadfit program would you like to add to your program? (Stretching will be added automatically)'
+	                                'Help us put together your weight training program. The schedules are listed in order from easiest to most difficult. More difficult schedules will yield more explosive results. You can change your schedule at any time.'
 	                            )
 	                        ),
-	                        React.createElement(
+	                        this.props.program.days == 2 ? React.createElement(
 	                            'div',
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { ref: 'strength', id: 'strength', label: 'Strength Training' })
+	                                React.createElement(_circle_check2.default, { ref: 'strength', id: 'strength', label: '2 30 minute days per week' })
 	                            )
-	                        ),
-	                        React.createElement(
+	                        ) : null,
+	                        this.props.program.days == 3 ? React.createElement(
 	                            'div',
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { ref: 'plyo', id: 'plyo', label: 'Plyometrics' })
+	                                React.createElement(_circle_check2.default, { ref: 'plyo', id: 'plyo', label: '3 30 minute days per week' })
 	                            )
-	                        ),
-	                        React.createElement(
+	                        ) : null,
+	                        this.props.program.days == 2 && this.props.program.long ? React.createElement(
 	                            'div',
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { ref: 'sprinting', id: 'sprinting', label: 'Sprinting' })
+	                                React.createElement(_circle_check2.default, { ref: 'sprinting', id: 'sprinting', label: '2 45 minute days per week' })
 	                            )
-	                        ),
-	                        React.createElement(
+	                        ) : null,
+	                        this.props.program.days == 3 && this.props.program.long ? React.createElement(
 	                            'div',
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { id: 'stretching', label: 'Stretching (Default)', disabled: true })
+	                                React.createElement(_circle_check2.default, { id: 'stretching', label: '2 30 minute days per week, and 1 45 minute day per week' })
 	                            )
-	                        ),
+	                        ) : null,
+	                        this.props.program.days == 4 ? React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { id: 'stretching', label: '4 30 minute days per week' })
+	                            )
+	                        ) : null,
+	                        this.props.program.days == 3 && this.props.program.long ? React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { id: 'stretching', label: '3 45 minute days per week' })
+	                            )
+	                        ) : null,
+	                        this.props.program.days == 4 && this.props.program.long ? React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { id: 'stretching', label: '2 30 minute days per week, and 2 45 minute days per week' })
+	                            )
+	                        ) : null,
+	                        this.props.program.days == 4 && this.props.program.long ? React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { id: 'stretching', label: '4 45 minute days per week' })
+	                            )
+	                        ) : null,
 	                        React.createElement(
 	                            'div',
 	                            { className: 'row' },
@@ -38623,13 +38668,10 @@
 	                                    null,
 	                                    'You must choose at least one Quad.'
 	                                ) : null,
-	                                React.createElement(
-	                                    'span',
-	                                    { onClick: function onClick() {
-	                                            return _this2.submit();
-	                                        }, className: 'continue-button purple-text' },
-	                                    'Continue'
-	                                )
+	                                React.createElement(Button, { ref: 'programNext', buttonText: 'Continue', onClick: function onClick() {
+	                                        return _this2.submit();
+	                                    },
+	                                    disabled: this.state.nextDisabled })
 	                            )
 	                        )
 	                    )
@@ -38669,7 +38711,7 @@
 	
 	var _button2 = _interopRequireDefault(_button);
 	
-	var _program_actions = __webpack_require__(/*! actions/program_actions */ 351);
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 267);
 	
 	var _program_actions2 = _interopRequireDefault(_program_actions);
 	
@@ -38681,7 +38723,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/setup/commitment.scss */ 267);
+	__webpack_require__(/*! views/setup/commitment.scss */ 269);
 	
 	var Commitment = function (_React$Component) {
 	    _inherits(Commitment, _React$Component);
@@ -38777,6 +38819,45 @@
 
 /***/ },
 /* 267 */
+/*!************************************!*\
+  !*** ./actions/program_actions.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
+	var C = __webpack_require__(/*! constants/program_constants.js */ 268);
+	
+	var ProgramActions = {
+	
+	    setCommitment: function (data) {
+	        dispatcher.dispatch(C.COMMITMENT, data);
+	    }
+	
+	};
+	
+	module.exports = ProgramActions;
+
+/***/ },
+/* 268 */
+/*!****************************************!*\
+  !*** ./constants/program_constants.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 243);
+	
+	module.exports = keyMirror({
+	    COMMITMENT: null,
+	    PROGRAM: null,
+	    SCHEDULE: null
+	});
+
+/***/ },
+/* 269 */
 /*!*********************************************!*\
   !*** ../styles/views/setup/commitment.scss ***!
   \*********************************************/
@@ -38785,7 +38866,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./commitment.scss */ 268);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./commitment.scss */ 270);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -38805,7 +38886,7 @@
 	}
 
 /***/ },
-/* 268 */
+/* 270 */
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/commitment.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -38822,7 +38903,7 @@
 
 
 /***/ },
-/* 269 */
+/* 271 */
 /*!******************************!*\
   !*** ./stores/user_store.js ***!
   \******************************/
@@ -38831,7 +38912,7 @@
 	"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
-	var Store = __webpack_require__(/*! ./store.js */ 270);
+	var Store = __webpack_require__(/*! ./store.js */ 272);
 	var C = __webpack_require__(/*! constants/user_constants.js */ 244);
 	
 	var UserStore = new Store({
@@ -38859,7 +38940,7 @@
 	module.exports = UserStore;
 
 /***/ },
-/* 270 */
+/* 272 */
 /*!*************************!*\
   !*** ./stores/store.js ***!
   \*************************/
@@ -38868,7 +38949,7 @@
 	"use strict";
 	
 	var assign = __webpack_require__(/*! object-assign */ 4);
-	var EventEmitter = __webpack_require__(/*! events */ 271).EventEmitter;
+	var EventEmitter = __webpack_require__(/*! events */ 273).EventEmitter;
 	
 	var Store = function (extend) {
 	    if (extend) {
@@ -38891,7 +38972,7 @@
 	module.exports = Store;
 
 /***/ },
-/* 271 */
+/* 273 */
 /*!**********************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/events/events.js ***!
   \**********************************************************/
@@ -39198,7 +39279,7 @@
 
 
 /***/ },
-/* 272 */
+/* 274 */
 /*!********************************************!*\
   !*** ./stores/fitness_assessment_store.js ***!
   \********************************************/
@@ -39207,7 +39288,7 @@
 	"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
-	var Store = __webpack_require__(/*! ./store.js */ 270);
+	var Store = __webpack_require__(/*! ./store.js */ 272);
 	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 242);
 	
 	var FitnessAssessmentStore = new Store({
@@ -39343,7 +39424,44 @@
 	module.exports = FitnessAssessmentStore;
 
 /***/ },
-/* 273 */
+/* 275 */
+/*!*********************************!*\
+  !*** ./stores/program_store.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
+	var Store = __webpack_require__(/*! ./store.js */ 272);
+	var C = __webpack_require__(/*! constants/program_constants.js */ 268);
+	
+	var ProgramStore = new Store({
+	    days: undefined,
+	    minutes: undefined,
+	
+	    setCommitment: function (commitment) {
+	        this.days = commitment.days;
+	        this.long = commitment.minutes >= 45;
+	    },
+	
+	    getData: function () {
+	        return {
+	            days: this.days,
+	            minutes: this.minutes
+	        };
+	    }
+	});
+	
+	dispatcher.register(C.COMMITMENT, function (data) {
+	    ProgramStore.setCommitment(data);
+	    ProgramStore.change();
+	});
+	
+	module.exports = ProgramStore;
+
+/***/ },
+/* 276 */
 /*!*********************************!*\
   !*** ./actions/user_actions.js ***!
   \*********************************/
@@ -39377,7 +39495,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 239)))
 
 /***/ },
-/* 274 */
+/* 277 */
 /*!**********************************!*\
   !*** ../styles/pages/setup.scss ***!
   \**********************************/
@@ -39386,7 +39504,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./setup.scss */ 275);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./setup.scss */ 278);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -39406,7 +39524,7 @@
 	}
 
 /***/ },
-/* 275 */
+/* 278 */
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/setup.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -39421,157 +39539,6 @@
 	
 	// exports
 
-
-/***/ },
-/* 276 */,
-/* 277 */,
-/* 278 */,
-/* 279 */,
-/* 280 */,
-/* 281 */,
-/* 282 */,
-/* 283 */,
-/* 284 */,
-/* 285 */,
-/* 286 */,
-/* 287 */,
-/* 288 */,
-/* 289 */,
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */,
-/* 295 */,
-/* 296 */,
-/* 297 */,
-/* 298 */,
-/* 299 */,
-/* 300 */,
-/* 301 */,
-/* 302 */,
-/* 303 */,
-/* 304 */,
-/* 305 */,
-/* 306 */,
-/* 307 */,
-/* 308 */,
-/* 309 */,
-/* 310 */,
-/* 311 */,
-/* 312 */,
-/* 313 */,
-/* 314 */,
-/* 315 */,
-/* 316 */,
-/* 317 */,
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */,
-/* 331 */,
-/* 332 */,
-/* 333 */,
-/* 334 */,
-/* 335 */,
-/* 336 */,
-/* 337 */,
-/* 338 */,
-/* 339 */,
-/* 340 */,
-/* 341 */,
-/* 342 */,
-/* 343 */,
-/* 344 */,
-/* 345 */,
-/* 346 */,
-/* 347 */,
-/* 348 */,
-/* 349 */,
-/* 350 */,
-/* 351 */
-/*!************************************!*\
-  !*** ./actions/program_actions.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
-	var C = __webpack_require__(/*! constants/program_constants.js */ 352);
-	
-	var ProgramActions = {
-	
-	    setCommitment: function (data) {
-	        dispatcher.dispatch(C.COMMITMENT, data);
-	    }
-	
-	};
-	
-	module.exports = ProgramActions;
-
-/***/ },
-/* 352 */
-/*!****************************************!*\
-  !*** ./constants/program_constants.js ***!
-  \****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 243);
-	
-	module.exports = keyMirror({
-	    COMMITMENT: null,
-	    PROGRAM: null,
-	    SCHEDULE: null
-	});
-
-/***/ },
-/* 353 */
-/*!*********************************!*\
-  !*** ./stores/program_store.js ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
-	var Store = __webpack_require__(/*! ./store.js */ 270);
-	var C = __webpack_require__(/*! constants/program_constants.js */ 352);
-	
-	var ProgramStore = new Store({
-	    days: undefined,
-	    minutes: undefined,
-	
-	    setCommitment: function (commitment) {
-	        this.days = commitment.days;
-	        this.minutes = commitment.minutes;
-	    },
-	
-	    getData: function () {
-	        return {
-	            days: this.days,
-	            minutes: this.minutes
-	        };
-	    }
-	});
-	
-	dispatcher.register(C.COMMITMENT, function (data) {
-	    ProgramStore.setCommitment(data);
-	    ProgramStore.change();
-	});
-	
-	module.exports = ProgramStore;
 
 /***/ }
 /******/ ]);
