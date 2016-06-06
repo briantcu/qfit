@@ -23,7 +23,7 @@ class Program extends React.Component {
     }
 
     submit () {
-
+        this.props.next('PROGRAM');
     }
 
     render () {
@@ -33,6 +33,11 @@ class Program extends React.Component {
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-4">
                             <h1 className="purple">Choose a Strength Training Program</h1>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-6 col-xs-offset-4 header-text">
+                            Based on your goal, we'll be putting you on the {this.props.module} module.
                         </div>
                     </div>
                     <div className="row">

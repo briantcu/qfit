@@ -14,6 +14,7 @@ import UserStore from 'stores/user_store';
 import FitnessAssessmentStore from 'stores/fitness_assessment_store';
 import ProgramStore from 'stores/program_store';
 import UserActions from 'actions/user_actions';
+import ProgramActions from 'actions/program_actions';
 import FitnessAssessmentActions from 'actions/fitness_assessment_actions';
 
 var C = require('constants/fitness_assessment_constants.js');
@@ -42,6 +43,7 @@ class App extends React.Component {
         } else if (childView == "COMMITMENT") {
             browserHistory.push('/program');
         } else if (childView == "PROGRAM") {
+            ProgramActions.getSuggestedSchedule(this.state.goal, this.state.program.strengthProgram);
             browserHistory.push('/schedule');
         }
     }
@@ -75,7 +77,9 @@ class App extends React.Component {
             assistedPushups: fitness.assistedPushups,
             squatWeight: fitness.squatWeight,
             squatReps: fitness.squatReps,
-            program: program
+            module: fitness.module,
+            program: program,
+            suggested_schedule: program.suggested_schedule
         });
         if (fitness.complete) {
             FitnessAssessmentActions.submit(this.state, this.fitnessSubmitted);

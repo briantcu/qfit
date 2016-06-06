@@ -7,6 +7,7 @@ var ProgramStore = new Store({
     minutes: undefined,
     long: undefined,
     strengthProgram: undefined,
+    suggested_schedule: {},
 
     setCommitment: function(commitment) {
         this.days = commitment.days;
@@ -18,12 +19,17 @@ var ProgramStore = new Store({
         this.strengthProgram = program;
     },
 
+    setSuggestedSchedule: function(data) {
+        this.suggested_schedule = data;
+    },
+
     getData: function(){
         return {
             days: this.days,
             minutes: this.minutes,
             long: this.long,
-            strengthProgram: this.strengthProgram
+            strengthProgram: this.strengthProgram,
+            suggested_schedule: this.suggested_schedule
         };
     }
 });
@@ -35,6 +41,11 @@ dispatcher.register(C.COMMITMENT, function(data) {
 
 dispatcher.register(C.PROGRAM, function(data) {
     ProgramStore.setStrengthProgram(data);
+    ProgramStore.change();
+});
+
+dispatcher.register(C.SUGGESTED_LOADED, function(data) {
+    ProgramStore.setSuggestedSchedule(data);
     ProgramStore.change();
 });
 

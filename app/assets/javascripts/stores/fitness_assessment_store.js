@@ -14,6 +14,7 @@ var FitnessAssessmentStore = new Store({
     squatWeight: undefined,
     squatReps: undefined,
     complete: false,
+    module: undefined,
 
     setQuads: function(quads){
         this.quads = quads;
@@ -21,6 +22,15 @@ var FitnessAssessmentStore = new Store({
 
     setGoal: function(goal) {
         this.goal = goal;
+    },
+
+    setModule: function(goal) {
+        this.module = "PowerRip";
+        if (goal == C.LEAN) {
+            this.module = "PowerLean";
+        } else if (goal == C.MASS) {
+            this.module = 'PowerMass';
+        }
     },
 
     setUserWeight: function(weight) {
@@ -66,7 +76,8 @@ var FitnessAssessmentStore = new Store({
             assistedPushups: this.assistedPushups,
             squatWeight: this.squatWeight,
             squatReps: this.squatReps,
-            complete: this.complete
+            complete: this.complete,
+            module: this.module
         };
     }
 });
@@ -81,6 +92,7 @@ dispatcher.register(C.QUADS, function(data) {
 dispatcher.register(C.GOAL, function(data) {
     if(data){
         FitnessAssessmentStore.setGoal(data);
+        FitnessAssessmentStore.setModule(data);
         FitnessAssessmentStore.change();
     }
 });

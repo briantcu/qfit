@@ -103,6 +103,10 @@
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 267);
+	
+	var _program_actions2 = _interopRequireDefault(_program_actions);
+	
 	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 238);
 	
 	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
@@ -149,6 +153,7 @@
 	            } else if (childView == "COMMITMENT") {
 	                _reactRouter.browserHistory.push('/program');
 	            } else if (childView == "PROGRAM") {
+	                _program_actions2.default.getSuggestedSchedule(this.state.goal, this.state.program.strengthProgram);
 	                _reactRouter.browserHistory.push('/schedule');
 	            }
 	        }
@@ -185,7 +190,9 @@
 	                assistedPushups: fitness.assistedPushups,
 	                squatWeight: fitness.squatWeight,
 	                squatReps: fitness.squatReps,
-	                program: program
+	                module: fitness.module,
+	                program: program,
+	                suggested_schedule: program.suggested_schedule
 	            });
 	            if (fitness.complete) {
 	                _fitness_assessment_actions2.default.submit(this.state, this.fitnessSubmitted);
@@ -38449,7 +38456,13 @@
 	    _createClass(Schedule, [{
 	        key: 'render',
 	        value: function render() {
-	            return React.createElement('div', { className: 'schedule' });
+	            return React.createElement(
+	                'div',
+	                { className: 'schedule' },
+	                this.props.suggested_schedule.num_weight_days,
+	                this.props.suggested_schedule.num_plyo_days,
+	                this.props.suggested_schedule.num_sprint_days
+	            );
 	        }
 	    }]);
 	
@@ -38569,7 +38582,9 @@
 	        }
 	    }, {
 	        key: 'submit',
-	        value: function submit() {}
+	        value: function submit() {
+	            this.props.next('PROGRAM');
+	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -38595,6 +38610,17 @@
 	                                    { className: 'purple' },
 	                                    'Choose a Strength Training Program'
 	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-6 col-xs-offset-4 header-text' },
+	                                'Based on your goal, we\'ll be putting you on the ',
+	                                this.props.module,
+	                                ' module.'
 	                            )
 	                        ),
 	                        React.createElement(
@@ -38853,7 +38879,7 @@
   \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
 	var C = __webpack_require__(/*! constants/program_constants.js */ 268);
@@ -38866,11 +38892,32 @@
 	
 	    setStrengthProgram: function (program) {
 	        dispatcher.dispatch(C.PROGRAM, program);
+	    },
+	
+	    getSuggestedSchedule: function (programType, weightSchedule) {
+	        var program = 3;
+	        if (programType == C.LEAN) {
+	            program = 1;
+	        } else if (programType == C.MASS) {
+	            program = 2;
+	        }
+	        $.ajax({
+	            type: "get",
+	            url: "/schedule/program_type/" + program + "/weight_schedule/" + weightSchedule + ".json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.SUGGESTED_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(JSON.parse(response.responseJSON));
+	            }
+	        });
 	    }
 	
 	};
 	
 	module.exports = ProgramActions;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 239)))
 
 /***/ },
 /* 268 */
@@ -38886,7 +38933,8 @@
 	module.exports = keyMirror({
 	    COMMITMENT: null,
 	    PROGRAM: null,
-	    SCHEDULE: null
+	    SCHEDULE: null,
+	    SUGGESTED_LOADED: null
 	});
 
 /***/ },
@@ -39336,6 +39384,7 @@
 	    squatWeight: undefined,
 	    squatReps: undefined,
 	    complete: false,
+	    module: undefined,
 	
 	    setQuads: function (quads) {
 	        this.quads = quads;
@@ -39343,6 +39392,15 @@
 	
 	    setGoal: function (goal) {
 	        this.goal = goal;
+	    },
+	
+	    setModule: function (goal) {
+	        this.module = "PowerRip";
+	        if (goal == C.LEAN) {
+	            this.module = "PowerLean";
+	        } else if (goal == C.MASS) {
+	            this.module = "PowerMass";
+	        }
 	    },
 	
 	    setUserWeight: function (weight) {
@@ -39388,7 +39446,8 @@
 	            assistedPushups: this.assistedPushups,
 	            squatWeight: this.squatWeight,
 	            squatReps: this.squatReps,
-	            complete: this.complete
+	            complete: this.complete,
+	            module: this.module
 	        };
 	    }
 	});
@@ -39403,6 +39462,7 @@
 	dispatcher.register(C.GOAL, function (data) {
 	    if (data) {
 	        FitnessAssessmentStore.setGoal(data);
+	        FitnessAssessmentStore.setModule(data);
 	        FitnessAssessmentStore.change();
 	    }
 	});
@@ -39474,6 +39534,7 @@
 	    minutes: undefined,
 	    long: undefined,
 	    strengthProgram: undefined,
+	    suggested_schedule: {},
 	
 	    setCommitment: function (commitment) {
 	        this.days = commitment.days;
@@ -39485,12 +39546,17 @@
 	        this.strengthProgram = program;
 	    },
 	
+	    setSuggestedSchedule: function (data) {
+	        this.suggested_schedule = data;
+	    },
+	
 	    getData: function () {
 	        return {
 	            days: this.days,
 	            minutes: this.minutes,
 	            long: this.long,
-	            strengthProgram: this.strengthProgram
+	            strengthProgram: this.strengthProgram,
+	            suggested_schedule: this.suggested_schedule
 	        };
 	    }
 	});
@@ -39502,6 +39568,11 @@
 	
 	dispatcher.register(C.PROGRAM, function (data) {
 	    ProgramStore.setStrengthProgram(data);
+	    ProgramStore.change();
+	});
+	
+	dispatcher.register(C.SUGGESTED_LOADED, function (data) {
+	    ProgramStore.setSuggestedSchedule(data);
 	    ProgramStore.change();
 	});
 	
