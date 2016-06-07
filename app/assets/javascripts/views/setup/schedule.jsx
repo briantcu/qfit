@@ -9,10 +9,31 @@ class Schedule extends React.Component {
 
     render () {
         return <div className="schedule">
-            {this.props.suggested_schedule.num_weight_days}
-            {this.props.suggested_schedule.num_plyo_days}
-            {this.props.suggested_schedule.num_sprint_days}
-
+            <div className="row">
+                <div className="container">
+                    <If condition={this.quads.strength}>
+                        <div className="row">
+                            <div className="col-xs-4 col-xs-offset-4">
+                                {this.props.suggested_schedule.num_weight_days}
+                            </div>
+                        </div>
+                    </If>
+                    <If condition={this.quads.plyos}>
+                        <div className="row">
+                            <div className="col-xs-4 col-xs-offset-4">
+                                {this.props.suggested_schedule.num_plyo_days}
+                            </div>
+                        </div>
+                    </If>
+                    <If condition={this.quads.sprinting}>
+                        <div className="row">
+                            <div className="col-xs-4 col-xs-offset-4">
+                                {this.props.suggested_schedule.num_sprint_days}
+                            </div>
+                        </div>
+                    </If>
+                </div>
+            </div>
         </div>
     }
 

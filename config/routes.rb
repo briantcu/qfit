@@ -4,9 +4,13 @@ Qfit::Application.routes.draw do
   #***************** WEBSITE ******************
   get '/sign-up', to: 'pages#sign_up'
   get '/login', to: 'pages#sign_up'
+
   get '/get-started/goal', to: 'pages#get_started'
-  get '/get-started/quads', to: 'pages#quads'
+  get '/get-started/quads', to: 'pages#get_started'
   get '/fitness', to: 'pages#get_started'
+  get '/commitment', to: 'pages#get_started'
+  get '/program', to: 'pages#get_started'
+  get '/schedule', to: 'pages#schedule'
 
 
   #****************** API *********************

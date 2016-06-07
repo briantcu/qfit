@@ -66,8 +66,8 @@ class Program extends React.Component {
                     <If condition={this.props.program.days == 2 && this.props.program.long}>
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4">
-                                <CircleCheck ref="pro3" checked={this.props.program.strengthProgram == 3}  id={'pro3'} l
-                                             abel={'2 45 minute days per week'}  change={ this.change }/>
+                                <CircleCheck ref="pro3" checked={this.props.program.strengthProgram == 3}  id={'pro3'}
+                                             label={'2 45 minute days per week'}  change={ this.change }/>
                             </div>
                         </div>
                     </If>

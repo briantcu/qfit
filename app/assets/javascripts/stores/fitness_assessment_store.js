@@ -134,7 +134,7 @@ dispatcher.register(C.PULLUPS, function(data) {
 
 dispatcher.register(C.ASSISTED_PUSHUPS, function(data) {
     if(data){
-        FitnessAssessmentStore.assistedPushups(data);
+        FitnessAssessmentStore.setAssistedPushups(data);
         FitnessAssessmentStore.change();
     }
 });

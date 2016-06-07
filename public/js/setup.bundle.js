@@ -38459,9 +38459,41 @@
 	            return React.createElement(
 	                'div',
 	                { className: 'schedule' },
-	                this.props.suggested_schedule.num_weight_days,
-	                this.props.suggested_schedule.num_plyo_days,
-	                this.props.suggested_schedule.num_sprint_days
+	                React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'container' },
+	                        this.quads.strength ? React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                this.props.suggested_schedule.num_weight_days
+	                            )
+	                        ) : null,
+	                        this.quads.plyos ? React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                this.props.suggested_schedule.num_plyo_days
+	                            )
+	                        ) : null,
+	                        this.quads.sprinting ? React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                this.props.suggested_schedule.num_sprint_days
+	                            )
+	                        ) : null
+	                    )
+	                )
 	            );
 	        }
 	    }]);
@@ -38658,8 +38690,8 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                React.createElement(_circle_check2.default, { ref: 'pro3', checked: this.props.program.strengthProgram == 3, id: 'pro3', l: true,
-	                                    abel: '2 45 minute days per week', change: this.change })
+	                                React.createElement(_circle_check2.default, { ref: 'pro3', checked: this.props.program.strengthProgram == 3, id: 'pro3',
+	                                    label: '2 45 minute days per week', change: this.change })
 	                            )
 	                        ) : null,
 	                        this.props.program.days == 3 && this.props.program.long ? React.createElement(
@@ -39504,7 +39536,7 @@
 	
 	dispatcher.register(C.ASSISTED_PUSHUPS, function (data) {
 	    if (data) {
-	        FitnessAssessmentStore.assistedPushups(data);
+	        FitnessAssessmentStore.setAssistedPushups(data);
 	        FitnessAssessmentStore.change();
 	    }
 	});
