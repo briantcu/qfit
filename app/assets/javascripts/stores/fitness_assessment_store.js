@@ -56,7 +56,7 @@ var FitnessAssessmentStore = new Store({
         this.pullups = count;
     },
 
-    setAssistedPushUps: function(count) {
+    setAssistedPushups: function(count) {
         this.assistedPushups = count;
     },
 

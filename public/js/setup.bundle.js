@@ -67,7 +67,7 @@
 	
 	var _goal2 = _interopRequireDefault(_goal);
 	
-	var _quads = __webpack_require__(/*! views/setup/quads */ 247);
+	var _quads = __webpack_require__(/*! views/setup/quads */ 250);
 	
 	var _quads2 = _interopRequireDefault(_quads);
 	
@@ -83,7 +83,7 @@
 	
 	var _program2 = _interopRequireDefault(_program);
 	
-	var _commitment = __webpack_require__(/*! views/setup/commitment */ 266);
+	var _commitment = __webpack_require__(/*! views/setup/commitment */ 268);
 	
 	var _commitment2 = _interopRequireDefault(_commitment);
 	
@@ -103,7 +103,7 @@
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
-	var _program_actions = __webpack_require__(/*! actions/program_actions */ 267);
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 266);
 	
 	var _program_actions2 = _interopRequireDefault(_program_actions);
 	
@@ -27096,6 +27096,10 @@
 	
 	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
 	
+	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 245);
+	
+	var _circle_check2 = _interopRequireDefault(_circle_check);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27106,7 +27110,8 @@
 	
 	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 242);
 	
-	__webpack_require__(/*! views/setup/goal.scss */ 245);
+	
+	__webpack_require__(/*! views/setup/goal.scss */ 248);
 	
 	var Goal = function (_React$Component) {
 	    _inherits(Goal, _React$Component);
@@ -27116,7 +27121,7 @@
 	
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Goal).call(this, props));
 	
-	        _this.onClick = _this.onClick.bind(_this);
+	        _this.change = _this.change.bind(_this);
 	        return _this;
 	    }
 	
@@ -27126,9 +27131,13 @@
 	            this.props.next("GOAL");
 	        }
 	    }, {
-	        key: 'onClick',
-	        value: function onClick(goal) {
-	            _fitness_assessment_actions2.default.setGoal(goal);
+	        key: 'change',
+	        value: function change(elem) {
+	            var check = this.refs[elem.target.id];
+	            if (check.getValue()) {
+	                this.setState({ nextDisabled: false });
+	                _fitness_assessment_actions2.default.setGoal(check.props.id);
+	            }
 	        }
 	    }, {
 	        key: 'render',
@@ -27171,19 +27180,29 @@
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
-	                                { className: 'col-xs-10 col-xs-offset-1' },
-	                                React.createElement('input', { onChange: function onChange() {
-	                                        return _this2.onClick(C.MASS);
-	                                    }, type: 'radio', name: 'goal', defaultChecked: this.props.goal == C.MASS }),
-	                                ' Add Muscle',
-	                                React.createElement('input', { onChange: function onChange() {
-	                                        return _this2.onClick(C.RIP);
-	                                    }, type: 'radio', name: 'goal', defaultChecked: this.props.goal == C.RIP }),
-	                                ' Moderate muscle gains, while lowering body fat percentage',
-	                                React.createElement('input', { onChange: function onChange() {
-	                                        return _this2.onClick(C.LEAN);
-	                                    }, type: 'radio', name: 'goal', defaultChecked: this.props.goal == C.LEAN }),
-	                                ' Lose Weight, Build Endurance'
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { checked: this.props.goal == C.MASS, id: C.MASS, ref: C.MASS,
+	                                    label: 'Add Muscle', change: this.change })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { checked: this.props.goal == C.RIP, id: C.RIP, ref: C.RIP,
+	                                    label: 'Moderate muscle gains, while lowering body fat percentage', change: this.change })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                React.createElement(_circle_check2.default, { checked: this.props.goal == C.LEAN, id: C.LEAN, ref: C.LEAN,
+	                                    label: 'Lose Weight, Build Endurance', change: this.change })
 	                            )
 	                        ),
 	                        React.createElement(
@@ -37388,6 +37407,122 @@
 /***/ },
 /* 245 */
 /*!***************************************!*\
+  !*** ./views/common/circle_check.jsx ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/circle_check.scss */ 246);
+	
+	var CircleCheck = function (_React$Component) {
+	    _inherits(CircleCheck, _React$Component);
+	
+	    function CircleCheck(props) {
+	        _classCallCheck(this, CircleCheck);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(CircleCheck).call(this, props));
+	    }
+	
+	    _createClass(CircleCheck, [{
+	        key: 'getValue',
+	        value: function getValue() {
+	            return this.refs.check.checked;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'span',
+	                { className: 'circle-check' },
+	                !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
+	                    checked: this.props.checked, onChange: this.props.change }) : null,
+	                this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
+	                    checked: this.props.checked, readOnly: true }) : null,
+	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'label-text' },
+	                    this.props.label
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return CircleCheck;
+	}(_react2.default.Component);
+	
+	exports.default = CircleCheck;
+
+/***/ },
+/* 246 */
+/*!******************************************!*\
+  !*** ../styles/common/circle_check.scss ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./circle_check.scss */ 247);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 247 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/circle_check.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 248 */
+/*!***************************************!*\
   !*** ../styles/views/setup/goal.scss ***!
   \***************************************/
 /***/ function(module, exports, __webpack_require__) {
@@ -37395,7 +37530,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./goal.scss */ 246);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./goal.scss */ 249);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -37415,7 +37550,7 @@
 	}
 
 /***/ },
-/* 246 */
+/* 249 */
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/goal.scss ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -37432,7 +37567,7 @@
 
 
 /***/ },
-/* 247 */
+/* 250 */
 /*!*******************************!*\
   !*** ./views/setup/quads.jsx ***!
   \*******************************/
@@ -37448,7 +37583,7 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 94);
 	
-	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 248);
+	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 245);
 	
 	var _circle_check2 = _interopRequireDefault(_circle_check);
 	
@@ -37605,122 +37740,6 @@
 	
 	exports.default = Quads;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
-
-/***/ },
-/* 248 */
-/*!***************************************!*\
-  !*** ./views/common/circle_check.jsx ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 94);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	__webpack_require__(/*! common/circle_check.scss */ 249);
-	
-	var CircleCheck = function (_React$Component) {
-	    _inherits(CircleCheck, _React$Component);
-	
-	    function CircleCheck(props) {
-	        _classCallCheck(this, CircleCheck);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(CircleCheck).call(this, props));
-	    }
-	
-	    _createClass(CircleCheck, [{
-	        key: 'getValue',
-	        value: function getValue() {
-	            return this.refs.check.checked;
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'span',
-	                { className: 'circle-check' },
-	                !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
-	                    checked: this.props.checked, onChange: this.props.change }) : null,
-	                this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
-	                    checked: this.props.checked, readOnly: true }) : null,
-	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
-	                _react2.default.createElement(
-	                    'span',
-	                    { className: 'label-text' },
-	                    this.props.label
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return CircleCheck;
-	}(_react2.default.Component);
-	
-	exports.default = CircleCheck;
-
-/***/ },
-/* 249 */
-/*!******************************************!*\
-  !*** ../styles/common/circle_check.scss ***!
-  \******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./circle_check.scss */ 250);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 250 */
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/circle_check.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
 
 /***/ },
 /* 251 */
@@ -38465,7 +38484,7 @@
 	                    React.createElement(
 	                        'div',
 	                        { className: 'container' },
-	                        this.quads.strength ? React.createElement(
+	                        this.props.quads.strength ? React.createElement(
 	                            'div',
 	                            { className: 'row' },
 	                            React.createElement(
@@ -38474,7 +38493,7 @@
 	                                this.props.suggested_schedule.num_weight_days
 	                            )
 	                        ) : null,
-	                        this.quads.plyos ? React.createElement(
+	                        this.props.quads.plyos ? React.createElement(
 	                            'div',
 	                            { className: 'row' },
 	                            React.createElement(
@@ -38483,7 +38502,7 @@
 	                                this.props.suggested_schedule.num_plyo_days
 	                            )
 	                        ) : null,
-	                        this.quads.sprinting ? React.createElement(
+	                        this.props.quads.sprinting ? React.createElement(
 	                            'div',
 	                            { className: 'row' },
 	                            React.createElement(
@@ -38567,7 +38586,7 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 94);
 	
-	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 248);
+	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 245);
 	
 	var _circle_check2 = _interopRequireDefault(_circle_check);
 	
@@ -38575,7 +38594,7 @@
 	
 	var _button2 = _interopRequireDefault(_button);
 	
-	var _program_actions = __webpack_require__(/*! actions/program_actions */ 267);
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 266);
 	
 	var _program_actions2 = _interopRequireDefault(_program_actions);
 	
@@ -38776,6 +38795,71 @@
 /***/ },
 /* 266 */
 /*!************************************!*\
+  !*** ./actions/program_actions.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
+	var C = __webpack_require__(/*! constants/program_constants.js */ 267);
+	
+	var ProgramActions = {
+	
+	    setCommitment: function (data) {
+	        dispatcher.dispatch(C.COMMITMENT, data);
+	    },
+	
+	    setStrengthProgram: function (program) {
+	        dispatcher.dispatch(C.PROGRAM, program);
+	    },
+	
+	    getSuggestedSchedule: function (programType, weightSchedule) {
+	        var program = 3;
+	        if (programType == C.LEAN) {
+	            program = 1;
+	        } else if (programType == C.MASS) {
+	            program = 2;
+	        }
+	        $.ajax({
+	            type: "get",
+	            url: "/schedule/program_type/" + program + "/weight_schedule/" + weightSchedule + ".json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.SUGGESTED_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(JSON.parse(response.responseJSON));
+	            }
+	        });
+	    }
+	
+	};
+	
+	module.exports = ProgramActions;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 239)))
+
+/***/ },
+/* 267 */
+/*!****************************************!*\
+  !*** ./constants/program_constants.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 243);
+	
+	module.exports = keyMirror({
+	    COMMITMENT: null,
+	    PROGRAM: null,
+	    SCHEDULE: null,
+	    SUGGESTED_LOADED: null
+	});
+
+/***/ },
+/* 268 */
+/*!************************************!*\
   !*** ./views/setup/commitment.jsx ***!
   \************************************/
 /***/ function(module, exports, __webpack_require__) {
@@ -38798,7 +38882,7 @@
 	
 	var _button2 = _interopRequireDefault(_button);
 	
-	var _program_actions = __webpack_require__(/*! actions/program_actions */ 267);
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 266);
 	
 	var _program_actions2 = _interopRequireDefault(_program_actions);
 	
@@ -38903,71 +38987,6 @@
 	
 	exports.default = Commitment;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
-
-/***/ },
-/* 267 */
-/*!************************************!*\
-  !*** ./actions/program_actions.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {"use strict";
-	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
-	var C = __webpack_require__(/*! constants/program_constants.js */ 268);
-	
-	var ProgramActions = {
-	
-	    setCommitment: function (data) {
-	        dispatcher.dispatch(C.COMMITMENT, data);
-	    },
-	
-	    setStrengthProgram: function (program) {
-	        dispatcher.dispatch(C.PROGRAM, program);
-	    },
-	
-	    getSuggestedSchedule: function (programType, weightSchedule) {
-	        var program = 3;
-	        if (programType == C.LEAN) {
-	            program = 1;
-	        } else if (programType == C.MASS) {
-	            program = 2;
-	        }
-	        $.ajax({
-	            type: "get",
-	            url: "/schedule/program_type/" + program + "/weight_schedule/" + weightSchedule + ".json",
-	            dataType: "json",
-	            success: function (data) {
-	                dispatcher.dispatch(C.SUGGESTED_LOADED, data);
-	            },
-	            error: function (response) {
-	                alert(JSON.parse(response.responseJSON));
-	            }
-	        });
-	    }
-	
-	};
-	
-	module.exports = ProgramActions;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 239)))
-
-/***/ },
-/* 268 */
-/*!****************************************!*\
-  !*** ./constants/program_constants.js ***!
-  \****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 243);
-	
-	module.exports = keyMirror({
-	    COMMITMENT: null,
-	    PROGRAM: null,
-	    SCHEDULE: null,
-	    SUGGESTED_LOADED: null
-	});
 
 /***/ },
 /* 269 */
@@ -39458,7 +39477,7 @@
 	        this.pullups = count;
 	    },
 	
-	    setAssistedPushUps: function (count) {
+	    setAssistedPushups: function (count) {
 	        this.assistedPushups = count;
 	    },
 	
@@ -39559,7 +39578,7 @@
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
 	var Store = __webpack_require__(/*! ./store.js */ 272);
-	var C = __webpack_require__(/*! constants/program_constants.js */ 268);
+	var C = __webpack_require__(/*! constants/program_constants.js */ 267);
 	
 	var ProgramStore = new Store({
 	    days: undefined,
