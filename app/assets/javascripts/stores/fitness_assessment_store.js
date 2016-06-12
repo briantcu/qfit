@@ -17,7 +17,9 @@ var FitnessAssessmentStore = new Store({
     module: undefined,
 
     setQuads: function(quads){
-        this.quads = quads;
+        for (var key in quads) {
+            this.quads[key] = quads[key];
+        }
     },
 
     setGoal: function(goal) {

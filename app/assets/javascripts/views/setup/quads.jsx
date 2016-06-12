@@ -10,14 +10,15 @@ class Quads extends React.Component {
         super(props);
         this.state = {
             valid: true
-        }
+        };
+        this.change = this.change.bind(this);
     }
 
     submit () {
         if (!this.state.formSubmitted) {
             this.state.formSubmitted = true;
             var strength = this.refs.strength.getValue();
-            var plyos = this.refs.plyo.getValue();
+            var plyos = this.refs.plyos.getValue();
             var sprinting = this.refs.sprinting.getValue();
             var valid = strength || plyos || sprinting;
             if (valid) {
@@ -37,6 +38,13 @@ class Quads extends React.Component {
 
     }
 
+    change (elem) {
+        var check = this.refs[elem.target.id];
+        var obj = {};
+        obj[check.props.id] = check.getValue();
+        FitnessAssessmentActions.setQuads(obj);
+    }
+
     render () {
         return <div className="quads">
             <div className="row">
@@ -54,17 +62,20 @@ class Quads extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-4 col-xs-offset-4 purple-bot-container purple-top-container">
-                            <CircleCheck ref="strength"  id={'strength'} label={'Strength Training'} />
+                            <CircleCheck ref="strength" checked={this.props.quads.strength} id={'strength'}
+                                         label={'Strength Training'} change={ this.change } />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-4 col-xs-offset-4 purple-bot-container">
-                            <CircleCheck ref="plyo" id={'plyo'} label={'Plyometrics'} />
+                            <CircleCheck ref="plyos" id={'plyos'} checked={this.props.quads.plyos} label={'Plyometrics'}
+                                         change={ this.change } />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-4 col-xs-offset-4 purple-bot-container">
-                            <CircleCheck ref="sprinting" id={'sprinting'} label={'Sprinting'} />
+                            <CircleCheck ref="sprinting" checked={this.props.quads.sprinting} id={'sprinting'} label={'Sprinting'}
+                                         change={ this.change } />
                         </div>
                     </div>
                     <div className="row">

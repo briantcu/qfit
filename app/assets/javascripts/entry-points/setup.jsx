@@ -27,7 +27,8 @@ class App extends React.Component {
         this.state = {
             user: {},
             goal: C.MASS,
-            program: {}
+            program: {},
+            quads: {}
         };
         this.nextPage = this.nextPage.bind(this);
         this.onChange = this.onChange.bind(this);

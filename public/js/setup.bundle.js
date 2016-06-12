@@ -134,7 +134,8 @@
 	        _this.state = {
 	            user: {},
 	            goal: C.MASS,
-	            program: {}
+	            program: {},
+	            quads: {}
 	        };
 	        _this.nextPage = _this.nextPage.bind(_this);
 	        _this.onChange = _this.onChange.bind(_this);
@@ -37611,6 +37612,7 @@
 	        _this.state = {
 	            valid: true
 	        };
+	        _this.change = _this.change.bind(_this);
 	        return _this;
 	    }
 	
@@ -37620,7 +37622,7 @@
 	            if (!this.state.formSubmitted) {
 	                this.state.formSubmitted = true;
 	                var strength = this.refs.strength.getValue();
-	                var plyos = this.refs.plyo.getValue();
+	                var plyos = this.refs.plyos.getValue();
 	                var sprinting = this.refs.sprinting.getValue();
 	                var valid = strength || plyos || sprinting;
 	                if (valid) {
@@ -37635,6 +37637,14 @@
 	                    this.setState({ valid: false, formSubmitted: false });
 	                }
 	            }
+	        }
+	    }, {
+	        key: 'change',
+	        value: function change(elem) {
+	            var check = this.refs[elem.target.id];
+	            var obj = {};
+	            obj[check.props.id] = check.getValue();
+	            _fitness_assessment_actions2.default.setQuads(obj);
 	        }
 	    }, {
 	        key: 'render',
@@ -37680,7 +37690,8 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4 purple-bot-container purple-top-container' },
-	                                React.createElement(_circle_check2.default, { ref: 'strength', id: 'strength', label: 'Strength Training' })
+	                                React.createElement(_circle_check2.default, { ref: 'strength', checked: this.props.quads.strength, id: 'strength',
+	                                    label: 'Strength Training', change: this.change })
 	                            )
 	                        ),
 	                        React.createElement(
@@ -37689,7 +37700,8 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4 purple-bot-container' },
-	                                React.createElement(_circle_check2.default, { ref: 'plyo', id: 'plyo', label: 'Plyometrics' })
+	                                React.createElement(_circle_check2.default, { ref: 'plyos', id: 'plyos', checked: this.props.quads.plyos, label: 'Plyometrics',
+	                                    change: this.change })
 	                            )
 	                        ),
 	                        React.createElement(
@@ -37698,7 +37710,8 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-4 col-xs-offset-4 purple-bot-container' },
-	                                React.createElement(_circle_check2.default, { ref: 'sprinting', id: 'sprinting', label: 'Sprinting' })
+	                                React.createElement(_circle_check2.default, { ref: 'sprinting', checked: this.props.quads.sprinting, id: 'sprinting', label: 'Sprinting',
+	                                    change: this.change })
 	                            )
 	                        ),
 	                        React.createElement(
@@ -39451,7 +39464,9 @@
 	    module: undefined,
 	
 	    setQuads: function (quads) {
-	        this.quads = quads;
+	        for (var key in quads) {
+	            this.quads[key] = quads[key];
+	        }
 	    },
 	
 	    setGoal: function (goal) {
