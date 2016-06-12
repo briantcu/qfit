@@ -48,6 +48,12 @@ class App extends React.Component {
         }
     }
 
+    previousPage(childView) {
+        if (childView == "QUADS") {
+            browserHistory.push('/get-started/goal');
+        }
+    }
+
     componentDidMount () {
         UserStore.addChangeListener(this.onChange);
         ProgramStore.addChangeListener(this.onChange);
@@ -96,7 +102,7 @@ class App extends React.Component {
 
     render () {
         const childrenWithProps = React.Children.map(this.props.children,
-            (child) => React.cloneElement(child, Object.assign({}, this.state, {next: this.nextPage}))
+            (child) => React.cloneElement(child, Object.assign({}, this.state, {next: this.nextPage, previousPage: this.previousPage}))
         );
 
         return <div>

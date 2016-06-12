@@ -58,6 +58,16 @@ h1 {
 .purple {
   color: #7953aa; }
 
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
+
 input.transparent-input {
   background-color: transparent !important;
   border: none !important;
@@ -186,6 +196,16 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
 
 .cmn-toggle {
   position: absolute;
@@ -337,6 +357,16 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
 
 .athlete-sign-up .buffer {
   height: 80px;

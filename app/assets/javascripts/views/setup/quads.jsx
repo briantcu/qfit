@@ -1,6 +1,7 @@
 import {render} from 'react-dom';
 import CircleCheck from 'views/common/circle_check';
 import FitnessAssessmentActions from 'actions/fitness_assessment_actions';
+import Button from 'views/common/button';
 
 require('views/setup/quads.scss');
 
@@ -47,36 +48,42 @@ class Quads extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-4 header-text">
-                            Which of the Quads of the Quadfit program would you like to add to your program?
+                            Which of the Quads of the Quadfit program would you like to add to<br/> your program?
                             (Stretching will be added automatically)
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
+                        <div className="col-xs-4 col-xs-offset-4 purple-bot-container purple-top-container">
                             <CircleCheck ref="strength"  id={'strength'} label={'Strength Training'} />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
+                        <div className="col-xs-4 col-xs-offset-4 purple-bot-container">
                             <CircleCheck ref="plyo" id={'plyo'} label={'Plyometrics'} />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
+                        <div className="col-xs-4 col-xs-offset-4 purple-bot-container">
                             <CircleCheck ref="sprinting" id={'sprinting'} label={'Sprinting'} />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
+                        <div className="col-xs-4 col-xs-offset-4 purple-bot-container">
                             <CircleCheck id={'stretching'} label={'Stretching (Default)'} disabled={true} checked={true}/>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
+                        <div className="col-xs-4 col-xs-offset-4 continue-row">
                             <If condition={this.state.valid == false}>
                                 <span>You must choose at least one Quad.</span>
                             </If>
-                            <span onClick={ () => this.submit()} className="continue-button purple-text">Continue</span>
+                            <Button ref="continue" buttonText="Continue" onClick={ () => this.submit() }
+                                    disabled={false} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-2 col-xs-offset-4 back-link">
+                           <span onClick={ () => this.props.previousPage('QUADS') } className="small-link">Back</span>
                         </div>
                     </div>
                 </div>

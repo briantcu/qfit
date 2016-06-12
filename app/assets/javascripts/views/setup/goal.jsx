@@ -2,6 +2,7 @@ import {render} from 'react-dom';
 import FitnessAssessmentActions from 'actions/fitness_assessment_actions';
 var C = require('constants/fitness_assessment_constants.js');
 import VCircleCheck from 'views/common/vert_circle_check';
+import Button from 'views/common/button';
 
 require('views/setup/goal.scss');
 
@@ -9,10 +10,6 @@ class Goal extends React.Component {
     constructor(props) {
         super(props);
         this.change = this.change.bind(this);
-    }
-
-    next () {
-        this.props.next("GOAL");
     }
 
     change (elem) {
@@ -57,8 +54,9 @@ class Goal extends React.Component {
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-2 col-xs-offset-5">
-                            <span onClick={ () => this.next()} className="continue-button purple-text">Continue</span>
+                        <div className="col-xs-2 col-xs-offset-5 button-row">
+                            <Button ref="next" buttonText="Continue" onClick={ () => this.props.next('GOAL') }
+                                    disabled={false} />
                         </div>
                     </div>
                 </div>

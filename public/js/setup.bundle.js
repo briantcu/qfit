@@ -158,6 +158,13 @@
 	            }
 	        }
 	    }, {
+	        key: 'previousPage',
+	        value: function previousPage(childView) {
+	            if (childView == "QUADS") {
+	                _reactRouter.browserHistory.push('/get-started/goal');
+	            }
+	        }
+	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            _user_store2.default.addChangeListener(this.onChange);
@@ -213,7 +220,7 @@
 	            var _this2 = this;
 	
 	            var childrenWithProps = React.Children.map(this.props.children, function (child) {
-	                return React.cloneElement(child, Object.assign({}, _this2.state, { next: _this2.nextPage }));
+	                return React.cloneElement(child, Object.assign({}, _this2.state, { next: _this2.nextPage, previousPage: _this2.previousPage }));
 	            });
 	
 	            return React.createElement(
@@ -27100,6 +27107,10 @@
 	
 	var _vert_circle_check2 = _interopRequireDefault(_vert_circle_check);
 	
+	var _button = __webpack_require__(/*! views/common/button */ 257);
+	
+	var _button2 = _interopRequireDefault(_button);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27126,11 +27137,6 @@
 	    }
 	
 	    _createClass(Goal, [{
-	        key: 'next',
-	        value: function next() {
-	            this.props.next("GOAL");
-	        }
-	    }, {
 	        key: 'change',
 	        value: function change(elem) {
 	            var check = this.refs[elem.target.id];
@@ -27202,14 +27208,11 @@
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
-	                                { className: 'col-xs-2 col-xs-offset-5' },
-	                                React.createElement(
-	                                    'span',
-	                                    { onClick: function onClick() {
-	                                            return _this2.next();
-	                                        }, className: 'continue-button purple-text' },
-	                                    'Continue'
-	                                )
+	                                { className: 'col-xs-2 col-xs-offset-5 button-row' },
+	                                React.createElement(_button2.default, { ref: 'next', buttonText: 'Continue', onClick: function onClick() {
+	                                        return _this2.props.next('GOAL');
+	                                    },
+	                                    disabled: false })
 	                            )
 	                        )
 	                    )
@@ -37583,6 +37586,10 @@
 	
 	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
 	
+	var _button = __webpack_require__(/*! views/common/button */ 257);
+	
+	var _button2 = _interopRequireDefault(_button);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -37662,7 +37669,9 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-6 col-xs-offset-4 header-text' },
-	                                'Which of the Quads of the Quadfit program would you like to add to your program? (Stretching will be added automatically)'
+	                                'Which of the Quads of the Quadfit program would you like to add to',
+	                                React.createElement('br', null),
+	                                ' your program? (Stretching will be added automatically)'
 	                            )
 	                        ),
 	                        React.createElement(
@@ -37670,7 +37679,7 @@
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                { className: 'col-xs-4 col-xs-offset-4 purple-bot-container purple-top-container' },
 	                                React.createElement(_circle_check2.default, { ref: 'strength', id: 'strength', label: 'Strength Training' })
 	                            )
 	                        ),
@@ -37679,7 +37688,7 @@
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                { className: 'col-xs-4 col-xs-offset-4 purple-bot-container' },
 	                                React.createElement(_circle_check2.default, { ref: 'plyo', id: 'plyo', label: 'Plyometrics' })
 	                            )
 	                        ),
@@ -37688,7 +37697,7 @@
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                { className: 'col-xs-4 col-xs-offset-4 purple-bot-container' },
 	                                React.createElement(_circle_check2.default, { ref: 'sprinting', id: 'sprinting', label: 'Sprinting' })
 	                            )
 	                        ),
@@ -37697,7 +37706,7 @@
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                { className: 'col-xs-4 col-xs-offset-4 purple-bot-container' },
 	                                React.createElement(_circle_check2.default, { id: 'stretching', label: 'Stretching (Default)', disabled: true, checked: true })
 	                            )
 	                        ),
@@ -37706,18 +37715,30 @@
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
+	                                { className: 'col-xs-4 col-xs-offset-4 continue-row' },
 	                                this.state.valid == false ? React.createElement(
 	                                    'span',
 	                                    null,
 	                                    'You must choose at least one Quad.'
 	                                ) : null,
+	                                React.createElement(_button2.default, { ref: 'continue', buttonText: 'Continue', onClick: function onClick() {
+	                                        return _this2.submit();
+	                                    },
+	                                    disabled: false })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2 col-xs-offset-4 back-link' },
 	                                React.createElement(
 	                                    'span',
 	                                    { onClick: function onClick() {
-	                                            return _this2.submit();
-	                                        }, className: 'continue-button purple-text' },
-	                                    'Continue'
+	                                            return _this2.props.previousPage('QUADS');
+	                                        }, className: 'small-link' },
+	                                    'Back'
 	                                )
 	                            )
 	                        )

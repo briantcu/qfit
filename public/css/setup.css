@@ -58,6 +58,16 @@ h1 {
 .purple {
   color: #7953aa; }
 
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
+
 .header {
   height: 100px;
   background-color: #271b37;
@@ -121,6 +131,16 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
 
 .subnav {
   height: 52px;
@@ -189,6 +209,16 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
 
 input[type=checkbox] {
   visibility: hidden; }
@@ -307,28 +337,23 @@ h1 {
 .purple {
   color: #7953aa; }
 
-.goal .header-text {
+.small-link {
+  opacity: 0.9;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.7;
-  letter-spacing: -0.4px;
-  color: #4a4a4a; }
-
-.goal .continue-button {
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
   color: #7953aa;
-  width: 156px;
-  height: 48px;
-  border: solid 3px #7953aa;
-  margin-right: 30px;
-  margin-top: 50px;
-  display: inline-block;
-  padding-left: 41px;
-  padding-top: 8px;
+  text-decoration: underline;
   cursor: pointer; }
-  .goal .continue-button:hover {
-    border: solid 3px rgba(121, 83, 170, 0.5);
-    color: rgba(121, 83, 170, 0.5); }
+
+.qfButton {
+  padding: 12px 40px;
+  border: solid 3px #7953aa;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -388,6 +413,96 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
+
+.goal .header-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.7;
+  letter-spacing: -0.4px;
+  color: #4a4a4a; }
+
+.goal .button-row {
+  margin-top: 50px; }
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: -1.1px;
+  color: #271b37; }
+
+.standard-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #271b37; }
+
+.info-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: -0.3px;
+  color: #9fa9ba; }
+
+.help-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 3.4;
+  letter-spacing: -0.3px;
+  color: #271b37; }
+
+.purple-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.bold-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: #7953aa; }
+
+.subtle-link {
+  color: #9fa9ba;
+  text-decoration: underline; }
+  .subtle-link:hover {
+    color: #7953aa; }
+
+.bold-link {
+  color: #271b37;
+  text-decoration: underline; }
+  .bold-link:hover {
+    color: #7953aa; }
+
+.purple {
+  color: #7953aa; }
+
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
 
 input[type=checkbox] {
   visibility: hidden; }
@@ -505,6 +620,19 @@ h1 {
 .purple {
   color: #7953aa; }
 
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
+
+.quads .col-xs-4 {
+  padding-left: 0 !important; }
+
 .quads .header-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -513,19 +641,21 @@ h1 {
   letter-spacing: -0.4px;
   color: #4a4a4a; }
 
-.quads .continue-button {
-  color: #7953aa;
-  width: 156px;
-  height: 48px;
-  border: solid 3px #7953aa;
-  margin-right: 30px;
-  display: inline-block;
-  padding-left: 41px;
-  padding-top: 8px;
-  cursor: pointer; }
-  .quads .continue-button:hover {
-    border: solid 3px rgba(121, 83, 170, 0.5);
-    color: rgba(121, 83, 170, 0.5); }
+.quads .continue-row {
+  margin-top: 30px; }
+
+.quads .purple-bot-container {
+  border-bottom: 1px solid #7953aa;
+  height: 70px;
+  display: block; }
+
+.quads .purple-top-container {
+  border-top: 1px solid #7953aa;
+  margin-top: 30px; }
+
+.quads .back-link {
+  margin-top: 10px;
+  padding-left: 63px; }
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -585,6 +715,16 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
 
 .simpleInput input {
   background-color: transparent !important;
@@ -666,72 +806,15 @@ h1 {
 .purple {
   color: #7953aa; }
 
-.qfButton {
-  padding: 12px 40px;
-  border: solid 3px #7953aa;
+.small-link {
+  opacity: 0.9;
   font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
-  letter-spacing: -0.4px;
-  color: #7953aa; }
-h1 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 48px;
-  font-weight: 300;
-  letter-spacing: -1.1px;
-  color: #271b37; }
-
-.standard-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 2.9;
-  letter-spacing: -0.4px;
-  color: #271b37; }
-
-.info-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: -0.3px;
-  color: #9fa9ba; }
-
-.help-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 3.4;
-  letter-spacing: -0.3px;
-  color: #271b37; }
-
-.purple-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: -0.4px;
-  color: #7953aa; }
-
-.bold-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 2.9;
-  letter-spacing: -0.4px;
-  color: #7953aa; }
-
-.subtle-link {
-  color: #9fa9ba;
-  text-decoration: underline; }
-  .subtle-link:hover {
-    color: #7953aa; }
-
-.bold-link {
-  color: #271b37;
-  text-decoration: underline; }
-  .bold-link:hover {
-    color: #7953aa; }
-
-.purple {
-  color: #7953aa; }
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
 
 .fitness .question {
   font-family: 'Open Sans', sans-serif;
@@ -805,6 +888,16 @@ h1 {
 .purple {
   color: #7953aa; }
 
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
+
 .commitment .question {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -876,6 +969,16 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #7953aa;
+  text-decoration: underline;
+  cursor: pointer; }
 
 .setup .header-text {
   font-family: 'Open Sans', sans-serif;
