@@ -1,7 +1,7 @@
 import {render} from 'react-dom';
 import FitnessAssessmentActions from 'actions/fitness_assessment_actions';
 var C = require('constants/fitness_assessment_constants.js');
-import CircleCheck from 'views/common/circle_check';
+import VCircleCheck from 'views/common/vert_circle_check';
 
 require('views/setup/goal.scss');
 
@@ -40,20 +40,18 @@ class Goal extends React.Component {
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
-                            <CircleCheck checked={this.props.goal == C.MASS} id={C.MASS} ref={C.MASS}
+                        <div className="col-xs-4 text-center">
+                            <VCircleCheck checked={this.props.goal == C.MASS} id={C.MASS} ref={C.MASS}
                                          label={'Add Muscle'} change={ this.change } />
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
-                            <CircleCheck checked={this.props.goal == C.RIP} id={C.RIP} ref={C.RIP}
+
+                        <div className="col-xs-4 text-center">
+                            <VCircleCheck checked={this.props.goal == C.RIP} id={C.RIP} ref={C.RIP}
                                          label={'Moderate muscle gains, while lowering body fat percentage'}  change={ this.change }/>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4">
-                            <CircleCheck checked={this.props.goal == C.LEAN} id={C.LEAN} ref={C.LEAN}
+
+                        <div className="col-xs-4 text-center">
+                            <VCircleCheck checked={this.props.goal == C.LEAN} id={C.LEAN} ref={C.LEAN}
                                          label={'Lose Weight, Build Endurance'} change={ this.change } />
                         </div>
                     </div>
