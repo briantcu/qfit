@@ -131,15 +131,25 @@
 	
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
 	
+	        var url = window.location.pathname;
+	        var activeNav = 'setup';
+	        if (url == '/fitness') {
+	            activeNav = 'fitness';
+	        } else if (url == '/schedule' || url == '/program') {
+	            activeNav = 'schedule';
+	        }
+	
 	        _this.state = {
 	            user: {},
 	            goal: C.MASS,
 	            program: {},
-	            quads: {}
+	            quads: {},
+	            activeNav: activeNav
 	        };
 	        _this.nextPage = _this.nextPage.bind(_this);
 	        _this.onChange = _this.onChange.bind(_this);
 	        _this.fitnessSubmitted = _this.fitnessSubmitted.bind(_this);
+	        _this.previousPage = _this.previousPage.bind(_this);
 	        return _this;
 	    }
 	
@@ -150,8 +160,10 @@
 	            if (childView == "GOAL") {
 	                _reactRouter.browserHistory.push('/get-started/quads');
 	            } else if (childView == "QUADS") {
+	                this.setState({ activeNav: 'fitness' });
 	                _reactRouter.browserHistory.push('/fitness');
 	            } else if (childView == "COMMITMENT") {
+	                this.setState({ activeNav: 'schedule' });
 	                _reactRouter.browserHistory.push('/program');
 	            } else if (childView == "PROGRAM") {
 	                _program_actions2.default.getSuggestedSchedule(this.state.goal, this.state.program.strengthProgram);
@@ -162,7 +174,11 @@
 	        key: 'previousPage',
 	        value: function previousPage(childView) {
 	            if (childView == "QUADS") {
+	                this.setState({ activeNav: 'setup' });
 	                _reactRouter.browserHistory.push('/get-started/goal');
+	            } else if (childView == "FITNESS") {
+	                this.setState({ activeNav: 'setup' });
+	                _reactRouter.browserHistory.push('/get-started/quads');
 	            }
 	        }
 	    }, {
@@ -221,14 +237,17 @@
 	            var _this2 = this;
 	
 	            var childrenWithProps = React.Children.map(this.props.children, function (child) {
-	                return React.cloneElement(child, Object.assign({}, _this2.state, { next: _this2.nextPage, previousPage: _this2.previousPage }));
+	                return React.cloneElement(child, Object.assign({}, _this2.state, {
+	                    next: _this2.nextPage,
+	                    previousPage: _this2.previousPage
+	                }));
 	            });
 	
 	            return React.createElement(
 	                'div',
 	                null,
 	                React.createElement(_header2.default, { user: this.state.user }),
-	                React.createElement(_subnav2.default, null),
+	                React.createElement(_subnav2.default, { activeNav: this.state.activeNav }),
 	                childrenWithProps
 	            );
 	        }
@@ -27007,23 +27026,22 @@
 	                        { className: 'row' },
 	                        React.createElement(
 	                            'div',
-	                            { className: 'col-xs-1 col-xs-offset-3 text-center bold-text' },
-	                            'Setup'
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-2 text-center' },
-	                            'Fitness Assessment'
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-2 text-center' },
-	                            'Program Selection'
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-2 text-center' },
-	                            'Scheduling'
+	                            { className: 'col-xs-16 text-center' },
+	                            React.createElement(
+	                                'span',
+	                                { className: this.props.activeNav == 'setup' ? 'bold-text' : null },
+	                                'Setup'
+	                            ),
+	                            React.createElement(
+	                                'span',
+	                                { className: this.props.activeNav == 'fitness' ? 'bold-text' : null },
+	                                'Fitness Assessment'
+	                            ),
+	                            React.createElement(
+	                                'span',
+	                                { className: this.props.activeNav == 'scheduling' ? 'bold-text' : null },
+	                                'Scheduling'
+	                            )
 	                        )
 	                    )
 	                )
@@ -37941,7 +37959,11 @@
 	        key: 'pushupsSubmitted',
 	        value: function pushupsSubmitted() {
 	            _fitness_assessment_actions2.default.setPushUps(this.refs.pushups.getValue());
-	            this.changeStep(5);
+	            if (this.refs.pushups.getValue() == 0) {
+	                this.changeStep(4);
+	            } else {
+	                this.changeStep(5);
+	            }
 	        }
 	    }, {
 	        key: 'assistedChanged',
@@ -37980,6 +38002,30 @@
 	                React.createElement(
 	                    'div',
 	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
+	                            React.createElement(
+	                                'h1',
+	                                { className: 'purple' },
+	                                'Fitness Assessment'
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 text-center standard-text' },
+	                            'Answer these questions as well as you can.',
+	                            React.createElement('br', null),
+	                            'Leave areas you don\'t know blank.'
+	                        )
+	                    ),
 	                    this.state.step == 1 ? [React.createElement(
 	                        'div',
 	                        { className: 'row', key: '0'
@@ -38008,6 +38054,21 @@
 	                                },
 	                                disabled: this.state.userWeightNextDisabled })
 	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '2'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 back-link text-center' },
+	                            React.createElement(
+	                                'span',
+	                                { onClick: function onClick() {
+	                                        return _this2.props.previousPage('FITNESS');
+	                                    }, className: 'small-link' },
+	                                'Back'
+	                            )
+	                        )
 	                    )] : null,
 	                    this.state.step == 2 ? [React.createElement(
 	                        'div',
@@ -38035,14 +38096,25 @@
 	                        React.createElement(
 	                            'div',
 	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
-	                                    return _this2.back();
-	                                },
-	                                disabled: false }),
 	                            React.createElement(_button2.default, { ref: 'benchNext', buttonText: 'Continue', onClick: function onClick() {
 	                                    return _this2.benchSubmitted();
 	                                },
 	                                disabled: this.state.benchNextDisabled })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '2'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 back-link text-center' },
+	                            React.createElement(
+	                                'span',
+	                                { onClick: function onClick() {
+	                                        return _this2.back();
+	                                    }, className: 'small-link' },
+	                                'Back'
+	                            )
 	                        )
 	                    )] : null,
 	                    this.state.step == 3 ? [React.createElement(
@@ -38068,18 +38140,25 @@
 	                        React.createElement(
 	                            'div',
 	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
-	                                    return _this2.back();
-	                                },
-	                                disabled: false }),
-	                            React.createElement(_button2.default, { buttonText: 'I can\'t do any', onClick: function onClick() {
-	                                    return _this2.changeStep(4);
-	                                },
-	                                disabled: false }),
 	                            React.createElement(_button2.default, { ref: 'pushupsNext', buttonText: 'Continue', onClick: function onClick() {
 	                                    return _this2.pushupsSubmitted();
 	                                },
 	                                disabled: this.state.pushupsNextDisabled })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '2'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 back-link text-center' },
+	                            React.createElement(
+	                                'span',
+	                                { onClick: function onClick() {
+	                                        return _this2.back();
+	                                    }, className: 'small-link' },
+	                                'Back'
+	                            )
 	                        )
 	                    )] : null,
 	                    this.state.step == 4 ? [React.createElement(
@@ -38105,14 +38184,25 @@
 	                        React.createElement(
 	                            'div',
 	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
-	                                    return _this2.back();
-	                                },
-	                                disabled: false }),
 	                            React.createElement(_button2.default, { ref: 'assistedNext', buttonText: 'Continue', onClick: function onClick() {
 	                                    return _this2.assistedSubmitted();
 	                                },
 	                                disabled: this.state.assistedNextDisabled })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '2'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 back-link text-center' },
+	                            React.createElement(
+	                                'span',
+	                                { onClick: function onClick() {
+	                                        return _this2.back();
+	                                    }, className: 'small-link' },
+	                                'Back'
+	                            )
 	                        )
 	                    )] : null,
 	                    this.state.step == 5 ? [React.createElement(
@@ -38138,10 +38228,6 @@
 	                        React.createElement(
 	                            'div',
 	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
-	                                    return _this2.back();
-	                                },
-	                                disabled: false }),
 	                            React.createElement(_button2.default, { buttonText: 'I can\'t do any', onClick: function onClick() {
 	                                    return _this2.changeStep(6);
 	                                },
@@ -38150,6 +38236,21 @@
 	                                    return _this2.pullupsSubmitted();
 	                                },
 	                                disabled: this.state.pullupsNextDisabled })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '2'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 back-link text-center' },
+	                            React.createElement(
+	                                'span',
+	                                { onClick: function onClick() {
+	                                        return _this2.back();
+	                                    }, className: 'small-link' },
+	                                'Back'
+	                            )
 	                        )
 	                    )] : null,
 	                    this.state.step == 6 ? [React.createElement(
@@ -38178,14 +38279,25 @@
 	                        React.createElement(
 	                            'div',
 	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { buttonText: 'Back', onClick: function onClick() {
-	                                    return _this2.back();
-	                                },
-	                                disabled: false }),
 	                            React.createElement(_button2.default, { ref: 'benchNext', buttonText: 'Continue', onClick: function onClick() {
 	                                    return _this2.squatSubmitted();
 	                                },
 	                                disabled: this.state.squatNextDisabled })
+	                        )
+	                    ), React.createElement(
+	                        'div',
+	                        { className: 'row', key: '2'
+	                        },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-6 col-xs-offset-3 back-link text-center' },
+	                            React.createElement(
+	                                'span',
+	                                { onClick: function onClick() {
+	                                        return _this2.back();
+	                                    }, className: 'small-link' },
+	                                'Back'
+	                            )
 	                        )
 	                    )] : null
 	                )

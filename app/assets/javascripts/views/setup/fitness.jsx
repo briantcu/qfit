@@ -74,7 +74,11 @@ class Fitness extends React.Component {
     }
     pushupsSubmitted() {
         FitnessAssessmentActions.setPushUps(this.refs.pushups.getValue());
-        this.changeStep(5);
+        if (this.refs.pushups.getValue() == 0) {
+            this.changeStep(4);
+        } else {
+            this.changeStep(5);
+        }
     }
 
     assistedChanged() {
@@ -100,6 +104,16 @@ class Fitness extends React.Component {
     render () {
         return <div className="row fitness">
             <div className="container">
+                <div className="row">
+                    <div className="col-xs-6 col-xs-offset-3 text-center">
+                        <h1 className="purple">Fitness Assessment</h1>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-xs-6 col-xs-offset-3 text-center standard-text">
+                        Answer these questions as well as you can.<br/>Leave areas you don't know blank.
+                    </div>
+                </div>
                 <If condition={this.state.step == 1}>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center">
@@ -111,6 +125,11 @@ class Fitness extends React.Component {
                         <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
                             <Button ref="userWeightNext" buttonText="Continue" onClick={ () => this.userWeightSubmitted() }
                                 disabled={this.state.userWeightNextDisabled} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-6 col-xs-offset-3 back-link text-center">
+                            <span onClick={ () => this.props.previousPage('FITNESS') } className="small-link">Back</span>
                         </div>
                     </div>
                 </If>
@@ -125,10 +144,13 @@ class Fitness extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
-                            <Button buttonText="Back" onClick={ () => this.back() }
-                                    disabled={false} />
                             <Button ref="benchNext" buttonText="Continue" onClick={ () => this.benchSubmitted() }
                                     disabled={this.state.benchNextDisabled} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-6 col-xs-offset-3 back-link text-center">
+                            <span onClick={ () => this.back() } className="small-link">Back</span>
                         </div>
                     </div>
                 </If>
@@ -142,12 +164,13 @@ class Fitness extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
-                            <Button buttonText="Back" onClick={ () => this.back() }
-                                    disabled={false} />
-                            <Button buttonText="I can't do any" onClick={ () => this.changeStep(4) }
-                                    disabled={false} />
                             <Button ref="pushupsNext" buttonText="Continue" onClick={ () => this.pushupsSubmitted() }
                                     disabled={this.state.pushupsNextDisabled} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-6 col-xs-offset-3 back-link text-center">
+                            <span onClick={ () => this.back() } className="small-link">Back</span>
                         </div>
                     </div>
                 </If>
@@ -161,10 +184,13 @@ class Fitness extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
-                            <Button buttonText="Back" onClick={ () => this.back() }
-                                    disabled={false} />
                             <Button ref="assistedNext" buttonText="Continue" onClick={ () => this.assistedSubmitted() }
                                     disabled={this.state.assistedNextDisabled} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-6 col-xs-offset-3 back-link text-center">
+                            <span onClick={ () => this.back() } className="small-link">Back</span>
                         </div>
                     </div>
                 </If>
@@ -178,12 +204,15 @@ class Fitness extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
-                            <Button buttonText="Back" onClick={ () => this.back() }
-                                    disabled={false} />
                             <Button buttonText="I can't do any" onClick={ () => this.changeStep(6) }
                                     disabled={false} />
                             <Button ref="pullupsNext" buttonText="Continue" onClick={ () => this.pullupsSubmitted() }
                                     disabled={this.state.pullupsNextDisabled} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-6 col-xs-offset-3 back-link text-center">
+                            <span onClick={ () => this.back() } className="small-link">Back</span>
                         </div>
                     </div>
                 </If>
@@ -198,10 +227,13 @@ class Fitness extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
-                            <Button buttonText="Back" onClick={ () => this.back() }
-                                    disabled={false} />
                             <Button ref="benchNext" buttonText="Continue" onClick={ () => this.squatSubmitted() }
                                     disabled={this.state.squatNextDisabled} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-6 col-xs-offset-3 back-link text-center">
+                            <span onClick={ () => this.back() } className="small-link">Back</span>
                         </div>
                     </div>
                 </If>

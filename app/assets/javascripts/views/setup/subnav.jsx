@@ -11,17 +11,10 @@ class Subnav extends React.Component {
         return <div className="row subnav">
             <div className="container">
                 <div className="row">
-                    <div className="col-xs-1 col-xs-offset-3 text-center bold-text">
-                        Setup
-                    </div>
-                    <div className="col-xs-2 text-center">
-                        Fitness Assessment
-                    </div>
-                    <div className="col-xs-2 text-center">
-                        Program Selection
-                    </div>
-                    <div className="col-xs-2 text-center">
-                        Scheduling
+                    <div className="col-xs-16 text-center">
+                        <span className={ (this.props.activeNav == 'setup') ? 'bold-text' : null} >Setup</span>
+                        <span className={ (this.props.activeNav == 'fitness') ? 'bold-text' : null} >Fitness Assessment</span>
+                        <span className={ (this.props.activeNav == 'scheduling') ? 'bold-text' : null} >Scheduling</span>
                     </div>
                 </div>
             </div>

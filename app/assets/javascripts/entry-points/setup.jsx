@@ -24,15 +24,25 @@ require('pages/setup.scss');
 class App extends React.Component {
     constructor(props) {
         super(props);
+        var url = window.location.pathname;
+        var activeNav = 'setup';
+        if (url == '/fitness') {
+            activeNav = 'fitness';
+        } else if (url == '/schedule' || url == '/program') {
+            activeNav = 'schedule';
+        }
+
         this.state = {
             user: {},
             goal: C.MASS,
             program: {},
-            quads: {}
+            quads: {},
+            activeNav: activeNav
         };
         this.nextPage = this.nextPage.bind(this);
         this.onChange = this.onChange.bind(this);
         this.fitnessSubmitted = this.fitnessSubmitted.bind(this);
+        this.previousPage = this.previousPage.bind(this);
     }
 
     nextPage(childView) {
@@ -40,8 +50,10 @@ class App extends React.Component {
         if (childView == "GOAL") {
             browserHistory.push('/get-started/quads');
         } else if (childView == "QUADS") {
+            this.setState({activeNav: 'fitness'});
             browserHistory.push('/fitness');
         } else if (childView == "COMMITMENT") {
+            this.setState({activeNav: 'schedule'});
             browserHistory.push('/program');
         } else if (childView == "PROGRAM") {
             ProgramActions.getSuggestedSchedule(this.state.goal, this.state.program.strengthProgram);
@@ -51,7 +63,11 @@ class App extends React.Component {
 
     previousPage(childView) {
         if (childView == "QUADS") {
+            this.setState({activeNav: 'setup'});
             browserHistory.push('/get-started/goal');
+        } else if (childView == "FITNESS") {
+            this.setState({activeNav: 'setup'});
+            browserHistory.push('/get-started/quads');
         }
     }
 
@@ -103,12 +119,15 @@ class App extends React.Component {
 
     render () {
         const childrenWithProps = React.Children.map(this.props.children,
-            (child) => React.cloneElement(child, Object.assign({}, this.state, {next: this.nextPage, previousPage: this.previousPage}))
+            (child) => React.cloneElement(child, Object.assign({}, this.state, {
+                next: this.nextPage,
+                previousPage: this.previousPage
+            }))
         );
 
         return <div>
             <Header user={this.state.user} />
-            <Subnav  />
+            <Subnav activeNav={this.state.activeNav} />
             {childrenWithProps}
         </div>
     }
