@@ -175,11 +175,12 @@
 	        value: function previousPage(childView) {
 	            if (childView == "QUADS") {
 	                this.setState({ activeNav: 'setup' });
-	                _reactRouter.browserHistory.push('/get-started/goal');
 	            } else if (childView == "FITNESS") {
 	                this.setState({ activeNav: 'setup' });
-	                _reactRouter.browserHistory.push('/get-started/quads');
+	            } else if (childView == "COMMITMENT") {
+	                this.setState({ activeNav: 'fitness' });
 	            }
+	            _reactRouter.browserHistory.goBack();
 	        }
 	    }, {
 	        key: 'componentDidMount',
@@ -38706,6 +38707,12 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 94);
 	
+	var _square_check = __webpack_require__(/*! views/common/square_check */ 357);
+	
+	var _square_check2 = _interopRequireDefault(_square_check);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -38735,33 +38742,195 @@
 	                    React.createElement(
 	                        'div',
 	                        { className: 'container' },
-	                        this.props.quads.strength ? React.createElement(
+	                        React.createElement(
 	                            'div',
 	                            { className: 'row' },
 	                            React.createElement(
 	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                this.props.suggested_schedule.num_weight_days
+	                                { className: 'col-xs-4 col-xs-offset-4 text-center' },
+	                                'Weekly Planner'
 	                            )
-	                        ) : null,
-	                        this.props.quads.plyos ? React.createElement(
+	                        ),
+	                        this.props.quads.strength ? [React.createElement(
 	                            'div',
-	                            { className: 'row' },
+	                            { className: 'row', key: '0'
+	                            },
 	                            React.createElement(
 	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                this.props.suggested_schedule.num_plyo_days
+	                                { className: 'col-xs-4 col-xs-offset-4 text-center' },
+	                                'Which days will you lift?',
+	                                React.createElement('br', null),
+	                                'The program you chose has ',
+	                                this.props.suggested_schedule.num_weight_days,
+	                                ' lifting days.'
 	                            )
-	                        ) : null,
-	                        this.props.quads.sprinting ? React.createElement(
+	                        ), React.createElement(
 	                            'div',
-	                            { className: 'row' },
+	                            { className: 'row', key: '1'
+	                            },
 	                            React.createElement(
 	                                'div',
-	                                { className: 'col-xs-4 col-xs-offset-4' },
-	                                this.props.suggested_schedule.num_sprint_days
+	                                { className: 'col-xs-2 col-xs-offset-1' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
 	                            )
-	                        ) : null
+	                        )] : null,
+	                        this.props.quads.plyos ? [React.createElement(
+	                            'div',
+	                            { className: 'row', key: '0'
+	                            },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4 text-center' },
+	                                'Which days will you do plyometric exercises?',
+	                                React.createElement('br', null),
+	                                'To meet your goals, we recommend at least ',
+	                                this.props.suggested_schedule.num_plyo_days,
+	                                ' plyometric days.'
+	                            )
+	                        ), React.createElement(
+	                            'div',
+	                            { className: 'row', key: '1'
+	                            },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2 col-xs-offset-1' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            )
+	                        )] : null,
+	                        this.props.quads.sprinting ? [React.createElement(
+	                            'div',
+	                            { className: 'row', key: '0'
+	                            },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 col-xs-offset-4 text-center' },
+	                                'Which days will you sprint?',
+	                                React.createElement('br', null),
+	                                'To meet your goals, we recommend at least ',
+	                                this.props.suggested_schedule.num_sprint_days,
+	                                ' sprinting days.'
+	                            )
+	                        ), React.createElement(
+	                            'div',
+	                            { className: 'row', key: '1'
+	                            },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2 col-xs-offset-1' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2 ' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2 ' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2 ' },
+	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
+	                                    label: '4' })
+	                            )
+	                        )] : null
 	                    )
 	                )
 	            );
@@ -39195,6 +39364,8 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+	
 	            return React.createElement(
 	                'div',
 	                { className: 'row commitment' },
@@ -39273,6 +39444,21 @@
 	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
 	                            React.createElement(_button2.default, { ref: 'commitmentNext', buttonText: 'Continue', onClick: this.commitmentSubmitted,
 	                                disabled: this.state.commitmentNextDisabled })
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-2 col-xs-offset-4 back-link' },
+	                            React.createElement(
+	                                'span',
+	                                { onClick: function onClick() {
+	                                        return _this2.props.previousPage('COMMITMENT');
+	                                    }, className: 'small-link' },
+	                                'Back'
+	                            )
 	                        )
 	                    )
 	                )

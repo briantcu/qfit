@@ -86,6 +86,11 @@ class Commitment extends React.Component {
                                 disabled={this.state.commitmentNextDisabled} />
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-xs-2 col-xs-offset-4 back-link">
+                        <span onClick={ () => this.props.previousPage('COMMITMENT') } className="small-link">Back</span>
+                    </div>
+                </div>
             </div>
         </div>
     }

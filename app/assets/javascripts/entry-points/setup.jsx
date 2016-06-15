@@ -64,11 +64,12 @@ class App extends React.Component {
     previousPage(childView) {
         if (childView == "QUADS") {
             this.setState({activeNav: 'setup'});
-            browserHistory.push('/get-started/goal');
         } else if (childView == "FITNESS") {
             this.setState({activeNav: 'setup'});
-            browserHistory.push('/get-started/quads');
+        } else if (childView == "COMMITMENT") {
+            this.setState({activeNav: 'fitness'});
         }
+        browserHistory.goBack();
     }
 
     componentDidMount () {
