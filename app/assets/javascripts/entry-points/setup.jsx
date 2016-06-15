@@ -28,7 +28,7 @@ class App extends React.Component {
         var activeNav = 'setup';
         if (url == '/fitness') {
             activeNav = 'fitness';
-        } else if (url == '/schedule' || url == '/program') {
+        } else if (url == '/schedule' || url == '/program' || url == '/commitment') {
             activeNav = 'schedule';
         }
 

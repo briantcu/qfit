@@ -67,43 +67,43 @@
 	
 	var _goal2 = _interopRequireDefault(_goal);
 	
-	var _quads = __webpack_require__(/*! views/setup/quads */ 250);
+	var _quads = __webpack_require__(/*! views/setup/quads */ 253);
 	
 	var _quads2 = _interopRequireDefault(_quads);
 	
-	var _fitness = __webpack_require__(/*! views/setup/fitness */ 253);
+	var _fitness = __webpack_require__(/*! views/setup/fitness */ 259);
 	
 	var _fitness2 = _interopRequireDefault(_fitness);
 	
-	var _schedule = __webpack_require__(/*! views/setup/schedule */ 262);
+	var _schedule = __webpack_require__(/*! views/setup/schedule */ 265);
 	
 	var _schedule2 = _interopRequireDefault(_schedule);
 	
-	var _program = __webpack_require__(/*! views/setup/program */ 265);
+	var _program = __webpack_require__(/*! views/setup/program */ 268);
 	
 	var _program2 = _interopRequireDefault(_program);
 	
-	var _commitment = __webpack_require__(/*! views/setup/commitment */ 268);
+	var _commitment = __webpack_require__(/*! views/setup/commitment */ 271);
 	
 	var _commitment2 = _interopRequireDefault(_commitment);
 	
-	var _user_store = __webpack_require__(/*! stores/user_store */ 271);
+	var _user_store = __webpack_require__(/*! stores/user_store */ 274);
 	
 	var _user_store2 = _interopRequireDefault(_user_store);
 	
-	var _fitness_assessment_store = __webpack_require__(/*! stores/fitness_assessment_store */ 274);
+	var _fitness_assessment_store = __webpack_require__(/*! stores/fitness_assessment_store */ 277);
 	
 	var _fitness_assessment_store2 = _interopRequireDefault(_fitness_assessment_store);
 	
-	var _program_store = __webpack_require__(/*! stores/program_store */ 275);
+	var _program_store = __webpack_require__(/*! stores/program_store */ 278);
 	
 	var _program_store2 = _interopRequireDefault(_program_store);
 	
-	var _user_actions = __webpack_require__(/*! actions/user_actions */ 276);
+	var _user_actions = __webpack_require__(/*! actions/user_actions */ 279);
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
-	var _program_actions = __webpack_require__(/*! actions/program_actions */ 266);
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 269);
 	
 	var _program_actions2 = _interopRequireDefault(_program_actions);
 	
@@ -121,7 +121,7 @@
 	
 	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 242);
 	
-	__webpack_require__(/*! pages/setup.scss */ 277);
+	__webpack_require__(/*! pages/setup.scss */ 280);
 	
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
@@ -135,7 +135,7 @@
 	        var activeNav = 'setup';
 	        if (url == '/fitness') {
 	            activeNav = 'fitness';
-	        } else if (url == '/schedule' || url == '/program') {
+	        } else if (url == '/schedule' || url == '/program' || url == '/commitment') {
 	            activeNav = 'schedule';
 	        }
 	
@@ -27039,7 +27039,7 @@
 	                            ),
 	                            React.createElement(
 	                                'span',
-	                                { className: this.props.activeNav == 'scheduling' ? 'bold-text' : null },
+	                                { className: this.props.activeNav == 'schedule' ? 'bold-text' : null },
 	                                'Scheduling'
 	                            )
 	                        )
@@ -27122,11 +27122,11 @@
 	
 	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
 	
-	var _vert_circle_check = __webpack_require__(/*! views/common/vert_circle_check */ 354);
+	var _vert_circle_check = __webpack_require__(/*! views/common/vert_circle_check */ 245);
 	
 	var _vert_circle_check2 = _interopRequireDefault(_vert_circle_check);
 	
-	var _button = __webpack_require__(/*! views/common/button */ 257);
+	var _button = __webpack_require__(/*! views/common/button */ 248);
 	
 	var _button2 = _interopRequireDefault(_button);
 	
@@ -27141,7 +27141,7 @@
 	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 242);
 	
 	
-	__webpack_require__(/*! views/setup/goal.scss */ 248);
+	__webpack_require__(/*! views/setup/goal.scss */ 251);
 	
 	var Goal = function (_React$Component) {
 	    _inherits(Goal, _React$Component);
@@ -37420,9 +37420,9 @@
 
 /***/ },
 /* 245 */
-/*!***************************************!*\
-  !*** ./views/common/circle_check.jsx ***!
-  \***************************************/
+/*!********************************************!*\
+  !*** ./views/common/vert_circle_check.jsx ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37447,18 +37447,18 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/circle_check.scss */ 246);
+	__webpack_require__(/*! common/vert_circle_check.scss */ 246);
 	
-	var CircleCheck = function (_React$Component) {
-	    _inherits(CircleCheck, _React$Component);
+	var VertCircleCheck = function (_React$Component) {
+	    _inherits(VertCircleCheck, _React$Component);
 	
-	    function CircleCheck(props) {
-	        _classCallCheck(this, CircleCheck);
+	    function VertCircleCheck(props) {
+	        _classCallCheck(this, VertCircleCheck);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(CircleCheck).call(this, props));
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(VertCircleCheck).call(this, props));
 	    }
 	
-	    _createClass(CircleCheck, [{
+	    _createClass(VertCircleCheck, [{
 	        key: 'getValue',
 	        value: function getValue() {
 	            return this.refs.check.checked;
@@ -37468,14 +37468,15 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'span',
-	                { className: 'circle-check' },
+	                { className: 'vert-circle-check' },
 	                !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
 	                    checked: this.props.checked, onChange: this.props.change }) : null,
 	                this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
 	                    checked: this.props.checked, readOnly: true }) : null,
 	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
+	                _react2.default.createElement('br', null),
 	                _react2.default.createElement(
-	                    'span',
+	                    'div',
 	                    { className: 'label-text' },
 	                    this.props.label
 	                )
@@ -37483,22 +37484,22 @@
 	        }
 	    }]);
 	
-	    return CircleCheck;
+	    return VertCircleCheck;
 	}(_react2.default.Component);
 	
-	exports.default = CircleCheck;
+	exports.default = VertCircleCheck;
 
 /***/ },
 /* 246 */
-/*!******************************************!*\
-  !*** ../styles/common/circle_check.scss ***!
-  \******************************************/
+/*!***********************************************!*\
+  !*** ../styles/common/vert_circle_check.scss ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./circle_check.scss */ 247);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./vert_circle_check.scss */ 247);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -37507,8 +37508,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./vert_circle_check.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./vert_circle_check.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -37519,9 +37520,9 @@
 
 /***/ },
 /* 247 */
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/circle_check.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/vert_circle_check.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
@@ -37536,6 +37537,112 @@
 
 /***/ },
 /* 248 */
+/*!*********************************!*\
+  !*** ./views/common/button.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/button.scss */ 249);
+	
+	var Button = function (_React$Component) {
+	    _inherits(Button, _React$Component);
+	
+	    function Button(props) {
+	        _classCallCheck(this, Button);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Button).call(this, props));
+	    }
+	
+	    _createClass(Button, [{
+	        key: 'isDisabled',
+	        value: function isDisabled() {}
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'button',
+	                { ref: 'button', disabled: this.props.disabled, type: 'submit',
+	                    className: 'btn btn-default qfButton', onClick: this.props.onClick },
+	                this.props.buttonText
+	            );
+	        }
+	    }]);
+	
+	    return Button;
+	}(_react2.default.Component);
+	
+	exports.default = Button;
+
+/***/ },
+/* 249 */
+/*!************************************!*\
+  !*** ../styles/common/button.scss ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./button.scss */ 250);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./button.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./button.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 250 */
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/button.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 251 */
 /*!***************************************!*\
   !*** ../styles/views/setup/goal.scss ***!
   \***************************************/
@@ -37544,7 +37651,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./goal.scss */ 249);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./goal.scss */ 252);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -37564,7 +37671,7 @@
 	}
 
 /***/ },
-/* 249 */
+/* 252 */
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/goal.scss ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -37581,7 +37688,7 @@
 
 
 /***/ },
-/* 250 */
+/* 253 */
 /*!*******************************!*\
   !*** ./views/setup/quads.jsx ***!
   \*******************************/
@@ -37597,7 +37704,7 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 94);
 	
-	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 245);
+	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 254);
 	
 	var _circle_check2 = _interopRequireDefault(_circle_check);
 	
@@ -37605,7 +37712,7 @@
 	
 	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
 	
-	var _button = __webpack_require__(/*! views/common/button */ 257);
+	var _button = __webpack_require__(/*! views/common/button */ 248);
 	
 	var _button2 = _interopRequireDefault(_button);
 	
@@ -37617,7 +37724,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/setup/quads.scss */ 251);
+	__webpack_require__(/*! views/setup/quads.scss */ 257);
 	
 	var Quads = function (_React$Component) {
 	    _inherits(Quads, _React$Component);
@@ -37786,7 +37893,123 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 251 */
+/* 254 */
+/*!***************************************!*\
+  !*** ./views/common/circle_check.jsx ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/circle_check.scss */ 255);
+	
+	var CircleCheck = function (_React$Component) {
+	    _inherits(CircleCheck, _React$Component);
+	
+	    function CircleCheck(props) {
+	        _classCallCheck(this, CircleCheck);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(CircleCheck).call(this, props));
+	    }
+	
+	    _createClass(CircleCheck, [{
+	        key: 'getValue',
+	        value: function getValue() {
+	            return this.refs.check.checked;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'span',
+	                { className: 'circle-check' },
+	                !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
+	                    checked: this.props.checked, onChange: this.props.change }) : null,
+	                this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
+	                    checked: this.props.checked, readOnly: true }) : null,
+	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'label-text' },
+	                    this.props.label
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return CircleCheck;
+	}(_react2.default.Component);
+	
+	exports.default = CircleCheck;
+
+/***/ },
+/* 255 */
+/*!******************************************!*\
+  !*** ../styles/common/circle_check.scss ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./circle_check.scss */ 256);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./circle_check.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 256 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/circle_check.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 257 */
 /*!****************************************!*\
   !*** ../styles/views/setup/quads.scss ***!
   \****************************************/
@@ -37795,7 +38018,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./quads.scss */ 252);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./quads.scss */ 258);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -37815,7 +38038,7 @@
 	}
 
 /***/ },
-/* 252 */
+/* 258 */
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/quads.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -37832,7 +38055,7 @@
 
 
 /***/ },
-/* 253 */
+/* 259 */
 /*!*********************************!*\
   !*** ./views/setup/fitness.jsx ***!
   \*********************************/
@@ -37852,11 +38075,11 @@
 	
 	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
 	
-	var _simple_input = __webpack_require__(/*! views/common/simple_input */ 254);
+	var _simple_input = __webpack_require__(/*! views/common/simple_input */ 260);
 	
 	var _simple_input2 = _interopRequireDefault(_simple_input);
 	
-	var _button = __webpack_require__(/*! views/common/button */ 257);
+	var _button = __webpack_require__(/*! views/common/button */ 248);
 	
 	var _button2 = _interopRequireDefault(_button);
 	
@@ -37868,7 +38091,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/setup/fitness.scss */ 260);
+	__webpack_require__(/*! views/setup/fitness.scss */ 263);
 	
 	var Fitness = function (_React$Component) {
 	    _inherits(Fitness, _React$Component);
@@ -38228,10 +38451,6 @@
 	                        React.createElement(
 	                            'div',
 	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { buttonText: 'I can\'t do any', onClick: function onClick() {
-	                                    return _this2.changeStep(6);
-	                                },
-	                                disabled: false }),
 	                            React.createElement(_button2.default, { ref: 'pullupsNext', buttonText: 'Continue', onClick: function onClick() {
 	                                    return _this2.pullupsSubmitted();
 	                                },
@@ -38312,7 +38531,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 254 */
+/* 260 */
 /*!***************************************!*\
   !*** ./views/common/simple_input.jsx ***!
   \***************************************/
@@ -38340,7 +38559,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/simple_input.scss */ 255);
+	__webpack_require__(/*! common/simple_input.scss */ 261);
 	
 	var SimpleInput = function (_React$Component) {
 	    _inherits(SimpleInput, _React$Component);
@@ -38379,7 +38598,7 @@
 	exports.default = SimpleInput;
 
 /***/ },
-/* 255 */
+/* 261 */
 /*!******************************************!*\
   !*** ../styles/common/simple_input.scss ***!
   \******************************************/
@@ -38388,7 +38607,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./simple_input.scss */ 256);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./simple_input.scss */ 262);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -38408,7 +38627,7 @@
 	}
 
 /***/ },
-/* 256 */
+/* 262 */
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/simple_input.scss ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -38425,113 +38644,7 @@
 
 
 /***/ },
-/* 257 */
-/*!*********************************!*\
-  !*** ./views/common/button.jsx ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 94);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	__webpack_require__(/*! common/button.scss */ 258);
-	
-	var Button = function (_React$Component) {
-	    _inherits(Button, _React$Component);
-	
-	    function Button(props) {
-	        _classCallCheck(this, Button);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Button).call(this, props));
-	    }
-	
-	    _createClass(Button, [{
-	        key: 'isDisabled',
-	        value: function isDisabled() {}
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'button',
-	                { ref: 'button', disabled: this.props.disabled, type: 'submit',
-	                    className: 'btn btn-default qfButton', onClick: this.props.onClick },
-	                this.props.buttonText
-	            );
-	        }
-	    }]);
-	
-	    return Button;
-	}(_react2.default.Component);
-	
-	exports.default = Button;
-
-/***/ },
-/* 258 */
-/*!************************************!*\
-  !*** ../styles/common/button.scss ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./button.scss */ 259);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./button.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./button.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 259 */
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/button.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 260 */
+/* 263 */
 /*!******************************************!*\
   !*** ../styles/views/setup/fitness.scss ***!
   \******************************************/
@@ -38540,7 +38653,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./fitness.scss */ 261);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./fitness.scss */ 264);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -38560,7 +38673,7 @@
 	}
 
 /***/ },
-/* 261 */
+/* 264 */
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/fitness.scss ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -38577,7 +38690,7 @@
 
 
 /***/ },
-/* 262 */
+/* 265 */
 /*!**********************************!*\
   !*** ./views/setup/schedule.jsx ***!
   \**********************************/
@@ -38599,7 +38712,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/setup/schedule.scss */ 263);
+	__webpack_require__(/*! views/setup/schedule.scss */ 266);
 	
 	var Schedule = function (_React$Component) {
 	    _inherits(Schedule, _React$Component);
@@ -38662,7 +38775,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 263 */
+/* 266 */
 /*!*******************************************!*\
   !*** ../styles/views/setup/schedule.scss ***!
   \*******************************************/
@@ -38671,7 +38784,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./schedule.scss */ 264);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./schedule.scss */ 267);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -38691,7 +38804,7 @@
 	}
 
 /***/ },
-/* 264 */
+/* 267 */
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/schedule.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -38708,7 +38821,7 @@
 
 
 /***/ },
-/* 265 */
+/* 268 */
 /*!*********************************!*\
   !*** ./views/setup/program.jsx ***!
   \*********************************/
@@ -38724,15 +38837,15 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 94);
 	
-	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 245);
+	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 254);
 	
 	var _circle_check2 = _interopRequireDefault(_circle_check);
 	
-	var _button = __webpack_require__(/*! views/common/button */ 257);
+	var _button = __webpack_require__(/*! views/common/button */ 248);
 	
 	var _button2 = _interopRequireDefault(_button);
 	
-	var _program_actions = __webpack_require__(/*! actions/program_actions */ 266);
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 269);
 	
 	var _program_actions2 = _interopRequireDefault(_program_actions);
 	
@@ -38931,7 +39044,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 266 */
+/* 269 */
 /*!************************************!*\
   !*** ./actions/program_actions.js ***!
   \************************************/
@@ -38940,7 +39053,7 @@
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
-	var C = __webpack_require__(/*! constants/program_constants.js */ 267);
+	var C = __webpack_require__(/*! constants/program_constants.js */ 270);
 	
 	var ProgramActions = {
 	
@@ -38978,7 +39091,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 239)))
 
 /***/ },
-/* 267 */
+/* 270 */
 /*!****************************************!*\
   !*** ./constants/program_constants.js ***!
   \****************************************/
@@ -38996,7 +39109,7 @@
 	});
 
 /***/ },
-/* 268 */
+/* 271 */
 /*!************************************!*\
   !*** ./views/setup/commitment.jsx ***!
   \************************************/
@@ -39012,15 +39125,15 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 94);
 	
-	var _simple_input = __webpack_require__(/*! views/common/simple_input */ 254);
+	var _square_check = __webpack_require__(/*! views/common/square_check */ 357);
 	
-	var _simple_input2 = _interopRequireDefault(_simple_input);
+	var _square_check2 = _interopRequireDefault(_square_check);
 	
-	var _button = __webpack_require__(/*! views/common/button */ 257);
+	var _button = __webpack_require__(/*! views/common/button */ 248);
 	
 	var _button2 = _interopRequireDefault(_button);
 	
-	var _program_actions = __webpack_require__(/*! actions/program_actions */ 266);
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 269);
 	
 	var _program_actions2 = _interopRequireDefault(_program_actions);
 	
@@ -39032,7 +39145,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/setup/commitment.scss */ 269);
+	__webpack_require__(/*! views/setup/commitment.scss */ 272);
 	
 	var Commitment = function (_React$Component) {
 	    _inherits(Commitment, _React$Component);
@@ -39043,28 +39156,45 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Commitment).call(this, props));
 	
 	        _this.state = {
-	            commitmentNextDisabled: true
+	            commitmentNextDisabled: true,
+	            frequency: undefined,
+	            time: undefined
 	        };
+	        _this.frequencyChanged = _this.frequencyChanged.bind(_this);
+	        _this.timeChanged = _this.timeChanged.bind(_this);
+	        _this.commitmentSubmitted = _this.commitmentSubmitted.bind(_this);
 	        return _this;
 	    }
 	
 	    _createClass(Commitment, [{
-	        key: 'inputChanged',
-	        value: function inputChanged() {
-	            var disabled = this.refs.frequency.getValue().length == 0 || this.refs.length.getValue().length == 0;
-	            this.setState({ commitmentNextDisabled: disabled });
+	        key: 'frequencyChanged',
+	        value: function frequencyChanged(elem) {
+	            var check = this.refs[elem.target.id];
+	            if (check.getValue()) {
+	                this.setState({ frequency: Number(check.props.id), commitmentNextDisabled: !(this.state.time > 0) });
+	            } else {
+	                this.setState({ frequency: undefined, commitmentNextDisabled: true });
+	            }
+	        }
+	    }, {
+	        key: 'timeChanged',
+	        value: function timeChanged(elem) {
+	            var check = this.refs[elem.target.id];
+	            if (check.getValue()) {
+	                this.setState({ time: Number(check.props.id), commitmentNextDisabled: !(this.state.frequency > 0) });
+	            } else {
+	                this.setState({ time: undefined, commitmentNextDisabled: true });
+	            }
 	        }
 	    }, {
 	        key: 'commitmentSubmitted',
 	        value: function commitmentSubmitted() {
-	            _program_actions2.default.setCommitment({ days: this.refs.frequency.getValue(), minutes: this.refs.length.getValue() });
+	            _program_actions2.default.setCommitment({ days: this.state.frequency, minutes: this.state.time });
 	            this.props.next('COMMITMENT');
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
-	
 	            return React.createElement(
 	                'div',
 	                { className: 'row commitment' },
@@ -39078,13 +39208,32 @@
 	                            'div',
 	                            { className: 'col-xs-6 col-xs-offset-3 text-center' },
 	                            React.createElement(
-	                                'div',
+	                                'span',
 	                                { className: 'question' },
-	                                'How many days per week can you exercise? The more you work, the easier it\'ll be to reach your goals!'
-	                            ),
-	                            React.createElement(_simple_input2.default, { ref: 'frequency', onChange: function onChange() {
-	                                    return _this2.inputChanged();
-	                                }, label: '', value: this.props.program.days })
+	                                'How many days per week can you strength train?'
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-2 col-xs-offset-3 text-center' },
+	                            React.createElement(_square_check2.default, { ref: '2', checked: this.state.frequency == 2, id: '2', change: this.frequencyChanged,
+	                                label: '2' })
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-2 text-center' },
+	                            React.createElement(_square_check2.default, { ref: '3', checked: this.state.frequency == 3, id: '3', change: this.frequencyChanged,
+	                                label: '3' })
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-2 text-center' },
+	                            React.createElement(_square_check2.default, { ref: '4', checked: this.state.frequency == 4, id: '4', change: this.frequencyChanged,
+	                                label: '4' })
 	                        )
 	                    ),
 	                    React.createElement(
@@ -39096,11 +39245,24 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'question' },
-	                                'How much time do you have to exercise per day?'
-	                            ),
-	                            React.createElement(_simple_input2.default, { ref: 'length', onChange: function onChange() {
-	                                    return _this2.inputChanged();
-	                                }, label: 'minutes', value: this.props.program.minutes })
+	                                'How much time do you have for strength training?'
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-2 col-xs-offset-4 text-center' },
+	                            React.createElement(_square_check2.default, { ref: '30', change: this.timeChanged, checked: this.state.time == 30, id: '30',
+	                                label: '30 minutes' })
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-2 text-center' },
+	                            React.createElement(_square_check2.default, { ref: '45', change: this.timeChanged, checked: this.state.time == 45, id: '45',
+	                                label: '45 minutes' })
 	                        )
 	                    ),
 	                    React.createElement(
@@ -39109,9 +39271,7 @@
 	                        React.createElement(
 	                            'div',
 	                            { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
-	                            React.createElement(_button2.default, { ref: 'commitmentNext', buttonText: 'Continue', onClick: function onClick() {
-	                                    return _this2.commitmentSubmitted();
-	                                },
+	                            React.createElement(_button2.default, { ref: 'commitmentNext', buttonText: 'Continue', onClick: this.commitmentSubmitted,
 	                                disabled: this.state.commitmentNextDisabled })
 	                        )
 	                    )
@@ -39127,7 +39287,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 269 */
+/* 272 */
 /*!*********************************************!*\
   !*** ../styles/views/setup/commitment.scss ***!
   \*********************************************/
@@ -39136,7 +39296,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./commitment.scss */ 270);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./commitment.scss */ 273);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -39156,7 +39316,7 @@
 	}
 
 /***/ },
-/* 270 */
+/* 273 */
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/commitment.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -39173,7 +39333,7 @@
 
 
 /***/ },
-/* 271 */
+/* 274 */
 /*!******************************!*\
   !*** ./stores/user_store.js ***!
   \******************************/
@@ -39182,7 +39342,7 @@
 	"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
-	var Store = __webpack_require__(/*! ./store.js */ 272);
+	var Store = __webpack_require__(/*! ./store.js */ 275);
 	var C = __webpack_require__(/*! constants/user_constants.js */ 244);
 	
 	var UserStore = new Store({
@@ -39210,7 +39370,7 @@
 	module.exports = UserStore;
 
 /***/ },
-/* 272 */
+/* 275 */
 /*!*************************!*\
   !*** ./stores/store.js ***!
   \*************************/
@@ -39219,7 +39379,7 @@
 	"use strict";
 	
 	var assign = __webpack_require__(/*! object-assign */ 4);
-	var EventEmitter = __webpack_require__(/*! events */ 273).EventEmitter;
+	var EventEmitter = __webpack_require__(/*! events */ 276).EventEmitter;
 	
 	var Store = function (extend) {
 	    if (extend) {
@@ -39242,7 +39402,7 @@
 	module.exports = Store;
 
 /***/ },
-/* 273 */
+/* 276 */
 /*!**********************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/events/events.js ***!
   \**********************************************************/
@@ -39549,7 +39709,7 @@
 
 
 /***/ },
-/* 274 */
+/* 277 */
 /*!********************************************!*\
   !*** ./stores/fitness_assessment_store.js ***!
   \********************************************/
@@ -39558,7 +39718,7 @@
 	"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
-	var Store = __webpack_require__(/*! ./store.js */ 272);
+	var Store = __webpack_require__(/*! ./store.js */ 275);
 	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 242);
 	
 	var FitnessAssessmentStore = new Store({
@@ -39708,7 +39868,7 @@
 	module.exports = FitnessAssessmentStore;
 
 /***/ },
-/* 275 */
+/* 278 */
 /*!*********************************!*\
   !*** ./stores/program_store.js ***!
   \*********************************/
@@ -39717,8 +39877,8 @@
 	"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
-	var Store = __webpack_require__(/*! ./store.js */ 272);
-	var C = __webpack_require__(/*! constants/program_constants.js */ 267);
+	var Store = __webpack_require__(/*! ./store.js */ 275);
+	var C = __webpack_require__(/*! constants/program_constants.js */ 270);
 	
 	var ProgramStore = new Store({
 	    days: undefined,
@@ -39770,7 +39930,7 @@
 	module.exports = ProgramStore;
 
 /***/ },
-/* 276 */
+/* 279 */
 /*!*********************************!*\
   !*** ./actions/user_actions.js ***!
   \*********************************/
@@ -39804,7 +39964,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 239)))
 
 /***/ },
-/* 277 */
+/* 280 */
 /*!**********************************!*\
   !*** ../styles/pages/setup.scss ***!
   \**********************************/
@@ -39813,7 +39973,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./setup.scss */ 278);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./setup.scss */ 281);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -39833,7 +39993,7 @@
 	}
 
 /***/ },
-/* 278 */
+/* 281 */
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/setup.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -39850,9 +40010,6 @@
 
 
 /***/ },
-/* 279 */,
-/* 280 */,
-/* 281 */,
 /* 282 */,
 /* 283 */,
 /* 284 */,
@@ -39925,10 +40082,13 @@
 /* 351 */,
 /* 352 */,
 /* 353 */,
-/* 354 */
-/*!********************************************!*\
-  !*** ./views/common/vert_circle_check.jsx ***!
-  \********************************************/
+/* 354 */,
+/* 355 */,
+/* 356 */,
+/* 357 */
+/*!***************************************!*\
+  !*** ./views/common/square_check.jsx ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -39953,18 +40113,18 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/vert_circle_check.scss */ 355);
+	__webpack_require__(/*! common/square_check.scss */ 358);
 	
-	var VertCircleCheck = function (_React$Component) {
-	    _inherits(VertCircleCheck, _React$Component);
+	var SquareCheck = function (_React$Component) {
+	    _inherits(SquareCheck, _React$Component);
 	
-	    function VertCircleCheck(props) {
-	        _classCallCheck(this, VertCircleCheck);
+	    function SquareCheck(props) {
+	        _classCallCheck(this, SquareCheck);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(VertCircleCheck).call(this, props));
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SquareCheck).call(this, props));
 	    }
 	
-	    _createClass(VertCircleCheck, [{
+	    _createClass(SquareCheck, [{
 	        key: 'getValue',
 	        value: function getValue() {
 	            return this.refs.check.checked;
@@ -39974,38 +40134,41 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'span',
-	                { className: 'vert-circle-check' },
-	                !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
-	                    checked: this.props.checked, onChange: this.props.change }) : null,
-	                this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
-	                    checked: this.props.checked, readOnly: true }) : null,
-	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
-	                _react2.default.createElement('br', null),
+	                { className: 'square-check-wrapper' },
 	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'label-text' },
-	                    this.props.label
+	                    'span',
+	                    { className: 'square-check' },
+	                    !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
+	                        checked: this.props.checked, onChange: this.props.change }) : null,
+	                    this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
+	                        checked: this.props.checked, readOnly: true }) : null,
+	                    _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'label-text' },
+	                        this.props.label
+	                    )
 	                )
 	            );
 	        }
 	    }]);
 	
-	    return VertCircleCheck;
+	    return SquareCheck;
 	}(_react2.default.Component);
 	
-	exports.default = VertCircleCheck;
+	exports.default = SquareCheck;
 
 /***/ },
-/* 355 */
-/*!***********************************************!*\
-  !*** ../styles/common/vert_circle_check.scss ***!
-  \***********************************************/
+/* 358 */
+/*!******************************************!*\
+  !*** ../styles/common/square_check.scss ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./vert_circle_check.scss */ 356);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./square_check.scss */ 359);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
@@ -40014,8 +40177,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./vert_circle_check.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./vert_circle_check.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./square_check.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./square_check.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -40025,10 +40188,10 @@
 	}
 
 /***/ },
-/* 356 */
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/vert_circle_check.scss ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/* 359 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/square_check.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();

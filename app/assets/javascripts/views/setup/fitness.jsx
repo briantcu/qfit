@@ -204,8 +204,6 @@ class Fitness extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
-                            <Button buttonText="I can't do any" onClick={ () => this.changeStep(6) }
-                                    disabled={false} />
                             <Button ref="pullupsNext" buttonText="Continue" onClick={ () => this.pullupsSubmitted() }
                                     disabled={this.state.pullupsNextDisabled} />
                         </div>

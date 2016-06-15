@@ -14,7 +14,7 @@ class Subnav extends React.Component {
                     <div className="col-xs-16 text-center">
                         <span className={ (this.props.activeNav == 'setup') ? 'bold-text' : null} >Setup</span>
                         <span className={ (this.props.activeNav == 'fitness') ? 'bold-text' : null} >Fitness Assessment</span>
-                        <span className={ (this.props.activeNav == 'scheduling') ? 'bold-text' : null} >Scheduling</span>
+                        <span className={ (this.props.activeNav == 'schedule') ? 'bold-text' : null} >Scheduling</span>
                     </div>
                 </div>
             </div>
