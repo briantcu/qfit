@@ -21,7 +21,7 @@ class Commitment extends React.Component {
     }
 
     frequencyChanged(elem) {
-        var check = this.refs[elem.target.id];
+        var check = this.refs[elem.props.id];
         if (check.getValue()) {
             this.setState({frequency: Number(check.props.id), commitmentNextDisabled: !(this.state.time > 0)});
         } else {
@@ -30,7 +30,7 @@ class Commitment extends React.Component {
     }
 
     timeChanged(elem) {
-        var check = this.refs[elem.target.id];
+        var check = this.refs[elem.props.id];
         if (check.getValue()) {
             this.setState({time: Number(check.props.id), commitmentNextDisabled: !(this.state.frequency > 0)});
         } else {
@@ -87,7 +87,7 @@ class Commitment extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-xs-2 col-xs-offset-4 back-link">
+                    <div className="col-xs-2 col-xs-offset-5 back-link text-center">
                         <span onClick={ () => this.props.previousPage('COMMITMENT') } className="small-link">Back</span>
                     </div>
                 </div>

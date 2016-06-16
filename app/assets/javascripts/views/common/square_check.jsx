@@ -13,15 +13,20 @@ class SquareCheck extends React.Component {
         return this.refs.check.checked;
     }
 
+    click(e) {
+        this.refs.check.checked = !this.refs.check.checked;
+        this.props.change(this);
+    }
+
     render () {
-        return <span className="square-check-wrapper">
+        return <span className="square-check-wrapper" onClick={ () => this.click() } id={`${this.props.id}`} >
             <span className="square-check">
                 <If condition={!this.props.disabled}>
-                    <input ref="check" type="checkbox" className="check" id={`${this.props.id}`}
-                           checked={this.props.checked} onChange={ this.props.change}/>
+                    <input ref="check" type="checkbox" className="check"
+                           checked={this.props.checked} />
                 </If>
                 <If condition={this.props.disabled}>
-                    <input ref="check" type="checkbox" className="check" id={`${this.props.id}`}
+                    <input ref="check" type="checkbox" className="check"
                            checked={this.props.checked} readOnly={true}/>
                 </If>
                 <label htmlFor={`${this.props.id}`} />

@@ -910,7 +910,8 @@ input[type=checkbox] {
   background-color: #ffffff;
   border: solid 1px #7953aa;
   display: inline-block;
-  text-align: left; }
+  text-align: left;
+  cursor: pointer; }
 
 .square-check {
   width: 28px;

@@ -39338,7 +39338,7 @@
 	    _createClass(Commitment, [{
 	        key: 'frequencyChanged',
 	        value: function frequencyChanged(elem) {
-	            var check = this.refs[elem.target.id];
+	            var check = this.refs[elem.props.id];
 	            if (check.getValue()) {
 	                this.setState({ frequency: Number(check.props.id), commitmentNextDisabled: !(this.state.time > 0) });
 	            } else {
@@ -39348,7 +39348,7 @@
 	    }, {
 	        key: 'timeChanged',
 	        value: function timeChanged(elem) {
-	            var check = this.refs[elem.target.id];
+	            var check = this.refs[elem.props.id];
 	            if (check.getValue()) {
 	                this.setState({ time: Number(check.props.id), commitmentNextDisabled: !(this.state.frequency > 0) });
 	            } else {
@@ -39451,7 +39451,7 @@
 	                        { className: 'row' },
 	                        React.createElement(
 	                            'div',
-	                            { className: 'col-xs-2 col-xs-offset-4 back-link' },
+	                            { className: 'col-xs-2 col-xs-offset-5 back-link text-center' },
 	                            React.createElement(
 	                                'span',
 	                                { onClick: function onClick() {
@@ -40316,17 +40316,27 @@
 	            return this.refs.check.checked;
 	        }
 	    }, {
+	        key: 'click',
+	        value: function click(e) {
+	            this.refs.check.checked = !this.refs.check.checked;
+	            this.props.change(this);
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+	
 	            return _react2.default.createElement(
 	                'span',
-	                { className: 'square-check-wrapper' },
+	                { className: 'square-check-wrapper', onClick: function onClick() {
+	                        return _this2.click();
+	                    }, id: '' + this.props.id },
 	                _react2.default.createElement(
 	                    'span',
 	                    { className: 'square-check' },
-	                    !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
-	                        checked: this.props.checked, onChange: this.props.change }) : null,
-	                    this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
+	                    !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check',
+	                        checked: this.props.checked }) : null,
+	                    this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check',
 	                        checked: this.props.checked, readOnly: true }) : null,
 	                    _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
 	                    _react2.default.createElement(
