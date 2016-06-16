@@ -91,6 +91,10 @@
 	
 	var _user_store2 = _interopRequireDefault(_user_store);
 	
+	var _user_schedule_store = __webpack_require__(/*! stores/user_schedule_store */ 360);
+	
+	var _user_schedule_store2 = _interopRequireDefault(_user_schedule_store);
+	
 	var _fitness_assessment_store = __webpack_require__(/*! stores/fitness_assessment_store */ 277);
 	
 	var _fitness_assessment_store2 = _interopRequireDefault(_fitness_assessment_store);
@@ -144,7 +148,8 @@
 	            goal: C.MASS,
 	            program: {},
 	            quads: {},
-	            activeNav: activeNav
+	            activeNav: activeNav,
+	            user_schedule: {}
 	        };
 	        _this.nextPage = _this.nextPage.bind(_this);
 	        _this.onChange = _this.onChange.bind(_this);
@@ -186,6 +191,7 @@
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            _user_store2.default.addChangeListener(this.onChange);
+	            _user_schedule_store2.default.addChangeListener(this.onChange);
 	            _program_store2.default.addChangeListener(this.onChange);
 	            _fitness_assessment_store2.default.addChangeListener(this.onChange);
 	            _user_actions2.default.getUser(gon.current_user_id);
@@ -194,6 +200,7 @@
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
 	            _user_store2.default.removeChangeListener(this.onChange);
+	            _user_schedule_store2.default.removeChangeListener(this.onChange);
 	            _program_store2.default.removeChangeListener(this.onChange);
 	            _fitness_assessment_store2.default.removeChangeListener(this.onChange);
 	        }
@@ -201,6 +208,7 @@
 	        key: 'onChange',
 	        value: function onChange() {
 	            var data = _user_store2.default.getData();
+	            var schedule = _user_schedule_store2.default.getData();
 	            var fitness = _fitness_assessment_store2.default.getData();
 	            var program = _program_store2.default.getData();
 	            this.setState({
@@ -217,7 +225,8 @@
 	                squatReps: fitness.squatReps,
 	                module: fitness.module,
 	                program: program,
-	                suggested_schedule: program.suggested_schedule
+	                suggested_schedule: program.suggested_schedule,
+	                user_schedule: schedule
 	            });
 	            if (fitness.complete) {
 	                _fitness_assessment_actions2.default.submit(this.state, this.fitnessSubmitted);
@@ -37416,7 +37425,8 @@
 	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 243);
 	
 	module.exports = keyMirror({
-	    LOADED: null
+	    LOADED: null,
+	    SCHEDULE_LOADED: null
 	});
 
 /***/ },
@@ -38751,7 +38761,7 @@
 	                                'Weekly Planner'
 	                            )
 	                        ),
-	                        this.props.quads.strength ? [React.createElement(
+	                        this.props.quads.strength || this.props.user_schedule.weights ? [React.createElement(
 	                            'div',
 	                            { className: 'row', key: '0'
 	                            },
@@ -38771,47 +38781,47 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2 col-xs-offset-1' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[0].weights,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[1].weights,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[2].weights,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[3].weights,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[4].weights,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[5].weights,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[6].weights,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            )
 	                        )] : null,
-	                        this.props.quads.plyos ? [React.createElement(
+	                        this.props.quads.plyos || this.props.user_schedule.plyos ? [React.createElement(
 	                            'div',
 	                            { className: 'row', key: '0'
 	                            },
@@ -38831,47 +38841,47 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2 col-xs-offset-1' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[0].plyometrics,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[1].plyometrics,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[2].plyometrics,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[3].plyometrics,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[4].plyometrics,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[5].plyometrics,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[6].plyometrics,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            )
 	                        )] : null,
-	                        this.props.quads.sprinting ? [React.createElement(
+	                        this.props.quads.sprinting || this.props.user_schedule.sprinting ? [React.createElement(
 	                            'div',
 	                            { className: 'row', key: '0'
 	                            },
@@ -38891,44 +38901,44 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2 col-xs-offset-1' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[0].sprinting,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[1].sprinting,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[2].sprinting,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[3].sprinting,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2 ' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[4].sprinting,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2 ' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[5].sprinting,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2 ' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: true, id: '4', change: this.frequencyChanged,
-	                                    label: '4' })
+	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[6].sprinting,
+	                                    id: '4', change: this.frequencyChanged, label: '4' })
 	                            )
 	                        )] : null
 	                    )
@@ -40137,6 +40147,24 @@
 	            contentType: "application/json; charset=utf-8",
 	            success: function (user) {
 	                dispatcher.dispatch(C.LOADED, user);
+	                if (user.user_schedule) {
+	                    this.getSchedule(user.user_schedule.id);
+	                }
+	            },
+	            error: function (results) {
+	                alert("Something went wrong!");
+	            }
+	        });
+	    },
+	
+	    getSchedule: function (schedule_id) {
+	        $.ajax({
+	            type: "get",
+	            url: "/user_schedules/" + schedule_id + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (schedule) {
+	                dispatcher.dispatch(C.SCHEDULE_LOADED, schedule);
 	            },
 	            error: function (results) {
 	                alert("Something went wrong!");
@@ -40399,6 +40427,63 @@
 	
 	// exports
 
+
+/***/ },
+/* 360 */
+/*!***************************************!*\
+  !*** ./stores/user_schedule_store.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
+	var Store = __webpack_require__(/*! ./store.js */ 275);
+	var C = __webpack_require__(/*! constants/user_constants.js */ 244);
+	
+	var UserScheduleStore = new Store({
+	    schedule: {
+	        weekly_schedule_days: []
+	    },
+	    weights: false,
+	    plyos: false,
+	    sprinting: false,
+	
+	    setSchedule: function (data) {
+	        data.weekly_schedule_days.forEach(function (day, i) {
+	            if (day.weights) {
+	                this.weights = true;
+	            }
+	            if (day.plyometrics) {
+	                this.plyos = true;
+	            }
+	            if (day.sprinting) {
+	                this.sprinting = true;
+	            }
+	        }).bind(this);
+	        this.schedule = data;
+	    },
+	
+	    getData: function () {
+	        return {
+	            schedule: this.schedule,
+	            weights: this.weights,
+	            plyos: this.plyos,
+	            sprinting: this.sprinting,
+	            weekly_schedule_days: this.schedule.weekly_schedule_days
+	        };
+	    }
+	});
+	
+	dispatcher.register(C.SCHEDULE_LOADED, function (data) {
+	    if (data) {
+	        UserScheduleStore.setSchedule(data);
+	        UserScheduleStore.change();
+	    }
+	});
+	
+	
+	module.exports = UserScheduleStore;
 
 /***/ }
 /******/ ]);

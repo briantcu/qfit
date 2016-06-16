@@ -1,5 +1,6 @@
 var keyMirror = require('helpers/KeyMirror');
 
 module.exports = keyMirror({
-    LOADED: null
+    LOADED: null,
+    SCHEDULE_LOADED: null
 });

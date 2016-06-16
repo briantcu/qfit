@@ -11,6 +11,7 @@ import Program from 'views/setup/program';
 import Commitment from 'views/setup/commitment';
 
 import UserStore from 'stores/user_store';
+import UserScheduleStore from 'stores/user_schedule_store';
 import FitnessAssessmentStore from 'stores/fitness_assessment_store';
 import ProgramStore from 'stores/program_store';
 import UserActions from 'actions/user_actions';
@@ -37,7 +38,8 @@ class App extends React.Component {
             goal: C.MASS,
             program: {},
             quads: {},
-            activeNav: activeNav
+            activeNav: activeNav,
+            user_schedule: {}
         };
         this.nextPage = this.nextPage.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -74,6 +76,7 @@ class App extends React.Component {
 
     componentDidMount () {
         UserStore.addChangeListener(this.onChange);
+        UserScheduleStore.addChangeListener(this.onChange);
         ProgramStore.addChangeListener(this.onChange);
         FitnessAssessmentStore.addChangeListener(this.onChange);
         UserActions.getUser(gon.current_user_id);
@@ -81,12 +84,14 @@ class App extends React.Component {
 
     componentWillUnmount () {
         UserStore.removeChangeListener(this.onChange);
+        UserScheduleStore.removeChangeListener(this.onChange);
         ProgramStore.removeChangeListener(this.onChange);
         FitnessAssessmentStore.removeChangeListener(this.onChange);
     }
 
     onChange () {
         var data = UserStore.getData();
+        var schedule = UserScheduleStore.getData();
         var fitness = FitnessAssessmentStore.getData();
         var program = ProgramStore.getData();
         this.setState({
@@ -103,7 +108,8 @@ class App extends React.Component {
             squatReps: fitness.squatReps,
             module: fitness.module,
             program: program,
-            suggested_schedule: program.suggested_schedule
+            suggested_schedule: program.suggested_schedule,
+            user_schedule: schedule
         });
         if (fitness.complete) {
             FitnessAssessmentActions.submit(this.state, this.fitnessSubmitted);
