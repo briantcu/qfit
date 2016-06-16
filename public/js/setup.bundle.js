@@ -38737,10 +38737,28 @@
 	    function Schedule(props) {
 	        _classCallCheck(this, Schedule);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Schedule).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Schedule).call(this, props));
+	
+	        _this.weightsDayChanged = _this.weightsDayChanged.bind(_this);
+	        _this.plyosDayChanged = _this.plyosDayChanged.bind(_this);
+	        _this.sprintingDayChanged = _this.sprintingDayChanged.bind(_this);
+	        return _this;
 	    }
 	
 	    _createClass(Schedule, [{
+	        key: 'weightsDayChanged',
+	        value: function weightsDayChanged(e) {
+	            var check = this.refs[e.props.id];
+	            var day = Number(check.props.id.slice(-1));
+	            //this.setState({time: Number(check.props.id), commitmentNextDisabled: !(this.state.frequency > 0)});
+	        }
+	    }, {
+	        key: 'plyosDayChanged',
+	        value: function plyosDayChanged(e) {}
+	    }, {
+	        key: 'sprintingDayChanged',
+	        value: function sprintingDayChanged(e) {}
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return React.createElement(
@@ -38781,44 +38799,44 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2 col-xs-offset-1' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[0].weights,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'w0', checked: this.props.user_schedule.schedule.weekly_schedule_days[0].weights,
+	                                    id: 'w0', change: this.weightsDayChanged, label: 'Sunday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[1].weights,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'w1', checked: this.props.user_schedule.schedule.weekly_schedule_days[1].weights,
+	                                    id: 'w1', change: this.weightsDayChanged, label: 'Monday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[2].weights,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'w2', checked: this.props.user_schedule.schedule.weekly_schedule_days[2].weights,
+	                                    id: 'w2', change: this.weightsDayChanged, label: 'Tuesday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[3].weights,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'w3', checked: this.props.user_schedule.schedule.weekly_schedule_days[3].weights,
+	                                    id: 'w3', change: this.weightsDayChanged, label: 'Wednesday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[4].weights,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'w4', checked: this.props.user_schedule.schedule.weekly_schedule_days[4].weights,
+	                                    id: 'w4', change: this.weightsDayChanged, label: 'Thursday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[5].weights,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'w5', checked: this.props.user_schedule.schedule.weekly_schedule_days[5].weights,
+	                                    id: 'w5', change: this.weightsDayChanged, label: 'Friday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[6].weights,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'w6', checked: this.props.user_schedule.schedule.weekly_schedule_days[6].weights,
+	                                    id: 'w6', change: this.weightsDayChanged, label: 'Saturday' })
 	                            )
 	                        )] : null,
 	                        this.props.quads.plyos || this.props.user_schedule.plyos ? [React.createElement(
@@ -38841,44 +38859,44 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2 col-xs-offset-1' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[0].plyometrics,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'p0', checked: this.props.user_schedule.schedule.weekly_schedule_days[0].plyometrics,
+	                                    id: 'p0', change: this.plyosDayChanged, label: 'Sunday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[1].plyometrics,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'p1', checked: this.props.user_schedule.schedule.weekly_schedule_days[1].plyometrics,
+	                                    id: 'p1', change: this.plyosDayChanged, label: 'Monday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[2].plyometrics,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'p2', checked: this.props.user_schedule.schedule.weekly_schedule_days[2].plyometrics,
+	                                    id: 'p2', change: this.plyosDayChanged, label: 'Tuesday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[3].plyometrics,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'p3', checked: this.props.user_schedule.schedule.weekly_schedule_days[3].plyometrics,
+	                                    id: 'p3', change: this.plyosDayChanged, label: 'Wednesday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[4].plyometrics,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'p4', checked: this.props.user_schedule.schedule.weekly_schedule_days[4].plyometrics,
+	                                    id: 'p4', change: this.plyosDayChanged, label: 'Thursday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[5].plyometrics,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'p5', checked: this.props.user_schedule.schedule.weekly_schedule_days[5].plyometrics,
+	                                    id: 'p5', change: this.plyosDayChanged, label: 'Friday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[6].plyometrics,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 'p6', checked: this.props.user_schedule.schedule.weekly_schedule_days[6].plyometrics,
+	                                    id: 'p6', change: this.plyosDayChanged, label: 'Saturday' })
 	                            )
 	                        )] : null,
 	                        this.props.quads.sprinting || this.props.user_schedule.sprinting ? [React.createElement(
@@ -38901,44 +38919,44 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2 col-xs-offset-1' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[0].sprinting,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 's0', checked: this.props.user_schedule.schedule.weekly_schedule_days[0].sprinting,
+	                                    id: 's0', change: this.sprintingDayChanged, label: 'Sunday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[1].sprinting,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 's1', checked: this.props.user_schedule.schedule.weekly_schedule_days[1].sprinting,
+	                                    id: 's1', change: this.sprintingDayChanged, label: 'Monday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[2].sprinting,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 's2', checked: this.props.user_schedule.schedule.weekly_schedule_days[2].sprinting,
+	                                    id: 's2', change: this.sprintingDayChanged, label: 'Tuesday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[3].sprinting,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 's3', checked: this.props.user_schedule.schedule.weekly_schedule_days[3].sprinting,
+	                                    id: 's3', change: this.sprintingDayChanged, label: 'Wednesday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2 ' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[4].sprinting,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 's4', checked: this.props.user_schedule.schedule.weekly_schedule_days[4].sprinting,
+	                                    id: 's4', change: this.sprintingDayChanged, label: 'Thursday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2 ' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[5].sprinting,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 's5', checked: this.props.user_schedule.schedule.weekly_schedule_days[5].sprinting,
+	                                    id: 's5', change: this.sprintingDayChanged, label: 'Friday' })
 	                            ),
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-2 ' },
-	                                React.createElement(_square_check2.default, { ref: '4', checked: this.props.user_schedule.schedule.weekly_schedule_days[6].sprinting,
-	                                    id: '4', change: this.frequencyChanged, label: '4' })
+	                                React.createElement(_square_check2.default, { ref: 's6', checked: this.props.user_schedule.schedule.weekly_schedule_days[6].sprinting,
+	                                    id: 's6', change: this.sprintingDayChanged, label: 'Saturday' })
 	                            )
 	                        )] : null
 	                    )
@@ -40443,7 +40461,7 @@
 	
 	var UserScheduleStore = new Store({
 	    schedule: {
-	        weekly_schedule_days: []
+	        weekly_schedule_days: [{ weights: false, plyos: false, sprinting: false }, { weights: false, plyos: false, sprinting: false }, { weights: false, plyos: false, sprinting: false }, { weights: false, plyos: false, sprinting: false }, { weights: false, plyos: false, sprinting: false }, { weights: false, plyos: false, sprinting: false }, { weights: false, plyos: false, sprinting: false }]
 	    },
 	    weights: false,
 	    plyos: false,

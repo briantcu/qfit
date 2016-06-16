@@ -4,7 +4,15 @@ var C = require('constants/user_constants.js');
 
 var UserScheduleStore = new Store({
     schedule: {
-        weekly_schedule_days: []
+        weekly_schedule_days: [
+            {weights: false, plyos: false, sprinting: false},
+            {weights: false, plyos: false, sprinting: false},
+            {weights: false, plyos: false, sprinting: false},
+            {weights: false, plyos: false, sprinting: false},
+            {weights: false, plyos: false, sprinting: false},
+            {weights: false, plyos: false, sprinting: false},
+            {weights: false, plyos: false, sprinting: false}
+        ]
     },
     weights: false,
     plyos: false,
