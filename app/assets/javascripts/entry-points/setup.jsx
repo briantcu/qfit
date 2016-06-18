@@ -39,7 +39,8 @@ class App extends React.Component {
             program: {},
             quads: {},
             activeNav: activeNav,
-            user_schedule: {schedule: {}}
+            user_schedule: {schedule: {}},
+            suggested_schedule: {}
         };
         this.nextPage = this.nextPage.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -56,7 +57,6 @@ class App extends React.Component {
             this.setState({activeNav: 'fitness'});
             browserHistory.push('/fitness');
         } else if (childView == "COMMITMENT") {
-            this.fetchSuggestedSchedule();
             this.setState({activeNav: 'schedule'});
             browserHistory.push('/program');
         } else if (childView == "PROGRAM") {

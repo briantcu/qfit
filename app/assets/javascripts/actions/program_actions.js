@@ -1,4 +1,5 @@
 var dispatcher = require('global_dispatcher.js');
+var FC = require('constants/fitness_assessment_constants.js');
 var C = require('constants/program_constants.js');
 
 var ProgramActions = {
@@ -14,11 +15,11 @@ var ProgramActions = {
     getSuggestedSchedule: function(programType, weightSchedule) {
         //program could be string or number
         var program = programType;
-        if (programType == C.LEAN) {
+        if (programType == FC.LEAN) {
             program = 1;
-        } else if (programType == C.MASS) {
+        } else if (programType == FC.MASS) {
             program = 2;
-        } else if (programType == C.RIP) {
+        } else if (programType == FC.RIP) {
             program = 3;
         }
         $.ajax({

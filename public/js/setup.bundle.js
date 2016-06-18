@@ -149,7 +149,8 @@
 	            program: {},
 	            quads: {},
 	            activeNav: activeNav,
-	            user_schedule: { schedule: {} }
+	            user_schedule: { schedule: {} },
+	            suggested_schedule: {}
 	        };
 	        _this.nextPage = _this.nextPage.bind(_this);
 	        _this.onChange = _this.onChange.bind(_this);
@@ -169,7 +170,6 @@
 	                this.setState({ activeNav: 'fitness' });
 	                _reactRouter.browserHistory.push('/fitness');
 	            } else if (childView == "COMMITMENT") {
-	                this.fetchSuggestedSchedule();
 	                this.setState({ activeNav: 'schedule' });
 	                _reactRouter.browserHistory.push('/program');
 	            } else if (childView == "PROGRAM") {
@@ -38759,15 +38759,8 @@
 	        _this.weightsDayChanged = _this.weightsDayChanged.bind(_this);
 	        _this.submit = _this.submit.bind(_this);
 	
-	        var minPlyoDays = _this.props.suggested_schedule.num_plyo_days;
-	        var minSprintingDays = _this.props.suggested_schedule.num_sprint_days;
-	        var weightDays = _this.props.suggested_schedule.num_weight_days;
-	
 	        _this.state = {
-	            errors: [],
-	            minPlyoDays: minPlyoDays,
-	            minSprintingDays: minSprintingDays,
-	            weightDays: weightDays
+	            errors: []
 	        };
 	        return _this;
 	    }
@@ -38815,7 +38808,7 @@
 	                                'Which days will you lift?',
 	                                React.createElement('br', null),
 	                                'The program you chose has ',
-	                                this.state.weightDays,
+	                                this.props.suggested_schedule.num_weight_days,
 	                                ' lifting days.'
 	                            )
 	                        ), React.createElement(
@@ -38875,7 +38868,7 @@
 	                                'Which days will you do plyometric exercises?',
 	                                React.createElement('br', null),
 	                                'To meet your goals, we recommend at least ',
-	                                this.state.minPlyoDays,
+	                                this.props.suggested_schedule.num_plyo_days,
 	                                ' plyometric days.'
 	                            )
 	                        ), React.createElement(
@@ -38935,7 +38928,7 @@
 	                                'Which days will you sprint?',
 	                                React.createElement('br', null),
 	                                'To meet your goals, we recommend at least ',
-	                                this.state.minSprintingDays,
+	                                this.props.suggested_schedule.num_sprint_days,
 	                                ' sprinting days.'
 	                            )
 	                        ), React.createElement(
@@ -39306,6 +39299,7 @@
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
+	var FC = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 242);
 	var C = __webpack_require__(/*! constants/program_constants.js */ 270);
 	
 	var ProgramActions = {
@@ -39321,11 +39315,11 @@
 	    getSuggestedSchedule: function (programType, weightSchedule) {
 	        //program could be string or number
 	        var program = programType;
-	        if (programType == C.LEAN) {
+	        if (programType == FC.LEAN) {
 	            program = 1;
-	        } else if (programType == C.MASS) {
+	        } else if (programType == FC.MASS) {
 	            program = 2;
-	        } else if (programType == C.RIP) {
+	        } else if (programType == FC.RIP) {
 	            program = 3;
 	        }
 	        $.ajax({

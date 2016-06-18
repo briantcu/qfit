@@ -11,15 +11,8 @@ class Schedule extends React.Component {
         this.weightsDayChanged = this.weightsDayChanged.bind(this);
         this.submit = this.submit.bind(this);
 
-        var minPlyoDays = this.props.suggested_schedule.num_plyo_days;
-        var minSprintingDays = this.props.suggested_schedule.num_sprint_days;
-        var weightDays = this.props.suggested_schedule.num_weight_days;
-
         this.state = {
-            errors: [],
-            minPlyoDays: minPlyoDays,
-            minSprintingDays: minSprintingDays,
-            weightDays: weightDays
+            errors: []
         }
     }
 
@@ -46,7 +39,7 @@ class Schedule extends React.Component {
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
                                 Which days will you lift?<br/>
-                                The program you chose has {this.state.weightDays} lifting days.
+                                The program you chose has {this.props.suggested_schedule.num_weight_days} lifting days.
                             </div>
                         </div>
                         <div className="row">
@@ -84,7 +77,7 @@ class Schedule extends React.Component {
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
                                 Which days will you do plyometric exercises?<br/>
-                                To meet your goals, we recommend at least {this.state.minPlyoDays} plyometric days.
+                                To meet your goals, we recommend at least {this.props.suggested_schedule.num_plyo_days} plyometric days.
                             </div>
                         </div>
                         <div className="row">
@@ -122,7 +115,7 @@ class Schedule extends React.Component {
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
                                 Which days will you sprint?<br/>
-                                To meet your goals, we recommend at least {this.state.minSprintingDays} sprinting days.
+                                To meet your goals, we recommend at least {this.props.suggested_schedule.num_sprint_days} sprinting days.
                             </div>
                         </div>
                         <div className="row">
