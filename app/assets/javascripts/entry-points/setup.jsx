@@ -39,11 +39,12 @@ class App extends React.Component {
             program: {},
             quads: {},
             activeNav: activeNav,
-            user_schedule: {}
+            user_schedule: {schedule: {}}
         };
         this.nextPage = this.nextPage.bind(this);
         this.onChange = this.onChange.bind(this);
         this.fitnessSubmitted = this.fitnessSubmitted.bind(this);
+        this.fetchSuggestedSchedule = this.fetchSuggestedSchedule.bind(this);
         this.previousPage = this.previousPage.bind(this);
     }
 
@@ -55,10 +56,11 @@ class App extends React.Component {
             this.setState({activeNav: 'fitness'});
             browserHistory.push('/fitness');
         } else if (childView == "COMMITMENT") {
+            this.fetchSuggestedSchedule();
             this.setState({activeNav: 'schedule'});
             browserHistory.push('/program');
         } else if (childView == "PROGRAM") {
-            ProgramActions.getSuggestedSchedule(this.state.goal, this.state.program.strengthProgram);
+            this.fetchSuggestedSchedule();
             browserHistory.push('/schedule');
         }
     }
@@ -113,6 +115,16 @@ class App extends React.Component {
         });
         if (fitness.complete) {
             FitnessAssessmentActions.submit(this.state, this.fitnessSubmitted);
+        }
+    }
+
+    fetchSuggestedSchedule() {
+        if (this.state.user_schedule.schedule.id) {
+            var goal = this.state.user_schedule.schedule.program_type_id;
+            var strengthProgram = this.state.user_schedule.schedule.program_id;
+            ProgramActions.getSuggestedSchedule(goal, strengthProgram);
+        } else {
+            ProgramActions.getSuggestedSchedule(this.state.goal, this.state.program.strengthProgram);
         }
     }
 

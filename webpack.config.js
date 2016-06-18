@@ -53,7 +53,8 @@ var config = {
         new LiveReloadPlugin(),
         new webpack.ProvidePlugin({
             $: "jquery",
-            React: 'react'
+            React: 'react',
+            _: 'underscore'
         })
     ]
 };

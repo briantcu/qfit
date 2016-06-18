@@ -149,11 +149,12 @@
 	            program: {},
 	            quads: {},
 	            activeNav: activeNav,
-	            user_schedule: {}
+	            user_schedule: { schedule: {} }
 	        };
 	        _this.nextPage = _this.nextPage.bind(_this);
 	        _this.onChange = _this.onChange.bind(_this);
 	        _this.fitnessSubmitted = _this.fitnessSubmitted.bind(_this);
+	        _this.fetchSuggestedSchedule = _this.fetchSuggestedSchedule.bind(_this);
 	        _this.previousPage = _this.previousPage.bind(_this);
 	        return _this;
 	    }
@@ -168,10 +169,11 @@
 	                this.setState({ activeNav: 'fitness' });
 	                _reactRouter.browserHistory.push('/fitness');
 	            } else if (childView == "COMMITMENT") {
+	                this.fetchSuggestedSchedule();
 	                this.setState({ activeNav: 'schedule' });
 	                _reactRouter.browserHistory.push('/program');
 	            } else if (childView == "PROGRAM") {
-	                _program_actions2.default.getSuggestedSchedule(this.state.goal, this.state.program.strengthProgram);
+	                this.fetchSuggestedSchedule();
 	                _reactRouter.browserHistory.push('/schedule');
 	            }
 	        }
@@ -230,6 +232,17 @@
 	            });
 	            if (fitness.complete) {
 	                _fitness_assessment_actions2.default.submit(this.state, this.fitnessSubmitted);
+	            }
+	        }
+	    }, {
+	        key: 'fetchSuggestedSchedule',
+	        value: function fetchSuggestedSchedule() {
+	            if (this.state.user_schedule.schedule.id) {
+	                var goal = this.state.user_schedule.schedule.program_type_id;
+	                var strengthProgram = this.state.user_schedule.schedule.program_id;
+	                _program_actions2.default.getSuggestedSchedule(goal, strengthProgram);
+	            } else {
+	                _program_actions2.default.getSuggestedSchedule(this.state.goal, this.state.program.strengthProgram);
 	            }
 	        }
 	    }, {
@@ -38721,6 +38734,10 @@
 	
 	var _square_check2 = _interopRequireDefault(_square_check);
 	
+	var _button = __webpack_require__(/*! views/common/button */ 248);
+	
+	var _button2 = _interopRequireDefault(_button);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38740,8 +38757,18 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Schedule).call(this, props));
 	
 	        _this.weightsDayChanged = _this.weightsDayChanged.bind(_this);
-	        _this.plyosDayChanged = _this.plyosDayChanged.bind(_this);
-	        _this.sprintingDayChanged = _this.sprintingDayChanged.bind(_this);
+	        _this.submit = _this.submit.bind(_this);
+	
+	        var minPlyoDays = _this.props.suggested_schedule.num_plyo_days;
+	        var minSprintingDays = _this.props.suggested_schedule.num_sprint_days;
+	        var weightDays = _this.props.suggested_schedule.num_weight_days;
+	
+	        _this.state = {
+	            errors: [],
+	            minPlyoDays: minPlyoDays,
+	            minSprintingDays: minSprintingDays,
+	            weightDays: weightDays
+	        };
 	        return _this;
 	    }
 	
@@ -38753,14 +38780,13 @@
 	            //this.setState({time: Number(check.props.id), commitmentNextDisabled: !(this.state.frequency > 0)});
 	        }
 	    }, {
-	        key: 'plyosDayChanged',
-	        value: function plyosDayChanged(e) {}
-	    }, {
-	        key: 'sprintingDayChanged',
-	        value: function sprintingDayChanged(e) {}
+	        key: 'submit',
+	        value: function submit() {}
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+	
 	            return React.createElement(
 	                'div',
 	                { className: 'schedule' },
@@ -38789,7 +38815,7 @@
 	                                'Which days will you lift?',
 	                                React.createElement('br', null),
 	                                'The program you chose has ',
-	                                this.props.suggested_schedule.num_weight_days,
+	                                this.state.weightDays,
 	                                ' lifting days.'
 	                            )
 	                        ), React.createElement(
@@ -38849,7 +38875,7 @@
 	                                'Which days will you do plyometric exercises?',
 	                                React.createElement('br', null),
 	                                'To meet your goals, we recommend at least ',
-	                                this.props.suggested_schedule.num_plyo_days,
+	                                this.state.minPlyoDays,
 	                                ' plyometric days.'
 	                            )
 	                        ), React.createElement(
@@ -38909,7 +38935,7 @@
 	                                'Which days will you sprint?',
 	                                React.createElement('br', null),
 	                                'To meet your goals, we recommend at least ',
-	                                this.props.suggested_schedule.num_sprint_days,
+	                                this.state.minSprintingDays,
 	                                ' sprinting days.'
 	                            )
 	                        ), React.createElement(
@@ -38958,7 +38984,37 @@
 	                                React.createElement(_square_check2.default, { ref: 's6', checked: this.props.user_schedule.schedule.weekly_schedule_days[6].sprinting,
 	                                    id: 's6', change: this.sprintingDayChanged, label: 'Saturday' })
 	                            )
-	                        )] : null
+	                        )] : null,
+	                        this.state.errors.length > 0 ? React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement('div', { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' })
+	                        ) : null,
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-6 col-xs-offset-3 text-center buttonRow' },
+	                                React.createElement(_button2.default, { ref: 'commitmentNext', buttonText: 'Continue', onClick: this.submit,
+	                                    disabled: false })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2 col-xs-offset-5 back-link text-center' },
+	                                React.createElement(
+	                                    'span',
+	                                    { onClick: function onClick() {
+	                                            return _this2.props.previousPage('SCHEDULE');
+	                                        }, className: 'small-link' },
+	                                    'Back'
+	                                )
+	                            )
+	                        )
 	                    )
 	                )
 	            );
@@ -39263,11 +39319,14 @@
 	    },
 	
 	    getSuggestedSchedule: function (programType, weightSchedule) {
-	        var program = 3;
+	        //program could be string or number
+	        var program = programType;
 	        if (programType == C.LEAN) {
 	            program = 1;
 	        } else if (programType == C.MASS) {
 	            program = 2;
+	        } else if (programType == C.RIP) {
+	            program = 3;
 	        }
 	        $.ajax({
 	            type: "get",

@@ -12,11 +12,14 @@ var ProgramActions = {
     },
 
     getSuggestedSchedule: function(programType, weightSchedule) {
-        var program = 3;
+        //program could be string or number
+        var program = programType;
         if (programType == C.LEAN) {
             program = 1;
         } else if (programType == C.MASS) {
             program = 2;
+        } else if (programType == C.RIP) {
+            program = 3;
         }
         $.ajax({
             type: 'get',
