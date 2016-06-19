@@ -30,7 +30,7 @@ var UserScheduleStore = new Store({
                 this.sprinting = true;
             }
 
-        }).bind(this);
+        }.bind(this));
         this.schedule = data;
     },
 

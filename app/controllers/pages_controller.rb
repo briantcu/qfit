@@ -12,9 +12,12 @@ class PagesController < ApplicationController
              })
     render template: 'pages/setup'
   end
+
   def schedule
-    # Subview of the get_started SPA
-    redirect_to action: 'get_started'
+    gon.push({
+                 current_user_id: session[:current_user_id] || current_user.id
+             })
+    render template: 'pages/setup'
   end
 
   private

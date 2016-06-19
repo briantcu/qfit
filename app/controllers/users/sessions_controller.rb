@@ -2,6 +2,8 @@ require 'digest/sha1'
 
 class Users::SessionsController < Devise::SessionsController
 
+  skip_before_filter :require_no_authentication, only: :create
+
   def create
     process_api_sign_in(params[:email], params[:password])
   end

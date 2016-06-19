@@ -18,6 +18,13 @@ class Schedule extends React.Component {
         this.changed = this.changed.bind(this);
     }
 
+    componentWillReceiveProps (props) {
+        this.state = {
+            errors: [],
+            schedule: this.props.user_schedule.schedule
+        };
+    }
+
     submit () {
         var countWeightDays = 0;
         var countPlyoDays = 0;
@@ -106,7 +113,7 @@ class Schedule extends React.Component {
                             Weekly Planner
                         </div>
                     </div>
-                    <If condition={this.props.quads.strength || this.props.user_schedule.weights}>
+                    <If condition={this.props.quads.strength || this.state.schedule.weights}>
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
                                 Which days will you lift?<br/>
@@ -144,7 +151,7 @@ class Schedule extends React.Component {
                             </div>
                         </div>
                     </If>
-                    <If condition={this.props.quads.plyos || this.props.user_schedule.plyos}>
+                    <If condition={this.props.quads.plyos || this.state.schedule.plyos}>
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
                                 Which days will you do plyometric exercises?<br/>
@@ -182,7 +189,7 @@ class Schedule extends React.Component {
                             </div>
                         </div>
                     </If>
-                    <If condition={this.props.quads.sprinting || this.props.user_schedule.sprinting}>
+                    <If condition={this.props.quads.sprinting || this.state.schedule.sprinting}>
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
                                 Which days will you sprint?<br/>

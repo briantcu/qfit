@@ -14,7 +14,7 @@ var UserActions = {
                 if (user.user_schedule) {
                     this.getSchedule(user.user_schedule.id);
                 }
-            },
+            }.bind(this),
             error: function(results) {
                 alert('Something went wrong!');
             }
@@ -38,19 +38,35 @@ var UserActions = {
 
     setSchedule: function(schedule) {
         var data = JSON.stringify(schedule);
-        $.ajax({
-            type: 'post',
-            data: data,
-            url: '/user_schedules.json',
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            success: function(results) {
-                location.href = '/do-work';
-            },
-            error: function(results) {
-                alert(results);
-            }
-        });
+        if (schedule.id) {
+            $.ajax({
+                type: 'put',
+                data: data,
+                url: '/user_schedules/'+ schedule.id +'.json',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                success: function(results) {
+                    location.href = '/do-work';
+                },
+                error: function(results) {
+                    alert(results);
+                }
+            });
+        } else {
+            $.ajax({
+                type: 'post',
+                data: data,
+                url: '/user_schedules.json',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                success: function(results) {
+                    location.href = '/do-work';
+                },
+                error: function(results) {
+                    alert(results);
+                }
+            });
+        }
     }
 
 };

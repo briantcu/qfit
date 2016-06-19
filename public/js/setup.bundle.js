@@ -38771,6 +38771,14 @@
 	    }
 	
 	    _createClass(Schedule, [{
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(props) {
+	            this.state = {
+	                errors: [],
+	                schedule: this.props.user_schedule.schedule
+	            };
+	        }
+	    }, {
 	        key: 'submit',
 	        value: function submit() {
 	            var countWeightDays = 0;
@@ -38876,7 +38884,7 @@
 	                                'Weekly Planner'
 	                            )
 	                        ),
-	                        this.props.quads.strength || this.props.user_schedule.weights ? [React.createElement(
+	                        this.props.quads.strength || this.state.schedule.weights ? [React.createElement(
 	                            'div',
 	                            { className: 'row', key: '0'
 	                            },
@@ -38936,7 +38944,7 @@
 	                                    id: 'w6', change: this.changed, label: 'Saturday' })
 	                            )
 	                        )] : null,
-	                        this.props.quads.plyos || this.props.user_schedule.plyos ? [React.createElement(
+	                        this.props.quads.plyos || this.state.schedule.plyos ? [React.createElement(
 	                            'div',
 	                            { className: 'row', key: '0'
 	                            },
@@ -38996,7 +39004,7 @@
 	                                    id: 'p6', change: this.changed, label: 'Saturday' })
 	                            )
 	                        )] : null,
-	                        this.props.quads.sprinting || this.props.user_schedule.sprinting ? [React.createElement(
+	                        this.props.quads.sprinting || this.state.schedule.sprinting ? [React.createElement(
 	                            'div',
 	                            { className: 'row', key: '0'
 	                            },
@@ -40298,12 +40306,12 @@
 	            url: "/users/" + user_id + ".json",
 	            dataType: "json",
 	            contentType: "application/json; charset=utf-8",
-	            success: function (user) {
+	            success: (function (user) {
 	                dispatcher.dispatch(C.LOADED, user);
 	                if (user.user_schedule) {
 	                    this.getSchedule(user.user_schedule.id);
 	                }
-	            },
+	            }).bind(this),
 	            error: function (results) {
 	                alert("Something went wrong!");
 	            }
@@ -40327,19 +40335,35 @@
 	
 	    setSchedule: function (schedule) {
 	        var data = JSON.stringify(schedule);
-	        $.ajax({
-	            type: "post",
-	            data: data,
-	            url: "/user_schedules.json",
-	            dataType: "json",
-	            contentType: "application/json; charset=utf-8",
-	            success: function (results) {
-	                location.href = "/do-work";
-	            },
-	            error: function (results) {
-	                alert(results);
-	            }
-	        });
+	        if (schedule.id) {
+	            $.ajax({
+	                type: "put",
+	                data: data,
+	                url: "/user_schedules/" + schedule.id + ".json",
+	                dataType: "json",
+	                contentType: "application/json; charset=utf-8",
+	                success: function (results) {
+	                    location.href = "/do-work";
+	                },
+	                error: function (results) {
+	                    alert(results);
+	                }
+	            });
+	        } else {
+	            $.ajax({
+	                type: "post",
+	                data: data,
+	                url: "/user_schedules.json",
+	                dataType: "json",
+	                contentType: "application/json; charset=utf-8",
+	                success: function (results) {
+	                    location.href = "/do-work";
+	                },
+	                error: function (results) {
+	                    alert(results);
+	                }
+	            });
+	        }
 	    }
 	
 	};
@@ -40620,7 +40644,7 @@
 	    sprinting: false,
 	
 	    setSchedule: function (data) {
-	        data.weekly_schedule_days.forEach(function (day, i) {
+	        data.weekly_schedule_days.forEach((function (day, i) {
 	            if (day.weights) {
 	                this.weights = true;
 	            }
@@ -40630,7 +40654,7 @@
 	            if (day.sprinting) {
 	                this.sprinting = true;
 	            }
-	        }).bind(this);
+	        }).bind(this));
 	        this.schedule = data;
 	    },
 	

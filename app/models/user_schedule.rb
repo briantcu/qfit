@@ -22,13 +22,13 @@ class UserSchedule < ActiveRecord::Base
   PLYOS = 2
   SPRINTING = 3
 
-  after_save :create_weekly_schedule_days, on: :create
+  #after_save :create_weekly_schedule_days, on: :create
 
   belongs_to :user
   has_many :weekly_schedule_days, -> { order('day ASC') }
   belongs_to :program_type, :foreign_key => :program_type_id
   belongs_to :program, :foreign_key => :program_id
-  accepts_nested_attributes_for :weekly_schedule_days, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
+  accepts_nested_attributes_for :weekly_schedule_days, allow_destroy: true
   validates_presence_of :user_id, :program_id, :program_type_id, :phase_one_start, :phase_two_start, :phase_three_start,
                         :phase_four_start, :sign_up_date
 
@@ -85,7 +85,7 @@ class UserSchedule < ActiveRecord::Base
   end
 
   def self.create_user_schedule(params)
-    user_schedule = UserSchedule.new(params)
+    user_schedule = UserSchedule.create(params)
     user_schedule.setup_phases
     user_schedule.sign_up_date = Date.today
     user_schedule.save!
