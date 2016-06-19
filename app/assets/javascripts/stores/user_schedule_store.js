@@ -39,8 +39,7 @@ var UserScheduleStore = new Store({
             schedule: this.schedule,
             weights: this.weights,
             plyos: this.plyos,
-            sprinting: this.sprinting,
-            weekly_schedule_days: this.schedule.weekly_schedule_days
+            sprinting: this.sprinting
         };
     }
 });

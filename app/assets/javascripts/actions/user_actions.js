@@ -34,6 +34,23 @@ var UserActions = {
                 alert('Something went wrong!');
             }
         });
+    },
+
+    setSchedule: function(schedule) {
+        var data = JSON.stringify(schedule);
+        $.ajax({
+            type: 'post',
+            data: data,
+            url: '/user_schedules.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(results) {
+                location.href = '/do-work';
+            },
+            error: function(results) {
+                alert(results);
+            }
+        });
     }
 
 };
