@@ -85,7 +85,7 @@ class UserSchedule < ActiveRecord::Base
   end
 
   def self.create_user_schedule(params)
-    user_schedule = UserSchedule.create(params)
+    user_schedule = UserSchedule.new(params)
     user_schedule.setup_phases
     user_schedule.sign_up_date = Date.today
     user_schedule.save!

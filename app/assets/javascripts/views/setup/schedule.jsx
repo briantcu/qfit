@@ -37,44 +37,69 @@ class Schedule extends React.Component {
             var wId = 'w' + i;
             var pId = 'p' + i;
             var sId = 's' + i;
-            var w = this.refs[wId];
-            checked = w.getValue();
-            if (checked){
-                countWeightDays++;
-                day["weights"] = true;
+
+            if (this.props.quads.strength || this.state.schedule.weights) {
+                var w = this.refs[wId];
+                checked = w.getValue();
+                if (checked){
+                    countWeightDays++;
+                    day["weights"] = true;
+                } else {
+                    day["weights"] = false;
+                }
+
             } else {
                 day["weights"] = false;
             }
 
-            var p = this.refs[pId];
-            checked = p.getValue();
-            if (checked){
-                countPlyoDays++;
-                day["plyometrics"] = true;
+            if (this.props.quads.plyos || this.state.schedule.plyos) {
+                var p = this.refs[pId];
+                checked = p.getValue();
+                if (checked){
+                    countPlyoDays++;
+                    day["plyometrics"] = true;
+                } else {
+                    day["plyometrics"] = false;
+                }
             } else {
                 day["plyometrics"] = false;
             }
 
-            var s = this.refs[sId];
-            checked = s.getValue();
-            if (checked){
-                countSprintDays++;
-                day["sprinting"] = true;
+            if (this.props.quads.sprinting || this.state.schedule.sprinting) {
+                var s = this.refs[sId];
+                checked = s.getValue();
+                if (checked){
+                    countSprintDays++;
+                    day["sprinting"] = true;
+                } else {
+                    day["sprinting"] = false;
+                }
             } else {
                 day["sprinting"] = false;
             }
-            day["stretching"] = (day.weights || day.plyometrics || day.sprinting);
+
+            day["stretching"] = !!(day.weights || day.plyometrics || day.sprinting);
             days.push(day);
         }
-        if (countWeightDays != this.props.suggested_schedule.num_weight_days) {
-            errors.push(`Please choose ${this.props.suggested_schedule.num_weight_days} strength training days`);
+        if (this.props.quads.strength || this.state.schedule.weights) {
+            if (countWeightDays != this.props.suggested_schedule.num_weight_days) {
+                errors.push(`Please choose ${this.props.suggested_schedule.num_weight_days} strength training days`);
+            }
         }
-        if (countPlyoDays < this.props.suggested_schedule.num_plyo_days) {
-            errors.push(`Please choose at least ${this.props.suggested_schedule.num_plyo_days} plyometric days`);
+
+        if (this.props.quads.plyos || this.state.schedule.plyos) {
+            if (countPlyoDays < this.props.suggested_schedule.num_plyo_days) {
+                errors.push(`Please choose at least ${this.props.suggested_schedule.num_plyo_days} plyometric days`);
+            }
         }
-        if (countSprintDays < this.props.suggested_schedule.num_sprint_days) {
-            errors.push(`Please choose at least ${this.props.suggested_schedule.num_sprint_days} sprinting days`);
+
+        if (this.props.quads.sprinting || this.state.schedule.sprinting) {
+            if (countSprintDays < this.props.suggested_schedule.num_sprint_days) {
+                errors.push(`Please choose at least ${this.props.suggested_schedule.num_sprint_days} sprinting days`);
+            }
         }
+
+
         if (errors.length > 0) {
             this.setState({errors: errors});
         } else {

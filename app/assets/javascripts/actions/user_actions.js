@@ -37,7 +37,11 @@ var UserActions = {
     },
 
     setSchedule: function(schedule) {
-        var data = JSON.stringify(schedule);
+        schedule.weekly_schedule_days_attributes = schedule.weekly_schedule_days;
+        delete schedule.weekly_schedule_days;
+
+        var user_schedule = {user_schedule: schedule};
+        var data = JSON.stringify(user_schedule);
         if (schedule.id) {
             $.ajax({
                 type: 'put',
