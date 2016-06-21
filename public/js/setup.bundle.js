@@ -137,9 +137,7 @@
 	
 	        var url = window.location.pathname;
 	        var activeNav = 'setup';
-	        if (url == '/fitness') {
-	            activeNav = 'fitness';
-	        } else if (url == '/schedule' || url == '/program' || url == '/commitment') {
+	        if (url == '/schedule') {
 	            activeNav = 'schedule';
 	        }
 	
@@ -165,10 +163,15 @@
 	        value: function nextPage(childView) {
 	            //Sees which child view called, evaluates the state, and calls to route to the next page
 	            if (childView == "GOAL") {
-	                _reactRouter.browserHistory.push('/get-started/quads');
+	                _reactRouter.browserHistory.push('/setup/quads');
 	            } else if (childView == "QUADS") {
-	                this.setState({ activeNav: 'fitness' });
-	                _reactRouter.browserHistory.push('/fitness');
+	                if (this.state.user.hor_push_max > 0) {
+	                    this.setState({ activeNav: 'schedule' });
+	                    _reactRouter.browserHistory.push('/commitment');
+	                } else {
+	                    this.setState({ activeNav: 'fitness' });
+	                    _reactRouter.browserHistory.push('/fitness');
+	                }
 	            } else if (childView == "COMMITMENT") {
 	                this.setState({ activeNav: 'schedule' });
 	                _reactRouter.browserHistory.push('/program');
@@ -287,7 +290,7 @@
 	        { path: '/', component: App },
 	        React.createElement(
 	            _reactRouter.Route,
-	            { path: 'get-started' },
+	            { path: 'setup' },
 	            React.createElement(_reactRouter.Route, { path: 'goal', component: _goal2.default }),
 	            React.createElement(_reactRouter.Route, { path: 'quads', component: _quads2.default })
 	        ),
@@ -27611,11 +27614,11 @@
 	                                { className: this.props.activeNav == 'setup' ? 'bold-text' : null },
 	                                'Setup'
 	                            ),
-	                            React.createElement(
+	                            this.props.user && !this.props.user.hor_push_max > 0 ? React.createElement(
 	                                'span',
 	                                { className: this.props.activeNav == 'fitness' ? 'bold-text' : null },
 	                                'Fitness Assessment'
-	                            ),
+	                            ) : null,
 	                            React.createElement(
 	                                'span',
 	                                { className: this.props.activeNav == 'schedule' ? 'bold-text' : null },
@@ -39810,8 +39813,7 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Program).call(this, props));
 	
 	        _this.state = {
-	            valid: true,
-	            nextDisabled: true
+	            valid: true
 	        };
 	        _this.change = _this.change.bind(_this);
 	        return _this;
@@ -39822,7 +39824,6 @@
 	        value: function change(elem) {
 	            var check = this.refs[elem.target.id];
 	            if (check.getValue()) {
-	                this.setState({ nextDisabled: false });
 	                _program_actions2.default.setStrengthProgram(Number(check.props.id.slice(-1)));
 	            }
 	        }
@@ -39972,7 +39973,22 @@
 	                                React.createElement(_button2.default, { ref: 'programNext', buttonText: 'Continue', onClick: function onClick() {
 	                                        return _this2.submit();
 	                                    },
-	                                    disabled: this.state.nextDisabled })
+	                                    disabled: !this.props.program || !this.props.program.strengthProgram })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-2 col-xs-offset-5 back-link text-center' },
+	                                React.createElement(
+	                                    'span',
+	                                    { onClick: function onClick() {
+	                                            return _this2.props.previousPage('PROGRAM');
+	                                        }, className: 'small-link' },
+	                                    'Back'
+	                                )
 	                            )
 	                        )
 	                    )
@@ -40093,6 +40109,7 @@
 	        _this.frequencyChanged = _this.frequencyChanged.bind(_this);
 	        _this.timeChanged = _this.timeChanged.bind(_this);
 	        _this.commitmentSubmitted = _this.commitmentSubmitted.bind(_this);
+	        _program_actions2.default.setStrengthProgram(0);
 	        return _this;
 	    }
 	

@@ -130,7 +130,7 @@
 	            var data = _sign_up_store2.default.getData();
 	
 	            if (data.signUpStatus.status == _sign_up_constants2.default.SUCCESS) {
-	                location.href = '/get-started';
+	                location.href = '/setup/goal';
 	            }
 	
 	            if (data.isUsernameUnique) {

@@ -18,6 +18,7 @@ class Commitment extends React.Component {
         this.frequencyChanged = this.frequencyChanged.bind(this);
         this.timeChanged = this.timeChanged.bind(this);
         this.commitmentSubmitted = this.commitmentSubmitted.bind(this);
+        ProgramActions.setStrengthProgram(0);
     }
 
     frequencyChanged(elem) {

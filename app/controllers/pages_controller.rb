@@ -6,7 +6,7 @@ class PagesController < ApplicationController
     render layout: 'full_page'
   end
 
-  def get_started
+  def setup
     gon.push({
                  current_user_id: session[:current_user_id] || current_user.id
              })
@@ -25,6 +25,10 @@ class PagesController < ApplicationController
                  current_user_id: session[:current_user_id] || current_user.id
              })
     render template: 'pages/do_work'
+  end
+
+  def setup_redirect
+    redirect_to '/setup/goal'
   end
 
   private

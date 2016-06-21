@@ -41,7 +41,7 @@ class AthleteSignUp extends React.Component {
         var data = SignUpStore.getData();
 
         if (data.signUpStatus.status == C.SUCCESS) {
-            location.href = '/get-started';
+            location.href = '/setup/goal';
         }
 
         if (data.isUsernameUnique) {

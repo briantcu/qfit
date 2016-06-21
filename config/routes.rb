@@ -5,11 +5,11 @@ Qfit::Application.routes.draw do
   get '/sign-up', to: 'pages#sign_up'
   get '/login', to: 'pages#sign_up'
 
-  get '/get-started/goal', to: 'pages#get_started'
-  get '/get-started/quads', to: 'pages#get_started'
-  get '/fitness', to: 'pages#get_started'
-  get '/commitment', to: 'pages#get_started'
-  get '/program', to: 'pages#get_started'
+  get '/setup/goal', to: 'pages#setup'
+  get '/setup/quads', to: 'pages#setup_redirect'
+  get '/fitness', to: 'pages#setup_redirect'
+  get '/commitment', to: 'pages#setup_redirect'
+  get '/program', to: 'pages#setup_redirect'
   get '/schedule', to: 'pages#schedule'
   get '/do-work', to: 'pages#do_work'
 

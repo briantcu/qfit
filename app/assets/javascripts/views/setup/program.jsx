@@ -8,8 +8,7 @@ class Program extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            valid: true,
-            nextDisabled: true
+            valid: true
         };
         this.change = this.change.bind(this);
     }
@@ -17,7 +16,6 @@ class Program extends React.Component {
     change (elem) {
         var check = this.refs[elem.target.id];
         if (check.getValue()) {
-            this.setState({nextDisabled: false});
             ProgramActions.setStrengthProgram(Number(check.props.id.slice(-1)));
         }
     }
@@ -117,7 +115,12 @@ class Program extends React.Component {
                                 <span>You must choose a schedule.</span>
                             </If>
                             <Button ref="programNext" buttonText="Continue" onClick={ () => this.submit() }
-                                    disabled={this.state.nextDisabled} />
+                                    disabled={!this.props.program || !this.props.program.strengthProgram} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-2 col-xs-offset-5 back-link text-center">
+                            <span onClick={ () => this.props.previousPage('PROGRAM') } className="small-link">Back</span>
                         </div>
                     </div>
                 </div>

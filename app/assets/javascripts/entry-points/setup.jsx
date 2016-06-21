@@ -27,9 +27,7 @@ class App extends React.Component {
         super(props);
         var url = window.location.pathname;
         var activeNav = 'setup';
-        if (url == '/fitness') {
-            activeNav = 'fitness';
-        } else if (url == '/schedule' || url == '/program' || url == '/commitment') {
+        if (url == '/schedule') {
             activeNav = 'schedule';
         }
 
@@ -52,10 +50,15 @@ class App extends React.Component {
     nextPage(childView) {
         //Sees which child view called, evaluates the state, and calls to route to the next page
         if (childView == "GOAL") {
-            browserHistory.push('/get-started/quads');
+            browserHistory.push('/setup/quads');
         } else if (childView == "QUADS") {
-            this.setState({activeNav: 'fitness'});
-            browserHistory.push('/fitness');
+            if (this.state.user.hor_push_max > 0) {
+                this.setState({activeNav: 'schedule'});
+                browserHistory.push('/commitment');
+            } else {
+                this.setState({activeNav: 'fitness'});
+                browserHistory.push('/fitness');
+            }
         } else if (childView == "COMMITMENT") {
             this.setState({activeNav: 'schedule'});
             browserHistory.push('/program');
@@ -155,7 +158,7 @@ class App extends React.Component {
 render((
     <Router history={browserHistory}>
         <Route path="/" component={App}>
-            <Route path="get-started" >
+            <Route path="setup" >
                 <Route path="goal" component={Goal} />
                 <Route path="quads" component={Quads} />
             </Route>
