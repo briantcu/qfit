@@ -20,6 +20,13 @@ class PagesController < ApplicationController
     render template: 'pages/setup'
   end
 
+  def do_work
+    gon.push({
+                 current_user_id: session[:current_user_id] || current_user.id
+             })
+    render template: 'pages/do_work'
+  end
+
   private
 
   def can_access_user

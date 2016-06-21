@@ -10,7 +10,8 @@ var config = {
     context: path.resolve(assets_path),
     entry: {
         sign_up: 'entry-points/sign_up.jsx',
-        setup: 'entry-points/setup.jsx'
+        setup: 'entry-points/setup.jsx',
+        do_work: 'entry-points/do_work.jsx'
     },
     output: {
         filename: '[name].bundle.js',

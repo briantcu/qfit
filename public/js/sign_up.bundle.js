@@ -51,29 +51,29 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	var _reactDom = __webpack_require__(/*! react-dom */ 33);
 	
-	var _fancy_input = __webpack_require__(/*! views/common/fancy_input */ 282);
+	var _fancy_input = __webpack_require__(/*! views/common/fancy_input */ 289);
 	
 	var _fancy_input2 = _interopRequireDefault(_fancy_input);
 	
-	var _slider = __webpack_require__(/*! views/common/slider */ 286);
+	var _slider = __webpack_require__(/*! views/common/slider */ 293);
 	
 	var _slider2 = _interopRequireDefault(_slider);
 	
-	var _validator = __webpack_require__(/*! validator */ 289);
+	var _validator = __webpack_require__(/*! validator */ 296);
 	
 	var _validator2 = _interopRequireDefault(_validator);
 	
-	var _sign_up_actions = __webpack_require__(/*! actions/sign_up_actions */ 352);
+	var _sign_up_actions = __webpack_require__(/*! actions/sign_up_actions */ 359);
 	
 	var _sign_up_actions2 = _interopRequireDefault(_sign_up_actions);
 	
-	var _sign_up_store = __webpack_require__(/*! stores/sign_up_store */ 354);
+	var _sign_up_store = __webpack_require__(/*! stores/sign_up_store */ 361);
 	
 	var _sign_up_store2 = _interopRequireDefault(_sign_up_store);
 	
-	var _sign_up_constants = __webpack_require__(/*! constants/sign_up_constants */ 353);
+	var _sign_up_constants = __webpack_require__(/*! constants/sign_up_constants */ 360);
 	
 	var _sign_up_constants2 = _interopRequireDefault(_sign_up_constants);
 	
@@ -85,7 +85,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! pages/sign_up.scss */ 355);
+	__webpack_require__(/*! pages/sign_up.scss */ 175);
 	
 	var AthleteSignUp = function (_React$Component) {
 	    _inherits(AthleteSignUp, _React$Component);
@@ -391,7 +391,7 @@
 	}(React.Component);
 	
 	(0, _reactDom.render)(React.createElement(AthleteSignUp, null), document.getElementById('app'));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! jquery */ 239)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! jquery */ 248)))
 
 /***/ },
 /* 1 */
@@ -4120,68 +4120,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */
+/* 33 */
 /*!************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-dom/index.js ***!
   \************************************************************/
@@ -4189,11 +4128,11 @@
 
 	'use strict';
 	
-	module.exports = __webpack_require__(/*! react/lib/ReactDOM */ 95);
+	module.exports = __webpack_require__(/*! react/lib/ReactDOM */ 34);
 
 
 /***/ },
-/* 95 */
+/* 34 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOM.js ***!
   \***************************************************************/
@@ -4214,17 +4153,17 @@
 	
 	'use strict';
 	
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactDefaultInjection = __webpack_require__(/*! ./ReactDefaultInjection */ 99);
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 219);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
-	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 120);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 116);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactDefaultInjection = __webpack_require__(/*! ./ReactDefaultInjection */ 38);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 158);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 59);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 55);
 	var ReactVersion = __webpack_require__(/*! ./ReactVersion */ 31);
 	
-	var findDOMNode = __webpack_require__(/*! ./findDOMNode */ 226);
-	var getNativeComponentFromComposite = __webpack_require__(/*! ./getNativeComponentFromComposite */ 227);
-	var renderSubtreeIntoContainer = __webpack_require__(/*! ./renderSubtreeIntoContainer */ 228);
+	var findDOMNode = __webpack_require__(/*! ./findDOMNode */ 165);
+	var getNativeComponentFromComposite = __webpack_require__(/*! ./getNativeComponentFromComposite */ 166);
+	var renderSubtreeIntoContainer = __webpack_require__(/*! ./renderSubtreeIntoContainer */ 167);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
 	ReactDefaultInjection.inject();
@@ -4267,7 +4206,7 @@
 	}
 	
 	if (process.env.NODE_ENV !== 'production') {
-	  var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
+	  var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
 	  if (ExecutionEnvironment.canUseDOM && window.top === window.self) {
 	
 	    // First check if devtools is not installed
@@ -4306,7 +4245,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 96 */
+/* 35 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMComponentTree.js ***!
   \****************************************************************************/
@@ -4325,8 +4264,8 @@
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 97);
-	var ReactDOMComponentFlags = __webpack_require__(/*! ./ReactDOMComponentFlags */ 98);
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 36);
+	var ReactDOMComponentFlags = __webpack_require__(/*! ./ReactDOMComponentFlags */ 37);
 	
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
 	
@@ -4501,7 +4440,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 97 */
+/* 36 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/DOMProperty.js ***!
   \******************************************************************/
@@ -4723,7 +4662,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 98 */
+/* 37 */
 /*!*****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMComponentFlags.js ***!
   \*****************************************************************************/
@@ -4749,7 +4688,7 @@
 	module.exports = ReactDOMComponentFlags;
 
 /***/ },
-/* 99 */
+/* 38 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDefaultInjection.js ***!
   \****************************************************************************/
@@ -4768,25 +4707,25 @@
 	
 	'use strict';
 	
-	var BeforeInputEventPlugin = __webpack_require__(/*! ./BeforeInputEventPlugin */ 100);
-	var ChangeEventPlugin = __webpack_require__(/*! ./ChangeEventPlugin */ 115);
-	var DefaultEventPluginOrder = __webpack_require__(/*! ./DefaultEventPluginOrder */ 127);
-	var EnterLeaveEventPlugin = __webpack_require__(/*! ./EnterLeaveEventPlugin */ 128);
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
-	var HTMLDOMPropertyConfig = __webpack_require__(/*! ./HTMLDOMPropertyConfig */ 133);
-	var ReactComponentBrowserEnvironment = __webpack_require__(/*! ./ReactComponentBrowserEnvironment */ 134);
-	var ReactDOMComponent = __webpack_require__(/*! ./ReactDOMComponent */ 147);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactDOMEmptyComponent = __webpack_require__(/*! ./ReactDOMEmptyComponent */ 188);
-	var ReactDOMTreeTraversal = __webpack_require__(/*! ./ReactDOMTreeTraversal */ 189);
-	var ReactDOMTextComponent = __webpack_require__(/*! ./ReactDOMTextComponent */ 190);
-	var ReactDefaultBatchingStrategy = __webpack_require__(/*! ./ReactDefaultBatchingStrategy */ 191);
-	var ReactEventListener = __webpack_require__(/*! ./ReactEventListener */ 192);
-	var ReactInjection = __webpack_require__(/*! ./ReactInjection */ 195);
-	var ReactReconcileTransaction = __webpack_require__(/*! ./ReactReconcileTransaction */ 196);
-	var SVGDOMPropertyConfig = __webpack_require__(/*! ./SVGDOMPropertyConfig */ 204);
-	var SelectEventPlugin = __webpack_require__(/*! ./SelectEventPlugin */ 205);
-	var SimpleEventPlugin = __webpack_require__(/*! ./SimpleEventPlugin */ 206);
+	var BeforeInputEventPlugin = __webpack_require__(/*! ./BeforeInputEventPlugin */ 39);
+	var ChangeEventPlugin = __webpack_require__(/*! ./ChangeEventPlugin */ 54);
+	var DefaultEventPluginOrder = __webpack_require__(/*! ./DefaultEventPluginOrder */ 66);
+	var EnterLeaveEventPlugin = __webpack_require__(/*! ./EnterLeaveEventPlugin */ 67);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
+	var HTMLDOMPropertyConfig = __webpack_require__(/*! ./HTMLDOMPropertyConfig */ 72);
+	var ReactComponentBrowserEnvironment = __webpack_require__(/*! ./ReactComponentBrowserEnvironment */ 73);
+	var ReactDOMComponent = __webpack_require__(/*! ./ReactDOMComponent */ 86);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactDOMEmptyComponent = __webpack_require__(/*! ./ReactDOMEmptyComponent */ 127);
+	var ReactDOMTreeTraversal = __webpack_require__(/*! ./ReactDOMTreeTraversal */ 128);
+	var ReactDOMTextComponent = __webpack_require__(/*! ./ReactDOMTextComponent */ 129);
+	var ReactDefaultBatchingStrategy = __webpack_require__(/*! ./ReactDefaultBatchingStrategy */ 130);
+	var ReactEventListener = __webpack_require__(/*! ./ReactEventListener */ 131);
+	var ReactInjection = __webpack_require__(/*! ./ReactInjection */ 134);
+	var ReactReconcileTransaction = __webpack_require__(/*! ./ReactReconcileTransaction */ 135);
+	var SVGDOMPropertyConfig = __webpack_require__(/*! ./SVGDOMPropertyConfig */ 143);
+	var SelectEventPlugin = __webpack_require__(/*! ./SelectEventPlugin */ 144);
+	var SimpleEventPlugin = __webpack_require__(/*! ./SimpleEventPlugin */ 145);
 	
 	var alreadyInjected = false;
 	
@@ -4839,7 +4778,7 @@
 	  if (process.env.NODE_ENV !== 'production') {
 	    var url = ExecutionEnvironment.canUseDOM && window.location.href || '';
 	    if (/[?&]react_perf\b/.test(url)) {
-	      var ReactDefaultPerf = __webpack_require__(/*! ./ReactDefaultPerf */ 217);
+	      var ReactDefaultPerf = __webpack_require__(/*! ./ReactDefaultPerf */ 156);
 	      ReactDefaultPerf.start();
 	    }
 	  }
@@ -4851,7 +4790,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 100 */
+/* 39 */
 /*!*****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/BeforeInputEventPlugin.js ***!
   \*****************************************************************************/
@@ -4870,12 +4809,12 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 101);
-	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 102);
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
-	var FallbackCompositionState = __webpack_require__(/*! ./FallbackCompositionState */ 110);
-	var SyntheticCompositionEvent = __webpack_require__(/*! ./SyntheticCompositionEvent */ 112);
-	var SyntheticInputEvent = __webpack_require__(/*! ./SyntheticInputEvent */ 114);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 40);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 41);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
+	var FallbackCompositionState = __webpack_require__(/*! ./FallbackCompositionState */ 49);
+	var SyntheticCompositionEvent = __webpack_require__(/*! ./SyntheticCompositionEvent */ 51);
+	var SyntheticInputEvent = __webpack_require__(/*! ./SyntheticInputEvent */ 53);
 	
 	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 26);
 	
@@ -5247,7 +5186,7 @@
 	module.exports = BeforeInputEventPlugin;
 
 /***/ },
-/* 101 */
+/* 40 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/EventConstants.js ***!
   \*********************************************************************/
@@ -5352,7 +5291,7 @@
 	module.exports = EventConstants;
 
 /***/ },
-/* 102 */
+/* 41 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/EventPropagators.js ***!
   \***********************************************************************/
@@ -5371,12 +5310,12 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 101);
-	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 103);
-	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 105);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 40);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 42);
+	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 44);
 	
-	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 107);
-	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 108);
+	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 46);
+	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 47);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
 	var PropagationPhases = EventConstants.PropagationPhases;
@@ -5498,7 +5437,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 103 */
+/* 42 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/EventPluginHub.js ***!
   \*********************************************************************/
@@ -5517,12 +5456,12 @@
 	
 	'use strict';
 	
-	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 104);
-	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 105);
-	var ReactErrorUtils = __webpack_require__(/*! ./ReactErrorUtils */ 106);
+	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 43);
+	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 44);
+	var ReactErrorUtils = __webpack_require__(/*! ./ReactErrorUtils */ 45);
 	
-	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 107);
-	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 108);
+	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 46);
+	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 47);
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
 	
 	/**
@@ -5742,7 +5681,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 104 */
+/* 43 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/EventPluginRegistry.js ***!
   \**************************************************************************/
@@ -5992,7 +5931,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 105 */
+/* 44 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/EventPluginUtils.js ***!
   \***********************************************************************/
@@ -6011,8 +5950,8 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 101);
-	var ReactErrorUtils = __webpack_require__(/*! ./ReactErrorUtils */ 106);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 40);
+	var ReactErrorUtils = __webpack_require__(/*! ./ReactErrorUtils */ 45);
 	
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
@@ -6228,7 +6167,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 106 */
+/* 45 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactErrorUtils.js ***!
   \**********************************************************************/
@@ -6313,7 +6252,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 107 */
+/* 46 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/accumulateInto.js ***!
   \*********************************************************************/
@@ -6381,7 +6320,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 108 */
+/* 47 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/forEachAccumulated.js ***!
   \*************************************************************************/
@@ -6419,7 +6358,7 @@
 	module.exports = forEachAccumulated;
 
 /***/ },
-/* 109 */
+/* 48 */
 /*!**********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/ExecutionEnvironment.js ***!
   \**********************************************************************************/
@@ -6462,7 +6401,7 @@
 	module.exports = ExecutionEnvironment;
 
 /***/ },
-/* 110 */
+/* 49 */
 /*!*******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/FallbackCompositionState.js ***!
   \*******************************************************************************/
@@ -6485,7 +6424,7 @@
 	
 	var PooledClass = __webpack_require__(/*! ./PooledClass */ 6);
 	
-	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 111);
+	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 50);
 	
 	/**
 	 * This helper class stores information about text content of a target node,
@@ -6565,7 +6504,7 @@
 	module.exports = FallbackCompositionState;
 
 /***/ },
-/* 111 */
+/* 50 */
 /*!*****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/getTextContentAccessor.js ***!
   \*****************************************************************************/
@@ -6584,7 +6523,7 @@
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
 	
 	var contentKey = null;
 	
@@ -6606,7 +6545,7 @@
 	module.exports = getTextContentAccessor;
 
 /***/ },
-/* 112 */
+/* 51 */
 /*!********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticCompositionEvent.js ***!
   \********************************************************************************/
@@ -6625,7 +6564,7 @@
 	
 	'use strict';
 	
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 113);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 52);
 	
 	/**
 	 * @interface Event
@@ -6650,7 +6589,7 @@
 	module.exports = SyntheticCompositionEvent;
 
 /***/ },
-/* 113 */
+/* 52 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticEvent.js ***!
   \*********************************************************************/
@@ -6920,7 +6859,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 114 */
+/* 53 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticInputEvent.js ***!
   \**************************************************************************/
@@ -6939,7 +6878,7 @@
 	
 	'use strict';
 	
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 113);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 52);
 	
 	/**
 	 * @interface Event
@@ -6965,7 +6904,7 @@
 	module.exports = SyntheticInputEvent;
 
 /***/ },
-/* 115 */
+/* 54 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ChangeEventPlugin.js ***!
   \************************************************************************/
@@ -6984,17 +6923,17 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 101);
-	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 103);
-	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 102);
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 116);
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 113);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 40);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 42);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 41);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 55);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 52);
 	
-	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 124);
-	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 125);
-	var isTextInputElement = __webpack_require__(/*! ./isTextInputElement */ 126);
+	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 63);
+	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 64);
+	var isTextInputElement = __webpack_require__(/*! ./isTextInputElement */ 65);
 	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 26);
 	
 	var topLevelTypes = EventConstants.topLevelTypes;
@@ -7298,7 +7237,7 @@
 	module.exports = ChangeEventPlugin;
 
 /***/ },
-/* 116 */
+/* 55 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactUpdates.js ***!
   \*******************************************************************/
@@ -7319,12 +7258,12 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 117);
+	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 56);
 	var PooledClass = __webpack_require__(/*! ./PooledClass */ 6);
-	var ReactFeatureFlags = __webpack_require__(/*! ./ReactFeatureFlags */ 118);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
-	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 120);
-	var Transaction = __webpack_require__(/*! ./Transaction */ 123);
+	var ReactFeatureFlags = __webpack_require__(/*! ./ReactFeatureFlags */ 57);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 59);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 62);
 	
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
 	
@@ -7548,7 +7487,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 117 */
+/* 56 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/CallbackQueue.js ***!
   \********************************************************************/
@@ -7662,7 +7601,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 118 */
+/* 57 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactFeatureFlags.js ***!
   \************************************************************************/
@@ -7691,7 +7630,7 @@
 	module.exports = ReactFeatureFlags;
 
 /***/ },
-/* 119 */
+/* 58 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactPerf.js ***!
   \****************************************************************/
@@ -7796,7 +7735,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 120 */
+/* 59 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactReconciler.js ***!
   \**********************************************************************/
@@ -7815,7 +7754,7 @@
 	
 	'use strict';
 	
-	var ReactRef = __webpack_require__(/*! ./ReactRef */ 121);
+	var ReactRef = __webpack_require__(/*! ./ReactRef */ 60);
 	var ReactInstrumentation = __webpack_require__(/*! ./ReactInstrumentation */ 18);
 	
 	/**
@@ -7935,7 +7874,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 121 */
+/* 60 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactRef.js ***!
   \***************************************************************/
@@ -7954,7 +7893,7 @@
 	
 	'use strict';
 	
-	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 122);
+	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 61);
 	
 	var ReactRef = {};
 	
@@ -8021,7 +7960,7 @@
 	module.exports = ReactRef;
 
 /***/ },
-/* 122 */
+/* 61 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactOwner.js ***!
   \*****************************************************************/
@@ -8122,7 +8061,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 123 */
+/* 62 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/Transaction.js ***!
   \******************************************************************/
@@ -8362,7 +8301,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 124 */
+/* 63 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/getEventTarget.js ***!
   \*********************************************************************/
@@ -8405,7 +8344,7 @@
 	module.exports = getEventTarget;
 
 /***/ },
-/* 125 */
+/* 64 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/isEventSupported.js ***!
   \***********************************************************************/
@@ -8424,7 +8363,7 @@
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
 	
 	var useHasFeature;
 	if (ExecutionEnvironment.canUseDOM) {
@@ -8473,7 +8412,7 @@
 	module.exports = isEventSupported;
 
 /***/ },
-/* 126 */
+/* 65 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/isTextInputElement.js ***!
   \*************************************************************************/
@@ -8522,7 +8461,7 @@
 	module.exports = isTextInputElement;
 
 /***/ },
-/* 127 */
+/* 66 */
 /*!******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/DefaultEventPluginOrder.js ***!
   \******************************************************************************/
@@ -8557,7 +8496,7 @@
 	module.exports = DefaultEventPluginOrder;
 
 /***/ },
-/* 128 */
+/* 67 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/EnterLeaveEventPlugin.js ***!
   \****************************************************************************/
@@ -8576,10 +8515,10 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 101);
-	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 102);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 129);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 40);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 41);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 68);
 	
 	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 26);
 	
@@ -8670,7 +8609,7 @@
 	module.exports = EnterLeaveEventPlugin;
 
 /***/ },
-/* 129 */
+/* 68 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticMouseEvent.js ***!
   \**************************************************************************/
@@ -8689,10 +8628,10 @@
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 130);
-	var ViewportMetrics = __webpack_require__(/*! ./ViewportMetrics */ 131);
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 69);
+	var ViewportMetrics = __webpack_require__(/*! ./ViewportMetrics */ 70);
 	
-	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 132);
+	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 71);
 	
 	/**
 	 * @interface MouseEvent
@@ -8750,7 +8689,7 @@
 	module.exports = SyntheticMouseEvent;
 
 /***/ },
-/* 130 */
+/* 69 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticUIEvent.js ***!
   \***********************************************************************/
@@ -8769,9 +8708,9 @@
 	
 	'use strict';
 	
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 113);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 52);
 	
-	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 124);
+	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 63);
 	
 	/**
 	 * @interface UIEvent
@@ -8817,7 +8756,7 @@
 	module.exports = SyntheticUIEvent;
 
 /***/ },
-/* 131 */
+/* 70 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ViewportMetrics.js ***!
   \**********************************************************************/
@@ -8852,7 +8791,7 @@
 	module.exports = ViewportMetrics;
 
 /***/ },
-/* 132 */
+/* 71 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/getEventModifierState.js ***!
   \****************************************************************************/
@@ -8903,7 +8842,7 @@
 	module.exports = getEventModifierState;
 
 /***/ },
-/* 133 */
+/* 72 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/HTMLDOMPropertyConfig.js ***!
   \****************************************************************************/
@@ -8922,7 +8861,7 @@
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 97);
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 36);
 	
 	var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 	var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -9120,7 +9059,7 @@
 	module.exports = HTMLDOMPropertyConfig;
 
 /***/ },
-/* 134 */
+/* 73 */
 /*!***************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactComponentBrowserEnvironment.js ***!
   \***************************************************************************************/
@@ -9139,9 +9078,9 @@
 	
 	'use strict';
 	
-	var DOMChildrenOperations = __webpack_require__(/*! ./DOMChildrenOperations */ 135);
-	var ReactDOMIDOperations = __webpack_require__(/*! ./ReactDOMIDOperations */ 146);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
+	var DOMChildrenOperations = __webpack_require__(/*! ./DOMChildrenOperations */ 74);
+	var ReactDOMIDOperations = __webpack_require__(/*! ./ReactDOMIDOperations */ 85);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
 	
 	/**
 	 * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -9172,7 +9111,7 @@
 	module.exports = ReactComponentBrowserEnvironment;
 
 /***/ },
-/* 135 */
+/* 74 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/DOMChildrenOperations.js ***!
   \****************************************************************************/
@@ -9191,14 +9130,14 @@
 	
 	'use strict';
 	
-	var DOMLazyTree = __webpack_require__(/*! ./DOMLazyTree */ 136);
-	var Danger = __webpack_require__(/*! ./Danger */ 141);
-	var ReactMultiChildUpdateTypes = __webpack_require__(/*! ./ReactMultiChildUpdateTypes */ 145);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
+	var DOMLazyTree = __webpack_require__(/*! ./DOMLazyTree */ 75);
+	var Danger = __webpack_require__(/*! ./Danger */ 80);
+	var ReactMultiChildUpdateTypes = __webpack_require__(/*! ./ReactMultiChildUpdateTypes */ 84);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
 	
-	var createMicrosoftUnsafeLocalFunction = __webpack_require__(/*! ./createMicrosoftUnsafeLocalFunction */ 137);
-	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 140);
-	var setTextContent = __webpack_require__(/*! ./setTextContent */ 138);
+	var createMicrosoftUnsafeLocalFunction = __webpack_require__(/*! ./createMicrosoftUnsafeLocalFunction */ 76);
+	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 79);
+	var setTextContent = __webpack_require__(/*! ./setTextContent */ 77);
 	
 	function getNodeAfter(parentNode, node) {
 	  // Special case for text components, which return [open, close] comments
@@ -9339,7 +9278,7 @@
 	module.exports = DOMChildrenOperations;
 
 /***/ },
-/* 136 */
+/* 75 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/DOMLazyTree.js ***!
   \******************************************************************/
@@ -9358,8 +9297,8 @@
 	
 	'use strict';
 	
-	var createMicrosoftUnsafeLocalFunction = __webpack_require__(/*! ./createMicrosoftUnsafeLocalFunction */ 137);
-	var setTextContent = __webpack_require__(/*! ./setTextContent */ 138);
+	var createMicrosoftUnsafeLocalFunction = __webpack_require__(/*! ./createMicrosoftUnsafeLocalFunction */ 76);
+	var setTextContent = __webpack_require__(/*! ./setTextContent */ 77);
 	
 	/**
 	 * In IE (8-11) and Edge, appending nodes with no children is dramatically
@@ -9452,7 +9391,7 @@
 	module.exports = DOMLazyTree;
 
 /***/ },
-/* 137 */
+/* 76 */
 /*!*****************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/createMicrosoftUnsafeLocalFunction.js ***!
   \*****************************************************************************************/
@@ -9492,7 +9431,7 @@
 	module.exports = createMicrosoftUnsafeLocalFunction;
 
 /***/ },
-/* 138 */
+/* 77 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/setTextContent.js ***!
   \*********************************************************************/
@@ -9511,9 +9450,9 @@
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
-	var escapeTextContentForBrowser = __webpack_require__(/*! ./escapeTextContentForBrowser */ 139);
-	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 140);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
+	var escapeTextContentForBrowser = __webpack_require__(/*! ./escapeTextContentForBrowser */ 78);
+	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 79);
 	
 	/**
 	 * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -9540,7 +9479,7 @@
 	module.exports = setTextContent;
 
 /***/ },
-/* 139 */
+/* 78 */
 /*!**********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/escapeTextContentForBrowser.js ***!
   \**********************************************************************************/
@@ -9586,7 +9525,7 @@
 	module.exports = escapeTextContentForBrowser;
 
 /***/ },
-/* 140 */
+/* 79 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/setInnerHTML.js ***!
   \*******************************************************************/
@@ -9605,12 +9544,12 @@
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
 	
 	var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 	var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 	
-	var createMicrosoftUnsafeLocalFunction = __webpack_require__(/*! ./createMicrosoftUnsafeLocalFunction */ 137);
+	var createMicrosoftUnsafeLocalFunction = __webpack_require__(/*! ./createMicrosoftUnsafeLocalFunction */ 76);
 	
 	/**
 	 * Set the innerHTML property of a node, ensuring that whitespace is preserved
@@ -9676,7 +9615,7 @@
 	module.exports = setInnerHTML;
 
 /***/ },
-/* 141 */
+/* 80 */
 /*!*************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/Danger.js ***!
   \*************************************************************/
@@ -9695,12 +9634,12 @@
 	
 	'use strict';
 	
-	var DOMLazyTree = __webpack_require__(/*! ./DOMLazyTree */ 136);
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
+	var DOMLazyTree = __webpack_require__(/*! ./DOMLazyTree */ 75);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
 	
-	var createNodesFromMarkup = __webpack_require__(/*! fbjs/lib/createNodesFromMarkup */ 142);
+	var createNodesFromMarkup = __webpack_require__(/*! fbjs/lib/createNodesFromMarkup */ 81);
 	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 11);
-	var getMarkupWrap = __webpack_require__(/*! fbjs/lib/getMarkupWrap */ 144);
+	var getMarkupWrap = __webpack_require__(/*! fbjs/lib/getMarkupWrap */ 83);
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
 	
 	var OPEN_TAG_NAME_EXP = /^(<[^ \/>]+)/;
@@ -9829,7 +9768,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 142 */
+/* 81 */
 /*!***********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/createNodesFromMarkup.js ***!
   \***********************************************************************************/
@@ -9850,10 +9789,10 @@
 	
 	/*eslint-disable fb-www/unsafe-html*/
 	
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 109);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 48);
 	
-	var createArrayFromMixed = __webpack_require__(/*! ./createArrayFromMixed */ 143);
-	var getMarkupWrap = __webpack_require__(/*! ./getMarkupWrap */ 144);
+	var createArrayFromMixed = __webpack_require__(/*! ./createArrayFromMixed */ 82);
+	var getMarkupWrap = __webpack_require__(/*! ./getMarkupWrap */ 83);
 	var invariant = __webpack_require__(/*! ./invariant */ 7);
 	
 	/**
@@ -9921,7 +9860,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 143 */
+/* 82 */
 /*!**********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/createArrayFromMixed.js ***!
   \**********************************************************************************/
@@ -10056,7 +9995,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 144 */
+/* 83 */
 /*!***************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/getMarkupWrap.js ***!
   \***************************************************************************/
@@ -10076,7 +10015,7 @@
 	
 	/*eslint-disable fb-www/unsafe-html */
 	
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 109);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 48);
 	
 	var invariant = __webpack_require__(/*! ./invariant */ 7);
 	
@@ -10159,7 +10098,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 145 */
+/* 84 */
 /*!*********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactMultiChildUpdateTypes.js ***!
   \*********************************************************************************/
@@ -10199,7 +10138,7 @@
 	module.exports = ReactMultiChildUpdateTypes;
 
 /***/ },
-/* 146 */
+/* 85 */
 /*!***************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMIDOperations.js ***!
   \***************************************************************************/
@@ -10218,9 +10157,9 @@
 	
 	'use strict';
 	
-	var DOMChildrenOperations = __webpack_require__(/*! ./DOMChildrenOperations */ 135);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
+	var DOMChildrenOperations = __webpack_require__(/*! ./DOMChildrenOperations */ 74);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
 	
 	/**
 	 * Operations used to process updates to DOM nodes.
@@ -10246,7 +10185,7 @@
 	module.exports = ReactDOMIDOperations;
 
 /***/ },
-/* 147 */
+/* 86 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMComponent.js ***!
   \************************************************************************/
@@ -10269,33 +10208,33 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var AutoFocusUtils = __webpack_require__(/*! ./AutoFocusUtils */ 148);
-	var CSSPropertyOperations = __webpack_require__(/*! ./CSSPropertyOperations */ 150);
-	var DOMLazyTree = __webpack_require__(/*! ./DOMLazyTree */ 136);
-	var DOMNamespaces = __webpack_require__(/*! ./DOMNamespaces */ 158);
-	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 97);
-	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 159);
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 101);
-	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 103);
-	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 104);
-	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 164);
-	var ReactComponentBrowserEnvironment = __webpack_require__(/*! ./ReactComponentBrowserEnvironment */ 134);
-	var ReactDOMButton = __webpack_require__(/*! ./ReactDOMButton */ 167);
-	var ReactDOMComponentFlags = __webpack_require__(/*! ./ReactDOMComponentFlags */ 98);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactDOMInput = __webpack_require__(/*! ./ReactDOMInput */ 169);
-	var ReactDOMOption = __webpack_require__(/*! ./ReactDOMOption */ 171);
-	var ReactDOMSelect = __webpack_require__(/*! ./ReactDOMSelect */ 172);
-	var ReactDOMTextarea = __webpack_require__(/*! ./ReactDOMTextarea */ 173);
-	var ReactMultiChild = __webpack_require__(/*! ./ReactMultiChild */ 174);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
+	var AutoFocusUtils = __webpack_require__(/*! ./AutoFocusUtils */ 87);
+	var CSSPropertyOperations = __webpack_require__(/*! ./CSSPropertyOperations */ 89);
+	var DOMLazyTree = __webpack_require__(/*! ./DOMLazyTree */ 75);
+	var DOMNamespaces = __webpack_require__(/*! ./DOMNamespaces */ 97);
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 36);
+	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 98);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 40);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 42);
+	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 43);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 103);
+	var ReactComponentBrowserEnvironment = __webpack_require__(/*! ./ReactComponentBrowserEnvironment */ 73);
+	var ReactDOMButton = __webpack_require__(/*! ./ReactDOMButton */ 106);
+	var ReactDOMComponentFlags = __webpack_require__(/*! ./ReactDOMComponentFlags */ 37);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactDOMInput = __webpack_require__(/*! ./ReactDOMInput */ 108);
+	var ReactDOMOption = __webpack_require__(/*! ./ReactDOMOption */ 110);
+	var ReactDOMSelect = __webpack_require__(/*! ./ReactDOMSelect */ 111);
+	var ReactDOMTextarea = __webpack_require__(/*! ./ReactDOMTextarea */ 112);
+	var ReactMultiChild = __webpack_require__(/*! ./ReactMultiChild */ 113);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
 	
-	var escapeTextContentForBrowser = __webpack_require__(/*! ./escapeTextContentForBrowser */ 139);
+	var escapeTextContentForBrowser = __webpack_require__(/*! ./escapeTextContentForBrowser */ 78);
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
-	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 125);
+	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 64);
 	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 26);
-	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 186);
-	var validateDOMNesting = __webpack_require__(/*! ./validateDOMNesting */ 187);
+	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 125);
+	var validateDOMNesting = __webpack_require__(/*! ./validateDOMNesting */ 126);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
 	var Flags = ReactDOMComponentFlags;
@@ -11164,7 +11103,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 148 */
+/* 87 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/AutoFocusUtils.js ***!
   \*********************************************************************/
@@ -11183,9 +11122,9 @@
 	
 	'use strict';
 	
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
 	
-	var focusNode = __webpack_require__(/*! fbjs/lib/focusNode */ 149);
+	var focusNode = __webpack_require__(/*! fbjs/lib/focusNode */ 88);
 	
 	var AutoFocusUtils = {
 	  focusDOMComponent: function () {
@@ -11196,7 +11135,7 @@
 	module.exports = AutoFocusUtils;
 
 /***/ },
-/* 149 */
+/* 88 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/focusNode.js ***!
   \***********************************************************************/
@@ -11230,7 +11169,7 @@
 	module.exports = focusNode;
 
 /***/ },
-/* 150 */
+/* 89 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/CSSPropertyOperations.js ***!
   \****************************************************************************/
@@ -11249,14 +11188,14 @@
 	
 	'use strict';
 	
-	var CSSProperty = __webpack_require__(/*! ./CSSProperty */ 151);
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
+	var CSSProperty = __webpack_require__(/*! ./CSSProperty */ 90);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
 	
-	var camelizeStyleName = __webpack_require__(/*! fbjs/lib/camelizeStyleName */ 152);
-	var dangerousStyleValue = __webpack_require__(/*! ./dangerousStyleValue */ 154);
-	var hyphenateStyleName = __webpack_require__(/*! fbjs/lib/hyphenateStyleName */ 155);
-	var memoizeStringOnly = __webpack_require__(/*! fbjs/lib/memoizeStringOnly */ 157);
+	var camelizeStyleName = __webpack_require__(/*! fbjs/lib/camelizeStyleName */ 91);
+	var dangerousStyleValue = __webpack_require__(/*! ./dangerousStyleValue */ 93);
+	var hyphenateStyleName = __webpack_require__(/*! fbjs/lib/hyphenateStyleName */ 94);
+	var memoizeStringOnly = __webpack_require__(/*! fbjs/lib/memoizeStringOnly */ 96);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
 	var processStyleName = memoizeStringOnly(function (styleName) {
@@ -11444,7 +11383,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 151 */
+/* 90 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/CSSProperty.js ***!
   \******************************************************************/
@@ -11600,7 +11539,7 @@
 	module.exports = CSSProperty;
 
 /***/ },
-/* 152 */
+/* 91 */
 /*!*******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/camelizeStyleName.js ***!
   \*******************************************************************************/
@@ -11619,7 +11558,7 @@
 	
 	'use strict';
 	
-	var camelize = __webpack_require__(/*! ./camelize */ 153);
+	var camelize = __webpack_require__(/*! ./camelize */ 92);
 	
 	var msPattern = /^-ms-/;
 	
@@ -11647,7 +11586,7 @@
 	module.exports = camelizeStyleName;
 
 /***/ },
-/* 153 */
+/* 92 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/camelize.js ***!
   \**********************************************************************/
@@ -11686,7 +11625,7 @@
 	module.exports = camelize;
 
 /***/ },
-/* 154 */
+/* 93 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/dangerousStyleValue.js ***!
   \**************************************************************************/
@@ -11705,7 +11644,7 @@
 	
 	'use strict';
 	
-	var CSSProperty = __webpack_require__(/*! ./CSSProperty */ 151);
+	var CSSProperty = __webpack_require__(/*! ./CSSProperty */ 90);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
 	var isUnitlessNumber = CSSProperty.isUnitlessNumber;
@@ -11772,7 +11711,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 155 */
+/* 94 */
 /*!********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/hyphenateStyleName.js ***!
   \********************************************************************************/
@@ -11791,7 +11730,7 @@
 	
 	'use strict';
 	
-	var hyphenate = __webpack_require__(/*! ./hyphenate */ 156);
+	var hyphenate = __webpack_require__(/*! ./hyphenate */ 95);
 	
 	var msPattern = /^ms-/;
 	
@@ -11818,7 +11757,7 @@
 	module.exports = hyphenateStyleName;
 
 /***/ },
-/* 156 */
+/* 95 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/hyphenate.js ***!
   \***********************************************************************/
@@ -11858,7 +11797,7 @@
 	module.exports = hyphenate;
 
 /***/ },
-/* 157 */
+/* 96 */
 /*!*******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/memoizeStringOnly.js ***!
   \*******************************************************************************/
@@ -11897,7 +11836,7 @@
 	module.exports = memoizeStringOnly;
 
 /***/ },
-/* 158 */
+/* 97 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/DOMNamespaces.js ***!
   \********************************************************************/
@@ -11925,7 +11864,7 @@
 	module.exports = DOMNamespaces;
 
 /***/ },
-/* 159 */
+/* 98 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/DOMPropertyOperations.js ***!
   \****************************************************************************/
@@ -11944,11 +11883,11 @@
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 97);
-	var ReactDOMInstrumentation = __webpack_require__(/*! ./ReactDOMInstrumentation */ 160);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 36);
+	var ReactDOMInstrumentation = __webpack_require__(/*! ./ReactDOMInstrumentation */ 99);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
 	
-	var quoteAttributeValueForBrowser = __webpack_require__(/*! ./quoteAttributeValueForBrowser */ 163);
+	var quoteAttributeValueForBrowser = __webpack_require__(/*! ./quoteAttributeValueForBrowser */ 102);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
 	var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
@@ -12147,7 +12086,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 160 */
+/* 99 */
 /*!******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMInstrumentation.js ***!
   \******************************************************************************/
@@ -12166,12 +12105,12 @@
 	
 	'use strict';
 	
-	var ReactDOMDebugTool = __webpack_require__(/*! ./ReactDOMDebugTool */ 161);
+	var ReactDOMDebugTool = __webpack_require__(/*! ./ReactDOMDebugTool */ 100);
 	
 	module.exports = { debugTool: ReactDOMDebugTool };
 
 /***/ },
-/* 161 */
+/* 100 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMDebugTool.js ***!
   \************************************************************************/
@@ -12190,7 +12129,7 @@
 	
 	'use strict';
 	
-	var ReactDOMUnknownPropertyDevtool = __webpack_require__(/*! ./ReactDOMUnknownPropertyDevtool */ 162);
+	var ReactDOMUnknownPropertyDevtool = __webpack_require__(/*! ./ReactDOMUnknownPropertyDevtool */ 101);
 	
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
@@ -12241,7 +12180,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 162 */
+/* 101 */
 /*!*************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMUnknownPropertyDevtool.js ***!
   \*************************************************************************************/
@@ -12260,8 +12199,8 @@
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 97);
-	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 104);
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 36);
+	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 43);
 	
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
@@ -12314,7 +12253,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 163 */
+/* 102 */
 /*!************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/quoteAttributeValueForBrowser.js ***!
   \************************************************************************************/
@@ -12333,7 +12272,7 @@
 	
 	'use strict';
 	
-	var escapeTextContentForBrowser = __webpack_require__(/*! ./escapeTextContentForBrowser */ 139);
+	var escapeTextContentForBrowser = __webpack_require__(/*! ./escapeTextContentForBrowser */ 78);
 	
 	/**
 	 * Escapes attribute value to prevent scripting attacks.
@@ -12348,7 +12287,7 @@
 	module.exports = quoteAttributeValueForBrowser;
 
 /***/ },
-/* 164 */
+/* 103 */
 /*!*******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactBrowserEventEmitter.js ***!
   \*******************************************************************************/
@@ -12369,13 +12308,13 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 101);
-	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 104);
-	var ReactEventEmitterMixin = __webpack_require__(/*! ./ReactEventEmitterMixin */ 165);
-	var ViewportMetrics = __webpack_require__(/*! ./ViewportMetrics */ 131);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 40);
+	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 43);
+	var ReactEventEmitterMixin = __webpack_require__(/*! ./ReactEventEmitterMixin */ 104);
+	var ViewportMetrics = __webpack_require__(/*! ./ViewportMetrics */ 70);
 	
-	var getVendorPrefixedEventName = __webpack_require__(/*! ./getVendorPrefixedEventName */ 166);
-	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 125);
+	var getVendorPrefixedEventName = __webpack_require__(/*! ./getVendorPrefixedEventName */ 105);
+	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 64);
 	
 	/**
 	 * Summary of `ReactBrowserEventEmitter` event handling:
@@ -12673,7 +12612,7 @@
 	module.exports = ReactBrowserEventEmitter;
 
 /***/ },
-/* 165 */
+/* 104 */
 /*!*****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactEventEmitterMixin.js ***!
   \*****************************************************************************/
@@ -12692,7 +12631,7 @@
 	
 	'use strict';
 	
-	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 103);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 42);
 	
 	function runEventQueueInBatch(events) {
 	  EventPluginHub.enqueueEvents(events);
@@ -12714,7 +12653,7 @@
 	module.exports = ReactEventEmitterMixin;
 
 /***/ },
-/* 166 */
+/* 105 */
 /*!*********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/getVendorPrefixedEventName.js ***!
   \*********************************************************************************/
@@ -12733,7 +12672,7 @@
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
 	
 	/**
 	 * Generate a mapping of standard vendor prefixes using the defined style property and event name.
@@ -12823,7 +12762,7 @@
 	module.exports = getVendorPrefixedEventName;
 
 /***/ },
-/* 167 */
+/* 106 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMButton.js ***!
   \*********************************************************************/
@@ -12842,7 +12781,7 @@
 	
 	'use strict';
 	
-	var DisabledInputUtils = __webpack_require__(/*! ./DisabledInputUtils */ 168);
+	var DisabledInputUtils = __webpack_require__(/*! ./DisabledInputUtils */ 107);
 	
 	/**
 	 * Implements a <button> native component that does not receive mouse events
@@ -12855,7 +12794,7 @@
 	module.exports = ReactDOMButton;
 
 /***/ },
-/* 168 */
+/* 107 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/DisabledInputUtils.js ***!
   \*************************************************************************/
@@ -12913,7 +12852,7 @@
 	module.exports = DisabledInputUtils;
 
 /***/ },
-/* 169 */
+/* 108 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMInput.js ***!
   \********************************************************************/
@@ -12934,11 +12873,11 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var DisabledInputUtils = __webpack_require__(/*! ./DisabledInputUtils */ 168);
-	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 159);
-	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 170);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 116);
+	var DisabledInputUtils = __webpack_require__(/*! ./DisabledInputUtils */ 107);
+	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 98);
+	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 109);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 55);
 	
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
@@ -13126,7 +13065,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 170 */
+/* 109 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/LinkedValueUtils.js ***!
   \***********************************************************************/
@@ -13268,7 +13207,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 171 */
+/* 110 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMOption.js ***!
   \*********************************************************************/
@@ -13290,8 +13229,8 @@
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
 	var ReactChildren = __webpack_require__(/*! ./ReactChildren */ 5);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactDOMSelect = __webpack_require__(/*! ./ReactDOMSelect */ 172);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactDOMSelect = __webpack_require__(/*! ./ReactDOMSelect */ 111);
 	
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
@@ -13386,7 +13325,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 172 */
+/* 111 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMSelect.js ***!
   \*********************************************************************/
@@ -13407,10 +13346,10 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var DisabledInputUtils = __webpack_require__(/*! ./DisabledInputUtils */ 168);
-	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 170);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 116);
+	var DisabledInputUtils = __webpack_require__(/*! ./DisabledInputUtils */ 107);
+	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 109);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 55);
 	
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
@@ -13608,7 +13547,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 173 */
+/* 112 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMTextarea.js ***!
   \***********************************************************************/
@@ -13629,11 +13568,11 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var DisabledInputUtils = __webpack_require__(/*! ./DisabledInputUtils */ 168);
-	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 159);
-	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 170);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 116);
+	var DisabledInputUtils = __webpack_require__(/*! ./DisabledInputUtils */ 107);
+	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 98);
+	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 109);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 55);
 	
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
@@ -13759,7 +13698,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 174 */
+/* 113 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactMultiChild.js ***!
   \**********************************************************************/
@@ -13778,14 +13717,14 @@
 	
 	'use strict';
 	
-	var ReactComponentEnvironment = __webpack_require__(/*! ./ReactComponentEnvironment */ 175);
-	var ReactMultiChildUpdateTypes = __webpack_require__(/*! ./ReactMultiChildUpdateTypes */ 145);
+	var ReactComponentEnvironment = __webpack_require__(/*! ./ReactComponentEnvironment */ 114);
+	var ReactMultiChildUpdateTypes = __webpack_require__(/*! ./ReactMultiChildUpdateTypes */ 84);
 	
 	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 9);
-	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 120);
-	var ReactChildReconciler = __webpack_require__(/*! ./ReactChildReconciler */ 176);
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 59);
+	var ReactChildReconciler = __webpack_require__(/*! ./ReactChildReconciler */ 115);
 	
-	var flattenChildren = __webpack_require__(/*! ./flattenChildren */ 185);
+	var flattenChildren = __webpack_require__(/*! ./flattenChildren */ 124);
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
 	
 	/**
@@ -14170,7 +14109,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 175 */
+/* 114 */
 /*!********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactComponentEnvironment.js ***!
   \********************************************************************************/
@@ -14230,7 +14169,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 176 */
+/* 115 */
 /*!***************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactChildReconciler.js ***!
   \***************************************************************************/
@@ -14249,11 +14188,11 @@
 	
 	'use strict';
 	
-	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 120);
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 59);
 	
-	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 177);
+	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 116);
 	var KeyEscapeUtils = __webpack_require__(/*! ./KeyEscapeUtils */ 15);
-	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 182);
+	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 121);
 	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 13);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
@@ -14364,7 +14303,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 177 */
+/* 116 */
 /*!********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/instantiateReactComponent.js ***!
   \********************************************************************************/
@@ -14385,9 +14324,9 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 178);
-	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 183);
-	var ReactNativeComponent = __webpack_require__(/*! ./ReactNativeComponent */ 184);
+	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 117);
+	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 122);
+	var ReactNativeComponent = __webpack_require__(/*! ./ReactNativeComponent */ 123);
 	
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
@@ -14484,7 +14423,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 178 */
+/* 117 */
 /*!******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactCompositeComponent.js ***!
   \******************************************************************************/
@@ -14505,22 +14444,22 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var ReactComponentEnvironment = __webpack_require__(/*! ./ReactComponentEnvironment */ 175);
+	var ReactComponentEnvironment = __webpack_require__(/*! ./ReactComponentEnvironment */ 114);
 	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 9);
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 8);
-	var ReactErrorUtils = __webpack_require__(/*! ./ReactErrorUtils */ 106);
-	var ReactInstanceMap = __webpack_require__(/*! ./ReactInstanceMap */ 179);
+	var ReactErrorUtils = __webpack_require__(/*! ./ReactErrorUtils */ 45);
+	var ReactInstanceMap = __webpack_require__(/*! ./ReactInstanceMap */ 118);
 	var ReactInstrumentation = __webpack_require__(/*! ./ReactInstrumentation */ 18);
-	var ReactNodeTypes = __webpack_require__(/*! ./ReactNodeTypes */ 180);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
+	var ReactNodeTypes = __webpack_require__(/*! ./ReactNodeTypes */ 119);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
 	var ReactPropTypeLocations = __webpack_require__(/*! ./ReactPropTypeLocations */ 23);
 	var ReactPropTypeLocationNames = __webpack_require__(/*! ./ReactPropTypeLocationNames */ 25);
-	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 120);
-	var ReactUpdateQueue = __webpack_require__(/*! ./ReactUpdateQueue */ 181);
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 59);
+	var ReactUpdateQueue = __webpack_require__(/*! ./ReactUpdateQueue */ 120);
 	
 	var emptyObject = __webpack_require__(/*! fbjs/lib/emptyObject */ 21);
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
-	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 182);
+	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 121);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
 	function getDeclarationErrorAddendum(component) {
@@ -15287,7 +15226,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 179 */
+/* 118 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactInstanceMap.js ***!
   \***********************************************************************/
@@ -15343,7 +15282,7 @@
 	module.exports = ReactInstanceMap;
 
 /***/ },
-/* 180 */
+/* 119 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactNodeTypes.js ***!
   \*********************************************************************/
@@ -15389,7 +15328,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 181 */
+/* 120 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactUpdateQueue.js ***!
   \***********************************************************************/
@@ -15409,8 +15348,8 @@
 	'use strict';
 	
 	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 9);
-	var ReactInstanceMap = __webpack_require__(/*! ./ReactInstanceMap */ 179);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 116);
+	var ReactInstanceMap = __webpack_require__(/*! ./ReactInstanceMap */ 118);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 55);
 	
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
@@ -15613,7 +15552,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 182 */
+/* 121 */
 /*!*********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/shouldUpdateReactComponent.js ***!
   \*********************************************************************************/
@@ -15663,7 +15602,7 @@
 	module.exports = shouldUpdateReactComponent;
 
 /***/ },
-/* 183 */
+/* 122 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactEmptyComponent.js ***!
   \**************************************************************************/
@@ -15701,7 +15640,7 @@
 	module.exports = ReactEmptyComponent;
 
 /***/ },
-/* 184 */
+/* 123 */
 /*!***************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactNativeComponent.js ***!
   \***************************************************************************/
@@ -15805,7 +15744,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 185 */
+/* 124 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/flattenChildren.js ***!
   \**********************************************************************/
@@ -15863,7 +15802,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 186 */
+/* 125 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/shallowEqual.js ***!
   \**************************************************************************/
@@ -15937,7 +15876,7 @@
 	module.exports = shallowEqual;
 
 /***/ },
-/* 187 */
+/* 126 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/validateDOMNesting.js ***!
   \*************************************************************************/
@@ -16315,7 +16254,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 188 */
+/* 127 */
 /*!*****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMEmptyComponent.js ***!
   \*****************************************************************************/
@@ -16336,8 +16275,8 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var DOMLazyTree = __webpack_require__(/*! ./DOMLazyTree */ 136);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
+	var DOMLazyTree = __webpack_require__(/*! ./DOMLazyTree */ 75);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
 	
 	var ReactDOMEmptyComponent = function (instantiate) {
 	  // ReactCompositeComponent uses this:
@@ -16383,7 +16322,7 @@
 	module.exports = ReactDOMEmptyComponent;
 
 /***/ },
-/* 189 */
+/* 128 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMTreeTraversal.js ***!
   \****************************************************************************/
@@ -16526,7 +16465,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 190 */
+/* 129 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMTextComponent.js ***!
   \****************************************************************************/
@@ -16547,14 +16486,14 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var DOMChildrenOperations = __webpack_require__(/*! ./DOMChildrenOperations */ 135);
-	var DOMLazyTree = __webpack_require__(/*! ./DOMLazyTree */ 136);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
+	var DOMChildrenOperations = __webpack_require__(/*! ./DOMChildrenOperations */ 74);
+	var DOMLazyTree = __webpack_require__(/*! ./DOMLazyTree */ 75);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
 	
-	var escapeTextContentForBrowser = __webpack_require__(/*! ./escapeTextContentForBrowser */ 139);
+	var escapeTextContentForBrowser = __webpack_require__(/*! ./escapeTextContentForBrowser */ 78);
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
-	var validateDOMNesting = __webpack_require__(/*! ./validateDOMNesting */ 187);
+	var validateDOMNesting = __webpack_require__(/*! ./validateDOMNesting */ 126);
 	
 	/**
 	 * Text nodes violate a couple assumptions that React makes about components:
@@ -16704,7 +16643,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 191 */
+/* 130 */
 /*!***********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDefaultBatchingStrategy.js ***!
   \***********************************************************************************/
@@ -16725,8 +16664,8 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 116);
-	var Transaction = __webpack_require__(/*! ./Transaction */ 123);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 55);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 62);
 	
 	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 11);
 	
@@ -16780,7 +16719,7 @@
 	module.exports = ReactDefaultBatchingStrategy;
 
 /***/ },
-/* 192 */
+/* 131 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactEventListener.js ***!
   \*************************************************************************/
@@ -16801,14 +16740,14 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var EventListener = __webpack_require__(/*! fbjs/lib/EventListener */ 193);
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
+	var EventListener = __webpack_require__(/*! fbjs/lib/EventListener */ 132);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
 	var PooledClass = __webpack_require__(/*! ./PooledClass */ 6);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 116);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 55);
 	
-	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 124);
-	var getUnboundedScrollPosition = __webpack_require__(/*! fbjs/lib/getUnboundedScrollPosition */ 194);
+	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 63);
+	var getUnboundedScrollPosition = __webpack_require__(/*! fbjs/lib/getUnboundedScrollPosition */ 133);
 	
 	/**
 	 * Find the deepest React component completely containing the root of the
@@ -16945,7 +16884,7 @@
 	module.exports = ReactEventListener;
 
 /***/ },
-/* 193 */
+/* 132 */
 /*!***************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/EventListener.js ***!
   \***************************************************************************/
@@ -17037,7 +16976,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 194 */
+/* 133 */
 /*!****************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/getUnboundedScrollPosition.js ***!
   \****************************************************************************************/
@@ -17083,7 +17022,7 @@
 	module.exports = getUnboundedScrollPosition;
 
 /***/ },
-/* 195 */
+/* 134 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactInjection.js ***!
   \*********************************************************************/
@@ -17102,16 +17041,16 @@
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 97);
-	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 103);
-	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 105);
-	var ReactComponentEnvironment = __webpack_require__(/*! ./ReactComponentEnvironment */ 175);
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 36);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 42);
+	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 44);
+	var ReactComponentEnvironment = __webpack_require__(/*! ./ReactComponentEnvironment */ 114);
 	var ReactClass = __webpack_require__(/*! ./ReactClass */ 22);
-	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 183);
-	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 164);
-	var ReactNativeComponent = __webpack_require__(/*! ./ReactNativeComponent */ 184);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 116);
+	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 122);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 103);
+	var ReactNativeComponent = __webpack_require__(/*! ./ReactNativeComponent */ 123);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 55);
 	
 	var ReactInjection = {
 	  Component: ReactComponentEnvironment.injection,
@@ -17129,7 +17068,7 @@
 	module.exports = ReactInjection;
 
 /***/ },
-/* 196 */
+/* 135 */
 /*!********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactReconcileTransaction.js ***!
   \********************************************************************************/
@@ -17150,11 +17089,11 @@
 	
 	var _assign = __webpack_require__(/*! object-assign */ 4);
 	
-	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 117);
+	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 56);
 	var PooledClass = __webpack_require__(/*! ./PooledClass */ 6);
-	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 164);
-	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 197);
-	var Transaction = __webpack_require__(/*! ./Transaction */ 123);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 103);
+	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 136);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 62);
 	
 	/**
 	 * Ensures that, when possible, the selection range (currently selected text
@@ -17299,7 +17238,7 @@
 	module.exports = ReactReconcileTransaction;
 
 /***/ },
-/* 197 */
+/* 136 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactInputSelection.js ***!
   \**************************************************************************/
@@ -17318,11 +17257,11 @@
 	
 	'use strict';
 	
-	var ReactDOMSelection = __webpack_require__(/*! ./ReactDOMSelection */ 198);
+	var ReactDOMSelection = __webpack_require__(/*! ./ReactDOMSelection */ 137);
 	
-	var containsNode = __webpack_require__(/*! fbjs/lib/containsNode */ 200);
-	var focusNode = __webpack_require__(/*! fbjs/lib/focusNode */ 149);
-	var getActiveElement = __webpack_require__(/*! fbjs/lib/getActiveElement */ 203);
+	var containsNode = __webpack_require__(/*! fbjs/lib/containsNode */ 139);
+	var focusNode = __webpack_require__(/*! fbjs/lib/focusNode */ 88);
+	var getActiveElement = __webpack_require__(/*! fbjs/lib/getActiveElement */ 142);
 	
 	function isInDocument(node) {
 	  return containsNode(document.documentElement, node);
@@ -17431,7 +17370,7 @@
 	module.exports = ReactInputSelection;
 
 /***/ },
-/* 198 */
+/* 137 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMSelection.js ***!
   \************************************************************************/
@@ -17450,10 +17389,10 @@
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
 	
-	var getNodeForCharacterOffset = __webpack_require__(/*! ./getNodeForCharacterOffset */ 199);
-	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 111);
+	var getNodeForCharacterOffset = __webpack_require__(/*! ./getNodeForCharacterOffset */ 138);
+	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 50);
 	
 	/**
 	 * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -17651,7 +17590,7 @@
 	module.exports = ReactDOMSelection;
 
 /***/ },
-/* 199 */
+/* 138 */
 /*!********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/getNodeForCharacterOffset.js ***!
   \********************************************************************************/
@@ -17733,7 +17672,7 @@
 	module.exports = getNodeForCharacterOffset;
 
 /***/ },
-/* 200 */
+/* 139 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/containsNode.js ***!
   \**************************************************************************/
@@ -17752,7 +17691,7 @@
 	 * @typechecks
 	 */
 	
-	var isTextNode = __webpack_require__(/*! ./isTextNode */ 201);
+	var isTextNode = __webpack_require__(/*! ./isTextNode */ 140);
 	
 	/*eslint-disable no-bitwise */
 	
@@ -17784,7 +17723,7 @@
 	module.exports = containsNode;
 
 /***/ },
-/* 201 */
+/* 140 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/isTextNode.js ***!
   \************************************************************************/
@@ -17803,7 +17742,7 @@
 	 * @typechecks
 	 */
 	
-	var isNode = __webpack_require__(/*! ./isNode */ 202);
+	var isNode = __webpack_require__(/*! ./isNode */ 141);
 	
 	/**
 	 * @param {*} object The object to check.
@@ -17816,7 +17755,7 @@
 	module.exports = isTextNode;
 
 /***/ },
-/* 202 */
+/* 141 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/isNode.js ***!
   \********************************************************************/
@@ -17846,7 +17785,7 @@
 	module.exports = isNode;
 
 /***/ },
-/* 203 */
+/* 142 */
 /*!******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/getActiveElement.js ***!
   \******************************************************************************/
@@ -17888,7 +17827,7 @@
 	module.exports = getActiveElement;
 
 /***/ },
-/* 204 */
+/* 143 */
 /*!***************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SVGDOMPropertyConfig.js ***!
   \***************************************************************************/
@@ -18196,7 +18135,7 @@
 	module.exports = SVGDOMPropertyConfig;
 
 /***/ },
-/* 205 */
+/* 144 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SelectEventPlugin.js ***!
   \************************************************************************/
@@ -18215,17 +18154,17 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 101);
-	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 102);
-	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 109);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 197);
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 113);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 40);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 41);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 48);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 136);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 52);
 	
-	var getActiveElement = __webpack_require__(/*! fbjs/lib/getActiveElement */ 203);
-	var isTextInputElement = __webpack_require__(/*! ./isTextInputElement */ 126);
+	var getActiveElement = __webpack_require__(/*! fbjs/lib/getActiveElement */ 142);
+	var isTextInputElement = __webpack_require__(/*! ./isTextInputElement */ 65);
 	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 26);
-	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 186);
+	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 125);
 	
 	var topLevelTypes = EventConstants.topLevelTypes;
 	
@@ -18400,7 +18339,7 @@
 	module.exports = SelectEventPlugin;
 
 /***/ },
-/* 206 */
+/* 145 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SimpleEventPlugin.js ***!
   \************************************************************************/
@@ -18419,24 +18358,24 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 101);
-	var EventListener = __webpack_require__(/*! fbjs/lib/EventListener */ 193);
-	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 102);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var SyntheticAnimationEvent = __webpack_require__(/*! ./SyntheticAnimationEvent */ 207);
-	var SyntheticClipboardEvent = __webpack_require__(/*! ./SyntheticClipboardEvent */ 208);
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 113);
-	var SyntheticFocusEvent = __webpack_require__(/*! ./SyntheticFocusEvent */ 209);
-	var SyntheticKeyboardEvent = __webpack_require__(/*! ./SyntheticKeyboardEvent */ 210);
-	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 129);
-	var SyntheticDragEvent = __webpack_require__(/*! ./SyntheticDragEvent */ 213);
-	var SyntheticTouchEvent = __webpack_require__(/*! ./SyntheticTouchEvent */ 214);
-	var SyntheticTransitionEvent = __webpack_require__(/*! ./SyntheticTransitionEvent */ 215);
-	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 130);
-	var SyntheticWheelEvent = __webpack_require__(/*! ./SyntheticWheelEvent */ 216);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 40);
+	var EventListener = __webpack_require__(/*! fbjs/lib/EventListener */ 132);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 41);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var SyntheticAnimationEvent = __webpack_require__(/*! ./SyntheticAnimationEvent */ 146);
+	var SyntheticClipboardEvent = __webpack_require__(/*! ./SyntheticClipboardEvent */ 147);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 52);
+	var SyntheticFocusEvent = __webpack_require__(/*! ./SyntheticFocusEvent */ 148);
+	var SyntheticKeyboardEvent = __webpack_require__(/*! ./SyntheticKeyboardEvent */ 149);
+	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 68);
+	var SyntheticDragEvent = __webpack_require__(/*! ./SyntheticDragEvent */ 152);
+	var SyntheticTouchEvent = __webpack_require__(/*! ./SyntheticTouchEvent */ 153);
+	var SyntheticTransitionEvent = __webpack_require__(/*! ./SyntheticTransitionEvent */ 154);
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 69);
+	var SyntheticWheelEvent = __webpack_require__(/*! ./SyntheticWheelEvent */ 155);
 	
 	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 11);
-	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 211);
+	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 150);
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
 	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 26);
 	
@@ -19036,7 +18975,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 207 */
+/* 146 */
 /*!******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticAnimationEvent.js ***!
   \******************************************************************************/
@@ -19055,7 +18994,7 @@
 	
 	'use strict';
 	
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 113);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 52);
 	
 	/**
 	 * @interface Event
@@ -19083,7 +19022,7 @@
 	module.exports = SyntheticAnimationEvent;
 
 /***/ },
-/* 208 */
+/* 147 */
 /*!******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticClipboardEvent.js ***!
   \******************************************************************************/
@@ -19102,7 +19041,7 @@
 	
 	'use strict';
 	
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 113);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 52);
 	
 	/**
 	 * @interface Event
@@ -19129,7 +19068,7 @@
 	module.exports = SyntheticClipboardEvent;
 
 /***/ },
-/* 209 */
+/* 148 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticFocusEvent.js ***!
   \**************************************************************************/
@@ -19148,7 +19087,7 @@
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 130);
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 69);
 	
 	/**
 	 * @interface FocusEvent
@@ -19173,7 +19112,7 @@
 	module.exports = SyntheticFocusEvent;
 
 /***/ },
-/* 210 */
+/* 149 */
 /*!*****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticKeyboardEvent.js ***!
   \*****************************************************************************/
@@ -19192,11 +19131,11 @@
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 130);
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 69);
 	
-	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 211);
-	var getEventKey = __webpack_require__(/*! ./getEventKey */ 212);
-	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 132);
+	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 150);
+	var getEventKey = __webpack_require__(/*! ./getEventKey */ 151);
+	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 71);
 	
 	/**
 	 * @interface KeyboardEvent
@@ -19265,7 +19204,7 @@
 	module.exports = SyntheticKeyboardEvent;
 
 /***/ },
-/* 211 */
+/* 150 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/getEventCharCode.js ***!
   \***********************************************************************/
@@ -19323,7 +19262,7 @@
 	module.exports = getEventCharCode;
 
 /***/ },
-/* 212 */
+/* 151 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/getEventKey.js ***!
   \******************************************************************/
@@ -19342,7 +19281,7 @@
 	
 	'use strict';
 	
-	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 211);
+	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 150);
 	
 	/**
 	 * Normalization of deprecated HTML5 `key` values
@@ -19433,7 +19372,7 @@
 	module.exports = getEventKey;
 
 /***/ },
-/* 213 */
+/* 152 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticDragEvent.js ***!
   \*************************************************************************/
@@ -19452,7 +19391,7 @@
 	
 	'use strict';
 	
-	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 129);
+	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 68);
 	
 	/**
 	 * @interface DragEvent
@@ -19477,7 +19416,7 @@
 	module.exports = SyntheticDragEvent;
 
 /***/ },
-/* 214 */
+/* 153 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticTouchEvent.js ***!
   \**************************************************************************/
@@ -19496,9 +19435,9 @@
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 130);
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 69);
 	
-	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 132);
+	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 71);
 	
 	/**
 	 * @interface TouchEvent
@@ -19530,7 +19469,7 @@
 	module.exports = SyntheticTouchEvent;
 
 /***/ },
-/* 215 */
+/* 154 */
 /*!*******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticTransitionEvent.js ***!
   \*******************************************************************************/
@@ -19549,7 +19488,7 @@
 	
 	'use strict';
 	
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 113);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 52);
 	
 	/**
 	 * @interface Event
@@ -19577,7 +19516,7 @@
 	module.exports = SyntheticTransitionEvent;
 
 /***/ },
-/* 216 */
+/* 155 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/SyntheticWheelEvent.js ***!
   \**************************************************************************/
@@ -19596,7 +19535,7 @@
 	
 	'use strict';
 	
-	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 129);
+	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 68);
 	
 	/**
 	 * @interface WheelEvent
@@ -19639,7 +19578,7 @@
 	module.exports = SyntheticWheelEvent;
 
 /***/ },
-/* 217 */
+/* 156 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDefaultPerf.js ***!
   \***********************************************************************/
@@ -19658,13 +19597,13 @@
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 97);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactDefaultPerfAnalysis = __webpack_require__(/*! ./ReactDefaultPerfAnalysis */ 218);
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 219);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 36);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactDefaultPerfAnalysis = __webpack_require__(/*! ./ReactDefaultPerfAnalysis */ 157);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 158);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
 	
-	var performanceNow = __webpack_require__(/*! fbjs/lib/performanceNow */ 224);
+	var performanceNow = __webpack_require__(/*! fbjs/lib/performanceNow */ 163);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
 	function roundFloat(val) {
@@ -19964,7 +19903,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 218 */
+/* 157 */
 /*!*******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDefaultPerfAnalysis.js ***!
   \*******************************************************************************/
@@ -20182,7 +20121,7 @@
 	module.exports = ReactDefaultPerfAnalysis;
 
 /***/ },
-/* 219 */
+/* 158 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactMount.js ***!
   \*****************************************************************/
@@ -20201,27 +20140,27 @@
 	
 	'use strict';
 	
-	var DOMLazyTree = __webpack_require__(/*! ./DOMLazyTree */ 136);
-	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 97);
-	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 164);
+	var DOMLazyTree = __webpack_require__(/*! ./DOMLazyTree */ 75);
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 36);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 103);
 	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 9);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactDOMContainerInfo = __webpack_require__(/*! ./ReactDOMContainerInfo */ 220);
-	var ReactDOMFeatureFlags = __webpack_require__(/*! ./ReactDOMFeatureFlags */ 221);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactDOMContainerInfo = __webpack_require__(/*! ./ReactDOMContainerInfo */ 159);
+	var ReactDOMFeatureFlags = __webpack_require__(/*! ./ReactDOMFeatureFlags */ 160);
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 8);
-	var ReactFeatureFlags = __webpack_require__(/*! ./ReactFeatureFlags */ 118);
+	var ReactFeatureFlags = __webpack_require__(/*! ./ReactFeatureFlags */ 57);
 	var ReactInstrumentation = __webpack_require__(/*! ./ReactInstrumentation */ 18);
-	var ReactMarkupChecksum = __webpack_require__(/*! ./ReactMarkupChecksum */ 222);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 119);
-	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 120);
-	var ReactUpdateQueue = __webpack_require__(/*! ./ReactUpdateQueue */ 181);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 116);
+	var ReactMarkupChecksum = __webpack_require__(/*! ./ReactMarkupChecksum */ 161);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 58);
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 59);
+	var ReactUpdateQueue = __webpack_require__(/*! ./ReactUpdateQueue */ 120);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 55);
 	
 	var emptyObject = __webpack_require__(/*! fbjs/lib/emptyObject */ 21);
-	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 177);
+	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 116);
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
-	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 140);
-	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 182);
+	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 79);
+	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 121);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
 	var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -20669,7 +20608,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 220 */
+/* 159 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMContainerInfo.js ***!
   \****************************************************************************/
@@ -20688,7 +20627,7 @@
 	
 	'use strict';
 	
-	var validateDOMNesting = __webpack_require__(/*! ./validateDOMNesting */ 187);
+	var validateDOMNesting = __webpack_require__(/*! ./validateDOMNesting */ 126);
 	
 	var DOC_NODE_TYPE = 9;
 	
@@ -20711,7 +20650,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 221 */
+/* 160 */
 /*!***************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactDOMFeatureFlags.js ***!
   \***************************************************************************/
@@ -20737,7 +20676,7 @@
 	module.exports = ReactDOMFeatureFlags;
 
 /***/ },
-/* 222 */
+/* 161 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/ReactMarkupChecksum.js ***!
   \**************************************************************************/
@@ -20756,7 +20695,7 @@
 	
 	'use strict';
 	
-	var adler32 = __webpack_require__(/*! ./adler32 */ 223);
+	var adler32 = __webpack_require__(/*! ./adler32 */ 162);
 	
 	var TAG_END = /\/?>/;
 	var COMMENT_START = /^<\!\-\-/;
@@ -20795,7 +20734,7 @@
 	module.exports = ReactMarkupChecksum;
 
 /***/ },
-/* 223 */
+/* 162 */
 /*!**************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/adler32.js ***!
   \**************************************************************/
@@ -20846,7 +20785,7 @@
 	module.exports = adler32;
 
 /***/ },
-/* 224 */
+/* 163 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/performanceNow.js ***!
   \****************************************************************************/
@@ -20865,7 +20804,7 @@
 	 * @typechecks
 	 */
 	
-	var performance = __webpack_require__(/*! ./performance */ 225);
+	var performance = __webpack_require__(/*! ./performance */ 164);
 	
 	var performanceNow;
 	
@@ -20887,7 +20826,7 @@
 	module.exports = performanceNow;
 
 /***/ },
-/* 225 */
+/* 164 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/~/fbjs/lib/performance.js ***!
   \*************************************************************************/
@@ -20906,7 +20845,7 @@
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 109);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 48);
 	
 	var performance;
 	
@@ -20917,7 +20856,7 @@
 	module.exports = performance || {};
 
 /***/ },
-/* 226 */
+/* 165 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/findDOMNode.js ***!
   \******************************************************************/
@@ -20937,10 +20876,10 @@
 	'use strict';
 	
 	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 9);
-	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 96);
-	var ReactInstanceMap = __webpack_require__(/*! ./ReactInstanceMap */ 179);
+	var ReactDOMComponentTree = __webpack_require__(/*! ./ReactDOMComponentTree */ 35);
+	var ReactInstanceMap = __webpack_require__(/*! ./ReactInstanceMap */ 118);
 	
-	var getNativeComponentFromComposite = __webpack_require__(/*! ./getNativeComponentFromComposite */ 227);
+	var getNativeComponentFromComposite = __webpack_require__(/*! ./getNativeComponentFromComposite */ 166);
 	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
 	var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
 	
@@ -20982,7 +20921,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 227 */
+/* 166 */
 /*!**************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/getNativeComponentFromComposite.js ***!
   \**************************************************************************************/
@@ -21001,7 +20940,7 @@
 	
 	'use strict';
 	
-	var ReactNodeTypes = __webpack_require__(/*! ./ReactNodeTypes */ 180);
+	var ReactNodeTypes = __webpack_require__(/*! ./ReactNodeTypes */ 119);
 	
 	function getNativeComponentFromComposite(inst) {
 	  var type;
@@ -21020,7 +20959,7 @@
 	module.exports = getNativeComponentFromComposite;
 
 /***/ },
-/* 228 */
+/* 167 */
 /*!*********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react/lib/renderSubtreeIntoContainer.js ***!
   \*********************************************************************************/
@@ -21039,15 +20978,595 @@
 	
 	'use strict';
 	
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 219);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 158);
 	
 	module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ },
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */
+/* 168 */,
+/* 169 */
+/*!******************************!*\
+  !*** ./global_dispatcher.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var util = __webpack_require__(/*! helpers/util.js */ 170);
+	
+	var Dispatcher = function () {
+	    this.callbacks = {};
+	};
+	
+	Dispatcher.prototype = {
+	    __add: function (name, fn) {
+	        if (hasOwn.call(this.callbacks, name)) this.callbacks[name].push(fn);else this.callbacks[name] = [fn];
+	    },
+	    __invoke: function (name, payload, clone) {
+	        // default to cloningt the payload
+	        if (clone === undefined) {
+	            clone = true;
+	        }
+	
+	        if (!hasOwn.call(this.callbacks, name)) {
+	            if (this.logging) {
+	                console.warn("DISPATCHER: \"" + name + "\" dispatched but there are no registered callbacks.");
+	            }
+	            return;
+	        }
+	
+	        var group = this.callbacks[name];
+	        // clone object payload incase its mutated by a store
+	        if (payload && clone) {
+	            payload = JSON.parse(JSON.stringify(payload));
+	        }
+	
+	        for (var i = 0; i < group.length; i++) {
+	            // clone object payload incase its mutated by a store
+	            group[i].apply(this, [payload]);
+	        }
+	    },
+	    register: function (actionType, fn) {
+	        if (util.empty(actionType)) throw Error("Invalid action type.");
+	
+	        this.__add(actionType, fn);
+	        return this;
+	    },
+	    dispatch: function (action /*, payload, clone */) {
+	        var actionType,
+	            payload,
+	            clone = arguments[2];
+	
+	        if (util.isString(action)) {
+	            actionType = action;
+	            payload = arguments[1];
+	        } else if (action && hasOwn.call(action, "actionType") && !util.empty(action.actionType)) {
+	            actionType = action.actionType;
+	            if (hasOwn.call(action, "payload")) payload = action.payload;
+	        } else {
+	            if (this.logging) {
+	                console.warn("DISPATCHER: \"" + JSON.stringify(action) + "\" is invalid to dispatch. Did you specify an `actionType`?.");
+	            }
+	            return;
+	        }
+	
+	        this.__invoke(actionType, payload, clone);
+	        return this;
+	    }
+	};
+	
+	
+	var hasOwn = Object.prototype.hasOwnProperty;
+	
+	module.exports = new Dispatcher();
+
+/***/ },
+/* 170 */
+/*!*************************!*\
+  !*** ./helpers/util.js ***!
+  \*************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var util = {
+	    timeAgo: function (timeString, diffOnly) {
+	        var time = new Date(timeString);
+	        var units = [{ name: "second", limit: 60, in_seconds: 1 }, { name: "minute", limit: 3600, in_seconds: 60 }, { name: "hour", limit: 86400, in_seconds: 3600 }, { name: "day", limit: 604800, in_seconds: 86400 }, { name: "week", limit: 2629743, in_seconds: 604800 }, { name: "month", limit: 31556926, in_seconds: 2629743 }, { name: "year", limit: null, in_seconds: 31556926 }];
+	
+	        var diff = (new Date() - time) / 1000;
+	        if (diffOnly) {
+	            return diff;
+	        }
+	        if (diff < 5) return "a few seconds";
+	
+	        var i = 0,
+	            unit;
+	
+	        while (unit = units[i++]) {
+	            if (diff < unit.limit || !unit.limit) {
+	                diff = Math.floor(diff / unit.in_seconds);
+	                return diff + " " + unit.name + (diff > 1 ? "s" : "");
+	            }
+	        }
+	    },
+	    getParameterByName: function (name) {
+	        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	            results = regex.exec(location.search);
+	        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	    },
+	    isString: function (obj) {
+	        return typeof obj === "string";
+	    },
+	    empty: function (str) {
+	        return !(str && util.isString(str) && str.length > 0);
+	    },
+	    notEmpty: function (str) {
+	        return !util.empty(str);
+	    },
+	    isXss: function (str) {
+	        return /j\s*?a\s*?v\s*?a\s*?s\s*?c\s*?r\s*?i\s*?p\s*?t\s*?\:|<script/ig.test(str);
+	    },
+	    setCookie: function (name, value, days) {
+	        var expires;
+	        if (days) {
+	            var date = new Date();
+	            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+	            expires = "; expires=" + date.toGMTString();
+	        } else {
+	            expires = "";
+	        }
+	        document.cookie = name + "=" + value + expires + "; path=/";
+	    },
+	    getCookie: function (c_name) {
+	        if (document.cookie.length > 0) {
+	            var c_start = document.cookie.indexOf(c_name + "=");
+	            if (c_start != -1) {
+	                c_start = c_start + c_name.length + 1;
+	                var c_end = document.cookie.indexOf(";", c_start);
+	                if (c_end == -1) {
+	                    c_end = document.cookie.length;
+	                }
+	                return window.unescape(document.cookie.substring(c_start, c_end));
+	            }
+	        }
+	        return "";
+	    },
+	    // TODO: add browser support check
+	    historyPushState: function (url, state) {
+	        window.history.pushState(state, document.title, url);
+	    },
+	    historyReplaceState: function (url, state) {
+	        window.history.replaceState(state, document.title, url);
+	    },
+	
+	    getPasswordStrength: function (pwd) {
+	        var score = 0;
+	
+	        if (pwd.length > 6) score++;
+	
+	        if (pwd.match(/[a-z]/) && pwd.match(/[A-Z]/)) score++;
+	
+	        if (pwd.match(/\d+/)) score++;
+	
+	        if (pwd.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)) score++;
+	
+	        if (pwd.length > 12) score++;
+	
+	        return score;
+	    }
+	};
+	
+	module.exports = util;
+
+/***/ },
+/* 171 */
+/*!*************************!*\
+  !*** ./stores/store.js ***!
+  \*************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var assign = __webpack_require__(/*! object-assign */ 4);
+	var EventEmitter = __webpack_require__(/*! events */ 172).EventEmitter;
+	
+	var Store = function (extend) {
+	    if (extend) {
+	        assign(this, extend);
+	    }
+	};
+	
+	assign(Store.prototype, EventEmitter.prototype, {
+	    change: function () {
+	        this.emit("change");
+	    },
+	    addChangeListener: function (callback) {
+	        this.on("change", callback);
+	    },
+	    removeChangeListener: function (callback) {
+	        this.removeListener("change", callback);
+	    }
+	});
+	
+	module.exports = Store;
+
+/***/ },
+/* 172 */
+/*!**********************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/events/events.js ***!
+  \**********************************************************/
+/***/ function(module, exports) {
+
+	// Copyright Joyent, Inc. and other Node contributors.
+	//
+	// Permission is hereby granted, free of charge, to any person obtaining a
+	// copy of this software and associated documentation files (the
+	// "Software"), to deal in the Software without restriction, including
+	// without limitation the rights to use, copy, modify, merge, publish,
+	// distribute, sublicense, and/or sell copies of the Software, and to permit
+	// persons to whom the Software is furnished to do so, subject to the
+	// following conditions:
+	//
+	// The above copyright notice and this permission notice shall be included
+	// in all copies or substantial portions of the Software.
+	//
+	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+	// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+	// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+	// USE OR OTHER DEALINGS IN THE SOFTWARE.
+	
+	function EventEmitter() {
+	  this._events = this._events || {};
+	  this._maxListeners = this._maxListeners || undefined;
+	}
+	module.exports = EventEmitter;
+	
+	// Backwards-compat with node 0.10.x
+	EventEmitter.EventEmitter = EventEmitter;
+	
+	EventEmitter.prototype._events = undefined;
+	EventEmitter.prototype._maxListeners = undefined;
+	
+	// By default EventEmitters will print a warning if more than 10 listeners are
+	// added to it. This is a useful default which helps finding memory leaks.
+	EventEmitter.defaultMaxListeners = 10;
+	
+	// Obviously not all Emitters should be limited to 10. This function allows
+	// that to be increased. Set to zero for unlimited.
+	EventEmitter.prototype.setMaxListeners = function(n) {
+	  if (!isNumber(n) || n < 0 || isNaN(n))
+	    throw TypeError('n must be a positive number');
+	  this._maxListeners = n;
+	  return this;
+	};
+	
+	EventEmitter.prototype.emit = function(type) {
+	  var er, handler, len, args, i, listeners;
+	
+	  if (!this._events)
+	    this._events = {};
+	
+	  // If there is no 'error' event listener then throw.
+	  if (type === 'error') {
+	    if (!this._events.error ||
+	        (isObject(this._events.error) && !this._events.error.length)) {
+	      er = arguments[1];
+	      if (er instanceof Error) {
+	        throw er; // Unhandled 'error' event
+	      }
+	      throw TypeError('Uncaught, unspecified "error" event.');
+	    }
+	  }
+	
+	  handler = this._events[type];
+	
+	  if (isUndefined(handler))
+	    return false;
+	
+	  if (isFunction(handler)) {
+	    switch (arguments.length) {
+	      // fast cases
+	      case 1:
+	        handler.call(this);
+	        break;
+	      case 2:
+	        handler.call(this, arguments[1]);
+	        break;
+	      case 3:
+	        handler.call(this, arguments[1], arguments[2]);
+	        break;
+	      // slower
+	      default:
+	        args = Array.prototype.slice.call(arguments, 1);
+	        handler.apply(this, args);
+	    }
+	  } else if (isObject(handler)) {
+	    args = Array.prototype.slice.call(arguments, 1);
+	    listeners = handler.slice();
+	    len = listeners.length;
+	    for (i = 0; i < len; i++)
+	      listeners[i].apply(this, args);
+	  }
+	
+	  return true;
+	};
+	
+	EventEmitter.prototype.addListener = function(type, listener) {
+	  var m;
+	
+	  if (!isFunction(listener))
+	    throw TypeError('listener must be a function');
+	
+	  if (!this._events)
+	    this._events = {};
+	
+	  // To avoid recursion in the case that type === "newListener"! Before
+	  // adding it to the listeners, first emit "newListener".
+	  if (this._events.newListener)
+	    this.emit('newListener', type,
+	              isFunction(listener.listener) ?
+	              listener.listener : listener);
+	
+	  if (!this._events[type])
+	    // Optimize the case of one listener. Don't need the extra array object.
+	    this._events[type] = listener;
+	  else if (isObject(this._events[type]))
+	    // If we've already got an array, just append.
+	    this._events[type].push(listener);
+	  else
+	    // Adding the second element, need to change to array.
+	    this._events[type] = [this._events[type], listener];
+	
+	  // Check for listener leak
+	  if (isObject(this._events[type]) && !this._events[type].warned) {
+	    if (!isUndefined(this._maxListeners)) {
+	      m = this._maxListeners;
+	    } else {
+	      m = EventEmitter.defaultMaxListeners;
+	    }
+	
+	    if (m && m > 0 && this._events[type].length > m) {
+	      this._events[type].warned = true;
+	      console.error('(node) warning: possible EventEmitter memory ' +
+	                    'leak detected. %d listeners added. ' +
+	                    'Use emitter.setMaxListeners() to increase limit.',
+	                    this._events[type].length);
+	      if (typeof console.trace === 'function') {
+	        // not supported in IE 10
+	        console.trace();
+	      }
+	    }
+	  }
+	
+	  return this;
+	};
+	
+	EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+	
+	EventEmitter.prototype.once = function(type, listener) {
+	  if (!isFunction(listener))
+	    throw TypeError('listener must be a function');
+	
+	  var fired = false;
+	
+	  function g() {
+	    this.removeListener(type, g);
+	
+	    if (!fired) {
+	      fired = true;
+	      listener.apply(this, arguments);
+	    }
+	  }
+	
+	  g.listener = listener;
+	  this.on(type, g);
+	
+	  return this;
+	};
+	
+	// emits a 'removeListener' event iff the listener was removed
+	EventEmitter.prototype.removeListener = function(type, listener) {
+	  var list, position, length, i;
+	
+	  if (!isFunction(listener))
+	    throw TypeError('listener must be a function');
+	
+	  if (!this._events || !this._events[type])
+	    return this;
+	
+	  list = this._events[type];
+	  length = list.length;
+	  position = -1;
+	
+	  if (list === listener ||
+	      (isFunction(list.listener) && list.listener === listener)) {
+	    delete this._events[type];
+	    if (this._events.removeListener)
+	      this.emit('removeListener', type, listener);
+	
+	  } else if (isObject(list)) {
+	    for (i = length; i-- > 0;) {
+	      if (list[i] === listener ||
+	          (list[i].listener && list[i].listener === listener)) {
+	        position = i;
+	        break;
+	      }
+	    }
+	
+	    if (position < 0)
+	      return this;
+	
+	    if (list.length === 1) {
+	      list.length = 0;
+	      delete this._events[type];
+	    } else {
+	      list.splice(position, 1);
+	    }
+	
+	    if (this._events.removeListener)
+	      this.emit('removeListener', type, listener);
+	  }
+	
+	  return this;
+	};
+	
+	EventEmitter.prototype.removeAllListeners = function(type) {
+	  var key, listeners;
+	
+	  if (!this._events)
+	    return this;
+	
+	  // not listening for removeListener, no need to emit
+	  if (!this._events.removeListener) {
+	    if (arguments.length === 0)
+	      this._events = {};
+	    else if (this._events[type])
+	      delete this._events[type];
+	    return this;
+	  }
+	
+	  // emit removeListener for all listeners on all events
+	  if (arguments.length === 0) {
+	    for (key in this._events) {
+	      if (key === 'removeListener') continue;
+	      this.removeAllListeners(key);
+	    }
+	    this.removeAllListeners('removeListener');
+	    this._events = {};
+	    return this;
+	  }
+	
+	  listeners = this._events[type];
+	
+	  if (isFunction(listeners)) {
+	    this.removeListener(type, listeners);
+	  } else if (listeners) {
+	    // LIFO order
+	    while (listeners.length)
+	      this.removeListener(type, listeners[listeners.length - 1]);
+	  }
+	  delete this._events[type];
+	
+	  return this;
+	};
+	
+	EventEmitter.prototype.listeners = function(type) {
+	  var ret;
+	  if (!this._events || !this._events[type])
+	    ret = [];
+	  else if (isFunction(this._events[type]))
+	    ret = [this._events[type]];
+	  else
+	    ret = this._events[type].slice();
+	  return ret;
+	};
+	
+	EventEmitter.prototype.listenerCount = function(type) {
+	  if (this._events) {
+	    var evlistener = this._events[type];
+	
+	    if (isFunction(evlistener))
+	      return 1;
+	    else if (evlistener)
+	      return evlistener.length;
+	  }
+	  return 0;
+	};
+	
+	EventEmitter.listenerCount = function(emitter, type) {
+	  return emitter.listenerCount(type);
+	};
+	
+	function isFunction(arg) {
+	  return typeof arg === 'function';
+	}
+	
+	function isNumber(arg) {
+	  return typeof arg === 'number';
+	}
+	
+	function isObject(arg) {
+	  return typeof arg === 'object' && arg !== null;
+	}
+	
+	function isUndefined(arg) {
+	  return arg === void 0;
+	}
+
+
+/***/ },
+/* 173 */,
+/* 174 */
+/*!******************************!*\
+  !*** ./helpers/KeyMirror.js ***!
+  \******************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var keyMirror = function (obj) {
+	    for (var k in obj) {
+	        if (!obj.hasOwnProperty(k)) continue;
+	
+	        if (obj[k] === null) obj[k] = k;else if (typeof obj[k] === "object") obj[k] = keyMirror(obj[k]);
+	    }
+	    return obj;
+	};
+	module.exports = keyMirror;
+
+/***/ },
+/* 175 */
+/*!************************************!*\
+  !*** ../styles/pages/sign_up.scss ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./sign_up.scss */ 176);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 178)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./sign_up.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./sign_up.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 176 */
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/sign_up.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 177)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 177 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader/lib/css-base.js ***!
   \********************************************************************/
@@ -21106,7 +21625,7 @@
 
 
 /***/ },
-/* 233 */
+/* 178 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/style-loader/addStyles.js ***!
   \*******************************************************************/
@@ -21361,12 +21880,76 @@
 
 
 /***/ },
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
 /* 234 */,
 /* 235 */,
 /* 236 */,
 /* 237 */,
 /* 238 */,
-/* 239 */
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/jquery/dist/jquery.js ***!
   \***************************************************************/
@@ -31217,208 +31800,6 @@
 
 
 /***/ },
-/* 240 */
-/*!******************************!*\
-  !*** ./global_dispatcher.js ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var util = __webpack_require__(/*! helpers/util.js */ 241);
-	
-	var Dispatcher = function () {
-	    this.callbacks = {};
-	};
-	
-	Dispatcher.prototype = {
-	    __add: function (name, fn) {
-	        if (hasOwn.call(this.callbacks, name)) this.callbacks[name].push(fn);else this.callbacks[name] = [fn];
-	    },
-	    __invoke: function (name, payload, clone) {
-	        // default to cloningt the payload
-	        if (clone === undefined) {
-	            clone = true;
-	        }
-	
-	        if (!hasOwn.call(this.callbacks, name)) {
-	            if (this.logging) {
-	                console.warn("DISPATCHER: \"" + name + "\" dispatched but there are no registered callbacks.");
-	            }
-	            return;
-	        }
-	
-	        var group = this.callbacks[name];
-	        // clone object payload incase its mutated by a store
-	        if (payload && clone) {
-	            payload = JSON.parse(JSON.stringify(payload));
-	        }
-	
-	        for (var i = 0; i < group.length; i++) {
-	            // clone object payload incase its mutated by a store
-	            group[i].apply(this, [payload]);
-	        }
-	    },
-	    register: function (actionType, fn) {
-	        if (util.empty(actionType)) throw Error("Invalid action type.");
-	
-	        this.__add(actionType, fn);
-	        return this;
-	    },
-	    dispatch: function (action /*, payload, clone */) {
-	        var actionType,
-	            payload,
-	            clone = arguments[2];
-	
-	        if (util.isString(action)) {
-	            actionType = action;
-	            payload = arguments[1];
-	        } else if (action && hasOwn.call(action, "actionType") && !util.empty(action.actionType)) {
-	            actionType = action.actionType;
-	            if (hasOwn.call(action, "payload")) payload = action.payload;
-	        } else {
-	            if (this.logging) {
-	                console.warn("DISPATCHER: \"" + JSON.stringify(action) + "\" is invalid to dispatch. Did you specify an `actionType`?.");
-	            }
-	            return;
-	        }
-	
-	        this.__invoke(actionType, payload, clone);
-	        return this;
-	    }
-	};
-	
-	
-	var hasOwn = Object.prototype.hasOwnProperty;
-	
-	module.exports = new Dispatcher();
-
-/***/ },
-/* 241 */
-/*!*************************!*\
-  !*** ./helpers/util.js ***!
-  \*************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var util = {
-	    timeAgo: function (timeString, diffOnly) {
-	        var time = new Date(timeString);
-	        var units = [{ name: "second", limit: 60, in_seconds: 1 }, { name: "minute", limit: 3600, in_seconds: 60 }, { name: "hour", limit: 86400, in_seconds: 3600 }, { name: "day", limit: 604800, in_seconds: 86400 }, { name: "week", limit: 2629743, in_seconds: 604800 }, { name: "month", limit: 31556926, in_seconds: 2629743 }, { name: "year", limit: null, in_seconds: 31556926 }];
-	
-	        var diff = (new Date() - time) / 1000;
-	        if (diffOnly) {
-	            return diff;
-	        }
-	        if (diff < 5) return "a few seconds";
-	
-	        var i = 0,
-	            unit;
-	
-	        while (unit = units[i++]) {
-	            if (diff < unit.limit || !unit.limit) {
-	                diff = Math.floor(diff / unit.in_seconds);
-	                return diff + " " + unit.name + (diff > 1 ? "s" : "");
-	            }
-	        }
-	    },
-	    getParameterByName: function (name) {
-	        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-	        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-	            results = regex.exec(location.search);
-	        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	    },
-	    isString: function (obj) {
-	        return typeof obj === "string";
-	    },
-	    empty: function (str) {
-	        return !(str && util.isString(str) && str.length > 0);
-	    },
-	    notEmpty: function (str) {
-	        return !util.empty(str);
-	    },
-	    isXss: function (str) {
-	        return /j\s*?a\s*?v\s*?a\s*?s\s*?c\s*?r\s*?i\s*?p\s*?t\s*?\:|<script/ig.test(str);
-	    },
-	    setCookie: function (name, value, days) {
-	        var expires;
-	        if (days) {
-	            var date = new Date();
-	            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-	            expires = "; expires=" + date.toGMTString();
-	        } else {
-	            expires = "";
-	        }
-	        document.cookie = name + "=" + value + expires + "; path=/";
-	    },
-	    getCookie: function (c_name) {
-	        if (document.cookie.length > 0) {
-	            var c_start = document.cookie.indexOf(c_name + "=");
-	            if (c_start != -1) {
-	                c_start = c_start + c_name.length + 1;
-	                var c_end = document.cookie.indexOf(";", c_start);
-	                if (c_end == -1) {
-	                    c_end = document.cookie.length;
-	                }
-	                return window.unescape(document.cookie.substring(c_start, c_end));
-	            }
-	        }
-	        return "";
-	    },
-	    // TODO: add browser support check
-	    historyPushState: function (url, state) {
-	        window.history.pushState(state, document.title, url);
-	    },
-	    historyReplaceState: function (url, state) {
-	        window.history.replaceState(state, document.title, url);
-	    },
-	
-	    getPasswordStrength: function (pwd) {
-	        var score = 0;
-	
-	        if (pwd.length > 6) score++;
-	
-	        if (pwd.match(/[a-z]/) && pwd.match(/[A-Z]/)) score++;
-	
-	        if (pwd.match(/\d+/)) score++;
-	
-	        if (pwd.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)) score++;
-	
-	        if (pwd.length > 12) score++;
-	
-	        return score;
-	    }
-	};
-	
-	module.exports = util;
-
-/***/ },
-/* 242 */,
-/* 243 */
-/*!******************************!*\
-  !*** ./helpers/KeyMirror.js ***!
-  \******************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var keyMirror = function (obj) {
-	    for (var k in obj) {
-	        if (!obj.hasOwnProperty(k)) continue;
-	
-	        if (obj[k] === null) obj[k] = k;else if (typeof obj[k] === "object") obj[k] = keyMirror(obj[k]);
-	    }
-	    return obj;
-	};
-	module.exports = keyMirror;
-
-/***/ },
-/* 244 */,
-/* 245 */,
-/* 246 */,
-/* 247 */,
-/* 248 */,
 /* 249 */,
 /* 250 */,
 /* 251 */,
@@ -31445,351 +31826,21 @@
 /* 272 */,
 /* 273 */,
 /* 274 */,
-/* 275 */
-/*!*************************!*\
-  !*** ./stores/store.js ***!
-  \*************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var assign = __webpack_require__(/*! object-assign */ 4);
-	var EventEmitter = __webpack_require__(/*! events */ 276).EventEmitter;
-	
-	var Store = function (extend) {
-	    if (extend) {
-	        assign(this, extend);
-	    }
-	};
-	
-	assign(Store.prototype, EventEmitter.prototype, {
-	    change: function () {
-	        this.emit("change");
-	    },
-	    addChangeListener: function (callback) {
-	        this.on("change", callback);
-	    },
-	    removeChangeListener: function (callback) {
-	        this.removeListener("change", callback);
-	    }
-	});
-	
-	module.exports = Store;
-
-/***/ },
-/* 276 */
-/*!**********************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/events/events.js ***!
-  \**********************************************************/
-/***/ function(module, exports) {
-
-	// Copyright Joyent, Inc. and other Node contributors.
-	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
-	// copy of this software and associated documentation files (the
-	// "Software"), to deal in the Software without restriction, including
-	// without limitation the rights to use, copy, modify, merge, publish,
-	// distribute, sublicense, and/or sell copies of the Software, and to permit
-	// persons to whom the Software is furnished to do so, subject to the
-	// following conditions:
-	//
-	// The above copyright notice and this permission notice shall be included
-	// in all copies or substantial portions of the Software.
-	//
-	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-	// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-	// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-	// USE OR OTHER DEALINGS IN THE SOFTWARE.
-	
-	function EventEmitter() {
-	  this._events = this._events || {};
-	  this._maxListeners = this._maxListeners || undefined;
-	}
-	module.exports = EventEmitter;
-	
-	// Backwards-compat with node 0.10.x
-	EventEmitter.EventEmitter = EventEmitter;
-	
-	EventEmitter.prototype._events = undefined;
-	EventEmitter.prototype._maxListeners = undefined;
-	
-	// By default EventEmitters will print a warning if more than 10 listeners are
-	// added to it. This is a useful default which helps finding memory leaks.
-	EventEmitter.defaultMaxListeners = 10;
-	
-	// Obviously not all Emitters should be limited to 10. This function allows
-	// that to be increased. Set to zero for unlimited.
-	EventEmitter.prototype.setMaxListeners = function(n) {
-	  if (!isNumber(n) || n < 0 || isNaN(n))
-	    throw TypeError('n must be a positive number');
-	  this._maxListeners = n;
-	  return this;
-	};
-	
-	EventEmitter.prototype.emit = function(type) {
-	  var er, handler, len, args, i, listeners;
-	
-	  if (!this._events)
-	    this._events = {};
-	
-	  // If there is no 'error' event listener then throw.
-	  if (type === 'error') {
-	    if (!this._events.error ||
-	        (isObject(this._events.error) && !this._events.error.length)) {
-	      er = arguments[1];
-	      if (er instanceof Error) {
-	        throw er; // Unhandled 'error' event
-	      }
-	      throw TypeError('Uncaught, unspecified "error" event.');
-	    }
-	  }
-	
-	  handler = this._events[type];
-	
-	  if (isUndefined(handler))
-	    return false;
-	
-	  if (isFunction(handler)) {
-	    switch (arguments.length) {
-	      // fast cases
-	      case 1:
-	        handler.call(this);
-	        break;
-	      case 2:
-	        handler.call(this, arguments[1]);
-	        break;
-	      case 3:
-	        handler.call(this, arguments[1], arguments[2]);
-	        break;
-	      // slower
-	      default:
-	        args = Array.prototype.slice.call(arguments, 1);
-	        handler.apply(this, args);
-	    }
-	  } else if (isObject(handler)) {
-	    args = Array.prototype.slice.call(arguments, 1);
-	    listeners = handler.slice();
-	    len = listeners.length;
-	    for (i = 0; i < len; i++)
-	      listeners[i].apply(this, args);
-	  }
-	
-	  return true;
-	};
-	
-	EventEmitter.prototype.addListener = function(type, listener) {
-	  var m;
-	
-	  if (!isFunction(listener))
-	    throw TypeError('listener must be a function');
-	
-	  if (!this._events)
-	    this._events = {};
-	
-	  // To avoid recursion in the case that type === "newListener"! Before
-	  // adding it to the listeners, first emit "newListener".
-	  if (this._events.newListener)
-	    this.emit('newListener', type,
-	              isFunction(listener.listener) ?
-	              listener.listener : listener);
-	
-	  if (!this._events[type])
-	    // Optimize the case of one listener. Don't need the extra array object.
-	    this._events[type] = listener;
-	  else if (isObject(this._events[type]))
-	    // If we've already got an array, just append.
-	    this._events[type].push(listener);
-	  else
-	    // Adding the second element, need to change to array.
-	    this._events[type] = [this._events[type], listener];
-	
-	  // Check for listener leak
-	  if (isObject(this._events[type]) && !this._events[type].warned) {
-	    if (!isUndefined(this._maxListeners)) {
-	      m = this._maxListeners;
-	    } else {
-	      m = EventEmitter.defaultMaxListeners;
-	    }
-	
-	    if (m && m > 0 && this._events[type].length > m) {
-	      this._events[type].warned = true;
-	      console.error('(node) warning: possible EventEmitter memory ' +
-	                    'leak detected. %d listeners added. ' +
-	                    'Use emitter.setMaxListeners() to increase limit.',
-	                    this._events[type].length);
-	      if (typeof console.trace === 'function') {
-	        // not supported in IE 10
-	        console.trace();
-	      }
-	    }
-	  }
-	
-	  return this;
-	};
-	
-	EventEmitter.prototype.on = EventEmitter.prototype.addListener;
-	
-	EventEmitter.prototype.once = function(type, listener) {
-	  if (!isFunction(listener))
-	    throw TypeError('listener must be a function');
-	
-	  var fired = false;
-	
-	  function g() {
-	    this.removeListener(type, g);
-	
-	    if (!fired) {
-	      fired = true;
-	      listener.apply(this, arguments);
-	    }
-	  }
-	
-	  g.listener = listener;
-	  this.on(type, g);
-	
-	  return this;
-	};
-	
-	// emits a 'removeListener' event iff the listener was removed
-	EventEmitter.prototype.removeListener = function(type, listener) {
-	  var list, position, length, i;
-	
-	  if (!isFunction(listener))
-	    throw TypeError('listener must be a function');
-	
-	  if (!this._events || !this._events[type])
-	    return this;
-	
-	  list = this._events[type];
-	  length = list.length;
-	  position = -1;
-	
-	  if (list === listener ||
-	      (isFunction(list.listener) && list.listener === listener)) {
-	    delete this._events[type];
-	    if (this._events.removeListener)
-	      this.emit('removeListener', type, listener);
-	
-	  } else if (isObject(list)) {
-	    for (i = length; i-- > 0;) {
-	      if (list[i] === listener ||
-	          (list[i].listener && list[i].listener === listener)) {
-	        position = i;
-	        break;
-	      }
-	    }
-	
-	    if (position < 0)
-	      return this;
-	
-	    if (list.length === 1) {
-	      list.length = 0;
-	      delete this._events[type];
-	    } else {
-	      list.splice(position, 1);
-	    }
-	
-	    if (this._events.removeListener)
-	      this.emit('removeListener', type, listener);
-	  }
-	
-	  return this;
-	};
-	
-	EventEmitter.prototype.removeAllListeners = function(type) {
-	  var key, listeners;
-	
-	  if (!this._events)
-	    return this;
-	
-	  // not listening for removeListener, no need to emit
-	  if (!this._events.removeListener) {
-	    if (arguments.length === 0)
-	      this._events = {};
-	    else if (this._events[type])
-	      delete this._events[type];
-	    return this;
-	  }
-	
-	  // emit removeListener for all listeners on all events
-	  if (arguments.length === 0) {
-	    for (key in this._events) {
-	      if (key === 'removeListener') continue;
-	      this.removeAllListeners(key);
-	    }
-	    this.removeAllListeners('removeListener');
-	    this._events = {};
-	    return this;
-	  }
-	
-	  listeners = this._events[type];
-	
-	  if (isFunction(listeners)) {
-	    this.removeListener(type, listeners);
-	  } else if (listeners) {
-	    // LIFO order
-	    while (listeners.length)
-	      this.removeListener(type, listeners[listeners.length - 1]);
-	  }
-	  delete this._events[type];
-	
-	  return this;
-	};
-	
-	EventEmitter.prototype.listeners = function(type) {
-	  var ret;
-	  if (!this._events || !this._events[type])
-	    ret = [];
-	  else if (isFunction(this._events[type]))
-	    ret = [this._events[type]];
-	  else
-	    ret = this._events[type].slice();
-	  return ret;
-	};
-	
-	EventEmitter.prototype.listenerCount = function(type) {
-	  if (this._events) {
-	    var evlistener = this._events[type];
-	
-	    if (isFunction(evlistener))
-	      return 1;
-	    else if (evlistener)
-	      return evlistener.length;
-	  }
-	  return 0;
-	};
-	
-	EventEmitter.listenerCount = function(emitter, type) {
-	  return emitter.listenerCount(type);
-	};
-	
-	function isFunction(arg) {
-	  return typeof arg === 'function';
-	}
-	
-	function isNumber(arg) {
-	  return typeof arg === 'number';
-	}
-	
-	function isObject(arg) {
-	  return typeof arg === 'object' && arg !== null;
-	}
-	
-	function isUndefined(arg) {
-	  return arg === void 0;
-	}
-
-
-/***/ },
+/* 275 */,
+/* 276 */,
 /* 277 */,
 /* 278 */,
 /* 279 */,
 /* 280 */,
 /* 281 */,
-/* 282 */
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */
 /*!**************************************!*\
   !*** ./views/common/fancy_input.jsx ***!
   \**************************************/
@@ -31807,13 +31858,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	var _reactDom = __webpack_require__(/*! react-dom */ 33);
 	
-	var _util = __webpack_require__(/*! helpers/util */ 241);
+	var _util = __webpack_require__(/*! helpers/util */ 170);
 	
 	var _util2 = _interopRequireDefault(_util);
 	
-	var _floatl = __webpack_require__(/*! floatl */ 283);
+	var _floatl = __webpack_require__(/*! floatl */ 290);
 	
 	var _floatl2 = _interopRequireDefault(_floatl);
 	
@@ -31825,7 +31876,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/fancy_input.scss */ 284);
+	__webpack_require__(/*! common/fancy_input.scss */ 291);
 	
 	var FancyInput = function (_React$Component) {
 	    _inherits(FancyInput, _React$Component);
@@ -31905,7 +31956,7 @@
 	exports.default = FancyInput;
 
 /***/ },
-/* 283 */
+/* 290 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/floatl/dist/js/floatl.js ***!
   \******************************************************************/
@@ -32006,7 +32057,7 @@
 	});
 
 /***/ },
-/* 284 */
+/* 291 */
 /*!*****************************************!*\
   !*** ../styles/common/fancy_input.scss ***!
   \*****************************************/
@@ -32015,10 +32066,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./fancy_input.scss */ 285);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./fancy_input.scss */ 292);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -32035,13 +32086,13 @@
 	}
 
 /***/ },
-/* 285 */
+/* 292 */
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/fancy_input.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 177)();
 	// imports
 	
 	
@@ -32052,7 +32103,7 @@
 
 
 /***/ },
-/* 286 */
+/* 293 */
 /*!*********************************!*\
   !*** ./views/common/slider.jsx ***!
   \*********************************/
@@ -32070,7 +32121,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	var _reactDom = __webpack_require__(/*! react-dom */ 33);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -32080,7 +32131,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/slider.scss */ 287);
+	__webpack_require__(/*! common/slider.scss */ 294);
 	
 	var Slider = function (_React$Component) {
 	    _inherits(Slider, _React$Component);
@@ -32144,7 +32195,7 @@
 	exports.default = Slider;
 
 /***/ },
-/* 287 */
+/* 294 */
 /*!************************************!*\
   !*** ../styles/common/slider.scss ***!
   \************************************/
@@ -32153,10 +32204,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./slider.scss */ 288);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./slider.scss */ 295);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -32173,13 +32224,13 @@
 	}
 
 /***/ },
-/* 288 */
+/* 295 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/slider.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 177)();
 	// imports
 	
 	
@@ -32190,7 +32241,7 @@
 
 
 /***/ },
-/* 289 */
+/* 296 */
 /*!************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/index.js ***!
   \************************************************************/
@@ -32202,239 +32253,239 @@
 	  value: true
 	});
 	
-	var _toDate = __webpack_require__(/*! ./lib/toDate */ 290);
+	var _toDate = __webpack_require__(/*! ./lib/toDate */ 297);
 	
 	var _toDate2 = _interopRequireDefault(_toDate);
 	
-	var _toFloat = __webpack_require__(/*! ./lib/toFloat */ 292);
+	var _toFloat = __webpack_require__(/*! ./lib/toFloat */ 299);
 	
 	var _toFloat2 = _interopRequireDefault(_toFloat);
 	
-	var _toInt = __webpack_require__(/*! ./lib/toInt */ 293);
+	var _toInt = __webpack_require__(/*! ./lib/toInt */ 300);
 	
 	var _toInt2 = _interopRequireDefault(_toInt);
 	
-	var _toBoolean = __webpack_require__(/*! ./lib/toBoolean */ 294);
+	var _toBoolean = __webpack_require__(/*! ./lib/toBoolean */ 301);
 	
 	var _toBoolean2 = _interopRequireDefault(_toBoolean);
 	
-	var _equals = __webpack_require__(/*! ./lib/equals */ 295);
+	var _equals = __webpack_require__(/*! ./lib/equals */ 302);
 	
 	var _equals2 = _interopRequireDefault(_equals);
 	
-	var _contains = __webpack_require__(/*! ./lib/contains */ 296);
+	var _contains = __webpack_require__(/*! ./lib/contains */ 303);
 	
 	var _contains2 = _interopRequireDefault(_contains);
 	
-	var _matches = __webpack_require__(/*! ./lib/matches */ 298);
+	var _matches = __webpack_require__(/*! ./lib/matches */ 305);
 	
 	var _matches2 = _interopRequireDefault(_matches);
 	
-	var _isEmail = __webpack_require__(/*! ./lib/isEmail */ 299);
+	var _isEmail = __webpack_require__(/*! ./lib/isEmail */ 306);
 	
 	var _isEmail2 = _interopRequireDefault(_isEmail);
 	
-	var _isURL = __webpack_require__(/*! ./lib/isURL */ 303);
+	var _isURL = __webpack_require__(/*! ./lib/isURL */ 310);
 	
 	var _isURL2 = _interopRequireDefault(_isURL);
 	
-	var _isMACAddress = __webpack_require__(/*! ./lib/isMACAddress */ 305);
+	var _isMACAddress = __webpack_require__(/*! ./lib/isMACAddress */ 312);
 	
 	var _isMACAddress2 = _interopRequireDefault(_isMACAddress);
 	
-	var _isIP = __webpack_require__(/*! ./lib/isIP */ 304);
+	var _isIP = __webpack_require__(/*! ./lib/isIP */ 311);
 	
 	var _isIP2 = _interopRequireDefault(_isIP);
 	
-	var _isFQDN = __webpack_require__(/*! ./lib/isFQDN */ 302);
+	var _isFQDN = __webpack_require__(/*! ./lib/isFQDN */ 309);
 	
 	var _isFQDN2 = _interopRequireDefault(_isFQDN);
 	
-	var _isBoolean = __webpack_require__(/*! ./lib/isBoolean */ 306);
+	var _isBoolean = __webpack_require__(/*! ./lib/isBoolean */ 313);
 	
 	var _isBoolean2 = _interopRequireDefault(_isBoolean);
 	
-	var _isAlpha = __webpack_require__(/*! ./lib/isAlpha */ 307);
+	var _isAlpha = __webpack_require__(/*! ./lib/isAlpha */ 314);
 	
 	var _isAlpha2 = _interopRequireDefault(_isAlpha);
 	
-	var _isAlphanumeric = __webpack_require__(/*! ./lib/isAlphanumeric */ 309);
+	var _isAlphanumeric = __webpack_require__(/*! ./lib/isAlphanumeric */ 316);
 	
 	var _isAlphanumeric2 = _interopRequireDefault(_isAlphanumeric);
 	
-	var _isNumeric = __webpack_require__(/*! ./lib/isNumeric */ 310);
+	var _isNumeric = __webpack_require__(/*! ./lib/isNumeric */ 317);
 	
 	var _isNumeric2 = _interopRequireDefault(_isNumeric);
 	
-	var _isLowercase = __webpack_require__(/*! ./lib/isLowercase */ 311);
+	var _isLowercase = __webpack_require__(/*! ./lib/isLowercase */ 318);
 	
 	var _isLowercase2 = _interopRequireDefault(_isLowercase);
 	
-	var _isUppercase = __webpack_require__(/*! ./lib/isUppercase */ 312);
+	var _isUppercase = __webpack_require__(/*! ./lib/isUppercase */ 319);
 	
 	var _isUppercase2 = _interopRequireDefault(_isUppercase);
 	
-	var _isAscii = __webpack_require__(/*! ./lib/isAscii */ 313);
+	var _isAscii = __webpack_require__(/*! ./lib/isAscii */ 320);
 	
 	var _isAscii2 = _interopRequireDefault(_isAscii);
 	
-	var _isFullWidth = __webpack_require__(/*! ./lib/isFullWidth */ 314);
+	var _isFullWidth = __webpack_require__(/*! ./lib/isFullWidth */ 321);
 	
 	var _isFullWidth2 = _interopRequireDefault(_isFullWidth);
 	
-	var _isHalfWidth = __webpack_require__(/*! ./lib/isHalfWidth */ 315);
+	var _isHalfWidth = __webpack_require__(/*! ./lib/isHalfWidth */ 322);
 	
 	var _isHalfWidth2 = _interopRequireDefault(_isHalfWidth);
 	
-	var _isVariableWidth = __webpack_require__(/*! ./lib/isVariableWidth */ 316);
+	var _isVariableWidth = __webpack_require__(/*! ./lib/isVariableWidth */ 323);
 	
 	var _isVariableWidth2 = _interopRequireDefault(_isVariableWidth);
 	
-	var _isMultibyte = __webpack_require__(/*! ./lib/isMultibyte */ 317);
+	var _isMultibyte = __webpack_require__(/*! ./lib/isMultibyte */ 324);
 	
 	var _isMultibyte2 = _interopRequireDefault(_isMultibyte);
 	
-	var _isSurrogatePair = __webpack_require__(/*! ./lib/isSurrogatePair */ 318);
+	var _isSurrogatePair = __webpack_require__(/*! ./lib/isSurrogatePair */ 325);
 	
 	var _isSurrogatePair2 = _interopRequireDefault(_isSurrogatePair);
 	
-	var _isInt = __webpack_require__(/*! ./lib/isInt */ 319);
+	var _isInt = __webpack_require__(/*! ./lib/isInt */ 326);
 	
 	var _isInt2 = _interopRequireDefault(_isInt);
 	
-	var _isFloat = __webpack_require__(/*! ./lib/isFloat */ 320);
+	var _isFloat = __webpack_require__(/*! ./lib/isFloat */ 327);
 	
 	var _isFloat2 = _interopRequireDefault(_isFloat);
 	
-	var _isDecimal = __webpack_require__(/*! ./lib/isDecimal */ 321);
+	var _isDecimal = __webpack_require__(/*! ./lib/isDecimal */ 328);
 	
 	var _isDecimal2 = _interopRequireDefault(_isDecimal);
 	
-	var _isHexadecimal = __webpack_require__(/*! ./lib/isHexadecimal */ 322);
+	var _isHexadecimal = __webpack_require__(/*! ./lib/isHexadecimal */ 329);
 	
 	var _isHexadecimal2 = _interopRequireDefault(_isHexadecimal);
 	
-	var _isDivisibleBy = __webpack_require__(/*! ./lib/isDivisibleBy */ 323);
+	var _isDivisibleBy = __webpack_require__(/*! ./lib/isDivisibleBy */ 330);
 	
 	var _isDivisibleBy2 = _interopRequireDefault(_isDivisibleBy);
 	
-	var _isHexColor = __webpack_require__(/*! ./lib/isHexColor */ 324);
+	var _isHexColor = __webpack_require__(/*! ./lib/isHexColor */ 331);
 	
 	var _isHexColor2 = _interopRequireDefault(_isHexColor);
 	
-	var _isJSON = __webpack_require__(/*! ./lib/isJSON */ 325);
+	var _isJSON = __webpack_require__(/*! ./lib/isJSON */ 332);
 	
 	var _isJSON2 = _interopRequireDefault(_isJSON);
 	
-	var _isNull = __webpack_require__(/*! ./lib/isNull */ 326);
+	var _isNull = __webpack_require__(/*! ./lib/isNull */ 333);
 	
 	var _isNull2 = _interopRequireDefault(_isNull);
 	
-	var _isLength = __webpack_require__(/*! ./lib/isLength */ 327);
+	var _isLength = __webpack_require__(/*! ./lib/isLength */ 334);
 	
 	var _isLength2 = _interopRequireDefault(_isLength);
 	
-	var _isByteLength = __webpack_require__(/*! ./lib/isByteLength */ 301);
+	var _isByteLength = __webpack_require__(/*! ./lib/isByteLength */ 308);
 	
 	var _isByteLength2 = _interopRequireDefault(_isByteLength);
 	
-	var _isUUID = __webpack_require__(/*! ./lib/isUUID */ 328);
+	var _isUUID = __webpack_require__(/*! ./lib/isUUID */ 335);
 	
 	var _isUUID2 = _interopRequireDefault(_isUUID);
 	
-	var _isMongoId = __webpack_require__(/*! ./lib/isMongoId */ 329);
+	var _isMongoId = __webpack_require__(/*! ./lib/isMongoId */ 336);
 	
 	var _isMongoId2 = _interopRequireDefault(_isMongoId);
 	
-	var _isDate = __webpack_require__(/*! ./lib/isDate */ 330);
+	var _isDate = __webpack_require__(/*! ./lib/isDate */ 337);
 	
 	var _isDate2 = _interopRequireDefault(_isDate);
 	
-	var _isAfter = __webpack_require__(/*! ./lib/isAfter */ 332);
+	var _isAfter = __webpack_require__(/*! ./lib/isAfter */ 339);
 	
 	var _isAfter2 = _interopRequireDefault(_isAfter);
 	
-	var _isBefore = __webpack_require__(/*! ./lib/isBefore */ 333);
+	var _isBefore = __webpack_require__(/*! ./lib/isBefore */ 340);
 	
 	var _isBefore2 = _interopRequireDefault(_isBefore);
 	
-	var _isIn = __webpack_require__(/*! ./lib/isIn */ 334);
+	var _isIn = __webpack_require__(/*! ./lib/isIn */ 341);
 	
 	var _isIn2 = _interopRequireDefault(_isIn);
 	
-	var _isCreditCard = __webpack_require__(/*! ./lib/isCreditCard */ 335);
+	var _isCreditCard = __webpack_require__(/*! ./lib/isCreditCard */ 342);
 	
 	var _isCreditCard2 = _interopRequireDefault(_isCreditCard);
 	
-	var _isISIN = __webpack_require__(/*! ./lib/isISIN */ 336);
+	var _isISIN = __webpack_require__(/*! ./lib/isISIN */ 343);
 	
 	var _isISIN2 = _interopRequireDefault(_isISIN);
 	
-	var _isISBN = __webpack_require__(/*! ./lib/isISBN */ 337);
+	var _isISBN = __webpack_require__(/*! ./lib/isISBN */ 344);
 	
 	var _isISBN2 = _interopRequireDefault(_isISBN);
 	
-	var _isMobilePhone = __webpack_require__(/*! ./lib/isMobilePhone */ 338);
+	var _isMobilePhone = __webpack_require__(/*! ./lib/isMobilePhone */ 345);
 	
 	var _isMobilePhone2 = _interopRequireDefault(_isMobilePhone);
 	
-	var _isCurrency = __webpack_require__(/*! ./lib/isCurrency */ 339);
+	var _isCurrency = __webpack_require__(/*! ./lib/isCurrency */ 346);
 	
 	var _isCurrency2 = _interopRequireDefault(_isCurrency);
 	
-	var _isISO = __webpack_require__(/*! ./lib/isISO8601 */ 331);
+	var _isISO = __webpack_require__(/*! ./lib/isISO8601 */ 338);
 	
 	var _isISO2 = _interopRequireDefault(_isISO);
 	
-	var _isBase = __webpack_require__(/*! ./lib/isBase64 */ 340);
+	var _isBase = __webpack_require__(/*! ./lib/isBase64 */ 347);
 	
 	var _isBase2 = _interopRequireDefault(_isBase);
 	
-	var _isDataURI = __webpack_require__(/*! ./lib/isDataURI */ 341);
+	var _isDataURI = __webpack_require__(/*! ./lib/isDataURI */ 348);
 	
 	var _isDataURI2 = _interopRequireDefault(_isDataURI);
 	
-	var _ltrim = __webpack_require__(/*! ./lib/ltrim */ 342);
+	var _ltrim = __webpack_require__(/*! ./lib/ltrim */ 349);
 	
 	var _ltrim2 = _interopRequireDefault(_ltrim);
 	
-	var _rtrim = __webpack_require__(/*! ./lib/rtrim */ 343);
+	var _rtrim = __webpack_require__(/*! ./lib/rtrim */ 350);
 	
 	var _rtrim2 = _interopRequireDefault(_rtrim);
 	
-	var _trim = __webpack_require__(/*! ./lib/trim */ 344);
+	var _trim = __webpack_require__(/*! ./lib/trim */ 351);
 	
 	var _trim2 = _interopRequireDefault(_trim);
 	
-	var _escape = __webpack_require__(/*! ./lib/escape */ 345);
+	var _escape = __webpack_require__(/*! ./lib/escape */ 352);
 	
 	var _escape2 = _interopRequireDefault(_escape);
 	
-	var _unescape = __webpack_require__(/*! ./lib/unescape */ 346);
+	var _unescape = __webpack_require__(/*! ./lib/unescape */ 353);
 	
 	var _unescape2 = _interopRequireDefault(_unescape);
 	
-	var _stripLow = __webpack_require__(/*! ./lib/stripLow */ 347);
+	var _stripLow = __webpack_require__(/*! ./lib/stripLow */ 354);
 	
 	var _stripLow2 = _interopRequireDefault(_stripLow);
 	
-	var _whitelist = __webpack_require__(/*! ./lib/whitelist */ 349);
+	var _whitelist = __webpack_require__(/*! ./lib/whitelist */ 356);
 	
 	var _whitelist2 = _interopRequireDefault(_whitelist);
 	
-	var _blacklist = __webpack_require__(/*! ./lib/blacklist */ 348);
+	var _blacklist = __webpack_require__(/*! ./lib/blacklist */ 355);
 	
 	var _blacklist2 = _interopRequireDefault(_blacklist);
 	
-	var _isWhitelisted = __webpack_require__(/*! ./lib/isWhitelisted */ 350);
+	var _isWhitelisted = __webpack_require__(/*! ./lib/isWhitelisted */ 357);
 	
 	var _isWhitelisted2 = _interopRequireDefault(_isWhitelisted);
 	
-	var _normalizeEmail = __webpack_require__(/*! ./lib/normalizeEmail */ 351);
+	var _normalizeEmail = __webpack_require__(/*! ./lib/normalizeEmail */ 358);
 	
 	var _normalizeEmail2 = _interopRequireDefault(_normalizeEmail);
 	
-	var _toString = __webpack_require__(/*! ./lib/util/toString */ 297);
+	var _toString = __webpack_require__(/*! ./lib/util/toString */ 304);
 	
 	var _toString2 = _interopRequireDefault(_toString);
 	
@@ -32479,7 +32530,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 290 */
+/* 297 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/toDate.js ***!
   \*****************************************************************/
@@ -32492,7 +32543,7 @@
 	});
 	exports.default = toDate;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32506,7 +32557,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 291 */
+/* 298 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/util/assertString.js ***!
   \****************************************************************************/
@@ -32526,7 +32577,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 292 */
+/* 299 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/toFloat.js ***!
   \******************************************************************/
@@ -32539,7 +32590,7 @@
 	});
 	exports.default = toFloat;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32552,7 +32603,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 293 */
+/* 300 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/toInt.js ***!
   \****************************************************************/
@@ -32565,7 +32616,7 @@
 	});
 	exports.default = toInt;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32578,7 +32629,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 294 */
+/* 301 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/toBoolean.js ***!
   \********************************************************************/
@@ -32591,7 +32642,7 @@
 	});
 	exports.default = toBoolean;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32607,7 +32658,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 295 */
+/* 302 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/equals.js ***!
   \*****************************************************************/
@@ -32620,7 +32671,7 @@
 	});
 	exports.default = equals;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32633,7 +32684,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 296 */
+/* 303 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/contains.js ***!
   \*******************************************************************/
@@ -32646,11 +32697,11 @@
 	});
 	exports.default = contains;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _toString = __webpack_require__(/*! ./util/toString */ 297);
+	var _toString = __webpack_require__(/*! ./util/toString */ 304);
 	
 	var _toString2 = _interopRequireDefault(_toString);
 	
@@ -32663,7 +32714,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 297 */
+/* 304 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/util/toString.js ***!
   \************************************************************************/
@@ -32693,7 +32744,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 298 */
+/* 305 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/matches.js ***!
   \******************************************************************/
@@ -32706,7 +32757,7 @@
 	});
 	exports.default = matches;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32722,7 +32773,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 299 */
+/* 306 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isEmail.js ***!
   \******************************************************************/
@@ -32735,19 +32786,19 @@
 	});
 	exports.default = isEmail;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _merge = __webpack_require__(/*! ./util/merge */ 300);
+	var _merge = __webpack_require__(/*! ./util/merge */ 307);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
-	var _isByteLength = __webpack_require__(/*! ./isByteLength */ 301);
+	var _isByteLength = __webpack_require__(/*! ./isByteLength */ 308);
 	
 	var _isByteLength2 = _interopRequireDefault(_isByteLength);
 	
-	var _isFQDN = __webpack_require__(/*! ./isFQDN */ 302);
+	var _isFQDN = __webpack_require__(/*! ./isFQDN */ 309);
 	
 	var _isFQDN2 = _interopRequireDefault(_isFQDN);
 	
@@ -32814,7 +32865,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 300 */
+/* 307 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/util/merge.js ***!
   \*********************************************************************/
@@ -32840,7 +32891,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 301 */
+/* 308 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isByteLength.js ***!
   \***********************************************************************/
@@ -32856,7 +32907,7 @@
 	
 	exports.default = isByteLength;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -32881,7 +32932,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 302 */
+/* 309 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isFQDN.js ***!
   \*****************************************************************/
@@ -32894,11 +32945,11 @@
 	});
 	exports.default = isFDQN;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _merge = __webpack_require__(/*! ./util/merge */ 300);
+	var _merge = __webpack_require__(/*! ./util/merge */ 307);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
@@ -32946,7 +32997,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 303 */
+/* 310 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isURL.js ***!
   \****************************************************************/
@@ -32959,19 +33010,19 @@
 	});
 	exports.default = isURL;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _isFQDN = __webpack_require__(/*! ./isFQDN */ 302);
+	var _isFQDN = __webpack_require__(/*! ./isFQDN */ 309);
 	
 	var _isFQDN2 = _interopRequireDefault(_isFQDN);
 	
-	var _isIP = __webpack_require__(/*! ./isIP */ 304);
+	var _isIP = __webpack_require__(/*! ./isIP */ 311);
 	
 	var _isIP2 = _interopRequireDefault(_isIP);
 	
-	var _merge = __webpack_require__(/*! ./util/merge */ 300);
+	var _merge = __webpack_require__(/*! ./util/merge */ 307);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
@@ -33056,7 +33107,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 304 */
+/* 311 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isIP.js ***!
   \***************************************************************/
@@ -33069,7 +33120,7 @@
 	});
 	exports.default = isIP;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33145,7 +33196,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 305 */
+/* 312 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isMACAddress.js ***!
   \***********************************************************************/
@@ -33158,7 +33209,7 @@
 	});
 	exports.default = isMACAddress;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33173,7 +33224,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 306 */
+/* 313 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isBoolean.js ***!
   \********************************************************************/
@@ -33186,7 +33237,7 @@
 	});
 	exports.default = isBoolean;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33199,7 +33250,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 307 */
+/* 314 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isAlpha.js ***!
   \******************************************************************/
@@ -33212,11 +33263,11 @@
 	});
 	exports.default = isAlpha;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _alpha = __webpack_require__(/*! ./alpha */ 308);
+	var _alpha = __webpack_require__(/*! ./alpha */ 315);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33232,7 +33283,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 308 */
+/* 315 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/alpha.js ***!
   \****************************************************************/
@@ -33289,7 +33340,7 @@
 	}
 
 /***/ },
-/* 309 */
+/* 316 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isAlphanumeric.js ***!
   \*************************************************************************/
@@ -33302,11 +33353,11 @@
 	});
 	exports.default = isAlphanumeric;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _alpha = __webpack_require__(/*! ./alpha */ 308);
+	var _alpha = __webpack_require__(/*! ./alpha */ 315);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33322,7 +33373,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 310 */
+/* 317 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isNumeric.js ***!
   \********************************************************************/
@@ -33335,7 +33386,7 @@
 	});
 	exports.default = isNumeric;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33350,7 +33401,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 311 */
+/* 318 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isLowercase.js ***!
   \**********************************************************************/
@@ -33363,7 +33414,7 @@
 	});
 	exports.default = isLowercase;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33376,7 +33427,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 312 */
+/* 319 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isUppercase.js ***!
   \**********************************************************************/
@@ -33389,7 +33440,7 @@
 	});
 	exports.default = isUppercase;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33402,7 +33453,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 313 */
+/* 320 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isAscii.js ***!
   \******************************************************************/
@@ -33415,7 +33466,7 @@
 	});
 	exports.default = isAscii;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33430,7 +33481,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 314 */
+/* 321 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isFullWidth.js ***!
   \**********************************************************************/
@@ -33444,7 +33495,7 @@
 	exports.fullWidth = undefined;
 	exports.default = isFullWidth;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33458,7 +33509,7 @@
 	}
 
 /***/ },
-/* 315 */
+/* 322 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isHalfWidth.js ***!
   \**********************************************************************/
@@ -33472,7 +33523,7 @@
 	exports.halfWidth = undefined;
 	exports.default = isHalfWidth;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33486,7 +33537,7 @@
 	}
 
 /***/ },
-/* 316 */
+/* 323 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isVariableWidth.js ***!
   \**************************************************************************/
@@ -33499,13 +33550,13 @@
 	});
 	exports.default = isVariableWidth;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _isFullWidth = __webpack_require__(/*! ./isFullWidth */ 314);
+	var _isFullWidth = __webpack_require__(/*! ./isFullWidth */ 321);
 	
-	var _isHalfWidth = __webpack_require__(/*! ./isHalfWidth */ 315);
+	var _isHalfWidth = __webpack_require__(/*! ./isHalfWidth */ 322);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33516,7 +33567,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 317 */
+/* 324 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isMultibyte.js ***!
   \**********************************************************************/
@@ -33529,7 +33580,7 @@
 	});
 	exports.default = isMultibyte;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33544,7 +33595,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 318 */
+/* 325 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isSurrogatePair.js ***!
   \**************************************************************************/
@@ -33557,7 +33608,7 @@
 	});
 	exports.default = isSurrogatePair;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33572,7 +33623,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 319 */
+/* 326 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isInt.js ***!
   \****************************************************************/
@@ -33585,7 +33636,7 @@
 	});
 	exports.default = isInt;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33601,7 +33652,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 320 */
+/* 327 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isFloat.js ***!
   \******************************************************************/
@@ -33614,7 +33665,7 @@
 	});
 	exports.default = isFloat;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33633,7 +33684,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 321 */
+/* 328 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isDecimal.js ***!
   \********************************************************************/
@@ -33646,7 +33697,7 @@
 	});
 	exports.default = isDecimal;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33661,7 +33712,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 322 */
+/* 329 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isHexadecimal.js ***!
   \************************************************************************/
@@ -33674,7 +33725,7 @@
 	});
 	exports.default = isHexadecimal;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33689,7 +33740,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 323 */
+/* 330 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isDivisibleBy.js ***!
   \************************************************************************/
@@ -33702,11 +33753,11 @@
 	});
 	exports.default = isDivisibleBy;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _toFloat = __webpack_require__(/*! ./toFloat */ 292);
+	var _toFloat = __webpack_require__(/*! ./toFloat */ 299);
 	
 	var _toFloat2 = _interopRequireDefault(_toFloat);
 	
@@ -33719,7 +33770,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 324 */
+/* 331 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isHexColor.js ***!
   \*********************************************************************/
@@ -33732,7 +33783,7 @@
 	});
 	exports.default = isHexColor;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33747,7 +33798,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 325 */
+/* 332 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isJSON.js ***!
   \*****************************************************************/
@@ -33763,7 +33814,7 @@
 	
 	exports.default = isJSON;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33780,7 +33831,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 326 */
+/* 333 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isNull.js ***!
   \*****************************************************************/
@@ -33793,7 +33844,7 @@
 	});
 	exports.default = isNull;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33806,7 +33857,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 327 */
+/* 334 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isLength.js ***!
   \*******************************************************************/
@@ -33822,7 +33873,7 @@
 	
 	exports.default = isLength;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33848,7 +33899,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 328 */
+/* 335 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isUUID.js ***!
   \*****************************************************************/
@@ -33861,7 +33912,7 @@
 	});
 	exports.default = isUUID;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -33884,7 +33935,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 329 */
+/* 336 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isMongoId.js ***!
   \********************************************************************/
@@ -33897,11 +33948,11 @@
 	});
 	exports.default = isMongoId;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _isHexadecimal = __webpack_require__(/*! ./isHexadecimal */ 322);
+	var _isHexadecimal = __webpack_require__(/*! ./isHexadecimal */ 329);
 	
 	var _isHexadecimal2 = _interopRequireDefault(_isHexadecimal);
 	
@@ -33914,7 +33965,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 330 */
+/* 337 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isDate.js ***!
   \*****************************************************************/
@@ -33927,11 +33978,11 @@
 	});
 	exports.default = isDate;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _isISO = __webpack_require__(/*! ./isISO8601 */ 331);
+	var _isISO = __webpack_require__(/*! ./isISO8601 */ 338);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -34022,7 +34073,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 331 */
+/* 338 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isISO8601.js ***!
   \********************************************************************/
@@ -34040,7 +34091,7 @@
 	  return iso8601.test(str);
 	};
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34052,7 +34103,7 @@
 	/* eslint-enable max-len */
 
 /***/ },
-/* 332 */
+/* 339 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isAfter.js ***!
   \******************************************************************/
@@ -34065,11 +34116,11 @@
 	});
 	exports.default = isAfter;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _toDate = __webpack_require__(/*! ./toDate */ 290);
+	var _toDate = __webpack_require__(/*! ./toDate */ 297);
 	
 	var _toDate2 = _interopRequireDefault(_toDate);
 	
@@ -34086,7 +34137,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 333 */
+/* 340 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isBefore.js ***!
   \*******************************************************************/
@@ -34099,11 +34150,11 @@
 	});
 	exports.default = isBefore;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _toDate = __webpack_require__(/*! ./toDate */ 290);
+	var _toDate = __webpack_require__(/*! ./toDate */ 297);
 	
 	var _toDate2 = _interopRequireDefault(_toDate);
 	
@@ -34120,7 +34171,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 334 */
+/* 341 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isIn.js ***!
   \***************************************************************/
@@ -34136,11 +34187,11 @@
 	
 	exports.default = isIn;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _toString = __webpack_require__(/*! ./util/toString */ 297);
+	var _toString = __webpack_require__(/*! ./util/toString */ 304);
 	
 	var _toString2 = _interopRequireDefault(_toString);
 	
@@ -34167,7 +34218,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 335 */
+/* 342 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isCreditCard.js ***!
   \***********************************************************************/
@@ -34180,7 +34231,7 @@
 	});
 	exports.default = isCreditCard;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34220,7 +34271,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 336 */
+/* 343 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isISIN.js ***!
   \*****************************************************************/
@@ -34233,7 +34284,7 @@
 	});
 	exports.default = isISIN;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34276,7 +34327,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 337 */
+/* 344 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isISBN.js ***!
   \*****************************************************************/
@@ -34289,7 +34340,7 @@
 	});
 	exports.default = isISBN;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34341,7 +34392,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 338 */
+/* 345 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isMobilePhone.js ***!
   \************************************************************************/
@@ -34354,7 +34405,7 @@
 	});
 	exports.default = isMobilePhone;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34400,7 +34451,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 339 */
+/* 346 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isCurrency.js ***!
   \*********************************************************************/
@@ -34413,11 +34464,11 @@
 	});
 	exports.default = isCurrency;
 	
-	var _merge = __webpack_require__(/*! ./util/merge */ 300);
+	var _merge = __webpack_require__(/*! ./util/merge */ 307);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34496,7 +34547,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 340 */
+/* 347 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isBase64.js ***!
   \*******************************************************************/
@@ -34509,7 +34560,7 @@
 	});
 	exports.default = isBase64;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34529,7 +34580,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 341 */
+/* 348 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isDataURI.js ***!
   \********************************************************************/
@@ -34542,7 +34593,7 @@
 	});
 	exports.default = isDataURI;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34557,7 +34608,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 342 */
+/* 349 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/ltrim.js ***!
   \****************************************************************/
@@ -34570,7 +34621,7 @@
 	});
 	exports.default = ltrim;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34584,7 +34635,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 343 */
+/* 350 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/rtrim.js ***!
   \****************************************************************/
@@ -34597,7 +34648,7 @@
 	});
 	exports.default = rtrim;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34611,7 +34662,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 344 */
+/* 351 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/trim.js ***!
   \***************************************************************/
@@ -34624,7 +34675,7 @@
 	});
 	exports.default = trim;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34638,7 +34689,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 345 */
+/* 352 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/escape.js ***!
   \*****************************************************************/
@@ -34651,7 +34702,7 @@
 	});
 	exports.default = escape;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34664,7 +34715,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 346 */
+/* 353 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/unescape.js ***!
   \*******************************************************************/
@@ -34677,7 +34728,7 @@
 	});
 	exports.default = unescape;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34690,7 +34741,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 347 */
+/* 354 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/stripLow.js ***!
   \*******************************************************************/
@@ -34703,11 +34754,11 @@
 	});
 	exports.default = stripLow;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
-	var _blacklist = __webpack_require__(/*! ./blacklist */ 348);
+	var _blacklist = __webpack_require__(/*! ./blacklist */ 355);
 	
 	var _blacklist2 = _interopRequireDefault(_blacklist);
 	
@@ -34721,7 +34772,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 348 */
+/* 355 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/blacklist.js ***!
   \********************************************************************/
@@ -34734,7 +34785,7 @@
 	});
 	exports.default = blacklist;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34747,7 +34798,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 349 */
+/* 356 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/whitelist.js ***!
   \********************************************************************/
@@ -34760,7 +34811,7 @@
 	});
 	exports.default = whitelist;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34773,7 +34824,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 350 */
+/* 357 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/isWhitelisted.js ***!
   \************************************************************************/
@@ -34786,7 +34837,7 @@
 	});
 	exports.default = isWhitelisted;
 	
-	var _assertString = __webpack_require__(/*! ./util/assertString */ 291);
+	var _assertString = __webpack_require__(/*! ./util/assertString */ 298);
 	
 	var _assertString2 = _interopRequireDefault(_assertString);
 	
@@ -34804,7 +34855,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 351 */
+/* 358 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/lib/normalizeEmail.js ***!
   \*************************************************************************/
@@ -34817,11 +34868,11 @@
 	});
 	exports.default = normalizeEmail;
 	
-	var _isEmail = __webpack_require__(/*! ./isEmail */ 299);
+	var _isEmail = __webpack_require__(/*! ./isEmail */ 306);
 	
 	var _isEmail2 = _interopRequireDefault(_isEmail);
 	
-	var _merge = __webpack_require__(/*! ./util/merge */ 300);
+	var _merge = __webpack_require__(/*! ./util/merge */ 307);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
@@ -34860,7 +34911,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 352 */
+/* 359 */
 /*!************************************!*\
   !*** ./actions/sign_up_actions.js ***!
   \************************************/
@@ -34868,8 +34919,8 @@
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
-	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 353);
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 169);
+	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 360);
 	
 	var SignUpActions = {
 	
@@ -34914,10 +34965,10 @@
 	};
 	
 	module.exports = SignUpActions;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 239)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 248)))
 
 /***/ },
-/* 353 */
+/* 360 */
 /*!****************************************!*\
   !*** ./constants/sign_up_constants.js ***!
   \****************************************/
@@ -34925,7 +34976,7 @@
 
 	"use strict";
 	
-	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 243);
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 174);
 	
 	module.exports = keyMirror({
 	    SIGN_UP: null,
@@ -34935,7 +34986,7 @@
 	});
 
 /***/ },
-/* 354 */
+/* 361 */
 /*!*********************************!*\
   !*** ./stores/sign_up_store.js ***!
   \*********************************/
@@ -34943,9 +34994,9 @@
 
 	"use strict";
 	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 240);
-	var Store = __webpack_require__(/*! ./store.js */ 275);
-	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 353);
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 169);
+	var Store = __webpack_require__(/*! ./store.js */ 171);
+	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 360);
 	
 	var SignUpStore = new Store({
 	    signUpStatus: { status: "", errors: [] },
@@ -34988,52 +35039,6 @@
 	});
 	
 	module.exports = SignUpStore;
-
-/***/ },
-/* 355 */
-/*!************************************!*\
-  !*** ../styles/pages/sign_up.scss ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./sign_up.scss */ 356);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 233)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./sign_up.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./sign_up.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 356 */
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/sign_up.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 232)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
 
 /***/ }
 /******/ ]);

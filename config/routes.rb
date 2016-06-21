@@ -11,6 +11,7 @@ Qfit::Application.routes.draw do
   get '/commitment', to: 'pages#get_started'
   get '/program', to: 'pages#get_started'
   get '/schedule', to: 'pages#schedule'
+  get '/do-work', to: 'pages#do_work'
 
 
   #****************** API *********************

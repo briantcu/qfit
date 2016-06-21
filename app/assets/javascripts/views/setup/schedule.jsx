@@ -11,7 +11,10 @@ class Schedule extends React.Component {
         super(props);
         this.state = {
             errors: [],
-            schedule: this.props.user_schedule.schedule
+            schedule: this.props.user_schedule.schedule,
+            weights: this.props.user_schedule.weights,
+            plyos: this.props.user_schedule.plyos,
+            sprinting: this.props.user_schedule.sprinting
         };
 
         this.submit = this.submit.bind(this);
@@ -19,10 +22,13 @@ class Schedule extends React.Component {
     }
 
     componentWillReceiveProps (props) {
-        this.state = {
+        this.setState({
             errors: [],
-            schedule: this.props.user_schedule.schedule
-        };
+            schedule: props.user_schedule.schedule,
+            weights: props.user_schedule.weights,
+            plyos: props.user_schedule.plyos,
+            sprinting: props.user_schedule.sprinting
+        });
     }
 
     submit () {
@@ -38,7 +44,7 @@ class Schedule extends React.Component {
             var pId = 'p' + i;
             var sId = 's' + i;
 
-            if (this.props.quads.strength || this.state.schedule.weights) {
+            if (this.props.quads.strength || this.state.weights) {
                 var w = this.refs[wId];
                 checked = w.getValue();
                 if (checked){
@@ -52,7 +58,7 @@ class Schedule extends React.Component {
                 day["weights"] = false;
             }
 
-            if (this.props.quads.plyos || this.state.schedule.plyos) {
+            if (this.props.quads.plyos || this.state.plyos) {
                 var p = this.refs[pId];
                 checked = p.getValue();
                 if (checked){
@@ -65,7 +71,7 @@ class Schedule extends React.Component {
                 day["plyometrics"] = false;
             }
 
-            if (this.props.quads.sprinting || this.state.schedule.sprinting) {
+            if (this.props.quads.sprinting || this.state.sprinting) {
                 var s = this.refs[sId];
                 checked = s.getValue();
                 if (checked){
@@ -81,19 +87,19 @@ class Schedule extends React.Component {
             day["stretching"] = !!(day.weights || day.plyometrics || day.sprinting);
             days.push(day);
         }
-        if (this.props.quads.strength || this.state.schedule.weights) {
+        if (this.props.quads.strength || this.state.weights) {
             if (countWeightDays != this.props.suggested_schedule.num_weight_days) {
                 errors.push(`Please choose ${this.props.suggested_schedule.num_weight_days} strength training days`);
             }
         }
 
-        if (this.props.quads.plyos || this.state.schedule.plyos) {
+        if (this.props.quads.plyos || this.state.plyos) {
             if (countPlyoDays < this.props.suggested_schedule.num_plyo_days) {
                 errors.push(`Please choose at least ${this.props.suggested_schedule.num_plyo_days} plyometric days`);
             }
         }
 
-        if (this.props.quads.sprinting || this.state.schedule.sprinting) {
+        if (this.props.quads.sprinting || this.state.sprinting) {
             if (countSprintDays < this.props.suggested_schedule.num_sprint_days) {
                 errors.push(`Please choose at least ${this.props.suggested_schedule.num_sprint_days} sprinting days`);
             }
@@ -138,7 +144,7 @@ class Schedule extends React.Component {
                             Weekly Planner
                         </div>
                     </div>
-                    <If condition={this.props.quads.strength || this.state.schedule.weights}>
+                    <If condition={this.props.quads.strength || this.state.weights}>
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
                                 Which days will you lift?<br/>
@@ -176,7 +182,7 @@ class Schedule extends React.Component {
                             </div>
                         </div>
                     </If>
-                    <If condition={this.props.quads.plyos || this.state.schedule.plyos}>
+                    <If condition={this.props.quads.plyos || this.state.plyos}>
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
                                 Which days will you do plyometric exercises?<br/>
@@ -214,7 +220,7 @@ class Schedule extends React.Component {
                             </div>
                         </div>
                     </If>
-                    <If condition={this.props.quads.sprinting || this.state.schedule.sprinting}>
+                    <If condition={this.props.quads.sprinting || this.state.sprinting}>
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
                                 Which days will you sprint?<br/>
