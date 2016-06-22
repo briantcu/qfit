@@ -19,7 +19,7 @@ class AthleteSignUp extends React.Component {
             lastNameErrors: [],
             emailErrors: [],
             passwordErrors: []
-        }
+        };
     }
 
     componentDidMount () {
@@ -121,6 +121,22 @@ class AthleteSignUp extends React.Component {
         return hasErrors;
     }
 
+    fbLogin() {
+        FB.login(function(response) {
+            if (response.status === 'connected') {
+                FB.api('/me', function(response) {
+                    console.log('Successful login for: ' + response.name);
+                });
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+            } else {
+                // The person is not logged into Facebook, so we're not sure if
+                // they are logged into this app or not.
+            }
+            console.log(response);
+        }, {scope: 'public_profile,email'});
+    }
+
     render () {
         return <div className="athlete-sign-up row">
                 <div className="col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form">
@@ -132,7 +148,7 @@ class AthleteSignUp extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-md-12">
-                            <span className="fb-button text-center">Sign up with Facebook</span>
+                            <span className="fb-button text-center" onClick={ () => this.fbLogin() }>Sign up with Facebook</span>
                         </div>
                     </div>
                     <div className="row buffer">
