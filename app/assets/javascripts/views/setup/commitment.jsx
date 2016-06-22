@@ -18,6 +18,9 @@ class Commitment extends React.Component {
         this.frequencyChanged = this.frequencyChanged.bind(this);
         this.timeChanged = this.timeChanged.bind(this);
         this.commitmentSubmitted = this.commitmentSubmitted.bind(this);
+    }
+
+    componentWillMount(){
         ProgramActions.setStrengthProgram(0);
     }
 
@@ -41,7 +44,24 @@ class Commitment extends React.Component {
 
     commitmentSubmitted() {
         ProgramActions.setCommitment({days: this.state.frequency, minutes: this.state.time });
-        this.props.next('COMMITMENT');
+        if (this.state.time == 30) {
+            var program = this.getProgram();
+            ProgramActions.setStrengthProgram(program);
+            this.props.next('COMMITMENT', true);
+        } else {
+            this.props.next('COMMITMENT');
+        }
+    }
+
+    getProgram() {
+        switch(this.state.frequency) {
+            case 2:
+                return 1;
+            case 3:
+                return 2;
+            case 4:
+                return 5;
+        }
     }
 
     render () {

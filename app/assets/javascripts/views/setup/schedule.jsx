@@ -31,7 +31,8 @@ class Schedule extends React.Component {
         });
     }
 
-    submit () {
+    submit (button) {
+        $('.qfButton').button('loading');
         var countWeightDays = 0;
         var countPlyoDays = 0;
         var countSprintDays = 0;
@@ -108,6 +109,7 @@ class Schedule extends React.Component {
 
         if (errors.length > 0) {
             this.setState({errors: errors});
+            $('.qfButton').button('reset');
         } else {
             this.state.schedule.weekly_schedule_days = days;
             this.state.schedule.user_id = this.props.user.id;
@@ -267,7 +269,7 @@ class Schedule extends React.Component {
                     </If>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
-                            <Button ref="commitmentNext" buttonText="Continue" onClick={ this.submit }
+                            <Button ref="next" buttonText="Continue" onClick={ this.submit }
                                     disabled={false} />
                         </div>
                     </div>

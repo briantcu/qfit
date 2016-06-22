@@ -62,19 +62,19 @@ class Quads extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-4 col-xs-offset-4 purple-bot-container purple-top-container">
-                            <CircleCheck ref="strength" checked={this.props.quads.strength} id={'strength'}
+                            <CircleCheck ref="strength" defaultChecked={this.props.quads.strength} id={'strength'}
                                          label={'Strength Training'} change={ this.change } />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-4 col-xs-offset-4 purple-bot-container">
-                            <CircleCheck ref="plyos" id={'plyos'} checked={this.props.quads.plyos} label={'Plyometrics'}
+                            <CircleCheck ref="plyos" id={'plyos'} defaultChecked={this.props.quads.plyos} label={'Plyometrics'}
                                          change={ this.change } />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-4 col-xs-offset-4 purple-bot-container">
-                            <CircleCheck ref="sprinting" checked={this.props.quads.sprinting} id={'sprinting'} label={'Sprinting'}
+                            <CircleCheck ref="sprinting" defaultChecked={this.props.quads.sprinting} id={'sprinting'} label={'Sprinting'}
                                          change={ this.change } />
                         </div>
                     </div>

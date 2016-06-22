@@ -47,11 +47,12 @@ class App extends React.Component {
         this.previousPage = this.previousPage.bind(this);
     }
 
-    nextPage(childView) {
+    nextPage(childView, additionalData) {
         //Sees which child view called, evaluates the state, and calls to route to the next page
         if (childView == "GOAL") {
             browserHistory.push('/setup/quads');
         } else if (childView == "QUADS") {
+
             if (this.state.user.hor_push_max > 0) {
                 this.setState({activeNav: 'schedule'});
                 browserHistory.push('/commitment');
@@ -59,9 +60,17 @@ class App extends React.Component {
                 this.setState({activeNav: 'fitness'});
                 browserHistory.push('/fitness');
             }
+
         } else if (childView == "COMMITMENT") {
+
             this.setState({activeNav: 'schedule'});
-            browserHistory.push('/program');
+            if (additionalData) {
+                this.fetchSuggestedSchedule();
+                browserHistory.push('/schedule');
+            } else {
+                browserHistory.push('/program');
+            }
+
         } else if (childView == "PROGRAM") {
             this.fetchSuggestedSchedule();
             browserHistory.push('/schedule');
