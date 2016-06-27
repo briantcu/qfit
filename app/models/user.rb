@@ -129,6 +129,7 @@ class User < ActiveRecord::Base
         end
       end
       user.image = auth.info.image
+      # @TODO convert auth.info.gender if it exists to sex. make sure it is male or female. it's in auth.extra.raw_info
     end
   end
 
