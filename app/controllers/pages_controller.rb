@@ -31,6 +31,13 @@ class PagesController < ApplicationController
     redirect_to '/setup/goal'
   end
 
+  def more_info
+    gon.push({
+                 new_user: session["devise.facebook_user"]
+             })
+    render layout: 'full_page'
+  end
+
   private
 
   def can_access_user

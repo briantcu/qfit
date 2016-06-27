@@ -3,6 +3,7 @@ Qfit::Application.routes.draw do
 
   #***************** WEBSITE ******************
   get '/sign-up', to: 'pages#sign_up'
+  get '/more-info', to: 'pages#more_info'
   get '/login', to: 'pages#sign_up'
 
   get '/setup/goal', to: 'pages#setup'
@@ -19,7 +20,8 @@ Qfit::Application.routes.draw do
 
   resources :program_types
 
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords' }
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations',
+                                    passwords: 'users/passwords', omniauth_callbacks: "users/omniauth_callbacks" }
   devise_scope :user do
     get 'sign_in', to: 'users/sessions#new'
     post 'sign_in', to: 'users/sessions#create'

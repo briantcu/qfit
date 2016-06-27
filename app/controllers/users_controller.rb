@@ -40,10 +40,14 @@
 #  last_sign_in_ip             :string(255)
 #  authentication_token        :string(255)
 #  experience_level            :integer
-#  points                      :integer
+#  points                      :integer          default(10)
 #  avatars                     :json
 #  status                      :integer          default(1)
 #  paid_tier                   :integer          default(1)
+#  facebook                    :string
+#  provider                    :string
+#  uid                         :string
+#  image                       :string
 #
 
 class UsersController < ApplicationController

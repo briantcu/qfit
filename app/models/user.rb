@@ -40,10 +40,14 @@
 #  last_sign_in_ip             :string(255)
 #  authentication_token        :string(255)
 #  experience_level            :integer
-#  points                      :integer
+#  points                      :integer          default(10)
 #  avatars                     :json
 #  status                      :integer          default(1)
 #  paid_tier                   :integer          default(1)
+#  facebook                    :string
+#  provider                    :string
+#  uid                         :string
+#  image                       :string  #Social image link
 #
 
 # Status: 1 = active, 2 = disabled
@@ -63,7 +67,7 @@ class User < ActiveRecord::Base
 
   validates :user_name, uniqueness: true, allow_blank: true, allow_nil: true
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :daily_routines, dependent: :destroy
   has_many :user_maxes, dependent: :destroy
@@ -109,6 +113,24 @@ class User < ActiveRecord::Base
                             .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)}
   scope :most_reps_performed, -> {select('users.*, sum(weight_sets.perf_reps) AS value').joins(:weight_sets)
                                   .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)}
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      if auth.info.first_name.present? && auth.info.last_name.present?
+        user.first_name = auth.info.first_name
+        user.last_name = auth.info.last_name
+      else
+        name_arr = auth.info.name.split(' ')
+        if name_arr.count == 2
+          user.first_name = name_arr[0]
+          user.last_name = name_arr[1]
+        end
+      end
+      user.image = auth.info.image
+    end
+  end
 
   def check_user_name
     if user_name.present?
