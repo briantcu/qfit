@@ -67,9 +67,9 @@ class UsersController < ApplicationController
     end
   end
 
-  #GET /users/:user_id/calendar/year/:year_id/month/:month_id
+  #GET /users/:id/calendar/year/:year_id/month/:month_id
   def get_calendar
-    @calendar = UserCalendar.new(:user_id => params[:user_id], :month_id => params[:month_id], :year_id => params[:year_id])
+    @calendar = UserCalendar.new(:user_id => params[:id], :month_id => params[:month_id], :year_id => params[:year_id])
     if @calendar.valid?
       @calendar.populate_calendar
       render :json => @calendar.as_json
