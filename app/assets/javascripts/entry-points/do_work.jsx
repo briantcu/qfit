@@ -1,6 +1,9 @@
 import {render} from 'react-dom';
 import RoutineStore from 'stores/routine_store';
+import UserStore from 'stores/user_store';
 import RoutineActions from 'actions/routine_actions';
+import UserActions from 'actions/user_actions';
+import Header from 'views/common/header';
 
 require('pages/do_work.scss');
 
@@ -25,16 +28,20 @@ class DoWork extends React.Component {
             month: month,
             day: day,
             calendar: {},
-            routine: {}
+            routine: {},
+            user: {}
         }
     }
 
     componentDidMount () {
         RoutineStore.addChangeListener(this.onChange.bind(this));
+        UserStore.addChangeListener(this.onChange);
+        UserActions.getUser(gon.current_user_id);
         this.load();
     }
 
     componentWillUnmount () {
+        UserStore.removeChangeListener(this.onChange);
         RoutineStore.removeChangeListener(this.onChange.bind(this));
     }
 
@@ -45,21 +52,34 @@ class DoWork extends React.Component {
 
     onChange () {
         var data = RoutineStore.getData();
+        var user = UserStore.getData();
         this.setState(
             {
                 calendar: data.calendar,
-                routine: data.routine
+                routine: data.routine,
+                user: user.user
             }
         )
     }
 
     render () {
-        return <div className="do-work row">
-            <div className="col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form">
-                <div className="row">
-                    <div className="col-md-12">
-                        <h1>Sign up as an Athlete</h1>
-                        <a href="" className="info-text subtle-link">Are you a coach? Sign up here.</a>
+        return <div className="do-work">
+            <Header user={this.state.user} />
+            <div className="row calendar">
+
+            </div>
+            <div className="row subnav">
+
+            </div>
+            <div className="row main">
+                <div className="container">
+                    <div className="stretching quad">
+                    </div>
+                    <div className="strength quad">
+                    </div>
+                    <div className="plyos quad">
+                    </div>
+                    <div className="sprinting quad">
                     </div>
                 </div>
             </div>

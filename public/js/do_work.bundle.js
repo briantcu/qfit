@@ -57,9 +57,21 @@
 	
 	var _routine_store2 = _interopRequireDefault(_routine_store);
 	
+	var _user_store = __webpack_require__(/*! stores/user_store */ 296);
+	
+	var _user_store2 = _interopRequireDefault(_user_store);
+	
 	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 378);
 	
 	var _routine_actions2 = _interopRequireDefault(_routine_actions);
+	
+	var _user_actions = __webpack_require__(/*! actions/user_actions */ 288);
+	
+	var _user_actions2 = _interopRequireDefault(_user_actions);
+	
+	var _header = __webpack_require__(/*! views/common/header */ 240);
+	
+	var _header2 = _interopRequireDefault(_header);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -97,7 +109,8 @@
 	            month: month,
 	            day: day,
 	            calendar: {},
-	            routine: {}
+	            routine: {},
+	            user: {}
 	        };
 	        return _this;
 	    }
@@ -106,11 +119,14 @@
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            _routine_store2.default.addChangeListener(this.onChange.bind(this));
+	            _user_store2.default.addChangeListener(this.onChange);
+	            _user_actions2.default.getUser(gon.current_user_id);
 	            this.load();
 	        }
 	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
+	            _user_store2.default.removeChangeListener(this.onChange);
 	            _routine_store2.default.removeChangeListener(this.onChange.bind(this));
 	        }
 	    }, {
@@ -123,9 +139,11 @@
 	        key: 'onChange',
 	        value: function onChange() {
 	            var data = _routine_store2.default.getData();
+	            var user = _user_store2.default.getData();
 	            this.setState({
 	                calendar: data.calendar,
-	                routine: data.routine
+	                routine: data.routine,
+	                user: user.user
 	            });
 	        }
 	    }, {
@@ -133,27 +151,20 @@
 	        value: function render() {
 	            return React.createElement(
 	                'div',
-	                { className: 'do-work row' },
+	                { className: 'do-work' },
+	                React.createElement(_header2.default, { user: this.state.user }),
+	                React.createElement('div', { className: 'row calendar' }),
+	                React.createElement('div', { className: 'row subnav' }),
 	                React.createElement(
 	                    'div',
-	                    { className: 'col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form' },
+	                    { className: 'row main' },
 	                    React.createElement(
 	                        'div',
-	                        { className: 'row' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-md-12' },
-	                            React.createElement(
-	                                'h1',
-	                                null,
-	                                'Sign up as an Athlete'
-	                            ),
-	                            React.createElement(
-	                                'a',
-	                                { href: '', className: 'info-text subtle-link' },
-	                                'Are you a coach? Sign up here.'
-	                            )
-	                        )
+	                        { className: 'container' },
+	                        React.createElement('div', { className: 'stretching quad' }),
+	                        React.createElement('div', { className: 'strength quad' }),
+	                        React.createElement('div', { className: 'plyos quad' }),
+	                        React.createElement('div', { className: 'sprinting quad' })
 	                    )
 	                )
 	            );
@@ -21715,9 +21726,120 @@
 /* 237 */,
 /* 238 */,
 /* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
+/* 240 */
+/*!*********************************!*\
+  !*** ./views/common/header.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 33);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/header.scss */ 241);
+	
+	var Header = function (_React$Component) {
+	    _inherits(Header, _React$Component);
+	
+	    function Header(props) {
+	        _classCallCheck(this, Header);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Header).call(this, props));
+	    }
+	
+	    _createClass(Header, [{
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'div',
+	                { className: 'row header' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-2' },
+	                            React.createElement('img', { src: 'https://s3.amazonaws.com/quadfit/logo-dark.png' })
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-1 col-xs-offset-9' },
+	                            React.createElement('img', { src: '' + this.props.user.avatars })
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Header;
+	}(React.Component);
+	
+	exports.default = Header;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 241 */
+/*!************************************!*\
+  !*** ../styles/common/header.scss ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./header.scss */ 242);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 178)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./header.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./header.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 242 */
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/header.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 177)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
 /* 243 */,
 /* 244 */,
 /* 245 */,
@@ -31575,7 +31697,22 @@
 
 /***/ },
 /* 249 */,
-/* 250 */,
+/* 250 */
+/*!*************************************!*\
+  !*** ./constants/user_constants.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 174);
+	
+	module.exports = keyMirror({
+	    LOADED: null,
+	    SCHEDULE_LOADED: null
+	});
+
+/***/ },
 /* 251 */,
 /* 252 */,
 /* 253 */,
@@ -31613,7 +31750,95 @@
 /* 285 */,
 /* 286 */,
 /* 287 */,
-/* 288 */,
+/* 288 */
+/*!*********************************!*\
+  !*** ./actions/user_actions.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 169);
+	var C = __webpack_require__(/*! constants/user_constants.js */ 250);
+	
+	var UserActions = {
+	
+	    getUser: function (user_id) {
+	        $.ajax({
+	            type: "get",
+	            url: "/users/" + user_id + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: (function (user) {
+	                dispatcher.dispatch(C.LOADED, user);
+	                if (user.user_schedule) {
+	                    this.getSchedule(user.user_schedule.id);
+	                }
+	            }).bind(this),
+	            error: function (results) {
+	                alert("Something went wrong!");
+	            }
+	        });
+	    },
+	
+	    getSchedule: function (schedule_id) {
+	        $.ajax({
+	            type: "get",
+	            url: "/user_schedules/" + schedule_id + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (schedule) {
+	                dispatcher.dispatch(C.SCHEDULE_LOADED, schedule);
+	            },
+	            error: function (results) {
+	                alert("Something went wrong!");
+	            }
+	        });
+	    },
+	
+	    setSchedule: function (schedule) {
+	        schedule.weekly_schedule_days_attributes = schedule.weekly_schedule_days;
+	        delete schedule.weekly_schedule_days;
+	
+	        var user_schedule = { user_schedule: schedule };
+	        var data = JSON.stringify(user_schedule);
+	        if (schedule.id) {
+	            $.ajax({
+	                type: "put",
+	                data: data,
+	                url: "/user_schedules/" + schedule.id + ".json",
+	                dataType: "json",
+	                contentType: "application/json; charset=utf-8",
+	                success: function (results) {
+	                    location.href = "/do-work";
+	                },
+	                error: function (results) {
+	                    alert(results);
+	                }
+	            });
+	        } else {
+	            $.ajax({
+	                type: "post",
+	                data: data,
+	                url: "/user_schedules.json",
+	                dataType: "json",
+	                contentType: "application/json; charset=utf-8",
+	                success: function (results) {
+	                    location.href = "/do-work";
+	                },
+	                error: function (results) {
+	                    alert(results);
+	                }
+	            });
+	        }
+	    }
+	
+	};
+	
+	module.exports = UserActions;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 248)))
+
+/***/ },
 /* 289 */,
 /* 290 */,
 /* 291 */,
@@ -31621,7 +31846,43 @@
 /* 293 */,
 /* 294 */,
 /* 295 */,
-/* 296 */,
+/* 296 */
+/*!******************************!*\
+  !*** ./stores/user_store.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 169);
+	var Store = __webpack_require__(/*! ./store.js */ 171);
+	var C = __webpack_require__(/*! constants/user_constants.js */ 250);
+	
+	var UserStore = new Store({
+	    user: {},
+	
+	    setUser: function (data) {
+	        this.user = data;
+	    },
+	
+	    getData: function () {
+	        return {
+	            user: this.user
+	        };
+	    }
+	});
+	
+	dispatcher.register(C.LOADED, function (data) {
+	    if (data) {
+	        UserStore.setUser(data);
+	        UserStore.change();
+	    }
+	});
+	
+	
+	module.exports = UserStore;
+
+/***/ },
 /* 297 */,
 /* 298 */,
 /* 299 */,

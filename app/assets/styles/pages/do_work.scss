@@ -1,5 +1,26 @@
 @import "../common/common";
 
 .do-work {
+  .calendar {
+    height: 145px;
+  }
 
+  .subnav {
+    height: 38px;
+    background-color: $gray1;
+    border: solid 1px $gray2;
+  }
+
+  .quad {
+    margin-top: 40px;
+    display: block;
+    float: left;
+    min-height: 200px;
+    width: 100%;
+    background-color: white;
+  }
+
+  .main {
+    background-color: $gray2;
+  }
 }
