@@ -11,16 +11,32 @@
     border: solid 1px $gray2;
   }
 
-  .quad {
+  .sec {
     margin-top: 40px;
     display: block;
     float: left;
     min-height: 200px;
     width: 100%;
     background-color: white;
+
+    .sec-header {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: -0.6px;
+      color: $dark-purple;
+      background: white;
+      height: 60px;
+      padding-top: 12px;
+      border-bottom: solid 2px $purple;
+    }
   }
 
   .main {
     background-color: $gray2;
+  }
+
+  .comments {
+    margin-bottom: 100px;
   }
 }

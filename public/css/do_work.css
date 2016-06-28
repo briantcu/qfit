@@ -150,15 +150,28 @@ h1 {
   background-color: #fbf8fc;
   border: solid 1px #e6e6e6; }
 
-.do-work .quad {
+.do-work .sec {
   margin-top: 40px;
   display: block;
   float: left;
   min-height: 200px;
   width: 100%;
   background-color: white; }
+  .do-work .sec .sec-header {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: -0.6px;
+    color: #271b37;
+    background: white;
+    height: 60px;
+    padding-top: 12px;
+    border-bottom: solid 2px #7953aa; }
 
 .do-work .main {
   background-color: #e6e6e6; }
+
+.do-work .comments {
+  margin-bottom: 100px; }
 
 /*# sourceMappingURL=do_work.css.map*/

@@ -36,7 +36,6 @@ class DoWork extends React.Component {
     componentDidMount () {
         RoutineStore.addChangeListener(this.onChange.bind(this));
         UserStore.addChangeListener(this.onChange);
-        UserActions.getUser(gon.current_user_id);
         this.load();
     }
 
@@ -46,6 +45,7 @@ class DoWork extends React.Component {
     }
 
     load() {
+        UserActions.getUser(gon.current_user_id);
         RoutineActions.getCalendar(this.state.year, this.state.month, gon.current_user_id);
         RoutineActions.getRoutine(this.state.year, this.state.month, this.state.day, gon.current_user_id);
     }
@@ -73,14 +73,43 @@ class DoWork extends React.Component {
             </div>
             <div className="row main">
                 <div className="container">
-                    <div className="stretching quad">
+
+                    <div className="stretching sec container">
+                        <div className="row">
+                            <div className="col-xs-12 sec-header">Stretching/Warmup</div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-12">ex one</div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-12">ex two</div>
+                        </div>
                     </div>
-                    <div className="strength quad">
+
+                    <div className="strength sec container">
+                        <div className="row">
+                            <div className="col-xs-12 sec-header">Strength Training</div>
+                        </div>
                     </div>
-                    <div className="plyos quad">
+
+                    <div className="plyos sec container">
+                        <div className="row">
+                            <div className="col-xs-12 sec-header">Plyometrics</div>
+                        </div>
                     </div>
-                    <div className="sprinting quad">
+
+                    <div className="sprinting sec container">
+                        <div className="row">
+                            <div className="col-xs-12 sec-header">Sprinting</div>
+                        </div>
                     </div>
+
+                    <div className="comments sec container">
+                        <div className="row">
+                            <div className="col-xs-12 sec-header">Comments</div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>;

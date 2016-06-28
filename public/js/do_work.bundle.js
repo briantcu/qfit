@@ -120,7 +120,6 @@
 	        value: function componentDidMount() {
 	            _routine_store2.default.addChangeListener(this.onChange.bind(this));
 	            _user_store2.default.addChangeListener(this.onChange);
-	            _user_actions2.default.getUser(gon.current_user_id);
 	            this.load();
 	        }
 	    }, {
@@ -132,6 +131,7 @@
 	    }, {
 	        key: 'load',
 	        value: function load() {
+	            _user_actions2.default.getUser(gon.current_user_id);
 	            _routine_actions2.default.getCalendar(this.state.year, this.state.month, gon.current_user_id);
 	            _routine_actions2.default.getRoutine(this.state.year, this.state.month, this.state.day, gon.current_user_id);
 	        }
@@ -161,10 +161,89 @@
 	                    React.createElement(
 	                        'div',
 	                        { className: 'container' },
-	                        React.createElement('div', { className: 'stretching quad' }),
-	                        React.createElement('div', { className: 'strength quad' }),
-	                        React.createElement('div', { className: 'plyos quad' }),
-	                        React.createElement('div', { className: 'sprinting quad' })
+	                        React.createElement(
+	                            'div',
+	                            { className: 'stretching sec container' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'row' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-12 sec-header' },
+	                                    'Stretching/Warmup'
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'row' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-12' },
+	                                    'ex one'
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'row' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-12' },
+	                                    'ex two'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'strength sec container' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'row' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-12 sec-header' },
+	                                    'Strength Training'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'plyos sec container' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'row' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-12 sec-header' },
+	                                    'Plyometrics'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'sprinting sec container' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'row' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-12 sec-header' },
+	                                    'Sprinting'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'comments sec container' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'row' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-12 sec-header' },
+	                                    'Comments'
+	                                )
+	                            )
+	                        )
 	                    )
 	                )
 	            );
