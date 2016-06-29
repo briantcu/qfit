@@ -12,11 +12,13 @@ class Header extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-xs-2">
-                        <img src="https://s3.amazonaws.com/quadfit/logo-dark.png" />
+                        <img className="logo" src="https://s3.amazonaws.com/quadfit/logo%403x.png" />
                     </div>
-                    <div className="col-xs-1 col-xs-offset-9">
-                        <img src={`${this.props.user.avatars}`} />
-                    </div>
+                    <If condition={this.props.user.avatars} >
+                        <div className="col-xs-1 col-xs-offset-9">
+                            <img src={`${this.props.user.avatars}`} />
+                        </div>
+                    </If>
                 </div>
             </div>
         </div>

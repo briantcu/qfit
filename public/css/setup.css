@@ -72,6 +72,9 @@ h1 {
   height: 100px;
   background-color: #271b37;
   border: solid 1px #979797; }
+  .header .logo {
+    width: 100%;
+    padding-top: 20px; }
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;

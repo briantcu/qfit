@@ -4,6 +4,7 @@ import UserStore from 'stores/user_store';
 import RoutineActions from 'actions/routine_actions';
 import UserActions from 'actions/user_actions';
 import Header from 'views/common/header';
+import Calendar from 'views/do-work/calendar';
 
 require('pages/do_work.scss');
 
@@ -30,7 +31,8 @@ class DoWork extends React.Component {
             calendar: {},
             routine: {},
             user: {}
-        }
+        };
+        this.onChange = this.onChange.bind(this);
     }
 
     componentDidMount () {
@@ -65,15 +67,13 @@ class DoWork extends React.Component {
     render () {
         return <div className="do-work">
             <Header user={this.state.user} />
-            <div className="row calendar">
-
-            </div>
+            <Calendar {...this.state} />
             <div className="row subnav">
 
             </div>
             <div className="row main">
                 <div className="container">
-
+                    <div className="row">
                     <div className="stretching sec container">
                         <div className="row">
                             <div className="col-xs-12 sec-header">Stretching/Warmup</div>
@@ -108,6 +108,7 @@ class DoWork extends React.Component {
                         <div className="row">
                             <div className="col-xs-12 sec-header">Comments</div>
                         </div>
+                    </div>
                     </div>
 
                 </div>

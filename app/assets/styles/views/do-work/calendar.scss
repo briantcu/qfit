@@ -1,0 +1,27 @@
+@import "../../common/common";
+
+.calendar {
+  height: 145px;
+
+  .calendar-cell {
+    text-align: center;
+    padding-top: 25px;
+    border-right: 1px solid $gray2;
+    .cal-subtext {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      letter-spacing: -0.3px;
+      color: $light-gray;
+      margin-bottom: -10px;
+    }
+
+    .cal-text {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 36px;
+      letter-spacing: -0.8px;
+      color: $dark-purple;
+      font-weight: 300;
+      height: 49px;
+    }
+  }
+}
