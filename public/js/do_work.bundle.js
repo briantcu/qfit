@@ -32219,6 +32219,9 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CalendarCell).call(this, props));
 	
 	        _this.click = _this.click.bind(_this);
+	        _this.state = {
+	            date: new Date(_this.props.year, _this.props.month - 1, _this.props.day.day_of_month)
+	        };
 	        return _this;
 	    }
 	
@@ -32235,6 +32238,8 @@
 	            var _this2 = this;
 	
 	            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	            var monthNames = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	
 	            return React.createElement(
 	                'div',
 	                { className: 'col-xs-2 calendar-cell', onClick: function onClick() {
@@ -32248,6 +32253,8 @@
 	                React.createElement(
 	                    'div',
 	                    { className: 'cal-text' },
+	                    monthNames[this.state.date.getMonth()],
+	                    ', ',
 	                    this.props.day.day_of_month
 	                ),
 	                React.createElement(
