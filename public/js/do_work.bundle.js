@@ -114,7 +114,8 @@
 	            day: day,
 	            calendar: {},
 	            routine: {},
-	            user: {}
+	            user: {},
+	            loading: true
 	        };
 	        _this.onChange = _this.onChange.bind(_this);
 	        return _this;
@@ -148,6 +149,7 @@
 	            this.setState({
 	                calendar: data.calendar,
 	                routine: data.routine,
+	                loading: data.loading,
 	                user: user.user
 	            });
 	        }
@@ -168,7 +170,7 @@
 	                        { className: 'container' },
 	                        React.createElement(
 	                            'div',
-	                            { className: 'row' },
+	                            { className: this.state.loading ? 'loading row' : 'row' },
 	                            React.createElement(
 	                                'div',
 	                                { className: 'stretching sec container' },
@@ -20871,6 +20873,7 @@
 	
 	    calendar: undefined,
 	    routine: undefined,
+	    loading: true,
 	
 	    setCalendar: function (data) {
 	        this.calendar = data;
@@ -20878,12 +20881,18 @@
 	
 	    setRoutine: function (data) {
 	        this.routine = data;
+	        this.loading = false;
+	    },
+	
+	    setLoading: function (data) {
+	        this.loading = data;
 	    },
 	
 	    getData: function () {
 	        return {
 	            calendar: this.calendar,
-	            routine: this.routine
+	            routine: this.routine,
+	            loading: this.loading
 	        };
 	    }
 	});
@@ -20895,6 +20904,11 @@
 	
 	dispatcher.register(C.ROUTINE_LOADED, function (data) {
 	    RoutineStore.setRoutine(data);
+	    RoutineStore.change();
+	});
+	
+	dispatcher.register(C.LOADING, function (data) {
+	    RoutineStore.setLoading(data);
 	    RoutineStore.change();
 	});
 	
@@ -21429,7 +21443,8 @@
 	
 	module.exports = keyMirror({
 	    CALENDAR: null,
-	    ROUTINE_LOADED: null
+	    ROUTINE_LOADED: null,
+	    LOADING: null
 	});
 
 /***/ },
@@ -21533,6 +21548,7 @@
 	    },
 	
 	    getRoutine: function (year, month, day, user_id) {
+	        dispatcher.dispatch(C.LOADING, true);
 	        $.ajax({
 	            type: "get",
 	            url: "/users/" + user_id + "/daily_routines/year/" + year + "/month/" + month + "/day/" + day + ".json",
@@ -32174,9 +32190,17 @@
 	    value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 33);
+	
+	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 177);
+	
+	var _routine_actions2 = _interopRequireDefault(_routine_actions);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -32192,16 +32216,30 @@
 	    function CalendarCell(props) {
 	        _classCallCheck(this, CalendarCell);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(CalendarCell).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CalendarCell).call(this, props));
+	
+	        _this.click = _this.click.bind(_this);
+	        return _this;
 	    }
 	
 	    _createClass(CalendarCell, [{
+	        key: 'click',
+	        value: function click() {
+	            var url = '/do-work/' + this.props.year + '/' + this.props.month + '/' + this.props.day.day_of_month;
+	            history.pushState({ id: 'Do Work' }, '', url);
+	            _routine_actions2.default.getRoutine(this.props.year, this.props.month, this.props.day.day_of_month, gon.current_user_id);
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+	
 	            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	            return React.createElement(
 	                'div',
-	                { className: 'col-xs-2 calendar-cell' },
+	                { className: 'col-xs-2 calendar-cell', onClick: function onClick() {
+	                        return _this2.click();
+	                    } },
 	                React.createElement(
 	                    'div',
 	                    { className: 'cal-subtext' },
@@ -32230,13 +32268,13 @@
 	    function Calendar(props) {
 	        _classCallCheck(this, Calendar);
 	
-	        var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(Calendar).call(this, props));
+	        var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(Calendar).call(this, props));
 	
-	        _this2.state = {
+	        _this3.state = {
 	            loaded: false,
 	            daysToShow: []
 	        };
-	        return _this2;
+	        return _this3;
 	    }
 	
 	    _createClass(Calendar, [{
@@ -32275,8 +32313,8 @@
 	                        'div',
 	                        { className: 'row' },
 	                        this.state.daysToShow.map(function (e, index) {
-	                            return React.createElement(CalendarCell, { day: e, key: e.day_of_month });
-	                        })
+	                            return React.createElement(CalendarCell, _extends({}, this.props, { day: e, key: e.day_of_month + '' + this.props.month }));
+	                        }.bind(this))
 	                    )
 	                )
 	            );

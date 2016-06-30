@@ -12,6 +12,7 @@
   <% end %>
 
   <%= yield :head %>
+  <%= Gon::Base.render_data %>
 </head>
 <body>
   <div class="container-fluid">

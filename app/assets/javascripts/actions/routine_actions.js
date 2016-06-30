@@ -18,6 +18,7 @@ var RoutineActions = {
     },
 
     getRoutine: function(year, month, day, user_id) {
+        dispatcher.dispatch(C.LOADING, true);
         $.ajax({
             type: 'get',
             url: '/users/'+user_id+'/daily_routines/year/'+year+'/month/'+month+'/day/'+day+'.json',

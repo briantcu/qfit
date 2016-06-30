@@ -13,6 +13,7 @@ Qfit::Application.routes.draw do
   get '/program', to: 'pages#setup_redirect'
   get '/schedule', to: 'pages#schedule'
   get '/do-work', to: 'pages#do_work'
+  get '/do-work/:year/:month/:day', to: 'pages#do_work'
 
 
   #****************** API *********************

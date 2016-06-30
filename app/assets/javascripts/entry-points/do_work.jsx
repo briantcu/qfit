@@ -30,7 +30,8 @@ class DoWork extends React.Component {
             day: day,
             calendar: {},
             routine: {},
-            user: {}
+            user: {},
+            loading: true
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -59,6 +60,7 @@ class DoWork extends React.Component {
             {
                 calendar: data.calendar,
                 routine: data.routine,
+                loading: data.loading,
                 user: user.user
             }
         )
@@ -73,7 +75,7 @@ class DoWork extends React.Component {
             </div>
             <div className="row main">
                 <div className="container">
-                    <div className="row">
+                    <div className={this.state.loading ? 'loading row' : 'row'}>
                     <div className="stretching sec container">
                         <div className="row">
                             <div className="col-xs-12 sec-header">Stretching/Warmup</div>

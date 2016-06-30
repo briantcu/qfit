@@ -21,8 +21,15 @@ class PagesController < ApplicationController
   end
 
   def do_work
+    current_user_id = session[:current_user_id] || current_user.id
+    routine = nil
+    if params[:year].present?
+      routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], current_user_id)
+    end
+
     gon.push({
-                 current_user_id: session[:current_user_id] || current_user.id
+                 current_user_id: session[:current_user_id] || current_user.id,
+                 routine: routine
              })
     render template: 'pages/do_work'
   end

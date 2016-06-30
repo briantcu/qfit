@@ -263,4 +263,7 @@ h1 {
 .do-work .comments {
   margin-bottom: 100px; }
 
+.do-work .loading {
+  opacity: 0.5; }
+
 /*# sourceMappingURL=do_work.css.map*/

@@ -1,15 +1,23 @@
 import {render} from 'react-dom';
+import RoutineActions from 'actions/routine_actions';
 
 require('views/do-work/calendar.scss');
 
 class CalendarCell extends React.Component {
     constructor(props) {
         super(props);
+        this.click = this.click.bind(this);
+    }
+
+    click() {
+        var url = '/do-work/' + this.props.year + '/' + this.props.month + '/' + this.props.day.day_of_month;
+        history.pushState({id: 'Do Work'}, '', url);
+        RoutineActions.getRoutine(this.props.year, this.props.month, this.props.day.day_of_month, gon.current_user_id);
     }
 
     render() {
         var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        return <div className="col-xs-2 calendar-cell">
+        return <div className="col-xs-2 calendar-cell" onClick={ () => this.click() } >
             <div className="cal-subtext">{days[this.props.day.day_of_week]}</div>
             <div className="cal-text">{this.props.day.day_of_month}</div>
             <div className="cal-subtext">{this.props.day.workout_status}</div>
@@ -53,8 +61,8 @@ class Calendar extends React.Component {
                 <div className="row">
                     {
                         this.state.daysToShow.map(function(e, index) {
-                            return <CalendarCell day={e} key={e.day_of_month}/>
-                        })
+                            return <CalendarCell {...this.props} day={e} key={e.day_of_month + '' + this.props.month} />
+                        }.bind(this))
                     }
                 </div>
             </div>
