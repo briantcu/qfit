@@ -33,12 +33,14 @@ class CalendarCell extends React.Component {
 }
 
 class Calendar extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
             loaded: false,
             daysToShow: []
-        }
+        };
+        this.rowSize = 4;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -57,37 +59,37 @@ class Calendar extends React.Component {
 
             index += prevDays.length;
             var allDays = prevDays.concat(days).concat(nextDays);
-            daysToShow = allDays.slice(index - 1, index + 5);
+            daysToShow = allDays.slice(index - 1, index + this.rowSize);
             this.setState({loaded: true, daysToShow: daysToShow, current_index: index, allDays: allDays});
         }
     }
 
     flowLeft() {
-        var index = this.state.current_index - 6;
-        var daysToShow = this.state.allDays.slice(index - 1, index + 5);
+        var index = this.state.current_index - (this.rowSize + 1);
+        var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
         this.setState({daysToShow: daysToShow, current_index: index});
     }
 
     flowRight() {
-        var index = this.state.current_index + 6;
-        var daysToShow = this.state.allDays.slice(index - 1, index + 5);
+        var index = this.state.current_index + (this.rowSize + 1);
+        var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
         this.setState({daysToShow: daysToShow, current_index: index});
     }
 
     render() {
         return <div className="row calendar">
             <div className="container">
-                <span className="left" onClick={ () => this.flowLeft() }> left </span>
-                    <div className="row calRow">
+                <div className="row calRow">
+                    <span className="left col-xs-1" onClick={ () => this.flowLeft() }> left </span>
 
-                        {
-                            this.state.daysToShow.map(function(e, index) {
-                                return <CalendarCell {...this.props} day={e} month={e.month} key={e.day_of_month + '' + e.month} />
-                            }.bind(this))
-                        }
+                    {
+                        this.state.daysToShow.map(function(e, index) {
+                            return <CalendarCell {...this.props} day={e} month={e.month} key={e.day_of_month + '' + e.month} />
+                        }.bind(this))
+                    }
 
-                    </div>
-                <span className="right" onClick={ () => this.flowRight() }> right </span>
+                    <span className="right col-xs-1" onClick={ () => this.flowRight() }> right </span>
+                </div>
             </div>
 
         </div>

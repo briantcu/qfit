@@ -105,7 +105,7 @@
 	        var urlArray = location.pathname.split('/');
 	        var today;
 	        if (urlArray.length > 2) {
-	            today = new Date(_this.props.params.year, _this.props.params.month - 2, _this.props.params.day);
+	            today = new Date(_this.props.params.year, _this.props.params.month - 1, _this.props.params.day);
 	            year = _this.props.params.year;
 	            month = _this.props.params.month;
 	            day = _this.props.params.day;
@@ -37951,6 +37951,7 @@
 	            loaded: false,
 	            daysToShow: []
 	        };
+	        _this3.rowSize = 4;
 	        return _this3;
 	    }
 	
@@ -37977,22 +37978,22 @@
 	
 	                index += prevDays.length;
 	                var allDays = prevDays.concat(days).concat(nextDays);
-	                daysToShow = allDays.slice(index - 1, index + 5);
+	                daysToShow = allDays.slice(index - 1, index + this.rowSize);
 	                this.setState({ loaded: true, daysToShow: daysToShow, current_index: index, allDays: allDays });
 	            }
 	        }
 	    }, {
 	        key: 'flowLeft',
 	        value: function flowLeft() {
-	            var index = this.state.current_index - 6;
-	            var daysToShow = this.state.allDays.slice(index - 1, index + 5);
+	            var index = this.state.current_index - (this.rowSize + 1);
+	            var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
 	            this.setState({ daysToShow: daysToShow, current_index: index });
 	        }
 	    }, {
 	        key: 'flowRight',
 	        value: function flowRight() {
-	            var index = this.state.current_index + 6;
-	            var daysToShow = this.state.allDays.slice(index - 1, index + 5);
+	            var index = this.state.current_index + (this.rowSize + 1);
+	            var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
 	            this.setState({ daysToShow: daysToShow, current_index: index });
 	        }
 	    }, {
@@ -38007,25 +38008,25 @@
 	                    'div',
 	                    { className: 'container' },
 	                    React.createElement(
-	                        'span',
-	                        { className: 'left', onClick: function onClick() {
-	                                return _this4.flowLeft();
-	                            } },
-	                        ' left '
-	                    ),
-	                    React.createElement(
 	                        'div',
 	                        { className: 'row calRow' },
+	                        React.createElement(
+	                            'span',
+	                            { className: 'left col-xs-1', onClick: function onClick() {
+	                                    return _this4.flowLeft();
+	                                } },
+	                            ' left '
+	                        ),
 	                        this.state.daysToShow.map(function (e, index) {
 	                            return React.createElement(CalendarCell, _extends({}, this.props, { day: e, month: e.month, key: e.day_of_month + '' + e.month }));
-	                        }.bind(this))
-	                    ),
-	                    React.createElement(
-	                        'span',
-	                        { className: 'right', onClick: function onClick() {
-	                                return _this4.flowRight();
-	                            } },
-	                        ' right '
+	                        }.bind(this)),
+	                        React.createElement(
+	                            'span',
+	                            { className: 'right col-xs-1', onClick: function onClick() {
+	                                    return _this4.flowRight();
+	                                } },
+	                            ' right '
+	                        )
 	                    )
 	                )
 	            );

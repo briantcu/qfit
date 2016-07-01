@@ -26,18 +26,12 @@
   }
 
   .left {
-    width: 25.9px;
-    height: 47.5px;
-    -webkit-transform: rotate(-180deg);
-    transform: rotate(180deg);
-    background-color: rgba(159, 169, 186, 0.5);
+    cursor: pointer;
+    text-align: right;
   }
 
   .right {
-    width: 25.9px;
-    height: 47.5px;
-    -webkit-transform: rotate(-180deg);
-    transform: rotate(-180deg);
-    background-color: rgba(159, 169, 186, 0.5);
+    cursor: pointer;
+    text-align: left;
   }
 }

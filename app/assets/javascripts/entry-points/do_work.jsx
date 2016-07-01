@@ -17,7 +17,7 @@ class DoWork extends React.Component {
         var urlArray = location.pathname.split('/');
         var today;
         if (urlArray.length > 2) {
-            today = new Date(this.props.params.year, this.props.params.month - 2, this.props.params.day);
+            today = new Date(this.props.params.year, this.props.params.month - 1, this.props.params.day);
             year = this.props.params.year;
             month = this.props.params.month;
             day = this.props.params.day;
