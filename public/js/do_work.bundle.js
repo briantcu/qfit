@@ -156,9 +156,9 @@
 	        value: function load() {
 	            _user_actions2.default.getUser(gon.current_user_id);
 	            var lastMonth = new Date(this.state.date.getTime());
-	            lastMonth.setMonth(lastMonth.getMonth());
+	            lastMonth.setMonth(lastMonth.getMonth() - 1);
 	            var nextMonth = new Date(this.state.date.getTime());
-	            nextMonth.setMonth(nextMonth.getMonth() + 2);
+	            nextMonth.setMonth(nextMonth.getMonth() + 1);
 	            _routine_actions2.default.getCalendar(this.state.year, this.state.month, gon.current_user_id, _routine_constants2.default.CALENDAR);
 	            _routine_actions2.default.getCalendar(lastMonth.getFullYear(), lastMonth.getMonth() + 1, gon.current_user_id, _routine_constants2.default.PREV_CALENDAR);
 	            _routine_actions2.default.getCalendar(nextMonth.getFullYear(), nextMonth.getMonth() + 1, gon.current_user_id, _routine_constants2.default.NEXT_CALENDAR);
@@ -37963,15 +37963,10 @@
 	        key: 'getRowToShow',
 	        value: function getRowToShow(props) {
 	            var daysToShow = [];
-	            var index = 0;
+	            var index = props.day - 1;
 	            if (props.calendar && props.calendar.attributes && props.prev_calendar && props.prev_calendar.attributes && props.next_calendar && props.next_calendar.attributes && !this.state.loaded) {
-	                var days = props.calendar.attributes.calendar_month.days;
-	                var day = props.day;
-	                _.each(days, function (elem, indx, list) {
-	                    if (elem.day_of_month == day) {
-	                        index = indx;
-	                        return;
-	                    }
+	                var days = _.filter(props.calendar.attributes.calendar_month.days, function (day) {
+	                    return day.day_of_month != 0;
 	                });
 	                var prevDays = _.filter(props.prev_calendar.attributes.calendar_month.days, function (day) {
 	                    return day.day_of_month != 0;
@@ -37979,6 +37974,7 @@
 	                var nextDays = _.filter(props.next_calendar.attributes.calendar_month.days, function (day) {
 	                    return day.day_of_month != 0;
 	                });
+	
 	                index += prevDays.length;
 	                var allDays = prevDays.concat(days).concat(nextDays);
 	                daysToShow = allDays.slice(index - 1, index + 5);
@@ -38019,9 +38015,9 @@
 	                    ),
 	                    React.createElement(
 	                        'div',
-	                        { className: 'row' },
+	                        { className: 'row calRow' },
 	                        this.state.daysToShow.map(function (e, index) {
-	                            return React.createElement(CalendarCell, _extends({}, this.props, { day: e, key: e.day_of_month + '' + this.props.month }));
+	                            return React.createElement(CalendarCell, _extends({}, this.props, { day: e, month: e.month, key: e.day_of_month + '' + e.month }));
 	                        }.bind(this))
 	                    ),
 	                    React.createElement(

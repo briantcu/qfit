@@ -34,11 +34,13 @@ class UserCalendar
           workout_status = 'future'
         end
         self.calendar_month.days << CalendarDay.new(:day_of_month => d, :day_of_week => normalize_day(day.cwday),
-                                                    :daily_routine_id => 0, :workout_status => workout_status)
+                                                    :daily_routine_id => 0, :workout_status => workout_status,
+                                                    :month => self.month_id)
       else
         self.calendar_month.days << CalendarDay.new(:day_of_month => d, :day_of_week => normalize_day(day.cwday),
                                                     :daily_routine_id => routine.id,
-                                                    :workout_status => routine.get_workout_status)
+                                                    :workout_status => routine.get_workout_status,
+                                                    :month => self.month_id)
       end
     end
 

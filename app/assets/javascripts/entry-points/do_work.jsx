@@ -62,9 +62,9 @@ class DoWork extends React.Component {
     load() {
         UserActions.getUser(gon.current_user_id);
         var lastMonth = new Date(this.state.date.getTime());
-        lastMonth.setMonth(lastMonth.getMonth());
+        lastMonth.setMonth(lastMonth.getMonth() - 1);
         var nextMonth = new Date(this.state.date.getTime());
-        nextMonth.setMonth(nextMonth.getMonth() + 2);
+        nextMonth.setMonth(nextMonth.getMonth() + 1);
         RoutineActions.getCalendar(this.state.year, this.state.month, gon.current_user_id, C.CALENDAR);
         RoutineActions.getCalendar(lastMonth.getFullYear(), lastMonth.getMonth() + 1, gon.current_user_id, C.PREV_CALENDAR);
         RoutineActions.getCalendar(nextMonth.getFullYear(), nextMonth.getMonth() + 1, gon.current_user_id, C.NEXT_CALENDAR);

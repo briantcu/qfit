@@ -47,20 +47,14 @@ class Calendar extends React.Component {
 
     getRowToShow(props) {
         var daysToShow = [];
-        var index = 0;
+        var index = props.day - 1;
         if (props.calendar && props.calendar.attributes &&
             props.prev_calendar && props.prev_calendar.attributes &&
             props.next_calendar && props.next_calendar.attributes &&!this.state.loaded) {
-            var days = props.calendar.attributes.calendar_month.days;
-            var day = props.day;
-            _.each(days, function (elem, indx, list) {
-                if (elem.day_of_month == day) {
-                    index = indx;
-                    return;
-                }
-            });
+            var days = _.filter(props.calendar.attributes.calendar_month.days, function(day) {return day.day_of_month != 0; });
             var prevDays = _.filter(props.prev_calendar.attributes.calendar_month.days, function(day) {return day.day_of_month != 0; });
             var nextDays = _.filter(props.next_calendar.attributes.calendar_month.days, function(day) {return day.day_of_month != 0; });
+
             index += prevDays.length;
             var allDays = prevDays.concat(days).concat(nextDays);
             daysToShow = allDays.slice(index - 1, index + 5);
@@ -84,11 +78,11 @@ class Calendar extends React.Component {
         return <div className="row calendar">
             <div className="container">
                 <span className="left" onClick={ () => this.flowLeft() }> left </span>
-                    <div className="row">
+                    <div className="row calRow">
 
                         {
                             this.state.daysToShow.map(function(e, index) {
-                                return <CalendarCell {...this.props} day={e} key={e.day_of_month + '' + this.props.month} />
+                                return <CalendarCell {...this.props} day={e} month={e.month} key={e.day_of_month + '' + e.month} />
                             }.bind(this))
                         }
 
