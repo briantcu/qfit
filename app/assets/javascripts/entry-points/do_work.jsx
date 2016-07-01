@@ -117,76 +117,84 @@ class DoWork extends React.Component {
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Stretching/Warmup</div>
                             </div>
-                            <Choose>
-                                <When condition={this.state.routine && this.state.routine.performed_warm_ups && this.state.routine.performed_warm_ups.length > 0}>
-                                    {
-                                        this.state.routine.performed_warm_ups.map(function(e, index) {
-                                            return <Stretch {...this.props} exercise={e} key={e.id} />
-                                        }.bind(this))
-                                    }
-                                </When>
-                                <When condition={!this.state.loading} >
-                                    <span>No Stretching</span>
-                                </When>
-                                <Otherwise><span></span></Otherwise>
-                            </Choose>
+                            <div className="exercise-section">
+                                <Choose>
+                                    <When condition={this.state.routine && this.state.routine.performed_warm_ups && this.state.routine.performed_warm_ups.length > 0}>
+                                        {
+                                            this.state.routine.performed_warm_ups.map(function(e, index) {
+                                                return <Stretch {...this.props} exercise={e} key={e.id} />
+                                            }.bind(this))
+                                        }
+                                    </When>
+                                    <When condition={!this.state.loading} >
+                                        <span>No Stretching</span>
+                                    </When>
+                                    <Otherwise><span></span></Otherwise>
+                                </Choose>
+                            </div>
                         </div>
 
                         <div className="strength sec container">
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Strength Training</div>
                             </div>
-                            <Choose>
-                                <When condition={this.state.routine && this.state.routine.performed_exercises && this.state.routine.performed_exercises.length > 0}>
-                                    {
-                                        this.state.routine.performed_exercises.map(function(e, index) {
-                                            return <Strength {...this.props} exercise={e} key={e.id} />
-                                        }.bind(this))
-                                    }
-                                </When>
-                                <When condition={!this.state.loading} >
-                                    <span>No Strength</span>
-                                </When>
-                                <Otherwise><span></span></Otherwise>
-                            </Choose>
+                            <div className="exercise-section">
+                                <Choose>
+                                    <When condition={this.state.routine && this.state.routine.performed_exercises && this.state.routine.performed_exercises.length > 0}>
+                                        {
+                                            this.state.routine.performed_exercises.map(function(e, index) {
+                                                return <Strength {...this.props} exercise={e} key={e.id} />
+                                            }.bind(this))
+                                        }
+                                    </When>
+                                    <When condition={!this.state.loading} >
+                                        <span>No Strength</span>
+                                    </When>
+                                    <Otherwise><span></span></Otherwise>
+                                </Choose>
+                            </div>
                         </div>
 
                         <div className="plyos sec container">
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Plyometrics</div>
                             </div>
-                            <Choose>
-                                <When condition={this.state.routine && this.state.routine.performed_plyometrics && this.state.routine.performed_plyometrics.length > 0}>
-                                    {
-                                        this.state.routine.performed_plyometrics.map(function(e, index) {
-                                            return <Plyo {...this.props} exercise={e} key={e.id} />
-                                        }.bind(this))
-                                    }
-                                </When>
-                                <When condition={!this.state.loading} >
-                                    <span>No Plyos</span>
-                                </When>
-                                <Otherwise><span></span></Otherwise>
-                            </Choose>
+                            <div className="exercise-section">
+                                <Choose>
+                                    <When condition={this.state.routine && this.state.routine.performed_plyometrics && this.state.routine.performed_plyometrics.length > 0}>
+                                        {
+                                            this.state.routine.performed_plyometrics.map(function(e, index) {
+                                                return <Plyo {...this.props} exercise={e} key={e.id} />
+                                            }.bind(this))
+                                        }
+                                    </When>
+                                    <When condition={!this.state.loading} >
+                                        <span>No Plyos</span>
+                                    </When>
+                                    <Otherwise><span></span></Otherwise>
+                                </Choose>
+                            </div>
                         </div>
 
                         <div className="sprinting sec container">
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Sprinting</div>
                             </div>
-                            <Choose>
-                                <When condition={this.state.routine && this.state.routine.performed_sprints && this.state.routine.performed_sprints.length > 0}>
-                                    {
-                                        this.state.routine.performed_sprints.map(function(e, index) {
-                                            return <Sprint {...this.props} exercise={e} key={e.id} />
-                                        }.bind(this))
-                                    }
-                                </When>
-                                <When condition={!this.state.loading} >
-                                    <span>No sprinting</span>
-                                </When>
-                                <Otherwise><span></span></Otherwise>
-                            </Choose>
+                            <div className="exercise-section">
+                                <Choose>
+                                    <When condition={this.state.routine && this.state.routine.performed_sprints && this.state.routine.performed_sprints.length > 0}>
+                                        {
+                                            this.state.routine.performed_sprints.map(function(e, index) {
+                                                return <Sprint {...this.props} exercise={e} key={e.id} />
+                                            }.bind(this))
+                                        }
+                                    </When>
+                                    <When condition={!this.state.loading} >
+                                        <span>No sprinting</span>
+                                    </When>
+                                    <Otherwise><span></span></Otherwise>
+                                </Choose>
+                            </div>
                         </div>
 
                         <div className="comments sec container">

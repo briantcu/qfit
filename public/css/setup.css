@@ -1,3 +1,6 @@
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -75,6 +78,9 @@ h1 {
   .header .logo {
     width: 100%;
     padding-top: 20px; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -155,6 +161,9 @@ h1 {
   color: #9fa9ba; }
   .subnav span {
     margin-left: 50px; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -282,6 +291,9 @@ input[type=checkbox] {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: alpha(opacity=100);
   opacity: 1; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -359,6 +371,9 @@ h1 {
   font-size: 18px;
   letter-spacing: -0.4px;
   color: #7953aa; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -439,6 +454,9 @@ h1 {
 
 .goal .button-row {
   margin-top: 50px; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -565,6 +583,9 @@ input[type=checkbox] {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: alpha(opacity=100);
   opacity: 1; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -661,6 +682,9 @@ h1 {
 .quads .back-link {
   margin-top: 10px;
   padding-left: 63px; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -752,6 +776,9 @@ h1 {
   letter-spacing: -0.8px;
   text-align: center;
   color: #4a4a4a; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -834,6 +861,9 @@ h1 {
 
 .fitness .buttonRow {
   margin-top: 200px; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -970,6 +1000,9 @@ input[type=checkbox] {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: alpha(opacity=100);
   opacity: 1; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -1042,6 +1075,9 @@ h1 {
 
 .schedule .col-xs-2 {
   width: 12%; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -1125,6 +1161,9 @@ h1 {
 
 .commitment .buttonRow {
   margin-top: 75px; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;

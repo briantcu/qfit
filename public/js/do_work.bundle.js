@@ -266,13 +266,17 @@
 	                                        'Stretching/Warmup'
 	                                    )
 	                                ),
-	                                this.state.routine && this.state.routine.performed_warm_ups && this.state.routine.performed_warm_ups.length > 0 ? this.state.routine.performed_warm_ups.map(function (e, index) {
-	                                    return React.createElement(_stretch2.default, _extends({}, this.props, { exercise: e, key: e.id }));
-	                                }.bind(this)) : !this.state.loading ? React.createElement(
-	                                    'span',
-	                                    null,
-	                                    'No Stretching'
-	                                ) : React.createElement('span', null)
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'exercise-section' },
+	                                    this.state.routine && this.state.routine.performed_warm_ups && this.state.routine.performed_warm_ups.length > 0 ? this.state.routine.performed_warm_ups.map(function (e, index) {
+	                                        return React.createElement(_stretch2.default, _extends({}, this.props, { exercise: e, key: e.id }));
+	                                    }.bind(this)) : !this.state.loading ? React.createElement(
+	                                        'span',
+	                                        null,
+	                                        'No Stretching'
+	                                    ) : React.createElement('span', null)
+	                                )
 	                            ),
 	                            React.createElement(
 	                                'div',
@@ -286,13 +290,17 @@
 	                                        'Strength Training'
 	                                    )
 	                                ),
-	                                this.state.routine && this.state.routine.performed_exercises && this.state.routine.performed_exercises.length > 0 ? this.state.routine.performed_exercises.map(function (e, index) {
-	                                    return React.createElement(_strength2.default, _extends({}, this.props, { exercise: e, key: e.id }));
-	                                }.bind(this)) : !this.state.loading ? React.createElement(
-	                                    'span',
-	                                    null,
-	                                    'No Strength'
-	                                ) : React.createElement('span', null)
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'exercise-section' },
+	                                    this.state.routine && this.state.routine.performed_exercises && this.state.routine.performed_exercises.length > 0 ? this.state.routine.performed_exercises.map(function (e, index) {
+	                                        return React.createElement(_strength2.default, _extends({}, this.props, { exercise: e, key: e.id }));
+	                                    }.bind(this)) : !this.state.loading ? React.createElement(
+	                                        'span',
+	                                        null,
+	                                        'No Strength'
+	                                    ) : React.createElement('span', null)
+	                                )
 	                            ),
 	                            React.createElement(
 	                                'div',
@@ -306,13 +314,17 @@
 	                                        'Plyometrics'
 	                                    )
 	                                ),
-	                                this.state.routine && this.state.routine.performed_plyometrics && this.state.routine.performed_plyometrics.length > 0 ? this.state.routine.performed_plyometrics.map(function (e, index) {
-	                                    return React.createElement(_plyo2.default, _extends({}, this.props, { exercise: e, key: e.id }));
-	                                }.bind(this)) : !this.state.loading ? React.createElement(
-	                                    'span',
-	                                    null,
-	                                    'No Plyos'
-	                                ) : React.createElement('span', null)
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'exercise-section' },
+	                                    this.state.routine && this.state.routine.performed_plyometrics && this.state.routine.performed_plyometrics.length > 0 ? this.state.routine.performed_plyometrics.map(function (e, index) {
+	                                        return React.createElement(_plyo2.default, _extends({}, this.props, { exercise: e, key: e.id }));
+	                                    }.bind(this)) : !this.state.loading ? React.createElement(
+	                                        'span',
+	                                        null,
+	                                        'No Plyos'
+	                                    ) : React.createElement('span', null)
+	                                )
 	                            ),
 	                            React.createElement(
 	                                'div',
@@ -326,13 +338,17 @@
 	                                        'Sprinting'
 	                                    )
 	                                ),
-	                                this.state.routine && this.state.routine.performed_sprints && this.state.routine.performed_sprints.length > 0 ? this.state.routine.performed_sprints.map(function (e, index) {
-	                                    return React.createElement(_sprint2.default, _extends({}, this.props, { exercise: e, key: e.id }));
-	                                }.bind(this)) : !this.state.loading ? React.createElement(
-	                                    'span',
-	                                    null,
-	                                    'No sprinting'
-	                                ) : React.createElement('span', null)
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'exercise-section' },
+	                                    this.state.routine && this.state.routine.performed_sprints && this.state.routine.performed_sprints.length > 0 ? this.state.routine.performed_sprints.map(function (e, index) {
+	                                        return React.createElement(_sprint2.default, _extends({}, this.props, { exercise: e, key: e.id }));
+	                                    }.bind(this)) : !this.state.loading ? React.createElement(
+	                                        'span',
+	                                        null,
+	                                        'No sprinting'
+	                                    ) : React.createElement('span', null)
+	                                )
 	                            ),
 	                            React.createElement(
 	                                'div',
@@ -39683,6 +39699,12 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 34);
 	
+	var _thumbnail = __webpack_require__(/*! views/do-work/thumbnail */ 395);
+	
+	var _thumbnail2 = _interopRequireDefault(_thumbnail);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -39705,8 +39727,8 @@
 	        value: function render() {
 	            return React.createElement(
 	                'div',
-	                { className: 'stretch row' },
-	                'Stretch'
+	                { className: 'stretch exercise row' },
+	                React.createElement(_thumbnail2.default, { exercise: this.props.exercise.warmup })
 	            );
 	        }
 	    }]);
@@ -39877,6 +39899,12 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 34);
 	
+	var _thumbnail = __webpack_require__(/*! views/do-work/thumbnail */ 395);
+	
+	var _thumbnail2 = _interopRequireDefault(_thumbnail);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -39899,8 +39927,8 @@
 	        value: function render() {
 	            return React.createElement(
 	                'div',
-	                { className: 'plyo row' },
-	                'Plyo'
+	                { className: 'plyo exercise row' },
+	                React.createElement(_thumbnail2.default, { exercise: this.props.exercise.plyometric })
 	            );
 	        }
 	    }]);
@@ -40091,6 +40119,140 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 174)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 395 */
+/*!*************************************!*\
+  !*** ./views/do-work/thumbnail.jsx ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React, $) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 34);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! views/do-work/thumbnail.scss */ 396);
+	
+	var Thumbnail = function (_React$Component) {
+	    _inherits(Thumbnail, _React$Component);
+	
+	    function Thumbnail(props) {
+	        _classCallCheck(this, Thumbnail);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Thumbnail).call(this, props));
+	
+	        _this.showThumb = _this.showThumb.bind(_this);
+	        _this.state = {
+	            url: undefined
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Thumbnail, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            if (this.props.exercise.is_stretch) {
+	                this.setState({ url: this.props.exercise.video_link });
+	            } else {
+	                this.loadThumb();
+	            }
+	        }
+	    }, {
+	        key: 'loadThumb',
+	        value: function loadThumb() {
+	            var url = "http://vimeo.com/api/v2/video/" + this.props.exercise.video_link + ".json";
+	            $.ajax({
+	                type: 'get',
+	                url: url,
+	                dataType: 'json',
+	                success: function (data) {
+	                    this.showThumb(data);
+	                }.bind(this),
+	                error: function error(response) {
+	                    alert(JSON.parse(response.responseJSON));
+	                }
+	            });
+	        }
+	    }, {
+	        key: 'showThumb',
+	        value: function showThumb(data) {
+	            var url = data[0].thumbnail_medium;
+	            this.setState({ url: url });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'div',
+	                { className: 'thumb col-xs2' },
+	                React.createElement('img', { width: '160', height: '120', src: this.state.url })
+	            );
+	        }
+	    }]);
+	
+	    return Thumbnail;
+	}(React.Component);
+	
+	exports.default = Thumbnail;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! jquery */ 33)))
+
+/***/ },
+/* 396 */
+/*!**********************************************!*\
+  !*** ../styles/views/do-work/thumbnail.scss ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./thumbnail.scss */ 397);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 175)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./thumbnail.scss", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./thumbnail.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 397 */
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/do-work/thumbnail.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 174)();
 	// imports
 	
 	

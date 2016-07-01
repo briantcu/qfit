@@ -1,4 +1,5 @@
 import {render} from 'react-dom';
+import Thumbnail from 'views/do-work/thumbnail'
 
 require('views/do-work/stretch.scss');
 
@@ -8,8 +9,8 @@ class Stretch extends React.Component {
     }
 
     render() {
-        return <div className="stretch row">
-            Stretch
+        return <div className="stretch exercise row">
+            <Thumbnail exercise={this.props.exercise.warmup} />
         </div>
     }
 }

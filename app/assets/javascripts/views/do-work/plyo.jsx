@@ -1,4 +1,5 @@
 import {render} from 'react-dom';
+import Thumbnail from 'views/do-work/thumbnail'
 
 require('views/do-work/plyo.scss');
 
@@ -8,8 +9,8 @@ class Plyo extends React.Component {
     }
 
     render() {
-        return <div className="plyo row" >
-            Plyo
+        return <div className="plyo exercise row" >
+            <Thumbnail exercise={this.props.exercise.plyometric} />
         </div>
     }
 }

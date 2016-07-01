@@ -1,3 +1,6 @@
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -137,6 +140,9 @@ input.transparent-input {
 
 .full {
   background-color: #7953aa; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
@@ -298,6 +304,9 @@ input.cmn-toggle-round-flat:checked + label:after {
 .selected-text {
   padding-left: 8px;
   text-transform: capitalize; }
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
