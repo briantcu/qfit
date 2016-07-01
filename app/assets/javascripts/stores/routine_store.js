@@ -5,11 +5,20 @@ var C = require('constants/routine_constants.js');
 var RoutineStore = new Store({
 
     calendar: undefined,
+    next_calendar: undefined,
+    prev_calendar: undefined,
     routine: undefined,
     loading: true,
 
     setCalendar: function(data) {
-        this.calendar = data;
+        if (data.key == C.CALENDAR) {
+            this.calendar = data.data;
+        } else if (data.key == C.PREV_CALENDAR) {
+            this.prev_calendar = data.data;
+        } else {
+            this.next_calendar = data.data;
+        }
+
     },
 
     setRoutine: function(data) {
@@ -24,6 +33,8 @@ var RoutineStore = new Store({
     getData: function(){
         return {
             calendar: this.calendar,
+            prev_calendar: this.prev_calendar,
+            next_calendar: this.next_calendar,
             routine: this.routine,
             loading: this.loading
         };

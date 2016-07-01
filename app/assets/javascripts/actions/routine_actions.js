@@ -3,13 +3,13 @@ var C = require('constants/routine_constants.js');
 
 var RoutineActions = {
 
-    getCalendar: function(year, month, user_id) {
+    getCalendar: function(year, month, user_id, whichMonth) {
         $.ajax({
             type: 'get',
             url: '/users/'+user_id+'/calendar/year/'+year+'/month/'+month+'.json',
             dataType: 'json',
             success: function(data) {
-                dispatcher.dispatch(C.CALENDAR, data)
+                dispatcher.dispatch(C.CALENDAR, {key: whichMonth, data: data})
             },
             error: function(response) {
                 alert(JSON.parse(response.responseJSON));

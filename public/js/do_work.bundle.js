@@ -79,6 +79,10 @@
 	
 	var _calendar2 = _interopRequireDefault(_calendar);
 	
+	var _routine_constants = __webpack_require__(/*! constants/routine_constants */ 173);
+	
+	var _routine_constants2 = _interopRequireDefault(_routine_constants);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -99,17 +103,18 @@
 	
 	        var year, month, day;
 	        var urlArray = location.pathname.split('/');
+	        var today;
 	        if (urlArray.length > 2) {
+	            today = new Date(_this.props.params.year, _this.props.params.month - 2, _this.props.params.day);
 	            year = _this.props.params.year;
 	            month = _this.props.params.month;
 	            day = _this.props.params.day;
 	        } else {
-	            var today = new Date();
+	            today = new Date();
 	            year = today.getFullYear();
 	            month = today.getMonth() + 1;
 	            day = today.getDate();
 	        }
-	
 	        _this.state = {
 	            year: year,
 	            month: month,
@@ -117,7 +122,8 @@
 	            calendar: {},
 	            routine: {},
 	            user: {},
-	            loading: true
+	            loading: true,
+	            date: today
 	        };
 	        _this.onChange = _this.onChange.bind(_this);
 	        return _this;
@@ -149,7 +155,13 @@
 	        key: 'load',
 	        value: function load() {
 	            _user_actions2.default.getUser(gon.current_user_id);
-	            _routine_actions2.default.getCalendar(this.state.year, this.state.month, gon.current_user_id);
+	            var lastMonth = new Date(this.state.date.getTime());
+	            lastMonth.setMonth(lastMonth.getMonth());
+	            var nextMonth = new Date(this.state.date.getTime());
+	            nextMonth.setMonth(nextMonth.getMonth() + 2);
+	            _routine_actions2.default.getCalendar(this.state.year, this.state.month, gon.current_user_id, _routine_constants2.default.CALENDAR);
+	            _routine_actions2.default.getCalendar(lastMonth.getFullYear(), lastMonth.getMonth() + 1, gon.current_user_id, _routine_constants2.default.PREV_CALENDAR);
+	            _routine_actions2.default.getCalendar(nextMonth.getFullYear(), nextMonth.getMonth() + 1, gon.current_user_id, _routine_constants2.default.NEXT_CALENDAR);
 	            _routine_actions2.default.getRoutine(this.state.year, this.state.month, this.state.day, gon.current_user_id);
 	        }
 	    }, {
@@ -159,6 +171,8 @@
 	            var user = _user_store2.default.getData();
 	            this.setState({
 	                calendar: data.calendar,
+	                prev_calendar: data.prev_calendar,
+	                next_calendar: data.next_calendar,
 	                routine: data.routine,
 	                loading: data.loading,
 	                user: user.user
@@ -20891,11 +20905,19 @@
 	var RoutineStore = new Store({
 	
 	    calendar: undefined,
+	    next_calendar: undefined,
+	    prev_calendar: undefined,
 	    routine: undefined,
 	    loading: true,
 	
 	    setCalendar: function (data) {
-	        this.calendar = data;
+	        if (data.key == C.CALENDAR) {
+	            this.calendar = data.data;
+	        } else if (data.key == C.PREV_CALENDAR) {
+	            this.prev_calendar = data.data;
+	        } else {
+	            this.next_calendar = data.data;
+	        }
 	    },
 	
 	    setRoutine: function (data) {
@@ -20910,6 +20932,8 @@
 	    getData: function () {
 	        return {
 	            calendar: this.calendar,
+	            prev_calendar: this.prev_calendar,
+	            next_calendar: this.next_calendar,
 	            routine: this.routine,
 	            loading: this.loading
 	        };
@@ -21462,6 +21486,8 @@
 	
 	module.exports = keyMirror({
 	    CALENDAR: null,
+	    PREV_CALENDAR: null,
+	    NEXT_CALENDAR: null,
 	    ROUTINE_LOADED: null,
 	    LOADING: null
 	});
@@ -21552,13 +21578,13 @@
 	
 	var RoutineActions = {
 	
-	    getCalendar: function (year, month, user_id) {
+	    getCalendar: function (year, month, user_id, whichMonth) {
 	        $.ajax({
 	            type: "get",
 	            url: "/users/" + user_id + "/calendar/year/" + year + "/month/" + month + ".json",
 	            dataType: "json",
 	            success: function (data) {
-	                dispatcher.dispatch(C.CALENDAR, data);
+	                dispatcher.dispatch(C.CALENDAR, { key: whichMonth, data: data });
 	            },
 	            error: function (response) {
 	                alert(JSON.parse(response.responseJSON));
@@ -37938,7 +37964,7 @@
 	        value: function getRowToShow(props) {
 	            var daysToShow = [];
 	            var index = 0;
-	            if (props.calendar && props.calendar.attributes && !this.state.loaded) {
+	            if (props.calendar && props.calendar.attributes && props.prev_calendar && props.prev_calendar.attributes && props.next_calendar && props.next_calendar.attributes && !this.state.loaded) {
 	                var days = props.calendar.attributes.calendar_month.days;
 	                var day = props.day;
 	                _.each(days, function (elem, indx, list) {
@@ -37947,7 +37973,15 @@
 	                        return;
 	                    }
 	                });
-	                daysToShow = days.slice(index - 1, index + 4);
+	                var prevDays = _.filter(props.prev_calendar.attributes.calendar_month.days, function (day) {
+	                    return day.day_of_month != 0;
+	                });
+	                var nextDays = _.filter(props.next_calendar.attributes.calendar_month.days, function (day) {
+	                    return day.day_of_month != 0;
+	                });
+	                index += prevDays.length;
+	                var allDays = prevDays.concat(days).concat(nextDays);
+	                daysToShow = allDays.slice(index - 1, index + 5);
 	                this.setState({ loaded: true, daysToShow: daysToShow });
 	            }
 	        }

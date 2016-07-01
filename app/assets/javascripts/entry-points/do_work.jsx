@@ -6,6 +6,7 @@ import RoutineActions from 'actions/routine_actions';
 import UserActions from 'actions/user_actions';
 import Header from 'views/common/header';
 import Calendar from 'views/do-work/calendar';
+import C from 'constants/routine_constants';
 
 require('pages/do_work.scss');
 
@@ -14,17 +15,18 @@ class DoWork extends React.Component {
         super(props);
         var year, month, day;
         var urlArray = location.pathname.split('/');
+        var today;
         if (urlArray.length > 2) {
+            today = new Date(this.props.params.year, this.props.params.month - 2, this.props.params.day);
             year = this.props.params.year;
             month = this.props.params.month;
             day = this.props.params.day;
         } else {
-            var today = new Date();
+            today = new Date();
             year = today.getFullYear();
             month = today.getMonth() + 1;
             day = today.getDate();
         }
-
         this.state = {
             year: year,
             month: month,
@@ -32,7 +34,8 @@ class DoWork extends React.Component {
             calendar: {},
             routine: {},
             user: {},
-            loading: true
+            loading: true,
+            date: today
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -58,7 +61,13 @@ class DoWork extends React.Component {
 
     load() {
         UserActions.getUser(gon.current_user_id);
-        RoutineActions.getCalendar(this.state.year, this.state.month, gon.current_user_id);
+        var lastMonth = new Date(this.state.date.getTime());
+        lastMonth.setMonth(lastMonth.getMonth());
+        var nextMonth = new Date(this.state.date.getTime());
+        nextMonth.setMonth(nextMonth.getMonth() + 2);
+        RoutineActions.getCalendar(this.state.year, this.state.month, gon.current_user_id, C.CALENDAR);
+        RoutineActions.getCalendar(lastMonth.getFullYear(), lastMonth.getMonth() + 1, gon.current_user_id, C.PREV_CALENDAR);
+        RoutineActions.getCalendar(nextMonth.getFullYear(), nextMonth.getMonth() + 1, gon.current_user_id, C.NEXT_CALENDAR);
         RoutineActions.getRoutine(this.state.year, this.state.month, this.state.day, gon.current_user_id);
     }
 
@@ -68,6 +77,8 @@ class DoWork extends React.Component {
         this.setState(
             {
                 calendar: data.calendar,
+                prev_calendar: data.prev_calendar,
+                next_calendar: data.next_calendar,
                 routine: data.routine,
                 loading: data.loading,
                 user: user.user
