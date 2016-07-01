@@ -186,7 +186,47 @@
 	                { className: 'do-work' },
 	                React.createElement(_header2.default, { user: this.state.user }),
 	                React.createElement(_calendar2.default, this.state),
-	                React.createElement('div', { className: 'row subnav' }),
+	                React.createElement(
+	                    'div',
+	                    { className: 'row subnav' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'container' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-10 col-xs-offset-1 text-center' },
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    'Complete this Workout'
+	                                ),
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    'Skip this Workout'
+	                                ),
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    'Change Schedule'
+	                                ),
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    'Change Program'
+	                                ),
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    'Share Workout'
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'row main' },

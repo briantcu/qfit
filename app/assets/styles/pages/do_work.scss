@@ -6,6 +6,16 @@
     height: 38px;
     background-color: $gray1;
     border: solid 1px $gray2;
+    padding-top: 6px;
+    span {
+      margin-right:20px;
+      font-family: 'Open Sans', sans-serif;
+      color: $purple;
+      font-size: 12px;
+      letter-spacing: -0.3px;
+      font-weight: 600;
+      cursor: pointer;
+    }
   }
 
   .sec {

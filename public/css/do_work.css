@@ -247,7 +247,16 @@ h1 {
 .do-work .subnav {
   height: 38px;
   background-color: #fbf8fc;
-  border: solid 1px #e6e6e6; }
+  border: solid 1px #e6e6e6;
+  padding-top: 6px; }
+  .do-work .subnav span {
+    margin-right: 20px;
+    font-family: 'Open Sans', sans-serif;
+    color: #7953aa;
+    font-size: 12px;
+    letter-spacing: -0.3px;
+    font-weight: 600;
+    cursor: pointer; }
 
 .do-work .sec {
   margin-top: 40px;
