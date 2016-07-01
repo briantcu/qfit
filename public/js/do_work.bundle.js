@@ -37982,12 +37982,28 @@
 	                index += prevDays.length;
 	                var allDays = prevDays.concat(days).concat(nextDays);
 	                daysToShow = allDays.slice(index - 1, index + 5);
-	                this.setState({ loaded: true, daysToShow: daysToShow });
+	                this.setState({ loaded: true, daysToShow: daysToShow, current_index: index, allDays: allDays });
 	            }
+	        }
+	    }, {
+	        key: 'flowLeft',
+	        value: function flowLeft() {
+	            var index = this.state.current_index - 6;
+	            var daysToShow = this.state.allDays.slice(index - 1, index + 5);
+	            this.setState({ daysToShow: daysToShow, current_index: index });
+	        }
+	    }, {
+	        key: 'flowRight',
+	        value: function flowRight() {
+	            var index = this.state.current_index + 6;
+	            var daysToShow = this.state.allDays.slice(index - 1, index + 5);
+	            this.setState({ daysToShow: daysToShow, current_index: index });
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this4 = this;
+	
 	            return React.createElement(
 	                'div',
 	                { className: 'row calendar' },
@@ -37995,11 +38011,25 @@
 	                    'div',
 	                    { className: 'container' },
 	                    React.createElement(
+	                        'span',
+	                        { className: 'left', onClick: function onClick() {
+	                                return _this4.flowLeft();
+	                            } },
+	                        ' left '
+	                    ),
+	                    React.createElement(
 	                        'div',
 	                        { className: 'row' },
 	                        this.state.daysToShow.map(function (e, index) {
 	                            return React.createElement(CalendarCell, _extends({}, this.props, { day: e, key: e.day_of_month + '' + this.props.month }));
 	                        }.bind(this))
+	                    ),
+	                    React.createElement(
+	                        'span',
+	                        { className: 'right', onClick: function onClick() {
+	                                return _this4.flowRight();
+	                            } },
+	                        ' right '
 	                    )
 	                )
 	            );

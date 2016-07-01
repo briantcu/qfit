@@ -64,20 +64,36 @@ class Calendar extends React.Component {
             index += prevDays.length;
             var allDays = prevDays.concat(days).concat(nextDays);
             daysToShow = allDays.slice(index - 1, index + 5);
-            this.setState({loaded: true, daysToShow: daysToShow});
+            this.setState({loaded: true, daysToShow: daysToShow, current_index: index, allDays: allDays});
         }
+    }
+
+    flowLeft() {
+        var index = this.state.current_index - 6;
+        var daysToShow = this.state.allDays.slice(index - 1, index + 5);
+        this.setState({daysToShow: daysToShow, current_index: index});
+    }
+
+    flowRight() {
+        var index = this.state.current_index + 6;
+        var daysToShow = this.state.allDays.slice(index - 1, index + 5);
+        this.setState({daysToShow: daysToShow, current_index: index});
     }
 
     render() {
         return <div className="row calendar">
             <div className="container">
-                <div className="row">
-                    {
-                        this.state.daysToShow.map(function(e, index) {
-                            return <CalendarCell {...this.props} day={e} key={e.day_of_month + '' + this.props.month} />
-                        }.bind(this))
-                    }
-                </div>
+                <span className="left" onClick={ () => this.flowLeft() }> left </span>
+                    <div className="row">
+
+                        {
+                            this.state.daysToShow.map(function(e, index) {
+                                return <CalendarCell {...this.props} day={e} key={e.day_of_month + '' + this.props.month} />
+                            }.bind(this))
+                        }
+
+                    </div>
+                <span className="right" onClick={ () => this.flowRight() }> right </span>
             </div>
 
         </div>

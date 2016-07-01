@@ -164,6 +164,18 @@ h1 {
       color: #271b37;
       font-weight: 300;
       height: 49px; }
+  .calendar .left {
+    width: 25.9px;
+    height: 47.5px;
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(180deg);
+    background-color: rgba(159, 169, 186, 0.5); }
+  .calendar .right {
+    width: 25.9px;
+    height: 47.5px;
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    background-color: rgba(159, 169, 186, 0.5); }
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
