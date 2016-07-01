@@ -6,6 +6,10 @@ import RoutineActions from 'actions/routine_actions';
 import UserActions from 'actions/user_actions';
 import Header from 'views/common/header';
 import Calendar from 'views/do-work/calendar';
+import Stretch from 'views/do-work/stretch';
+import Strength from 'views/do-work/strength';
+import Plyo from 'views/do-work/plyo';
+import Sprint from 'views/do-work/sprint';
 import C from 'constants/routine_constants';
 
 require('pages/do_work.scss');
@@ -90,6 +94,7 @@ class DoWork extends React.Component {
         return <div className="do-work">
             <Header user={this.state.user} />
             <Calendar {...this.state} />
+
             <div className="row subnav">
                 <div className="container">
                     <div className="row">
@@ -103,46 +108,94 @@ class DoWork extends React.Component {
                     </div>
                 </div>
             </div>
+
             <div className="row main">
                 <div className="container">
                     <div className={this.state.loading ? 'loading row' : 'row'}>
-                    <div className="stretching sec container">
-                        <div className="row">
-                            <div className="col-xs-12 sec-header">Stretching/Warmup</div>
-                        </div>
-                        <div className="row">
-                            <div className="col-xs-12">ex one</div>
-                        </div>
-                        <div className="row">
-                            <div className="col-xs-12">ex two</div>
-                        </div>
-                    </div>
 
-                    <div className="strength sec container">
-                        <div className="row">
-                            <div className="col-xs-12 sec-header">Strength Training</div>
+                        <div className="stretching sec container">
+                            <div className="row">
+                                <div className="col-xs-12 sec-header">Stretching/Warmup</div>
+                            </div>
+                            <Choose>
+                                <When condition={this.state.routine && this.state.routine.performed_warm_ups && this.state.routine.performed_warm_ups.length > 0}>
+                                    {
+                                        this.state.routine.performed_warm_ups.map(function(e, index) {
+                                            return <Stretch {...this.props} exercise={e} key={e.id} />
+                                        }.bind(this))
+                                    }
+                                </When>
+                                <When condition={!this.state.loading} >
+                                    <span>No Stretching</span>
+                                </When>
+                                <Otherwise><span></span></Otherwise>
+                            </Choose>
                         </div>
-                    </div>
 
-                    <div className="plyos sec container">
-                        <div className="row">
-                            <div className="col-xs-12 sec-header">Plyometrics</div>
+                        <div className="strength sec container">
+                            <div className="row">
+                                <div className="col-xs-12 sec-header">Strength Training</div>
+                            </div>
+                            <Choose>
+                                <When condition={this.state.routine && this.state.routine.performed_exercises && this.state.routine.performed_exercises.length > 0}>
+                                    {
+                                        this.state.routine.performed_exercises.map(function(e, index) {
+                                            return <Strength {...this.props} exercise={e} key={e.id} />
+                                        }.bind(this))
+                                    }
+                                </When>
+                                <When condition={!this.state.loading} >
+                                    <span>No Strength</span>
+                                </When>
+                                <Otherwise><span></span></Otherwise>
+                            </Choose>
                         </div>
-                    </div>
 
-                    <div className="sprinting sec container">
-                        <div className="row">
-                            <div className="col-xs-12 sec-header">Sprinting</div>
+                        <div className="plyos sec container">
+                            <div className="row">
+                                <div className="col-xs-12 sec-header">Plyometrics</div>
+                            </div>
+                            <Choose>
+                                <When condition={this.state.routine && this.state.routine.performed_plyometrics && this.state.routine.performed_plyometrics.length > 0}>
+                                    {
+                                        this.state.routine.performed_plyometrics.map(function(e, index) {
+                                            return <Plyo {...this.props} exercise={e} key={e.id} />
+                                        }.bind(this))
+                                    }
+                                </When>
+                                <When condition={!this.state.loading} >
+                                    <span>No Plyos</span>
+                                </When>
+                                <Otherwise><span></span></Otherwise>
+                            </Choose>
                         </div>
-                    </div>
 
-                    <div className="comments sec container">
-                        <div className="row">
-                            <div className="col-xs-12 sec-header">Comments</div>
+                        <div className="sprinting sec container">
+                            <div className="row">
+                                <div className="col-xs-12 sec-header">Sprinting</div>
+                            </div>
+                            <Choose>
+                                <When condition={this.state.routine && this.state.routine.performed_sprints && this.state.routine.performed_sprints.length > 0}>
+                                    {
+                                        this.state.routine.performed_sprints.map(function(e, index) {
+                                            return <Sprint {...this.props} exercise={e} key={e.id} />
+                                        }.bind(this))
+                                    }
+                                </When>
+                                <When condition={!this.state.loading} >
+                                    <span>No sprinting</span>
+                                </When>
+                                <Otherwise><span></span></Otherwise>
+                            </Choose>
                         </div>
-                    </div>
-                    </div>
 
+                        <div className="comments sec container">
+                            <div className="row">
+                                <div className="col-xs-12 sec-header">Comments</div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>;
