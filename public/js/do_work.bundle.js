@@ -37891,7 +37891,7 @@
 	
 	        _this.click = _this.click.bind(_this);
 	        _this.state = {
-	            date: new Date(_this.props.year, _this.props.month - 1, _this.props.day.day_of_month)
+	            date: new Date(_this.props.dayObj.year, _this.props.dayObj.month - 1, _this.props.dayObj.day_of_month)
 	        };
 	        return _this;
 	    }
@@ -37899,7 +37899,7 @@
 	    _createClass(CalendarCell, [{
 	        key: 'click',
 	        value: function click() {
-	            var url = '/do-work/' + this.props.year + '/' + this.props.month + '/' + this.props.day.day_of_month;
+	            var url = '/do-work/' + this.props.dayObj.year + '/' + this.props.dayObj.month + '/' + this.props.dayObj.day_of_month;
 	            _reactRouter.browserHistory.push(url);
 	        }
 	    }, {
@@ -37910,27 +37910,29 @@
 	            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	            var monthNames = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 	
+	            var classes = this.props.dayObj.day_of_month == this.props.day && this.props.dayObj.year == this.props.year && (this.props.dayObj.month = this.props.month) ? "col-xs-2 calendar-cell selected" : "col-xs-2 calendar-cell";
+	
 	            return React.createElement(
 	                'div',
-	                { className: 'col-xs-2 calendar-cell', onClick: function onClick() {
+	                { className: classes, onClick: function onClick() {
 	                        return _this2.click();
 	                    } },
 	                React.createElement(
 	                    'div',
 	                    { className: 'cal-subtext' },
-	                    days[this.props.day.day_of_week]
+	                    days[this.props.dayObj.day_of_week]
 	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'cal-text' },
 	                    monthNames[this.state.date.getMonth()],
 	                    ', ',
-	                    this.props.day.day_of_month
+	                    this.props.dayObj.day_of_month
 	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'cal-subtext' },
-	                    this.props.day.workout_status
+	                    this.props.dayObj.workout_status
 	                )
 	            );
 	        }
@@ -38018,7 +38020,7 @@
 	                            ' left '
 	                        ),
 	                        this.state.daysToShow.map(function (e, index) {
-	                            return React.createElement(CalendarCell, _extends({}, this.props, { day: e, month: e.month, key: e.day_of_month + '' + e.month }));
+	                            return React.createElement(CalendarCell, _extends({}, this.props, { dayObj: e, dayMonth: e.month, key: e.day_of_month + '' + e.month }));
 	                        }.bind(this)),
 	                        React.createElement(
 	                            'span',

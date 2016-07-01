@@ -9,12 +9,12 @@ class CalendarCell extends React.Component {
         super(props);
         this.click = this.click.bind(this);
         this.state = {
-            date: new Date(this.props.year, this.props.month - 1, this.props.day.day_of_month)
+            date: new Date(this.props.dayObj.year, this.props.dayObj.month - 1, this.props.dayObj.day_of_month)
         };
     }
 
     click() {
-        var url = '/do-work/' + this.props.year + '/' + this.props.month + '/' + this.props.day.day_of_month;
+        var url = '/do-work/' + this.props.dayObj.year + '/' + this.props.dayObj.month + '/' + this.props.dayObj.day_of_month;
         browserHistory.push(url);
     }
 
@@ -24,10 +24,13 @@ class CalendarCell extends React.Component {
             "July", "Aug", "Sep", "Oct", "Nov", "Dec"
         ];
 
-        return <div className="col-xs-2 calendar-cell" onClick={ () => this.click() } >
-            <div className="cal-subtext">{days[this.props.day.day_of_week]}</div>
-            <div className="cal-text">{monthNames[this.state.date.getMonth()]}, {this.props.day.day_of_month}</div>
-            <div className="cal-subtext">{this.props.day.workout_status}</div>
+       var classes = ((this.props.dayObj.day_of_month == this.props.day) && (this.props.dayObj.year == this.props.year) &&
+       (this.props.dayObj.month = this.props.month)) ? "col-xs-2 calendar-cell selected" : "col-xs-2 calendar-cell";
+
+        return <div className={classes} onClick={ () => this.click() } >
+            <div className="cal-subtext">{days[this.props.dayObj.day_of_week]}</div>
+            <div className="cal-text">{monthNames[this.state.date.getMonth()]}, {this.props.dayObj.day_of_month}</div>
+            <div className="cal-subtext">{this.props.dayObj.workout_status}</div>
         </div>
     }
 }
@@ -84,7 +87,7 @@ class Calendar extends React.Component {
 
                     {
                         this.state.daysToShow.map(function(e, index) {
-                            return <CalendarCell {...this.props} day={e} month={e.month} key={e.day_of_month + '' + e.month} />
+                            return <CalendarCell {...this.props} dayObj={e} dayMonth={e.month} key={e.day_of_month + '' + e.month} />
                         }.bind(this))
                     }
 
