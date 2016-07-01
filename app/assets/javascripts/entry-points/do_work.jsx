@@ -1,3 +1,4 @@
+import { Router, Route, Link, browserHistory } from 'react-router'
 import {render} from 'react-dom';
 import RoutineStore from 'stores/routine_store';
 import UserStore from 'stores/user_store';
@@ -14,9 +15,9 @@ class DoWork extends React.Component {
         var year, month, day;
         var urlArray = location.pathname.split('/');
         if (urlArray.length > 2) {
-            year = urlArray[2];
-            month = urlArray[3];
-            day = urlArray[4];
+            year = this.props.params.year;
+            month = this.props.params.month;
+            day = this.props.params.day;
         } else {
             var today = new Date();
             year = today.getFullYear();
@@ -40,6 +41,14 @@ class DoWork extends React.Component {
         RoutineStore.addChangeListener(this.onChange.bind(this));
         UserStore.addChangeListener(this.onChange);
         this.load();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        var year = nextProps.params.year;
+        var month = nextProps.params.month;
+        var day = nextProps.params.day;
+        this.setState({year: year, month: month, day: day});
+        RoutineActions.getRoutine(year, month, day, gon.current_user_id);
     }
 
     componentWillUnmount () {
@@ -119,4 +128,10 @@ class DoWork extends React.Component {
     }
 }
 
-render(<DoWork/>, document.getElementById('app'));
+render((
+    <Router history={browserHistory}>
+        <Route path="/do-work" component={DoWork}>
+            <Route path=":year/:month/:day" component={DoWork}/>
+        </Route>
+    </Router>
+), document.getElementById('app'));

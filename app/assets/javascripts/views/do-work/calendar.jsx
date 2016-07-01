@@ -1,3 +1,4 @@
+import { Router, Route, Link, browserHistory } from 'react-router'
 import {render} from 'react-dom';
 import RoutineActions from 'actions/routine_actions';
 
@@ -14,8 +15,7 @@ class CalendarCell extends React.Component {
 
     click() {
         var url = '/do-work/' + this.props.year + '/' + this.props.month + '/' + this.props.day.day_of_month;
-        history.pushState({id: 'Do Work'}, '', url);
-        RoutineActions.getRoutine(this.props.year, this.props.month, this.props.day.day_of_month, gon.current_user_id);
+        browserHistory.push(url);
     }
 
     render() {
@@ -57,7 +57,7 @@ class Calendar extends React.Component {
                     return;
                 }
             });
-            daysToShow = days.slice(index, index + 5);
+            daysToShow = days.slice(index - 1, index + 4);
             this.setState({loaded: true, daysToShow: daysToShow});
         }
     }
