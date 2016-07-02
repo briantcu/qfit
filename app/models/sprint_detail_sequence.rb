@@ -12,5 +12,5 @@
 
 class SprintDetailSequence < ActiveRecord::Base
   belongs_to :sprint
-  belongs_to :sprint_detail
+  belongs_to :sprint_detail, foreign_key: :detail_num
 end

@@ -3,7 +3,7 @@ json.extract! @daily_routine, :id, :user_id, :group_id, :day_performed, :weight,
 json.performed_warm_ups @daily_routine.performed_warm_ups, :id, :status, :completed, :warmup
 json.performed_exercises @daily_routine.performed_exercises, :id, :status, :rest_period, :exercise_type, :weight_sets, :exercise
 json.performed_plyometrics @daily_routine.performed_plyometrics, :id, :status, :performed_one, :performed_two, :performed_three, :plyometric
-json.performed_sprints @daily_routine.performed_sprints, :id, :sprint_id, :status, :laps, :sprint
+json.performed_sprints @daily_routine.performed_sprints, :id, :sprint_id, :status, :laps, :sprint, :sprint_details
 json.custom_exercises @daily_routine.custom_exercises, :id, :type, :name, :details
 json.messages @daily_routine.routine_messages
 

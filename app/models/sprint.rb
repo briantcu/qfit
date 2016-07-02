@@ -13,4 +13,6 @@
 
 class Sprint < ActiveRecord::Base
   has_many :performed_sprints
+  has_many :sprint_detail_sequences, -> { order :order_num }
+  has_many :sprint_details, through: :sprint_detail_sequences
 end

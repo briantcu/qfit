@@ -720,6 +720,15 @@ h1 {
   color: #7953aa;
   text-decoration: underline;
   cursor: pointer; }
+
+.sprint .vert-circle-check {
+  margin-top: 5px !important; }
+
+.sprint .detail-row {
+  height: 80px; }
+
+.sprint .detail {
+  padding-top: 20px; }
 body {
   font-family: 'Open Sans', sans-serif; }
 

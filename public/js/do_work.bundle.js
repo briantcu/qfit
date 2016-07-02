@@ -40266,6 +40266,12 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 34);
 	
+	var _vert_circle_check = __webpack_require__(/*! views/common/vert_circle_check */ 322);
+	
+	var _vert_circle_check2 = _interopRequireDefault(_vert_circle_check);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -40280,16 +40286,59 @@
 	    function Sprint(props) {
 	        _classCallCheck(this, Sprint);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Sprint).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Sprint).call(this, props));
+	
+	        _this.change = _this.change.bind(_this);
+	        return _this;
 	    }
 	
 	    _createClass(Sprint, [{
+	        key: 'change',
+	        value: function change(e) {
+	            var check = this.refs[e.target.id];
+	            var checked = check.getValue();
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return React.createElement(
 	                'div',
-	                { className: 'sprint row' },
-	                'Sprint'
+	                { className: 'sprint exercise row' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-xs-12' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'span',
+	                            { className: 'ex-info col-xs-12' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'ex-name' },
+	                                this.props.exercise.sprint.name
+	                            )
+	                        )
+	                    ),
+	                    this.props.exercise.sprint_details.map(function (e, index) {
+	                        return React.createElement(
+	                            'div',
+	                            { className: 'row detail-row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-4 detail' },
+	                                e.detail
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-xs-8' },
+	                                React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.laps[index].id, id: this.props.exercise.laps[index].id,
+	                                    defaultChecked: this.props.exercise.laps[index].completed,
+	                                    label: 'Complete', change: this.change })
+	                            )
+	                        );
+	                    }.bind(this))
+	                )
 	            );
 	        }
 	    }]);
