@@ -2,4 +2,28 @@
 
 .stretch {
 
+  .vert-circle-check {
+    label {
+      left: 66px;
+      width: 31px;
+      height: 31px;
+      border: 2px solid $purple;
+    }
+
+    .label-text {
+      font-size: 10px;
+      line-height: 1;
+      letter-spacing: -0.1px;
+      color: $light-gray;
+      margin-top: 20px
+    }
+
+    label:after {
+      width: 15px;
+      height: 8px;
+      top: 7px;
+      left: 6px;
+    }
+  }
+
 }

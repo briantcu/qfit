@@ -40,9 +40,9 @@ class Thumbnail extends React.Component {
     }
 
     render() {
-        return <div className="thumb col-xs2">
-            <img width="160" height="120" src={this.state.url} />
-        </div>
+        return <span className="thumb">
+            <img width="120" height="90" src={this.state.url} />
+        </span>
     }
 }
 

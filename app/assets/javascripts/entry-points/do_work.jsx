@@ -129,7 +129,6 @@ class DoWork extends React.Component {
                                     <When condition={!this.state.loading} >
                                         <span>No Stretching</span>
                                     </When>
-                                    <Otherwise><span></span></Otherwise>
                                 </Choose>
                             </div>
                         </div>
@@ -150,7 +149,6 @@ class DoWork extends React.Component {
                                     <When condition={!this.state.loading} >
                                         <span>No Strength</span>
                                     </When>
-                                    <Otherwise><span></span></Otherwise>
                                 </Choose>
                             </div>
                         </div>
@@ -171,7 +169,6 @@ class DoWork extends React.Component {
                                     <When condition={!this.state.loading} >
                                         <span>No Plyos</span>
                                     </When>
-                                    <Otherwise><span></span></Otherwise>
                                 </Choose>
                             </div>
                         </div>
@@ -192,7 +189,6 @@ class DoWork extends React.Component {
                                     <When condition={!this.state.loading} >
                                         <span>No sprinting</span>
                                     </When>
-                                    <Otherwise><span></span></Otherwise>
                                 </Choose>
                             </div>
                         </div>

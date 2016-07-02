@@ -275,7 +275,7 @@
 	                                        'span',
 	                                        null,
 	                                        'No Stretching'
-	                                    ) : React.createElement('span', null)
+	                                    ) : null
 	                                )
 	                            ),
 	                            React.createElement(
@@ -299,7 +299,7 @@
 	                                        'span',
 	                                        null,
 	                                        'No Strength'
-	                                    ) : React.createElement('span', null)
+	                                    ) : null
 	                                )
 	                            ),
 	                            React.createElement(
@@ -323,7 +323,7 @@
 	                                        'span',
 	                                        null,
 	                                        'No Plyos'
-	                                    ) : React.createElement('span', null)
+	                                    ) : null
 	                                )
 	                            ),
 	                            React.createElement(
@@ -347,7 +347,7 @@
 	                                        'span',
 	                                        null,
 	                                        'No sprinting'
-	                                    ) : React.createElement('span', null)
+	                                    ) : null
 	                                )
 	                            ),
 	                            React.createElement(
@@ -37570,9 +37570,123 @@
 	});
 
 /***/ },
-/* 322 */,
-/* 323 */,
-/* 324 */,
+/* 322 */
+/*!********************************************!*\
+  !*** ./views/common/vert_circle_check.jsx ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 34);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/vert_circle_check.scss */ 323);
+	
+	var VertCircleCheck = function (_React$Component) {
+	    _inherits(VertCircleCheck, _React$Component);
+	
+	    function VertCircleCheck(props) {
+	        _classCallCheck(this, VertCircleCheck);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(VertCircleCheck).call(this, props));
+	    }
+	
+	    _createClass(VertCircleCheck, [{
+	        key: 'getValue',
+	        value: function getValue() {
+	            return this.refs.check.checked;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'span',
+	                { className: 'vert-circle-check' },
+	                !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
+	                    checked: this.props.checked, onChange: this.props.change }) : null,
+	                this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
+	                    checked: this.props.checked, readOnly: true }) : null,
+	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'label-text' },
+	                    this.props.label
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return VertCircleCheck;
+	}(_react2.default.Component);
+	
+	exports.default = VertCircleCheck;
+
+/***/ },
+/* 323 */
+/*!***********************************************!*\
+  !*** ../styles/common/vert_circle_check.scss ***!
+  \***********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./vert_circle_check.scss */ 324);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 175)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./vert_circle_check.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./vert_circle_check.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 324 */
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/vert_circle_check.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 174)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
 /* 325 */,
 /* 326 */,
 /* 327 */,
@@ -39703,6 +39817,10 @@
 	
 	var _thumbnail2 = _interopRequireDefault(_thumbnail);
 	
+	var _vert_circle_check = __webpack_require__(/*! views/common/vert_circle_check */ 322);
+	
+	var _vert_circle_check2 = _interopRequireDefault(_vert_circle_check);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39719,16 +39837,72 @@
 	    function Stretch(props) {
 	        _classCallCheck(this, Stretch);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Stretch).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Stretch).call(this, props));
+	
+	        _this.change = _this.change.bind(_this);
+	        return _this;
 	    }
 	
 	    _createClass(Stretch, [{
+	        key: 'change',
+	        value: function change(elem) {
+	            var check = this.refs.complete;
+	            var completed = check.getValue();
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return React.createElement(
 	                'div',
 	                { className: 'stretch exercise row' },
-	                React.createElement(_thumbnail2.default, { exercise: this.props.exercise.warmup })
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-xs-5' },
+	                    React.createElement(_thumbnail2.default, { exercise: this.props.exercise.warmup }),
+	                    React.createElement(
+	                        'span',
+	                        { className: 'ex-info' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'ex-name' },
+	                            this.props.exercise.warmup.name
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'ex-subtext' },
+	                            'Recommended: ',
+	                            this.props.exercise.warmup.is_stretch ? '3 x 30 seconds' : '5 minutes',
+	                            ' '
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'ex-subtext' },
+	                            React.createElement(
+	                                'u',
+	                                { className: 'link' },
+	                                'Read Tips'
+	                            ),
+	                            ' | ',
+	                            React.createElement(
+	                                'u',
+	                                { className: 'link' },
+	                                'Swap'
+	                            ),
+	                            ' | ',
+	                            React.createElement(
+	                                'u',
+	                                { className: 'link' },
+	                                'Delete'
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-xs-2 col-xs-offset-5' },
+	                    React.createElement(_vert_circle_check2.default, { ref: 'complete', id: 'stretch' + this.props.exercise.id,
+	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
+	                )
 	            );
 	        }
 	    }]);
@@ -40203,9 +40377,9 @@
 	        key: 'render',
 	        value: function render() {
 	            return React.createElement(
-	                'div',
-	                { className: 'thumb col-xs2' },
-	                React.createElement('img', { width: '160', height: '120', src: this.state.url })
+	                'span',
+	                { className: 'thumb' },
+	                React.createElement('img', { width: '120', height: '90', src: this.state.url })
 	            );
 	        }
 	    }]);
