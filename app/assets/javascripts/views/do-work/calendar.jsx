@@ -27,6 +27,9 @@ class CalendarCell extends React.Component {
        var classes = ((this.props.dayObj.day_of_month == this.props.day) && (this.props.dayObj.year == this.props.year) &&
        (this.props.dayObj.month = this.props.month)) ? "col-xs-2 calendar-cell selected" : "col-xs-2 calendar-cell";
 
+        if (this.props.border) {
+            classes += ' border'
+        }
         return <div className={classes} onClick={ () => this.click() } >
             <div className="cal-subtext">{days[this.props.dayObj.day_of_week]}</div>
             <div className="cal-text">{monthNames[this.state.date.getMonth()]}, {this.props.dayObj.day_of_month}</div>
@@ -87,7 +90,7 @@ class Calendar extends React.Component {
 
                     {
                         this.state.daysToShow.map(function(e, index) {
-                            return <CalendarCell {...this.props} dayObj={e} dayMonth={e.month} key={e.day_of_month + '' + e.month} />
+                            return <CalendarCell {...this.props} dayObj={e} dayMonth={e.month} key={e.day_of_month + '' + e.month} border={index != 0} />
                         }.bind(this))
                     }
 

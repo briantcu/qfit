@@ -5,10 +5,10 @@
 
   .calendar-cell {
     text-align: center;
-    padding-top: 25px;
-    border-right: 1px solid $gray2;
+    padding-top: 35px;
     height: 145px;
     cursor: pointer;
+
     .cal-subtext {
       font-family: 'Open Sans', sans-serif;
       font-size: 14px;
@@ -26,6 +26,20 @@
       height: 49px;
     }
   }
+
+  .border {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 35%;
+      bottom: 35%;
+      left: 0px;
+      display: block;
+      border-left: 1px solid #e6e6e6;
+    }
+  }
+
+
   .selected {
     border-bottom: 5px solid $purple;
   }

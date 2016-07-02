@@ -38064,6 +38064,9 @@
 	
 	            var classes = this.props.dayObj.day_of_month == this.props.day && this.props.dayObj.year == this.props.year && (this.props.dayObj.month = this.props.month) ? "col-xs-2 calendar-cell selected" : "col-xs-2 calendar-cell";
 	
+	            if (this.props.border) {
+	                classes += ' border';
+	            }
 	            return React.createElement(
 	                'div',
 	                { className: classes, onClick: function onClick() {
@@ -38172,7 +38175,7 @@
 	                            ' left '
 	                        ),
 	                        this.state.daysToShow.map(function (e, index) {
-	                            return React.createElement(CalendarCell, _extends({}, this.props, { dayObj: e, dayMonth: e.month, key: e.day_of_month + '' + e.month }));
+	                            return React.createElement(CalendarCell, _extends({}, this.props, { dayObj: e, dayMonth: e.month, key: e.day_of_month + '' + e.month, border: index != 0 }));
 	                        }.bind(this)),
 	                        React.createElement(
 	                            'span',

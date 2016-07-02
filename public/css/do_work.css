@@ -155,8 +155,7 @@ h1 {
   height: 145px; }
   .calendar .calendar-cell {
     text-align: center;
-    padding-top: 25px;
-    border-right: 1px solid #e6e6e6;
+    padding-top: 35px;
     height: 145px;
     cursor: pointer; }
     .calendar .calendar-cell .cal-subtext {
@@ -172,6 +171,14 @@ h1 {
       color: #271b37;
       font-weight: 300;
       height: 49px; }
+  .calendar .border:before {
+    content: '';
+    position: absolute;
+    top: 35%;
+    bottom: 35%;
+    left: 0px;
+    display: block;
+    border-left: 1px solid #e6e6e6; }
   .calendar .selected {
     border-bottom: 5px solid #7953aa; }
   .calendar .left {
