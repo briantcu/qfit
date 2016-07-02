@@ -45,13 +45,18 @@
   }
 
 
-  .left {
-    cursor: pointer;
-    text-align: right;
-  }
 
-  .right {
-    cursor: pointer;
-    text-align: left;
-  }
+}
+.left {
+  cursor: pointer;
+  text-align: right;
+  display: inline-block;
+  float: left;
+}
+
+.right {
+  cursor: pointer;
+  text-align: left;
+  display: inline-block;
+  float: right;
 }

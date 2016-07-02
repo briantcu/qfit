@@ -38108,7 +38108,7 @@
 	            loaded: false,
 	            daysToShow: []
 	        };
-	        _this3.rowSize = 4;
+	        _this3.rowSize = 5;
 	        return _this3;
 	    }
 	
@@ -38162,29 +38162,29 @@
 	                'div',
 	                { className: 'row calendar' },
 	                React.createElement(
+	                    'span',
+	                    { className: 'left col-xs-1', onClick: function onClick() {
+	                            return _this4.flowLeft();
+	                        } },
+	                    ' left '
+	                ),
+	                React.createElement(
 	                    'div',
-	                    { className: 'container' },
+	                    { className: 'col-xs-10' },
 	                    React.createElement(
 	                        'div',
-	                        { className: 'row calRow' },
-	                        React.createElement(
-	                            'span',
-	                            { className: 'left col-xs-1', onClick: function onClick() {
-	                                    return _this4.flowLeft();
-	                                } },
-	                            ' left '
-	                        ),
+	                        { className: 'row' },
 	                        this.state.daysToShow.map(function (e, index) {
 	                            return React.createElement(CalendarCell, _extends({}, this.props, { dayObj: e, dayMonth: e.month, key: e.day_of_month + '' + e.month, border: index != 0 }));
-	                        }.bind(this)),
-	                        React.createElement(
-	                            'span',
-	                            { className: 'right col-xs-1', onClick: function onClick() {
-	                                    return _this4.flowRight();
-	                                } },
-	                            ' right '
-	                        )
+	                        }.bind(this))
 	                    )
+	                ),
+	                React.createElement(
+	                    'span',
+	                    { className: 'right col-xs-1', onClick: function onClick() {
+	                            return _this4.flowRight();
+	                        } },
+	                    ' right '
 	                )
 	            );
 	        }

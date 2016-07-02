@@ -181,12 +181,18 @@ h1 {
     border-left: 1px solid #e6e6e6; }
   .calendar .selected {
     border-bottom: 5px solid #7953aa; }
-  .calendar .left {
-    cursor: pointer;
-    text-align: right; }
-  .calendar .right {
-    cursor: pointer;
-    text-align: left; }
+
+.left {
+  cursor: pointer;
+  text-align: right;
+  display: inline-block;
+  float: left; }
+
+.right {
+  cursor: pointer;
+  text-align: left;
+  display: inline-block;
+  float: right; }
 body {
   font-family: 'Open Sans', sans-serif; }
 

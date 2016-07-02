@@ -46,7 +46,7 @@ class Calendar extends React.Component {
             loaded: false,
             daysToShow: []
         };
-        this.rowSize = 4;
+        this.rowSize = 5;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -84,9 +84,9 @@ class Calendar extends React.Component {
 
     render() {
         return <div className="row calendar">
-            <div className="container">
-                <div className="row calRow">
-                    <span className="left col-xs-1" onClick={ () => this.flowLeft() }> left </span>
+                <span className="left col-xs-1" onClick={ () => this.flowLeft() }> left </span>
+                <div className="col-xs-10">
+                 <div className="row">
 
                     {
                         this.state.daysToShow.map(function(e, index) {
@@ -94,9 +94,9 @@ class Calendar extends React.Component {
                         }.bind(this))
                     }
 
-                    <span className="right col-xs-1" onClick={ () => this.flowRight() }> right </span>
-                </div>
-            </div>
+                 </div>
+                 </div>
+                <span className="right col-xs-1" onClick={ () => this.flowRight() }> right </span>
 
         </div>
     }
