@@ -459,25 +459,6 @@ h1 {
   color: #7953aa;
   text-decoration: underline;
   cursor: pointer; }
-
-.stretch .vert-circle-check label {
-  left: 66px;
-  width: 31px;
-  height: 31px;
-  border: 2px solid #7953aa; }
-
-.stretch .vert-circle-check .label-text {
-  font-size: 10px;
-  line-height: 1;
-  letter-spacing: -0.1px;
-  color: #9fa9ba;
-  margin-top: 20px; }
-
-.stretch .vert-circle-check label:after {
-  width: 15px;
-  height: 8px;
-  top: 7px;
-  left: 6px; }
 body {
   font-family: 'Open Sans', sans-serif; }
 
@@ -766,6 +747,27 @@ h1 {
   color: #7953aa;
   text-decoration: underline;
   cursor: pointer; }
+
+.do-work .vert-circle-check {
+  margin-top: 20px;
+  display: block;
+  float: left; }
+  .do-work .vert-circle-check label {
+    left: 7px;
+    width: 31px;
+    height: 31px;
+    border: 2px solid #7953aa; }
+  .do-work .vert-circle-check .label-text {
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: -0.1px;
+    color: #9fa9ba;
+    margin-top: 20px; }
+  .do-work .vert-circle-check label:after {
+    width: 15px;
+    height: 8px;
+    top: 7px;
+    left: 6px; }
 
 .do-work .subnav {
   height: 38px;
@@ -810,6 +812,15 @@ h1 {
 
 .do-work .exercise {
   padding-bottom: 5px; }
+
+.do-work .top-border:before {
+  content: '';
+  display: block;
+  position: relative;
+  width: 85%;
+  top: 2px;
+  left: 150px;
+  border: 1px solid #e6e6e6; }
 
 .do-work .exercise-section {
   padding: 15px 10px 10px 0px; }

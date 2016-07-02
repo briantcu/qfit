@@ -16,7 +16,8 @@ class Stretch extends React.Component {
     }
 
     render() {
-        return <div className="stretch exercise row">
+        var classes = (this.props.border) ? 'stretch exercise row top-border' : 'stretch exercise row';
+        return <div className={classes}>
             <div className="col-xs-5">
                 <Thumbnail exercise={this.props.exercise.warmup} />
                 <span className="ex-info">
@@ -25,7 +26,7 @@ class Stretch extends React.Component {
                     <div className="ex-subtext"><u className="link">Read Tips</u> | <u className="link">Swap</u> | <u className="link">Delete</u></div>
                 </span>
             </div>
-            <div className="col-xs-2 col-xs-offset-5">
+            <div className="col-xs-1 col-xs-offset-6">
                 <VertCircleCheck ref="complete" id={'stretch' + this.props.exercise.id}
                              defaultChecked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
             </div>

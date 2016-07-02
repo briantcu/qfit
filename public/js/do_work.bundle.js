@@ -270,7 +270,7 @@
 	                                    'div',
 	                                    { className: 'exercise-section' },
 	                                    this.state.routine && this.state.routine.performed_warm_ups && this.state.routine.performed_warm_ups.length > 0 ? this.state.routine.performed_warm_ups.map(function (e, index) {
-	                                        return React.createElement(_stretch2.default, _extends({}, this.props, { exercise: e, key: e.id }));
+	                                        return React.createElement(_stretch2.default, _extends({}, this.props, { exercise: e, key: e.id, border: index != 0 }));
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
 	                                        null,
@@ -39852,9 +39852,10 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var classes = this.props.border ? 'stretch exercise row top-border' : 'stretch exercise row';
 	            return React.createElement(
 	                'div',
-	                { className: 'stretch exercise row' },
+	                { className: classes },
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-5' },
@@ -39899,7 +39900,7 @@
 	                ),
 	                React.createElement(
 	                    'div',
-	                    { className: 'col-xs-2 col-xs-offset-5' },
+	                    { className: 'col-xs-1 col-xs-offset-6' },
 	                    React.createElement(_vert_circle_check2.default, { ref: 'complete', id: 'stretch' + this.props.exercise.id,
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                )

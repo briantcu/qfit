@@ -2,6 +2,33 @@
 
 .do-work {
 
+  .vert-circle-check {
+    margin-top: 20px;
+    display: block;
+    float: left;
+    label {
+      left: 7px;
+      width: 31px;
+      height: 31px;
+      border: 2px solid $purple;
+    }
+
+    .label-text {
+      font-size: 10px;
+      line-height: 1;
+      letter-spacing: -0.1px;
+      color: $light-gray;
+      margin-top: 20px
+    }
+
+    label:after {
+      width: 15px;
+      height: 8px;
+      top: 7px;
+      left: 6px;
+    }
+  }
+
   .subnav {
     height: 38px;
     background-color: $gray1;
@@ -53,6 +80,16 @@
 
   .exercise {
     padding-bottom: 5px;
+  }
+
+  .top-border:before {
+    content: '';
+    display: block;
+    position: relative;
+    width: 85%;
+    top: 2px;
+    left: 150px;
+    border: 1px solid $gray2;
   }
 
   .exercise-section {
