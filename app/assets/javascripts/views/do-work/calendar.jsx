@@ -84,7 +84,7 @@ class Calendar extends React.Component {
 
     render() {
         return <div className="row calendar">
-                <span className="left col-xs-1" onClick={ () => this.flowLeft() }> left </span>
+                <span className="left col-xs-1" onClick={ () => this.flowLeft() } />
                 <div className="col-xs-10">
                  <div className="row">
 
@@ -96,7 +96,7 @@ class Calendar extends React.Component {
 
                  </div>
                  </div>
-                <span className="right col-xs-1" onClick={ () => this.flowRight() }> right </span>
+                <span className="right col-xs-1" onClick={ () => this.flowRight() } />
 
         </div>
     }

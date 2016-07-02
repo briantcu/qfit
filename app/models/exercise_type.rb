@@ -22,8 +22,4 @@ class ExerciseType < ActiveRecord::Base
       self.exercises.where('difficulty <= ?', experience_level).where('paid_tier <= ?', paid_tier).all
     end
   end
-
-  def as_json(options={})
-    super(:include =>[:exercises])
-  end
 end

@@ -187,12 +187,44 @@ h1 {
   text-align: right;
   display: inline-block;
   float: left; }
+  .left:after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: transparent;
+    top: 60px;
+    border: 3px solid #e6e6e6;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    cursor: pointer; }
 
 .right {
   cursor: pointer;
   text-align: left;
   display: inline-block;
   float: right; }
+  .right:before {
+    cursor: pointer;
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: transparent;
+    top: 60px;
+    border: 3px solid #e6e6e6;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(225deg);
+    -moz-transform: rotate(225deg);
+    -o-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+    transform: rotate(225deg); }
 body {
   font-family: 'Open Sans', sans-serif; }
 

@@ -294,7 +294,7 @@
 	                                    'div',
 	                                    { className: 'exercise-section' },
 	                                    this.state.routine && this.state.routine.performed_exercises && this.state.routine.performed_exercises.length > 0 ? this.state.routine.performed_exercises.map(function (e, index) {
-	                                        return React.createElement(_strength2.default, _extends({}, this.props, { exercise: e, key: e.id }));
+	                                        return React.createElement(_strength2.default, _extends({}, this.props, { exercise: e, key: e.id, border: index != 0 }));
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
 	                                        null,
@@ -318,7 +318,7 @@
 	                                    'div',
 	                                    { className: 'exercise-section' },
 	                                    this.state.routine && this.state.routine.performed_plyometrics && this.state.routine.performed_plyometrics.length > 0 ? this.state.routine.performed_plyometrics.map(function (e, index) {
-	                                        return React.createElement(_plyo2.default, _extends({}, this.props, { exercise: e, key: e.id }));
+	                                        return React.createElement(_plyo2.default, _extends({}, this.props, { exercise: e, key: e.id, border: index != 0 }));
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
 	                                        null,
@@ -342,7 +342,7 @@
 	                                    'div',
 	                                    { className: 'exercise-section' },
 	                                    this.state.routine && this.state.routine.performed_sprints && this.state.routine.performed_sprints.length > 0 ? this.state.routine.performed_sprints.map(function (e, index) {
-	                                        return React.createElement(_sprint2.default, _extends({}, this.props, { exercise: e, key: e.id }));
+	                                        return React.createElement(_sprint2.default, _extends({}, this.props, { exercise: e, key: e.id, border: index != 0 }));
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
 	                                        null,
@@ -38161,13 +38161,9 @@
 	            return React.createElement(
 	                'div',
 	                { className: 'row calendar' },
-	                React.createElement(
-	                    'span',
-	                    { className: 'left col-xs-1', onClick: function onClick() {
-	                            return _this4.flowLeft();
-	                        } },
-	                    ' left '
-	                ),
+	                React.createElement('span', { className: 'left col-xs-1', onClick: function onClick() {
+	                        return _this4.flowLeft();
+	                    } }),
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-10' },
@@ -38179,13 +38175,9 @@
 	                        }.bind(this))
 	                    )
 	                ),
-	                React.createElement(
-	                    'span',
-	                    { className: 'right col-xs-1', onClick: function onClick() {
-	                            return _this4.flowRight();
-	                        } },
-	                    ' right '
-	                )
+	                React.createElement('span', { className: 'right col-xs-1', onClick: function onClick() {
+	                        return _this4.flowRight();
+	                    } })
 	            );
 	        }
 	    }]);
@@ -39980,6 +39972,12 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 34);
 	
+	var _thumbnail = __webpack_require__(/*! views/do-work/thumbnail */ 395);
+	
+	var _thumbnail2 = _interopRequireDefault(_thumbnail);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -40000,10 +39998,29 @@
 	    _createClass(Strength, [{
 	        key: 'render',
 	        value: function render() {
+	            var classes = this.props.border ? 'strength exercise row top-border' : 'strength exercise row';
 	            return React.createElement(
 	                'div',
-	                { className: 'strength row' },
-	                'Strength'
+	                { className: classes },
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-xs-5' },
+	                    React.createElement(_thumbnail2.default, { exercise: this.props.exercise.exercise }),
+	                    React.createElement(
+	                        'span',
+	                        { className: 'ex-info' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'ex-name' },
+	                            this.props.exercise.exercise.name
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'ex-subtext' },
+	                            'Recommended:  '
+	                        )
+	                    )
+	                )
 	            );
 	        }
 	    }]);
@@ -40081,6 +40098,10 @@
 	
 	var _thumbnail2 = _interopRequireDefault(_thumbnail);
 	
+	var _vert_circle_check = __webpack_require__(/*! views/common/vert_circle_check */ 322);
+	
+	var _vert_circle_check2 = _interopRequireDefault(_vert_circle_check);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -40101,12 +40122,77 @@
 	    }
 	
 	    _createClass(Plyo, [{
+	        key: 'change',
+	        value: function change(elem) {
+	            var check = this.refs[elem.target.id];
+	            var checked = check.getValue();
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var classes = this.props.border ? 'plyo exercise row top-border' : 'plyo exercise row';
 	            return React.createElement(
 	                'div',
-	                { className: 'plyo exercise row' },
-	                React.createElement(_thumbnail2.default, { exercise: this.props.exercise.plyometric })
+	                { className: classes },
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-xs-5' },
+	                    React.createElement(_thumbnail2.default, { exercise: this.props.exercise.plyometric }),
+	                    React.createElement(
+	                        'span',
+	                        { className: 'ex-info' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'ex-name' },
+	                            this.props.exercise.plyometric.name
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'ex-subtext' },
+	                            'Recommended: ',
+	                            this.props.exercise.plyometric.recommended
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'ex-subtext' },
+	                            React.createElement(
+	                                'u',
+	                                { className: 'link' },
+	                                'Read Tips'
+	                            ),
+	                            ' | ',
+	                            React.createElement(
+	                                'u',
+	                                { className: 'link' },
+	                                'Swap'
+	                            ),
+	                            ' | ',
+	                            React.createElement(
+	                                'u',
+	                                { className: 'link' },
+	                                'Delete'
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-xs-1 col-xs-offset-4' },
+	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '1', id: this.props.exercise.id + '1',
+	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-xs-1' },
+	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '2', id: this.props.exercise.id + '2',
+	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-xs-1' },
+	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3',
+	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
+	                )
 	            );
 	        }
 	    }]);

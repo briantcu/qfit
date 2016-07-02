@@ -167,7 +167,7 @@ class DailyRoutinesController < ApplicationController
 
   private
   def set_daily_routine
-    @daily_routine = DailyRoutine.find(params[:id])
+    @daily_routine = DailyRoutine.joins(:performed_exercises, :performed_plyometrics, :performed_sprints, :performed_warm_ups).find(params[:id])
   end
 
   def daily_routine_params

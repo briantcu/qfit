@@ -136,7 +136,7 @@ class DailyRoutine < ActiveRecord::Base
 
   def self.get_routine_by_date(month, year, day, user_id)
     date = Date.new(year.to_i, month.to_i, day.to_i)
-    DailyRoutine.where(day_performed: date, user_id: user_id).first
+    DailyRoutine.joins(:performed_exercises, :performed_plyometrics, :performed_sprints, :performed_warm_ups).where(day_performed: date, user_id: user_id).first
   end
 
   def self.create_routine(user_id, date, group_routine_id, group_id, override_current = true)
