@@ -20,6 +20,7 @@ class Sprint extends React.Component {
                 <div className="row">
                     <span className="ex-info col-xs-12">
                         <div className="ex-name">{this.props.exercise.sprint.name}</div>
+                        <div className="ex-subtext"><u className="link">Read Tips</u> | <u className="link">Swap</u> | <u className="link">Delete</u></div>
                     </span>
                 </div>
                 {
@@ -27,9 +28,12 @@ class Sprint extends React.Component {
                         return <div className="row detail-row">
                                 <div className="col-xs-4 detail">{e.detail}</div>
                                 <div className="col-xs-8">
-                                    <VertCircleCheck ref={this.props.exercise.laps[index].id} id={this.props.exercise.laps[index].id}
-                                                     defaultChecked={this.props.exercise.laps[index].completed}
-                                                     label={'Complete'} change={ this.change } />
+                                    <VertCircleCheck
+                                        ref={this.props.exercise.laps[index].id}
+                                        id={this.props.exercise.laps[index].id}
+                                        defaultChecked={this.props.exercise.laps[index].completed}
+                                        key={this.props.exercise.id + '' + (index + 1)}
+                                        label={'Complete'} change={ this.change } />
                                 </div>
                             </div>
                     }.bind(this))

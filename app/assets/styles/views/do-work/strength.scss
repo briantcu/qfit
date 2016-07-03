@@ -2,4 +2,39 @@
 
 .strength {
 
+  .gray {
+    background-color: $gray4;
+  }
+  
+  .type-name {
+    letter-spacing: -0.1px;
+    color: $purple;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+
+  .weight-set {
+    display: inline-block;
+    width: 20%;
+    font-size: 12px;
+    color: $dark-purple;
+    padding: 5px;
+    height: 80px;
+    margin-top: 10px;
+    padding-top: 10px;
+    input {
+      width: 25%;
+      margin-right: 5px;
+    }
+    label {
+      font-weight: normal;
+    }
+    .col {
+      width: 50%;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+  }
+
 }
