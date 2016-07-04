@@ -3,6 +3,7 @@ import Thumbnail from 'views/do-work/thumbnail';
 import WeightSet from 'views/do-work/weight_set';
 import VertCircleCheck from 'views/common/vert_circle_check';
 import TipsModal from 'views/do-work/tips_modal';
+import VideoModal from 'views/do-work/video_modal';
 
 require('views/do-work/strength.scss');
 
@@ -10,9 +11,12 @@ class Strength extends React.Component {
     constructor(props) {
         super(props);
         this.close = this.close.bind(this);
+        this.showVideo = this.showVideo.bind(this);
+        this.closeVideo = this.closeVideo.bind(this);
         this.state = {
-            showTips: false
-        }
+            showTips: false,
+            showVideo: false
+        };
     }
 
     showTips() {
@@ -23,11 +27,19 @@ class Strength extends React.Component {
         this.setState({showTips: false});
     }
 
+    showVideo() {
+        this.setState({showVideo: true});
+    }
+
+    closeVideo() {
+        this.setState({showVideo: false});
+    }
+
     render() {
         var classes = (this.props.border) ? 'strength exercise row top-border' : 'strength exercise row';
         return <div className={classes} >
             <div className="col-xs-5">
-                <Thumbnail exercise={this.props.exercise.exercise} />
+                <Thumbnail exercise={this.props.exercise.exercise} click={this.showVideo} />
                 <span className="ex-info">
                     <div className="type-name">{this.props.exercise.exercise_type.type_name}</div>
                     <div className="ex-name">{this.props.exercise.exercise.name}</div>
@@ -48,7 +60,7 @@ class Strength extends React.Component {
             </div>
 
             <TipsModal show={this.state.showTips} tips={this.props.exercise.exercise.tips} close={this.close} />
-
+            <VideoModal show={this.state.showVideo} link={this.props.exercise.exercise.video_link} close={this.closeVideo} />
 
         </div>
     }

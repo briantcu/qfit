@@ -39581,6 +39581,10 @@
 	
 	var _tips_modal2 = _interopRequireDefault(_tips_modal);
 	
+	var _video_modal = __webpack_require__(/*! views/do-work/video_modal */ 665);
+	
+	var _video_modal2 = _interopRequireDefault(_video_modal);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39601,8 +39605,11 @@
 	
 	        _this.change = _this.change.bind(_this);
 	        _this.close = _this.close.bind(_this);
+	        _this.closeVideo = _this.closeVideo.bind(_this);
+	        _this.showVideo = _this.showVideo.bind(_this);
 	        _this.state = {
-	            showTips: false
+	            showTips: false,
+	            showVideo: false
 	        };
 	        return _this;
 	    }
@@ -39624,6 +39631,16 @@
 	            this.setState({ showTips: false });
 	        }
 	    }, {
+	        key: 'showVideo',
+	        value: function showVideo() {
+	            this.setState({ showVideo: true });
+	        }
+	    }, {
+	        key: 'closeVideo',
+	        value: function closeVideo() {
+	            this.setState({ showVideo: false });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -39635,7 +39652,7 @@
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-5' },
-	                    React.createElement(_thumbnail2.default, { exercise: this.props.exercise.warmup }),
+	                    React.createElement(_thumbnail2.default, { exercise: this.props.exercise.warmup, click: this.showVideo }),
 	                    React.createElement(
 	                        'span',
 	                        { className: 'ex-info' },
@@ -39682,7 +39699,8 @@
 	                    React.createElement(_vert_circle_check2.default, { ref: 'complete', id: 'stretch' + this.props.exercise.id,
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
-	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.warmup.tips, close: this.close })
+	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.warmup.tips, close: this.close }),
+	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.warmup.video_link, close: this.closeVideo })
 	            );
 	        }
 	    }]);
@@ -39769,7 +39787,7 @@
 	        value: function render() {
 	            return React.createElement(
 	                'span',
-	                { className: 'thumb' },
+	                { className: 'thumb', onClick: this.props.click },
 	                React.createElement('img', { width: '120', height: '90', src: this.state.url })
 	            );
 	        }
@@ -40023,6 +40041,10 @@
 	
 	var _tips_modal2 = _interopRequireDefault(_tips_modal);
 	
+	var _video_modal = __webpack_require__(/*! views/do-work/video_modal */ 665);
+	
+	var _video_modal2 = _interopRequireDefault(_video_modal);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -40042,8 +40064,11 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Strength).call(this, props));
 	
 	        _this.close = _this.close.bind(_this);
+	        _this.showVideo = _this.showVideo.bind(_this);
+	        _this.closeVideo = _this.closeVideo.bind(_this);
 	        _this.state = {
-	            showTips: false
+	            showTips: false,
+	            showVideo: false
 	        };
 	        return _this;
 	    }
@@ -40059,6 +40084,16 @@
 	            this.setState({ showTips: false });
 	        }
 	    }, {
+	        key: 'showVideo',
+	        value: function showVideo() {
+	            this.setState({ showVideo: true });
+	        }
+	    }, {
+	        key: 'closeVideo',
+	        value: function closeVideo() {
+	            this.setState({ showVideo: false });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -40070,7 +40105,7 @@
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-5' },
-	                    React.createElement(_thumbnail2.default, { exercise: this.props.exercise.exercise }),
+	                    React.createElement(_thumbnail2.default, { exercise: this.props.exercise.exercise, click: this.showVideo }),
 	                    React.createElement(
 	                        'span',
 	                        { className: 'ex-info' },
@@ -40123,7 +40158,8 @@
 	                        return React.createElement(_weight_set2.default, { weightSet: e, gray: index % 2 == 0, key: this.props.exercise.id + '' + (index + 1) });
 	                    }.bind(this))
 	                ),
-	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.exercise.tips, close: this.close })
+	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.exercise.tips, close: this.close }),
+	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.exercise.video_link, close: this.closeVideo })
 	            );
 	        }
 	    }]);
@@ -40299,6 +40335,10 @@
 	
 	var _tips_modal2 = _interopRequireDefault(_tips_modal);
 	
+	var _video_modal = __webpack_require__(/*! views/do-work/video_modal */ 665);
+	
+	var _video_modal2 = _interopRequireDefault(_video_modal);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -40318,8 +40358,11 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Plyo).call(this, props));
 	
 	        _this.close = _this.close.bind(_this);
+	        _this.showVideo = _this.showVideo.bind(_this);
+	        _this.closeVideo = _this.closeVideo.bind(_this);
 	        _this.state = {
-	            showTips: false
+	            showTips: false,
+	            showVideo: false
 	        };
 	        return _this;
 	    }
@@ -40341,6 +40384,16 @@
 	            var checked = check.getValue();
 	        }
 	    }, {
+	        key: 'showVideo',
+	        value: function showVideo() {
+	            this.setState({ showVideo: true });
+	        }
+	    }, {
+	        key: 'closeVideo',
+	        value: function closeVideo() {
+	            this.setState({ showVideo: false });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -40352,7 +40405,7 @@
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-5' },
-	                    React.createElement(_thumbnail2.default, { exercise: this.props.exercise.plyometric }),
+	                    React.createElement(_thumbnail2.default, { exercise: this.props.exercise.plyometric, click: this.showVideo }),
 	                    React.createElement(
 	                        'span',
 	                        { className: 'ex-info' },
@@ -40410,7 +40463,8 @@
 	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3',
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
-	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.plyometric.tips, close: this.close })
+	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.plyometric.tips, close: this.close }),
+	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.plyometric.video_link, close: this.closeVideo })
 	            );
 	        }
 	    }]);
@@ -63562,6 +63616,103 @@
 	
 	exports.default = TipsModal;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 665 */
+/*!***************************************!*\
+  !*** ./views/do-work/video_modal.jsx ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React, $) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 399);
+	
+	var _button = __webpack_require__(/*! views/common/button */ 352);
+	
+	var _button2 = _interopRequireDefault(_button);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var VideoModal = function (_React$Component) {
+	    _inherits(VideoModal, _React$Component);
+	
+	    function VideoModal(props) {
+	        _classCallCheck(this, VideoModal);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(VideoModal).call(this, props));
+	
+	        _this.getVideoHtml = _this.getVideoHtml.bind(_this);
+	        return _this;
+	    }
+	
+	    _createClass(VideoModal, [{
+	        key: 'getVideoHtml',
+	        value: function getVideoHtml() {
+	            var width = $(window).width();
+	            var vWidth, vHeight;
+	            if (width < 480) {
+	                vWidth = 320;
+	                vHeight = 180;
+	            } else {
+	                vWidth = 480;
+	                vHeight = 270;
+	            }
+	            var videoHtml = '<iframe src="//player.vimeo.com/video/' + this.props.link + '" width="' + vWidth + '" height="' + vHeight + '" ' + 'frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+	            return { __html: videoHtml };
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                _reactBootstrap.Modal,
+	                { show: this.props.show, onHide: this.props.close },
+	                React.createElement(
+	                    _reactBootstrap.Modal.Header,
+	                    { closeButton: true },
+	                    React.createElement(
+	                        _reactBootstrap.Modal.Title,
+	                        null,
+	                        'Video'
+	                    )
+	                ),
+	                React.createElement(
+	                    _reactBootstrap.Modal.Body,
+	                    null,
+	                    React.createElement('div', { dangerouslySetInnerHTML: this.getVideoHtml() })
+	                ),
+	                React.createElement(
+	                    _reactBootstrap.Modal.Footer,
+	                    null,
+	                    React.createElement(
+	                        _button2.default,
+	                        { buttonText: 'Close', onClick: this.props.close },
+	                        'Close'
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return VideoModal;
+	}(React.Component);
+	
+	exports.default = VideoModal;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! jquery */ 239)))
 
 /***/ }
 /******/ ]);

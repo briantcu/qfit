@@ -40,7 +40,7 @@ class Thumbnail extends React.Component {
     }
 
     render() {
-        return <span className="thumb">
+        return <span className="thumb" onClick={this.props.click}>
             <img width="120" height="90" src={this.state.url} />
         </span>
     }

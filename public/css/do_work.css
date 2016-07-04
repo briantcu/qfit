@@ -301,7 +301,8 @@ h1 {
 .thumb {
   float: left;
   display: inline-block;
-  width: 135px; }
+  width: 135px;
+  cursor: pointer; }
 body {
   font-family: 'Open Sans', sans-serif; }
 

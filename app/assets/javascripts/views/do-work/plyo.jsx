@@ -2,6 +2,7 @@ import {render} from 'react-dom';
 import Thumbnail from 'views/do-work/thumbnail';
 import VertCircleCheck from 'views/common/vert_circle_check';
 import TipsModal from 'views/do-work/tips_modal';
+import VideoModal from 'views/do-work/video_modal';
 
 require('views/do-work/plyo.scss');
 
@@ -9,9 +10,12 @@ class Plyo extends React.Component {
     constructor(props) {
         super(props);
         this.close = this.close.bind(this);
+        this.showVideo = this.showVideo.bind(this);
+        this.closeVideo = this.closeVideo.bind(this);
         this.state = {
-            showTips: false
-        }
+            showTips: false,
+            showVideo: false
+        };
     }
 
     showTips() {
@@ -27,11 +31,19 @@ class Plyo extends React.Component {
         var checked = check.getValue();
     }
 
+    showVideo() {
+        this.setState({showVideo: true});
+    }
+
+    closeVideo() {
+        this.setState({showVideo: false});
+    }
+
     render() {
         var classes = (this.props.border) ? 'plyo exercise row top-border' : 'plyo exercise row';
         return <div className={classes} >
             <div className="col-xs-5">
-                <Thumbnail exercise={this.props.exercise.plyometric} />
+                <Thumbnail exercise={this.props.exercise.plyometric} click={this.showVideo} />
                 <span className="ex-info">
                     <div className="ex-name">{this.props.exercise.plyometric.name}</div>
                     <div className="ex-subtext">Recommended: {this.props.exercise.plyometric.recommended}</div>
@@ -56,7 +68,7 @@ class Plyo extends React.Component {
             </div>
 
             <TipsModal show={this.state.showTips} tips={this.props.exercise.plyometric.tips} close={this.close} />
-
+            <VideoModal show={this.state.showVideo} link={this.props.exercise.plyometric.video_link} close={this.closeVideo} />
 
         </div>
     }

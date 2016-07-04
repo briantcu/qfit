@@ -4,6 +4,7 @@ import VertCircleCheck from 'views/common/vert_circle_check'
 import { Modal } from 'react-bootstrap';
 import Button from 'views/common/button';
 import TipsModal from 'views/do-work/tips_modal';
+import VideoModal from 'views/do-work/video_modal';
 
 require('views/do-work/stretch.scss');
 
@@ -12,9 +13,12 @@ class Stretch extends React.Component {
         super(props);
         this.change = this.change.bind(this);
         this.close = this.close.bind(this);
+        this.closeVideo = this.closeVideo.bind(this);
+        this.showVideo = this.showVideo.bind(this);
         this.state = {
-            showTips: false
-        }
+            showTips: false,
+            showVideo: false
+        };
     }
 
     change(elem) {
@@ -26,15 +30,24 @@ class Stretch extends React.Component {
         this.setState({showTips: true});
     }
 
+
     close() {
         this.setState({showTips: false});
+    }
+
+    showVideo() {
+        this.setState({showVideo: true});
+    }
+
+    closeVideo() {
+        this.setState({showVideo: false});
     }
 
     render() {
         var classes = (this.props.border) ? 'stretch exercise row top-border' : 'stretch exercise row';
         return <div className={classes}>
             <div className="col-xs-5">
-                <Thumbnail exercise={this.props.exercise.warmup} />
+                <Thumbnail exercise={this.props.exercise.warmup} click={this.showVideo}/>
                 <span className="ex-info">
                     <div className="ex-name">{this.props.exercise.warmup.name}</div>
                     <div className="ex-subtext">Recommended: {this.props.exercise.warmup.is_stretch ? '3 x 30 seconds' : '5 minutes'} </div>
@@ -51,6 +64,8 @@ class Stretch extends React.Component {
             </div>
 
             <TipsModal show={this.state.showTips} tips={this.props.exercise.warmup.tips} close={this.close} />
+            <VideoModal show={this.state.showVideo} link={this.props.exercise.warmup.video_link} close={this.closeVideo} />
+
 
         </div>
     }
