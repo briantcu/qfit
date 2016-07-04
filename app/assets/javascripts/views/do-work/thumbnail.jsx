@@ -21,17 +21,20 @@ class Thumbnail extends React.Component {
 
     loadThumb() {
         var url = "http://vimeo.com/api/v2/video/" + this.props.exercise.video_link + ".json";
-        $.ajax({
-            type: 'get',
-            url: url,
-            dataType: 'json',
-            success: function(data) {
-                this.showThumb(data);
-            }.bind(this),
-            error: function(response) {
-                alert(JSON.parse(response.responseJSON));
-            }
-        });
+        if (this.props.exercise.video_link) {
+
+            $.ajax({
+                type: 'get',
+                url: url,
+                dataType: 'json',
+                success: function (data) {
+                    this.showThumb(data);
+                }.bind(this),
+                error: function (response) {
+                    alert(JSON.parse(response.responseJSON));
+                }
+            });
+        }
     }
 
     showThumb(data) {

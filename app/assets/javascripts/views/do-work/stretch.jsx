@@ -18,6 +18,7 @@ class Stretch extends React.Component {
         this.closeSwap = this.closeSwap.bind(this);
         this.showVideo = this.showVideo.bind(this);
         this.showSwap = this.showSwap.bind(this);
+        this.swap = this.swap.bind(this);
         this.state = {
             showTips: false,
             showVideo: false,
@@ -29,28 +30,27 @@ class Stretch extends React.Component {
         var check = this.refs.complete;
         var completed = check.getValue();
     }
-
     showTips() {
         this.setState({showTips: true});
     }
-
     close() {
         this.setState({showTips: false});
     }
-
     showVideo() {
         this.setState({showVideo: true});
     }
-
     closeVideo() {
         this.setState({showVideo: false});
     }
-
     showSwap() {
         this.setState({showSwap: true});
     }
-
     closeSwap() {
+        this.setState({showSwap: false});
+    }
+
+    swap(exercise) {
+        console.log(exercise);
         this.setState({showSwap: false});
     }
 
@@ -76,7 +76,7 @@ class Stretch extends React.Component {
 
             <TipsModal show={this.state.showTips} tips={this.props.exercise.warmup.tips} close={this.close} />
             <VideoModal show={this.state.showVideo} link={this.props.exercise.warmup.video_link} close={this.closeVideo} />
-            <MenuModal show={this.state.showSwap} close={this.closeSwap} />
+            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} />
 
 
         </div>

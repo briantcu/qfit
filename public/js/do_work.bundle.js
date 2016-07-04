@@ -39613,6 +39613,7 @@
 	        _this.closeSwap = _this.closeSwap.bind(_this);
 	        _this.showVideo = _this.showVideo.bind(_this);
 	        _this.showSwap = _this.showSwap.bind(_this);
+	        _this.swap = _this.swap.bind(_this);
 	        _this.state = {
 	            showTips: false,
 	            showVideo: false,
@@ -39655,6 +39656,12 @@
 	    }, {
 	        key: 'closeSwap',
 	        value: function closeSwap() {
+	            this.setState({ showSwap: false });
+	        }
+	    }, {
+	        key: 'swap',
+	        value: function swap(exercise) {
+	            console.log(exercise);
 	            this.setState({ showSwap: false });
 	        }
 	    }, {
@@ -39720,7 +39727,7 @@
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.warmup.tips, close: this.close }),
 	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.warmup.video_link, close: this.closeVideo }),
-	                React.createElement(_menu_modal2.default, { show: this.state.showSwap, close: this.closeSwap })
+	                React.createElement(_menu_modal2.default, { show: this.state.showSwap, close: this.closeSwap, click: this.swap })
 	            );
 	        }
 	    }]);
@@ -39784,17 +39791,20 @@
 	        key: 'loadThumb',
 	        value: function loadThumb() {
 	            var url = "http://vimeo.com/api/v2/video/" + this.props.exercise.video_link + ".json";
-	            $.ajax({
-	                type: 'get',
-	                url: url,
-	                dataType: 'json',
-	                success: function (data) {
-	                    this.showThumb(data);
-	                }.bind(this),
-	                error: function error(response) {
-	                    alert(JSON.parse(response.responseJSON));
-	                }
-	            });
+	            if (this.props.exercise.video_link) {
+	
+	                $.ajax({
+	                    type: 'get',
+	                    url: url,
+	                    dataType: 'json',
+	                    success: function (data) {
+	                        this.showThumb(data);
+	                    }.bind(this),
+	                    error: function error(response) {
+	                        alert(JSON.parse(response.responseJSON));
+	                    }
+	                });
+	            }
 	        }
 	    }, {
 	        key: 'showThumb',
@@ -62880,13 +62890,13 @@
 	                    React.createElement(
 	                        _reactBootstrap.Modal.Title,
 	                        null,
-	                        'Tips'
+	                        'Choose an exercise'
 	                    )
 	                ),
 	                React.createElement(
 	                    _reactBootstrap.Modal.Body,
 	                    null,
-	                    React.createElement(_sliding_menu2.default, null)
+	                    React.createElement(_sliding_menu2.default, { click: this.props.click })
 	                ),
 	                React.createElement(
 	                    _reactBootstrap.Modal.Footer,
@@ -62938,16 +62948,24 @@
 	    function SlidingMenu(props) {
 	        _classCallCheck(this, SlidingMenu);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SlidingMenu).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SlidingMenu).call(this, props));
+	
+	        _this.click = _this.click.bind(_this);
+	        return _this;
 	    }
 	
 	    _createClass(SlidingMenu, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	
 	            $(this.refs.menu).dlmenu({
 	                animationClasses: { classin: 'dl-animate-in-2', classout: 'dl-animate-out-2' }
 	            });
+	            $('.dl-link').on('click', this.click);
+	        }
+	    }, {
+	        key: 'click',
+	        value: function click(e) {
+	            this.props.click($(e.target).data('id'));
 	        }
 	    }, {
 	        key: 'render',
@@ -62957,7 +62975,7 @@
 	                { className: 'row sliding-menu' },
 	                React.createElement(
 	                    'div',
-	                    { ref: 'menu', id: 'dl-menu', className: 'dl-menuwrapper' },
+	                    { ref: 'menu', className: 'dl-menuwrapper' },
 	                    React.createElement(
 	                        'ul',
 	                        { className: 'dl-menu dl-menuopen' },
@@ -63131,7 +63149,7 @@
 	                                            null,
 	                                            React.createElement(
 	                                                'a',
-	                                                { href: '#' },
+	                                                { 'data-id': '3', className: 'dl-link', href: '#' },
 	                                                'Boys'
 	                                            )
 	                                        ),
@@ -63142,331 +63160,6 @@
 	                                                'a',
 	                                                { href: '#' },
 	                                                'Girls'
-	                                            )
-	                                        )
-	                                    )
-	                                )
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'li',
-	                            null,
-	                            React.createElement(
-	                                'a',
-	                                { href: '#' },
-	                                'Electronics'
-	                            ),
-	                            React.createElement(
-	                                'ul',
-	                                { className: 'dl-submenu' },
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Camera & Photo'
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'TV & Home Cinema'
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Phones'
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'PC & Video Games'
-	                                    )
-	                                )
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'li',
-	                            null,
-	                            React.createElement(
-	                                'a',
-	                                { href: '#' },
-	                                'Furniture'
-	                            ),
-	                            React.createElement(
-	                                'ul',
-	                                { className: 'dl-submenu' },
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Living Room'
-	                                    ),
-	                                    React.createElement(
-	                                        'ul',
-	                                        { className: 'dl-submenu' },
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Sofas & Loveseats'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Coffee & Accent Tables'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Chairs & Recliners'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Bookshelves'
-	                                            )
-	                                        )
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Bedroom'
-	                                    ),
-	                                    React.createElement(
-	                                        'ul',
-	                                        { className: 'dl-submenu' },
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Beds'
-	                                            ),
-	                                            React.createElement(
-	                                                'ul',
-	                                                { className: 'dl-submenu' },
-	                                                React.createElement(
-	                                                    'li',
-	                                                    null,
-	                                                    React.createElement(
-	                                                        'a',
-	                                                        { href: '#' },
-	                                                        'Upholstered Beds'
-	                                                    )
-	                                                ),
-	                                                React.createElement(
-	                                                    'li',
-	                                                    null,
-	                                                    React.createElement(
-	                                                        'a',
-	                                                        { href: '#' },
-	                                                        'Divans'
-	                                                    )
-	                                                ),
-	                                                React.createElement(
-	                                                    'li',
-	                                                    null,
-	                                                    React.createElement(
-	                                                        'a',
-	                                                        { href: '#' },
-	                                                        'Metal Beds'
-	                                                    )
-	                                                ),
-	                                                React.createElement(
-	                                                    'li',
-	                                                    null,
-	                                                    React.createElement(
-	                                                        'a',
-	                                                        { href: '#' },
-	                                                        'Storage Beds'
-	                                                    )
-	                                                ),
-	                                                React.createElement(
-	                                                    'li',
-	                                                    null,
-	                                                    React.createElement(
-	                                                        'a',
-	                                                        { href: '#' },
-	                                                        'Wooden Beds'
-	                                                    )
-	                                                ),
-	                                                React.createElement(
-	                                                    'li',
-	                                                    null,
-	                                                    React.createElement(
-	                                                        'a',
-	                                                        { href: '#' },
-	                                                        'Children\'s Beds'
-	                                                    )
-	                                                )
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Bedroom Sets'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Chests & Dressers'
-	                                            )
-	                                        )
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Home Office'
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Dining & Bar'
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Patio'
-	                                    )
-	                                )
-	                            )
-	                        ),
-	                        React.createElement(
-	                            'li',
-	                            null,
-	                            React.createElement(
-	                                'a',
-	                                { href: '#' },
-	                                'Jewelry & Watches'
-	                            ),
-	                            React.createElement(
-	                                'ul',
-	                                { className: 'dl-submenu' },
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Fine Jewelry'
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Fashion Jewelry'
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Watches'
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Wedding Jewelry'
-	                                    ),
-	                                    React.createElement(
-	                                        'ul',
-	                                        { className: 'dl-submenu' },
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Engagement Rings'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Bridal Sets'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Women\'s Wedding Bands'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Men\'s Wedding Bands'
 	                                            )
 	                                        )
 	                                    )

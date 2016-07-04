@@ -12,10 +12,10 @@ class MenuModal extends React.Component {
     render() {
         return <Modal show={this.props.show} onHide={this.props.close}>
             <Modal.Header closeButton>
-                <Modal.Title>Tips</Modal.Title>
+                <Modal.Title>Choose an exercise</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <SlidingMenu />
+                <SlidingMenu click={this.props.click}/>
             </Modal.Body>
             <Modal.Footer>
                 <Button buttonText="Close" onClick={this.props.close}>Close</Button>
