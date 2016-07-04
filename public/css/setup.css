@@ -281,16 +281,13 @@ h1 {
   text-decoration: underline;
   cursor: pointer; }
 
-.subnav {
-  height: 52px;
-  background-color: #fbf8fc;
-  border: solid 1px #e6e6e6;
+.qfButton {
+  padding: 12px 40px;
+  border: solid 3px #7953aa;
+  font-family: 'Open Sans', sans-serif;
   font-size: 18px;
-  line-height: 2.9;
   letter-spacing: -0.4px;
-  color: #9fa9ba; }
-  .subnav span {
-    margin-left: 50px; }
+  color: #7953aa; }
 body {
   font-family: 'Open Sans', sans-serif; }
 
@@ -364,13 +361,16 @@ h1 {
   text-decoration: underline;
   cursor: pointer; }
 
-.qfButton {
-  padding: 12px 40px;
-  border: solid 3px #7953aa;
-  font-family: 'Open Sans', sans-serif;
+.subnav {
+  height: 52px;
+  background-color: #fbf8fc;
+  border: solid 1px #e6e6e6;
   font-size: 18px;
+  line-height: 2.9;
   letter-spacing: -0.4px;
-  color: #7953aa; }
+  color: #9fa9ba; }
+  .subnav span {
+    margin-left: 50px; }
 body {
   font-family: 'Open Sans', sans-serif; }
 

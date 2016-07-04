@@ -12,4 +12,12 @@
 #
 
 class Warmup < ActiveRecord::Base
+
+  def tips
+    Tip.for_exercise(1, id)
+  end
+
+  def as_json(options={})
+    super(:include =>[:tips])
+  end
 end

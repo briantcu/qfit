@@ -12,4 +12,12 @@
 #
 
 class Plyometric < ActiveRecord::Base
+
+  def tips
+    Tip.for_exercise(3, id)
+  end
+
+  def as_json(options={})
+    super(:include =>[:tips])
+  end
 end

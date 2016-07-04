@@ -19,12 +19,12 @@ class WeightSet extends React.Component {
                 <span className="col">
                         {this.props.weightSet.rec_reps} reps
                 </span><br/>
-                <span>
+                <span className="col">
                     <input ref="weight" type='text' className="transparent-input standard-text" id={this.props.weightSet.id + 'weight'}
                            onChange={this.props.onChange} defaultValue={this.props.perf_weight}/>
                     <label for="{this.props.weightSet.id + 'weight'}">lbs</label>
                 </span>
-                <span>
+                <span className="col">
                     <input ref="reps" type='text' className="transparent-input standard-text" id={this.props.weightSet.id + 'reps'}
                            onChange={this.props.onChange} defaultValue={this.props.perf_reps}/>
                     <label for={this.props.weightSet.id + 'reps'} >reps</label>

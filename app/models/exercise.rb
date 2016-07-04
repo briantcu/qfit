@@ -20,4 +20,12 @@
 
 class Exercise < ActiveRecord::Base
   belongs_to :exercise_type, :foreign_key => :exercise_type_id
+
+  def tips
+    Tip.for_exercise(2, id)
+  end
+
+  def as_json(options={})
+    super(:include =>[:tips])
+  end
 end

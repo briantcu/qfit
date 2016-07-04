@@ -11,4 +11,8 @@
 #
 
 class Tip < ActiveRecord::Base
+
+  def self.for_exercise(type, id)
+    where('exercise_type = :type and exercise_id = :id', type: type, id: id)
+  end
 end
