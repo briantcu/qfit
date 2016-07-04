@@ -10,6 +10,7 @@ class Plyo extends React.Component {
     constructor(props) {
         super(props);
         this.close = this.close.bind(this);
+        this.change = this.change.bind(this);
         this.showVideo = this.showVideo.bind(this);
         this.closeVideo = this.closeVideo.bind(this);
         this.state = {

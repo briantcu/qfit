@@ -39585,6 +39585,10 @@
 	
 	var _video_modal2 = _interopRequireDefault(_video_modal);
 	
+	var _menu_modal = __webpack_require__(/*! views/do-work/menu_modal */ 666);
+	
+	var _menu_modal2 = _interopRequireDefault(_menu_modal);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39606,10 +39610,13 @@
 	        _this.change = _this.change.bind(_this);
 	        _this.close = _this.close.bind(_this);
 	        _this.closeVideo = _this.closeVideo.bind(_this);
+	        _this.closeSwap = _this.closeSwap.bind(_this);
 	        _this.showVideo = _this.showVideo.bind(_this);
+	        _this.showSwap = _this.showSwap.bind(_this);
 	        _this.state = {
 	            showTips: false,
-	            showVideo: false
+	            showVideo: false,
+	            showSwap: false
 	        };
 	        return _this;
 	    }
@@ -39639,6 +39646,16 @@
 	        key: 'closeVideo',
 	        value: function closeVideo() {
 	            this.setState({ showVideo: false });
+	        }
+	    }, {
+	        key: 'showSwap',
+	        value: function showSwap() {
+	            this.setState({ showSwap: true });
+	        }
+	    }, {
+	        key: 'closeSwap',
+	        value: function closeSwap() {
+	            this.setState({ showSwap: false });
 	        }
 	    }, {
 	        key: 'render',
@@ -39681,7 +39698,9 @@
 	                            ' |',
 	                            React.createElement(
 	                                'u',
-	                                { className: 'link' },
+	                                { className: 'link', onClick: function onClick() {
+	                                        return _this2.showSwap();
+	                                    } },
 	                                'Swap'
 	                            ),
 	                            ' |',
@@ -39700,7 +39719,8 @@
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.warmup.tips, close: this.close }),
-	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.warmup.video_link, close: this.closeVideo })
+	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.warmup.video_link, close: this.closeVideo }),
+	                React.createElement(_menu_modal2.default, { show: this.state.showSwap, close: this.closeSwap })
 	            );
 	        }
 	    }]);
@@ -40358,6 +40378,7 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Plyo).call(this, props));
 	
 	        _this.close = _this.close.bind(_this);
+	        _this.change = _this.change.bind(_this);
 	        _this.showVideo = _this.showVideo.bind(_this);
 	        _this.closeVideo = _this.closeVideo.bind(_this);
 	        _this.state = {
@@ -63713,6 +63734,182 @@
 	
 	exports.default = VideoModal;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! jquery */ 239)))
+
+/***/ },
+/* 666 */
+/*!**************************************!*\
+  !*** ./views/do-work/menu_modal.jsx ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 399);
+	
+	var _button = __webpack_require__(/*! views/common/button */ 352);
+	
+	var _button2 = _interopRequireDefault(_button);
+	
+	var _sliding_menu = __webpack_require__(/*! views/common/sliding_menu */ 667);
+	
+	var _sliding_menu2 = _interopRequireDefault(_sliding_menu);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var MenuModal = function (_React$Component) {
+	    _inherits(MenuModal, _React$Component);
+	
+	    function MenuModal(props) {
+	        _classCallCheck(this, MenuModal);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(MenuModal).call(this, props));
+	    }
+	
+	    _createClass(MenuModal, [{
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                _reactBootstrap.Modal,
+	                { show: this.props.show, onHide: this.props.close },
+	                React.createElement(
+	                    _reactBootstrap.Modal.Header,
+	                    { closeButton: true },
+	                    React.createElement(
+	                        _reactBootstrap.Modal.Title,
+	                        null,
+	                        'Tips'
+	                    )
+	                ),
+	                React.createElement(
+	                    _reactBootstrap.Modal.Body,
+	                    null,
+	                    React.createElement(_sliding_menu2.default, null)
+	                ),
+	                React.createElement(
+	                    _reactBootstrap.Modal.Footer,
+	                    null,
+	                    React.createElement(
+	                        _button2.default,
+	                        { buttonText: 'Close', onClick: this.props.close },
+	                        'Close'
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return MenuModal;
+	}(React.Component);
+	
+	exports.default = MenuModal;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 667 */
+/*!***************************************!*\
+  !*** ./views/common/sliding_menu.jsx ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 94);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/sliding_menu.scss */ 668);
+	
+	var SlidingMenu = function (_React$Component) {
+	    _inherits(SlidingMenu, _React$Component);
+	
+	    function SlidingMenu(props) {
+	        _classCallCheck(this, SlidingMenu);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SlidingMenu).call(this, props));
+	    }
+	
+	    _createClass(SlidingMenu, [{
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement('div', { className: 'row sliding-menu' });
+	        }
+	    }]);
+	
+	    return SlidingMenu;
+	}(React.Component);
+	
+	exports.default = SlidingMenu;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 668 */
+/*!******************************************!*\
+  !*** ../styles/common/sliding_menu.scss ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./sliding_menu.scss */ 669);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 245)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./sliding_menu.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./sliding_menu.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 669 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/sliding_menu.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 244)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
 
 /***/ }
 /******/ ]);
