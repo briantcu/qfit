@@ -118,6 +118,22 @@ var RoutineActions = {
                 alert(JSON.parse(response.responseJSON));
             }
         });
+    },
+
+    addExercise: function(routineId, type, exId) {
+
+        $.ajax({
+            type: 'post',
+            url: '/daily_routines/'+ routineId + '/'+ type + '/' +exId+'.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                dispatcher.dispatch(C.ROUTINE_LOADED, data)
+            },
+            error: function(response) {
+                alert(JSON.parse(response.responseJSON));
+            }
+        });
     }
 };
 

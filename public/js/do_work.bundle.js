@@ -218,7 +218,10 @@
 	        }
 	    }, {
 	        key: 'addEx',
-	        value: function addEx(e) {}
+	        value: function addEx(e) {
+	            _routine_actions2.default.addExercise(this.state.routine.id, this.state.exercise_type, e);
+	            this.setState({ showAddEx: false });
+	        }
 	    }, {
 	        key: 'closeAddEx',
 	        value: function closeAddEx() {
@@ -336,7 +339,7 @@
 	                                        React.createElement(
 	                                            'span',
 	                                            { className: 'add-ex', onClick: function onClick() {
-	                                                    return _this2.showAddEx('strength');
+	                                                    return _this2.showAddEx('weights');
 	                                                } },
 	                                            'Add Exercise'
 	                                        )
@@ -370,7 +373,7 @@
 	                                        React.createElement(
 	                                            'span',
 	                                            { className: 'add-ex', onClick: function onClick() {
-	                                                    return _this2.showAddEx('plyometrics');
+	                                                    return _this2.showAddEx('plyos');
 	                                                } },
 	                                            'Add Exercise'
 	                                        )
@@ -404,7 +407,7 @@
 	                                        React.createElement(
 	                                            'span',
 	                                            { className: 'add-ex', onClick: function onClick() {
-	                                                    return _this2.showAddEx('sprints');
+	                                                    return _this2.showAddEx('sprinting');
 	                                                } },
 	                                            'Add Exercise'
 	                                        )
@@ -27529,6 +27532,21 @@
 	        $.ajax({
 	            type: "delete",
 	            url: url,
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(JSON.parse(response.responseJSON));
+	            }
+	        });
+	    },
+	
+	    addExercise: function (routineId, type, exId) {
+	        $.ajax({
+	            type: "post",
+	            url: "/daily_routines/" + routineId + "/" + type + "/" + exId + ".json",
 	            dataType: "json",
 	            contentType: "application/json; charset=utf-8",
 	            success: function (data) {
@@ -63253,7 +63271,7 @@
 	                                    );
 	                                }.bind(this))
 	                            )
-	                        )] : this.props.type == 'strength' ? this.props.exercises.exercises.map(function (e, index) {
+	                        )] : this.props.type == 'weights' ? this.props.exercises.exercises.map(function (e, index) {
 	                            return React.createElement(
 	                                'li',
 	                                { key: index },
@@ -63278,7 +63296,7 @@
 	                                    }.bind(this))
 	                                )
 	                            );
-	                        }.bind(this)) : this.props.type == 'plyometrics' ? this.props.exercises.plyometrics.map(function (e, index) {
+	                        }.bind(this)) : this.props.type == 'plyos' ? this.props.exercises.plyometrics.map(function (e, index) {
 	                            return React.createElement(
 	                                'li',
 	                                { key: index },
@@ -63288,7 +63306,7 @@
 	                                    e.name
 	                                )
 	                            );
-	                        }.bind(this)) : this.props.type == 'sprints' ? [React.createElement(
+	                        }.bind(this)) : this.props.type == 'sprinting' ? [React.createElement(
 	                            'li',
 	                            {
 	                                key: '0'

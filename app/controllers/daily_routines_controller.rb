@@ -102,7 +102,7 @@ class DailyRoutinesController < ApplicationController
       exercise = Exercise.find(params[:exercise_id])
       perf_ex = @daily_routine.add_weights(exercise, 1, 0)
       @daily_routine.note_weights_changed
-      render json: perf_ex, status: :created
+      render action: :show
     end
   end
 
@@ -114,7 +114,7 @@ class DailyRoutinesController < ApplicationController
       sprint = Sprint.find(params[:sprint_id])
       perf_sprint = @daily_routine.add_sprint(sprint.id, 1, 0)
       @daily_routine.note_sprints_changed
-      render json: perf_sprint, status: :created
+      render action: :show
     end
   end
 
@@ -126,7 +126,7 @@ class DailyRoutinesController < ApplicationController
       warmup = Warmup.find(params[:warmup_id])
       perf_wu = @daily_routine.add_warmup(warmup.id, 1, 0)
       @daily_routine.note_warmups_changed
-      render json: perf_wu, status: :created
+      render action: :show
     end
   end
 
@@ -138,7 +138,7 @@ class DailyRoutinesController < ApplicationController
       plyo = Plyometric.find(params[:plyometric_id])
       perf_plyo = @daily_routine.add_plyometric(plyo.id, 1, 0)
       @daily_routine.note_plyos_changed
-      render json: perf_plyo, status: :created
+      render action: :show
     end
   end
 

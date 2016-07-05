@@ -58,7 +58,7 @@ class SlidingMenu extends React.Component {
                                 </ul>
                             </li>
                         </When>
-                        <When condition={this.props.type == 'strength'} >
+                        <When condition={this.props.type == 'weights'} >
                             {
                                 this.props.exercises.exercises.map(function (e, index) {
                                     return <li key={index}>
@@ -74,14 +74,14 @@ class SlidingMenu extends React.Component {
                                 }.bind(this))
                             }
                         </When>
-                        <When condition={this.props.type == 'plyometrics'} >
+                        <When condition={this.props.type == 'plyos'} >
                             {
                                 this.props.exercises.plyometrics.map(function (e, index) {
                                     return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
                                 }.bind(this))
                             }
                         </When>
-                        <When condition={this.props.type == 'sprints'} >
+                        <When condition={this.props.type == 'sprinting'} >
                             <li>
                                 <a href="javascript:void(0)">Basketball Court</a>
                                 <ul className="dl-submenu">

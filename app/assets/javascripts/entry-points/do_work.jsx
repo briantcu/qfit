@@ -104,7 +104,8 @@ class DoWork extends React.Component {
     }
 
     addEx(e) {
-
+        RoutineActions.addExercise(this.state.routine.id, this.state.exercise_type, e);
+        this.setState({showAddEx: false});
     }
 
     closeAddEx() {
@@ -165,7 +166,7 @@ class DoWork extends React.Component {
                         <div className="strength sec container">
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Strength Training
-                                    <span className="add-ex" onClick={ () => this.showAddEx('strength')}>Add Exercise</span>
+                                    <span className="add-ex" onClick={ () => this.showAddEx('weights')}>Add Exercise</span>
                                 </div>
                             </div>
                             <div className="exercise-section">
@@ -190,7 +191,7 @@ class DoWork extends React.Component {
                         <div className="plyos sec container">
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Plyometrics
-                                    <span className="add-ex" onClick={ () => this.showAddEx('plyometrics')}>Add Exercise</span>
+                                    <span className="add-ex" onClick={ () => this.showAddEx('plyos')}>Add Exercise</span>
                                 </div>
                             </div>
                             <div className="exercise-section">
@@ -215,7 +216,7 @@ class DoWork extends React.Component {
                         <div className="sprinting sec container">
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Sprinting
-                                    <span className="add-ex" onClick={ () => this.showAddEx('sprints')}>Add Exercise</span>
+                                    <span className="add-ex" onClick={ () => this.showAddEx('sprinting')}>Add Exercise</span>
                                 </div>
                             </div>
                             <div className="exercise-section">
