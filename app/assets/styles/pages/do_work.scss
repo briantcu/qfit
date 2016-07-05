@@ -2,6 +2,16 @@
 
 .do-work {
 
+  .add-ex {
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: -0.3px;
+    color: $light-gray;
+    padding-top: 12px;
+    float: right;
+  }
+
   .vert-circle-check {
     margin-top: 20px;
     display: block;

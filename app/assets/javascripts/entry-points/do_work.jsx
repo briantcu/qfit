@@ -13,6 +13,7 @@ import Strength from 'views/do-work/strength';
 import Plyo from 'views/do-work/plyo';
 import Sprint from 'views/do-work/sprint';
 import C from 'constants/routine_constants';
+import MenuModal from 'views/do-work/menu_modal';
 
 require('pages/do_work.scss');
 
@@ -42,9 +43,13 @@ class DoWork extends React.Component {
             user: {},
             loading: true,
             date: today,
-            exercises: {}
+            exercises: {},
+            showAddEx: false,
+            exercise_type: undefined
         };
         this.onChange = this.onChange.bind(this);
+        this.addEx = this.addEx.bind(this);
+        this.closeAddEx = this.closeAddEx.bind(this);
     }
 
     componentDidMount () {
@@ -98,6 +103,18 @@ class DoWork extends React.Component {
         )
     }
 
+    addEx(e) {
+
+    }
+
+    closeAddEx() {
+        this.setState({showAddEx: false});
+    }
+
+    showAddEx(type) {
+        this.setState({showAddEx: true, exercise_type: type});
+    }
+
     render () {
         return <div className="do-work">
             <Header user={this.state.user} />
@@ -123,7 +140,8 @@ class DoWork extends React.Component {
 
                         <div className="stretching sec container">
                             <div className="row">
-                                <div className="col-xs-12 sec-header">Stretching/Warmup</div>
+                                <div className="col-xs-12 sec-header">Stretching/Warmup
+                                    <span className="add-ex" onClick={ () => this.showAddEx('warmups')}>Add Exercise</span></div>
                             </div>
                             <div className="exercise-section">
                                 <Choose>
@@ -143,7 +161,9 @@ class DoWork extends React.Component {
 
                         <div className="strength sec container">
                             <div className="row">
-                                <div className="col-xs-12 sec-header">Strength Training</div>
+                                <div className="col-xs-12 sec-header">Strength Training
+                                    <span className="add-ex" onClick={ () => this.showAddEx('strength')}>Add Exercise</span>
+                                </div>
                             </div>
                             <div className="exercise-section">
                                 <Choose>
@@ -163,7 +183,9 @@ class DoWork extends React.Component {
 
                         <div className="plyos sec container">
                             <div className="row">
-                                <div className="col-xs-12 sec-header">Plyometrics</div>
+                                <div className="col-xs-12 sec-header">Plyometrics
+                                    <span className="add-ex" onClick={ () => this.showAddEx('plyometrics')}>Add Exercise</span>
+                                </div>
                             </div>
                             <div className="exercise-section">
                                 <Choose>
@@ -183,7 +205,9 @@ class DoWork extends React.Component {
 
                         <div className="sprinting sec container">
                             <div className="row">
-                                <div className="col-xs-12 sec-header">Sprinting</div>
+                                <div className="col-xs-12 sec-header">Sprinting
+                                    <span className="add-ex" onClick={ () => this.showAddEx('sprints')}>Add Exercise</span>
+                                </div>
                             </div>
                             <div className="exercise-section">
                                 <Choose>
@@ -210,6 +234,7 @@ class DoWork extends React.Component {
                     </div>
                 </div>
             </div>
+            <MenuModal show={this.state.showAddEx} close={this.closeAddEx} click={this.addEx} exercises={this.state.exercises} type={this.state.exercise_type}/>
         </div>;
     }
 }

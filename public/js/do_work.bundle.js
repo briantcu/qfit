@@ -107,6 +107,10 @@
 	
 	var _routine_constants2 = _interopRequireDefault(_routine_constants);
 	
+	var _menu_modal = __webpack_require__(/*! views/do-work/menu_modal */ 540);
+	
+	var _menu_modal2 = _interopRequireDefault(_menu_modal);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -148,9 +152,13 @@
 	            user: {},
 	            loading: true,
 	            date: today,
-	            exercises: {}
+	            exercises: {},
+	            showAddEx: false,
+	            exercise_type: undefined
 	        };
 	        _this.onChange = _this.onChange.bind(_this);
+	        _this.addEx = _this.addEx.bind(_this);
+	        _this.closeAddEx = _this.closeAddEx.bind(_this);
 	        return _this;
 	    }
 	
@@ -209,8 +217,23 @@
 	            });
 	        }
 	    }, {
+	        key: 'addEx',
+	        value: function addEx(e) {}
+	    }, {
+	        key: 'closeAddEx',
+	        value: function closeAddEx() {
+	            this.setState({ showAddEx: false });
+	        }
+	    }, {
+	        key: 'showAddEx',
+	        value: function showAddEx(type) {
+	            this.setState({ showAddEx: true, exercise_type: type });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+	
 	            return React.createElement(
 	                'div',
 	                { className: 'do-work' },
@@ -275,7 +298,14 @@
 	                                    React.createElement(
 	                                        'div',
 	                                        { className: 'col-xs-12 sec-header' },
-	                                        'Stretching/Warmup'
+	                                        'Stretching/Warmup',
+	                                        React.createElement(
+	                                            'span',
+	                                            { className: 'add-ex', onClick: function onClick() {
+	                                                    return _this2.showAddEx('warmups');
+	                                                } },
+	                                            'Add Exercise'
+	                                        )
 	                                    )
 	                                ),
 	                                React.createElement(
@@ -299,7 +329,14 @@
 	                                    React.createElement(
 	                                        'div',
 	                                        { className: 'col-xs-12 sec-header' },
-	                                        'Strength Training'
+	                                        'Strength Training',
+	                                        React.createElement(
+	                                            'span',
+	                                            { className: 'add-ex', onClick: function onClick() {
+	                                                    return _this2.showAddEx('strength');
+	                                                } },
+	                                            'Add Exercise'
+	                                        )
 	                                    )
 	                                ),
 	                                React.createElement(
@@ -323,7 +360,14 @@
 	                                    React.createElement(
 	                                        'div',
 	                                        { className: 'col-xs-12 sec-header' },
-	                                        'Plyometrics'
+	                                        'Plyometrics',
+	                                        React.createElement(
+	                                            'span',
+	                                            { className: 'add-ex', onClick: function onClick() {
+	                                                    return _this2.showAddEx('plyometrics');
+	                                                } },
+	                                            'Add Exercise'
+	                                        )
 	                                    )
 	                                ),
 	                                React.createElement(
@@ -347,7 +391,14 @@
 	                                    React.createElement(
 	                                        'div',
 	                                        { className: 'col-xs-12 sec-header' },
-	                                        'Sprinting'
+	                                        'Sprinting',
+	                                        React.createElement(
+	                                            'span',
+	                                            { className: 'add-ex', onClick: function onClick() {
+	                                                    return _this2.showAddEx('sprints');
+	                                                } },
+	                                            'Add Exercise'
+	                                        )
 	                                    )
 	                                ),
 	                                React.createElement(
@@ -377,7 +428,8 @@
 	                            )
 	                        )
 	                    )
-	                )
+	                ),
+	                React.createElement(_menu_modal2.default, { show: this.state.showAddEx, close: this.closeAddEx, click: this.addEx, exercises: this.state.exercises, type: this.state.exercise_type })
 	            );
 	        }
 	    }]);

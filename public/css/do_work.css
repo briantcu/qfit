@@ -1533,6 +1533,15 @@ h1 {
   text-decoration: underline;
   cursor: pointer; }
 
+.do-work .add-ex {
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: -0.3px;
+  color: #9fa9ba;
+  padding-top: 12px;
+  float: right; }
+
 .do-work .vert-circle-check {
   margin-top: 20px;
   display: block;
