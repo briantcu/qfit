@@ -115,6 +115,13 @@ class SlidingMenu extends React.Component {
                                 </ul>
                             </li>
                         </When>
+                        <Otherwise>
+                            {
+                                this.props.exercise_subset.map(function (e, index) {
+                                    return <li key={index}><a data-id={e.id} className="dl-link" href="#">{e.name}</a></li>
+                                }.bind(this))
+                            }
+                        </Otherwise>
                     </Choose>
                 </ul>
             </div>

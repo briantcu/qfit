@@ -15,8 +15,28 @@ class Sprint extends React.Component {
         this.swap = this.swap.bind(this);
         this.state = {
             showTips: false,
-            showSwap: false
+            showSwap: false,
+            similar: this.getSimilar(props)
         }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        var exercises = this.getSimilar(nextProps);
+        this.setState({similar: exercises});
+    }
+
+    getSimilar(props) {
+        var exercises = [];
+        if (props.exercises.sprints) {
+            if (props.exercise.sprint.sprint_type == 3) {
+                exercises = props.exercises.sprints.treadmill;
+            } else if (props.exercise.sprint.sprint_type == 2) {
+                exercises = props.exercises.sprints.basketball_court;
+            } else {
+                exercises = props.exercises.sprints.treadmill;
+            }
+        }
+        return exercises
     }
 
     change(e) {
@@ -70,7 +90,8 @@ class Sprint extends React.Component {
             </div>
 
             <TipsModal show={this.state.showTips} tips={this.props.exercise.sprint.tips} close={this.close} />
-            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props} type="sprints"/>
+            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props}
+                       exercise_subset={this.state.similar} />
         </div>
     }
 }

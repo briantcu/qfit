@@ -1540,7 +1540,8 @@ h1 {
   letter-spacing: -0.3px;
   color: #9fa9ba;
   padding-top: 12px;
-  float: right; }
+  float: right;
+  margin-right: 20px; }
 
 .do-work .vert-circle-check {
   margin-top: 20px;

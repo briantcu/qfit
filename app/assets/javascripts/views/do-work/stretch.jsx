@@ -19,11 +19,32 @@ class Stretch extends React.Component {
         this.showVideo = this.showVideo.bind(this);
         this.showSwap = this.showSwap.bind(this);
         this.swap = this.swap.bind(this);
+
         this.state = {
             showTips: false,
             showVideo: false,
-            showSwap: false
+            showSwap: false,
+            similar: this.getSimilar(props)
         };
+    }
+
+    getSimilar(props) {
+        var exercises = [];
+        if (props.exercises.warmups) {
+            if (props.exercise.warmup.ex_type == 3) {
+                exercises = props.exercises.warmups.warm_up;
+            } else if (props.exercise.warmup.ex_type == 2) {
+                exercises = props.exercises.warmups.dynamic_stretch;
+            } else {
+                exercises = props.exercises.warmups.static_stretch;
+            }
+        }
+        return exercises
+    }
+
+    componentWillReceiveProps(nextProps) {
+        var exercises = this.getSimilar(nextProps);
+        this.setState({similar: exercises});
     }
 
     change(elem) {
@@ -75,9 +96,8 @@ class Stretch extends React.Component {
 
             <TipsModal show={this.state.showTips} tips={this.props.exercise.warmup.tips} close={this.close} />
             <VideoModal show={this.state.showVideo} link={this.props.exercise.warmup.video_link} close={this.closeVideo} />
-            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props} type="warmups"/>
-
-
+            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props}
+                       exercise_subset={this.state.similar}/>
         </div>
     }
 }

@@ -39679,15 +39679,38 @@
 	        _this.showVideo = _this.showVideo.bind(_this);
 	        _this.showSwap = _this.showSwap.bind(_this);
 	        _this.swap = _this.swap.bind(_this);
+	
 	        _this.state = {
 	            showTips: false,
 	            showVideo: false,
-	            showSwap: false
+	            showSwap: false,
+	            similar: _this.getSimilar(props)
 	        };
 	        return _this;
 	    }
 	
 	    _createClass(Stretch, [{
+	        key: 'getSimilar',
+	        value: function getSimilar(props) {
+	            var exercises = [];
+	            if (props.exercises.warmups) {
+	                if (props.exercise.warmup.ex_type == 3) {
+	                    exercises = props.exercises.warmups.warm_up;
+	                } else if (props.exercise.warmup.ex_type == 2) {
+	                    exercises = props.exercises.warmups.dynamic_stretch;
+	                } else {
+	                    exercises = props.exercises.warmups.static_stretch;
+	                }
+	            }
+	            return exercises;
+	        }
+	    }, {
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(nextProps) {
+	            var exercises = this.getSimilar(nextProps);
+	            this.setState({ similar: exercises });
+	        }
+	    }, {
 	        key: 'change',
 	        value: function change(elem) {
 	            var check = this.refs.complete;
@@ -39791,7 +39814,8 @@
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.warmup.tips, close: this.close }),
 	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.warmup.video_link, close: this.closeVideo }),
-	                React.createElement(_menu_modal2.default, _extends({ show: this.state.showSwap, close: this.closeSwap, click: this.swap }, this.props, { type: 'warmups' }))
+	                React.createElement(_menu_modal2.default, _extends({ show: this.state.showSwap, close: this.closeSwap, click: this.swap }, this.props, {
+	                    exercise_subset: this.state.similar }))
 	            );
 	        }
 	    }]);
@@ -63228,7 +63252,17 @@
 	                                    );
 	                                }.bind(this))
 	                            )
-	                        )] : null
+	                        )] : this.props.exercise_subset.map(function (e, index) {
+	                            return React.createElement(
+	                                'li',
+	                                { key: index },
+	                                React.createElement(
+	                                    'a',
+	                                    { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                    e.name
+	                                )
+	                            );
+	                        }.bind(this))
 	                    )
 	                )
 	            );
@@ -63403,12 +63437,28 @@
 	        _this.state = {
 	            showTips: false,
 	            showVideo: false,
-	            showSwap: false
+	            showSwap: false,
+	            similar: _this.getSimilar(props)
 	        };
 	        return _this;
 	    }
 	
 	    _createClass(Strength, [{
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(nextProps) {
+	            var exercises = this.getSimilar(nextProps);
+	            this.setState({ similar: exercises });
+	        }
+	    }, {
+	        key: 'getSimilar',
+	        value: function getSimilar(props) {
+	            var exercises = [];
+	            if (props.exercises.exercises) {
+	                exercises = props.exercises.exercises[this.props.exercise.exercise_type.id - 1].exercises;
+	            }
+	            return exercises;
+	        }
+	    }, {
 	        key: 'showTips',
 	        value: function showTips() {
 	            this.setState({ showTips: true });
@@ -63512,7 +63562,8 @@
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.exercise.tips, close: this.close }),
 	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.exercise.video_link, close: this.closeVideo }),
-	                React.createElement(_menu_modal2.default, _extends({ show: this.state.showSwap, close: this.closeSwap, click: this.swap }, this.props, { type: 'strength' }))
+	                React.createElement(_menu_modal2.default, _extends({ show: this.state.showSwap, close: this.closeSwap, click: this.swap }, this.props, {
+	                    exercise_subset: this.state.similar }))
 	            );
 	        }
 	    }]);
@@ -63959,12 +64010,34 @@
 	        _this.swap = _this.swap.bind(_this);
 	        _this.state = {
 	            showTips: false,
-	            showSwap: false
+	            showSwap: false,
+	            similar: _this.getSimilar(props)
 	        };
 	        return _this;
 	    }
 	
 	    _createClass(Sprint, [{
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(nextProps) {
+	            var exercises = this.getSimilar(nextProps);
+	            this.setState({ similar: exercises });
+	        }
+	    }, {
+	        key: 'getSimilar',
+	        value: function getSimilar(props) {
+	            var exercises = [];
+	            if (props.exercises.sprints) {
+	                if (props.exercise.sprint.sprint_type == 3) {
+	                    exercises = props.exercises.sprints.treadmill;
+	                } else if (props.exercise.sprint.sprint_type == 2) {
+	                    exercises = props.exercises.sprints.basketball_court;
+	                } else {
+	                    exercises = props.exercises.sprints.treadmill;
+	                }
+	            }
+	            return exercises;
+	        }
+	    }, {
 	        key: 'change',
 	        value: function change(e) {
 	            var check = this.refs[e.target.id];
@@ -64067,7 +64140,8 @@
 	                    }.bind(this))
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.sprint.tips, close: this.close }),
-	                React.createElement(_menu_modal2.default, _extends({ show: this.state.showSwap, close: this.closeSwap, click: this.swap }, this.props, { type: 'sprints' }))
+	                React.createElement(_menu_modal2.default, _extends({ show: this.state.showSwap, close: this.closeSwap, click: this.swap }, this.props, {
+	                    exercise_subset: this.state.similar }))
 	            );
 	        }
 	    }]);

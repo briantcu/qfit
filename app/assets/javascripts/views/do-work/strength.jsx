@@ -20,8 +20,22 @@ class Strength extends React.Component {
         this.state = {
             showTips: false,
             showVideo: false,
-            showSwap: false
+            showSwap: false,
+            similar: this.getSimilar(props)
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        var exercises = this.getSimilar(nextProps);
+        this.setState({similar: exercises});
+    }
+
+    getSimilar(props) {
+        var exercises = [];
+        if (props.exercises.exercises) {
+            exercises = props.exercises.exercises[this.props.exercise.exercise_type.id - 1].exercises;
+        }
+        return exercises
     }
 
     showTips() {
@@ -73,8 +87,8 @@ class Strength extends React.Component {
 
             <TipsModal show={this.state.showTips} tips={this.props.exercise.exercise.tips} close={this.close} />
             <VideoModal show={this.state.showVideo} link={this.props.exercise.exercise.video_link} close={this.closeVideo} />
-            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props} type="strength"/>
-
+            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props}
+                       exercise_subset={this.state.similar} />
         </div>
     }
 }
