@@ -75,7 +75,7 @@ class Stretch extends React.Component {
 
             <TipsModal show={this.state.showTips} tips={this.props.exercise.warmup.tips} close={this.close} />
             <VideoModal show={this.state.showVideo} link={this.props.exercise.warmup.video_link} close={this.closeVideo} />
-            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} />
+            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props} type="warmups"/>
 
 
         </div>

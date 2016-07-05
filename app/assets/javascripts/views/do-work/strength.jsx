@@ -4,6 +4,7 @@ import WeightSet from 'views/do-work/weight_set';
 import VertCircleCheck from 'views/common/vert_circle_check';
 import TipsModal from 'views/do-work/tips_modal';
 import VideoModal from 'views/do-work/video_modal';
+import MenuModal from 'views/do-work/menu_modal';
 
 require('views/do-work/strength.scss');
 
@@ -13,26 +14,37 @@ class Strength extends React.Component {
         this.close = this.close.bind(this);
         this.showVideo = this.showVideo.bind(this);
         this.closeVideo = this.closeVideo.bind(this);
+        this.showSwap = this.showSwap.bind(this);
+        this.closeSwap = this.closeSwap.bind(this);
+        this.swap = this.swap.bind(this);
         this.state = {
             showTips: false,
-            showVideo: false
+            showVideo: false,
+            showSwap: false
         };
     }
 
     showTips() {
         this.setState({showTips: true});
     }
-
     close() {
         this.setState({showTips: false});
     }
-
     showVideo() {
         this.setState({showVideo: true});
     }
-
     closeVideo() {
         this.setState({showVideo: false});
+    }
+    showSwap() {
+        this.setState({showSwap: true});
+    }
+    closeSwap() {
+        this.setState({showSwap: false});
+    }
+
+    swap(exercise) {
+        this.setState({showSwap: false});
     }
 
     render() {
@@ -46,7 +58,7 @@ class Strength extends React.Component {
                     <div className="ex-subtext">Rest for {this.props.exercise.rest_period} seconds between sets </div>
                     <div className="ex-subtext">
                         <u className="link" onClick={ () => this.showTips()}>Read Tips</u> |
-                        <u className="link">Swap</u> |
+                        <u className="link" onClick={ () => this.showSwap()}>Swap</u> |
                         <u className="link">Delete</u>
                     </div>
                 </span>
@@ -61,6 +73,7 @@ class Strength extends React.Component {
 
             <TipsModal show={this.state.showTips} tips={this.props.exercise.exercise.tips} close={this.close} />
             <VideoModal show={this.state.showVideo} link={this.props.exercise.exercise.video_link} close={this.closeVideo} />
+            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props} type="strength"/>
 
         </div>
     }

@@ -49,8 +49,6 @@
 
 	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
 	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 33);
@@ -149,7 +147,8 @@
 	            routine: {},
 	            user: {},
 	            loading: true,
-	            date: today
+	            date: today,
+	            exercises: {}
 	        };
 	        _this.onChange = _this.onChange.bind(_this);
 	        return _this;
@@ -283,7 +282,7 @@
 	                                    'div',
 	                                    { className: 'exercise-section' },
 	                                    this.state.routine && this.state.routine.performed_warm_ups && this.state.routine.performed_warm_ups.length > 0 ? this.state.routine.performed_warm_ups.map(function (e, index) {
-	                                        return React.createElement(_stretch2.default, _extends({}, this.props, { exercise: e, key: e.id, border: index != 0 }));
+	                                        return React.createElement(_stretch2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0 });
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
 	                                        null,
@@ -307,7 +306,7 @@
 	                                    'div',
 	                                    { className: 'exercise-section' },
 	                                    this.state.routine && this.state.routine.performed_exercises && this.state.routine.performed_exercises.length > 0 ? this.state.routine.performed_exercises.map(function (e, index) {
-	                                        return React.createElement(_strength2.default, _extends({}, this.props, { exercise: e, key: e.id, border: index != 0 }));
+	                                        return React.createElement(_strength2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0 });
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
 	                                        null,
@@ -331,7 +330,7 @@
 	                                    'div',
 	                                    { className: 'exercise-section' },
 	                                    this.state.routine && this.state.routine.performed_plyometrics && this.state.routine.performed_plyometrics.length > 0 ? this.state.routine.performed_plyometrics.map(function (e, index) {
-	                                        return React.createElement(_plyo2.default, _extends({}, this.props, { exercise: e, key: e.id, border: index != 0 }));
+	                                        return React.createElement(_plyo2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0 });
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
 	                                        null,
@@ -355,7 +354,7 @@
 	                                    'div',
 	                                    { className: 'exercise-section' },
 	                                    this.state.routine && this.state.routine.performed_sprints && this.state.routine.performed_sprints.length > 0 ? this.state.routine.performed_sprints.map(function (e, index) {
-	                                        return React.createElement(_sprint2.default, _extends({}, this.props, { exercise: e, key: e.id, border: index != 0 }));
+	                                        return React.createElement(_sprint2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0 });
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
 	                                        null,
@@ -39571,6 +39570,8 @@
 	    value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 94);
@@ -39738,7 +39739,7 @@
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.warmup.tips, close: this.close }),
 	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.warmup.video_link, close: this.closeVideo }),
-	                React.createElement(_menu_modal2.default, { show: this.state.showSwap, close: this.closeSwap, click: this.swap })
+	                React.createElement(_menu_modal2.default, _extends({ show: this.state.showSwap, close: this.closeSwap, click: this.swap }, this.props, { type: 'warmups' }))
 	            );
 	        }
 	    }]);
@@ -62907,7 +62908,7 @@
 	                React.createElement(
 	                    _reactBootstrap.Modal.Body,
 	                    null,
-	                    React.createElement(_sliding_menu2.default, { click: this.props.click })
+	                    React.createElement(_sliding_menu2.default, this.props)
 	                ),
 	                React.createElement(
 	                    _reactBootstrap.Modal.Footer,
@@ -62990,193 +62991,192 @@
 	                    React.createElement(
 	                        'ul',
 	                        { className: 'dl-menu dl-menuopen' },
-	                        React.createElement(
+	                        this.props.type == 'warmups' ? [React.createElement(
 	                            'li',
-	                            null,
+	                            {
+	                                key: '0'
+	                            },
 	                            React.createElement(
 	                                'a',
 	                                { href: '#' },
-	                                'Fashion'
+	                                'Warmup'
 	                            ),
 	                            React.createElement(
 	                                'ul',
 	                                { className: 'dl-submenu' },
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Men'
-	                                    ),
-	                                    React.createElement(
-	                                        'ul',
-	                                        { className: 'dl-submenu' },
+	                                this.props.exercises.warmups.warm_up.map(function (e, index) {
+	                                    return React.createElement(
+	                                        'li',
+	                                        { key: index },
 	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Shirts'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Jackets'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Chinos & Trousers'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Jeans'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'T-Shirts'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Underwear'
-	                                            )
+	                                            'a',
+	                                            { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                            e.name
 	                                        )
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Women'
-	                                    ),
-	                                    React.createElement(
-	                                        'ul',
-	                                        { className: 'dl-submenu' },
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Jackets'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Knits'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Jeans'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Dresses'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Blouses'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'T-Shirts'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Underwear'
-	                                            )
-	                                        )
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'li',
-	                                    null,
-	                                    React.createElement(
-	                                        'a',
-	                                        { href: '#' },
-	                                        'Children'
-	                                    ),
-	                                    React.createElement(
-	                                        'ul',
-	                                        { className: 'dl-submenu' },
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { 'data-id': '3', className: 'dl-link', href: '#' },
-	                                                'Boys'
-	                                            )
-	                                        ),
-	                                        React.createElement(
-	                                            'li',
-	                                            null,
-	                                            React.createElement(
-	                                                'a',
-	                                                { href: '#' },
-	                                                'Girls'
-	                                            )
-	                                        )
-	                                    )
-	                                )
+	                                    );
+	                                }.bind(this))
 	                            )
-	                        )
+	                        ), React.createElement(
+	                            'li',
+	                            {
+	                                key: '1'
+	                            },
+	                            React.createElement(
+	                                'a',
+	                                { href: '#' },
+	                                'Dynamic Stretch'
+	                            ),
+	                            React.createElement(
+	                                'ul',
+	                                { className: 'dl-submenu' },
+	                                this.props.exercises.warmups.dynamic_stretch.map(function (e, index) {
+	                                    return React.createElement(
+	                                        'li',
+	                                        { key: index },
+	                                        React.createElement(
+	                                            'a',
+	                                            { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                            e.name
+	                                        )
+	                                    );
+	                                }.bind(this))
+	                            )
+	                        ), React.createElement(
+	                            'li',
+	                            {
+	                                key: '2'
+	                            },
+	                            React.createElement(
+	                                'a',
+	                                { href: '#' },
+	                                'Static Stretch'
+	                            ),
+	                            React.createElement(
+	                                'ul',
+	                                { className: 'dl-submenu' },
+	                                this.props.exercises.warmups.static_stretch.map(function (e, index) {
+	                                    return React.createElement(
+	                                        'li',
+	                                        { key: index },
+	                                        React.createElement(
+	                                            'a',
+	                                            { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                            e.name
+	                                        )
+	                                    );
+	                                }.bind(this))
+	                            )
+	                        )] : this.props.type == 'strength' ? this.props.exercises.exercises.map(function (e, index) {
+	                            return React.createElement(
+	                                'li',
+	                                { key: index },
+	                                React.createElement(
+	                                    'a',
+	                                    { href: '#' },
+	                                    e.type_name
+	                                ),
+	                                React.createElement(
+	                                    'ul',
+	                                    { className: 'dl-submenu' },
+	                                    e.exercises.map(function (e, index) {
+	                                        return React.createElement(
+	                                            'li',
+	                                            { key: index },
+	                                            React.createElement(
+	                                                'a',
+	                                                { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                                e.name
+	                                            )
+	                                        );
+	                                    }.bind(this))
+	                                )
+	                            );
+	                        }.bind(this)) : this.props.type == 'plyometrics' ? this.props.exercises.plyometrics.map(function (e, index) {
+	                            return React.createElement(
+	                                'li',
+	                                { key: index },
+	                                React.createElement(
+	                                    'a',
+	                                    { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                    e.name
+	                                )
+	                            );
+	                        }.bind(this)) : this.props.type == 'sprints' ? [React.createElement(
+	                            'li',
+	                            {
+	                                key: '0'
+	                            },
+	                            React.createElement(
+	                                'a',
+	                                { href: '#' },
+	                                'Basketball Court'
+	                            ),
+	                            React.createElement(
+	                                'ul',
+	                                { className: 'dl-submenu' },
+	                                this.props.exercises.sprints.basketball_court.map(function (e, index) {
+	                                    return React.createElement(
+	                                        'li',
+	                                        { key: index },
+	                                        React.createElement(
+	                                            'a',
+	                                            { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                            e.name
+	                                        )
+	                                    );
+	                                }.bind(this))
+	                            )
+	                        ), React.createElement(
+	                            'li',
+	                            {
+	                                key: '1'
+	                            },
+	                            React.createElement(
+	                                'a',
+	                                { href: '#' },
+	                                'Track'
+	                            ),
+	                            React.createElement(
+	                                'ul',
+	                                { className: 'dl-submenu' },
+	                                this.props.exercises.sprints.track.map(function (e, index) {
+	                                    return React.createElement(
+	                                        'li',
+	                                        { key: index },
+	                                        React.createElement(
+	                                            'a',
+	                                            { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                            e.name
+	                                        )
+	                                    );
+	                                }.bind(this))
+	                            )
+	                        ), React.createElement(
+	                            'li',
+	                            {
+	                                key: '2'
+	                            },
+	                            React.createElement(
+	                                'a',
+	                                { href: '#' },
+	                                'Treadmill'
+	                            ),
+	                            React.createElement(
+	                                'ul',
+	                                { className: 'dl-submenu' },
+	                                this.props.exercises.sprints.treadmill.map(function (e, index) {
+	                                    return React.createElement(
+	                                        'li',
+	                                        { key: index },
+	                                        React.createElement(
+	                                            'a',
+	                                            { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                            e.name
+	                                        )
+	                                    );
+	                                }.bind(this))
+	                            )
+	                        )] : null
 	                    )
 	                )
 	            );
@@ -63294,6 +63294,8 @@
 	    value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 94);
@@ -63318,6 +63320,10 @@
 	
 	var _video_modal2 = _interopRequireDefault(_video_modal);
 	
+	var _menu_modal = __webpack_require__(/*! views/do-work/menu_modal */ 540);
+	
+	var _menu_modal2 = _interopRequireDefault(_menu_modal);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63339,9 +63345,13 @@
 	        _this.close = _this.close.bind(_this);
 	        _this.showVideo = _this.showVideo.bind(_this);
 	        _this.closeVideo = _this.closeVideo.bind(_this);
+	        _this.showSwap = _this.showSwap.bind(_this);
+	        _this.closeSwap = _this.closeSwap.bind(_this);
+	        _this.swap = _this.swap.bind(_this);
 	        _this.state = {
 	            showTips: false,
-	            showVideo: false
+	            showVideo: false,
+	            showSwap: false
 	        };
 	        return _this;
 	    }
@@ -63365,6 +63375,21 @@
 	        key: 'closeVideo',
 	        value: function closeVideo() {
 	            this.setState({ showVideo: false });
+	        }
+	    }, {
+	        key: 'showSwap',
+	        value: function showSwap() {
+	            this.setState({ showSwap: true });
+	        }
+	    }, {
+	        key: 'closeSwap',
+	        value: function closeSwap() {
+	            this.setState({ showSwap: false });
+	        }
+	    }, {
+	        key: 'swap',
+	        value: function swap(exercise) {
+	            this.setState({ showSwap: false });
 	        }
 	    }, {
 	        key: 'render',
@@ -63412,7 +63437,9 @@
 	                            ' |',
 	                            React.createElement(
 	                                'u',
-	                                { className: 'link' },
+	                                { className: 'link', onClick: function onClick() {
+	                                        return _this2.showSwap();
+	                                    } },
 	                                'Swap'
 	                            ),
 	                            ' |',
@@ -63432,7 +63459,8 @@
 	                    }.bind(this))
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.exercise.tips, close: this.close }),
-	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.exercise.video_link, close: this.closeVideo })
+	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.exercise.video_link, close: this.closeVideo }),
+	                React.createElement(_menu_modal2.default, _extends({ show: this.state.showSwap, close: this.closeSwap, click: this.swap }, this.props, { type: 'strength' }))
 	            );
 	        }
 	    }]);
@@ -63592,6 +63620,8 @@
 	    value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 94);
@@ -63611,6 +63641,10 @@
 	var _video_modal = __webpack_require__(/*! views/do-work/video_modal */ 539);
 	
 	var _video_modal2 = _interopRequireDefault(_video_modal);
+	
+	var _menu_modal = __webpack_require__(/*! views/do-work/menu_modal */ 540);
+	
+	var _menu_modal2 = _interopRequireDefault(_menu_modal);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -63634,9 +63668,13 @@
 	        _this.change = _this.change.bind(_this);
 	        _this.showVideo = _this.showVideo.bind(_this);
 	        _this.closeVideo = _this.closeVideo.bind(_this);
+	        _this.showSwap = _this.showSwap.bind(_this);
+	        _this.closeSwap = _this.closeSwap.bind(_this);
+	        _this.swap = _this.swap.bind(_this);
 	        _this.state = {
 	            showTips: false,
-	            showVideo: false
+	            showVideo: false,
+	            showSwap: false
 	        };
 	        return _this;
 	    }
@@ -63666,6 +63704,21 @@
 	        key: 'closeVideo',
 	        value: function closeVideo() {
 	            this.setState({ showVideo: false });
+	        }
+	    }, {
+	        key: 'showSwap',
+	        value: function showSwap() {
+	            this.setState({ showSwap: true });
+	        }
+	    }, {
+	        key: 'closeSwap',
+	        value: function closeSwap() {
+	            this.setState({ showSwap: false });
+	        }
+	    }, {
+	        key: 'swap',
+	        value: function swap(exercise) {
+	            this.setState({ showSwap: false });
 	        }
 	    }, {
 	        key: 'render',
@@ -63707,7 +63760,9 @@
 	                            ' |',
 	                            React.createElement(
 	                                'u',
-	                                { className: 'link' },
+	                                { className: 'link', onClick: function onClick() {
+	                                        return _this2.showSwap();
+	                                    } },
 	                                'Swap'
 	                            ),
 	                            ' |',
@@ -63738,7 +63793,8 @@
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.plyometric.tips, close: this.close }),
-	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.plyometric.video_link, close: this.closeVideo })
+	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.plyometric.video_link, close: this.closeVideo }),
+	                React.createElement(_menu_modal2.default, _extends({ show: this.state.showSwap, close: this.closeSwap, click: this.swap }, this.props, { type: 'plyometrics' }))
 	            );
 	        }
 	    }]);
@@ -63808,6 +63864,8 @@
 	    value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 94);
@@ -63819,6 +63877,10 @@
 	var _tips_modal = __webpack_require__(/*! views/do-work/tips_modal */ 538);
 	
 	var _tips_modal2 = _interopRequireDefault(_tips_modal);
+	
+	var _menu_modal = __webpack_require__(/*! views/do-work/menu_modal */ 540);
+	
+	var _menu_modal2 = _interopRequireDefault(_menu_modal);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -63840,8 +63902,12 @@
 	
 	        _this.change = _this.change.bind(_this);
 	        _this.close = _this.close.bind(_this);
+	        _this.showSwap = _this.showSwap.bind(_this);
+	        _this.closeSwap = _this.closeSwap.bind(_this);
+	        _this.swap = _this.swap.bind(_this);
 	        _this.state = {
-	            showTips: false
+	            showTips: false,
+	            showSwap: false
 	        };
 	        return _this;
 	    }
@@ -63861,6 +63927,21 @@
 	        key: 'close',
 	        value: function close() {
 	            this.setState({ showTips: false });
+	        }
+	    }, {
+	        key: 'showSwap',
+	        value: function showSwap() {
+	            this.setState({ showSwap: true });
+	        }
+	    }, {
+	        key: 'closeSwap',
+	        value: function closeSwap() {
+	            this.setState({ showSwap: false });
+	        }
+	    }, {
+	        key: 'swap',
+	        value: function swap(exercise) {
+	            this.setState({ showSwap: false });
 	        }
 	    }, {
 	        key: 'render',
@@ -63897,7 +63978,9 @@
 	                                ' |',
 	                                React.createElement(
 	                                    'u',
-	                                    { className: 'link' },
+	                                    { className: 'link', onClick: function onClick() {
+	                                            return _this2.showSwap();
+	                                        } },
 	                                    'Swap'
 	                                ),
 	                                ' |',
@@ -63931,7 +64014,8 @@
 	                        );
 	                    }.bind(this))
 	                ),
-	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.sprint.tips, close: this.close })
+	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.sprint.tips, close: this.close }),
+	                React.createElement(_menu_modal2.default, _extends({ show: this.state.showSwap, close: this.closeSwap, click: this.swap }, this.props, { type: 'sprints' }))
 	            );
 	        }
 	    }]);

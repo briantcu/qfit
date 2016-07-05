@@ -15,7 +15,7 @@ class MenuModal extends React.Component {
                 <Modal.Title>Choose an exercise</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <SlidingMenu click={this.props.click}/>
+                <SlidingMenu {...this.props} />
             </Modal.Body>
             <Modal.Footer>
                 <Button buttonText="Close" onClick={this.props.close}>Close</Button>

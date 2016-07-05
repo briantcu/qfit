@@ -1,6 +1,7 @@
 import {render} from 'react-dom';
 import VertCircleCheck from 'views/common/vert_circle_check';
 import TipsModal from 'views/do-work/tips_modal';
+import MenuModal from 'views/do-work/menu_modal';
 
 require('views/do-work/sprint.scss');
 
@@ -9,8 +10,12 @@ class Sprint extends React.Component {
         super(props);
         this.change = this.change.bind(this);
         this.close = this.close.bind(this);
+        this.showSwap = this.showSwap.bind(this);
+        this.closeSwap = this.closeSwap.bind(this);
+        this.swap = this.swap.bind(this);
         this.state = {
-            showTips: false
+            showTips: false,
+            showSwap: false
         }
     }
 
@@ -18,13 +23,20 @@ class Sprint extends React.Component {
         var check = this.refs[e.target.id];
         var checked = check.getValue();
     }
-
     showTips() {
         this.setState({showTips: true});
     }
-
     close() {
         this.setState({showTips: false});
+    }
+    showSwap() {
+        this.setState({showSwap: true});
+    }
+    closeSwap() {
+        this.setState({showSwap: false});
+    }
+    swap(exercise) {
+        this.setState({showSwap: false});
     }
 
     render() {
@@ -35,7 +47,7 @@ class Sprint extends React.Component {
                         <div className="ex-name">{this.props.exercise.sprint.name}</div>
                         <div className="ex-subtext">
                             <u className="link" onClick={ () => this.showTips()}>Read Tips</u> |
-                            <u className="link">Swap</u> |
+                            <u className="link" onClick={ () => this.showSwap()} >Swap</u> |
                             <u className="link">Delete</u>
                         </div>
                     </span>
@@ -58,7 +70,7 @@ class Sprint extends React.Component {
             </div>
 
             <TipsModal show={this.state.showTips} tips={this.props.exercise.sprint.tips} close={this.close} />
-
+            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props} type="sprints"/>
         </div>
     }
 }

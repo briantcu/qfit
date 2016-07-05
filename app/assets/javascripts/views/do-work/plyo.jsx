@@ -3,6 +3,7 @@ import Thumbnail from 'views/do-work/thumbnail';
 import VertCircleCheck from 'views/common/vert_circle_check';
 import TipsModal from 'views/do-work/tips_modal';
 import VideoModal from 'views/do-work/video_modal';
+import MenuModal from 'views/do-work/menu_modal';
 
 require('views/do-work/plyo.scss');
 
@@ -13,9 +14,13 @@ class Plyo extends React.Component {
         this.change = this.change.bind(this);
         this.showVideo = this.showVideo.bind(this);
         this.closeVideo = this.closeVideo.bind(this);
+        this.showSwap = this.showSwap.bind(this);
+        this.closeSwap = this.closeSwap.bind(this);
+        this.swap = this.swap.bind(this);
         this.state = {
             showTips: false,
-            showVideo: false
+            showVideo: false,
+            showSwap: false
         };
     }
 
@@ -26,18 +31,24 @@ class Plyo extends React.Component {
     close() {
         this.setState({showTips: false});
     }
-
     change(elem) {
         var check = this.refs[elem.target.id];
         var checked = check.getValue();
     }
-
     showVideo() {
         this.setState({showVideo: true});
     }
-
     closeVideo() {
         this.setState({showVideo: false});
+    }
+    showSwap() {
+        this.setState({showSwap: true});
+    }
+    closeSwap() {
+        this.setState({showSwap: false});
+    }
+    swap(exercise) {
+        this.setState({showSwap: false});
     }
 
     render() {
@@ -50,7 +61,7 @@ class Plyo extends React.Component {
                     <div className="ex-subtext">Recommended: {this.props.exercise.plyometric.recommended}</div>
                     <div className="ex-subtext">
                         <u className="link" onClick={ () => this.showTips()}>Read Tips</u> |
-                        <u className="link">Swap</u> |
+                        <u className="link" onClick={ () => this.showSwap()} >Swap</u> |
                         <u className="link">Delete</u>
                     </div>
                 </span>
@@ -70,7 +81,7 @@ class Plyo extends React.Component {
 
             <TipsModal show={this.state.showTips} tips={this.props.exercise.plyometric.tips} close={this.close} />
             <VideoModal show={this.state.showVideo} link={this.props.exercise.plyometric.video_link} close={this.closeVideo} />
-
+            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props} type="plyometrics"/>
         </div>
     }
 }

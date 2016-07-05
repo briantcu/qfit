@@ -23,41 +23,99 @@ class SlidingMenu extends React.Component {
         return <div className="row sliding-menu">
             <div ref="menu" className="dl-menuwrapper">
                 <ul className="dl-menu dl-menuopen">
-                    <li>
-                        <a href="#">Fashion</a>
-                        <ul className="dl-submenu">
+                    <Choose>
+                        <When condition={this.props.type == 'warmups'}>
                             <li>
-                                <a href="#">Men</a>
+                                <a href="#">Warmup</a>
                                 <ul className="dl-submenu">
-                                    <li><a href="#">Shirts</a></li>
-                                    <li><a href="#">Jackets</a></li>
-                                    <li><a href="#">Chinos &amp; Trousers</a></li>
-                                    <li><a href="#">Jeans</a></li>
-                                    <li><a href="#">T-Shirts</a></li>
-                                    <li><a href="#">Underwear</a></li>
+                                    {
+                                        this.props.exercises.warmups.warm_up.map(function (e, index) {
+                                            return <li key={index}><a data-id={e.id} className="dl-link" href="#">{e.name}</a></li>
+                                        }.bind(this))
+                                    }
                                 </ul>
                             </li>
+
                             <li>
-                                <a href="#">Women</a>
+                                <a href="#">Dynamic Stretch</a>
                                 <ul className="dl-submenu">
-                                    <li><a href="#">Jackets</a></li>
-                                    <li><a href="#">Knits</a></li>
-                                    <li><a href="#">Jeans</a></li>
-                                    <li><a href="#">Dresses</a></li>
-                                    <li><a href="#">Blouses</a></li>
-                                    <li><a href="#">T-Shirts</a></li>
-                                    <li><a href="#">Underwear</a></li>
+                                    {
+                                        this.props.exercises.warmups.dynamic_stretch.map(function(e, index) {
+                                    return <li key={index}><a data-id={e.id} className="dl-link" href="#">{e.name}</a></li>
+                                }.bind(this))
+                                    }
                                 </ul>
                             </li>
+
                             <li>
-                                <a href="#">Children</a>
+                                <a href="#">Static Stretch</a>
                                 <ul className="dl-submenu">
-                                    <li><a data-id="3" className="dl-link" href="#">Boys</a></li>
-                                    <li><a href="#">Girls</a></li>
+                                    {
+                                        this.props.exercises.warmups.static_stretch.map(function (e, index) {
+                                            return <li key={index}><a data-id={e.id} className="dl-link" href="#">{e.name}</a></li>
+                                        }.bind(this))
+                                    }
                                 </ul>
                             </li>
-                        </ul>
-                    </li>
+                        </When>
+                        <When condition={this.props.type == 'strength'} >
+                            {
+                                this.props.exercises.exercises.map(function (e, index) {
+                                    return <li key={index}>
+                                        <a href="#">{e.type_name}</a>
+                                        <ul className="dl-submenu">
+                                            {
+                                                e.exercises.map(function (e, index) {
+                                                    return <li key={index}><a data-id={e.id} className="dl-link" href="#">{e.name}</a></li>
+                                                }.bind(this))
+                                            }
+                                        </ul>
+                                    </li>
+                                }.bind(this))
+                            }
+                        </When>
+                        <When condition={this.props.type == 'plyometrics'} >
+                            {
+                                this.props.exercises.plyometrics.map(function (e, index) {
+                                    return <li key={index}><a data-id={e.id} className="dl-link" href="#">{e.name}</a></li>
+                                }.bind(this))
+                            }
+                        </When>
+                        <When condition={this.props.type == 'sprints'} >
+                            <li>
+                                <a href="#">Basketball Court</a>
+                                <ul className="dl-submenu">
+                                    {
+                                        this.props.exercises.sprints.basketball_court.map(function (e, index) {
+                                            return <li key={index}><a data-id={e.id} className="dl-link" href="#">{e.name}</a></li>
+                                        }.bind(this))
+                                    }
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#">Track</a>
+                                <ul className="dl-submenu">
+                                    {
+                                        this.props.exercises.sprints.track.map(function(e, index) {
+                                            return <li key={index}><a data-id={e.id} className="dl-link" href="#">{e.name}</a></li>
+                                        }.bind(this))
+                                    }
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#">Treadmill</a>
+                                <ul className="dl-submenu">
+                                    {
+                                        this.props.exercises.sprints.treadmill.map(function (e, index) {
+                                            return <li key={index}><a data-id={e.id} className="dl-link" href="#">{e.name}</a></li>
+                                        }.bind(this))
+                                    }
+                                </ul>
+                            </li>
+                        </When>
+                    </Choose>
                 </ul>
             </div>
         </div>
