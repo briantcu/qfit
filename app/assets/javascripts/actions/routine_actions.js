@@ -37,19 +37,71 @@ var RoutineActions = {
     },
 
     swapWarmup: function(peid, exid) {
-        console.log(peid + ', ' + exid);
+        var payload = JSON.stringify({performed_warm_up: { warmup_id: exid}});
+        $.ajax({
+            type: 'put',
+            url: '/performed_warm_ups/'+peid+'.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: payload,
+            success: function(data) {
+                dispatcher.dispatch(C.ROUTINE_LOADED, data)
+            },
+            error: function(response) {
+                alert(JSON.parse(response.responseJSON));
+            }
+        });
     },
 
     swapStrength: function(peid, exid) {
-        console.log(peid + ', ' + exid);
+        var payload = JSON.stringify({performed_exercise: { exercise_id: exid}});
+        $.ajax({
+            type: 'put',
+            url: '/performed_exercises/'+peid+'.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: payload,
+            success: function(data) {
+                dispatcher.dispatch(C.ROUTINE_LOADED, data)
+            },
+            error: function(response) {
+                alert(JSON.parse(response.responseJSON));
+            }
+        });
     },
 
     swapPlyo: function(peid, exid) {
-        console.log(peid + ', ' + exid);
+        var payload = JSON.stringify({performed_plyometric: { plyometric_id: exid}});
+        $.ajax({
+            type: 'put',
+            url: '/performed_plyometrics/'+peid+'.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: payload,
+            success: function(data) {
+                dispatcher.dispatch(C.ROUTINE_LOADED, data)
+            },
+            error: function(response) {
+                alert(JSON.parse(response.responseJSON));
+            }
+        });
     },
 
     swapSprint: function(peid, exid) {
-        console.log(peid + ', ' + exid);
+        var payload = JSON.stringify({performed_sprint: { sprint_id: exid}});
+        $.ajax({
+            type: 'put',
+            url: '/performed_sprints/'+peid+'.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: payload,
+            success: function(data) {
+                dispatcher.dispatch(C.ROUTINE_LOADED, data)
+            },
+            error: function(response) {
+                alert(JSON.parse(response.responseJSON));
+            }
+        });
     }
 };
 

@@ -26,7 +26,8 @@ class PerformedWarmUpsController < ApplicationController
   # PATCH/PUT /performed_warm_ups/1.json
   def update
     if @performed_warm_up.update(performed_warm_up_params)
-      render action: 'show', status: :ok, location: @performed_warm_up
+      @daily_routine = @performed_warm_up.daily_routine
+      render 'daily_routines/show'
     else
       render json: @performed_warm_up.errors, status: :unprocessable_entity
     end
@@ -41,7 +42,8 @@ class PerformedWarmUpsController < ApplicationController
       @performed_warm_up.save
       @performed_warm_up.daily_routine.note_warmups_changed
     end
-    render json: {success: true}
+    @daily_routine = @performed_warm_up.daily_routine
+    render 'daily_routines/show'
   end
 
   private

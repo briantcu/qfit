@@ -26,7 +26,8 @@ class PerformedSprintsController < ApplicationController
   def update
     need_to_create_laps = (@performed_sprint.sprint_id != params[:performed_sprint][:sprint_id])
     if @performed_sprint.update_ex(performed_sprint_params, need_to_create_laps)
-      render action: 'show', status: :ok, location: @performed_sprint
+      @daily_routine = @performed_sprint.daily_routine
+      render 'daily_routines/show'
     else
       render json: @performed_sprint.errors, status: :unprocessable_entity
     end
@@ -41,7 +42,8 @@ class PerformedSprintsController < ApplicationController
       @performed_sprint.save
       @performed_sprint.daily_routine.note_sprints_changed
     end
-    render json: {success: true}
+    @daily_routine = @performed_sprint.daily_routine
+    render 'daily_routines/show'
   end
 
   private

@@ -28,7 +28,8 @@ class PerformedPlyometricsController < ApplicationController
   # PATCH/PUT /performed_plyometrics/1.json
   def update
     if @performed_plyometric.update(performed_plyometric_params)
-      render action: 'show', status: :ok, location: @performed_plyometric
+      @daily_routine = @performed_plyometric.daily_routine
+      render 'daily_routines/show'
     else
       render json: @performed_plyometric.errors, status: :unprocessable_entity
     end
@@ -44,7 +45,8 @@ class PerformedPlyometricsController < ApplicationController
       @performed_plyometric.daily_routine.note_plyos_changed
     end
 
-    render json: {success: true}
+    @daily_routine = @performed_plyometric.daily_routine
+    render 'daily_routines/show'
   end
 
   private

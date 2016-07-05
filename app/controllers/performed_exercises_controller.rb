@@ -29,7 +29,8 @@ class PerformedExercisesController < ApplicationController
   def update
     need_to_create_sets = (@performed_exercise.exercise_id != params[:performed_exercise][:exercise_id])
     if @performed_exercise.update_ex(performed_exercise_params, need_to_create_sets)
-      render action: 'show', status: :ok, location: @performed_exercise
+      @daily_routine = @performed_exercise.daily_routine
+      render 'daily_routines/show'
     else
       render json: @performed_exercise.errors, status: :unprocessable_entity
     end
@@ -44,7 +45,8 @@ class PerformedExercisesController < ApplicationController
       @performed_exercise.daily_routine.note_weights_changed
     end
 
-    render json: {success: true}
+    @daily_routine = @performed_exercise.daily_routine
+    render 'daily_routines/show'
   end
 
   private

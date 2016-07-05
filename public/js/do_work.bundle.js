@@ -27445,19 +27445,71 @@
 	    },
 	
 	    swapWarmup: function (peid, exid) {
-	        console.log(peid + ", " + exid);
+	        var payload = JSON.stringify({ performed_warm_up: { warmup_id: exid } });
+	        $.ajax({
+	            type: "put",
+	            url: "/performed_warm_ups/" + peid + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            data: payload,
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(JSON.parse(response.responseJSON));
+	            }
+	        });
 	    },
 	
 	    swapStrength: function (peid, exid) {
-	        console.log(peid + ", " + exid);
+	        var payload = JSON.stringify({ performed_exercise: { exercise_id: exid } });
+	        $.ajax({
+	            type: "put",
+	            url: "/performed_exercises/" + peid + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            data: payload,
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(JSON.parse(response.responseJSON));
+	            }
+	        });
 	    },
 	
 	    swapPlyo: function (peid, exid) {
-	        console.log(peid + ", " + exid);
+	        var payload = JSON.stringify({ performed_plyometric: { plyometric_id: exid } });
+	        $.ajax({
+	            type: "put",
+	            url: "/performed_plyometrics/" + peid + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            data: payload,
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(JSON.parse(response.responseJSON));
+	            }
+	        });
 	    },
 	
 	    swapSprint: function (peid, exid) {
-	        console.log(peid + ", " + exid);
+	        var payload = JSON.stringify({ performed_sprint: { sprint_id: exid } });
+	        $.ajax({
+	            type: "put",
+	            url: "/performed_sprints/" + peid + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            data: payload,
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(JSON.parse(response.responseJSON));
+	            }
+	        });
 	    }
 	};
 	
@@ -63095,7 +63147,7 @@
 	                            },
 	                            React.createElement(
 	                                'a',
-	                                { href: '#' },
+	                                { href: 'javascript:void(0)' },
 	                                'Warmup'
 	                            ),
 	                            React.createElement(
@@ -63107,7 +63159,7 @@
 	                                        { key: index },
 	                                        React.createElement(
 	                                            'a',
-	                                            { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                            { 'data-id': e.id, className: 'dl-link', href: 'javascript:void(0)' },
 	                                            e.name
 	                                        )
 	                                    );
@@ -63120,7 +63172,7 @@
 	                            },
 	                            React.createElement(
 	                                'a',
-	                                { href: '#' },
+	                                { href: 'javascript:void(0)' },
 	                                'Dynamic Stretch'
 	                            ),
 	                            React.createElement(
@@ -63132,7 +63184,7 @@
 	                                        { key: index },
 	                                        React.createElement(
 	                                            'a',
-	                                            { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                            { 'data-id': e.id, className: 'dl-link', href: 'javascript:void(0)' },
 	                                            e.name
 	                                        )
 	                                    );
@@ -63145,7 +63197,7 @@
 	                            },
 	                            React.createElement(
 	                                'a',
-	                                { href: '#' },
+	                                { href: 'javascript:void(0)' },
 	                                'Static Stretch'
 	                            ),
 	                            React.createElement(
@@ -63157,7 +63209,7 @@
 	                                        { key: index },
 	                                        React.createElement(
 	                                            'a',
-	                                            { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                            { 'data-id': e.id, className: 'dl-link', href: 'javascript:void(0)' },
 	                                            e.name
 	                                        )
 	                                    );
@@ -63169,7 +63221,7 @@
 	                                { key: index },
 	                                React.createElement(
 	                                    'a',
-	                                    { href: '#' },
+	                                    { href: 'javascript:void(0)' },
 	                                    e.type_name
 	                                ),
 	                                React.createElement(
@@ -63181,7 +63233,7 @@
 	                                            { key: index },
 	                                            React.createElement(
 	                                                'a',
-	                                                { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                                { 'data-id': e.id, className: 'dl-link', href: 'javascript:void(0)' },
 	                                                e.name
 	                                            )
 	                                        );
@@ -63194,7 +63246,7 @@
 	                                { key: index },
 	                                React.createElement(
 	                                    'a',
-	                                    { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                    { 'data-id': e.id, className: 'dl-link', href: 'javascript:void(0)' },
 	                                    e.name
 	                                )
 	                            );
@@ -63205,7 +63257,7 @@
 	                            },
 	                            React.createElement(
 	                                'a',
-	                                { href: '#' },
+	                                { href: 'javascript:void(0)' },
 	                                'Basketball Court'
 	                            ),
 	                            React.createElement(
@@ -63217,7 +63269,7 @@
 	                                        { key: index },
 	                                        React.createElement(
 	                                            'a',
-	                                            { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                            { 'data-id': e.id, className: 'dl-link', href: 'javascript:void(0)' },
 	                                            e.name
 	                                        )
 	                                    );
@@ -63230,7 +63282,7 @@
 	                            },
 	                            React.createElement(
 	                                'a',
-	                                { href: '#' },
+	                                { href: 'javascript:void(0)' },
 	                                'Track'
 	                            ),
 	                            React.createElement(
@@ -63242,7 +63294,7 @@
 	                                        { key: index },
 	                                        React.createElement(
 	                                            'a',
-	                                            { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                            { 'data-id': e.id, className: 'dl-link', href: 'javascript:void(0)' },
 	                                            e.name
 	                                        )
 	                                    );
@@ -63255,7 +63307,7 @@
 	                            },
 	                            React.createElement(
 	                                'a',
-	                                { href: '#' },
+	                                { href: 'javascript:void(0)' },
 	                                'Treadmill'
 	                            ),
 	                            React.createElement(
@@ -63267,7 +63319,7 @@
 	                                        { key: index },
 	                                        React.createElement(
 	                                            'a',
-	                                            { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                            { 'data-id': e.id, className: 'dl-link', href: 'javascript:void(0)' },
 	                                            e.name
 	                                        )
 	                                    );
@@ -63279,7 +63331,7 @@
 	                                { key: index },
 	                                React.createElement(
 	                                    'a',
-	                                    { 'data-id': e.id, className: 'dl-link', href: '#' },
+	                                    { 'data-id': e.id, className: 'dl-link', href: 'javascript:void(0)' },
 	                                    e.name
 	                                )
 	                            );
