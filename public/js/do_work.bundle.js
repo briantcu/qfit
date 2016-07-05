@@ -27442,6 +27442,22 @@
 	                }
 	            }
 	        });
+	    },
+	
+	    swapWarmup: function (peid, exid) {
+	        console.log(peid + ", " + exid);
+	    },
+	
+	    swapStrength: function (peid, exid) {
+	        console.log(peid + ", " + exid);
+	    },
+	
+	    swapPlyo: function (peid, exid) {
+	        console.log(peid + ", " + exid);
+	    },
+	
+	    swapSprint: function (peid, exid) {
+	        console.log(peid + ", " + exid);
 	    }
 	};
 	
@@ -39654,6 +39670,10 @@
 	
 	var _menu_modal2 = _interopRequireDefault(_menu_modal);
 	
+	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 238);
+	
+	var _routine_actions2 = _interopRequireDefault(_routine_actions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39749,6 +39769,7 @@
 	    }, {
 	        key: 'swap',
 	        value: function swap(exercise) {
+	            _routine_actions2.default.swapWarmup(this.props.exercise.id, exercise);
 	            this.setState({ showSwap: false });
 	        }
 	    }, {
@@ -63410,6 +63431,10 @@
 	
 	var _menu_modal2 = _interopRequireDefault(_menu_modal);
 	
+	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 238);
+	
+	var _routine_actions2 = _interopRequireDefault(_routine_actions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63491,6 +63516,7 @@
 	    }, {
 	        key: 'swap',
 	        value: function swap(exercise) {
+	            _routine_actions2.default.swapStrength(this.props.exercise.id, exercise);
 	            this.setState({ showSwap: false });
 	        }
 	    }, {
@@ -63749,6 +63775,10 @@
 	
 	var _menu_modal2 = _interopRequireDefault(_menu_modal);
 	
+	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 238);
+	
+	var _routine_actions2 = _interopRequireDefault(_routine_actions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63821,6 +63851,7 @@
 	    }, {
 	        key: 'swap',
 	        value: function swap(exercise) {
+	            _routine_actions2.default.swapPlyo(this.props.exercise.id, exercise);
 	            this.setState({ showSwap: false });
 	        }
 	    }, {
@@ -63985,6 +64016,10 @@
 	
 	var _menu_modal2 = _interopRequireDefault(_menu_modal);
 	
+	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 238);
+	
+	var _routine_actions2 = _interopRequireDefault(_routine_actions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -64066,6 +64101,7 @@
 	    }, {
 	        key: 'swap',
 	        value: function swap(exercise) {
+	            _routine_actions2.default.swapSprint(this.props.exercise.id, exercise);
 	            this.setState({ showSwap: false });
 	        }
 	    }, {

@@ -6,6 +6,7 @@ import Button from 'views/common/button';
 import TipsModal from 'views/do-work/tips_modal';
 import VideoModal from 'views/do-work/video_modal';
 import MenuModal from 'views/do-work/menu_modal';
+import RoutineActions from 'actions/routine_actions';
 
 require('views/do-work/stretch.scss');
 
@@ -71,6 +72,7 @@ class Stretch extends React.Component {
     }
 
     swap(exercise) {
+        RoutineActions.swapWarmup(this.props.exercise.id, exercise);
         this.setState({showSwap: false});
     }
 

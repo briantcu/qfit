@@ -5,6 +5,7 @@ import VertCircleCheck from 'views/common/vert_circle_check';
 import TipsModal from 'views/do-work/tips_modal';
 import VideoModal from 'views/do-work/video_modal';
 import MenuModal from 'views/do-work/menu_modal';
+import RoutineActions from 'actions/routine_actions';
 
 require('views/do-work/strength.scss');
 
@@ -58,6 +59,7 @@ class Strength extends React.Component {
     }
 
     swap(exercise) {
+        RoutineActions.swapStrength(this.props.exercise.id, exercise);
         this.setState({showSwap: false});
     }
 

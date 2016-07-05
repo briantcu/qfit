@@ -34,6 +34,22 @@ var RoutineActions = {
                 }
             }
         });
+    },
+
+    swapWarmup: function(peid, exid) {
+        console.log(peid + ', ' + exid);
+    },
+
+    swapStrength: function(peid, exid) {
+        console.log(peid + ', ' + exid);
+    },
+
+    swapPlyo: function(peid, exid) {
+        console.log(peid + ', ' + exid);
+    },
+
+    swapSprint: function(peid, exid) {
+        console.log(peid + ', ' + exid);
     }
 };
 
