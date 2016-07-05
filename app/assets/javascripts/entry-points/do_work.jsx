@@ -148,6 +148,9 @@ class DoWork extends React.Component {
                                     <When condition={this.state.routine && this.state.routine.performed_warm_ups && this.state.routine.performed_warm_ups.length > 0}>
                                         {
                                             this.state.routine.performed_warm_ups.map(function(e, index) {
+                                                if (e.status == 2) {
+                                                    return;
+                                                }
                                                 return <Stretch exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}/>
                                             }.bind(this))
                                         }
@@ -170,6 +173,9 @@ class DoWork extends React.Component {
                                     <When condition={this.state.routine && this.state.routine.performed_exercises && this.state.routine.performed_exercises.length > 0}>
                                         {
                                             this.state.routine.performed_exercises.map(function(e, index) {
+                                                if (e.status == 2) {
+                                                    return;
+                                                }
                                                 return <Strength exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}/>
                                             }.bind(this))
                                         }
@@ -192,6 +198,9 @@ class DoWork extends React.Component {
                                     <When condition={this.state.routine && this.state.routine.performed_plyometrics && this.state.routine.performed_plyometrics.length > 0}>
                                         {
                                             this.state.routine.performed_plyometrics.map(function(e, index) {
+                                                if (e.status == 2) {
+                                                    return;
+                                                }
                                                 return <Plyo exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}/>
                                             }.bind(this))
                                         }
@@ -214,6 +223,9 @@ class DoWork extends React.Component {
                                     <When condition={this.state.routine && this.state.routine.performed_sprints && this.state.routine.performed_sprints.length > 0}>
                                         {
                                             this.state.routine.performed_sprints.map(function(e, index) {
+                                                if (e.status == 2) {
+                                                    return;
+                                                }
                                                 return <Sprint exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}/>
                                             }.bind(this))
                                         }

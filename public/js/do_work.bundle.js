@@ -312,6 +312,9 @@
 	                                    'div',
 	                                    { className: 'exercise-section' },
 	                                    this.state.routine && this.state.routine.performed_warm_ups && this.state.routine.performed_warm_ups.length > 0 ? this.state.routine.performed_warm_ups.map(function (e, index) {
+	                                        if (e.status == 2) {
+	                                            return;
+	                                        }
 	                                        return React.createElement(_stretch2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0 });
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
@@ -343,6 +346,9 @@
 	                                    'div',
 	                                    { className: 'exercise-section' },
 	                                    this.state.routine && this.state.routine.performed_exercises && this.state.routine.performed_exercises.length > 0 ? this.state.routine.performed_exercises.map(function (e, index) {
+	                                        if (e.status == 2) {
+	                                            return;
+	                                        }
 	                                        return React.createElement(_strength2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0 });
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
@@ -374,6 +380,9 @@
 	                                    'div',
 	                                    { className: 'exercise-section' },
 	                                    this.state.routine && this.state.routine.performed_plyometrics && this.state.routine.performed_plyometrics.length > 0 ? this.state.routine.performed_plyometrics.map(function (e, index) {
+	                                        if (e.status == 2) {
+	                                            return;
+	                                        }
 	                                        return React.createElement(_plyo2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0 });
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
@@ -405,6 +414,9 @@
 	                                    'div',
 	                                    { className: 'exercise-section' },
 	                                    this.state.routine && this.state.routine.performed_sprints && this.state.routine.performed_sprints.length > 0 ? this.state.routine.performed_sprints.map(function (e, index) {
+	                                        if (e.status == 2) {
+	                                            return;
+	                                        }
 	                                        return React.createElement(_sprint2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0 });
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
