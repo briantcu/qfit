@@ -50,7 +50,6 @@ class Stretch extends React.Component {
     }
 
     swap(exercise) {
-        console.log(exercise);
         this.setState({showSwap: false});
     }
 

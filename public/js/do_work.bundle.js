@@ -65,6 +65,10 @@
 	
 	var _user_store2 = _interopRequireDefault(_user_store);
 	
+	var _exercise_store = __webpack_require__(/*! stores/exercise_store */ 670);
+	
+	var _exercise_store2 = _interopRequireDefault(_exercise_store);
+	
 	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 238);
 	
 	var _routine_actions2 = _interopRequireDefault(_routine_actions);
@@ -72,6 +76,10 @@
 	var _user_actions = __webpack_require__(/*! actions/user_actions */ 240);
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
+	
+	var _exercise_actions = __webpack_require__(/*! actions/exercise_actions */ 672);
+	
+	var _exercise_actions2 = _interopRequireDefault(_exercise_actions);
 	
 	var _header = __webpack_require__(/*! views/common/header */ 241);
 	
@@ -152,6 +160,7 @@
 	        value: function componentDidMount() {
 	            _routine_store2.default.addChangeListener(this.onChange.bind(this));
 	            _user_store2.default.addChangeListener(this.onChange);
+	            _exercise_store2.default.addChangeListener(this.onChange);
 	            this.load();
 	        }
 	    }, {
@@ -167,12 +176,14 @@
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
 	            _user_store2.default.removeChangeListener(this.onChange);
+	            _exercise_store2.default.removeChangeListener(this.onChange);
 	            _routine_store2.default.removeChangeListener(this.onChange.bind(this));
 	        }
 	    }, {
 	        key: 'load',
 	        value: function load() {
 	            _user_actions2.default.getUser(gon.current_user_id);
+	            _exercise_actions2.default.getExercises();
 	            var lastMonth = new Date(this.state.date.getTime());
 	            lastMonth.setMonth(lastMonth.getMonth() - 1);
 	            var nextMonth = new Date(this.state.date.getTime());
@@ -187,13 +198,15 @@
 	        value: function onChange() {
 	            var data = _routine_store2.default.getData();
 	            var user = _user_store2.default.getData();
+	            var exercises = _exercise_store2.default.getData();
 	            this.setState({
 	                calendar: data.calendar,
 	                prev_calendar: data.prev_calendar,
 	                next_calendar: data.next_calendar,
 	                routine: data.routine,
 	                loading: data.loading,
-	                user: user.user
+	                user: user.user,
+	                exercises: exercises
 	            });
 	        }
 	    }, {
@@ -27379,7 +27392,6 @@
 	            }
 	        });
 	    }
-	
 	};
 	
 	module.exports = RoutineActions;
@@ -39661,7 +39673,6 @@
 	    }, {
 	        key: 'swap',
 	        value: function swap(exercise) {
-	            console.log(exercise);
 	            this.setState({ showSwap: false });
 	        }
 	    }, {
@@ -64022,6 +64033,265 @@
 	
 	// exports
 
+
+/***/ },
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */,
+/* 566 */,
+/* 567 */,
+/* 568 */,
+/* 569 */,
+/* 570 */,
+/* 571 */,
+/* 572 */,
+/* 573 */,
+/* 574 */,
+/* 575 */,
+/* 576 */,
+/* 577 */,
+/* 578 */,
+/* 579 */,
+/* 580 */,
+/* 581 */,
+/* 582 */,
+/* 583 */,
+/* 584 */,
+/* 585 */,
+/* 586 */,
+/* 587 */,
+/* 588 */,
+/* 589 */,
+/* 590 */,
+/* 591 */,
+/* 592 */,
+/* 593 */,
+/* 594 */,
+/* 595 */,
+/* 596 */,
+/* 597 */,
+/* 598 */,
+/* 599 */,
+/* 600 */,
+/* 601 */,
+/* 602 */,
+/* 603 */,
+/* 604 */,
+/* 605 */,
+/* 606 */,
+/* 607 */,
+/* 608 */,
+/* 609 */,
+/* 610 */,
+/* 611 */,
+/* 612 */,
+/* 613 */,
+/* 614 */,
+/* 615 */,
+/* 616 */,
+/* 617 */,
+/* 618 */,
+/* 619 */,
+/* 620 */,
+/* 621 */,
+/* 622 */,
+/* 623 */,
+/* 624 */,
+/* 625 */,
+/* 626 */,
+/* 627 */,
+/* 628 */,
+/* 629 */,
+/* 630 */,
+/* 631 */,
+/* 632 */,
+/* 633 */,
+/* 634 */,
+/* 635 */,
+/* 636 */,
+/* 637 */,
+/* 638 */,
+/* 639 */,
+/* 640 */,
+/* 641 */,
+/* 642 */,
+/* 643 */,
+/* 644 */,
+/* 645 */,
+/* 646 */,
+/* 647 */,
+/* 648 */,
+/* 649 */,
+/* 650 */,
+/* 651 */,
+/* 652 */,
+/* 653 */,
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */
+/*!**********************************!*\
+  !*** ./stores/exercise_store.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 230);
+	var Store = __webpack_require__(/*! ./store.js */ 232);
+	var C = __webpack_require__(/*! constants/exercise_constants.js */ 671);
+	
+	var ExerciseStore = new Store({
+	    plyometrics: [],
+	    warmups: [],
+	    exercises: [],
+	    sprints: [],
+	
+	    setPlyos: function (data) {
+	        this.plyometrics = data;
+	    },
+	
+	    setWarmups: function (data) {
+	        this.warmups = data;
+	    },
+	
+	    setExercises: function (data) {
+	        this.exercises = data;
+	    },
+	
+	    setSprints: function (data) {
+	        this.sprints = data;
+	    },
+	
+	    getData: function () {
+	        return {
+	            plyometrics: this.plyometrics,
+	            warmups: this.warmups,
+	            exercises: this.exercises,
+	            sprints: this.sprints
+	        };
+	    }
+	});
+	
+	dispatcher.register(C.STRENGTH_LOADED, function (data) {
+	    if (data) {
+	        ExerciseStore.setExercises(data);
+	        ExerciseStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.WARMUPS_LOADED, function (data) {
+	    if (data) {
+	        ExerciseStore.setWarmups(data);
+	        ExerciseStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.PLYOS_LOADED, function (data) {
+	    if (data) {
+	        ExerciseStore.setPlyos(data);
+	        ExerciseStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.SPRINTS_LOADED, function (data) {
+	    if (data) {
+	        ExerciseStore.setSprints(data);
+	        ExerciseStore.change();
+	    }
+	});
+	
+	module.exports = ExerciseStore;
+
+/***/ },
+/* 671 */
+/*!*****************************************!*\
+  !*** ./constants/exercise_constants.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 235);
+	
+	module.exports = keyMirror({
+	    GET_EXERCISES: null,
+	    STRENGTH_LOADED: null,
+	    WARMUPS_LOADED: null,
+	    PLYOS_LOADED: null,
+	    SPRINTS_LOADED: null
+	});
+
+/***/ },
+/* 672 */
+/*!*************************************!*\
+  !*** ./actions/exercise_actions.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 230);
+	var C = __webpack_require__(/*! constants/exercise_constants.js */ 671);
+	
+	var ExerciseActions = {
+	
+	    getExercises: function () {
+	        $.ajax({
+	            type: "get",
+	            url: "/warmups.json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.WARMUPS_LOADED, data);
+	            }
+	        });
+	        $.ajax({
+	            type: "get",
+	            url: "/plyometrics.json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.PLYOS_LOADED, data);
+	            }
+	        });
+	        $.ajax({
+	            type: "get",
+	            url: "/exercise_types.json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.STRENGTH_LOADED, data);
+	            }
+	        });
+	        $.ajax({
+	            type: "get",
+	            url: "/sprints.json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.SPRINTS_LOADED, data);
+	            }
+	        });
+	    }
+	};
+	
+	module.exports = ExerciseActions;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 239)))
 
 /***/ }
 /******/ ]);

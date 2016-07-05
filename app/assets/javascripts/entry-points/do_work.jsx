@@ -2,8 +2,10 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 import {render} from 'react-dom';
 import RoutineStore from 'stores/routine_store';
 import UserStore from 'stores/user_store';
+import ExerciseStore from 'stores/exercise_store';
 import RoutineActions from 'actions/routine_actions';
 import UserActions from 'actions/user_actions';
+import ExerciseActions from 'actions/exercise_actions';
 import Header from 'views/common/header';
 import Calendar from 'views/do-work/calendar';
 import Stretch from 'views/do-work/stretch';
@@ -47,6 +49,7 @@ class DoWork extends React.Component {
     componentDidMount () {
         RoutineStore.addChangeListener(this.onChange.bind(this));
         UserStore.addChangeListener(this.onChange);
+        ExerciseStore.addChangeListener(this.onChange);
         this.load();
     }
 
@@ -60,11 +63,13 @@ class DoWork extends React.Component {
 
     componentWillUnmount () {
         UserStore.removeChangeListener(this.onChange);
+        ExerciseStore.removeChangeListener(this.onChange);
         RoutineStore.removeChangeListener(this.onChange.bind(this));
     }
 
     load() {
         UserActions.getUser(gon.current_user_id);
+        ExerciseActions.getExercises();
         var lastMonth = new Date(this.state.date.getTime());
         lastMonth.setMonth(lastMonth.getMonth() - 1);
         var nextMonth = new Date(this.state.date.getTime());
@@ -78,6 +83,7 @@ class DoWork extends React.Component {
     onChange () {
         var data = RoutineStore.getData();
         var user = UserStore.getData();
+        var exercises = ExerciseStore.getData();
         this.setState(
             {
                 calendar: data.calendar,
@@ -85,7 +91,8 @@ class DoWork extends React.Component {
                 next_calendar: data.next_calendar,
                 routine: data.routine,
                 loading: data.loading,
-                user: user.user
+                user: user.user,
+                exercises: exercises
             }
         )
     }

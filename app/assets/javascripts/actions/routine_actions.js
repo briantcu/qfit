@@ -35,7 +35,6 @@ var RoutineActions = {
             }
         });
     }
-
 };
 
 export default RoutineActions;
