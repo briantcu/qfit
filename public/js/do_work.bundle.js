@@ -27510,6 +27510,22 @@
 	                alert(JSON.parse(response.responseJSON));
 	            }
 	        });
+	    },
+	
+	    deleteExercise: function (type, peid) {
+	        var url = "/performed_" + type + "/" + peid + ".json";
+	        $.ajax({
+	            type: "delete",
+	            url: url,
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(JSON.parse(response.responseJSON));
+	            }
+	        });
 	    }
 	};
 	
@@ -39825,6 +39841,14 @@
 	            this.setState({ showSwap: false });
 	        }
 	    }, {
+	        key: 'delete',
+	        value: function _delete() {
+	            var r = confirm("Are you sure you want to remove this exercise?");
+	            if (r == true) {
+	                _routine_actions2.default.deleteExercise('warm_ups', this.props.exercise.id);
+	            }
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -39873,7 +39897,9 @@
 	                            ' |',
 	                            React.createElement(
 	                                'u',
-	                                { className: 'link' },
+	                                { className: 'link', onClick: function onClick() {
+	                                        return _this2.delete();
+	                                    } },
 	                                'Delete'
 	                            )
 	                        )
@@ -63572,6 +63598,14 @@
 	            this.setState({ showSwap: false });
 	        }
 	    }, {
+	        key: 'delete',
+	        value: function _delete() {
+	            var r = confirm("Are you sure you want to remove this exercise?");
+	            if (r == true) {
+	                _routine_actions2.default.deleteExercise('exercises', this.props.exercise.id);
+	            }
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -63625,7 +63659,9 @@
 	                            ' |',
 	                            React.createElement(
 	                                'u',
-	                                { className: 'link' },
+	                                { className: 'link', onClick: function onClick() {
+	                                        return _this2.delete();
+	                                    } },
 	                                'Delete'
 	                            )
 	                        )
@@ -63907,6 +63943,14 @@
 	            this.setState({ showSwap: false });
 	        }
 	    }, {
+	        key: 'delete',
+	        value: function _delete() {
+	            var r = confirm("Are you sure you want to remove this exercise?");
+	            if (r == true) {
+	                _routine_actions2.default.deleteExercise('plyometrics', this.props.exercise.id);
+	            }
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -63954,7 +63998,9 @@
 	                            ' |',
 	                            React.createElement(
 	                                'u',
-	                                { className: 'link' },
+	                                { className: 'link', onClick: function onClick() {
+	                                        return _this2.delete();
+	                                    } },
 	                                'Delete'
 	                            )
 	                        )
@@ -64157,6 +64203,14 @@
 	            this.setState({ showSwap: false });
 	        }
 	    }, {
+	        key: 'delete',
+	        value: function _delete() {
+	            var r = confirm("Are you sure you want to remove this exercise?");
+	            if (r == true) {
+	                _routine_actions2.default.deleteExercise('sprints', this.props.exercise.id);
+	            }
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -64199,7 +64253,9 @@
 	                                ' |',
 	                                React.createElement(
 	                                    'u',
-	                                    { className: 'link' },
+	                                    { className: 'link', onClick: function onClick() {
+	                                            return _this2.delete();
+	                                        } },
 	                                    'Delete'
 	                                )
 	                            )

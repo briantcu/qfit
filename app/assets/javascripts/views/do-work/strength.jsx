@@ -63,6 +63,13 @@ class Strength extends React.Component {
         this.setState({showSwap: false});
     }
 
+    delete() {
+        var r=confirm("Are you sure you want to remove this exercise?");
+        if (r==true) {
+            RoutineActions.deleteExercise('exercises', this.props.exercise.id);
+        }
+    }
+
     render() {
         var classes = (this.props.border) ? 'strength exercise row top-border' : 'strength exercise row';
         return <div className={classes} >
@@ -75,7 +82,7 @@ class Strength extends React.Component {
                     <div className="ex-subtext">
                         <u className="link" onClick={ () => this.showTips()}>Read Tips</u> |
                         <u className="link" onClick={ () => this.showSwap()}>Swap</u> |
-                        <u className="link">Delete</u>
+                        <u className="link" onClick={ () => this.delete()}>Delete</u>
                     </div>
                 </span>
             </div>

@@ -61,6 +61,13 @@ class Sprint extends React.Component {
         this.setState({showSwap: false});
     }
 
+    delete() {
+        var r=confirm("Are you sure you want to remove this exercise?");
+        if (r==true) {
+            RoutineActions.deleteExercise('sprints', this.props.exercise.id);
+        }
+    }
+
     render() {
         return <div className="sprint exercise row" >
             <div className="col-xs-12">
@@ -70,7 +77,7 @@ class Sprint extends React.Component {
                         <div className="ex-subtext">
                             <u className="link" onClick={ () => this.showTips()}>Read Tips</u> |
                             <u className="link" onClick={ () => this.showSwap()} >Swap</u> |
-                            <u className="link">Delete</u>
+                            <u className="link" onClick={ () => this.delete()} >Delete</u>
                         </div>
                     </span>
                 </div>

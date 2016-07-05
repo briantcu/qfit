@@ -76,6 +76,13 @@ class Stretch extends React.Component {
         this.setState({showSwap: false});
     }
 
+    delete() {
+        var r=confirm("Are you sure you want to remove this exercise?");
+        if (r==true) {
+            RoutineActions.deleteExercise('warm_ups', this.props.exercise.id);
+        }
+    }
+
     render() {
         var classes = (this.props.border) ? 'stretch exercise row top-border' : 'stretch exercise row';
         return <div className={classes}>
@@ -87,7 +94,7 @@ class Stretch extends React.Component {
                     <div className="ex-subtext">
                         <u className="link" onClick={ () => this.showTips()} >Read Tips</u> |
                         <u className="link" onClick={ () => this.showSwap()} >Swap</u> |
-                        <u className="link">Delete</u>
+                        <u className="link" onClick={ () => this.delete()}>Delete</u>
                     </div>
                 </span>
             </div>

@@ -102,6 +102,22 @@ var RoutineActions = {
                 alert(JSON.parse(response.responseJSON));
             }
         });
+    },
+
+    deleteExercise: function(type, peid) {
+        var url = '/performed_' + type + '/' + peid + '.json';
+        $.ajax({
+            type: 'delete',
+            url: url,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                dispatcher.dispatch(C.ROUTINE_LOADED, data)
+            },
+            error: function(response) {
+                alert(JSON.parse(response.responseJSON));
+            }
+        });
     }
 };
 
