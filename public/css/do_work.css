@@ -1601,6 +1601,14 @@ h1 {
     cursor: pointer;
     margin-right: 10px; }
 
+.do-work .leave-comment {
+  background-color: #fbf8fc;
+  border: solid 1px #d8d8d8; }
+
+.do-work .comment-row {
+  margin-bottom: 10px;
+  margin-top: 20px; }
+
 .do-work .add-ex {
   font-size: 14px;
   font-weight: 700;

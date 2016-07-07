@@ -15,6 +15,7 @@ import Sprint from 'views/do-work/sprint';
 import C from 'constants/routine_constants';
 import MenuModal from 'views/do-work/menu_modal';
 import Button from 'views/common/button';
+import Comment from 'views/do-work/comment';
 
 require('pages/do_work.scss');
 
@@ -40,7 +41,7 @@ class DoWork extends React.Component {
             month: month,
             day: day,
             calendar: {},
-            routine: {},
+            routine: { comments: []},
             user: {},
             loading: true,
             date: today,
@@ -125,6 +126,13 @@ class DoWork extends React.Component {
         var r=confirm("Are you sure you want to reset this workout?");
         if (r==true) {
             RoutineActions.resetRoutine(this.state.routine.id);
+        }
+    }
+
+    leaveComment() {
+        var commentText = this.refs.leaveComment.value;
+        if (commentText) {
+            alert(commentText);
         }
     }
 
@@ -263,7 +271,21 @@ class DoWork extends React.Component {
 
                         <div className="comments sec container">
                             <div className="row">
-                                <div className="col-xs-12 sec-header">Comments</div>
+                                <div className="col-xs-12 sec-header">Leave a comment</div>
+                            </div>
+                            <If condition={this.state.routine} >
+                            {
+                                this.state.routine.comments.map(function(e, index) {
+                                    return <Comment comment={e} key={e.id} />
+                                }.bind(this))
+                            }
+                            </If>
+                            <div className="row comment-row">
+                                <div className="col-xs-12">
+                                    <textarea className="leave-comment" rows="10" cols="80"></textarea>
+                                    <Button ref="leaveComment" buttonText="Submit" onClick={ () => this.leaveComment() }
+                                            disabled={false} />
+                                </div>
                             </div>
                         </div>
 

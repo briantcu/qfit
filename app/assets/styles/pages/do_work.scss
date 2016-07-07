@@ -25,6 +25,16 @@
     }
   }
 
+  .leave-comment {
+    background-color: $gray1;
+    border: solid 1px #d8d8d8;
+  }
+
+  .comment-row {
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+
   .add-ex {
     font-size: 14px;
     font-weight: 700;
