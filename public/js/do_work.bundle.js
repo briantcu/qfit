@@ -111,6 +111,10 @@
 	
 	var _menu_modal2 = _interopRequireDefault(_menu_modal);
 	
+	var _button = __webpack_require__(/*! views/common/button */ 522);
+	
+	var _button2 = _interopRequireDefault(_button);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -232,6 +236,9 @@
 	        value: function showAddEx(type) {
 	            this.setState({ showAddEx: true, exercise_type: type });
 	        }
+	    }, {
+	        key: 'submit',
+	        value: function submit() {}
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -426,6 +433,33 @@
 	                                        null,
 	                                        'No sprinting'
 	                                    ) : null
+	                                ),
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'row last-row' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-xs-3' },
+	                                        React.createElement('input', { type: 'text', className: 'user-weight' }),
+	                                        React.createElement(
+	                                            'span',
+	                                            { className: 'standard-text white ' },
+	                                            'Your Weight (lbs)'
+	                                        )
+	                                    ),
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-xs-6 col-xs-offset-3 text-right' },
+	                                        React.createElement(
+	                                            'span',
+	                                            { className: 'reset-link' },
+	                                            'Reset Workout'
+	                                        ),
+	                                        React.createElement(_button2.default, { ref: 'completeWorkout', buttonText: 'Complete Workout', onClick: function onClick() {
+	                                                return _this2.submit();
+	                                            },
+	                                            disabled: false, inverse: true })
+	                                    )
 	                                )
 	                            ),
 	                            React.createElement(
@@ -60345,10 +60379,11 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var classes = this.props.inverse ? "btn btn-default qfInverseButton" : "btn btn-default qfButton";
 	            return _react2.default.createElement(
 	                'button',
 	                { ref: 'button', disabled: this.props.disabled, type: 'button', 'data-loading-text': '...',
-	                    className: 'btn btn-default qfButton', autocomplete: 'off', onClick: this.props.onClick },
+	                    className: classes, autocomplete: 'off', onClick: this.props.onClick },
 	                this.props.buttonText
 	            );
 	        }

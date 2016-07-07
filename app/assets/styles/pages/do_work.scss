@@ -2,6 +2,29 @@
 
 .do-work {
 
+  .last-row {
+    height: 94px;
+    background-color: $purple;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding: 20px 20px 10px 20px;
+    color: #fff;
+
+    .user-weight {
+      width: 46px;
+      margin-right: 10px;
+      margin-top: 13px;
+    }
+
+    .reset-link {
+      font-size: 18px;
+      letter-spacing: -0.4px;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+  }
+
   .add-ex {
     font-size: 14px;
     font-weight: 700;
@@ -63,6 +86,7 @@
     min-height: 200px;
     width: 100%;
     background-color: white;
+    border-radius: 3px;
 
     .sec-header {
       font-family: 'Open Sans', sans-serif;

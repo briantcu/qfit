@@ -14,6 +14,7 @@ import Plyo from 'views/do-work/plyo';
 import Sprint from 'views/do-work/sprint';
 import C from 'constants/routine_constants';
 import MenuModal from 'views/do-work/menu_modal';
+import Button from 'views/common/button';
 
 require('pages/do_work.scss');
 
@@ -114,6 +115,10 @@ class DoWork extends React.Component {
 
     showAddEx(type) {
         this.setState({showAddEx: true, exercise_type: type});
+    }
+
+    submit() {
+
     }
 
     render () {
@@ -235,6 +240,17 @@ class DoWork extends React.Component {
                                         <span>No sprinting</span>
                                     </When>
                                 </Choose>
+                            </div>
+                            <div className="row last-row">
+                                <div className="col-xs-3">
+                                    <input type="text" className="user-weight"/>
+                                    <span className="standard-text white ">Your Weight (lbs)</span>
+                                </div>
+                                <div className="col-xs-6 col-xs-offset-3 text-right">
+                                    <span className="reset-link">Reset Workout</span>
+                                    <Button ref="completeWorkout" buttonText="Complete Workout" onClick={ () => this.submit() }
+                                            disabled={false} inverse={true}/>
+                                </div>
                             </div>
                         </div>
 

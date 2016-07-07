@@ -8,3 +8,23 @@
   letter-spacing: -0.4px;
   color: $purple;
 }
+
+.qfInverseButton {
+  padding: 12px 40px;
+  border: solid 3px #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #fff;
+  background-color: $purple;
+  &:hover {
+    color: #fff;
+    background-color: $purple;;
+    border-color: #fff;;
+  }
+  &:focus {
+    color: #fff;
+    background-color: $purple;;
+    border-color: #fff;;
+  }
+}

@@ -16,8 +16,9 @@ class Button extends React.Component {
     }
 
     render () {
+        var classes = (this.props.inverse) ? "btn btn-default qfInverseButton" : "btn btn-default qfButton";
         return <button ref="button" disabled={this.props.disabled} type="button" data-loading-text="..."
-                       className="btn btn-default qfButton" autocomplete="off" onClick={this.props.onClick}>
+                       className={classes} autocomplete="off" onClick={this.props.onClick}>
             {this.props.buttonText}
         </button>;
     }

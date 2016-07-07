@@ -58,6 +58,9 @@ h1 {
   .bold-link:hover {
     color: #7953aa; }
 
+.white {
+  color: #fff; }
+
 .purple {
   color: #7953aa; }
 
@@ -137,6 +140,9 @@ h1 {
   text-decoration: underline; }
   .bold-link:hover {
     color: #7953aa; }
+
+.white {
+  color: #fff; }
 
 .purple {
   color: #7953aa; }
@@ -268,6 +274,9 @@ h1 {
   .bold-link:hover {
     color: #7953aa; }
 
+.white {
+  color: #fff; }
+
 .purple {
   color: #7953aa; }
 
@@ -288,6 +297,23 @@ h1 {
   font-size: 18px;
   letter-spacing: -0.4px;
   color: #7953aa; }
+
+.qfInverseButton {
+  padding: 12px 40px;
+  border: solid 3px #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #fff;
+  background-color: #7953aa; }
+  .qfInverseButton:hover {
+    color: #fff;
+    background-color: #7953aa;
+    border-color: #fff; }
+  .qfInverseButton:focus {
+    color: #fff;
+    background-color: #7953aa;
+    border-color: #fff; }
 body {
   font-family: 'Open Sans', sans-serif; }
 
@@ -347,6 +373,9 @@ h1 {
   text-decoration: underline; }
   .bold-link:hover {
     color: #7953aa; }
+
+.white {
+  color: #fff; }
 
 .purple {
   color: #7953aa; }
@@ -431,6 +460,9 @@ h1 {
   .bold-link:hover {
     color: #7953aa; }
 
+.white {
+  color: #fff; }
+
 .purple {
   color: #7953aa; }
 
@@ -513,6 +545,9 @@ h1 {
   text-decoration: underline; }
   .bold-link:hover {
     color: #7953aa; }
+
+.white {
+  color: #fff; }
 
 .purple {
   color: #7953aa; }
@@ -643,6 +678,9 @@ h1 {
   .bold-link:hover {
     color: #7953aa; }
 
+.white {
+  color: #fff; }
+
 .purple {
   color: #7953aa; }
 
@@ -742,6 +780,9 @@ h1 {
   .bold-link:hover {
     color: #7953aa; }
 
+.white {
+  color: #fff; }
+
 .purple {
   color: #7953aa; }
 
@@ -836,6 +877,9 @@ h1 {
   .bold-link:hover {
     color: #7953aa; }
 
+.white {
+  color: #fff; }
+
 .purple {
   color: #7953aa; }
 
@@ -920,6 +964,9 @@ h1 {
   text-decoration: underline; }
   .bold-link:hover {
     color: #7953aa; }
+
+.white {
+  color: #fff; }
 
 .purple {
   color: #7953aa; }
@@ -1060,6 +1107,9 @@ h1 {
   .bold-link:hover {
     color: #7953aa; }
 
+.white {
+  color: #fff; }
+
 .purple {
   color: #7953aa; }
 
@@ -1134,6 +1184,9 @@ h1 {
   text-decoration: underline; }
   .bold-link:hover {
     color: #7953aa; }
+
+.white {
+  color: #fff; }
 
 .purple {
   color: #7953aa; }
@@ -1220,6 +1273,9 @@ h1 {
   text-decoration: underline; }
   .bold-link:hover {
     color: #7953aa; }
+
+.white {
+  color: #fff; }
 
 .purple {
   color: #7953aa; }

@@ -58,6 +58,9 @@ h1 {
   .bold-link:hover {
     color: #7953aa; }
 
+.white {
+  color: #fff; }
+
 .purple {
   color: #7953aa; }
 
@@ -199,6 +202,9 @@ h1 {
   text-decoration: underline; }
   .bold-link:hover {
     color: #7953aa; }
+
+.white {
+  color: #fff; }
 
 .purple {
   color: #7953aa; }
@@ -363,6 +369,9 @@ h1 {
   text-decoration: underline; }
   .bold-link:hover {
     color: #7953aa; }
+
+.white {
+  color: #fff; }
 
 .purple {
   color: #7953aa; }
