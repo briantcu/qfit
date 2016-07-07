@@ -240,6 +240,14 @@
 	        key: 'submit',
 	        value: function submit() {}
 	    }, {
+	        key: 'reset',
+	        value: function reset() {
+	            var r = confirm("Are you sure you want to reset this workout?");
+	            if (r == true) {
+	                _routine_actions2.default.resetRoutine(this.state.routine.id);
+	            }
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -452,7 +460,9 @@
 	                                        { className: 'col-xs-6 col-xs-offset-3 text-right' },
 	                                        React.createElement(
 	                                            'span',
-	                                            { className: 'reset-link' },
+	                                            { className: 'reset-link', onClick: function onClick() {
+	                                                    return _this2.reset();
+	                                                } },
 	                                            'Reset Workout'
 	                                        ),
 	                                        React.createElement(_button2.default, { ref: 'completeWorkout', buttonText: 'Complete Workout', onClick: function onClick() {
@@ -27583,6 +27593,21 @@
 	            url: "/daily_routines/" + routineId + "/" + type + "/" + exId + ".json",
 	            dataType: "json",
 	            contentType: "application/json; charset=utf-8",
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(JSON.parse(response.responseJSON));
+	            }
+	        });
+	    },
+	
+	    resetRoutine: function (routineId) {
+	        dispatcher.dispatch(C.LOADING, true);
+	        $.ajax({
+	            type: "get",
+	            url: "/daily_routines/" + routineId + "/reset.json",
+	            dataType: "json",
 	            success: function (data) {
 	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
 	            },

@@ -134,6 +134,21 @@ var RoutineActions = {
                 alert(JSON.parse(response.responseJSON));
             }
         });
+    },
+
+    resetRoutine: function(routineId) {
+        dispatcher.dispatch(C.LOADING, true);
+        $.ajax({
+            type: 'get',
+            url: '/daily_routines/'+ routineId + '/reset.json',
+            dataType: 'json',
+            success: function(data) {
+                dispatcher.dispatch(C.ROUTINE_LOADED, data)
+            },
+            error: function(response) {
+                alert(JSON.parse(response.responseJSON));
+            }
+        });
     }
 };
 

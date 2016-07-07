@@ -121,6 +121,13 @@ class DoWork extends React.Component {
 
     }
 
+    reset() {
+        var r=confirm("Are you sure you want to reset this workout?");
+        if (r==true) {
+            RoutineActions.resetRoutine(this.state.routine.id);
+        }
+    }
+
     render () {
         return <div className="do-work">
             <Header user={this.state.user} />
@@ -247,7 +254,7 @@ class DoWork extends React.Component {
                                     <span className="standard-text white ">Your Weight (lbs)</span>
                                 </div>
                                 <div className="col-xs-6 col-xs-offset-3 text-right">
-                                    <span className="reset-link">Reset Workout</span>
+                                    <span className="reset-link" onClick={() => this.reset()}>Reset Workout</span>
                                     <Button ref="completeWorkout" buttonText="Complete Workout" onClick={ () => this.submit() }
                                             disabled={false} inverse={true}/>
                                 </div>
