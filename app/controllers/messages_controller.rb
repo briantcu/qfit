@@ -57,8 +57,9 @@ class MessagesController < ApplicationController
   end
 
   def are_friends_for_dm
-    unauthorized unless params[:message][:message_type] == 2
-    unauthorized unless FriendService.instance.are_friends?(current_user.id, params[:message][:to_id])
+    if params[:message][:message_type] == 2
+      unauthorized unless FriendService.instance.are_friends?(current_user.id, params[:message][:to_id])
+    end
   end
 
   def set_message

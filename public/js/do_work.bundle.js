@@ -254,9 +254,9 @@
 	    }, {
 	        key: 'leaveComment',
 	        value: function leaveComment() {
-	            var commentText = this.refs.leaveComment.value;
+	            var commentText = this.refs.commentBox.value;
 	            if (commentText) {
-	                alert(commentText);
+	                _routine_actions2.default.postComment(this.state.routine.id, commentText);
 	            }
 	        }
 	    }, {
@@ -504,8 +504,8 @@
 	                                    { className: 'row comment-row' },
 	                                    React.createElement(
 	                                        'div',
-	                                        { className: 'col-xs-12' },
-	                                        React.createElement('textarea', { className: 'leave-comment', rows: '10', cols: '80' }),
+	                                        { className: 'col-xs-6 text-right' },
+	                                        React.createElement('textarea', { ref: 'commentBox', className: 'leave-comment', rows: '10', cols: '80' }),
 	                                        React.createElement(_button2.default, { ref: 'leaveComment', buttonText: 'Submit', onClick: function onClick() {
 	                                                return _this2.leaveComment();
 	                                            },
@@ -27737,10 +27737,26 @@
 	                alert(JSON.parse(response.responseJSON));
 	            }
 	        });
+	    },
+	
+	    postComment: function (routineId, comment) {
+	        var payload = JSON.stringify({ message: { message_type: 5, to_id: routineId, message: comment } });
+	        $.ajax({
+	            type: "post",
+	            url: "/messages.json",
+	            data: payload,
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (data) {},
+	            error: function (response) {
+	                alert(JSON.parse(response.responseJSON));
+	            }
+	        });
 	    }
 	};
 	
 	module.exports = RoutineActions;
+	//dispatcher.dispatch(C.ROUTINE_LOADED, data)
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 241)))
 
 /***/ },

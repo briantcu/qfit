@@ -130,9 +130,9 @@ class DoWork extends React.Component {
     }
 
     leaveComment() {
-        var commentText = this.refs.leaveComment.value;
+        var commentText = this.refs.commentBox.value;
         if (commentText) {
-            alert(commentText);
+            RoutineActions.postComment(this.state.routine.id, commentText);
         }
     }
 
@@ -281,8 +281,8 @@ class DoWork extends React.Component {
                             }
                             </If>
                             <div className="row comment-row">
-                                <div className="col-xs-12">
-                                    <textarea className="leave-comment" rows="10" cols="80"></textarea>
+                                <div className="col-xs-6 text-right">
+                                    <textarea ref="commentBox" className="leave-comment" rows="10" cols="80"></textarea>
                                     <Button ref="leaveComment" buttonText="Submit" onClick={ () => this.leaveComment() }
                                             disabled={false} />
                                 </div>

@@ -140,10 +140,27 @@ var RoutineActions = {
         dispatcher.dispatch(C.LOADING, true);
         $.ajax({
             type: 'get',
-            url: '/daily_routines/'+ routineId + '/reset.json',
+            url: '/daily_routines/' + routineId + '/reset.json',
             dataType: 'json',
-            success: function(data) {
+            success: function (data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
+            },
+            error: function (response) {
+                alert(JSON.parse(response.responseJSON));
+            }
+        });
+    },
+
+    postComment: function(routineId, comment) {
+        var payload = JSON.stringify({message: { message_type: 5, to_id: routineId, message: comment}});
+        $.ajax({
+            type: 'post',
+            url: '/messages.json',
+            data: payload,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                //dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
                 alert(JSON.parse(response.responseJSON));
