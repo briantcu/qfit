@@ -248,7 +248,10 @@
 	    }, {
 	        key: 'skip',
 	        value: function skip() {
-	            _routine_actions2.default.skipWorkout(this.state.routine.id);
+	            var r = confirm("Are you sure you want to skip this workout?");
+	            if (r == true) {
+	                _routine_actions2.default.skipWorkout(this.state.routine.id);
+	            }
 	        }
 	    }, {
 	        key: 'reset',
@@ -64067,27 +64070,27 @@
 	                { className: classes },
 	                this.props.exercise.for_time ? [React.createElement(
 	                    'span',
-	                    { className: 'col', key: '0'
+	                    { className: 'double', key: '0'
 	                    },
 	                    '30 seconds'
 	                ), React.createElement('br', {
 	                    key: '1'
 	                }), React.createElement(
 	                    'span',
-	                    { className: 'col', key: '2'
+	                    { className: 'double', key: '2'
 	                    },
 	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3',
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                )] : this.props.exercise.category == 7 && this.props.weightSet.rec_weight == 0 || this.props.exercise.category == 3 ? [React.createElement(
 	                    'span',
-	                    { className: 'col', key: '0'
+	                    { className: 'double', key: '0'
 	                    },
 	                    'Max Reps'
 	                ), React.createElement('br', {
 	                    key: '1'
 	                }), React.createElement(
 	                    'span',
-	                    { className: 'col', key: '2'
+	                    { className: 'double', key: '2'
 	                    },
 	                    React.createElement('input', { ref: 'reps', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'reps',
 	                        onChange: this.props.onChange, defaultValue: this.props.perf_reps }),

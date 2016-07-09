@@ -123,7 +123,10 @@ class DoWork extends React.Component {
     }
 
     skip() {
-        RoutineActions.skipWorkout(this.state.routine.id);
+        var r = confirm("Are you sure you want to skip this workout?");
+        if (r == true) {
+            RoutineActions.skipWorkout(this.state.routine.id);
+        }
     }
 
     reset() {

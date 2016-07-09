@@ -1348,6 +1348,10 @@ h1 {
     width: 50%;
     display: inline-block;
     margin-bottom: 10px; }
+  .strength .weight-set .double {
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 10px; }
 body {
   font-family: 'Open Sans', sans-serif; }
 

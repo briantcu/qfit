@@ -16,19 +16,19 @@ class WeightSet extends React.Component {
         return <div className={classes} >
             <Choose>
                 <When condition={this.props.exercise.for_time} >
-                    <span className="col">
+                    <span className="double">
                        30 seconds
                     </span><br/>
-                    <span className="col">
+                    <span className="double">
                         <VertCircleCheck ref={this.props.exercise.id + '3'} id={this.props.exercise.id + '3'}
                                          defaultChecked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
                     </span>
                 </When>
                 <When condition={(this.props.exercise.category == 7 && (this.props.weightSet.rec_weight == 0)) || this.props.exercise.category == 3} >
-                    <span className="col">
+                    <span className="double">
                             Max Reps
                     </span><br/>
-                    <span className="col">
+                    <span className="double">
                         <input ref="reps" type='text' className="transparent-input standard-text" id={this.props.weightSet.id + 'reps'}
                                onChange={this.props.onChange} defaultValue={this.props.perf_reps}/>
                         <label for={this.props.weightSet.id + 'reps'} >reps</label>
