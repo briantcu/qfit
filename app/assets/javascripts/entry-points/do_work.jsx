@@ -119,7 +119,11 @@ class DoWork extends React.Component {
     }
 
     submit() {
+        RoutineActions.completeWorkout(this.state.routine);
+    }
 
+    skip() {
+        RoutineActions.skipWorkout(this.state.routine.id);
     }
 
     reset() {
@@ -145,8 +149,8 @@ class DoWork extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-10 col-xs-offset-1 text-center">
-                            <span>Complete this Workout</span>
-                            <span>Skip this Workout</span>
+                            <span onclick={ () => this.submit()} >Complete this Workout</span>
+                            <span onclick={ () => this.skip()} >Skip this Workout</span>
                             <span>Change Schedule</span>
                             <span>Change Program</span>
                             <span>Share Workout</span>

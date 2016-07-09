@@ -166,7 +166,40 @@ var RoutineActions = {
                 alert(JSON.parse(response.responseJSON));
             }
         });
+    },
+
+    skipWorkout: function(routineId) {
+        dispatcher.dispatch(C.LOADING, true);
+        $.ajax({
+            type: 'put',
+            url: '/daily_routines/' + routineId + '/skip.json',
+            dataType: 'json',
+            success: function (data) {
+                dispatcher.dispatch(C.ROUTINE_LOADED, data)
+            },
+            error: function (response) {
+                alert(JSON.parse(response.responseJSON));
+            }
+        });
+    },
+
+    completeWorkout: function(routine) {
+        var payload = JSON.stringify(routine);
+        dispatcher.dispatch(C.LOADING, true);
+        $.ajax({
+            type: 'put',
+            url: '/daily_routines/' + routine.id + '/close.json',
+            dataType: 'json',
+            data: payload,
+            success: function (data) {
+                dispatcher.dispatch(C.ROUTINE_LOADED, data)
+            },
+            error: function (response) {
+                alert(JSON.parse(response.responseJSON));
+            }
+        });
     }
+
 };
 
 export default RoutineActions;

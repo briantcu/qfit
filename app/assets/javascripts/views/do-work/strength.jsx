@@ -89,7 +89,8 @@ class Strength extends React.Component {
             <div className="col-xs-7">
                 {
                     this.props.exercise.weight_sets.map(function(e, index) {
-                        return <WeightSet weightSet={e} gray={index % 2 == 0} key={this.props.exercise.id + '' + (index + 1)} />;
+                        return <WeightSet weightSet={e} gray={index % 2 == 0} key={this.props.exercise.id + '' + (index + 1)}
+                                          exercise={this.props.exercise.exercise} />;
                     }.bind(this))
                 }
             </div>

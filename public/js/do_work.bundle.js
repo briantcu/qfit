@@ -242,7 +242,14 @@
 	        }
 	    }, {
 	        key: 'submit',
-	        value: function submit() {}
+	        value: function submit() {
+	            _routine_actions2.default.completeWorkout(this.state.routine);
+	        }
+	    }, {
+	        key: 'skip',
+	        value: function skip() {
+	            _routine_actions2.default.skipWorkout(this.state.routine.id);
+	        }
 	    }, {
 	        key: 'reset',
 	        value: function reset() {
@@ -283,12 +290,16 @@
 	                                { className: 'col-xs-10 col-xs-offset-1 text-center' },
 	                                React.createElement(
 	                                    'span',
-	                                    null,
+	                                    { onclick: function onclick() {
+	                                            return _this2.submit();
+	                                        } },
 	                                    'Complete this Workout'
 	                                ),
 	                                React.createElement(
 	                                    'span',
-	                                    null,
+	                                    { onclick: function onclick() {
+	                                            return _this2.skip();
+	                                        } },
 	                                    'Skip this Workout'
 	                                ),
 	                                React.createElement(
@@ -27752,7 +27763,40 @@
 	                alert(JSON.parse(response.responseJSON));
 	            }
 	        });
+	    },
+	
+	    skipWorkout: function (routineId) {
+	        dispatcher.dispatch(C.LOADING, true);
+	        $.ajax({
+	            type: "put",
+	            url: "/daily_routines/" + routineId + "/skip.json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(JSON.parse(response.responseJSON));
+	            }
+	        });
+	    },
+	
+	    completeWorkout: function (routine) {
+	        var payload = JSON.stringify(routine);
+	        dispatcher.dispatch(C.LOADING, true);
+	        $.ajax({
+	            type: "put",
+	            url: "/daily_routines/" + routine.id + "/close.json",
+	            dataType: "json",
+	            data: payload,
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(JSON.parse(response.responseJSON));
+	            }
+	        });
 	    }
+	
 	};
 	
 	module.exports = RoutineActions;
@@ -63952,7 +63996,8 @@
 	                    'div',
 	                    { className: 'col-xs-7' },
 	                    this.props.exercise.weight_sets.map(function (e, index) {
-	                        return React.createElement(_weight_set2.default, { weightSet: e, gray: index % 2 == 0, key: this.props.exercise.id + '' + (index + 1) });
+	                        return React.createElement(_weight_set2.default, { weightSet: e, gray: index % 2 == 0, key: this.props.exercise.id + '' + (index + 1),
+	                            exercise: this.props.exercise.exercise });
 	                    }.bind(this))
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.exercise.tips, close: this.close }),
@@ -63986,6 +64031,12 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 94);
 	
+	var _vert_circle_check = __webpack_require__(/*! views/common/vert_circle_check */ 257);
+	
+	var _vert_circle_check2 = _interopRequireDefault(_vert_circle_check);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -64014,33 +64065,30 @@
 	            return React.createElement(
 	                'div',
 	                { className: classes },
-	                React.createElement(
+	                this.props.exercise.for_time ? [React.createElement(
 	                    'span',
-	                    { className: 'col' },
-	                    this.props.weightSet.rec_weight,
-	                    ' lbs'
-	                ),
-	                React.createElement(
+	                    { className: 'col', key: '0'
+	                    },
+	                    '30 seconds'
+	                ), React.createElement('br', {
+	                    key: '1'
+	                }), React.createElement(
 	                    'span',
-	                    { className: 'col' },
-	                    this.props.weightSet.rec_reps,
-	                    ' reps'
-	                ),
-	                React.createElement('br', null),
-	                React.createElement(
+	                    { className: 'col', key: '2'
+	                    },
+	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3',
+	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
+	                )] : this.props.exercise.category == 7 && this.props.weightSet.rec_weight == 0 || this.props.exercise.category == 3 ? [React.createElement(
 	                    'span',
-	                    { className: 'col' },
-	                    React.createElement('input', { ref: 'weight', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'weight',
-	                        onChange: this.props.onChange, defaultValue: this.props.perf_weight }),
-	                    React.createElement(
-	                        'label',
-	                        { 'for': '{this.props.weightSet.id + \'weight\'}' },
-	                        'lbs'
-	                    )
-	                ),
-	                React.createElement(
+	                    { className: 'col', key: '0'
+	                    },
+	                    'Max Reps'
+	                ), React.createElement('br', {
+	                    key: '1'
+	                }), React.createElement(
 	                    'span',
-	                    { className: 'col' },
+	                    { className: 'col', key: '2'
+	                    },
 	                    React.createElement('input', { ref: 'reps', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'reps',
 	                        onChange: this.props.onChange, defaultValue: this.props.perf_reps }),
 	                    React.createElement(
@@ -64048,7 +64096,43 @@
 	                        { 'for': this.props.weightSet.id + 'reps' },
 	                        'reps'
 	                    )
-	                )
+	                )] : [React.createElement(
+	                    'span',
+	                    { className: 'col', key: '0'
+	                    },
+	                    this.props.weightSet.rec_weight,
+	                    ' lbs'
+	                ), React.createElement(
+	                    'span',
+	                    { className: 'col', key: '1'
+	                    },
+	                    this.props.weightSet.rec_reps,
+	                    ' reps'
+	                ), React.createElement('br', {
+	                    key: '2'
+	                }), React.createElement(
+	                    'span',
+	                    { className: 'col', key: '3'
+	                    },
+	                    React.createElement('input', { ref: 'weight', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'weight',
+	                        onChange: this.props.onChange, defaultValue: this.props.perf_weight }),
+	                    React.createElement(
+	                        'label',
+	                        { 'for': '{this.props.weightSet.id + \'weight\'}' },
+	                        'lbs'
+	                    )
+	                ), React.createElement(
+	                    'span',
+	                    { className: 'col', key: '4'
+	                    },
+	                    React.createElement('input', { ref: 'reps', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'reps',
+	                        onChange: this.props.onChange, defaultValue: this.props.perf_reps }),
+	                    React.createElement(
+	                        'label',
+	                        { 'for': this.props.weightSet.id + 'reps' },
+	                        'reps'
+	                    )
+	                )]
 	            );
 	        }
 	    }]);
