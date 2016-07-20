@@ -167,6 +167,7 @@
 	        _this.onChange = _this.onChange.bind(_this);
 	        _this.addEx = _this.addEx.bind(_this);
 	        _this.closeAddEx = _this.closeAddEx.bind(_this);
+	        _this.skip = _this.skip.bind(_this);
 	        return _this;
 	    }
 	
@@ -293,14 +294,14 @@
 	                                { className: 'col-xs-10 col-xs-offset-1 text-center' },
 	                                React.createElement(
 	                                    'span',
-	                                    { onclick: function onclick() {
+	                                    { onClick: function onClick() {
 	                                            return _this2.submit();
 	                                        } },
 	                                    'Complete this Workout'
 	                                ),
 	                                React.createElement(
 	                                    'span',
-	                                    { onclick: function onclick() {
+	                                    { onClick: function onClick() {
 	                                            return _this2.skip();
 	                                        } },
 	                                    'Skip this Workout'
@@ -359,7 +360,8 @@
 	                                        if (e.status == 2) {
 	                                            return;
 	                                        }
-	                                        return React.createElement(_stretch2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0 });
+	                                        return React.createElement(_stretch2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0,
+	                                            closed: this.state.routine.closed });
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
 	                                        null,
@@ -393,7 +395,8 @@
 	                                        if (e.status == 2) {
 	                                            return;
 	                                        }
-	                                        return React.createElement(_strength2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0 });
+	                                        return React.createElement(_strength2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0,
+	                                            closed: this.state.routine.closed });
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
 	                                        null,
@@ -427,7 +430,8 @@
 	                                        if (e.status == 2) {
 	                                            return;
 	                                        }
-	                                        return React.createElement(_plyo2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0 });
+	                                        return React.createElement(_plyo2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0,
+	                                            closed: this.state.routine.closed });
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
 	                                        null,
@@ -461,7 +465,8 @@
 	                                        if (e.status == 2) {
 	                                            return;
 	                                        }
-	                                        return React.createElement(_sprint2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0 });
+	                                        return React.createElement(_sprint2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0,
+	                                            closed: this.state.routine.closed });
 	                                    }.bind(this)) : !this.state.loading ? React.createElement(
 	                                        'span',
 	                                        null,
@@ -27615,7 +27620,7 @@
 	                dispatcher.dispatch(C.CALENDAR, { key: whichMonth, data: data });
 	            },
 	            error: function (response) {
-	                alert(JSON.parse(response.responseJSON));
+	                alert(response.responseJSON.errors);
 	            }
 	        });
 	    },
@@ -27633,7 +27638,7 @@
 	                if (response.status == 404) {
 	                    dispatcher.dispatch(C.ROUTINE_LOADED, {});
 	                } else {
-	                    alert(JSON.parse(response.responseJSON));
+	                    alert(response.responseJSON.errors);
 	                }
 	            }
 	        });
@@ -27651,7 +27656,7 @@
 	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
 	            },
 	            error: function (response) {
-	                alert(JSON.parse(response.responseJSON));
+	                alert(response.responseJSON.errors);
 	            }
 	        });
 	    },
@@ -27668,7 +27673,7 @@
 	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
 	            },
 	            error: function (response) {
-	                alert(JSON.parse(response.responseJSON));
+	                alert(response.responseJSON.errors);
 	            }
 	        });
 	    },
@@ -27685,7 +27690,7 @@
 	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
 	            },
 	            error: function (response) {
-	                alert(JSON.parse(response.responseJSON));
+	                alert(response.responseJSON.errors);
 	            }
 	        });
 	    },
@@ -27702,7 +27707,7 @@
 	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
 	            },
 	            error: function (response) {
-	                alert(JSON.parse(response.responseJSON));
+	                alert(response.responseJSON.errors);
 	            }
 	        });
 	    },
@@ -27718,7 +27723,7 @@
 	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
 	            },
 	            error: function (response) {
-	                alert(JSON.parse(response.responseJSON));
+	                alert(response.responseJSON.errors);
 	            }
 	        });
 	    },
@@ -27733,7 +27738,7 @@
 	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
 	            },
 	            error: function (response) {
-	                alert(JSON.parse(response.responseJSON));
+	                alert(response.responseJSON.errors);
 	            }
 	        });
 	    },
@@ -27748,7 +27753,7 @@
 	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
 	            },
 	            error: function (response) {
-	                alert(JSON.parse(response.responseJSON));
+	                alert(response.responseJSON.errors);
 	            }
 	        });
 	    },
@@ -27763,7 +27768,7 @@
 	            contentType: "application/json; charset=utf-8",
 	            success: function (data) {},
 	            error: function (response) {
-	                alert(JSON.parse(response.responseJSON));
+	                alert(response.responseJSON.errors);
 	            }
 	        });
 	    },
@@ -27778,7 +27783,7 @@
 	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
 	            },
 	            error: function (response) {
-	                alert(JSON.parse(response.responseJSON));
+	                alert(response.responseJSON.errors);
 	            }
 	        });
 	    },
@@ -27795,7 +27800,7 @@
 	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
 	            },
 	            error: function (response) {
-	                alert(JSON.parse(response.responseJSON));
+	                alert(response.responseJSON.errors);
 	            }
 	        });
 	    }
@@ -40235,7 +40240,7 @@
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-1 col-xs-offset-6' },
-	                    React.createElement(_vert_circle_check2.default, { ref: 'complete', id: 'stretch' + this.props.exercise.id,
+	                    React.createElement(_vert_circle_check2.default, { ref: 'complete', id: 'stretch' + this.props.exercise.id, disabled: this.props.closed,
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.warmup.tips, close: this.close }),
@@ -40443,7 +40448,7 @@
 	                !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
 	                    checked: this.props.checked, onChange: this.props.change }) : null,
 	                this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
-	                    checked: this.props.checked, readOnly: true }) : null,
+	                    checked: this.props.checked, readOnly: true, disabled: this.props.disabled }) : null,
 	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
 	                _react2.default.createElement('br', null),
 	                _react2.default.createElement(
@@ -64000,7 +64005,7 @@
 	                    { className: 'col-xs-7' },
 	                    this.props.exercise.weight_sets.map(function (e, index) {
 	                        return React.createElement(_weight_set2.default, { weightSet: e, gray: index % 2 == 0, key: this.props.exercise.id + '' + (index + 1),
-	                            exercise: this.props.exercise.exercise });
+	                            exercise: this.props.exercise.exercise, disabled: this.props.closed });
 	                    }.bind(this))
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.exercise.tips, close: this.close }),
@@ -64079,7 +64084,7 @@
 	                    'span',
 	                    { className: 'double', key: '2'
 	                    },
-	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3',
+	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3', disabled: this.props.disabled,
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                )] : this.props.exercise.category == 7 && this.props.weightSet.rec_weight == 0 || this.props.exercise.category == 3 ? [React.createElement(
 	                    'span',
@@ -64093,7 +64098,7 @@
 	                    { className: 'double', key: '2'
 	                    },
 	                    React.createElement('input', { ref: 'reps', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'reps',
-	                        onChange: this.props.onChange, defaultValue: this.props.perf_reps }),
+	                        onChange: this.props.onChange, defaultValue: this.props.perf_reps, disabled: this.props.disabled }),
 	                    React.createElement(
 	                        'label',
 	                        { 'for': this.props.weightSet.id + 'reps' },
@@ -64118,7 +64123,7 @@
 	                    { className: 'col', key: '3'
 	                    },
 	                    React.createElement('input', { ref: 'weight', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'weight',
-	                        onChange: this.props.onChange, defaultValue: this.props.perf_weight }),
+	                        onChange: this.props.onChange, defaultValue: this.props.perf_weight, disabled: this.props.disabled }),
 	                    React.createElement(
 	                        'label',
 	                        { 'for': '{this.props.weightSet.id + \'weight\'}' },
@@ -64129,7 +64134,7 @@
 	                    { className: 'col', key: '4'
 	                    },
 	                    React.createElement('input', { ref: 'reps', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'reps',
-	                        onChange: this.props.onChange, defaultValue: this.props.perf_reps }),
+	                        onChange: this.props.onChange, defaultValue: this.props.perf_reps, disabled: this.props.disabled }),
 	                    React.createElement(
 	                        'label',
 	                        { 'for': this.props.weightSet.id + 'reps' },
@@ -64377,19 +64382,19 @@
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-1 col-xs-offset-4' },
-	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '1', id: this.props.exercise.id + '1',
+	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '1', id: this.props.exercise.id + '1', disabled: this.props.closed,
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-1' },
-	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '2', id: this.props.exercise.id + '2',
+	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '2', id: this.props.exercise.id + '2', disabled: this.props.closed,
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-1' },
-	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3',
+	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3', disabled: this.props.closed,
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.plyometric.tips, close: this.close }),
@@ -64646,7 +64651,8 @@
 	                                    id: this.props.exercise.laps[index].id,
 	                                    defaultChecked: this.props.exercise.laps[index].completed,
 	                                    key: this.props.exercise.id + '' + (index + 1),
-	                                    label: 'Complete', change: this.change })
+	                                    label: 'Complete', change: this.change,
+	                                    disabled: this.props.closed })
 	                            )
 	                        );
 	                    }.bind(this))

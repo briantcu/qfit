@@ -90,7 +90,7 @@ class Strength extends React.Component {
                 {
                     this.props.exercise.weight_sets.map(function(e, index) {
                         return <WeightSet weightSet={e} gray={index % 2 == 0} key={this.props.exercise.id + '' + (index + 1)}
-                                          exercise={this.props.exercise.exercise} />;
+                                          exercise={this.props.exercise.exercise} disabled={this.props.closed} />;
                     }.bind(this))
                 }
             </div>

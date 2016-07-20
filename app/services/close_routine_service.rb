@@ -24,6 +24,7 @@ class CloseRoutineService
   end
 
   def close_routine
+    return @routine if @routine.closed
     note_as_closed
     update_user_weight
     process_user_maxes
@@ -33,7 +34,7 @@ class CloseRoutineService
 
     #post message to feed saying workout was completed
     #@TODO fix message
-    message = "I just completed my workout: <a class='underlined' target='_blank' href='/share.html?r=rid'> See it and make comments</a>"
+    message = "I just completed my workout: <a class='underlined' target='_blank' href='/share.html?r=rid'> Check it out and let me know what you think</a>."
     Message.create(poster_id: @routine.user.id, message_type: 3, message: message)
 
     # Get points based on the percentage of exercises completed
@@ -49,6 +50,7 @@ class CloseRoutineService
   end
 
   def skip_routine
+    return @routine if @routine.closed
     note_as_closed
     @routine.count_ex_completed = 0
     process_provided

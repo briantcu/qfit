@@ -12,7 +12,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.CALENDAR, {key: whichMonth, data: data})
             },
             error: function(response) {
-                alert(JSON.parse(response.responseJSON));
+                alert(response.responseJSON.errors);
             }
         });
     },
@@ -30,7 +30,7 @@ var RoutineActions = {
                 if (response.status == 404) {
                     dispatcher.dispatch(C.ROUTINE_LOADED, {});
                 } else {
-                    alert(JSON.parse(response.responseJSON));
+                    alert(response.responseJSON.errors);
                 }
             }
         });
@@ -48,7 +48,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(JSON.parse(response.responseJSON));
+                alert(response.responseJSON.errors);
             }
         });
     },
@@ -65,7 +65,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(JSON.parse(response.responseJSON));
+                alert(response.responseJSON.errors);
             }
         });
     },
@@ -82,7 +82,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(JSON.parse(response.responseJSON));
+                alert(response.responseJSON.errors);
             }
         });
     },
@@ -99,7 +99,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(JSON.parse(response.responseJSON));
+                alert(response.responseJSON.errors);
             }
         });
     },
@@ -115,7 +115,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(JSON.parse(response.responseJSON));
+                alert(response.responseJSON.errors);
             }
         });
     },
@@ -131,7 +131,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(JSON.parse(response.responseJSON));
+                alert(response.responseJSON.errors);
             }
         });
     },
@@ -146,7 +146,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function (response) {
-                alert(JSON.parse(response.responseJSON));
+                alert(response.responseJSON.errors);
             }
         });
     },
@@ -163,7 +163,7 @@ var RoutineActions = {
                 //dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(JSON.parse(response.responseJSON));
+                alert(response.responseJSON.errors);
             }
         });
     },
@@ -178,7 +178,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function (response) {
-                alert(JSON.parse(response.responseJSON));
+                alert(response.responseJSON.errors);
             }
         });
     },
@@ -195,7 +195,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function (response) {
-                alert(JSON.parse(response.responseJSON));
+                alert(response.responseJSON.errors);
             }
         });
     }

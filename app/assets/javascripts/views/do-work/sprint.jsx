@@ -91,7 +91,8 @@ class Sprint extends React.Component {
                                         id={this.props.exercise.laps[index].id}
                                         defaultChecked={this.props.exercise.laps[index].completed}
                                         key={this.props.exercise.id + '' + (index + 1)}
-                                        label={'Complete'} change={ this.change } />
+                                        label={'Complete'} change={ this.change }
+                                        disabled={this.props.closed} />
                                 </div>
                             </div>
                     }.bind(this))

@@ -21,7 +21,7 @@ class VertCircleCheck extends React.Component {
                 </If>
                 <If condition={this.props.disabled}>
                     <input ref="check" type="checkbox" className="check" id={`${this.props.id}`}
-                           checked={this.props.checked} readOnly={true}/>
+                           checked={this.props.checked} readOnly={true} disabled={this.props.disabled}/>
                 </If>
                 <label htmlFor={`${this.props.id}`} /><br/>
                 <div className="label-text">{this.props.label}</div>

@@ -52,6 +52,7 @@ class DoWork extends React.Component {
         this.onChange = this.onChange.bind(this);
         this.addEx = this.addEx.bind(this);
         this.closeAddEx = this.closeAddEx.bind(this);
+        this.skip = this.skip.bind(this);
     }
 
     componentDidMount () {
@@ -152,8 +153,8 @@ class DoWork extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-10 col-xs-offset-1 text-center">
-                            <span onclick={ () => this.submit()} >Complete this Workout</span>
-                            <span onclick={ () => this.skip()} >Skip this Workout</span>
+                            <span onClick={ () => this.submit()} >Complete this Workout</span>
+                            <span onClick={ () => this.skip()} >Skip this Workout</span>
                             <span>Change Schedule</span>
                             <span>Change Program</span>
                             <span>Share Workout</span>
@@ -179,7 +180,8 @@ class DoWork extends React.Component {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Stretch exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}/>
+                                                return <Stretch exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}
+                                                closed={this.state.routine.closed} />
                                             }.bind(this))
                                         }
                                     </When>
@@ -204,7 +206,8 @@ class DoWork extends React.Component {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Strength exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}/>
+                                                return <Strength exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}
+                                                                 closed={this.state.routine.closed} />
                                             }.bind(this))
                                         }
                                     </When>
@@ -229,7 +232,8 @@ class DoWork extends React.Component {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Plyo exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}/>
+                                                return <Plyo exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}
+                                                             closed={this.state.routine.closed} />
                                             }.bind(this))
                                         }
                                     </When>
@@ -254,7 +258,8 @@ class DoWork extends React.Component {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Sprint exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}/>
+                                                return <Sprint exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}
+                                                               closed={this.state.routine.closed} />
                                             }.bind(this))
                                         }
                                     </When>

@@ -99,7 +99,7 @@ class Stretch extends React.Component {
                 </span>
             </div>
             <div className="col-xs-1 col-xs-offset-6">
-                <VertCircleCheck ref="complete" id={'stretch' + this.props.exercise.id}
+                <VertCircleCheck ref="complete" id={'stretch' + this.props.exercise.id} disabled={this.props.closed}
                              defaultChecked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
             </div>
 

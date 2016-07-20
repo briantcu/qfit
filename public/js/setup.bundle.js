@@ -37607,7 +37607,7 @@
 	                !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
 	                    checked: this.props.checked, onChange: this.props.change }) : null,
 	                this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
-	                    checked: this.props.checked, readOnly: true }) : null,
+	                    checked: this.props.checked, readOnly: true, disabled: this.props.disabled }) : null,
 	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
 	                _react2.default.createElement('br', null),
 	                _react2.default.createElement(
@@ -41293,7 +41293,7 @@
 	                !this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
 	                    checked: this.props.checked, onChange: this.props.change }) : null,
 	                this.props.disabled ? _react2.default.createElement('input', { ref: 'check', type: 'checkbox', className: 'check', id: '' + this.props.id,
-	                    checked: this.props.checked, readOnly: true }) : null,
+	                    checked: this.props.checked, readOnly: true, disabled: this.props.disabled }) : null,
 	                _react2.default.createElement('label', { htmlFor: '' + this.props.id }),
 	                _react2.default.createElement(
 	                    'span',
