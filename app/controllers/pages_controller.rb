@@ -17,6 +17,13 @@ class PagesController < ApplicationController
     render template: 'pages/setup'
   end
 
+  def setup_coach
+    gon.push({
+                 current_user_id: session[:current_user_id] || current_user.id
+             })
+    render template: 'pages/setup_coach'
+  end
+
   def schedule
     gon.push({
                  current_user_id: session[:current_user_id] || current_user.id

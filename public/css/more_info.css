@@ -455,4 +455,26 @@ h1 {
 .athlete-sign-up .error {
   border-bottom: 1px solid red; }
 
+body {
+  background: url(https://s3.amazonaws.com/quadfit/backgrounds-runner.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%; }
+
+.full-logo {
+  padding-top: 25px;
+  padding-left: 25px; }
+
+@media all and (max-width: 480px) {
+  body {
+    background: url(https://s3.amazonaws.com/quadfit/backgrounds-runner-mobile.jpg);
+    background-size: cover;
+    background-repeat: no-repeat; } }
+
+@media (max-width: 979px) and (min-width: 481px) {
+  body {
+    background: url(https://s3.amazonaws.com/quadfit/backgrounds-runner-tablet.jpg);
+    background-size: cover;
+    background-repeat: no-repeat; } }
+
 /*# sourceMappingURL=more_info.css.map*/

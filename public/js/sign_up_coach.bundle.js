@@ -85,7 +85,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! pages/sign_up_coach.scss */ 676);
+	__webpack_require__(/*! pages/sign_up_coach.scss */ 678);
 	
 	var CoachSignUp = function (_React$Component) {
 	    _inherits(CoachSignUp, _React$Component);
@@ -130,7 +130,7 @@
 	            var data = _sign_up_store2.default.getData();
 	
 	            if (data.signUpStatus.status == _sign_up_constants2.default.SUCCESS) {
-	                location.href = '/setup/goal';
+	                location.href = '/setup-coach';
 	            }
 	
 	            if (data.isUsernameUnique) {
@@ -166,7 +166,7 @@
 	            user['last_name'] = this.refs.lastName.getValue();
 	            user['password'] = this.refs.password.getValue();
 	            user['password_confirmation'] = this.refs.password.getValue();
-	            user['account_type'] = 'user';
+	            user['account_type'] = 'coach';
 	            user['user_name'] = this.refs.username.getValue();
 	            return { user: user, invite_token: '' };
 	        }
@@ -35304,7 +35304,9 @@
 /* 673 */,
 /* 674 */,
 /* 675 */,
-/* 676 */
+/* 676 */,
+/* 677 */,
+/* 678 */
 /*!******************************************!*\
   !*** ../styles/pages/sign_up_coach.scss ***!
   \******************************************/
@@ -35313,7 +35315,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./sign_up_coach.scss */ 677);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./sign_up_coach.scss */ 679);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 248)(content, {});
@@ -35333,7 +35335,7 @@
 	}
 
 /***/ },
-/* 677 */
+/* 679 */
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/sign_up_coach.scss ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************/

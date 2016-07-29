@@ -41,7 +41,7 @@ class CoachSignUp extends React.Component {
         var data = SignUpStore.getData();
 
         if (data.signUpStatus.status == C.SUCCESS) {
-            location.href = '/setup/goal';
+            location.href = '/setup-coach';
         }
 
         if (data.isUsernameUnique) {
@@ -75,7 +75,7 @@ class CoachSignUp extends React.Component {
         user['last_name'] = this.refs.lastName.getValue();
         user['password'] = this.refs.password.getValue();
         user['password_confirmation'] = this.refs.password.getValue();
-        user['account_type'] = 'user';
+        user['account_type'] = 'coach';
         user['user_name'] = this.refs.username.getValue();
         return {user: user, invite_token: ''};
     }
