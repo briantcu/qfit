@@ -6,9 +6,9 @@ import SignUpActions from 'actions/sign_up_actions';
 import SignUpStore from 'stores/sign_up_store';
 import C from 'constants/sign_up_constants';
 
-require('pages/sign_up.scss');
+require('pages/sign_up_coach.scss');
 
-class AthleteSignUp extends React.Component {
+class CoachSignUp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -75,7 +75,6 @@ class AthleteSignUp extends React.Component {
         user['last_name'] = this.refs.lastName.getValue();
         user['password'] = this.refs.password.getValue();
         user['password_confirmation'] = this.refs.password.getValue();
-        user['sex'] = this.refs.sex.getValue();
         user['account_type'] = 'user';
         user['user_name'] = this.refs.username.getValue();
         return {user: user, invite_token: ''};
@@ -126,87 +125,80 @@ class AthleteSignUp extends React.Component {
     }
 
     render () {
-        return <div className="athlete-sign-up row">
-                <div className="col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <h1>Sign up as an Athlete</h1>
-                            <a href="/sign-up-coach" className="info-text subtle-link">Are you a coach? Sign up here.</a>
-                        </div>
+        return <div className="coach-sign-up row">
+            <div className="col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form">
+                <div className="row">
+                    <div className="col-md-12">
+                        <h1>Sign up as a Coach</h1>
+                        <a href="/sign-up" className="info-text subtle-link">Not a coach? Sign up here.</a>
                     </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <span className="fb-button text-center" onClick={ () => this.fbLogin() }>Sign up with Facebook</span>
-                        </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <span className="fb-button text-center" onClick={ () => this.fbLogin() }>Sign up with Facebook</span>
                     </div>
-                    <div className="row buffer">
-                        <div className="col-md-12 text-center">
+                </div>
+                <div className="row buffer">
+                    <div className="col-md-12 text-center">
                             <span className="purple-bot-container">
                                 <hr className="hr-left" />
                                 <span className="text-uppercase info-text">or sign up with an email address</span>
                                 <hr className="hr-right" />
                             </span>
-                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
                             <span className={`purple-bot-container ${this.state.usernameErrors.length > 0 ? 'error' : null}`}>
                                 <FancyInput ref="username" name="user_name" placeholder="Username" type="text"
-                                changedCallback={this.evalUsername} errors={this.state.usernameErrors} />
+                                            changedCallback={this.evalUsername} errors={this.state.usernameErrors} />
                             </span>
-                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
                             <span className={`purple-bot-container ${this.state.firstNameErrors.length > 0 ? 'error' : null}`}>
                                 <FancyInput ref="firstName" name="first_name" placeholder="First Name" type="text"
                                             errors={this.state.firstNameErrors} />
                             </span>
-                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
                             <span className={`purple-bot-container ${this.state.lastNameErrors.length > 0 ? 'error' : null}`}>
                                 <FancyInput ref="lastName" name="last_name" placeholder="Last Name" type="text"
                                             errors={this.state.lastNameErrors} />
                             </span>
-                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
                             <span className={`purple-bot-container ${this.state.emailErrors.length > 0 ? 'error' : null}`}>
                                 <FancyInput ref="email" name="email" placeholder="Email Address" type="text"
                                             errors={this.state.emailErrors} />
                             </span>
-                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
                             <span className={`purple-bot-container ${this.state.passwordErrors.length > 0 ? 'error' : null}`}>
                                 <FancyInput ref="password" name="password" placeholder="Password" type="password"
                                             errors={this.state.passwordErrors} />
                             </span>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <span className="purple-bot-container">
-                                <Slider ref="sex" checked="female" unchecked="male"/>
-                            </span>
-                        </div>
-                    </div>
-                    <div className="row submit-row">
-                        <div className="col-md-12">
-                            <If condition={this.state.signUpStatus.status == C.FAILURE}>
-                                <div>{this.state.signUpStatus.errors.join(', ')}</div>
-                            </If>
-                            <span onClick={ () => this.submit()} className="submit-button purple-text">Sign Up</span>
-                            <a href="" className="help-text bold-link">Have an account? Login here.</a>
-                        </div>
                     </div>
                 </div>
-            </div>;
+                <div className="row submit-row">
+                    <div className="col-md-12">
+                        <If condition={this.state.signUpStatus.status == C.FAILURE}>
+                            <div>{this.state.signUpStatus.errors.join(', ')}</div>
+                        </If>
+                        <span onClick={ () => this.submit()} className="submit-button purple-text">Sign Up</span>
+                        <a href="" className="help-text bold-link">Have an account? Login here.</a>
+                    </div>
+                </div>
+            </div>
+        </div>;
     }
 }
 
-render(<AthleteSignUp/>, document.getElementById('app'));
+render(<CoachSignUp/>, document.getElementById('app'));

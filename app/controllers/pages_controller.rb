@@ -6,6 +6,10 @@ class PagesController < ApplicationController
     render layout: 'full_page'
   end
 
+  def sign_up_coach
+    render layout: 'full_page'
+  end
+
   def setup
     gon.push({
                  current_user_id: session[:current_user_id] || current_user.id

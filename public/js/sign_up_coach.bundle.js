@@ -42,9 +42,9 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!**********************************!*\
-  !*** ./entry-points/sign_up.jsx ***!
-  \**********************************/
+/*!****************************************!*\
+  !*** ./entry-points/sign_up_coach.jsx ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(React, $) {'use strict';
@@ -85,15 +85,15 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! pages/sign_up.scss */ 637);
+	__webpack_require__(/*! pages/sign_up_coach.scss */ 676);
 	
-	var AthleteSignUp = function (_React$Component) {
-	    _inherits(AthleteSignUp, _React$Component);
+	var CoachSignUp = function (_React$Component) {
+	    _inherits(CoachSignUp, _React$Component);
 	
-	    function AthleteSignUp(props) {
-	        _classCallCheck(this, AthleteSignUp);
+	    function CoachSignUp(props) {
+	        _classCallCheck(this, CoachSignUp);
 	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AthleteSignUp).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CoachSignUp).call(this, props));
 	
 	        _this.state = {
 	            signUpStatus: { status: '', errors: [] },
@@ -107,7 +107,7 @@
 	        return _this;
 	    }
 	
-	    _createClass(AthleteSignUp, [{
+	    _createClass(CoachSignUp, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            _sign_up_store2.default.addChangeListener(this.onChange.bind(this));
@@ -166,7 +166,6 @@
 	            user['last_name'] = this.refs.lastName.getValue();
 	            user['password'] = this.refs.password.getValue();
 	            user['password_confirmation'] = this.refs.password.getValue();
-	            user['sex'] = this.refs.sex.getValue();
 	            user['account_type'] = 'user';
 	            user['user_name'] = this.refs.username.getValue();
 	            return { user: user, invite_token: '' };
@@ -225,7 +224,7 @@
 	
 	            return React.createElement(
 	                'div',
-	                { className: 'athlete-sign-up row' },
+	                { className: 'coach-sign-up row' },
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form' },
@@ -238,12 +237,12 @@
 	                            React.createElement(
 	                                'h1',
 	                                null,
-	                                'Sign up as an Athlete'
+	                                'Sign up as a Coach'
 	                            ),
 	                            React.createElement(
 	                                'a',
-	                                { href: '/sign-up-coach', className: 'info-text subtle-link' },
-	                                'Are you a coach? Sign up here.'
+	                                { href: '/sign-up', className: 'info-text subtle-link' },
+	                                'Not a coach? Sign up here.'
 	                            )
 	                        )
 	                    ),
@@ -353,19 +352,6 @@
 	                    ),
 	                    React.createElement(
 	                        'div',
-	                        { className: 'row' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-md-12' },
-	                            React.createElement(
-	                                'span',
-	                                { className: 'purple-bot-container' },
-	                                React.createElement(_slider2.default, { ref: 'sex', checked: 'female', unchecked: 'male' })
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'div',
 	                        { className: 'row submit-row' },
 	                        React.createElement(
 	                            'div',
@@ -394,10 +380,10 @@
 	        }
 	    }]);
 	
-	    return AthleteSignUp;
+	    return CoachSignUp;
 	}(React.Component);
 	
-	(0, _reactDom.render)(React.createElement(AthleteSignUp, null), document.getElementById('app'));
+	(0, _reactDom.render)(React.createElement(CoachSignUp, null), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! jquery */ 241)))
 
 /***/ },
@@ -35279,16 +35265,55 @@
 	module.exports = SignUpStore;
 
 /***/ },
-/* 637 */
-/*!************************************!*\
-  !*** ../styles/pages/sign_up.scss ***!
-  \************************************/
+/* 637 */,
+/* 638 */,
+/* 639 */,
+/* 640 */,
+/* 641 */,
+/* 642 */,
+/* 643 */,
+/* 644 */,
+/* 645 */,
+/* 646 */,
+/* 647 */,
+/* 648 */,
+/* 649 */,
+/* 650 */,
+/* 651 */,
+/* 652 */,
+/* 653 */,
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */,
+/* 671 */,
+/* 672 */,
+/* 673 */,
+/* 674 */,
+/* 675 */,
+/* 676 */
+/*!******************************************!*\
+  !*** ../styles/pages/sign_up_coach.scss ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./sign_up.scss */ 638);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./sign_up_coach.scss */ 677);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 248)(content, {});
@@ -35297,8 +35322,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./sign_up.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./sign_up.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./sign_up_coach.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./sign_up_coach.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -35308,10 +35333,10 @@
 	}
 
 /***/ },
-/* 638 */
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/sign_up.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/* 677 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/sign_up_coach.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 247)();
@@ -35326,4 +35351,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=sign_up.bundle.js.map
+//# sourceMappingURL=sign_up_coach.bundle.js.map
