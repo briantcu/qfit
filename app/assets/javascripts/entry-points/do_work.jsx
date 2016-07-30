@@ -103,7 +103,7 @@ class DoWork extends React.Component {
                 user: user.user,
                 exercises: exercises
             }
-        )
+        );
     }
 
     addEx(e) {

@@ -12,6 +12,7 @@ class RegistrationService
           user.assign_attributes(level: 5, sub_user: false)
           user.build_coach_account(billing_email: user.email, num_accts: 5)
           user.save!
+          SignUpCode.create_code(user.id)
         end
         EmailService.perform_async(:new_coach, {user_id: user.id})
       else

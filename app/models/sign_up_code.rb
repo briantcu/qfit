@@ -13,4 +13,12 @@
 class SignUpCode < ActiveRecord::Base
   belongs_to :user
   has_many :sent_codes, foreign_key: :code
+
+  #@TODO add restrictions for uniqueness of code and user id
+
+  def self.create_code(user_id)
+
+  end
+
+
 end

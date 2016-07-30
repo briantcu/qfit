@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  before_filter :verify_logged_in_html, only: [:get_started]
-  before_filter :can_access_user, only: [:get_started]
+  before_filter :verify_logged_in_html, only: [:setup, :coaches, :schedule, :do_work]
+  before_filter :can_access_user, only: [:setup, :coaches, :schedule, :do_work]
 
   def sign_up
     render layout: 'full_page'
@@ -19,9 +19,17 @@ class PagesController < ApplicationController
 
   def setup_coach
     gon.push({
-                 current_user_id: session[:current_user_id] || current_user.id
+                 current_user_id: current_user.id
              })
     render template: 'pages/setup_coach'
+  end
+
+  def coaches
+    gon.push({
+                 current_user_id: current_user.id,
+                 coach_account_id: current_user.coach_account.id
+             })
+    render template: 'pages/coaches'
   end
 
   def schedule

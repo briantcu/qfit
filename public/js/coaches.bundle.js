@@ -42,40 +42,40 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!************************************!*\
-  !*** ./entry-points/more_info.jsx ***!
-  \************************************/
+/*!**********************************!*\
+  !*** ./entry-points/coaches.jsx ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(React, $) {'use strict';
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 33);
 	
-	var _fancy_input = __webpack_require__(/*! views/common/fancy_input */ 168);
-	
-	var _fancy_input2 = _interopRequireDefault(_fancy_input);
-	
-	var _slider = __webpack_require__(/*! views/common/slider */ 175);
-	
-	var _slider2 = _interopRequireDefault(_slider);
-	
 	var _validator = __webpack_require__(/*! validator */ 178);
 	
 	var _validator2 = _interopRequireDefault(_validator);
 	
-	var _sign_up_actions = __webpack_require__(/*! actions/sign_up_actions */ 241);
+	var _header = __webpack_require__(/*! views/common/header */ 321);
 	
-	var _sign_up_actions2 = _interopRequireDefault(_sign_up_actions);
+	var _header2 = _interopRequireDefault(_header);
 	
-	var _sign_up_store = __webpack_require__(/*! stores/sign_up_store */ 246);
+	var _user_store = __webpack_require__(/*! stores/user_store */ 314);
 	
-	var _sign_up_store2 = _interopRequireDefault(_sign_up_store);
+	var _user_store2 = _interopRequireDefault(_user_store);
 	
-	var _sign_up_constants = __webpack_require__(/*! constants/sign_up_constants */ 244);
+	var _coach_store = __webpack_require__(/*! stores/coach_store */ 682);
 	
-	var _sign_up_constants2 = _interopRequireDefault(_sign_up_constants);
+	var _coach_store2 = _interopRequireDefault(_coach_store);
+	
+	var _user_actions = __webpack_require__(/*! actions/user_actions */ 319);
+	
+	var _user_actions2 = _interopRequireDefault(_user_actions);
+	
+	var _coach_actions = __webpack_require__(/*! actions/coach_actions */ 683);
+	
+	var _coach_actions2 = _interopRequireDefault(_coach_actions);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -85,254 +85,92 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! pages/sign_up.scss */ 639);
+	__webpack_require__(/*! pages/coaches.scss */ 249);
 	
-	var AthleteSignUp = function (_React$Component) {
-	    _inherits(AthleteSignUp, _React$Component);
+	var Coaches = function (_React$Component) {
+	    _inherits(Coaches, _React$Component);
 	
-	    function AthleteSignUp(props) {
-	        _classCallCheck(this, AthleteSignUp);
+	    function Coaches(props) {
+	        _classCallCheck(this, Coaches);
 	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AthleteSignUp).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Coaches).call(this, props));
 	
 	        _this.state = {
-	            signUpStatus: { status: '', errors: [] },
-	            isUsernameUnique: true,
-	            usernameErrors: [],
-	            firstNameErrors: [],
-	            lastNameErrors: [],
-	            emailErrors: [],
-	            passwordErrors: []
+	            user: {}
 	        };
+	        _this.onChange = _this.onChange.bind(_this);
 	        return _this;
 	    }
 	
-	    _createClass(AthleteSignUp, [{
+	    _createClass(Coaches, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            _sign_up_store2.default.addChangeListener(this.onChange.bind(this));
-	            var that = this;
-	            $(document).keypress(function (e) {
-	                if (e.which == 13) {
-	                    that.submit();
-	                }
-	            });
+	            _user_store2.default.addChangeListener(this.onChange);
+	            _coach_store2.default.addChangeListener(this.onChange);
+	            this.load();
 	        }
 	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
-	            _sign_up_store2.default.removeChangeListener(this.onChange.bind(this));
-	            $(document).off("keypress");
+	            _user_store2.default.removeChangeListener(this.onChange);
+	            _coach_store2.default.removeChangeListener(this.onChange);
 	        }
 	    }, {
 	        key: 'onChange',
 	        value: function onChange() {
-	            var data = _sign_up_store2.default.getData();
-	
-	            if (data.signUpStatus.status == _sign_up_constants2.default.SUCCESS) {
-	                location.href = '/setup/goal';
-	            }
-	
-	            if (data.isUsernameUnique) {
-	                this.setState({ usernameErrors: [] });
-	            } else {
-	                this.setState({ usernameErrors: ["Username isn't available."] });
-	            }
-	
+	            var user = _user_store2.default.getData();
+	            var coach_account = _coach_store2.default.getData();
 	            this.setState({
-	                signUpStatus: data.signUpStatus
+	                user: user.user,
+	                coach_account: coach_account.account
 	            });
-	
-	            this.state.formSubmitted = false;
 	        }
 	    }, {
-	        key: 'submit',
-	        value: function submit() {
-	            if (!this.state.formSubmitted) {
-	                this.state.formSubmitted = true;
-	                if (!this.hasErrors()) {
-	                    _sign_up_actions2.default.signUp(this.packageData());
-	                } else {
-	                    this.state.formSubmitted = false;
-	                }
-	            }
-	        }
-	    }, {
-	        key: 'packageData',
-	        value: function packageData() {
-	            var user = {};
-	            user['email'] = this.refs.email.getValue();
-	            user['first_name'] = this.refs.firstName.getValue();
-	            user['last_name'] = this.refs.lastName.getValue();
-	            user['password'] = this.refs.password.getValue();
-	            user['password_confirmation'] = this.refs.password.getValue();
-	            user['sex'] = this.refs.sex.getValue();
-	            user['account_type'] = 'user';
-	            user['user_name'] = this.refs.username.getValue();
-	            return { user: user, invite_token: '' };
-	        }
-	    }, {
-	        key: 'evalUsername',
-	        value: function evalUsername(username) {
-	            if (username.length > 4) {
-	                _sign_up_actions2.default.usernameCheck(username);
-	            }
-	        }
-	    }, {
-	        key: 'hasErrors',
-	        value: function hasErrors() {
-	            var hasErrors = false;
-	            var username = this.refs.username.getValue();
-	            if (!_validator2.default.isLength(username, { min: 5 })) {
-	                this.setState({ usernameErrors: ['Username must be at least 5 characters'] });
-	                hasErrors = true;
-	            }
-	
-	            var firstName = this.refs.firstName.getValue();
-	            if (!_validator2.default.isLength(firstName, { min: 2 })) {
-	                this.setState({ firstNameErrors: ['Please enter a valid first name'] });
-	                hasErrors = true;
-	            }
-	
-	            var lastName = this.refs.lastName.getValue();
-	            if (!_validator2.default.isLength(lastName, { min: 2 })) {
-	                this.setState({ lastNameErrors: ['Please enter a valid first name'] });
-	                hasErrors = true;
-	            }
-	
-	            var email = this.refs.email.getValue();
-	            if (!_validator2.default.isEmail(email)) {
-	                this.setState({ emailErrors: ['Please enter a valid email'] });
-	                hasErrors = true;
-	            }
-	
-	            var strength = this.refs.password.getStrength();
-	            if (strength < 2) {
-	                this.setState({ passwordErrors: ['Your password is too weak'] });
-	                hasErrors = true;
-	            }
-	            return hasErrors;
+	        key: 'load',
+	        value: function load() {
+	            _user_actions2.default.getUser(gon.current_user_id);
+	            _coach_actions2.default.getAccount(gon.coach_account_id);
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
-	
 	            return React.createElement(
 	                'div',
-	                { className: 'athlete-sign-up row' },
+	                { className: 'coaches' },
+	                React.createElement(_header2.default, { user: this.state.user }),
 	                React.createElement(
 	                    'div',
-	                    { className: 'col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form' },
+	                    { className: 'row main' },
 	                    React.createElement(
 	                        'div',
-	                        { className: 'row' },
+	                        { className: 'container' },
 	                        React.createElement(
 	                            'div',
-	                            { className: 'col-md-12' },
+	                            { className: 'row' },
+	                            'Coaches\' Corner'
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            'Create Teams and add Athletes, and we\'ll handle the workouts. You have used ',
+	                            ' of ',
+	                            ' memberships.You can increase/decrease your number of memberships HERE.'
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
 	                            React.createElement(
-	                                'h1',
-	                                null,
-	                                'We Need More Info'
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'row buffer' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-md-12 text-center' },
-	                            React.createElement(
-	                                'span',
-	                                { className: 'purple-bot-container' },
-	                                React.createElement('hr', { className: 'hr-left' }),
-	                                React.createElement(
-	                                    'span',
-	                                    { className: 'text-uppercase info-text' },
-	                                    'Almost done! Just a couple more things'
-	                                ),
-	                                React.createElement('hr', { className: 'hr-right' })
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'row' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-md-12' },
-	                            React.createElement(
-	                                'span',
-	                                { className: 'purple-bot-container ' + (this.state.usernameErrors.length > 0 ? 'error' : null) },
-	                                React.createElement(_fancy_input2.default, { ref: 'username', name: 'user_name', placeholder: 'Username', type: 'text',
-	                                    changedCallback: this.evalUsername, errors: this.state.usernameErrors })
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'row' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-md-12' },
-	                            React.createElement(
-	                                'span',
-	                                { className: 'purple-bot-container ' + (this.state.firstNameErrors.length > 0 ? 'error' : null) },
-	                                React.createElement(_fancy_input2.default, { ref: 'firstName', name: 'first_name', placeholder: 'First Name', type: 'text',
-	                                    errors: this.state.firstNameErrors })
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'row' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-md-12' },
-	                            React.createElement(
-	                                'span',
-	                                { className: 'purple-bot-container ' + (this.state.lastNameErrors.length > 0 ? 'error' : null) },
-	                                React.createElement(_fancy_input2.default, { ref: 'lastName', name: 'last_name', placeholder: 'Last Name', type: 'text',
-	                                    errors: this.state.lastNameErrors })
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'row' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-md-12' },
-	                            React.createElement(
-	                                'span',
-	                                { className: 'purple-bot-container' },
-	                                React.createElement(_slider2.default, { ref: 'sex', checked: 'female', unchecked: 'male' })
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'row submit-row' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-md-12' },
-	                            this.state.signUpStatus.status == _sign_up_constants2.default.FAILURE ? React.createElement(
 	                                'div',
-	                                null,
-	                                this.state.signUpStatus.errors.join(', ')
-	                            ) : null,
-	                            React.createElement(
-	                                'span',
-	                                { onClick: function onClick() {
-	                                        return _this2.submit();
-	                                    }, className: 'submit-button purple-text' },
-	                                'Sign Up'
-	                            ),
-	                            React.createElement(
-	                                'a',
-	                                { href: '', className: 'help-text bold-link' },
-	                                'Have an account? Login here.'
+	                                { className: 'container sec' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'row' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-xs-12' },
+	                                        'Stretching/Warmup'
+	                                    )
+	                                )
 	                            )
 	                        )
 	                    )
@@ -341,11 +179,11 @@
 	        }
 	    }]);
 	
-	    return AthleteSignUp;
+	    return Coaches;
 	}(React.Component);
 	
-	(0, _reactDom.render)(React.createElement(AthleteSignUp, null), document.getElementById('app'));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! jquery */ 242)))
+	(0, _reactDom.render)(React.createElement(Coaches, null), document.getElementById('app'));
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
 /* 1 */
@@ -20937,122 +20775,7 @@
 	module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ },
-/* 168 */
-/*!**************************************!*\
-  !*** ./views/common/fancy_input.jsx ***!
-  \**************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 33);
-	
-	var _util = __webpack_require__(/*! helpers/util */ 169);
-	
-	var _util2 = _interopRequireDefault(_util);
-	
-	var _floatl = __webpack_require__(/*! floatl */ 170);
-	
-	var _floatl2 = _interopRequireDefault(_floatl);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	__webpack_require__(/*! common/fancy_input.scss */ 171);
-	
-	var FancyInput = function (_React$Component) {
-	    _inherits(FancyInput, _React$Component);
-	
-	    function FancyInput(props) {
-	        _classCallCheck(this, FancyInput);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FancyInput).call(this, props));
-	
-	        _this.state = { strength: 0 };
-	        return _this;
-	    }
-	
-	    _createClass(FancyInput, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            new _floatl2.default(this.refs.fancyInput);
-	        }
-	    }, {
-	        key: 'getValue',
-	        value: function getValue() {
-	            return this.refs.inputField.value.trim();
-	        }
-	    }, {
-	        key: 'changed',
-	        value: function changed() {
-	            if (this.props.changedCallback) {
-	                this.props.changedCallback(this.getValue());
-	            }
-	
-	            if (this.props.type == 'password') {
-	                var strength = _util2.default.getPasswordStrength(this.getValue());
-	                this.setState({ strength: strength });
-	            }
-	        }
-	    }, {
-	        key: 'getStrength',
-	        value: function getStrength() {
-	            return _util2.default.getPasswordStrength(this.getValue());
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-	
-	            return _react2.default.createElement(
-	                'span',
-	                { ref: 'fancyInput', className: 'floatl fancy-input ' + (this.props.errors && this.props.errors.length > 0 ? ' floatl--active' : null) },
-	                this.props.errors && this.props.errors.length > 0 ? _react2.default.createElement(
-	                    'label',
-	                    { className: 'floatl__label error-text' },
-	                    this.props.errors.join(', ')
-	                ) : !this.props.errors || this.props.errors.length == 0 ? _react2.default.createElement(
-	                    'label',
-	                    { className: 'floatl__label' },
-	                    this.props.placeholder
-	                ) : null,
-	                _react2.default.createElement('input', { ref: 'inputField', type: this.props.type, className: 'transparent-input standard-text floatl__input',
-	                    name: '' + this.props.name, placeholder: '' + this.props.placeholder, onChange: function onChange() {
-	                        return _this2.changed();
-	                    } }),
-	                this.props.type == 'password' ? _react2.default.createElement(
-	                    'span',
-	                    { className: 'pw-strength' },
-	                    _react2.default.createElement('div', { className: this.state.strength > 3 ? 'indicator full' : 'indicator' }),
-	                    _react2.default.createElement('div', { className: this.state.strength > 2 ? 'indicator full' : 'indicator' }),
-	                    _react2.default.createElement('div', { className: this.state.strength > 1 ? 'indicator full' : 'indicator' }),
-	                    _react2.default.createElement('div', { className: this.state.strength > 0 ? 'indicator full' : 'indicator' })
-	                ) : null
-	            );
-	        }
-	    }]);
-	
-	    return FancyInput;
-	}(_react2.default.Component);
-	
-	exports.default = FancyInput;
-
-/***/ },
+/* 168 */,
 /* 169 */
 /*!*************************!*\
   !*** ./helpers/util.js ***!
@@ -21153,153 +20876,9 @@
 	module.exports = util;
 
 /***/ },
-/* 170 */
-/*!******************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/floatl/dist/js/floatl.js ***!
-  \******************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var require;var require;(function(f){if(true){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Floatl = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return require(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-	var Floatl,
-	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-	
-	module.exports = Floatl = (function() {
-	  var ACTIVE_CLASS, FOCUSED_CLASS, MULTILINE_CLASS;
-	
-	  FOCUSED_CLASS = 'floatl--focused';
-	
-	  ACTIVE_CLASS = 'floatl--active';
-	
-	  MULTILINE_CLASS = 'floatl--multiline';
-	
-	  function Floatl(element) {
-	    this.handleChange = bind(this.handleChange, this);
-	    var event, i, len, ref;
-	    this.element = this.getElement(element);
-	    this.label = this.element.querySelectorAll('.floatl__label')[0];
-	    this.input = this.element.querySelectorAll('.floatl__input')[0];
-	    this.addEventListener(this.input, 'focus', (function(_this) {
-	      return function() {
-	        return _this.addClass(_this.element, FOCUSED_CLASS);
-	      };
-	    })(this));
-	    this.addEventListener(this.input, 'blur', (function(_this) {
-	      return function() {
-	        return _this.removeClass(_this.element, FOCUSED_CLASS);
-	      };
-	    })(this));
-	    ref = ['keyup', 'blur', 'change'];
-	    for (i = 0, len = ref.length; i < len; i++) {
-	      event = ref[i];
-	      this.addEventListener(this.input, event, this.handleChange);
-	    }
-	    if (this.input.tagName === 'TEXTAREA') {
-	      this.addClass(this.element, MULTILINE_CLASS);
-	    }
-	    this.handleChange();
-	  }
-	
-	  Floatl.prototype.getElement = function(el) {
-	    if (el.tagName != null) {
-	      return el;
-	    } else if ((typeof jQuery !== "undefined" && jQuery !== null) && el instanceof jQuery) {
-	      return el.get(0);
-	    } else {
-	      throw new TypeError(el + " 'is not a valid element. Valid options are: DOM Element, jQuery.'");
-	    }
-	  };
-	
-	  Floatl.prototype.handleChange = function(event) {
-	    if (this.input.value === '') {
-	      return this.removeClass(this.element, ACTIVE_CLASS);
-	    } else {
-	      return this.addClass(this.element, ACTIVE_CLASS);
-	    }
-	  };
-	
-	  Floatl.prototype.addClass = function(el, className) {
-	    if (el.classList) {
-	      return el.classList.add(className);
-	    } else {
-	      return el.className += " " + className;
-	    }
-	  };
-	
-	  Floatl.prototype.removeClass = function(el, className) {
-	    var re;
-	    if (el.classList) {
-	      return el.classList.remove(className);
-	    } else {
-	      re = new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi');
-	      return el.className = el.className.replace(re, ' ');
-	    }
-	  };
-	
-	  Floatl.prototype.addEventListener = function(el, eventName, handler) {
-	    if (el.addEventListener) {
-	      return el.addEventListener(eventName, handler);
-	    } else {
-	      return el.attachEvent("on" + eventName, function() {
-	        return handler.call(el);
-	      });
-	    }
-	  };
-	
-	  return Floatl;
-	
-	})();
-	
-	
-	},{}]},{},[1])(1)
-	});
-
-/***/ },
-/* 171 */
-/*!*****************************************!*\
-  !*** ../styles/common/fancy_input.scss ***!
-  \*****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./fancy_input.scss */ 172);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 174)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./fancy_input.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./fancy_input.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 172 */
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/fancy_input.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 173)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
+/* 170 */,
+/* 171 */,
+/* 172 */,
 /* 173 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader/lib/css-base.js ***!
@@ -21614,144 +21193,9 @@
 
 
 /***/ },
-/* 175 */
-/*!*********************************!*\
-  !*** ./views/common/slider.jsx ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 33);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	__webpack_require__(/*! common/slider.scss */ 176);
-	
-	var Slider = function (_React$Component) {
-	    _inherits(Slider, _React$Component);
-	
-	    function Slider(props) {
-	        _classCallCheck(this, Slider);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Slider).call(this, props));
-	
-	        _this.state = { label: _this.props.unchecked };
-	        return _this;
-	    }
-	
-	    _createClass(Slider, [{
-	        key: 'getValue',
-	        value: function getValue() {
-	            if (this.refs.slider.checked) {
-	                return this.props.checked;
-	            }
-	
-	            return this.props.unchecked;
-	        }
-	    }, {
-	        key: 'handleLabel',
-	        value: function handleLabel() {
-	            console.log(this.refs.slider.checked);
-	            if (this.refs.slider.checked) {
-	                this.setState({ label: this.props.checked });
-	            } else {
-	                this.setState({ label: this.props.unchecked });
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-	
-	            return _react2.default.createElement(
-	                'span',
-	                null,
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'switch' },
-	                    _react2.default.createElement('input', { ref: 'slider', id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox', onChange: function onChange() {
-	                            return _this2.handleLabel();
-	                        } }),
-	                    _react2.default.createElement('label', { htmlFor: 'cmn-toggle-4' })
-	                ),
-	                _react2.default.createElement(
-	                    'span',
-	                    { className: 'selected-text standard-text' },
-	                    this.state.label
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Slider;
-	}(_react2.default.Component);
-	
-	exports.default = Slider;
-
-/***/ },
-/* 176 */
-/*!************************************!*\
-  !*** ../styles/common/slider.scss ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./slider.scss */ 177);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 174)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./slider.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./slider.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 177 */
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/slider.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 173)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
+/* 175 */,
+/* 176 */,
+/* 177 */,
 /* 178 */
 /*!************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/validator/index.js ***!
@@ -24422,63 +23866,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 241 */
-/*!************************************!*\
-  !*** ./actions/sign_up_actions.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {"use strict";
-	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
-	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 244);
-	
-	var SignUpActions = {
-	
-	    signUp: function (payload) {
-	        var data = JSON.stringify(payload);
-	        $.ajax({
-	            type: "post",
-	            data: data,
-	            url: "/users.json",
-	            dataType: "json",
-	            contentType: "application/json; charset=utf-8",
-	            success: function (results) {
-	                var payload = results;
-	                payload.success = true;
-	                dispatcher.dispatch(C.SIGN_UP, payload);
-	            },
-	            error: function (results) {
-	                var payload = results.responseJSON;
-	                payload.success = false;
-	                dispatcher.dispatch(C.SIGN_UP, payload);
-	            }
-	        });
-	    },
-	
-	    usernameCheck: function (username) {
-	        $.ajax({
-	            type: "get",
-	            url: "/username_exists/" + username + ".json",
-	            dataType: "json",
-	            success: function (results) {
-	                dispatcher.dispatch(C.UNIQUE_USERNAME, { isUnique: false });
-	            },
-	            error: function (response) {
-	                if (response.status == 404) {
-	                    dispatcher.dispatch(C.UNIQUE_USERNAME, { isUnique: true });
-	                } else {
-	                    alert(JSON.parse(response.responseJSON));
-	                }
-	            }
-	        });
-	    }
-	};
-	
-	module.exports = SignUpActions;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 242)))
-
-/***/ },
+/* 241 */,
 /* 242 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/jquery/dist/jquery.js ***!
@@ -34407,24 +33795,7 @@
 	module.exports = new Dispatcher();
 
 /***/ },
-/* 244 */
-/*!****************************************!*\
-  !*** ./constants/sign_up_constants.js ***!
-  \****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 245);
-	
-	module.exports = keyMirror({
-	    SIGN_UP: null,
-	    UNIQUE_USERNAME: null,
-	    SUCCESS: null,
-	    FAILURE: null
-	});
-
-/***/ },
+/* 244 */,
 /* 245 */
 /*!******************************!*\
   !*** ./helpers/KeyMirror.js ***!
@@ -34444,61 +33815,7 @@
 	module.exports = keyMirror;
 
 /***/ },
-/* 246 */
-/*!*********************************!*\
-  !*** ./stores/sign_up_store.js ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
-	var Store = __webpack_require__(/*! ./store.js */ 247);
-	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 244);
-	
-	var SignUpStore = new Store({
-	    signUpStatus: { status: "", errors: [] },
-	    isUsernameUnique: true,
-	
-	    setSignUpStatus: function (params) {
-	        if (params.success) {
-	            this.signUpStatus.status = C.SUCCESS;
-	        } else {
-	            this.signUpStatus.status = C.FAILURE;
-	            this.signUpStatus.errors = params;
-	        }
-	        delete params.success;
-	    },
-	
-	    setIsUsernameUnique: function (isUnique) {
-	        this.isUsernameUnique = isUnique;
-	    },
-	
-	    getData: function () {
-	        return {
-	            signUpStatus: this.signUpStatus,
-	            isUsernameUnique: this.isUsernameUnique
-	        };
-	    }
-	});
-	
-	dispatcher.register(C.SIGN_UP, function (data) {
-	    if (data) {
-	        SignUpStore.setSignUpStatus(data);
-	        SignUpStore.change();
-	    }
-	});
-	
-	dispatcher.register(C.UNIQUE_USERNAME, function (data) {
-	    if (data) {
-	        SignUpStore.setIsUsernameUnique(data.isUnique);
-	        SignUpStore.change();
-	    }
-	});
-	
-	module.exports = SignUpStore;
-
-/***/ },
+/* 246 */,
 /* 247 */
 /*!*************************!*\
   !*** ./stores/store.js ***!
@@ -34838,8 +34155,52 @@
 
 
 /***/ },
-/* 249 */,
-/* 250 */,
+/* 249 */
+/*!************************************!*\
+  !*** ../styles/pages/coaches.scss ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./coaches.scss */ 250);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./coaches.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./coaches.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 250 */
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/coaches.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 173)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
 /* 251 */,
 /* 252 */,
 /* 253 */,
@@ -34903,16 +34264,266 @@
 /* 311 */,
 /* 312 */,
 /* 313 */,
-/* 314 */,
-/* 315 */,
+/* 314 */
+/*!******************************!*\
+  !*** ./stores/user_store.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
+	var Store = __webpack_require__(/*! ./store.js */ 247);
+	var C = __webpack_require__(/*! constants/user_constants.js */ 315);
+	
+	var UserStore = new Store({
+	    user: {},
+	
+	    setUser: function (data) {
+	        this.user = data;
+	    },
+	
+	    getData: function () {
+	        return {
+	            user: this.user
+	        };
+	    }
+	});
+	
+	dispatcher.register(C.LOADED, function (data) {
+	    if (data) {
+	        UserStore.setUser(data);
+	        UserStore.change();
+	    }
+	});
+	
+	
+	module.exports = UserStore;
+
+/***/ },
+/* 315 */
+/*!*************************************!*\
+  !*** ./constants/user_constants.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 245);
+	
+	module.exports = keyMirror({
+	    LOADED: null,
+	    SCHEDULE_LOADED: null
+	});
+
+/***/ },
 /* 316 */,
 /* 317 */,
 /* 318 */,
-/* 319 */,
+/* 319 */
+/*!*********************************!*\
+  !*** ./actions/user_actions.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
+	var C = __webpack_require__(/*! constants/user_constants.js */ 315);
+	
+	var UserActions = {
+	
+	    getUser: function (user_id) {
+	        $.ajax({
+	            type: "get",
+	            url: "/users/" + user_id + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: (function (user) {
+	                dispatcher.dispatch(C.LOADED, user);
+	                if (user.user_schedule) {
+	                    this.getSchedule(user.user_schedule.id);
+	                }
+	            }).bind(this),
+	            error: function (results) {
+	                alert("Something went wrong!");
+	            }
+	        });
+	    },
+	
+	    getSchedule: function (schedule_id) {
+	        $.ajax({
+	            type: "get",
+	            url: "/user_schedules/" + schedule_id + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (schedule) {
+	                dispatcher.dispatch(C.SCHEDULE_LOADED, schedule);
+	            },
+	            error: function (results) {
+	                alert("Something went wrong!");
+	            }
+	        });
+	    },
+	
+	    setSchedule: function (schedule) {
+	        schedule.weekly_schedule_days_attributes = schedule.weekly_schedule_days;
+	        delete schedule.weekly_schedule_days;
+	
+	        var user_schedule = { user_schedule: schedule };
+	        var data = JSON.stringify(user_schedule);
+	        if (schedule.id) {
+	            $.ajax({
+	                type: "put",
+	                data: data,
+	                url: "/user_schedules/" + schedule.id + ".json",
+	                dataType: "json",
+	                contentType: "application/json; charset=utf-8",
+	                success: function (results) {
+	                    location.href = "/do-work";
+	                },
+	                error: function (results) {
+	                    alert(results);
+	                }
+	            });
+	        } else {
+	            $.ajax({
+	                type: "post",
+	                data: data,
+	                url: "/user_schedules.json",
+	                dataType: "json",
+	                contentType: "application/json; charset=utf-8",
+	                success: function (results) {
+	                    location.href = "/do-work";
+	                },
+	                error: function (results) {
+	                    alert(results);
+	                }
+	            });
+	        }
+	    }
+	
+	};
+	
+	module.exports = UserActions;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 242)))
+
+/***/ },
 /* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
+/* 321 */
+/*!*********************************!*\
+  !*** ./views/common/header.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 33);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/header.scss */ 322);
+	
+	var Header = function (_React$Component) {
+	    _inherits(Header, _React$Component);
+	
+	    function Header(props) {
+	        _classCallCheck(this, Header);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Header).call(this, props));
+	    }
+	
+	    _createClass(Header, [{
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'div',
+	                { className: 'row header' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-2' },
+	                            React.createElement('img', { className: 'logo', src: 'https://s3.amazonaws.com/quadfit/logo%403x.png' })
+	                        ),
+	                        this.props.user.avatars ? React.createElement(
+	                            'div',
+	                            { className: 'col-xs-1 col-xs-offset-9' },
+	                            React.createElement('img', { src: '' + this.props.user.avatars })
+	                        ) : null
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Header;
+	}(React.Component);
+	
+	exports.default = Header;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 322 */
+/*!************************************!*\
+  !*** ../styles/common/header.scss ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./header.scss */ 323);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./header.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./header.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 323 */
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/header.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 173)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
 /* 324 */,
 /* 325 */,
 /* 326 */,
@@ -35228,51 +34839,132 @@
 /* 636 */,
 /* 637 */,
 /* 638 */,
-/* 639 */
-/*!************************************!*\
-  !*** ../styles/pages/sign_up.scss ***!
-  \************************************/
+/* 639 */,
+/* 640 */,
+/* 641 */,
+/* 642 */,
+/* 643 */,
+/* 644 */,
+/* 645 */,
+/* 646 */,
+/* 647 */,
+/* 648 */,
+/* 649 */,
+/* 650 */,
+/* 651 */,
+/* 652 */,
+/* 653 */,
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */,
+/* 671 */,
+/* 672 */,
+/* 673 */,
+/* 674 */,
+/* 675 */,
+/* 676 */,
+/* 677 */,
+/* 678 */,
+/* 679 */,
+/* 680 */,
+/* 681 */,
+/* 682 */
+/*!*******************************!*\
+  !*** ./stores/coach_store.js ***!
+  \*******************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
+	"use strict";
 	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./sign_up.scss */ 640);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 174)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./sign_up.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./sign_up.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
+	var Store = __webpack_require__(/*! ./store.js */ 247);
+	var C = __webpack_require__(/*! constants/coach_constants.js */ 684);
+	
+	var CoachStore = new Store({
+	    account: [],
+	
+	    setPlyos: function (data) {
+	        this.plyometrics = data;
+	    },
+	
+	    setAccount: function (data) {
+	        this.account = data;
+	    },
+	
+	    getData: function () {
+	        return {
+	            account: this.account
+	        };
+	    }
+	});
+	
+	dispatcher.register(C.ACCOUNT_LOADED, function (data) {
+	    if (data) {
+	        CoachStore.setAccount(data);
+	        CoachStore.change();
+	    }
+	});
+	
+	module.exports = CoachStore;
 
 /***/ },
-/* 640 */
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/sign_up.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/* 683 */
+/*!**********************************!*\
+  !*** ./actions/coach_actions.js ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 173)();
-	// imports
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
+	var C = __webpack_require__(/*! constants/coach_constants.js */ 684);
 	
-	// module
-	exports.push([module.id, "", ""]);
+	var CoachActions = {
 	
-	// exports
+	    getAccount: function (id) {
+	        $.ajax({
+	            type: "get",
+	            url: "/coach_accounts/" + id + ".json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.ACCOUNT_LOADED, data);
+	            }
+	        });
+	    }
+	};
+	
+	module.exports = CoachActions;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 242)))
 
+/***/ },
+/* 684 */
+/*!**************************************!*\
+  !*** ./constants/coach_constants.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 245);
+	
+	module.exports = keyMirror({
+	    ACCOUNT_LOADED: null
+	});
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=more_info.bundle.js.map
+//# sourceMappingURL=coaches.bundle.js.map

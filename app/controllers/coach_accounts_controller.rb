@@ -47,8 +47,8 @@ class CoachAccountsController < ApplicationController
   end
 
   def verify_owns_account
-    set_coach_account
     return unauthorized if current_user.nil?
+    set_coach_account
     unauthorized unless @coach_account.user_id == current_user.id
   end
 
