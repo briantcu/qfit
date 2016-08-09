@@ -51,67 +51,67 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _reactRouter = __webpack_require__(/*! react-router */ 251);
+	var _reactRouter = __webpack_require__(/*! react-router */ 250);
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 33);
 	
-	var _header = __webpack_require__(/*! views/common/header */ 321);
+	var _header = __webpack_require__(/*! views/common/header */ 231);
 	
 	var _header2 = _interopRequireDefault(_header);
 	
-	var _subnav = __webpack_require__(/*! views/setup/subnav */ 641);
+	var _subnav = __webpack_require__(/*! views/setup/subnav */ 644);
 	
 	var _subnav2 = _interopRequireDefault(_subnav);
 	
-	var _goal = __webpack_require__(/*! views/setup/goal */ 644);
+	var _goal = __webpack_require__(/*! views/setup/goal */ 647);
 	
 	var _goal2 = _interopRequireDefault(_goal);
 	
-	var _quads = __webpack_require__(/*! views/setup/quads */ 649);
+	var _quads = __webpack_require__(/*! views/setup/quads */ 652);
 	
 	var _quads2 = _interopRequireDefault(_quads);
 	
-	var _fitness = __webpack_require__(/*! views/setup/fitness */ 655);
+	var _fitness = __webpack_require__(/*! views/setup/fitness */ 658);
 	
 	var _fitness2 = _interopRequireDefault(_fitness);
 	
-	var _schedule = __webpack_require__(/*! views/setup/schedule */ 661);
+	var _schedule = __webpack_require__(/*! views/setup/schedule */ 664);
 	
 	var _schedule2 = _interopRequireDefault(_schedule);
 	
-	var _program = __webpack_require__(/*! views/setup/program */ 667);
+	var _program = __webpack_require__(/*! views/setup/program */ 670);
 	
 	var _program2 = _interopRequireDefault(_program);
 	
-	var _commitment = __webpack_require__(/*! views/setup/commitment */ 670);
+	var _commitment = __webpack_require__(/*! views/setup/commitment */ 673);
 	
 	var _commitment2 = _interopRequireDefault(_commitment);
 	
-	var _user_store = __webpack_require__(/*! stores/user_store */ 314);
+	var _user_store = __webpack_require__(/*! stores/user_store */ 236);
 	
 	var _user_store2 = _interopRequireDefault(_user_store);
 	
-	var _user_schedule_store = __webpack_require__(/*! stores/user_schedule_store */ 673);
+	var _user_schedule_store = __webpack_require__(/*! stores/user_schedule_store */ 676);
 	
 	var _user_schedule_store2 = _interopRequireDefault(_user_schedule_store);
 	
-	var _fitness_assessment_store = __webpack_require__(/*! stores/fitness_assessment_store */ 674);
+	var _fitness_assessment_store = __webpack_require__(/*! stores/fitness_assessment_store */ 677);
 	
 	var _fitness_assessment_store2 = _interopRequireDefault(_fitness_assessment_store);
 	
-	var _program_store = __webpack_require__(/*! stores/program_store */ 675);
+	var _program_store = __webpack_require__(/*! stores/program_store */ 678);
 	
 	var _program_store2 = _interopRequireDefault(_program_store);
 	
-	var _user_actions = __webpack_require__(/*! actions/user_actions */ 319);
+	var _user_actions = __webpack_require__(/*! actions/user_actions */ 245);
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
-	var _program_actions = __webpack_require__(/*! actions/program_actions */ 668);
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 671);
 	
 	var _program_actions2 = _interopRequireDefault(_program_actions);
 	
-	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 645);
+	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 648);
 	
 	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
 	
@@ -123,9 +123,9 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 646);
+	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 649);
 	
-	__webpack_require__(/*! pages/setup_coach.scss */ 678);
+	__webpack_require__(/*! pages/setup_coach.scss */ 681);
 	
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
@@ -20900,110 +20900,183 @@
 
 /***/ },
 /* 168 */,
-/* 169 */
-/*!*************************!*\
-  !*** ./helpers/util.js ***!
-  \*************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var util = {
-	    timeAgo: function (timeString, diffOnly) {
-	        var time = new Date(timeString);
-	        var units = [{ name: "second", limit: 60, in_seconds: 1 }, { name: "minute", limit: 3600, in_seconds: 60 }, { name: "hour", limit: 86400, in_seconds: 3600 }, { name: "day", limit: 604800, in_seconds: 86400 }, { name: "week", limit: 2629743, in_seconds: 604800 }, { name: "month", limit: 31556926, in_seconds: 2629743 }, { name: "year", limit: null, in_seconds: 31556926 }];
-	
-	        var diff = (new Date() - time) / 1000;
-	        if (diffOnly) {
-	            return diff;
-	        }
-	        if (diff < 5) return "a few seconds";
-	
-	        var i = 0,
-	            unit;
-	
-	        while (unit = units[i++]) {
-	            if (diff < unit.limit || !unit.limit) {
-	                diff = Math.floor(diff / unit.in_seconds);
-	                return diff + " " + unit.name + (diff > 1 ? "s" : "");
-	            }
-	        }
-	    },
-	    getParameterByName: function (name) {
-	        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-	        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-	            results = regex.exec(location.search);
-	        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	    },
-	    isString: function (obj) {
-	        return typeof obj === "string";
-	    },
-	    empty: function (str) {
-	        return !(str && util.isString(str) && str.length > 0);
-	    },
-	    notEmpty: function (str) {
-	        return !util.empty(str);
-	    },
-	    isXss: function (str) {
-	        return /j\s*?a\s*?v\s*?a\s*?s\s*?c\s*?r\s*?i\s*?p\s*?t\s*?\:|<script/ig.test(str);
-	    },
-	    setCookie: function (name, value, days) {
-	        var expires;
-	        if (days) {
-	            var date = new Date();
-	            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-	            expires = "; expires=" + date.toGMTString();
-	        } else {
-	            expires = "";
-	        }
-	        document.cookie = name + "=" + value + expires + "; path=/";
-	    },
-	    getCookie: function (c_name) {
-	        if (document.cookie.length > 0) {
-	            var c_start = document.cookie.indexOf(c_name + "=");
-	            if (c_start != -1) {
-	                c_start = c_start + c_name.length + 1;
-	                var c_end = document.cookie.indexOf(";", c_start);
-	                if (c_end == -1) {
-	                    c_end = document.cookie.length;
-	                }
-	                return window.unescape(document.cookie.substring(c_start, c_end));
-	            }
-	        }
-	        return "";
-	    },
-	    // TODO: add browser support check
-	    historyPushState: function (url, state) {
-	        window.history.pushState(state, document.title, url);
-	    },
-	    historyReplaceState: function (url, state) {
-	        window.history.replaceState(state, document.title, url);
-	    },
-	
-	    getPasswordStrength: function (pwd) {
-	        var score = 0;
-	
-	        if (pwd.length > 6) score++;
-	
-	        if (pwd.match(/[a-z]/) && pwd.match(/[A-Z]/)) score++;
-	
-	        if (pwd.match(/\d+/)) score++;
-	
-	        if (pwd.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)) score++;
-	
-	        if (pwd.length > 12) score++;
-	
-	        return score;
-	    }
-	};
-	
-	module.exports = util;
-
-/***/ },
+/* 169 */,
 /* 170 */,
 /* 171 */,
 /* 172 */,
-/* 173 */
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */
+/*!*********************************!*\
+  !*** ./views/common/header.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 33);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/header.scss */ 232);
+	
+	var Header = function (_React$Component) {
+	    _inherits(Header, _React$Component);
+	
+	    function Header(props) {
+	        _classCallCheck(this, Header);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Header).call(this, props));
+	    }
+	
+	    _createClass(Header, [{
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'div',
+	                { className: 'row header' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-2' },
+	                            React.createElement('img', { className: 'logo', src: 'https://s3.amazonaws.com/quadfit/logo%403x.png' })
+	                        ),
+	                        this.props.user.avatars ? React.createElement(
+	                            'div',
+	                            { className: 'col-xs-1 col-xs-offset-9' },
+	                            React.createElement('img', { src: '' + this.props.user.avatars })
+	                        ) : null
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Header;
+	}(React.Component);
+	
+	exports.default = Header;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 232 */
+/*!************************************!*\
+  !*** ../styles/common/header.scss ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./header.scss */ 233);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 235)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./header.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./header.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 233 */
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/header.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 234)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 234 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader/lib/css-base.js ***!
   \********************************************************************/
@@ -21062,7 +21135,7 @@
 
 
 /***/ },
-/* 174 */
+/* 235 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/style-loader/addStyles.js ***!
   \*******************************************************************/
@@ -21317,74 +21390,686 @@
 
 
 /***/ },
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
+/* 236 */
+/*!******************************!*\
+  !*** ./stores/user_store.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
+	var Store = __webpack_require__(/*! ./store.js */ 239);
+	var C = __webpack_require__(/*! constants/user_constants.js */ 241);
+	
+	var UserStore = new Store({
+	    user: {},
+	
+	    setUser: function (data) {
+	        this.user = data;
+	    },
+	
+	    getData: function () {
+	        return {
+	            user: this.user
+	        };
+	    }
+	});
+	
+	dispatcher.register(C.LOADED, function (data) {
+	    if (data) {
+	        UserStore.setUser(data);
+	        UserStore.change();
+	    }
+	});
+	
+	
+	module.exports = UserStore;
+
+/***/ },
+/* 237 */
+/*!******************************!*\
+  !*** ./global_dispatcher.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var util = __webpack_require__(/*! helpers/util.js */ 238);
+	
+	var Dispatcher = function () {
+	    this.callbacks = {};
+	};
+	
+	Dispatcher.prototype = {
+	    __add: function (name, fn) {
+	        if (hasOwn.call(this.callbacks, name)) this.callbacks[name].push(fn);else this.callbacks[name] = [fn];
+	    },
+	    __invoke: function (name, payload, clone) {
+	        // default to cloningt the payload
+	        if (clone === undefined) {
+	            clone = true;
+	        }
+	
+	        if (!hasOwn.call(this.callbacks, name)) {
+	            if (this.logging) {
+	                console.warn("DISPATCHER: \"" + name + "\" dispatched but there are no registered callbacks.");
+	            }
+	            return;
+	        }
+	
+	        var group = this.callbacks[name];
+	        // clone object payload incase its mutated by a store
+	        if (payload && clone) {
+	            payload = JSON.parse(JSON.stringify(payload));
+	        }
+	
+	        for (var i = 0; i < group.length; i++) {
+	            // clone object payload incase its mutated by a store
+	            group[i].apply(this, [payload]);
+	        }
+	    },
+	    register: function (actionType, fn) {
+	        if (util.empty(actionType)) throw Error("Invalid action type.");
+	
+	        this.__add(actionType, fn);
+	        return this;
+	    },
+	    dispatch: function (action /*, payload, clone */) {
+	        var actionType,
+	            payload,
+	            clone = arguments[2];
+	
+	        if (util.isString(action)) {
+	            actionType = action;
+	            payload = arguments[1];
+	        } else if (action && hasOwn.call(action, "actionType") && !util.empty(action.actionType)) {
+	            actionType = action.actionType;
+	            if (hasOwn.call(action, "payload")) payload = action.payload;
+	        } else {
+	            if (this.logging) {
+	                console.warn("DISPATCHER: \"" + JSON.stringify(action) + "\" is invalid to dispatch. Did you specify an `actionType`?.");
+	            }
+	            return;
+	        }
+	
+	        this.__invoke(actionType, payload, clone);
+	        return this;
+	    }
+	};
+	
+	
+	var hasOwn = Object.prototype.hasOwnProperty;
+	
+	module.exports = new Dispatcher();
+
+/***/ },
+/* 238 */
+/*!*************************!*\
+  !*** ./helpers/util.js ***!
+  \*************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var util = {
+	    timeAgo: function (timeString, diffOnly) {
+	        var time = new Date(timeString);
+	        var units = [{ name: "second", limit: 60, in_seconds: 1 }, { name: "minute", limit: 3600, in_seconds: 60 }, { name: "hour", limit: 86400, in_seconds: 3600 }, { name: "day", limit: 604800, in_seconds: 86400 }, { name: "week", limit: 2629743, in_seconds: 604800 }, { name: "month", limit: 31556926, in_seconds: 2629743 }, { name: "year", limit: null, in_seconds: 31556926 }];
+	
+	        var diff = (new Date() - time) / 1000;
+	        if (diffOnly) {
+	            return diff;
+	        }
+	        if (diff < 5) return "a few seconds";
+	
+	        var i = 0,
+	            unit;
+	
+	        while (unit = units[i++]) {
+	            if (diff < unit.limit || !unit.limit) {
+	                diff = Math.floor(diff / unit.in_seconds);
+	                return diff + " " + unit.name + (diff > 1 ? "s" : "");
+	            }
+	        }
+	    },
+	    getParameterByName: function (name) {
+	        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	            results = regex.exec(location.search);
+	        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	    },
+	    isString: function (obj) {
+	        return typeof obj === "string";
+	    },
+	    empty: function (str) {
+	        return !(str && util.isString(str) && str.length > 0);
+	    },
+	    notEmpty: function (str) {
+	        return !util.empty(str);
+	    },
+	    isXss: function (str) {
+	        return /j\s*?a\s*?v\s*?a\s*?s\s*?c\s*?r\s*?i\s*?p\s*?t\s*?\:|<script/ig.test(str);
+	    },
+	    setCookie: function (name, value, days) {
+	        var expires;
+	        if (days) {
+	            var date = new Date();
+	            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+	            expires = "; expires=" + date.toGMTString();
+	        } else {
+	            expires = "";
+	        }
+	        document.cookie = name + "=" + value + expires + "; path=/";
+	    },
+	    getCookie: function (c_name) {
+	        if (document.cookie.length > 0) {
+	            var c_start = document.cookie.indexOf(c_name + "=");
+	            if (c_start != -1) {
+	                c_start = c_start + c_name.length + 1;
+	                var c_end = document.cookie.indexOf(";", c_start);
+	                if (c_end == -1) {
+	                    c_end = document.cookie.length;
+	                }
+	                return window.unescape(document.cookie.substring(c_start, c_end));
+	            }
+	        }
+	        return "";
+	    },
+	    // TODO: add browser support check
+	    historyPushState: function (url, state) {
+	        window.history.pushState(state, document.title, url);
+	    },
+	    historyReplaceState: function (url, state) {
+	        window.history.replaceState(state, document.title, url);
+	    },
+	
+	    getPasswordStrength: function (pwd) {
+	        var score = 0;
+	
+	        if (pwd.length > 6) score++;
+	
+	        if (pwd.match(/[a-z]/) && pwd.match(/[A-Z]/)) score++;
+	
+	        if (pwd.match(/\d+/)) score++;
+	
+	        if (pwd.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)) score++;
+	
+	        if (pwd.length > 12) score++;
+	
+	        return score;
+	    }
+	};
+	
+	module.exports = util;
+
+/***/ },
+/* 239 */
+/*!*************************!*\
+  !*** ./stores/store.js ***!
+  \*************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var assign = __webpack_require__(/*! object-assign */ 4);
+	var EventEmitter = __webpack_require__(/*! events */ 240).EventEmitter;
+	
+	var Store = function (extend) {
+	    if (extend) {
+	        assign(this, extend);
+	    }
+	};
+	
+	assign(Store.prototype, EventEmitter.prototype, {
+	    change: function () {
+	        this.emit("change");
+	    },
+	    addChangeListener: function (callback) {
+	        this.on("change", callback);
+	    },
+	    removeChangeListener: function (callback) {
+	        this.removeListener("change", callback);
+	    }
+	});
+	
+	module.exports = Store;
+
+/***/ },
+/* 240 */
+/*!**********************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/events/events.js ***!
+  \**********************************************************/
+/***/ function(module, exports) {
+
+	// Copyright Joyent, Inc. and other Node contributors.
+	//
+	// Permission is hereby granted, free of charge, to any person obtaining a
+	// copy of this software and associated documentation files (the
+	// "Software"), to deal in the Software without restriction, including
+	// without limitation the rights to use, copy, modify, merge, publish,
+	// distribute, sublicense, and/or sell copies of the Software, and to permit
+	// persons to whom the Software is furnished to do so, subject to the
+	// following conditions:
+	//
+	// The above copyright notice and this permission notice shall be included
+	// in all copies or substantial portions of the Software.
+	//
+	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+	// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+	// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+	// USE OR OTHER DEALINGS IN THE SOFTWARE.
+	
+	function EventEmitter() {
+	  this._events = this._events || {};
+	  this._maxListeners = this._maxListeners || undefined;
+	}
+	module.exports = EventEmitter;
+	
+	// Backwards-compat with node 0.10.x
+	EventEmitter.EventEmitter = EventEmitter;
+	
+	EventEmitter.prototype._events = undefined;
+	EventEmitter.prototype._maxListeners = undefined;
+	
+	// By default EventEmitters will print a warning if more than 10 listeners are
+	// added to it. This is a useful default which helps finding memory leaks.
+	EventEmitter.defaultMaxListeners = 10;
+	
+	// Obviously not all Emitters should be limited to 10. This function allows
+	// that to be increased. Set to zero for unlimited.
+	EventEmitter.prototype.setMaxListeners = function(n) {
+	  if (!isNumber(n) || n < 0 || isNaN(n))
+	    throw TypeError('n must be a positive number');
+	  this._maxListeners = n;
+	  return this;
+	};
+	
+	EventEmitter.prototype.emit = function(type) {
+	  var er, handler, len, args, i, listeners;
+	
+	  if (!this._events)
+	    this._events = {};
+	
+	  // If there is no 'error' event listener then throw.
+	  if (type === 'error') {
+	    if (!this._events.error ||
+	        (isObject(this._events.error) && !this._events.error.length)) {
+	      er = arguments[1];
+	      if (er instanceof Error) {
+	        throw er; // Unhandled 'error' event
+	      }
+	      throw TypeError('Uncaught, unspecified "error" event.');
+	    }
+	  }
+	
+	  handler = this._events[type];
+	
+	  if (isUndefined(handler))
+	    return false;
+	
+	  if (isFunction(handler)) {
+	    switch (arguments.length) {
+	      // fast cases
+	      case 1:
+	        handler.call(this);
+	        break;
+	      case 2:
+	        handler.call(this, arguments[1]);
+	        break;
+	      case 3:
+	        handler.call(this, arguments[1], arguments[2]);
+	        break;
+	      // slower
+	      default:
+	        args = Array.prototype.slice.call(arguments, 1);
+	        handler.apply(this, args);
+	    }
+	  } else if (isObject(handler)) {
+	    args = Array.prototype.slice.call(arguments, 1);
+	    listeners = handler.slice();
+	    len = listeners.length;
+	    for (i = 0; i < len; i++)
+	      listeners[i].apply(this, args);
+	  }
+	
+	  return true;
+	};
+	
+	EventEmitter.prototype.addListener = function(type, listener) {
+	  var m;
+	
+	  if (!isFunction(listener))
+	    throw TypeError('listener must be a function');
+	
+	  if (!this._events)
+	    this._events = {};
+	
+	  // To avoid recursion in the case that type === "newListener"! Before
+	  // adding it to the listeners, first emit "newListener".
+	  if (this._events.newListener)
+	    this.emit('newListener', type,
+	              isFunction(listener.listener) ?
+	              listener.listener : listener);
+	
+	  if (!this._events[type])
+	    // Optimize the case of one listener. Don't need the extra array object.
+	    this._events[type] = listener;
+	  else if (isObject(this._events[type]))
+	    // If we've already got an array, just append.
+	    this._events[type].push(listener);
+	  else
+	    // Adding the second element, need to change to array.
+	    this._events[type] = [this._events[type], listener];
+	
+	  // Check for listener leak
+	  if (isObject(this._events[type]) && !this._events[type].warned) {
+	    if (!isUndefined(this._maxListeners)) {
+	      m = this._maxListeners;
+	    } else {
+	      m = EventEmitter.defaultMaxListeners;
+	    }
+	
+	    if (m && m > 0 && this._events[type].length > m) {
+	      this._events[type].warned = true;
+	      console.error('(node) warning: possible EventEmitter memory ' +
+	                    'leak detected. %d listeners added. ' +
+	                    'Use emitter.setMaxListeners() to increase limit.',
+	                    this._events[type].length);
+	      if (typeof console.trace === 'function') {
+	        // not supported in IE 10
+	        console.trace();
+	      }
+	    }
+	  }
+	
+	  return this;
+	};
+	
+	EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+	
+	EventEmitter.prototype.once = function(type, listener) {
+	  if (!isFunction(listener))
+	    throw TypeError('listener must be a function');
+	
+	  var fired = false;
+	
+	  function g() {
+	    this.removeListener(type, g);
+	
+	    if (!fired) {
+	      fired = true;
+	      listener.apply(this, arguments);
+	    }
+	  }
+	
+	  g.listener = listener;
+	  this.on(type, g);
+	
+	  return this;
+	};
+	
+	// emits a 'removeListener' event iff the listener was removed
+	EventEmitter.prototype.removeListener = function(type, listener) {
+	  var list, position, length, i;
+	
+	  if (!isFunction(listener))
+	    throw TypeError('listener must be a function');
+	
+	  if (!this._events || !this._events[type])
+	    return this;
+	
+	  list = this._events[type];
+	  length = list.length;
+	  position = -1;
+	
+	  if (list === listener ||
+	      (isFunction(list.listener) && list.listener === listener)) {
+	    delete this._events[type];
+	    if (this._events.removeListener)
+	      this.emit('removeListener', type, listener);
+	
+	  } else if (isObject(list)) {
+	    for (i = length; i-- > 0;) {
+	      if (list[i] === listener ||
+	          (list[i].listener && list[i].listener === listener)) {
+	        position = i;
+	        break;
+	      }
+	    }
+	
+	    if (position < 0)
+	      return this;
+	
+	    if (list.length === 1) {
+	      list.length = 0;
+	      delete this._events[type];
+	    } else {
+	      list.splice(position, 1);
+	    }
+	
+	    if (this._events.removeListener)
+	      this.emit('removeListener', type, listener);
+	  }
+	
+	  return this;
+	};
+	
+	EventEmitter.prototype.removeAllListeners = function(type) {
+	  var key, listeners;
+	
+	  if (!this._events)
+	    return this;
+	
+	  // not listening for removeListener, no need to emit
+	  if (!this._events.removeListener) {
+	    if (arguments.length === 0)
+	      this._events = {};
+	    else if (this._events[type])
+	      delete this._events[type];
+	    return this;
+	  }
+	
+	  // emit removeListener for all listeners on all events
+	  if (arguments.length === 0) {
+	    for (key in this._events) {
+	      if (key === 'removeListener') continue;
+	      this.removeAllListeners(key);
+	    }
+	    this.removeAllListeners('removeListener');
+	    this._events = {};
+	    return this;
+	  }
+	
+	  listeners = this._events[type];
+	
+	  if (isFunction(listeners)) {
+	    this.removeListener(type, listeners);
+	  } else if (listeners) {
+	    // LIFO order
+	    while (listeners.length)
+	      this.removeListener(type, listeners[listeners.length - 1]);
+	  }
+	  delete this._events[type];
+	
+	  return this;
+	};
+	
+	EventEmitter.prototype.listeners = function(type) {
+	  var ret;
+	  if (!this._events || !this._events[type])
+	    ret = [];
+	  else if (isFunction(this._events[type]))
+	    ret = [this._events[type]];
+	  else
+	    ret = this._events[type].slice();
+	  return ret;
+	};
+	
+	EventEmitter.prototype.listenerCount = function(type) {
+	  if (this._events) {
+	    var evlistener = this._events[type];
+	
+	    if (isFunction(evlistener))
+	      return 1;
+	    else if (evlistener)
+	      return evlistener.length;
+	  }
+	  return 0;
+	};
+	
+	EventEmitter.listenerCount = function(emitter, type) {
+	  return emitter.listenerCount(type);
+	};
+	
+	function isFunction(arg) {
+	  return typeof arg === 'function';
+	}
+	
+	function isNumber(arg) {
+	  return typeof arg === 'number';
+	}
+	
+	function isObject(arg) {
+	  return typeof arg === 'object' && arg !== null;
+	}
+	
+	function isUndefined(arg) {
+	  return arg === void 0;
+	}
+
+
+/***/ },
+/* 241 */
+/*!*************************************!*\
+  !*** ./constants/user_constants.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 242);
+	
+	module.exports = keyMirror({
+	    LOADED: null,
+	    SCHEDULE_LOADED: null
+	});
+
+/***/ },
 /* 242 */
+/*!******************************!*\
+  !*** ./helpers/KeyMirror.js ***!
+  \******************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var keyMirror = function (obj) {
+	    for (var k in obj) {
+	        if (!obj.hasOwnProperty(k)) continue;
+	
+	        if (obj[k] === null) obj[k] = k;else if (typeof obj[k] === "object") obj[k] = keyMirror(obj[k]);
+	    }
+	    return obj;
+	};
+	module.exports = keyMirror;
+
+/***/ },
+/* 243 */,
+/* 244 */,
+/* 245 */
+/*!*********************************!*\
+  !*** ./actions/user_actions.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
+	var C = __webpack_require__(/*! constants/user_constants.js */ 241);
+	
+	var UserActions = {
+	
+	    getUser: function (user_id) {
+	        $.ajax({
+	            type: "get",
+	            url: "/users/" + user_id + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: (function (user) {
+	                dispatcher.dispatch(C.LOADED, user);
+	                if (user.user_schedule) {
+	                    this.getSchedule(user.user_schedule.id);
+	                }
+	            }).bind(this),
+	            error: function (results) {
+	                alert("Something went wrong!");
+	            }
+	        });
+	    },
+	
+	    getSchedule: function (schedule_id) {
+	        $.ajax({
+	            type: "get",
+	            url: "/user_schedules/" + schedule_id + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (schedule) {
+	                dispatcher.dispatch(C.SCHEDULE_LOADED, schedule);
+	            },
+	            error: function (results) {
+	                alert("Something went wrong!");
+	            }
+	        });
+	    },
+	
+	    setSchedule: function (schedule) {
+	        schedule.weekly_schedule_days_attributes = schedule.weekly_schedule_days;
+	        delete schedule.weekly_schedule_days;
+	
+	        var user_schedule = { user_schedule: schedule };
+	        var data = JSON.stringify(user_schedule);
+	        if (schedule.id) {
+	            $.ajax({
+	                type: "put",
+	                data: data,
+	                url: "/user_schedules/" + schedule.id + ".json",
+	                dataType: "json",
+	                contentType: "application/json; charset=utf-8",
+	                success: function (results) {
+	                    location.href = "/do-work";
+	                },
+	                error: function (results) {
+	                    alert(results);
+	                }
+	            });
+	        } else {
+	            $.ajax({
+	                type: "post",
+	                data: data,
+	                url: "/user_schedules.json",
+	                dataType: "json",
+	                contentType: "application/json; charset=utf-8",
+	                success: function (results) {
+	                    location.href = "/do-work";
+	                },
+	                error: function (results) {
+	                    alert(results);
+	                }
+	            });
+	        }
+	    }
+	
+	};
+	
+	module.exports = UserActions;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 246)))
+
+/***/ },
+/* 246 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/jquery/dist/jquery.js ***!
   \***************************************************************/
@@ -31235,446 +31920,10 @@
 
 
 /***/ },
-/* 243 */
-/*!******************************!*\
-  !*** ./global_dispatcher.js ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var util = __webpack_require__(/*! helpers/util.js */ 169);
-	
-	var Dispatcher = function () {
-	    this.callbacks = {};
-	};
-	
-	Dispatcher.prototype = {
-	    __add: function (name, fn) {
-	        if (hasOwn.call(this.callbacks, name)) this.callbacks[name].push(fn);else this.callbacks[name] = [fn];
-	    },
-	    __invoke: function (name, payload, clone) {
-	        // default to cloningt the payload
-	        if (clone === undefined) {
-	            clone = true;
-	        }
-	
-	        if (!hasOwn.call(this.callbacks, name)) {
-	            if (this.logging) {
-	                console.warn("DISPATCHER: \"" + name + "\" dispatched but there are no registered callbacks.");
-	            }
-	            return;
-	        }
-	
-	        var group = this.callbacks[name];
-	        // clone object payload incase its mutated by a store
-	        if (payload && clone) {
-	            payload = JSON.parse(JSON.stringify(payload));
-	        }
-	
-	        for (var i = 0; i < group.length; i++) {
-	            // clone object payload incase its mutated by a store
-	            group[i].apply(this, [payload]);
-	        }
-	    },
-	    register: function (actionType, fn) {
-	        if (util.empty(actionType)) throw Error("Invalid action type.");
-	
-	        this.__add(actionType, fn);
-	        return this;
-	    },
-	    dispatch: function (action /*, payload, clone */) {
-	        var actionType,
-	            payload,
-	            clone = arguments[2];
-	
-	        if (util.isString(action)) {
-	            actionType = action;
-	            payload = arguments[1];
-	        } else if (action && hasOwn.call(action, "actionType") && !util.empty(action.actionType)) {
-	            actionType = action.actionType;
-	            if (hasOwn.call(action, "payload")) payload = action.payload;
-	        } else {
-	            if (this.logging) {
-	                console.warn("DISPATCHER: \"" + JSON.stringify(action) + "\" is invalid to dispatch. Did you specify an `actionType`?.");
-	            }
-	            return;
-	        }
-	
-	        this.__invoke(actionType, payload, clone);
-	        return this;
-	    }
-	};
-	
-	
-	var hasOwn = Object.prototype.hasOwnProperty;
-	
-	module.exports = new Dispatcher();
-
-/***/ },
-/* 244 */,
-/* 245 */
-/*!******************************!*\
-  !*** ./helpers/KeyMirror.js ***!
-  \******************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var keyMirror = function (obj) {
-	    for (var k in obj) {
-	        if (!obj.hasOwnProperty(k)) continue;
-	
-	        if (obj[k] === null) obj[k] = k;else if (typeof obj[k] === "object") obj[k] = keyMirror(obj[k]);
-	    }
-	    return obj;
-	};
-	module.exports = keyMirror;
-
-/***/ },
-/* 246 */,
-/* 247 */
-/*!*************************!*\
-  !*** ./stores/store.js ***!
-  \*************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var assign = __webpack_require__(/*! object-assign */ 4);
-	var EventEmitter = __webpack_require__(/*! events */ 248).EventEmitter;
-	
-	var Store = function (extend) {
-	    if (extend) {
-	        assign(this, extend);
-	    }
-	};
-	
-	assign(Store.prototype, EventEmitter.prototype, {
-	    change: function () {
-	        this.emit("change");
-	    },
-	    addChangeListener: function (callback) {
-	        this.on("change", callback);
-	    },
-	    removeChangeListener: function (callback) {
-	        this.removeListener("change", callback);
-	    }
-	});
-	
-	module.exports = Store;
-
-/***/ },
-/* 248 */
-/*!**********************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/events/events.js ***!
-  \**********************************************************/
-/***/ function(module, exports) {
-
-	// Copyright Joyent, Inc. and other Node contributors.
-	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
-	// copy of this software and associated documentation files (the
-	// "Software"), to deal in the Software without restriction, including
-	// without limitation the rights to use, copy, modify, merge, publish,
-	// distribute, sublicense, and/or sell copies of the Software, and to permit
-	// persons to whom the Software is furnished to do so, subject to the
-	// following conditions:
-	//
-	// The above copyright notice and this permission notice shall be included
-	// in all copies or substantial portions of the Software.
-	//
-	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-	// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-	// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-	// USE OR OTHER DEALINGS IN THE SOFTWARE.
-	
-	function EventEmitter() {
-	  this._events = this._events || {};
-	  this._maxListeners = this._maxListeners || undefined;
-	}
-	module.exports = EventEmitter;
-	
-	// Backwards-compat with node 0.10.x
-	EventEmitter.EventEmitter = EventEmitter;
-	
-	EventEmitter.prototype._events = undefined;
-	EventEmitter.prototype._maxListeners = undefined;
-	
-	// By default EventEmitters will print a warning if more than 10 listeners are
-	// added to it. This is a useful default which helps finding memory leaks.
-	EventEmitter.defaultMaxListeners = 10;
-	
-	// Obviously not all Emitters should be limited to 10. This function allows
-	// that to be increased. Set to zero for unlimited.
-	EventEmitter.prototype.setMaxListeners = function(n) {
-	  if (!isNumber(n) || n < 0 || isNaN(n))
-	    throw TypeError('n must be a positive number');
-	  this._maxListeners = n;
-	  return this;
-	};
-	
-	EventEmitter.prototype.emit = function(type) {
-	  var er, handler, len, args, i, listeners;
-	
-	  if (!this._events)
-	    this._events = {};
-	
-	  // If there is no 'error' event listener then throw.
-	  if (type === 'error') {
-	    if (!this._events.error ||
-	        (isObject(this._events.error) && !this._events.error.length)) {
-	      er = arguments[1];
-	      if (er instanceof Error) {
-	        throw er; // Unhandled 'error' event
-	      }
-	      throw TypeError('Uncaught, unspecified "error" event.');
-	    }
-	  }
-	
-	  handler = this._events[type];
-	
-	  if (isUndefined(handler))
-	    return false;
-	
-	  if (isFunction(handler)) {
-	    switch (arguments.length) {
-	      // fast cases
-	      case 1:
-	        handler.call(this);
-	        break;
-	      case 2:
-	        handler.call(this, arguments[1]);
-	        break;
-	      case 3:
-	        handler.call(this, arguments[1], arguments[2]);
-	        break;
-	      // slower
-	      default:
-	        args = Array.prototype.slice.call(arguments, 1);
-	        handler.apply(this, args);
-	    }
-	  } else if (isObject(handler)) {
-	    args = Array.prototype.slice.call(arguments, 1);
-	    listeners = handler.slice();
-	    len = listeners.length;
-	    for (i = 0; i < len; i++)
-	      listeners[i].apply(this, args);
-	  }
-	
-	  return true;
-	};
-	
-	EventEmitter.prototype.addListener = function(type, listener) {
-	  var m;
-	
-	  if (!isFunction(listener))
-	    throw TypeError('listener must be a function');
-	
-	  if (!this._events)
-	    this._events = {};
-	
-	  // To avoid recursion in the case that type === "newListener"! Before
-	  // adding it to the listeners, first emit "newListener".
-	  if (this._events.newListener)
-	    this.emit('newListener', type,
-	              isFunction(listener.listener) ?
-	              listener.listener : listener);
-	
-	  if (!this._events[type])
-	    // Optimize the case of one listener. Don't need the extra array object.
-	    this._events[type] = listener;
-	  else if (isObject(this._events[type]))
-	    // If we've already got an array, just append.
-	    this._events[type].push(listener);
-	  else
-	    // Adding the second element, need to change to array.
-	    this._events[type] = [this._events[type], listener];
-	
-	  // Check for listener leak
-	  if (isObject(this._events[type]) && !this._events[type].warned) {
-	    if (!isUndefined(this._maxListeners)) {
-	      m = this._maxListeners;
-	    } else {
-	      m = EventEmitter.defaultMaxListeners;
-	    }
-	
-	    if (m && m > 0 && this._events[type].length > m) {
-	      this._events[type].warned = true;
-	      console.error('(node) warning: possible EventEmitter memory ' +
-	                    'leak detected. %d listeners added. ' +
-	                    'Use emitter.setMaxListeners() to increase limit.',
-	                    this._events[type].length);
-	      if (typeof console.trace === 'function') {
-	        // not supported in IE 10
-	        console.trace();
-	      }
-	    }
-	  }
-	
-	  return this;
-	};
-	
-	EventEmitter.prototype.on = EventEmitter.prototype.addListener;
-	
-	EventEmitter.prototype.once = function(type, listener) {
-	  if (!isFunction(listener))
-	    throw TypeError('listener must be a function');
-	
-	  var fired = false;
-	
-	  function g() {
-	    this.removeListener(type, g);
-	
-	    if (!fired) {
-	      fired = true;
-	      listener.apply(this, arguments);
-	    }
-	  }
-	
-	  g.listener = listener;
-	  this.on(type, g);
-	
-	  return this;
-	};
-	
-	// emits a 'removeListener' event iff the listener was removed
-	EventEmitter.prototype.removeListener = function(type, listener) {
-	  var list, position, length, i;
-	
-	  if (!isFunction(listener))
-	    throw TypeError('listener must be a function');
-	
-	  if (!this._events || !this._events[type])
-	    return this;
-	
-	  list = this._events[type];
-	  length = list.length;
-	  position = -1;
-	
-	  if (list === listener ||
-	      (isFunction(list.listener) && list.listener === listener)) {
-	    delete this._events[type];
-	    if (this._events.removeListener)
-	      this.emit('removeListener', type, listener);
-	
-	  } else if (isObject(list)) {
-	    for (i = length; i-- > 0;) {
-	      if (list[i] === listener ||
-	          (list[i].listener && list[i].listener === listener)) {
-	        position = i;
-	        break;
-	      }
-	    }
-	
-	    if (position < 0)
-	      return this;
-	
-	    if (list.length === 1) {
-	      list.length = 0;
-	      delete this._events[type];
-	    } else {
-	      list.splice(position, 1);
-	    }
-	
-	    if (this._events.removeListener)
-	      this.emit('removeListener', type, listener);
-	  }
-	
-	  return this;
-	};
-	
-	EventEmitter.prototype.removeAllListeners = function(type) {
-	  var key, listeners;
-	
-	  if (!this._events)
-	    return this;
-	
-	  // not listening for removeListener, no need to emit
-	  if (!this._events.removeListener) {
-	    if (arguments.length === 0)
-	      this._events = {};
-	    else if (this._events[type])
-	      delete this._events[type];
-	    return this;
-	  }
-	
-	  // emit removeListener for all listeners on all events
-	  if (arguments.length === 0) {
-	    for (key in this._events) {
-	      if (key === 'removeListener') continue;
-	      this.removeAllListeners(key);
-	    }
-	    this.removeAllListeners('removeListener');
-	    this._events = {};
-	    return this;
-	  }
-	
-	  listeners = this._events[type];
-	
-	  if (isFunction(listeners)) {
-	    this.removeListener(type, listeners);
-	  } else if (listeners) {
-	    // LIFO order
-	    while (listeners.length)
-	      this.removeListener(type, listeners[listeners.length - 1]);
-	  }
-	  delete this._events[type];
-	
-	  return this;
-	};
-	
-	EventEmitter.prototype.listeners = function(type) {
-	  var ret;
-	  if (!this._events || !this._events[type])
-	    ret = [];
-	  else if (isFunction(this._events[type]))
-	    ret = [this._events[type]];
-	  else
-	    ret = this._events[type].slice();
-	  return ret;
-	};
-	
-	EventEmitter.prototype.listenerCount = function(type) {
-	  if (this._events) {
-	    var evlistener = this._events[type];
-	
-	    if (isFunction(evlistener))
-	      return 1;
-	    else if (evlistener)
-	      return evlistener.length;
-	  }
-	  return 0;
-	};
-	
-	EventEmitter.listenerCount = function(emitter, type) {
-	  return emitter.listenerCount(type);
-	};
-	
-	function isFunction(arg) {
-	  return typeof arg === 'function';
-	}
-	
-	function isNumber(arg) {
-	  return typeof arg === 'number';
-	}
-	
-	function isObject(arg) {
-	  return typeof arg === 'object' && arg !== null;
-	}
-	
-	function isUndefined(arg) {
-	  return arg === void 0;
-	}
-
-
-/***/ },
+/* 247 */,
+/* 248 */,
 /* 249 */,
-/* 250 */,
-/* 251 */
+/* 250 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/index.js ***!
   \*******************************************************************/
@@ -31685,7 +31934,7 @@
 	exports.__esModule = true;
 	exports.createMemoryHistory = exports.hashHistory = exports.browserHistory = exports.applyRouterMiddleware = exports.formatPattern = exports.useRouterHistory = exports.match = exports.routerShape = exports.locationShape = exports.PropTypes = exports.RoutingContext = exports.RouterContext = exports.createRoutes = exports.useRoutes = exports.RouteContext = exports.Lifecycle = exports.History = exports.Route = exports.Redirect = exports.IndexRoute = exports.IndexRedirect = exports.withRouter = exports.IndexLink = exports.Link = exports.Router = undefined;
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 252);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 251);
 	
 	Object.defineProperty(exports, 'createRoutes', {
 	  enumerable: true,
@@ -31694,7 +31943,7 @@
 	  }
 	});
 	
-	var _PropTypes2 = __webpack_require__(/*! ./PropTypes */ 255);
+	var _PropTypes2 = __webpack_require__(/*! ./PropTypes */ 254);
 	
 	Object.defineProperty(exports, 'locationShape', {
 	  enumerable: true,
@@ -31709,7 +31958,7 @@
 	  }
 	});
 	
-	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 258);
+	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 257);
 	
 	Object.defineProperty(exports, 'formatPattern', {
 	  enumerable: true,
@@ -31718,85 +31967,85 @@
 	  }
 	});
 	
-	var _Router2 = __webpack_require__(/*! ./Router */ 260);
+	var _Router2 = __webpack_require__(/*! ./Router */ 259);
 	
 	var _Router3 = _interopRequireDefault(_Router2);
 	
-	var _Link2 = __webpack_require__(/*! ./Link */ 289);
+	var _Link2 = __webpack_require__(/*! ./Link */ 288);
 	
 	var _Link3 = _interopRequireDefault(_Link2);
 	
-	var _IndexLink2 = __webpack_require__(/*! ./IndexLink */ 290);
+	var _IndexLink2 = __webpack_require__(/*! ./IndexLink */ 289);
 	
 	var _IndexLink3 = _interopRequireDefault(_IndexLink2);
 	
-	var _withRouter2 = __webpack_require__(/*! ./withRouter */ 291);
+	var _withRouter2 = __webpack_require__(/*! ./withRouter */ 290);
 	
 	var _withRouter3 = _interopRequireDefault(_withRouter2);
 	
-	var _IndexRedirect2 = __webpack_require__(/*! ./IndexRedirect */ 293);
+	var _IndexRedirect2 = __webpack_require__(/*! ./IndexRedirect */ 292);
 	
 	var _IndexRedirect3 = _interopRequireDefault(_IndexRedirect2);
 	
-	var _IndexRoute2 = __webpack_require__(/*! ./IndexRoute */ 295);
+	var _IndexRoute2 = __webpack_require__(/*! ./IndexRoute */ 294);
 	
 	var _IndexRoute3 = _interopRequireDefault(_IndexRoute2);
 	
-	var _Redirect2 = __webpack_require__(/*! ./Redirect */ 294);
+	var _Redirect2 = __webpack_require__(/*! ./Redirect */ 293);
 	
 	var _Redirect3 = _interopRequireDefault(_Redirect2);
 	
-	var _Route2 = __webpack_require__(/*! ./Route */ 296);
+	var _Route2 = __webpack_require__(/*! ./Route */ 295);
 	
 	var _Route3 = _interopRequireDefault(_Route2);
 	
-	var _History2 = __webpack_require__(/*! ./History */ 297);
+	var _History2 = __webpack_require__(/*! ./History */ 296);
 	
 	var _History3 = _interopRequireDefault(_History2);
 	
-	var _Lifecycle2 = __webpack_require__(/*! ./Lifecycle */ 298);
+	var _Lifecycle2 = __webpack_require__(/*! ./Lifecycle */ 297);
 	
 	var _Lifecycle3 = _interopRequireDefault(_Lifecycle2);
 	
-	var _RouteContext2 = __webpack_require__(/*! ./RouteContext */ 299);
+	var _RouteContext2 = __webpack_require__(/*! ./RouteContext */ 298);
 	
 	var _RouteContext3 = _interopRequireDefault(_RouteContext2);
 	
-	var _useRoutes2 = __webpack_require__(/*! ./useRoutes */ 300);
+	var _useRoutes2 = __webpack_require__(/*! ./useRoutes */ 299);
 	
 	var _useRoutes3 = _interopRequireDefault(_useRoutes2);
 	
-	var _RouterContext2 = __webpack_require__(/*! ./RouterContext */ 286);
+	var _RouterContext2 = __webpack_require__(/*! ./RouterContext */ 285);
 	
 	var _RouterContext3 = _interopRequireDefault(_RouterContext2);
 	
-	var _RoutingContext2 = __webpack_require__(/*! ./RoutingContext */ 301);
+	var _RoutingContext2 = __webpack_require__(/*! ./RoutingContext */ 300);
 	
 	var _RoutingContext3 = _interopRequireDefault(_RoutingContext2);
 	
 	var _PropTypes3 = _interopRequireDefault(_PropTypes2);
 	
-	var _match2 = __webpack_require__(/*! ./match */ 302);
+	var _match2 = __webpack_require__(/*! ./match */ 301);
 	
 	var _match3 = _interopRequireDefault(_match2);
 	
-	var _useRouterHistory2 = __webpack_require__(/*! ./useRouterHistory */ 306);
+	var _useRouterHistory2 = __webpack_require__(/*! ./useRouterHistory */ 305);
 	
 	var _useRouterHistory3 = _interopRequireDefault(_useRouterHistory2);
 	
-	var _applyRouterMiddleware2 = __webpack_require__(/*! ./applyRouterMiddleware */ 307);
+	var _applyRouterMiddleware2 = __webpack_require__(/*! ./applyRouterMiddleware */ 306);
 	
 	var _applyRouterMiddleware3 = _interopRequireDefault(_applyRouterMiddleware2);
 	
-	var _browserHistory2 = __webpack_require__(/*! ./browserHistory */ 308);
+	var _browserHistory2 = __webpack_require__(/*! ./browserHistory */ 307);
 	
 	var _browserHistory3 = _interopRequireDefault(_browserHistory2);
 	
-	var _hashHistory2 = __webpack_require__(/*! ./hashHistory */ 311);
+	var _hashHistory2 = __webpack_require__(/*! ./hashHistory */ 310);
 	
 	var _hashHistory3 = _interopRequireDefault(_hashHistory2);
 	
-	var _createMemoryHistory2 = __webpack_require__(/*! ./createMemoryHistory */ 303);
+	var _createMemoryHistory2 = __webpack_require__(/*! ./createMemoryHistory */ 302);
 	
 	var _createMemoryHistory3 = _interopRequireDefault(_createMemoryHistory2);
 	
@@ -31838,7 +32087,7 @@
 	exports.createMemoryHistory = _createMemoryHistory3.default;
 
 /***/ },
-/* 252 */
+/* 251 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/RouteUtils.js ***!
   \************************************************************************/
@@ -31859,7 +32108,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
@@ -31959,7 +32208,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 253 */
+/* 252 */
 /*!***************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/routerWarning.js ***!
   \***************************************************************************/
@@ -31971,7 +32220,7 @@
 	exports.default = routerWarning;
 	exports._resetWarned = _resetWarned;
 	
-	var _warning = __webpack_require__(/*! warning */ 254);
+	var _warning = __webpack_require__(/*! warning */ 253);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -32003,7 +32252,7 @@
 	}
 
 /***/ },
-/* 254 */
+/* 253 */
 /*!***************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/warning/browser.js ***!
   \***************************************************************************/
@@ -32073,7 +32322,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 255 */
+/* 254 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/PropTypes.js ***!
   \***********************************************************************/
@@ -32086,15 +32335,15 @@
 	
 	var _react = __webpack_require__(/*! react */ 1);
 	
-	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 256);
+	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 255);
 	
 	var _deprecateObjectProperties2 = _interopRequireDefault(_deprecateObjectProperties);
 	
-	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 257);
+	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 256);
 	
 	var InternalPropTypes = _interopRequireWildcard(_InternalPropTypes);
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
@@ -32183,7 +32432,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 256 */
+/* 255 */
 /*!***************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/deprecateObjectProperties.js ***!
   \***************************************************************************************/
@@ -32194,7 +32443,7 @@
 	exports.__esModule = true;
 	exports.canUseMembrane = undefined;
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
@@ -32267,7 +32516,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 257 */
+/* 256 */
 /*!*******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/InternalPropTypes.js ***!
   \*******************************************************************************/
@@ -32307,7 +32556,7 @@
 	var routes = exports.routes = oneOfType([route, arrayOf(route)]);
 
 /***/ },
-/* 258 */
+/* 257 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/PatternUtils.js ***!
   \**************************************************************************/
@@ -32322,7 +32571,7 @@
 	exports.getParams = getParams;
 	exports.formatPattern = formatPattern;
 	
-	var _invariant = __webpack_require__(/*! invariant */ 259);
+	var _invariant = __webpack_require__(/*! invariant */ 258);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
@@ -32527,7 +32776,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 259 */
+/* 258 */
 /*!*****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/invariant/browser.js ***!
   \*****************************************************************************/
@@ -32588,7 +32837,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 260 */
+/* 259 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/Router.js ***!
   \********************************************************************/
@@ -32600,11 +32849,11 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _createHashHistory = __webpack_require__(/*! history/lib/createHashHistory */ 261);
+	var _createHashHistory = __webpack_require__(/*! history/lib/createHashHistory */ 260);
 	
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 	
-	var _useQueries = __webpack_require__(/*! history/lib/useQueries */ 276);
+	var _useQueries = __webpack_require__(/*! history/lib/useQueries */ 275);
 	
 	var _useQueries2 = _interopRequireDefault(_useQueries);
 	
@@ -32612,21 +32861,21 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 279);
+	var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 278);
 	
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 	
-	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 257);
+	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 256);
 	
-	var _RouterContext = __webpack_require__(/*! ./RouterContext */ 286);
+	var _RouterContext = __webpack_require__(/*! ./RouterContext */ 285);
 	
 	var _RouterContext2 = _interopRequireDefault(_RouterContext);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 252);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 251);
 	
-	var _RouterUtils = __webpack_require__(/*! ./RouterUtils */ 288);
+	var _RouterUtils = __webpack_require__(/*! ./RouterUtils */ 287);
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
@@ -32805,7 +33054,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 261 */
+/* 260 */
 /*!*****************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/createHashHistory.js ***!
   \*****************************************************************************************/
@@ -32819,25 +33068,25 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _warning = __webpack_require__(/*! warning */ 254);
+	var _warning = __webpack_require__(/*! warning */ 253);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _invariant = __webpack_require__(/*! invariant */ 259);
+	var _invariant = __webpack_require__(/*! invariant */ 258);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _Actions = __webpack_require__(/*! ./Actions */ 262);
+	var _Actions = __webpack_require__(/*! ./Actions */ 261);
 	
-	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 263);
+	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 262);
 	
-	var _ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 264);
+	var _ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 263);
 	
-	var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 265);
+	var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 264);
 	
-	var _DOMStateStorage = __webpack_require__(/*! ./DOMStateStorage */ 266);
+	var _DOMStateStorage = __webpack_require__(/*! ./DOMStateStorage */ 265);
 	
-	var _createDOMHistory = __webpack_require__(/*! ./createDOMHistory */ 267);
+	var _createDOMHistory = __webpack_require__(/*! ./createDOMHistory */ 266);
 	
 	var _createDOMHistory2 = _interopRequireDefault(_createDOMHistory);
 	
@@ -33060,7 +33309,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 262 */
+/* 261 */
 /*!*******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/Actions.js ***!
   \*******************************************************************************/
@@ -33099,7 +33348,7 @@
 	};
 
 /***/ },
-/* 263 */
+/* 262 */
 /*!*********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/PathUtils.js ***!
   \*********************************************************************************/
@@ -33113,7 +33362,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _warning = __webpack_require__(/*! warning */ 254);
+	var _warning = __webpack_require__(/*! warning */ 253);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -33155,7 +33404,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 264 */
+/* 263 */
 /*!********************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/ExecutionEnvironment.js ***!
   \********************************************************************************************/
@@ -33168,7 +33417,7 @@
 	exports.canUseDOM = canUseDOM;
 
 /***/ },
-/* 265 */
+/* 264 */
 /*!********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/DOMUtils.js ***!
   \********************************************************************************/
@@ -33251,7 +33500,7 @@
 	}
 
 /***/ },
-/* 266 */
+/* 265 */
 /*!***************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/DOMStateStorage.js ***!
   \***************************************************************************************/
@@ -33266,7 +33515,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _warning = __webpack_require__(/*! warning */ 254);
+	var _warning = __webpack_require__(/*! warning */ 253);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -33333,7 +33582,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 267 */
+/* 266 */
 /*!****************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/createDOMHistory.js ***!
   \****************************************************************************************/
@@ -33347,15 +33596,15 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _invariant = __webpack_require__(/*! invariant */ 259);
+	var _invariant = __webpack_require__(/*! invariant */ 258);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 264);
+	var _ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 263);
 	
-	var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 265);
+	var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 264);
 	
-	var _createHistory = __webpack_require__(/*! ./createHistory */ 268);
+	var _createHistory = __webpack_require__(/*! ./createHistory */ 267);
 	
 	var _createHistory2 = _interopRequireDefault(_createHistory);
 	
@@ -33382,7 +33631,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 268 */
+/* 267 */
 /*!*************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/createHistory.js ***!
   \*************************************************************************************/
@@ -33396,29 +33645,29 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _warning = __webpack_require__(/*! warning */ 254);
+	var _warning = __webpack_require__(/*! warning */ 253);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _deepEqual = __webpack_require__(/*! deep-equal */ 269);
+	var _deepEqual = __webpack_require__(/*! deep-equal */ 268);
 	
 	var _deepEqual2 = _interopRequireDefault(_deepEqual);
 	
-	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 263);
+	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 262);
 	
-	var _AsyncUtils = __webpack_require__(/*! ./AsyncUtils */ 272);
+	var _AsyncUtils = __webpack_require__(/*! ./AsyncUtils */ 271);
 	
-	var _Actions = __webpack_require__(/*! ./Actions */ 262);
+	var _Actions = __webpack_require__(/*! ./Actions */ 261);
 	
-	var _createLocation2 = __webpack_require__(/*! ./createLocation */ 273);
+	var _createLocation2 = __webpack_require__(/*! ./createLocation */ 272);
 	
 	var _createLocation3 = _interopRequireDefault(_createLocation2);
 	
-	var _runTransitionHook = __webpack_require__(/*! ./runTransitionHook */ 274);
+	var _runTransitionHook = __webpack_require__(/*! ./runTransitionHook */ 273);
 	
 	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
 	
-	var _deprecate = __webpack_require__(/*! ./deprecate */ 275);
+	var _deprecate = __webpack_require__(/*! ./deprecate */ 274);
 	
 	var _deprecate2 = _interopRequireDefault(_deprecate);
 	
@@ -33679,15 +33928,15 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 269 */
+/* 268 */
 /*!**************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/~/deep-equal/index.js ***!
   \**************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var pSlice = Array.prototype.slice;
-	var objectKeys = __webpack_require__(/*! ./lib/keys.js */ 270);
-	var isArguments = __webpack_require__(/*! ./lib/is_arguments.js */ 271);
+	var objectKeys = __webpack_require__(/*! ./lib/keys.js */ 269);
+	var isArguments = __webpack_require__(/*! ./lib/is_arguments.js */ 270);
 	
 	var deepEqual = module.exports = function (actual, expected, opts) {
 	  if (!opts) opts = {};
@@ -33782,7 +34031,7 @@
 
 
 /***/ },
-/* 270 */
+/* 269 */
 /*!*****************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/~/deep-equal/lib/keys.js ***!
   \*****************************************************************************************/
@@ -33800,7 +34049,7 @@
 
 
 /***/ },
-/* 271 */
+/* 270 */
 /*!*************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/~/deep-equal/lib/is_arguments.js ***!
   \*************************************************************************************************/
@@ -33829,7 +34078,7 @@
 
 
 /***/ },
-/* 272 */
+/* 271 */
 /*!**********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/AsyncUtils.js ***!
   \**********************************************************************************/
@@ -33895,7 +34144,7 @@
 	}
 
 /***/ },
-/* 273 */
+/* 272 */
 /*!**************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/createLocation.js ***!
   \**************************************************************************************/
@@ -33909,13 +34158,13 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _warning = __webpack_require__(/*! warning */ 254);
+	var _warning = __webpack_require__(/*! warning */ 253);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _Actions = __webpack_require__(/*! ./Actions */ 262);
+	var _Actions = __webpack_require__(/*! ./Actions */ 261);
 	
-	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 263);
+	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 262);
 	
 	function createLocation() {
 	  var location = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
@@ -33955,7 +34204,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 274 */
+/* 273 */
 /*!*****************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/runTransitionHook.js ***!
   \*****************************************************************************************/
@@ -33967,7 +34216,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _warning = __webpack_require__(/*! warning */ 254);
+	var _warning = __webpack_require__(/*! warning */ 253);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -33988,7 +34237,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 275 */
+/* 274 */
 /*!*********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/deprecate.js ***!
   \*********************************************************************************/
@@ -34000,7 +34249,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _warning = __webpack_require__(/*! warning */ 254);
+	var _warning = __webpack_require__(/*! warning */ 253);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -34016,7 +34265,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 276 */
+/* 275 */
 /*!**********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/useQueries.js ***!
   \**********************************************************************************/
@@ -34030,19 +34279,19 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _warning = __webpack_require__(/*! warning */ 254);
+	var _warning = __webpack_require__(/*! warning */ 253);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _queryString = __webpack_require__(/*! query-string */ 277);
+	var _queryString = __webpack_require__(/*! query-string */ 276);
 	
-	var _runTransitionHook = __webpack_require__(/*! ./runTransitionHook */ 274);
+	var _runTransitionHook = __webpack_require__(/*! ./runTransitionHook */ 273);
 	
 	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
 	
-	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 263);
+	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 262);
 	
-	var _deprecate = __webpack_require__(/*! ./deprecate */ 275);
+	var _deprecate = __webpack_require__(/*! ./deprecate */ 274);
 	
 	var _deprecate2 = _interopRequireDefault(_deprecate);
 	
@@ -34201,14 +34450,14 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 277 */
+/* 276 */
 /*!****************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/~/query-string/index.js ***!
   \****************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var strictUriEncode = __webpack_require__(/*! strict-uri-encode */ 278);
+	var strictUriEncode = __webpack_require__(/*! strict-uri-encode */ 277);
 	
 	exports.extract = function (str) {
 		return str.split('?')[1] || '';
@@ -34276,7 +34525,7 @@
 
 
 /***/ },
-/* 278 */
+/* 277 */
 /*!************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/~/query-string/~/strict-uri-encode/index.js ***!
   \************************************************************************************************************/
@@ -34291,7 +34540,7 @@
 
 
 /***/ },
-/* 279 */
+/* 278 */
 /*!*************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/createTransitionManager.js ***!
   \*************************************************************************************/
@@ -34305,27 +34554,27 @@
 	
 	exports.default = createTransitionManager;
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
-	var _Actions = __webpack_require__(/*! history/lib/Actions */ 262);
+	var _Actions = __webpack_require__(/*! history/lib/Actions */ 261);
 	
-	var _computeChangedRoutes2 = __webpack_require__(/*! ./computeChangedRoutes */ 280);
+	var _computeChangedRoutes2 = __webpack_require__(/*! ./computeChangedRoutes */ 279);
 	
 	var _computeChangedRoutes3 = _interopRequireDefault(_computeChangedRoutes2);
 	
-	var _TransitionUtils = __webpack_require__(/*! ./TransitionUtils */ 281);
+	var _TransitionUtils = __webpack_require__(/*! ./TransitionUtils */ 280);
 	
-	var _isActive2 = __webpack_require__(/*! ./isActive */ 283);
+	var _isActive2 = __webpack_require__(/*! ./isActive */ 282);
 	
 	var _isActive3 = _interopRequireDefault(_isActive2);
 	
-	var _getComponents = __webpack_require__(/*! ./getComponents */ 284);
+	var _getComponents = __webpack_require__(/*! ./getComponents */ 283);
 	
 	var _getComponents2 = _interopRequireDefault(_getComponents);
 	
-	var _matchRoutes = __webpack_require__(/*! ./matchRoutes */ 285);
+	var _matchRoutes = __webpack_require__(/*! ./matchRoutes */ 284);
 	
 	var _matchRoutes2 = _interopRequireDefault(_matchRoutes);
 	
@@ -34607,7 +34856,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 280 */
+/* 279 */
 /*!**********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/computeChangedRoutes.js ***!
   \**********************************************************************************/
@@ -34617,7 +34866,7 @@
 	
 	exports.__esModule = true;
 	
-	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 258);
+	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 257);
 	
 	function routeParamsChanged(route, prevState, nextState) {
 	  if (!route.path) return false;
@@ -34692,7 +34941,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 281 */
+/* 280 */
 /*!*****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/TransitionUtils.js ***!
   \*****************************************************************************/
@@ -34705,9 +34954,9 @@
 	exports.runChangeHooks = runChangeHooks;
 	exports.runLeaveHooks = runLeaveHooks;
 	
-	var _AsyncUtils = __webpack_require__(/*! ./AsyncUtils */ 282);
+	var _AsyncUtils = __webpack_require__(/*! ./AsyncUtils */ 281);
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
@@ -34823,7 +35072,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 282 */
+/* 281 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/AsyncUtils.js ***!
   \************************************************************************/
@@ -34919,7 +35168,7 @@
 	}
 
 /***/ },
-/* 283 */
+/* 282 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/isActive.js ***!
   \**********************************************************************/
@@ -34933,7 +35182,7 @@
 	
 	exports.default = isActive;
 	
-	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 258);
+	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 257);
 	
 	function deepEqual(a, b) {
 	  if (a == b) return true;
@@ -35079,7 +35328,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 284 */
+/* 283 */
 /*!***************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/getComponents.js ***!
   \***************************************************************************/
@@ -35091,11 +35340,11 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _AsyncUtils = __webpack_require__(/*! ./AsyncUtils */ 282);
+	var _AsyncUtils = __webpack_require__(/*! ./AsyncUtils */ 281);
 	
-	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 256);
+	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 255);
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
@@ -35167,7 +35416,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 285 */
+/* 284 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/matchRoutes.js ***!
   \*************************************************************************/
@@ -35183,15 +35432,15 @@
 	
 	exports.default = matchRoutes;
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
-	var _AsyncUtils = __webpack_require__(/*! ./AsyncUtils */ 282);
+	var _AsyncUtils = __webpack_require__(/*! ./AsyncUtils */ 281);
 	
-	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 258);
+	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 257);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 252);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 251);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -35405,7 +35654,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 286 */
+/* 285 */
 /*!***************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/RouterContext.js ***!
   \***************************************************************************/
@@ -35419,7 +35668,7 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _invariant = __webpack_require__(/*! invariant */ 259);
+	var _invariant = __webpack_require__(/*! invariant */ 258);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
@@ -35427,17 +35676,17 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 256);
+	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 255);
 	
 	var _deprecateObjectProperties2 = _interopRequireDefault(_deprecateObjectProperties);
 	
-	var _getRouteParams = __webpack_require__(/*! ./getRouteParams */ 287);
+	var _getRouteParams = __webpack_require__(/*! ./getRouteParams */ 286);
 	
 	var _getRouteParams2 = _interopRequireDefault(_getRouteParams);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 252);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 251);
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
@@ -35570,7 +35819,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 287 */
+/* 286 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/getRouteParams.js ***!
   \****************************************************************************/
@@ -35580,7 +35829,7 @@
 	
 	exports.__esModule = true;
 	
-	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 258);
+	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 257);
 	
 	/**
 	 * Extracts an object of params the given route cares about from
@@ -35606,7 +35855,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 288 */
+/* 287 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/RouterUtils.js ***!
   \*************************************************************************/
@@ -35621,7 +35870,7 @@
 	exports.createRouterObject = createRouterObject;
 	exports.createRoutingHistory = createRoutingHistory;
 	
-	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 256);
+	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 255);
 	
 	var _deprecateObjectProperties2 = _interopRequireDefault(_deprecateObjectProperties);
 	
@@ -35647,7 +35896,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 289 */
+/* 288 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/Link.js ***!
   \******************************************************************/
@@ -35663,11 +35912,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
-	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 255);
+	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 254);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -35829,7 +36078,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 290 */
+/* 289 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/IndexLink.js ***!
   \***********************************************************************/
@@ -35845,7 +36094,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Link = __webpack_require__(/*! ./Link */ 289);
+	var _Link = __webpack_require__(/*! ./Link */ 288);
 	
 	var _Link2 = _interopRequireDefault(_Link);
 	
@@ -35865,7 +36114,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 291 */
+/* 290 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/withRouter.js ***!
   \************************************************************************/
@@ -35883,11 +36132,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _hoistNonReactStatics = __webpack_require__(/*! hoist-non-react-statics */ 292);
+	var _hoistNonReactStatics = __webpack_require__(/*! hoist-non-react-statics */ 291);
 	
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 	
-	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 255);
+	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 254);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -35913,7 +36162,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 292 */
+/* 291 */
 /*!*****************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/hoist-non-react-statics/index.js ***!
   \*****************************************************************************************/
@@ -35964,7 +36213,7 @@
 
 
 /***/ },
-/* 293 */
+/* 292 */
 /*!***************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/IndexRedirect.js ***!
   \***************************************************************************/
@@ -35978,19 +36227,19 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
-	var _invariant = __webpack_require__(/*! invariant */ 259);
+	var _invariant = __webpack_require__(/*! invariant */ 258);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _Redirect = __webpack_require__(/*! ./Redirect */ 294);
+	var _Redirect = __webpack_require__(/*! ./Redirect */ 293);
 	
 	var _Redirect2 = _interopRequireDefault(_Redirect);
 	
-	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 257);
+	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 256);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36036,7 +36285,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 294 */
+/* 293 */
 /*!**********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/Redirect.js ***!
   \**********************************************************************/
@@ -36050,15 +36299,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _invariant = __webpack_require__(/*! invariant */ 259);
+	var _invariant = __webpack_require__(/*! invariant */ 258);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 252);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 251);
 	
-	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 258);
+	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 257);
 	
-	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 257);
+	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 256);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36147,7 +36396,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 295 */
+/* 294 */
 /*!************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/IndexRoute.js ***!
   \************************************************************************/
@@ -36161,17 +36410,17 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
-	var _invariant = __webpack_require__(/*! invariant */ 259);
+	var _invariant = __webpack_require__(/*! invariant */ 258);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 252);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 251);
 	
-	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 257);
+	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 256);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36216,7 +36465,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 296 */
+/* 295 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/Route.js ***!
   \*******************************************************************/
@@ -36230,13 +36479,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _invariant = __webpack_require__(/*! invariant */ 259);
+	var _invariant = __webpack_require__(/*! invariant */ 258);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 252);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 251);
 	
-	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 257);
+	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 256);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36282,7 +36531,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 297 */
+/* 296 */
 /*!*********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/History.js ***!
   \*********************************************************************/
@@ -36292,11 +36541,11 @@
 	
 	exports.__esModule = true;
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
-	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 257);
+	var _InternalPropTypes = __webpack_require__(/*! ./InternalPropTypes */ 256);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36320,7 +36569,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 298 */
+/* 297 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/Lifecycle.js ***!
   \***********************************************************************/
@@ -36330,7 +36579,7 @@
 	
 	exports.__esModule = true;
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
@@ -36338,7 +36587,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _invariant = __webpack_require__(/*! invariant */ 259);
+	var _invariant = __webpack_require__(/*! invariant */ 258);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
@@ -36397,7 +36646,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 299 */
+/* 298 */
 /*!**************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/RouteContext.js ***!
   \**************************************************************************/
@@ -36407,7 +36656,7 @@
 	
 	exports.__esModule = true;
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
@@ -36451,7 +36700,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 300 */
+/* 299 */
 /*!***********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/useRoutes.js ***!
   \***********************************************************************/
@@ -36463,15 +36712,15 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _useQueries = __webpack_require__(/*! history/lib/useQueries */ 276);
+	var _useQueries = __webpack_require__(/*! history/lib/useQueries */ 275);
 	
 	var _useQueries2 = _interopRequireDefault(_useQueries);
 	
-	var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 279);
+	var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 278);
 	
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
@@ -36511,7 +36760,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 301 */
+/* 300 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/RoutingContext.js ***!
   \****************************************************************************/
@@ -36525,11 +36774,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _RouterContext = __webpack_require__(/*! ./RouterContext */ 286);
+	var _RouterContext = __webpack_require__(/*! ./RouterContext */ 285);
 	
 	var _RouterContext2 = _interopRequireDefault(_RouterContext);
 	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 253);
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 252);
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
@@ -36550,7 +36799,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 302 */
+/* 301 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/match.js ***!
   \*******************************************************************/
@@ -36562,21 +36811,21 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _invariant = __webpack_require__(/*! invariant */ 259);
+	var _invariant = __webpack_require__(/*! invariant */ 258);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _createMemoryHistory = __webpack_require__(/*! ./createMemoryHistory */ 303);
+	var _createMemoryHistory = __webpack_require__(/*! ./createMemoryHistory */ 302);
 	
 	var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
 	
-	var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 279);
+	var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 278);
 	
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 252);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 251);
 	
-	var _RouterUtils = __webpack_require__(/*! ./RouterUtils */ 288);
+	var _RouterUtils = __webpack_require__(/*! ./RouterUtils */ 287);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36640,7 +36889,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 303 */
+/* 302 */
 /*!*********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/createMemoryHistory.js ***!
   \*********************************************************************************/
@@ -36651,15 +36900,15 @@
 	exports.__esModule = true;
 	exports.default = createMemoryHistory;
 	
-	var _useQueries = __webpack_require__(/*! history/lib/useQueries */ 276);
+	var _useQueries = __webpack_require__(/*! history/lib/useQueries */ 275);
 	
 	var _useQueries2 = _interopRequireDefault(_useQueries);
 	
-	var _useBasename = __webpack_require__(/*! history/lib/useBasename */ 304);
+	var _useBasename = __webpack_require__(/*! history/lib/useBasename */ 303);
 	
 	var _useBasename2 = _interopRequireDefault(_useBasename);
 	
-	var _createMemoryHistory = __webpack_require__(/*! history/lib/createMemoryHistory */ 305);
+	var _createMemoryHistory = __webpack_require__(/*! history/lib/createMemoryHistory */ 304);
 	
 	var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
 	
@@ -36680,7 +36929,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 304 */
+/* 303 */
 /*!***********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/useBasename.js ***!
   \***********************************************************************************/
@@ -36694,19 +36943,19 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _warning = __webpack_require__(/*! warning */ 254);
+	var _warning = __webpack_require__(/*! warning */ 253);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 264);
+	var _ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 263);
 	
-	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 263);
+	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 262);
 	
-	var _runTransitionHook = __webpack_require__(/*! ./runTransitionHook */ 274);
+	var _runTransitionHook = __webpack_require__(/*! ./runTransitionHook */ 273);
 	
 	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
 	
-	var _deprecate = __webpack_require__(/*! ./deprecate */ 275);
+	var _deprecate = __webpack_require__(/*! ./deprecate */ 274);
 	
 	var _deprecate2 = _interopRequireDefault(_deprecate);
 	
@@ -36847,7 +37096,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 305 */
+/* 304 */
 /*!*******************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/createMemoryHistory.js ***!
   \*******************************************************************************************/
@@ -36861,19 +37110,19 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _warning = __webpack_require__(/*! warning */ 254);
+	var _warning = __webpack_require__(/*! warning */ 253);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _invariant = __webpack_require__(/*! invariant */ 259);
+	var _invariant = __webpack_require__(/*! invariant */ 258);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 263);
+	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 262);
 	
-	var _Actions = __webpack_require__(/*! ./Actions */ 262);
+	var _Actions = __webpack_require__(/*! ./Actions */ 261);
 	
-	var _createHistory = __webpack_require__(/*! ./createHistory */ 268);
+	var _createHistory = __webpack_require__(/*! ./createHistory */ 267);
 	
 	var _createHistory2 = _interopRequireDefault(_createHistory);
 	
@@ -37010,7 +37259,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 306 */
+/* 305 */
 /*!******************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/useRouterHistory.js ***!
   \******************************************************************************/
@@ -37021,11 +37270,11 @@
 	exports.__esModule = true;
 	exports.default = useRouterHistory;
 	
-	var _useQueries = __webpack_require__(/*! history/lib/useQueries */ 276);
+	var _useQueries = __webpack_require__(/*! history/lib/useQueries */ 275);
 	
 	var _useQueries2 = _interopRequireDefault(_useQueries);
 	
-	var _useBasename = __webpack_require__(/*! history/lib/useBasename */ 304);
+	var _useBasename = __webpack_require__(/*! history/lib/useBasename */ 303);
 	
 	var _useBasename2 = _interopRequireDefault(_useBasename);
 	
@@ -37041,7 +37290,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 307 */
+/* 306 */
 /*!***********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/applyRouterMiddleware.js ***!
   \***********************************************************************************/
@@ -37057,7 +37306,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _RouterContext = __webpack_require__(/*! ./RouterContext */ 286);
+	var _RouterContext = __webpack_require__(/*! ./RouterContext */ 285);
 	
 	var _RouterContext2 = _interopRequireDefault(_RouterContext);
 	
@@ -37099,7 +37348,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 308 */
+/* 307 */
 /*!****************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/browserHistory.js ***!
   \****************************************************************************/
@@ -37109,11 +37358,11 @@
 	
 	exports.__esModule = true;
 	
-	var _createBrowserHistory = __webpack_require__(/*! history/lib/createBrowserHistory */ 309);
+	var _createBrowserHistory = __webpack_require__(/*! history/lib/createBrowserHistory */ 308);
 	
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 	
-	var _createRouterHistory = __webpack_require__(/*! ./createRouterHistory */ 310);
+	var _createRouterHistory = __webpack_require__(/*! ./createRouterHistory */ 309);
 	
 	var _createRouterHistory2 = _interopRequireDefault(_createRouterHistory);
 	
@@ -37123,7 +37372,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 309 */
+/* 308 */
 /*!********************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/~/history/lib/createBrowserHistory.js ***!
   \********************************************************************************************/
@@ -37137,21 +37386,21 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _invariant = __webpack_require__(/*! invariant */ 259);
+	var _invariant = __webpack_require__(/*! invariant */ 258);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _Actions = __webpack_require__(/*! ./Actions */ 262);
+	var _Actions = __webpack_require__(/*! ./Actions */ 261);
 	
-	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 263);
+	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 262);
 	
-	var _ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 264);
+	var _ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 263);
 	
-	var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 265);
+	var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 264);
 	
-	var _DOMStateStorage = __webpack_require__(/*! ./DOMStateStorage */ 266);
+	var _DOMStateStorage = __webpack_require__(/*! ./DOMStateStorage */ 265);
 	
-	var _createDOMHistory = __webpack_require__(/*! ./createDOMHistory */ 267);
+	var _createDOMHistory = __webpack_require__(/*! ./createDOMHistory */ 266);
 	
 	var _createDOMHistory2 = _interopRequireDefault(_createDOMHistory);
 	
@@ -37308,7 +37557,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 310 */
+/* 309 */
 /*!*********************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/createRouterHistory.js ***!
   \*********************************************************************************/
@@ -37324,7 +37573,7 @@
 	  return history;
 	};
 	
-	var _useRouterHistory = __webpack_require__(/*! ./useRouterHistory */ 306);
+	var _useRouterHistory = __webpack_require__(/*! ./useRouterHistory */ 305);
 	
 	var _useRouterHistory2 = _interopRequireDefault(_useRouterHistory);
 	
@@ -37335,7 +37584,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 311 */
+/* 310 */
 /*!*************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/react-router/lib/hashHistory.js ***!
   \*************************************************************************/
@@ -37345,11 +37594,11 @@
 	
 	exports.__esModule = true;
 	
-	var _createHashHistory = __webpack_require__(/*! history/lib/createHashHistory */ 261);
+	var _createHashHistory = __webpack_require__(/*! history/lib/createHashHistory */ 260);
 	
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 	
-	var _createRouterHistory = __webpack_require__(/*! ./createRouterHistory */ 310);
+	var _createRouterHistory = __webpack_require__(/*! ./createRouterHistory */ 309);
 	
 	var _createRouterHistory2 = _interopRequireDefault(_createRouterHistory);
 	
@@ -37359,277 +37608,21 @@
 	module.exports = exports['default'];
 
 /***/ },
+/* 311 */,
 /* 312 */,
 /* 313 */,
-/* 314 */
-/*!******************************!*\
-  !*** ./stores/user_store.js ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
-	var Store = __webpack_require__(/*! ./store.js */ 247);
-	var C = __webpack_require__(/*! constants/user_constants.js */ 315);
-	
-	var UserStore = new Store({
-	    user: {},
-	
-	    setUser: function (data) {
-	        this.user = data;
-	    },
-	
-	    getData: function () {
-	        return {
-	            user: this.user
-	        };
-	    }
-	});
-	
-	dispatcher.register(C.LOADED, function (data) {
-	    if (data) {
-	        UserStore.setUser(data);
-	        UserStore.change();
-	    }
-	});
-	
-	
-	module.exports = UserStore;
-
-/***/ },
-/* 315 */
-/*!*************************************!*\
-  !*** ./constants/user_constants.js ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 245);
-	
-	module.exports = keyMirror({
-	    LOADED: null,
-	    SCHEDULE_LOADED: null
-	});
-
-/***/ },
+/* 314 */,
+/* 315 */,
 /* 316 */,
 /* 317 */,
 /* 318 */,
-/* 319 */
-/*!*********************************!*\
-  !*** ./actions/user_actions.js ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {"use strict";
-	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
-	var C = __webpack_require__(/*! constants/user_constants.js */ 315);
-	
-	var UserActions = {
-	
-	    getUser: function (user_id) {
-	        $.ajax({
-	            type: "get",
-	            url: "/users/" + user_id + ".json",
-	            dataType: "json",
-	            contentType: "application/json; charset=utf-8",
-	            success: (function (user) {
-	                dispatcher.dispatch(C.LOADED, user);
-	                if (user.user_schedule) {
-	                    this.getSchedule(user.user_schedule.id);
-	                }
-	            }).bind(this),
-	            error: function (results) {
-	                alert("Something went wrong!");
-	            }
-	        });
-	    },
-	
-	    getSchedule: function (schedule_id) {
-	        $.ajax({
-	            type: "get",
-	            url: "/user_schedules/" + schedule_id + ".json",
-	            dataType: "json",
-	            contentType: "application/json; charset=utf-8",
-	            success: function (schedule) {
-	                dispatcher.dispatch(C.SCHEDULE_LOADED, schedule);
-	            },
-	            error: function (results) {
-	                alert("Something went wrong!");
-	            }
-	        });
-	    },
-	
-	    setSchedule: function (schedule) {
-	        schedule.weekly_schedule_days_attributes = schedule.weekly_schedule_days;
-	        delete schedule.weekly_schedule_days;
-	
-	        var user_schedule = { user_schedule: schedule };
-	        var data = JSON.stringify(user_schedule);
-	        if (schedule.id) {
-	            $.ajax({
-	                type: "put",
-	                data: data,
-	                url: "/user_schedules/" + schedule.id + ".json",
-	                dataType: "json",
-	                contentType: "application/json; charset=utf-8",
-	                success: function (results) {
-	                    location.href = "/do-work";
-	                },
-	                error: function (results) {
-	                    alert(results);
-	                }
-	            });
-	        } else {
-	            $.ajax({
-	                type: "post",
-	                data: data,
-	                url: "/user_schedules.json",
-	                dataType: "json",
-	                contentType: "application/json; charset=utf-8",
-	                success: function (results) {
-	                    location.href = "/do-work";
-	                },
-	                error: function (results) {
-	                    alert(results);
-	                }
-	            });
-	        }
-	    }
-	
-	};
-	
-	module.exports = UserActions;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 242)))
-
-/***/ },
+/* 319 */,
 /* 320 */,
-/* 321 */
-/*!*********************************!*\
-  !*** ./views/common/header.jsx ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 33);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	__webpack_require__(/*! common/header.scss */ 322);
-	
-	var Header = function (_React$Component) {
-	    _inherits(Header, _React$Component);
-	
-	    function Header(props) {
-	        _classCallCheck(this, Header);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Header).call(this, props));
-	    }
-	
-	    _createClass(Header, [{
-	        key: 'render',
-	        value: function render() {
-	            return React.createElement(
-	                'div',
-	                { className: 'row header' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'container' },
-	                    React.createElement(
-	                        'div',
-	                        { className: 'row' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-2' },
-	                            React.createElement('img', { className: 'logo', src: 'https://s3.amazonaws.com/quadfit/logo%403x.png' })
-	                        ),
-	                        this.props.user.avatars ? React.createElement(
-	                            'div',
-	                            { className: 'col-xs-1 col-xs-offset-9' },
-	                            React.createElement('img', { src: '' + this.props.user.avatars })
-	                        ) : null
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Header;
-	}(React.Component);
-	
-	exports.default = Header;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
-
-/***/ },
-/* 322 */
-/*!************************************!*\
-  !*** ../styles/common/header.scss ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./header.scss */ 323);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 174)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./header.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./header.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 323 */
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/header.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 173)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
+/* 321 */,
+/* 322 */,
+/* 323 */,
 /* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */,
-/* 331 */,
-/* 332 */
+/* 325 */
 /*!********************************************!*\
   !*** ./views/common/vert_circle_check.jsx ***!
   \********************************************/
@@ -37657,7 +37650,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/vert_circle_check.scss */ 333);
+	__webpack_require__(/*! common/vert_circle_check.scss */ 326);
 	
 	var VertCircleCheck = function (_React$Component) {
 	    _inherits(VertCircleCheck, _React$Component);
@@ -37700,7 +37693,7 @@
 	exports.default = VertCircleCheck;
 
 /***/ },
-/* 333 */
+/* 326 */
 /*!***********************************************!*\
   !*** ../styles/common/vert_circle_check.scss ***!
   \***********************************************/
@@ -37709,10 +37702,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./vert_circle_check.scss */ 334);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./vert_circle_check.scss */ 327);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -37729,13 +37722,13 @@
 	}
 
 /***/ },
-/* 334 */
+/* 327 */
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/vert_circle_check.scss ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 234)();
 	// imports
 	
 	
@@ -37746,6 +37739,13 @@
 
 
 /***/ },
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
 /* 335 */,
 /* 336 */,
 /* 337 */,
@@ -38004,14 +38004,7 @@
 /* 590 */,
 /* 591 */,
 /* 592 */,
-/* 593 */,
-/* 594 */,
-/* 595 */,
-/* 596 */,
-/* 597 */,
-/* 598 */,
-/* 599 */,
-/* 600 */
+/* 593 */
 /*!*********************************!*\
   !*** ./views/common/button.jsx ***!
   \*********************************/
@@ -38041,9 +38034,9 @@
 	
 	window.jQuery = $;
 	
-	__webpack_require__(/*! bootstrap */ 601);
+	__webpack_require__(/*! bootstrap */ 594);
 	
-	__webpack_require__(/*! common/button.scss */ 614);
+	__webpack_require__(/*! common/button.scss */ 607);
 	
 	var Button = function (_React$Component) {
 	    _inherits(Button, _React$Component);
@@ -38076,31 +38069,31 @@
 	}(_react2.default.Component);
 	
 	exports.default = Button;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 242)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 246)))
 
 /***/ },
-/* 601 */
+/* 594 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/dist/js/npm.js ***!
   \******************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// This file is autogenerated via the `commonjs` Grunt task. You can require() this file in a CommonJS environment.
-	__webpack_require__(/*! ../../js/transition.js */ 602)
-	__webpack_require__(/*! ../../js/alert.js */ 603)
-	__webpack_require__(/*! ../../js/button.js */ 604)
-	__webpack_require__(/*! ../../js/carousel.js */ 605)
-	__webpack_require__(/*! ../../js/collapse.js */ 606)
-	__webpack_require__(/*! ../../js/dropdown.js */ 607)
-	__webpack_require__(/*! ../../js/modal.js */ 608)
-	__webpack_require__(/*! ../../js/tooltip.js */ 609)
-	__webpack_require__(/*! ../../js/popover.js */ 610)
-	__webpack_require__(/*! ../../js/scrollspy.js */ 611)
-	__webpack_require__(/*! ../../js/tab.js */ 612)
-	__webpack_require__(/*! ../../js/affix.js */ 613)
+	__webpack_require__(/*! ../../js/transition.js */ 595)
+	__webpack_require__(/*! ../../js/alert.js */ 596)
+	__webpack_require__(/*! ../../js/button.js */ 597)
+	__webpack_require__(/*! ../../js/carousel.js */ 598)
+	__webpack_require__(/*! ../../js/collapse.js */ 599)
+	__webpack_require__(/*! ../../js/dropdown.js */ 600)
+	__webpack_require__(/*! ../../js/modal.js */ 601)
+	__webpack_require__(/*! ../../js/tooltip.js */ 602)
+	__webpack_require__(/*! ../../js/popover.js */ 603)
+	__webpack_require__(/*! ../../js/scrollspy.js */ 604)
+	__webpack_require__(/*! ../../js/tab.js */ 605)
+	__webpack_require__(/*! ../../js/affix.js */ 606)
 
 /***/ },
-/* 602 */
+/* 595 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/transition.js ***!
   \********************************************************************/
@@ -38168,7 +38161,7 @@
 
 
 /***/ },
-/* 603 */
+/* 596 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/alert.js ***!
   \***************************************************************/
@@ -38271,7 +38264,7 @@
 
 
 /***/ },
-/* 604 */
+/* 597 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/button.js ***!
   \****************************************************************/
@@ -38400,7 +38393,7 @@
 
 
 /***/ },
-/* 605 */
+/* 598 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/carousel.js ***!
   \******************************************************************/
@@ -38646,7 +38639,7 @@
 
 
 /***/ },
-/* 606 */
+/* 599 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/collapse.js ***!
   \******************************************************************/
@@ -38866,7 +38859,7 @@
 
 
 /***/ },
-/* 607 */
+/* 600 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/dropdown.js ***!
   \******************************************************************/
@@ -39040,7 +39033,7 @@
 
 
 /***/ },
-/* 608 */
+/* 601 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/modal.js ***!
   \***************************************************************/
@@ -39386,7 +39379,7 @@
 
 
 /***/ },
-/* 609 */
+/* 602 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/tooltip.js ***!
   \*****************************************************************/
@@ -39909,7 +39902,7 @@
 
 
 /***/ },
-/* 610 */
+/* 603 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/popover.js ***!
   \*****************************************************************/
@@ -40026,7 +40019,7 @@
 
 
 /***/ },
-/* 611 */
+/* 604 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/scrollspy.js ***!
   \*******************************************************************/
@@ -40207,7 +40200,7 @@
 
 
 /***/ },
-/* 612 */
+/* 605 */
 /*!*************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/tab.js ***!
   \*************************************************************/
@@ -40371,7 +40364,7 @@
 
 
 /***/ },
-/* 613 */
+/* 606 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/affix.js ***!
   \***************************************************************/
@@ -40542,7 +40535,7 @@
 
 
 /***/ },
-/* 614 */
+/* 607 */
 /*!************************************!*\
   !*** ../styles/common/button.scss ***!
   \************************************/
@@ -40551,10 +40544,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./button.scss */ 615);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./button.scss */ 608);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -40571,13 +40564,13 @@
 	}
 
 /***/ },
-/* 615 */
+/* 608 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/button.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 234)();
 	// imports
 	
 	
@@ -40588,6 +40581,13 @@
 
 
 /***/ },
+/* 609 */,
+/* 610 */,
+/* 611 */,
+/* 612 */,
+/* 613 */,
+/* 614 */,
+/* 615 */,
 /* 616 */,
 /* 617 */,
 /* 618 */,
@@ -40613,7 +40613,10 @@
 /* 638 */,
 /* 639 */,
 /* 640 */,
-/* 641 */
+/* 641 */,
+/* 642 */,
+/* 643 */,
+/* 644 */
 /*!********************************!*\
   !*** ./views/setup/subnav.jsx ***!
   \********************************/
@@ -40635,7 +40638,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/setup/subnav.scss */ 642);
+	__webpack_require__(/*! views/setup/subnav.scss */ 645);
 	
 	var Subnav = function (_React$Component) {
 	    _inherits(Subnav, _React$Component);
@@ -40690,7 +40693,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 642 */
+/* 645 */
 /*!*****************************************!*\
   !*** ../styles/views/setup/subnav.scss ***!
   \*****************************************/
@@ -40699,10 +40702,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./subnav.scss */ 643);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./subnav.scss */ 646);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -40719,13 +40722,13 @@
 	}
 
 /***/ },
-/* 643 */
+/* 646 */
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/subnav.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 234)();
 	// imports
 	
 	
@@ -40736,7 +40739,7 @@
 
 
 /***/ },
-/* 644 */
+/* 647 */
 /*!******************************!*\
   !*** ./views/setup/goal.jsx ***!
   \******************************/
@@ -40752,15 +40755,15 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 33);
 	
-	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 645);
+	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 648);
 	
 	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
 	
-	var _vert_circle_check = __webpack_require__(/*! views/common/vert_circle_check */ 332);
+	var _vert_circle_check = __webpack_require__(/*! views/common/vert_circle_check */ 325);
 	
 	var _vert_circle_check2 = _interopRequireDefault(_vert_circle_check);
 	
-	var _button = __webpack_require__(/*! views/common/button */ 600);
+	var _button = __webpack_require__(/*! views/common/button */ 593);
 	
 	var _button2 = _interopRequireDefault(_button);
 	
@@ -40772,10 +40775,10 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 646);
+	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 649);
 	
 	
-	__webpack_require__(/*! views/setup/goal.scss */ 647);
+	__webpack_require__(/*! views/setup/goal.scss */ 650);
 	
 	var Goal = function (_React$Component) {
 	    _inherits(Goal, _React$Component);
@@ -40881,7 +40884,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 645 */
+/* 648 */
 /*!***********************************************!*\
   !*** ./actions/fitness_assessment_actions.js ***!
   \***********************************************/
@@ -40889,9 +40892,9 @@
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
-	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 646);
-	var UC = __webpack_require__(/*! constants/user_constants.js */ 315);
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
+	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 649);
+	var UC = __webpack_require__(/*! constants/user_constants.js */ 241);
 	
 	var FitnessAssessmentActions = {
 	
@@ -40962,10 +40965,10 @@
 	};
 	
 	module.exports = FitnessAssessmentActions;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 242)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 246)))
 
 /***/ },
-/* 646 */
+/* 649 */
 /*!***************************************************!*\
   !*** ./constants/fitness_assessment_constants.js ***!
   \***************************************************/
@@ -40973,7 +40976,7 @@
 
 	"use strict";
 	
-	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 245);
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 242);
 	
 	module.exports = keyMirror({
 	    QUADS: null, // which quads the user chose
@@ -40991,7 +40994,7 @@
 	});
 
 /***/ },
-/* 647 */
+/* 650 */
 /*!***************************************!*\
   !*** ../styles/views/setup/goal.scss ***!
   \***************************************/
@@ -41000,10 +41003,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./goal.scss */ 648);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./goal.scss */ 651);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -41020,13 +41023,13 @@
 	}
 
 /***/ },
-/* 648 */
+/* 651 */
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/goal.scss ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 234)();
 	// imports
 	
 	
@@ -41037,7 +41040,7 @@
 
 
 /***/ },
-/* 649 */
+/* 652 */
 /*!*******************************!*\
   !*** ./views/setup/quads.jsx ***!
   \*******************************/
@@ -41053,15 +41056,15 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 33);
 	
-	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 650);
+	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 653);
 	
 	var _circle_check2 = _interopRequireDefault(_circle_check);
 	
-	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 645);
+	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 648);
 	
 	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
 	
-	var _button = __webpack_require__(/*! views/common/button */ 600);
+	var _button = __webpack_require__(/*! views/common/button */ 593);
 	
 	var _button2 = _interopRequireDefault(_button);
 	
@@ -41073,7 +41076,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/setup/quads.scss */ 653);
+	__webpack_require__(/*! views/setup/quads.scss */ 656);
 	
 	var Quads = function (_React$Component) {
 	    _inherits(Quads, _React$Component);
@@ -41242,7 +41245,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 650 */
+/* 653 */
 /*!***************************************!*\
   !*** ./views/common/circle_check.jsx ***!
   \***************************************/
@@ -41270,7 +41273,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/circle_check.scss */ 651);
+	__webpack_require__(/*! common/circle_check.scss */ 654);
 	
 	var CircleCheck = function (_React$Component) {
 	    _inherits(CircleCheck, _React$Component);
@@ -41312,7 +41315,7 @@
 	exports.default = CircleCheck;
 
 /***/ },
-/* 651 */
+/* 654 */
 /*!******************************************!*\
   !*** ../styles/common/circle_check.scss ***!
   \******************************************/
@@ -41321,10 +41324,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./circle_check.scss */ 652);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./circle_check.scss */ 655);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -41341,13 +41344,13 @@
 	}
 
 /***/ },
-/* 652 */
+/* 655 */
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/circle_check.scss ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 234)();
 	// imports
 	
 	
@@ -41358,7 +41361,7 @@
 
 
 /***/ },
-/* 653 */
+/* 656 */
 /*!****************************************!*\
   !*** ../styles/views/setup/quads.scss ***!
   \****************************************/
@@ -41367,10 +41370,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./quads.scss */ 654);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./quads.scss */ 657);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -41387,13 +41390,13 @@
 	}
 
 /***/ },
-/* 654 */
+/* 657 */
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/quads.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 234)();
 	// imports
 	
 	
@@ -41404,7 +41407,7 @@
 
 
 /***/ },
-/* 655 */
+/* 658 */
 /*!*********************************!*\
   !*** ./views/setup/fitness.jsx ***!
   \*********************************/
@@ -41420,15 +41423,15 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 33);
 	
-	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 645);
+	var _fitness_assessment_actions = __webpack_require__(/*! actions/fitness_assessment_actions */ 648);
 	
 	var _fitness_assessment_actions2 = _interopRequireDefault(_fitness_assessment_actions);
 	
-	var _simple_input = __webpack_require__(/*! views/common/simple_input */ 656);
+	var _simple_input = __webpack_require__(/*! views/common/simple_input */ 659);
 	
 	var _simple_input2 = _interopRequireDefault(_simple_input);
 	
-	var _button = __webpack_require__(/*! views/common/button */ 600);
+	var _button = __webpack_require__(/*! views/common/button */ 593);
 	
 	var _button2 = _interopRequireDefault(_button);
 	
@@ -41440,7 +41443,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/setup/fitness.scss */ 659);
+	__webpack_require__(/*! views/setup/fitness.scss */ 662);
 	
 	var Fitness = function (_React$Component) {
 	    _inherits(Fitness, _React$Component);
@@ -41880,7 +41883,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 656 */
+/* 659 */
 /*!***************************************!*\
   !*** ./views/common/simple_input.jsx ***!
   \***************************************/
@@ -41908,7 +41911,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/simple_input.scss */ 657);
+	__webpack_require__(/*! common/simple_input.scss */ 660);
 	
 	var SimpleInput = function (_React$Component) {
 	    _inherits(SimpleInput, _React$Component);
@@ -41947,7 +41950,7 @@
 	exports.default = SimpleInput;
 
 /***/ },
-/* 657 */
+/* 660 */
 /*!******************************************!*\
   !*** ../styles/common/simple_input.scss ***!
   \******************************************/
@@ -41956,10 +41959,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./simple_input.scss */ 658);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./simple_input.scss */ 661);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -41976,13 +41979,13 @@
 	}
 
 /***/ },
-/* 658 */
+/* 661 */
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/simple_input.scss ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 234)();
 	// imports
 	
 	
@@ -41993,7 +41996,7 @@
 
 
 /***/ },
-/* 659 */
+/* 662 */
 /*!******************************************!*\
   !*** ../styles/views/setup/fitness.scss ***!
   \******************************************/
@@ -42002,10 +42005,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./fitness.scss */ 660);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./fitness.scss */ 663);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -42022,13 +42025,13 @@
 	}
 
 /***/ },
-/* 660 */
+/* 663 */
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/fitness.scss ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 234)();
 	// imports
 	
 	
@@ -42039,7 +42042,7 @@
 
 
 /***/ },
-/* 661 */
+/* 664 */
 /*!**********************************!*\
   !*** ./views/setup/schedule.jsx ***!
   \**********************************/
@@ -42055,15 +42058,15 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 33);
 	
-	var _square_check = __webpack_require__(/*! views/common/square_check */ 662);
+	var _square_check = __webpack_require__(/*! views/common/square_check */ 665);
 	
 	var _square_check2 = _interopRequireDefault(_square_check);
 	
-	var _button = __webpack_require__(/*! views/common/button */ 600);
+	var _button = __webpack_require__(/*! views/common/button */ 593);
 	
 	var _button2 = _interopRequireDefault(_button);
 	
-	var _user_actions = __webpack_require__(/*! actions/user_actions */ 319);
+	var _user_actions = __webpack_require__(/*! actions/user_actions */ 245);
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
@@ -42075,7 +42078,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/setup/schedule.scss */ 665);
+	__webpack_require__(/*! views/setup/schedule.scss */ 668);
 	
 	var Schedule = function (_React$Component) {
 	    _inherits(Schedule, _React$Component);
@@ -42464,10 +42467,10 @@
 	}(React.Component);
 	
 	exports.default = Schedule;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! jquery */ 242)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! jquery */ 246)))
 
 /***/ },
-/* 662 */
+/* 665 */
 /*!***************************************!*\
   !*** ./views/common/square_check.jsx ***!
   \***************************************/
@@ -42495,7 +42498,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/square_check.scss */ 663);
+	__webpack_require__(/*! common/square_check.scss */ 666);
 	
 	var SquareCheck = function (_React$Component) {
 	    _inherits(SquareCheck, _React$Component);
@@ -42551,7 +42554,7 @@
 	exports.default = SquareCheck;
 
 /***/ },
-/* 663 */
+/* 666 */
 /*!******************************************!*\
   !*** ../styles/common/square_check.scss ***!
   \******************************************/
@@ -42560,10 +42563,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./square_check.scss */ 664);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./square_check.scss */ 667);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -42580,13 +42583,13 @@
 	}
 
 /***/ },
-/* 664 */
+/* 667 */
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/square_check.scss ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 234)();
 	// imports
 	
 	
@@ -42597,7 +42600,7 @@
 
 
 /***/ },
-/* 665 */
+/* 668 */
 /*!*******************************************!*\
   !*** ../styles/views/setup/schedule.scss ***!
   \*******************************************/
@@ -42606,10 +42609,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./schedule.scss */ 666);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./schedule.scss */ 669);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -42626,13 +42629,13 @@
 	}
 
 /***/ },
-/* 666 */
+/* 669 */
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/schedule.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 234)();
 	// imports
 	
 	
@@ -42643,7 +42646,7 @@
 
 
 /***/ },
-/* 667 */
+/* 670 */
 /*!*********************************!*\
   !*** ./views/setup/program.jsx ***!
   \*********************************/
@@ -42659,15 +42662,15 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 33);
 	
-	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 650);
+	var _circle_check = __webpack_require__(/*! views/common/circle_check */ 653);
 	
 	var _circle_check2 = _interopRequireDefault(_circle_check);
 	
-	var _button = __webpack_require__(/*! views/common/button */ 600);
+	var _button = __webpack_require__(/*! views/common/button */ 593);
 	
 	var _button2 = _interopRequireDefault(_button);
 	
-	var _program_actions = __webpack_require__(/*! actions/program_actions */ 668);
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 671);
 	
 	var _program_actions2 = _interopRequireDefault(_program_actions);
 	
@@ -42879,7 +42882,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 668 */
+/* 671 */
 /*!************************************!*\
   !*** ./actions/program_actions.js ***!
   \************************************/
@@ -42887,9 +42890,9 @@
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
-	var FC = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 646);
-	var C = __webpack_require__(/*! constants/program_constants.js */ 669);
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
+	var FC = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 649);
+	var C = __webpack_require__(/*! constants/program_constants.js */ 672);
 	
 	var ProgramActions = {
 	
@@ -42927,10 +42930,10 @@
 	};
 	
 	module.exports = ProgramActions;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 242)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 246)))
 
 /***/ },
-/* 669 */
+/* 672 */
 /*!****************************************!*\
   !*** ./constants/program_constants.js ***!
   \****************************************/
@@ -42938,7 +42941,7 @@
 
 	"use strict";
 	
-	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 245);
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 242);
 	
 	module.exports = keyMirror({
 	    COMMITMENT: null,
@@ -42948,7 +42951,7 @@
 	});
 
 /***/ },
-/* 670 */
+/* 673 */
 /*!************************************!*\
   !*** ./views/setup/commitment.jsx ***!
   \************************************/
@@ -42964,15 +42967,15 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 33);
 	
-	var _square_check = __webpack_require__(/*! views/common/square_check */ 662);
+	var _square_check = __webpack_require__(/*! views/common/square_check */ 665);
 	
 	var _square_check2 = _interopRequireDefault(_square_check);
 	
-	var _button = __webpack_require__(/*! views/common/button */ 600);
+	var _button = __webpack_require__(/*! views/common/button */ 593);
 	
 	var _button2 = _interopRequireDefault(_button);
 	
-	var _program_actions = __webpack_require__(/*! actions/program_actions */ 668);
+	var _program_actions = __webpack_require__(/*! actions/program_actions */ 671);
 	
 	var _program_actions2 = _interopRequireDefault(_program_actions);
 	
@@ -42984,7 +42987,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/setup/commitment.scss */ 671);
+	__webpack_require__(/*! views/setup/commitment.scss */ 674);
 	
 	var Commitment = function (_React$Component) {
 	    _inherits(Commitment, _React$Component);
@@ -43166,7 +43169,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 671 */
+/* 674 */
 /*!*********************************************!*\
   !*** ../styles/views/setup/commitment.scss ***!
   \*********************************************/
@@ -43175,10 +43178,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./commitment.scss */ 672);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./commitment.scss */ 675);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -43195,13 +43198,13 @@
 	}
 
 /***/ },
-/* 672 */
+/* 675 */
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/setup/commitment.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 234)();
 	// imports
 	
 	
@@ -43212,7 +43215,7 @@
 
 
 /***/ },
-/* 673 */
+/* 676 */
 /*!***************************************!*\
   !*** ./stores/user_schedule_store.js ***!
   \***************************************/
@@ -43220,9 +43223,9 @@
 
 	"use strict";
 	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
-	var Store = __webpack_require__(/*! ./store.js */ 247);
-	var C = __webpack_require__(/*! constants/user_constants.js */ 315);
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
+	var Store = __webpack_require__(/*! ./store.js */ 239);
+	var C = __webpack_require__(/*! constants/user_constants.js */ 241);
 	
 	var UserScheduleStore = new Store({
 	    schedule: {
@@ -43268,7 +43271,7 @@
 	module.exports = UserScheduleStore;
 
 /***/ },
-/* 674 */
+/* 677 */
 /*!********************************************!*\
   !*** ./stores/fitness_assessment_store.js ***!
   \********************************************/
@@ -43276,9 +43279,9 @@
 
 	"use strict";
 	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
-	var Store = __webpack_require__(/*! ./store.js */ 247);
-	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 646);
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
+	var Store = __webpack_require__(/*! ./store.js */ 239);
+	var C = __webpack_require__(/*! constants/fitness_assessment_constants.js */ 649);
 	
 	var FitnessAssessmentStore = new Store({
 	    quads: {}, //array of key/values for each quad
@@ -43427,7 +43430,7 @@
 	module.exports = FitnessAssessmentStore;
 
 /***/ },
-/* 675 */
+/* 678 */
 /*!*********************************!*\
   !*** ./stores/program_store.js ***!
   \*********************************/
@@ -43435,9 +43438,9 @@
 
 	"use strict";
 	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 243);
-	var Store = __webpack_require__(/*! ./store.js */ 247);
-	var C = __webpack_require__(/*! constants/program_constants.js */ 669);
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
+	var Store = __webpack_require__(/*! ./store.js */ 239);
+	var C = __webpack_require__(/*! constants/program_constants.js */ 672);
 	
 	var ProgramStore = new Store({
 	    days: undefined,
@@ -43489,9 +43492,9 @@
 	module.exports = ProgramStore;
 
 /***/ },
-/* 676 */,
-/* 677 */,
-/* 678 */
+/* 679 */,
+/* 680 */,
+/* 681 */
 /*!****************************************!*\
   !*** ../styles/pages/setup_coach.scss ***!
   \****************************************/
@@ -43500,10 +43503,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./setup_coach.scss */ 679);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./setup_coach.scss */ 682);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 174)(content, {});
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -43520,13 +43523,13 @@
 	}
 
 /***/ },
-/* 679 */
+/* 682 */
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/setup_coach.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 173)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 234)();
 	// imports
 	
 	

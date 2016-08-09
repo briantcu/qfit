@@ -24,13 +24,14 @@ class UserCalendar
 
     pad_month(normalize_day(first_of_month.cwday))
 
+    today = Date.today
     for d in 1..end_of_month
       day = Date.new(self.year_id, self.month_id, d)
       routine = find_routine_for_date(routines, day)
 
       if routine.nil?
-        workout_status = 'nothing'
-        if user.will_workout_for_day?(normalize_day(day.cwday))
+        workout_status = ''
+        if user.will_workout_for_day?(normalize_day(day.cwday)) && day > today
           workout_status = 'future'
         end
         self.calendar_month.days << CalendarDay.new(:day_of_month => d, :day_of_week => normalize_day(day.cwday),

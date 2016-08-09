@@ -285,7 +285,7 @@ class DoWork extends React.Component {
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Leave a comment</div>
                             </div>
-                            <If condition={this.state.routine} >
+                            <If condition={this.state.routine && this.state.routine.length > 0} >
                             {
                                 this.state.routine.comments.map(function(e, index) {
                                     return <Comment comment={e} key={e.id} />

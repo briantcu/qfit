@@ -25,7 +25,7 @@ class CalendarCell extends React.Component {
         ];
 
        var classes = ((this.props.dayObj.day_of_month == this.props.day) && (this.props.dayObj.year == this.props.year) &&
-       (this.props.dayObj.month = this.props.month)) ? "col-xs-2 calendar-cell selected" : "col-xs-2 calendar-cell";
+       (this.props.dayObj.month == this.props.month)) ? "col-xs-2 calendar-cell selected" : "col-xs-2 calendar-cell";
 
         if (this.props.border) {
             classes += ' border'
@@ -44,7 +44,9 @@ class Calendar extends React.Component {
         super(props);
         this.state = {
             loaded: false,
-            daysToShow: []
+            daysToShow: [],
+            leftArrowEnabled: true,
+            rightArrowEnabled: true
         };
         this.rowSize = 5;
     }
@@ -72,19 +74,32 @@ class Calendar extends React.Component {
 
     flowLeft() {
         var index = this.state.current_index - (this.rowSize + 1);
-        var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
-        this.setState({daysToShow: daysToShow, current_index: index});
+        var leftArrowEnabled = index > 0;
+        if (index <= 0) {
+            var newIndex = index + this.rowSize;
+            var daysToShow = this.state.allDays.slice(0, newIndex);
+            var padCount = Math.abs(index) + 1;
+            for (var i = 0; i <= padCount, i++;) {
+                daysToShow.unshift({});
+            }
+        } else {
+            var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
+        }
+        this.setState({daysToShow: daysToShow, current_index: index, leftArrowEnabled: leftArrowEnabled, rightArrowEnabled: true});
     }
 
     flowRight() {
         var index = this.state.current_index + (this.rowSize + 1);
+        var rightArrowEnabled = (index + this.rowSize) <= this.state.allDays.length;
         var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
-        this.setState({daysToShow: daysToShow, current_index: index});
+        this.setState({daysToShow: daysToShow, current_index: index, rightArrowEnabled: rightArrowEnabled, leftArrowEnabled: true});
     }
 
     render() {
+        var leftArrowClasses = this.state.leftArrowEnabled ? "left col-xs-1" : "left col-xs-1 disabled";
+        var rightArrowClasses = this.state.rightArrowEnabled ? "right col-xs-1" : "right col-xs-1 disabled";
         return <div className="row calendar">
-                <span className="left col-xs-1" onClick={ () => this.flowLeft() } />
+                <span className={leftArrowClasses} onClick={ () => this.flowLeft() } />
                 <div className="col-xs-10 cal-days">
                  <div className="row">
 
@@ -96,7 +111,7 @@ class Calendar extends React.Component {
 
                  </div>
                  </div>
-                <span className="right col-xs-1" onClick={ () => this.flowRight() } />
+                <span className={rightArrowClasses} onClick={ () => this.flowRight() } />
 
         </div>
     }

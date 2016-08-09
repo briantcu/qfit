@@ -187,6 +187,8 @@ h1 {
     border-left: 1px solid #e6e6e6; }
   .calendar .selected {
     border-bottom: 5px solid #7953aa; }
+  .calendar .disabled {
+    display: none; }
 
 .left {
   cursor: pointer;

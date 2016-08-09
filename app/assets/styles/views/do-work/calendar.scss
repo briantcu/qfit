@@ -3,10 +3,6 @@
 .calendar {
   height: 145px;
 
-  .cal-days {
-
-  }
-
   .calendar-cell {
     text-align: center;
     padding-top: 35px;
@@ -48,7 +44,9 @@
     border-bottom: 5px solid $purple;
   }
 
-
+  .disabled {
+    display: none;
+  }
 
 }
 .left {
