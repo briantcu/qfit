@@ -38366,31 +38366,42 @@
 	
 	            var classes = this.props.dayObj.day_of_month == this.props.day && this.props.dayObj.year == this.props.year && this.props.dayObj.month == this.props.month ? "col-xs-2 calendar-cell selected" : "col-xs-2 calendar-cell";
 	
+	            classes += this.state.date.getMonth() ? '' : ' no-cursor';
+	
 	            if (this.props.border) {
 	                classes += ' border';
 	            }
 	            return React.createElement(
 	                'div',
-	                { className: classes, onClick: function onClick() {
-	                        return _this2.click();
-	                    } },
-	                React.createElement(
+	                null,
+	                this.state.date.getMonth() ? React.createElement(
 	                    'div',
-	                    { className: 'cal-subtext' },
-	                    days[this.props.dayObj.day_of_week]
-	                ),
-	                React.createElement(
+	                    { className: classes, onClick: function onClick() {
+	                            return _this2.click();
+	                        } },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'cal-subtext' },
+	                        days[this.props.dayObj.day_of_week]
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'cal-text' },
+	                        monthNames[this.state.date.getMonth()] + ', ' + this.props.dayObj.day_of_month
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'cal-subtext' },
+	                        this.props.dayObj.workout_status
+	                    )
+	                ) : null,
+	                !this.state.date.getMonth() ? React.createElement(
 	                    'div',
-	                    { className: 'cal-text' },
-	                    monthNames[this.state.date.getMonth()],
-	                    ', ',
-	                    this.props.dayObj.day_of_month
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'cal-subtext' },
-	                    this.props.dayObj.workout_status
-	                )
+	                    { className: classes },
+	                    React.createElement('div', { className: 'cal-subtext' }),
+	                    React.createElement('div', { className: 'cal-text' }),
+	                    React.createElement('div', { className: 'cal-subtext' })
+	                ) : null
 	            );
 	        }
 	    }]);
@@ -38446,27 +38457,41 @@
 	    }, {
 	        key: 'flowLeft',
 	        value: function flowLeft() {
-	            var index = this.state.current_index - (this.rowSize + 1);
-	            var leftArrowEnabled = index > 0;
-	            if (index <= 0) {
-	                var newIndex = index + this.rowSize;
-	                var daysToShow = this.state.allDays.slice(0, newIndex);
-	                var padCount = Math.abs(index) + 1;
-	                for (var i = 0; i <= padCount, i++;) {
-	                    daysToShow.unshift({});
+	            if (this.state.leftArrowEnabled) {
+	                var index = this.state.current_index - (this.rowSize + 1);
+	                var leftArrowEnabled = index > 0;
+	                if (index <= 0) {
+	                    var newIndex = index + this.rowSize;
+	                    var daysToShow = this.state.allDays.slice(0, newIndex);
+	                    var padCount = Math.abs(index) + 1;
+	                    for (var i = 0; i <= padCount; i++) {
+	                        daysToShow.unshift({});
+	                    }
+	                } else {
+	                    var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
 	                }
-	            } else {
-	                var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
+	                this.setState({
+	                    daysToShow: daysToShow,
+	                    current_index: index,
+	                    leftArrowEnabled: leftArrowEnabled,
+	                    rightArrowEnabled: true
+	                });
 	            }
-	            this.setState({ daysToShow: daysToShow, current_index: index, leftArrowEnabled: leftArrowEnabled, rightArrowEnabled: true });
 	        }
 	    }, {
 	        key: 'flowRight',
 	        value: function flowRight() {
-	            var index = this.state.current_index + (this.rowSize + 1);
-	            var rightArrowEnabled = index + this.rowSize <= this.state.allDays.length;
-	            var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
-	            this.setState({ daysToShow: daysToShow, current_index: index, rightArrowEnabled: rightArrowEnabled, leftArrowEnabled: true });
+	            if (this.state.rightArrowEnabled) {
+	                var index = this.state.current_index + (this.rowSize + 1);
+	                var rightArrowEnabled = index + this.rowSize <= this.state.allDays.length;
+	                var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
+	                this.setState({
+	                    daysToShow: daysToShow,
+	                    current_index: index,
+	                    rightArrowEnabled: rightArrowEnabled,
+	                    leftArrowEnabled: true
+	                });
+	            }
 	        }
 	    }, {
 	        key: 'render',
@@ -64962,4 +64987,5 @@
 
 /***/ }
 /******/ ]);
+//# sourceMappingURL=do_work.bundle.js.map
 //# sourceMappingURL=do_work.bundle.js.map

@@ -159,6 +159,8 @@ h1 {
 
 .calendar {
   height: 145px; }
+  .calendar .no-cursor {
+    cursor: auto !important; }
   .calendar .calendar-cell {
     text-align: center;
     padding-top: 35px;
@@ -188,7 +190,23 @@ h1 {
   .calendar .selected {
     border-bottom: 5px solid #7953aa; }
   .calendar .disabled {
-    display: none; }
+    cursor: auto; }
+    .calendar .disabled:after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: transparent;
+      top: 60px;
+      border: none !important; }
+    .calendar .disabled:before {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: transparent;
+      top: 60px;
+      border: none !important; }
 
 .left {
   cursor: pointer;
@@ -1803,4 +1821,5 @@ h1 {
   letter-spacing: -0.1px;
   color: #9fa9ba; }
 
+/*# sourceMappingURL=do_work.css.map*/
 /*# sourceMappingURL=do_work.css.map*/

@@ -60,6 +60,9 @@ var config = {
             $: "jquery",
             React: 'react',
             _: 'underscore'
+        }),
+        new webpack.SourceMapDevToolPlugin({
+            filename: '[file].map'
         })
     ]
 };

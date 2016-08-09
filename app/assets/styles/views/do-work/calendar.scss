@@ -3,6 +3,10 @@
 .calendar {
   height: 145px;
 
+  .no-cursor {
+    cursor: auto !important;
+  }
+
   .calendar-cell {
     text-align: center;
     padding-top: 35px;
@@ -45,7 +49,25 @@
   }
 
   .disabled {
-    display: none;
+    cursor: auto;
+    &:after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: transparent;
+      top: 60px;
+      border: none !important;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: transparent;
+      top: 60px;
+      border: none !important;
+    }
   }
 
 }

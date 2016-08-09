@@ -35279,3 +35279,4 @@
 /***/ }
 /******/ ]);
 //# sourceMappingURL=more_info.bundle.js.map
+//# sourceMappingURL=more_info.bundle.js.map

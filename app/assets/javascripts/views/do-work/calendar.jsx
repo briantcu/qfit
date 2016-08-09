@@ -27,13 +27,30 @@ class CalendarCell extends React.Component {
        var classes = ((this.props.dayObj.day_of_month == this.props.day) && (this.props.dayObj.year == this.props.year) &&
        (this.props.dayObj.month == this.props.month)) ? "col-xs-2 calendar-cell selected" : "col-xs-2 calendar-cell";
 
+        classes += (this.state.date.getMonth()) ? '' : ' no-cursor';
+
         if (this.props.border) {
             classes += ' border'
         }
-        return <div className={classes} onClick={ () => this.click() } >
-            <div className="cal-subtext">{days[this.props.dayObj.day_of_week]}</div>
-            <div className="cal-text">{monthNames[this.state.date.getMonth()]}, {this.props.dayObj.day_of_month}</div>
-            <div className="cal-subtext">{this.props.dayObj.workout_status}</div>
+        return <div>
+            <If condition={this.state.date.getMonth()} >
+            {
+                <div className={classes} onClick={ () => this.click() } >
+                    <div className="cal-subtext">{days[this.props.dayObj.day_of_week]}</div>
+                    <div className="cal-text">{monthNames[this.state.date.getMonth()] + ', ' + this.props.dayObj.day_of_month}</div>
+                    <div className="cal-subtext">{this.props.dayObj.workout_status}</div>
+                </div>
+            }
+            </If>
+            <If condition={!this.state.date.getMonth()} >
+                {
+                    <div className={classes} >
+                        <div className="cal-subtext"></div>
+                        <div className="cal-text"></div>
+                        <div className="cal-subtext"></div>
+                    </div>
+                }
+            </If>
         </div>
     }
 }
@@ -73,26 +90,40 @@ class Calendar extends React.Component {
     }
 
     flowLeft() {
-        var index = this.state.current_index - (this.rowSize + 1);
-        var leftArrowEnabled = index > 0;
-        if (index <= 0) {
-            var newIndex = index + this.rowSize;
-            var daysToShow = this.state.allDays.slice(0, newIndex);
-            var padCount = Math.abs(index) + 1;
-            for (var i = 0; i <= padCount, i++;) {
-                daysToShow.unshift({});
+        if (this.state.leftArrowEnabled) {
+            var index = this.state.current_index - (this.rowSize + 1);
+            var leftArrowEnabled = index > 0;
+            if (index <= 0) {
+                var newIndex = index + this.rowSize;
+                var daysToShow = this.state.allDays.slice(0, newIndex);
+                var padCount = Math.abs(index) + 1;
+                for (var i = 0; i <= padCount; i++) {
+                    daysToShow.unshift({});
+                }
+            } else {
+                var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
             }
-        } else {
-            var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
+            this.setState({
+                daysToShow: daysToShow,
+                current_index: index,
+                leftArrowEnabled: leftArrowEnabled,
+                rightArrowEnabled: true
+            });
         }
-        this.setState({daysToShow: daysToShow, current_index: index, leftArrowEnabled: leftArrowEnabled, rightArrowEnabled: true});
     }
 
     flowRight() {
-        var index = this.state.current_index + (this.rowSize + 1);
-        var rightArrowEnabled = (index + this.rowSize) <= this.state.allDays.length;
-        var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
-        this.setState({daysToShow: daysToShow, current_index: index, rightArrowEnabled: rightArrowEnabled, leftArrowEnabled: true});
+        if (this.state.rightArrowEnabled) {
+            var index = this.state.current_index + (this.rowSize + 1);
+            var rightArrowEnabled = (index + this.rowSize) <= this.state.allDays.length;
+            var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
+            this.setState({
+                daysToShow: daysToShow,
+                current_index: index,
+                rightArrowEnabled: rightArrowEnabled,
+                leftArrowEnabled: true
+            });
+        }
     }
 
     render() {
