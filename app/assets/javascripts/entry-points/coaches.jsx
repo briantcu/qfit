@@ -12,7 +12,8 @@ class Coaches extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {}
+            user: {},
+            coach_account: {}
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -50,18 +51,42 @@ class Coaches extends React.Component {
             <div className="row main">
                 <div className="container">
                     <div className='row'>
-                        Coaches' Corner
+                        <h1>Coaches' Corner</h1>
 
                     </div>
+                    <div className='row standard-text purple'>
+                        Create Teams and add Athletes, and we'll handle the workouts.<br/>
+                        You have used {this.state.coach_account.used_accounts} of {this.state.coach_account.num_accts} athlete accounts. You can increase/decrease your number of accounts HERE.
+                    </div>
                     <div className='row'>
-                        Create Teams and add Athletes, and we'll handle the workouts.
-                        You have used {} of {} memberships.You can increase/decrease your number of memberships HERE.
+                        <div className="container sec first-sec">
+                            <div className="row head">
+                                <div className="col-xs-2 sec-header">
+                                    Teams
+                                </div>
+                                <div className="col-xs-3 col-xs-offset-7 action">
+                                    Create New Team
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className='row'>
                         <div className="container sec">
-                            <div className="row">
-                                <div className="col-xs-12">
-                                    Stretching/Warmup
+                            <div className="row head">
+                                <div className="col-xs-2 sec-header">
+                                    Athletes
+                                </div>
+                                <div className="col-xs-3 col-xs-offset-7 action">
+                                    Add a new Account
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className="container sec last-sec">
+                            <div className="row head">
+                                <div className="col-xs-12 sec-header">
+                                    Sign Up Codes
                                 </div>
                             </div>
                         </div>

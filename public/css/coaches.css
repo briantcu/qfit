@@ -157,10 +157,34 @@ h1 {
   text-decoration: underline;
   cursor: pointer; }
 
-.coaches .main {
+body {
   background-color: #e6e6e6; }
 
 .coaches .sec {
-  background-color: white; }
+  background-color: white;
+  margin-top: 20px;
+  min-height: 150px; }
+  .coaches .sec .sec-header {
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: -0.6px;
+    color: #271b37;
+    padding-top: 5px; }
+  .coaches .sec .head {
+    border-bottom: solid 2px #7953aa;
+    height: 50px; }
+  .coaches .sec .action {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: #7953aa;
+    text-align: right;
+    padding-top: 13px; }
+
+.coaches .last-sec {
+  margin-bottom: 40px; }
+
+.coaches .first-sec {
+  margin-top: 30px; }
 
 /*# sourceMappingURL=coaches.css.map*/

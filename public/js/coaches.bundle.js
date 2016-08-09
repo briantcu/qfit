@@ -96,7 +96,8 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Coaches).call(this, props));
 	
 	        _this.state = {
-	            user: {}
+	            user: {},
+	            coach_account: {}
 	        };
 	        _this.onChange = _this.onChange.bind(_this);
 	        return _this;
@@ -147,14 +148,44 @@
 	                        React.createElement(
 	                            'div',
 	                            { className: 'row' },
-	                            'Coaches\' Corner'
+	                            React.createElement(
+	                                'h1',
+	                                null,
+	                                'Coaches\' Corner'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row standard-text purple' },
+	                            'Create Teams and add Athletes, and we\'ll handle the workouts.',
+	                            React.createElement('br', null),
+	                            'You have used ',
+	                            this.state.coach_account.used_accounts,
+	                            ' of ',
+	                            this.state.coach_account.num_accts,
+	                            ' athlete accounts. You can increase/decrease your number of accounts HERE.'
 	                        ),
 	                        React.createElement(
 	                            'div',
 	                            { className: 'row' },
-	                            'Create Teams and add Athletes, and we\'ll handle the workouts. You have used ',
-	                            ' of ',
-	                            ' memberships.You can increase/decrease your number of memberships HERE.'
+	                            React.createElement(
+	                                'div',
+	                                { className: 'container sec first-sec' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'row head' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-xs-2 sec-header' },
+	                                        'Teams'
+	                                    ),
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-xs-3 col-xs-offset-7 action' },
+	                                        'Create New Team'
+	                                    )
+	                                )
+	                            )
 	                        ),
 	                        React.createElement(
 	                            'div',
@@ -164,11 +195,33 @@
 	                                { className: 'container sec' },
 	                                React.createElement(
 	                                    'div',
-	                                    { className: 'row' },
+	                                    { className: 'row head' },
 	                                    React.createElement(
 	                                        'div',
-	                                        { className: 'col-xs-12' },
-	                                        'Stretching/Warmup'
+	                                        { className: 'col-xs-2 sec-header' },
+	                                        'Athletes'
+	                                    ),
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-xs-3 col-xs-offset-7 action' },
+	                                        'Add a new Account'
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'container sec last-sec' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'row head' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-xs-12 sec-header' },
+	                                        'Sign Up Codes'
 	                                    )
 	                                )
 	                            )

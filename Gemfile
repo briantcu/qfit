@@ -71,3 +71,5 @@ gem 'figaro'
 gem 'unf'
 
 gem 'rollbar', '~> 2.7.1'
+
+gem 'activerecord-session_store'
