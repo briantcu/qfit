@@ -97,8 +97,8 @@ class Calendar extends React.Component {
                 var newIndex = index + this.rowSize;
                 var daysToShow = this.state.allDays.slice(0, newIndex);
                 var padCount = Math.abs(index) + 1;
-                for (var i = 0; i <= padCount; i++) {
-                    daysToShow.unshift({});
+                for (var i = 0; i < padCount; i++) {
+                    daysToShow.unshift({day_of_month: "padday" + i, month: "paddmonth" + i});
                 }
             } else {
                 var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
@@ -115,7 +115,7 @@ class Calendar extends React.Component {
     flowRight() {
         if (this.state.rightArrowEnabled) {
             var index = this.state.current_index + (this.rowSize + 1);
-            var rightArrowEnabled = (index + this.rowSize) <= this.state.allDays.length;
+            var rightArrowEnabled = (index + this.rowSize) < this.state.allDays.length;
             var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
             this.setState({
                 daysToShow: daysToShow,
