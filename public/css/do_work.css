@@ -1697,7 +1697,8 @@ h1 {
   .do-work .last-row .user-weight {
     width: 46px;
     margin-right: 10px;
-    margin-top: 13px; }
+    margin-top: 13px;
+    color: black; }
   .do-work .last-row .reset-link {
     font-size: 18px;
     letter-spacing: -0.4px;

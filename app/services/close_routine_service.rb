@@ -24,29 +24,40 @@ class CloseRoutineService
   end
 
   def close_routine
-    return @routine if @routine.closed
-    note_as_closed
-    update_user_weight
-    process_user_maxes
-    process_power_index
-    process_completed
-    process_provided
+    #@TODO revisit check below
+    #return @routine if @routine.closed
 
-    #post message to feed saying workout was completed
-    #@TODO fix message
-    message = "I just completed my workout: <a class='underlined' target='_blank' href='/share.html?r=rid'> Check it out and let me know what you think</a>."
-    Message.create(poster_id: @routine.user.id, message_type: 3, message: message)
+    DailyRoutine.transaction do
+      update_user_weight
+      process_user_maxes
+      process_power_index
+      process_completed
+      process_provided
 
-    # Get points based on the percentage of exercises completed
-    points = process_completed / process_provided * 100 rescue 0
-    @routine.user.points += points
+      # Get points based on the percentage of exercises completed
+      points = process_completed / process_provided * 100 rescue 0
+      @routine.user.points += points
 
-    on_a_run = is_on_a_run?
-    is_first_workout = is_first_workout?
-    @routine.save!
-    @routine.user.save!
-    get_messages(true, on_a_run, is_first_workout)
+      already_closed = @routine.closed
+      note_as_closed unless already_closed
+
+      on_a_run = is_on_a_run?
+      is_first_workout = is_first_workout?
+      @routine.save!
+      @routine.user.save!
+
+      unless already_closed
+        #post message to feed saying workout was completed
+        # #@TODO fix message
+        message = "I just completed my workout: <a class='underlined' target='_blank' href='/share.html?r=rid'> Check it out and let me know what you think</a>."
+        Message.create(poster_id: @routine.user.id, message_type: 3, message: message)
+        @routine.routine_messages.destroy_all
+      end
+
+      get_messages(true, on_a_run, is_first_workout)
+    end
     @routine
+
   end
 
   def skip_routine
@@ -103,6 +114,7 @@ class CloseRoutineService
 
   def is_on_a_run?
     on_a_run = false
+    # @TODO make sure these are the right routines. Ordering gotta be right, and maybe they're updating routines out of order
     routines = @routine.user.daily_routines.offset(1).last(3)
     if routines.count == 3
       routines.each do |routine|
@@ -129,6 +141,9 @@ class CloseRoutineService
       if (perf_ex.exercise.category != TIME) && (perf_ex.exercise.category != MAX_REPS) && (!assisted_check)
         max = 0
         perf_ex.weight_sets.each do |weight_set|
+          weight_set.perf_reps = 0 if weight_set.perf_reps.blank?
+          weight_set.perf_weight = 0 if weight_set.perf_weight.blank?
+
           if (weight_set.perf_reps != 0) && (weight_set.perf_weight != 0) # If work was done
             temp_max = OneRepMax.get_max(weight_set.perf_reps, weight_set.perf_weight)
             max = (temp_max > max) ? temp_max : max # Store the highest max from the set

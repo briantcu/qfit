@@ -184,13 +184,14 @@ var RoutineActions = {
     },
 
     completeWorkout: function(routine) {
-        var payload = JSON.stringify(routine);
+        var payload = JSON.stringify({daily_routine: routine});
         dispatcher.dispatch(C.LOADING, true);
         $.ajax({
             type: 'put',
             url: '/daily_routines/' + routine.id + '/close.json',
             dataType: 'json',
             data: payload,
+            contentType: "application/json; charset=utf-8",
             success: function (data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
