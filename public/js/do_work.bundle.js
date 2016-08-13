@@ -40349,7 +40349,7 @@
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-1 col-xs-offset-6' },
-	                    React.createElement(_vert_circle_check2.default, { ref: 'complete', id: 'stretch' + this.props.exercise.id, disabled: this.props.closed,
+	                    React.createElement(_vert_circle_check2.default, { ref: 'complete', id: 'stretch' + this.props.exercise.id,
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.warmup.tips, close: this.close }),
@@ -64193,7 +64193,7 @@
 	                    'span',
 	                    { className: 'double', key: '2'
 	                    },
-	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3', disabled: this.props.disabled,
+	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3',
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                )] : this.props.exercise.category == 7 && this.props.weightSet.rec_weight == 0 || this.props.exercise.category == 3 ? [React.createElement(
 	                    'span',
@@ -64207,7 +64207,7 @@
 	                    { className: 'double', key: '2'
 	                    },
 	                    React.createElement('input', { ref: 'reps', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'reps',
-	                        onChange: this.props.onChange, defaultValue: this.props.perf_reps, disabled: this.props.disabled }),
+	                        onChange: this.props.onChange, defaultValue: this.props.weightSet.perf_reps }),
 	                    React.createElement(
 	                        'label',
 	                        { 'for': this.props.weightSet.id + 'reps' },
@@ -64232,7 +64232,7 @@
 	                    { className: 'col', key: '3'
 	                    },
 	                    React.createElement('input', { ref: 'weight', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'weight',
-	                        onChange: this.props.onChange, defaultValue: this.props.perf_weight, disabled: this.props.disabled }),
+	                        onChange: this.props.onChange, defaultValue: this.props.weightSet.perf_weight }),
 	                    React.createElement(
 	                        'label',
 	                        { 'for': '{this.props.weightSet.id + \'weight\'}' },
@@ -64243,7 +64243,7 @@
 	                    { className: 'col', key: '4'
 	                    },
 	                    React.createElement('input', { ref: 'reps', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'reps',
-	                        onChange: this.props.onChange, defaultValue: this.props.perf_reps, disabled: this.props.disabled }),
+	                        onChange: this.props.onChange, defaultValue: this.props.weightSet.perf_reps }),
 	                    React.createElement(
 	                        'label',
 	                        { 'for': this.props.weightSet.id + 'reps' },
@@ -64491,19 +64491,19 @@
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-1 col-xs-offset-4' },
-	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '1', id: this.props.exercise.id + '1', disabled: this.props.closed,
+	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '1', id: this.props.exercise.id + '1',
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-1' },
-	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '2', id: this.props.exercise.id + '2', disabled: this.props.closed,
+	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '2', id: this.props.exercise.id + '2',
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-1' },
-	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3', disabled: this.props.closed,
+	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3',
 	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.plyometric.tips, close: this.close }),
@@ -64760,8 +64760,8 @@
 	                                    id: this.props.exercise.laps[index].id,
 	                                    defaultChecked: this.props.exercise.laps[index].completed,
 	                                    key: this.props.exercise.id + '' + (index + 1),
-	                                    label: 'Complete', change: this.change,
-	                                    disabled: this.props.closed })
+	                                    label: 'Complete', change: this.change
+	                                })
 	                            )
 	                        );
 	                    }.bind(this))

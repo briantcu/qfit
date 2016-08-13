@@ -76,15 +76,15 @@ class Plyo extends React.Component {
                 </span>
             </div>
             <div className="col-xs-1 col-xs-offset-4">
-                <VertCircleCheck ref={this.props.exercise.id + '1'} id={this.props.exercise.id + '1'} disabled={this.props.closed}
+                <VertCircleCheck ref={this.props.exercise.id + '1'} id={this.props.exercise.id + '1'}
                                  defaultChecked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
             </div>
             <div className="col-xs-1">
-                <VertCircleCheck ref={this.props.exercise.id + '2'} id={this.props.exercise.id + '2'} disabled={this.props.closed}
+                <VertCircleCheck ref={this.props.exercise.id + '2'} id={this.props.exercise.id + '2'}
                                  defaultChecked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
             </div>
             <div className="col-xs-1">
-                <VertCircleCheck ref={this.props.exercise.id + '3'} id={this.props.exercise.id + '3'} disabled={this.props.closed}
+                <VertCircleCheck ref={this.props.exercise.id + '3'} id={this.props.exercise.id + '3'}
                                  defaultChecked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
             </div>
 

@@ -20,7 +20,7 @@ class WeightSet extends React.Component {
                        30 seconds
                     </span><br/>
                     <span className="double">
-                        <VertCircleCheck ref={this.props.exercise.id + '3'} id={this.props.exercise.id + '3'} disabled={this.props.disabled}
+                        <VertCircleCheck ref={this.props.exercise.id + '3'} id={this.props.exercise.id + '3'}
                                          defaultChecked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
                     </span>
                 </When>
@@ -30,7 +30,7 @@ class WeightSet extends React.Component {
                     </span><br/>
                     <span className="double">
                         <input ref="reps" type='text' className="transparent-input standard-text" id={this.props.weightSet.id + 'reps'}
-                               onChange={this.props.onChange} defaultValue={this.props.perf_reps} disabled={this.props.disabled}/>
+                               onChange={this.props.onChange} defaultValue={this.props.weightSet.perf_reps} />
                         <label for={this.props.weightSet.id + 'reps'} >reps</label>
                     </span>
                 </When>
@@ -43,12 +43,12 @@ class WeightSet extends React.Component {
                     </span><br/>
                     <span className="col">
                         <input ref="weight" type='text' className="transparent-input standard-text" id={this.props.weightSet.id + 'weight'}
-                               onChange={this.props.onChange} defaultValue={this.props.perf_weight} disabled={this.props.disabled} />
+                               onChange={this.props.onChange} defaultValue={this.props.weightSet.perf_weight} />
                         <label for="{this.props.weightSet.id + 'weight'}">lbs</label>
                     </span>
                     <span className="col">
                         <input ref="reps" type='text' className="transparent-input standard-text" id={this.props.weightSet.id + 'reps'}
-                               onChange={this.props.onChange} defaultValue={this.props.perf_reps} disabled={this.props.disabled}/>
+                               onChange={this.props.onChange} defaultValue={this.props.weightSet.perf_reps} />
                         <label for={this.props.weightSet.id + 'reps'} >reps</label>
                     </span>
                 </Otherwise>
