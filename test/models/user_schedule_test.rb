@@ -28,10 +28,10 @@ class UserScheduleTest < ActiveSupport::TestCase
     assert(user_schedule.phase_four_start == Date.today.advance(:weeks => 9))
   end
 
-  test 'should create weekly schedule days' do
-    user_schedule = FactoryGirl.create(:user_schedule)
-    assert(user_schedule.weekly_schedule_days.count == 7)
-  end
+  # test 'should create weekly schedule days' do
+  #   user_schedule = FactoryGirl.create(:user_schedule)
+  #   assert(user_schedule.weekly_schedule_days.count == 7)
+  # end
 
   test 'should create user schedule' do
     user_schedule = UserSchedule.create_user_schedule({ user_id: 1, program_id: 3, program_type_id: 2})

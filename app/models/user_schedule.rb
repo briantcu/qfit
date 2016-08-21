@@ -22,7 +22,7 @@ class UserSchedule < ActiveRecord::Base
   PLYOS = 2
   SPRINTING = 3
 
-  #after_save :create_weekly_schedule_days, on: :create
+  after_save :create_weekly_schedule_days, on: :create
 
   belongs_to :user
   has_many :weekly_schedule_days, -> { order('day ASC') }

@@ -6,6 +6,7 @@ RSpec.describe RoutineService do
     before(:each) do
       @user = FactoryGirl.create(:user)
       @user_schedule = UserSchedule.create_user_schedule({user_id: @user.id, program_type_id: 1, program_id: 1})
+      #@user_schedule.create_weekly_schedule_days
       @user_schedule.setup_phases
       @user_schedule.save!
       day_index = Date.today.wday
@@ -55,7 +56,8 @@ RSpec.describe RoutineService do
       end
 
       sub_user = FactoryGirl.create(:user, sub_user: true)
-      UserSchedule.create_user_schedule({user_id: sub_user.id, program_type_id: 1, program_id: 1})
+      us = UserSchedule.create_user_schedule({user_id: sub_user.id, program_type_id: 1, program_id: 1})
+      #us.create_weekly_schedule_days
       group.add_member(sub_user)
 
       RoutineService.nightly_workout_creation
@@ -75,6 +77,7 @@ RSpec.describe RoutineService do
     before(:each) do
       @user = FactoryGirl.create(:user, last_sign_in_at: Time.now - 3.days)
       @user_schedule = UserSchedule.create_user_schedule({user_id: @user.id, program_type_id: 1, program_id: 1})
+      #@user_schedule.create_weekly_schedule_days
       @user_schedule.setup_phases
       @user_schedule.program_id = 1
       @user_schedule.save!
@@ -438,6 +441,7 @@ RSpec.describe RoutineService do
     before(:each) do
       @user = FactoryGirl.create(:user, last_sign_in_at: Time.now - 3.days)
       @user_schedule = UserSchedule.create_user_schedule({user_id: @user.id, program_type_id: 1, program_id: 1})
+      @user_schedule.create_weekly_schedule_days
       @user_schedule.setup_phases
       @user_schedule.program_id = 1
       @user_schedule.save!

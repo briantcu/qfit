@@ -134,7 +134,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
     sign_in @user
     expect_any_instance_of(DailyRoutine).to receive(:note_weights_changed)
     post :add_weight, id: dr.id, exercise_id: 3, format: :json
-    expect(response.status).to eq(201)
+    expect(response.status).to eq(200)
     expect(dr.performed_exercises.count).to eq(1)
   end
 
@@ -144,7 +144,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
     sign_in @user
     expect_any_instance_of(DailyRoutine).to receive(:note_sprints_changed)
     post :add_sprint, id: dr.id, sprint_id: 2, format: :json
-    expect(response.status).to eq(201)
+    expect(response.status).to eq(200)
     expect(dr.performed_sprints.count).to eq(1)
   end
 
@@ -154,7 +154,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
     sign_in @user
     expect_any_instance_of(DailyRoutine).to receive(:note_warmups_changed)
     post :add_warmup, id: dr.id, warmup_id: 2, format: :json
-    expect(response.status).to eq(201)
+    expect(response.status).to eq(200)
     expect(dr.performed_warm_ups.count).to eq(1)
   end
 
@@ -164,7 +164,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
     sign_in @user
     expect_any_instance_of(DailyRoutine).to receive(:note_plyos_changed)
     post :add_plyo, id: dr.id, plyometric_id: 2, format: :json
-    expect(response.status).to eq(201)
+    expect(response.status).to eq(200)
     expect(dr.performed_plyometrics.count).to eq(1)
   end
 
@@ -173,7 +173,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
 
     sign_in @user
     post :add_custom, id: dr.id, name: 'my custom', type: 1, format: :json
-    expect(response.status).to eq(201)
+    expect(response.status).to eq(200)
     expect(dr.custom_exercises.count).to eq(1)
   end
 

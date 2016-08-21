@@ -158,7 +158,7 @@ class DailyRoutinesController < ApplicationController
       render json: { success: false, errors: 'Workout closed' }, :status => 406
     else
       custom = @daily_routine.add_custom_exercise(params[:name], params[:type], 0)
-      render json: custom, status: :created
+      render action: :show
     end
   end
 

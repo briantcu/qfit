@@ -12,7 +12,7 @@ gem 'sqlite3'
 
 gem 'pg'
 
-gem 'gon'
+gem 'gon', '6.0.1'
 
 gem 'active_attr'
 

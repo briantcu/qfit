@@ -396,7 +396,7 @@ DEPENDENCIES
   factory_girl_rails
   figaro
   fog
-  gon
+  gon (= 6.0.1)
   jbuilder (~> 2.4.1)
   jwt (= 1.5.4)
   mocha
