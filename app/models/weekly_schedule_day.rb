@@ -15,4 +15,5 @@
 
 class WeeklyScheduleDay < ActiveRecord::Base
   belongs_to :user_schedule
+  validates :day, uniqueness: { scope: :user_schedule_id }
 end
