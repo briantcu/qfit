@@ -53,6 +53,11 @@ class DoWork extends React.Component {
         this.addEx = this.addEx.bind(this);
         this.closeAddEx = this.closeAddEx.bind(this);
         this.skip = this.skip.bind(this);
+        this.weightChanged = this.weightChanged.bind(this);
+    }
+
+    weightChanged() {
+        this.state.routine.weight = this.refs.userWeight.value;
     }
 
     componentDidMount () {
@@ -278,7 +283,7 @@ class DoWork extends React.Component {
                             </div>
                             <div className="row last-row">
                                 <div className="col-xs-3">
-                                    <input ref="userWeight" type="text" className="user-weight" value={this.state.routine.weight} />
+                                    <input ref="userWeight" type="text" className="user-weight" value={this.state.routine.weight} onChange={this.weightChanged}/>
                                     <span className="standard-text white ">Your Weight (lbs)</span>
                                 </div>
                                 <div className="col-xs-6 col-xs-offset-3 text-right">

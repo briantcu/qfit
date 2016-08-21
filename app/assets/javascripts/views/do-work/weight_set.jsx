@@ -11,7 +11,8 @@ class WeightSet extends React.Component {
     }
 
     change (e) {
-        if (this.props.exercise.for_time) {
+        console.log('here');
+        if (this.props.exercise.htmlFor_time) {
             var completed = this.refs.reps.getValue();
             var reps = completed ? 1 : 0;
             RoutineActions.storeResults(RoutineConstants.WEIGHTS, this.props.exercise.id, this.props.setNum, reps, 0);
@@ -35,6 +36,10 @@ class WeightSet extends React.Component {
         }
     }
 
+    fakeChange(){
+        return;
+    }
+
     showErrorState() {
         alert('not valid!')
     }
@@ -43,12 +48,12 @@ class WeightSet extends React.Component {
         var classes = this.props.gray ? 'weight-set gray' : 'weight-set';
         return <div className={classes} >
             <Choose>
-                <When condition={this.props.exercise.for_time} >
+                <When condition={this.props.exercise.htmlFor_time} >
                     <span className="double">
                        30 seconds
                     </span><br/>
                     <span className="double">
-                        <VertCircleCheck ref="reps" id={this.props.weightSet.id + 'reps'}
+                        <VertCircleCheck ref="reps" id={this.props.weightSet.id + 'reps'} onChange={this.fakeChange}
                                          checked={this.props.exercise.completed} label={'Complete'} onBlur={ this.change } />
                     </span>
                 </When>
@@ -58,8 +63,8 @@ class WeightSet extends React.Component {
                     </span><br/>
                     <span className="double">
                         <input ref="reps" type='text' className="transparent-input standard-text" id={this.props.weightSet.id + 'reps'}
-                               onBlur={this.change} defaultValue={this.props.weightSet.perf_reps} />
-                        <label for={this.props.weightSet.id + 'reps'} >reps</label>
+                               onBlur={this.change} value={this.props.weightSet.perf_reps} onChange={this.fakeChange} />
+                        <label htmlFor={this.props.weightSet.id + 'reps'} >reps</label>
                     </span>
                 </When>
                 <Otherwise>
@@ -71,13 +76,13 @@ class WeightSet extends React.Component {
                     </span><br/>
                     <span className="col">
                         <input ref="weight" type='text' className="transparent-input standard-text" id={this.props.weightSet.id + 'weight'}
-                               onBlur={this.change} defaultValue={this.props.weightSet.perf_weight} />
-                        <label for="{this.props.weightSet.id + 'weight'}">lbs</label>
+                               onBlur={this.change} value={this.props.weightSet.perf_weight} onChange={this.fakeChange} />
+                        <label htmlFor="{this.props.weightSet.id + 'weight'}">lbs</label>
                     </span>
                     <span className="col">
                         <input ref="reps" type='text' className="transparent-input standard-text" id={this.props.weightSet.id + 'reps'}
-                               onBlur={this.change} defaultValue={this.props.weightSet.perf_reps} />
-                        <label for={this.props.weightSet.id + 'reps'} >reps</label>
+                               onBlur={this.change} value={this.props.weightSet.perf_reps} onChange={this.fakeChange} />
+                        <label htmlFor={this.props.weightSet.id + 'reps'} >reps</label>
                     </span>
                 </Otherwise>
             </Choose>
