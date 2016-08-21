@@ -5,7 +5,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
   before(:each) do
     @controller = Users::RegistrationsController.new
     @request.env['devise.mapping'] = Devise.mappings[:user]
-
+    allow_any_instance_of(Gon::ControllerHelpers).to receive(:gon_request_uuid).and_return(6)
     @coach = FactoryGirl.create(:user, level: 5)
     @coach_account = FactoryGirl.create(:coach_account, user: @coach)
     FactoryGirl.create(:sign_up_code, user: @coach, code: 'MyString')
