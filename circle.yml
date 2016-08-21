@@ -1,4 +1,4 @@
 test:
   override:
-    - rake test
+    - bundle exec rake test
     - bundle exec rspec --color --require spec_helper spec --format progress
