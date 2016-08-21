@@ -3,6 +3,11 @@ var C = require('constants/routine_constants.js');
 
 var RoutineActions = {
 
+    storeResults: function(type, exerciseId, setNum, reps, weight) {
+        //Reps can be true/false for completed if lap/plyo/warmup
+        dispatcher.dispatch(C.INPUT_CHANGED, {type: type, exId: exerciseId, setNum: setNum, reps: reps, weight: weight});
+    },
+
     getCalendar: function(year, month, user_id, whichMonth) {
         $.ajax({
             type: 'get',
@@ -184,6 +189,18 @@ var RoutineActions = {
     },
 
     completeWorkout: function(routine) {
+        _.each(routine.performed_sprints, function(ps) {
+            ps.laps_attributes = ps.laps;
+        })
+        routine.performed_sprints_attributes = routine.performed_sprints;
+        _.each(routine.performed_exercises, function(pe) {
+            pe.weight_sets_attributes = pe.weight_sets;
+        })
+        routine.performed_exercises_attributes = routine.performed_exercises;
+
+        routine.performed_plyometrics_attributes = routine.performed_plyometrics;
+        routine.performed_warm_ups_attributes = routine.performed_warm_ups;
+
         var payload = JSON.stringify({daily_routine: routine});
         dispatcher.dispatch(C.LOADING, true);
         $.ajax({

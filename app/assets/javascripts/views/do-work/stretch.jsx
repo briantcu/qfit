@@ -7,6 +7,7 @@ import TipsModal from 'views/do-work/tips_modal';
 import VideoModal from 'views/do-work/video_modal';
 import MenuModal from 'views/do-work/menu_modal';
 import RoutineActions from 'actions/routine_actions';
+import RoutineConstants from 'constants/routine_constants';
 
 require('views/do-work/stretch.scss');
 
@@ -51,6 +52,7 @@ class Stretch extends React.Component {
     change(elem) {
         var check = this.refs.complete;
         var completed = check.getValue();
+        RoutineActions.storeResults(RoutineConstants.WARMUP, this.props.exercise.id, 0, completed);
     }
     showTips() {
         this.setState({showTips: true});

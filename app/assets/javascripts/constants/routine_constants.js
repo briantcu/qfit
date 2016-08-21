@@ -5,5 +5,10 @@ module.exports = keyMirror({
     PREV_CALENDAR: null,
     NEXT_CALENDAR: null,
     ROUTINE_LOADED: null,
-    LOADING: null
+    LOADING: null,
+    WEIGHTS: null,
+    SPRINTS: null,
+    WARMUP: null,
+    PLYOS: null,
+    INPUT_CHANGED: null
 });

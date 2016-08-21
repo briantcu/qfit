@@ -3,6 +3,7 @@ import VertCircleCheck from 'views/common/vert_circle_check';
 import TipsModal from 'views/do-work/tips_modal';
 import MenuModal from 'views/do-work/menu_modal';
 import RoutineActions from 'actions/routine_actions';
+import RoutineConstants from 'constants/routine_constants';
 
 require('views/do-work/sprint.scss');
 
@@ -43,6 +44,7 @@ class Sprint extends React.Component {
     change(e) {
         var check = this.refs[e.target.id];
         var checked = check.getValue();
+        RoutineActions.storeResults(RoutineConstants.SPRINTS, this.props.exercise.id, this.refs[e.target.id].props.lapNum, checked);
     }
     showTips() {
         this.setState({showTips: true});
@@ -87,6 +89,7 @@ class Sprint extends React.Component {
                                 <div className="col-xs-4 detail">{e.detail}</div>
                                 <div className="col-xs-8">
                                     <VertCircleCheck
+                                        lapNum={index + 1}
                                         ref={this.props.exercise.laps[index].id}
                                         id={this.props.exercise.laps[index].id}
                                         defaultChecked={this.props.exercise.laps[index].completed}

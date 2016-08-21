@@ -63,11 +63,11 @@
 	
 	var _user_store2 = _interopRequireDefault(_user_store);
 	
-	var _exercise_store = __webpack_require__(/*! stores/exercise_store */ 313);
+	var _exercise_store = __webpack_require__(/*! stores/exercise_store */ 314);
 	
 	var _exercise_store2 = _interopRequireDefault(_exercise_store);
 	
-	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 315);
+	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 316);
 	
 	var _routine_actions2 = _interopRequireDefault(_routine_actions);
 	
@@ -75,7 +75,7 @@
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
-	var _exercise_actions = __webpack_require__(/*! actions/exercise_actions */ 316);
+	var _exercise_actions = __webpack_require__(/*! actions/exercise_actions */ 317);
 	
 	var _exercise_actions2 = _interopRequireDefault(_exercise_actions);
 	
@@ -83,7 +83,7 @@
 	
 	var _header2 = _interopRequireDefault(_header);
 	
-	var _calendar = __webpack_require__(/*! views/do-work/calendar */ 317);
+	var _calendar = __webpack_require__(/*! views/do-work/calendar */ 318);
 	
 	var _calendar2 = _interopRequireDefault(_calendar);
 	
@@ -103,7 +103,7 @@
 	
 	var _sprint2 = _interopRequireDefault(_sprint);
 	
-	var _routine_constants = __webpack_require__(/*! constants/routine_constants */ 312);
+	var _routine_constants = __webpack_require__(/*! constants/routine_constants */ 313);
 	
 	var _routine_constants2 = _interopRequireDefault(_routine_constants);
 	
@@ -156,7 +156,7 @@
 	            month: month,
 	            day: day,
 	            calendar: {},
-	            routine: { comments: [] },
+	            routine: { comments: [], weight: undefined },
 	            user: {},
 	            loading: true,
 	            date: today,
@@ -213,6 +213,7 @@
 	        key: 'onChange',
 	        value: function onChange() {
 	            var data = _routine_store2.default.getData();
+	            data.routine = data.routine || this.state.routine;
 	            var user = _user_store2.default.getData();
 	            var exercises = _exercise_store2.default.getData();
 	            this.setState({
@@ -244,7 +245,14 @@
 	    }, {
 	        key: 'submit',
 	        value: function submit() {
-	            _routine_actions2.default.completeWorkout(this.state.routine);
+	            var userWeight = this.refs.userWeight.value;
+	            if (!userWeight || isNaN(userWeight)) {
+	                alert('enter a valid weight!');
+	            } else {
+	                //@TODO disable submit button
+	                this.state.routine.weight = userWeight;
+	                _routine_actions2.default.completeWorkout(this.state.routine);
+	            }
 	        }
 	    }, {
 	        key: 'skip',
@@ -479,7 +487,7 @@
 	                                    React.createElement(
 	                                        'div',
 	                                        { className: 'col-xs-3' },
-	                                        React.createElement('input', { type: 'text', className: 'user-weight' }),
+	                                        React.createElement('input', { ref: 'userWeight', type: 'text', className: 'user-weight', defaultValue: this.state.routine.weight }),
 	                                        React.createElement(
 	                                            'span',
 	                                            { className: 'standard-text white ' },
@@ -515,9 +523,9 @@
 	                                        'Leave a comment'
 	                                    )
 	                                ),
-	                                this.state.routine && this.state.routine.length > 0 ? this.state.routine.comments.map(function (e, index) {
+	                                this.state.routine.comments.map(function (e, index) {
 	                                    return React.createElement(_comment2.default, { comment: e, key: e.id });
-	                                }.bind(this)) : null,
+	                                }.bind(this)),
 	                                React.createElement(
 	                                    'div',
 	                                    { className: 'row comment-row' },
@@ -37859,11 +37867,11 @@
   \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function(_) {"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
 	var Store = __webpack_require__(/*! ./store.js */ 239);
-	var C = __webpack_require__(/*! constants/routine_constants.js */ 312);
+	var C = __webpack_require__(/*! constants/routine_constants.js */ 313);
 	
 	var RoutineStore = new Store({
 	
@@ -37900,6 +37908,39 @@
 	            routine: this.routine,
 	            loading: this.loading
 	        };
+	    },
+	
+	    inputChanged: function (data) {
+	        if (data.type == C.WEIGHTS) {
+	            var performedExercise = _.find(this.routine.performed_exercises, function (ex) {
+	                return ex.exercise.id == data.exId;
+	            });
+	            var perf_reps = isNaN(parseFloat(data.reps)) ? 0 : parseFloat(data.reps);
+	            var perf_weight = isNaN(parseFloat(data.weight)) ? 0 : parseFloat(data.weight);
+	            performedExercise.weight_sets[data.setNum - 1].perf_reps = perf_reps;
+	            performedExercise.weight_sets[data.setNum - 1].perf_weight = perf_weight;
+	        } else if (data.type == C.PLYOS) {
+	            var performedExercise = _.find(this.routine.performed_plyometrics, function (ex) {
+	                return ex.id == data.exId;
+	            });
+	            if (data.setNum == 1) {
+	                performedExercise.performed_one = data.reps;
+	            } else if (data.setNum == 2) {
+	                performedExercise.performed_two = data.reps;
+	            } else {
+	                performedExercise.performed_three = data.reps;
+	            }
+	        } else if (data.type == C.SPRINTS) {
+	            var performedExercise = _.find(this.routine.performed_sprints, function (ex) {
+	                return ex.id == data.exId;
+	            });
+	            performedExercise.laps[data.setNum - 1].completed = data.reps;
+	        } else if (data.type == C.WARMUP) {
+	            var performedExercise = _.find(this.routine.performed_warm_ups, function (ex) {
+	                return ex.id == data.exId;
+	            });
+	            performedExercise.completed = data.reps;
+	        }
 	    }
 	});
 	
@@ -37918,621 +37959,16 @@
 	    RoutineStore.change();
 	});
 	
+	dispatcher.register(C.INPUT_CHANGED, function (data) {
+	    RoutineStore.inputChanged(data);
+	    RoutineStore.change();
+	});
+	
 	module.exports = RoutineStore;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! underscore */ 312)))
 
 /***/ },
 /* 312 */
-/*!****************************************!*\
-  !*** ./constants/routine_constants.js ***!
-  \****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 242);
-	
-	module.exports = keyMirror({
-	    CALENDAR: null,
-	    PREV_CALENDAR: null,
-	    NEXT_CALENDAR: null,
-	    ROUTINE_LOADED: null,
-	    LOADING: null
-	});
-
-/***/ },
-/* 313 */
-/*!**********************************!*\
-  !*** ./stores/exercise_store.js ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
-	var Store = __webpack_require__(/*! ./store.js */ 239);
-	var C = __webpack_require__(/*! constants/exercise_constants.js */ 314);
-	
-	var ExerciseStore = new Store({
-	    plyometrics: [],
-	    warmups: [],
-	    exercises: [],
-	    sprints: [],
-	
-	    setPlyos: function (data) {
-	        this.plyometrics = data;
-	    },
-	
-	    setWarmups: function (data) {
-	        this.warmups = data;
-	    },
-	
-	    setExercises: function (data) {
-	        this.exercises = data;
-	    },
-	
-	    setSprints: function (data) {
-	        this.sprints = data;
-	    },
-	
-	    getData: function () {
-	        return {
-	            plyometrics: this.plyometrics,
-	            warmups: this.warmups,
-	            exercises: this.exercises,
-	            sprints: this.sprints
-	        };
-	    }
-	});
-	
-	dispatcher.register(C.STRENGTH_LOADED, function (data) {
-	    if (data) {
-	        ExerciseStore.setExercises(data);
-	        ExerciseStore.change();
-	    }
-	});
-	
-	dispatcher.register(C.WARMUPS_LOADED, function (data) {
-	    if (data) {
-	        ExerciseStore.setWarmups(data);
-	        ExerciseStore.change();
-	    }
-	});
-	
-	dispatcher.register(C.PLYOS_LOADED, function (data) {
-	    if (data) {
-	        ExerciseStore.setPlyos(data);
-	        ExerciseStore.change();
-	    }
-	});
-	
-	dispatcher.register(C.SPRINTS_LOADED, function (data) {
-	    if (data) {
-	        ExerciseStore.setSprints(data);
-	        ExerciseStore.change();
-	    }
-	});
-	
-	module.exports = ExerciseStore;
-
-/***/ },
-/* 314 */
-/*!*****************************************!*\
-  !*** ./constants/exercise_constants.js ***!
-  \*****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 242);
-	
-	module.exports = keyMirror({
-	    GET_EXERCISES: null,
-	    STRENGTH_LOADED: null,
-	    WARMUPS_LOADED: null,
-	    PLYOS_LOADED: null,
-	    SPRINTS_LOADED: null
-	});
-
-/***/ },
-/* 315 */
-/*!************************************!*\
-  !*** ./actions/routine_actions.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {"use strict";
-	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
-	var C = __webpack_require__(/*! constants/routine_constants.js */ 312);
-	
-	var RoutineActions = {
-	
-	    getCalendar: function (year, month, user_id, whichMonth) {
-	        $.ajax({
-	            type: "get",
-	            url: "/users/" + user_id + "/calendar/year/" + year + "/month/" + month + ".json",
-	            dataType: "json",
-	            success: function (data) {
-	                dispatcher.dispatch(C.CALENDAR, { key: whichMonth, data: data });
-	            },
-	            error: function (response) {
-	                alert(response.responseJSON.errors);
-	            }
-	        });
-	    },
-	
-	    getRoutine: function (year, month, day, user_id) {
-	        dispatcher.dispatch(C.LOADING, true);
-	        $.ajax({
-	            type: "get",
-	            url: "/users/" + user_id + "/daily_routines/year/" + year + "/month/" + month + "/day/" + day + ".json",
-	            dataType: "json",
-	            success: function (data) {
-	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
-	            },
-	            error: function (response) {
-	                if (response.status == 404) {
-	                    dispatcher.dispatch(C.ROUTINE_LOADED, {});
-	                } else {
-	                    alert(response.responseJSON.errors);
-	                }
-	            }
-	        });
-	    },
-	
-	    swapWarmup: function (peid, exid) {
-	        var payload = JSON.stringify({ performed_warm_up: { warmup_id: exid } });
-	        $.ajax({
-	            type: "put",
-	            url: "/performed_warm_ups/" + peid + ".json",
-	            dataType: "json",
-	            contentType: "application/json; charset=utf-8",
-	            data: payload,
-	            success: function (data) {
-	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
-	            },
-	            error: function (response) {
-	                alert(response.responseJSON.errors);
-	            }
-	        });
-	    },
-	
-	    swapStrength: function (peid, exid) {
-	        var payload = JSON.stringify({ performed_exercise: { exercise_id: exid } });
-	        $.ajax({
-	            type: "put",
-	            url: "/performed_exercises/" + peid + ".json",
-	            dataType: "json",
-	            contentType: "application/json; charset=utf-8",
-	            data: payload,
-	            success: function (data) {
-	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
-	            },
-	            error: function (response) {
-	                alert(response.responseJSON.errors);
-	            }
-	        });
-	    },
-	
-	    swapPlyo: function (peid, exid) {
-	        var payload = JSON.stringify({ performed_plyometric: { plyometric_id: exid } });
-	        $.ajax({
-	            type: "put",
-	            url: "/performed_plyometrics/" + peid + ".json",
-	            dataType: "json",
-	            contentType: "application/json; charset=utf-8",
-	            data: payload,
-	            success: function (data) {
-	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
-	            },
-	            error: function (response) {
-	                alert(response.responseJSON.errors);
-	            }
-	        });
-	    },
-	
-	    swapSprint: function (peid, exid) {
-	        var payload = JSON.stringify({ performed_sprint: { sprint_id: exid } });
-	        $.ajax({
-	            type: "put",
-	            url: "/performed_sprints/" + peid + ".json",
-	            dataType: "json",
-	            contentType: "application/json; charset=utf-8",
-	            data: payload,
-	            success: function (data) {
-	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
-	            },
-	            error: function (response) {
-	                alert(response.responseJSON.errors);
-	            }
-	        });
-	    },
-	
-	    deleteExercise: function (type, peid) {
-	        var url = "/performed_" + type + "/" + peid + ".json";
-	        $.ajax({
-	            type: "delete",
-	            url: url,
-	            dataType: "json",
-	            contentType: "application/json; charset=utf-8",
-	            success: function (data) {
-	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
-	            },
-	            error: function (response) {
-	                alert(response.responseJSON.errors);
-	            }
-	        });
-	    },
-	
-	    addExercise: function (routineId, type, exId) {
-	        $.ajax({
-	            type: "post",
-	            url: "/daily_routines/" + routineId + "/" + type + "/" + exId + ".json",
-	            dataType: "json",
-	            contentType: "application/json; charset=utf-8",
-	            success: function (data) {
-	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
-	            },
-	            error: function (response) {
-	                alert(response.responseJSON.errors);
-	            }
-	        });
-	    },
-	
-	    resetRoutine: function (routineId) {
-	        dispatcher.dispatch(C.LOADING, true);
-	        $.ajax({
-	            type: "get",
-	            url: "/daily_routines/" + routineId + "/reset.json",
-	            dataType: "json",
-	            success: function (data) {
-	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
-	            },
-	            error: function (response) {
-	                alert(response.responseJSON.errors);
-	            }
-	        });
-	    },
-	
-	    postComment: function (routineId, comment) {
-	        var payload = JSON.stringify({ message: { message_type: 5, to_id: routineId, message: comment } });
-	        $.ajax({
-	            type: "post",
-	            url: "/messages.json",
-	            data: payload,
-	            dataType: "json",
-	            contentType: "application/json; charset=utf-8",
-	            success: function (data) {},
-	            error: function (response) {
-	                alert(response.responseJSON.errors);
-	            }
-	        });
-	    },
-	
-	    skipWorkout: function (routineId) {
-	        dispatcher.dispatch(C.LOADING, true);
-	        $.ajax({
-	            type: "put",
-	            url: "/daily_routines/" + routineId + "/skip.json",
-	            dataType: "json",
-	            success: function (data) {
-	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
-	            },
-	            error: function (response) {
-	                alert(response.responseJSON.errors);
-	            }
-	        });
-	    },
-	
-	    completeWorkout: function (routine) {
-	        var payload = JSON.stringify({ daily_routine: routine });
-	        dispatcher.dispatch(C.LOADING, true);
-	        $.ajax({
-	            type: "put",
-	            url: "/daily_routines/" + routine.id + "/close.json",
-	            dataType: "json",
-	            data: payload,
-	            contentType: "application/json; charset=utf-8",
-	            success: function (data) {
-	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
-	            },
-	            error: function (response) {
-	                alert(response.responseJSON.errors);
-	            }
-	        });
-	    }
-	
-	};
-	
-	module.exports = RoutineActions;
-	//dispatcher.dispatch(C.ROUTINE_LOADED, data)
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 246)))
-
-/***/ },
-/* 316 */
-/*!*************************************!*\
-  !*** ./actions/exercise_actions.js ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {"use strict";
-	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
-	var C = __webpack_require__(/*! constants/exercise_constants.js */ 314);
-	
-	var ExerciseActions = {
-	
-	    getExercises: function () {
-	        $.ajax({
-	            type: "get",
-	            url: "/warmups.json",
-	            dataType: "json",
-	            success: function (data) {
-	                dispatcher.dispatch(C.WARMUPS_LOADED, data);
-	            }
-	        });
-	        $.ajax({
-	            type: "get",
-	            url: "/plyometrics.json",
-	            dataType: "json",
-	            success: function (data) {
-	                dispatcher.dispatch(C.PLYOS_LOADED, data);
-	            }
-	        });
-	        $.ajax({
-	            type: "get",
-	            url: "/exercise_types.json",
-	            dataType: "json",
-	            success: function (data) {
-	                dispatcher.dispatch(C.STRENGTH_LOADED, data);
-	            }
-	        });
-	        $.ajax({
-	            type: "get",
-	            url: "/sprints.json",
-	            dataType: "json",
-	            success: function (data) {
-	                dispatcher.dispatch(C.SPRINTS_LOADED, data);
-	            }
-	        });
-	    }
-	};
-	
-	module.exports = ExerciseActions;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 246)))
-
-/***/ },
-/* 317 */
-/*!************************************!*\
-  !*** ./views/do-work/calendar.jsx ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(React, _) {'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 250);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 33);
-	
-	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 315);
-	
-	var _routine_actions2 = _interopRequireDefault(_routine_actions);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	__webpack_require__(/*! views/do-work/calendar.scss */ 319);
-	
-	var CalendarCell = function (_React$Component) {
-	    _inherits(CalendarCell, _React$Component);
-	
-	    function CalendarCell(props) {
-	        _classCallCheck(this, CalendarCell);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CalendarCell).call(this, props));
-	
-	        _this.click = _this.click.bind(_this);
-	        _this.state = {
-	            date: new Date(_this.props.dayObj.year, _this.props.dayObj.month - 1, _this.props.dayObj.day_of_month)
-	        };
-	        return _this;
-	    }
-	
-	    _createClass(CalendarCell, [{
-	        key: 'click',
-	        value: function click() {
-	            var url = '/do-work/' + this.props.dayObj.year + '/' + this.props.dayObj.month + '/' + this.props.dayObj.day_of_month;
-	            _reactRouter.browserHistory.push(url);
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-	
-	            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-	            var monthNames = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-	
-	            var classes = this.props.dayObj.day_of_month == this.props.day && this.props.dayObj.year == this.props.year && this.props.dayObj.month == this.props.month ? "col-xs-2 calendar-cell selected" : "col-xs-2 calendar-cell";
-	
-	            classes += this.state.date.getMonth() ? '' : ' no-cursor';
-	
-	            if (this.props.border) {
-	                classes += ' border';
-	            }
-	            return React.createElement(
-	                'div',
-	                null,
-	                this.state.date.getMonth() ? React.createElement(
-	                    'div',
-	                    { className: classes, onClick: function onClick() {
-	                            return _this2.click();
-	                        } },
-	                    React.createElement(
-	                        'div',
-	                        { className: 'cal-subtext' },
-	                        days[this.props.dayObj.day_of_week]
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'cal-text' },
-	                        monthNames[this.state.date.getMonth()] + ', ' + this.props.dayObj.day_of_month
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'cal-subtext' },
-	                        this.props.dayObj.workout_status
-	                    )
-	                ) : null,
-	                !this.state.date.getMonth() ? React.createElement(
-	                    'div',
-	                    { className: classes },
-	                    React.createElement('div', { className: 'cal-subtext' }),
-	                    React.createElement('div', { className: 'cal-text' }),
-	                    React.createElement('div', { className: 'cal-subtext' })
-	                ) : null
-	            );
-	        }
-	    }]);
-	
-	    return CalendarCell;
-	}(React.Component);
-	
-	var Calendar = function (_React$Component2) {
-	    _inherits(Calendar, _React$Component2);
-	
-	    function Calendar(props) {
-	        _classCallCheck(this, Calendar);
-	
-	        var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(Calendar).call(this, props));
-	
-	        _this3.state = {
-	            loaded: false,
-	            daysToShow: [],
-	            leftArrowEnabled: true,
-	            rightArrowEnabled: true
-	        };
-	        _this3.rowSize = 5;
-	        return _this3;
-	    }
-	
-	    _createClass(Calendar, [{
-	        key: 'componentWillReceiveProps',
-	        value: function componentWillReceiveProps(nextProps) {
-	            this.getRowToShow(nextProps);
-	        }
-	    }, {
-	        key: 'getRowToShow',
-	        value: function getRowToShow(props) {
-	            var daysToShow = [];
-	            var index = props.day - 1;
-	            if (props.calendar && props.calendar.attributes && props.prev_calendar && props.prev_calendar.attributes && props.next_calendar && props.next_calendar.attributes && !this.state.loaded) {
-	                var days = _.filter(props.calendar.attributes.calendar_month.days, function (day) {
-	                    return day.day_of_month != 0;
-	                });
-	                var prevDays = _.filter(props.prev_calendar.attributes.calendar_month.days, function (day) {
-	                    return day.day_of_month != 0;
-	                });
-	                var nextDays = _.filter(props.next_calendar.attributes.calendar_month.days, function (day) {
-	                    return day.day_of_month != 0;
-	                });
-	
-	                index += prevDays.length;
-	                var allDays = prevDays.concat(days).concat(nextDays);
-	                daysToShow = allDays.slice(index - 1, index + this.rowSize);
-	                this.setState({ loaded: true, daysToShow: daysToShow, current_index: index, allDays: allDays });
-	            }
-	        }
-	    }, {
-	        key: 'flowLeft',
-	        value: function flowLeft() {
-	            if (this.state.leftArrowEnabled) {
-	                var index = this.state.current_index - (this.rowSize + 1);
-	                var leftArrowEnabled = index > 0;
-	                if (index <= 0) {
-	                    var newIndex = index + this.rowSize;
-	                    var daysToShow = this.state.allDays.slice(0, newIndex);
-	                    var padCount = Math.abs(index) + 1;
-	                    for (var i = 0; i < padCount; i++) {
-	                        daysToShow.unshift({ day_of_month: "padday" + i, month: "paddmonth" + i });
-	                    }
-	                } else {
-	                    var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
-	                }
-	                this.setState({
-	                    daysToShow: daysToShow,
-	                    current_index: index,
-	                    leftArrowEnabled: leftArrowEnabled,
-	                    rightArrowEnabled: true
-	                });
-	            }
-	        }
-	    }, {
-	        key: 'flowRight',
-	        value: function flowRight() {
-	            if (this.state.rightArrowEnabled) {
-	                var index = this.state.current_index + (this.rowSize + 1);
-	                var rightArrowEnabled = index + this.rowSize < this.state.allDays.length;
-	                var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
-	                this.setState({
-	                    daysToShow: daysToShow,
-	                    current_index: index,
-	                    rightArrowEnabled: rightArrowEnabled,
-	                    leftArrowEnabled: true
-	                });
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this4 = this;
-	
-	            var leftArrowClasses = this.state.leftArrowEnabled ? "left col-xs-1" : "left col-xs-1 disabled";
-	            var rightArrowClasses = this.state.rightArrowEnabled ? "right col-xs-1" : "right col-xs-1 disabled";
-	            return React.createElement(
-	                'div',
-	                { className: 'row calendar' },
-	                React.createElement('span', { className: leftArrowClasses, onClick: function onClick() {
-	                        return _this4.flowLeft();
-	                    } }),
-	                React.createElement(
-	                    'div',
-	                    { className: 'col-xs-10 cal-days' },
-	                    React.createElement(
-	                        'div',
-	                        { className: 'row' },
-	                        this.state.daysToShow.map(function (e, index) {
-	                            return React.createElement(CalendarCell, _extends({}, this.props, { dayObj: e, dayMonth: e.month, key: e.day_of_month + '' + e.month, border: index != 0 }));
-	                        }.bind(this))
-	                    )
-	                ),
-	                React.createElement('span', { className: rightArrowClasses, onClick: function onClick() {
-	                        return _this4.flowRight();
-	                    } })
-	            );
-	        }
-	    }]);
-	
-	    return Calendar;
-	}(React.Component);
-	
-	exports.default = Calendar;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! underscore */ 318)))
-
-/***/ },
-/* 318 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/underscore/underscore.js ***!
   \******************************************************************/
@@ -40089,6 +39525,639 @@
 
 
 /***/ },
+/* 313 */
+/*!****************************************!*\
+  !*** ./constants/routine_constants.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 242);
+	
+	module.exports = keyMirror({
+	    CALENDAR: null,
+	    PREV_CALENDAR: null,
+	    NEXT_CALENDAR: null,
+	    ROUTINE_LOADED: null,
+	    LOADING: null,
+	    WEIGHTS: null,
+	    SPRINTS: null,
+	    WARMUP: null,
+	    PLYOS: null,
+	    INPUT_CHANGED: null
+	});
+
+/***/ },
+/* 314 */
+/*!**********************************!*\
+  !*** ./stores/exercise_store.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
+	var Store = __webpack_require__(/*! ./store.js */ 239);
+	var C = __webpack_require__(/*! constants/exercise_constants.js */ 315);
+	
+	var ExerciseStore = new Store({
+	    plyometrics: [],
+	    warmups: [],
+	    exercises: [],
+	    sprints: [],
+	
+	    setPlyos: function (data) {
+	        this.plyometrics = data;
+	    },
+	
+	    setWarmups: function (data) {
+	        this.warmups = data;
+	    },
+	
+	    setExercises: function (data) {
+	        this.exercises = data;
+	    },
+	
+	    setSprints: function (data) {
+	        this.sprints = data;
+	    },
+	
+	    getData: function () {
+	        return {
+	            plyometrics: this.plyometrics,
+	            warmups: this.warmups,
+	            exercises: this.exercises,
+	            sprints: this.sprints
+	        };
+	    }
+	});
+	
+	dispatcher.register(C.STRENGTH_LOADED, function (data) {
+	    if (data) {
+	        ExerciseStore.setExercises(data);
+	        ExerciseStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.WARMUPS_LOADED, function (data) {
+	    if (data) {
+	        ExerciseStore.setWarmups(data);
+	        ExerciseStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.PLYOS_LOADED, function (data) {
+	    if (data) {
+	        ExerciseStore.setPlyos(data);
+	        ExerciseStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.SPRINTS_LOADED, function (data) {
+	    if (data) {
+	        ExerciseStore.setSprints(data);
+	        ExerciseStore.change();
+	    }
+	});
+	
+	module.exports = ExerciseStore;
+
+/***/ },
+/* 315 */
+/*!*****************************************!*\
+  !*** ./constants/exercise_constants.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 242);
+	
+	module.exports = keyMirror({
+	    GET_EXERCISES: null,
+	    STRENGTH_LOADED: null,
+	    WARMUPS_LOADED: null,
+	    PLYOS_LOADED: null,
+	    SPRINTS_LOADED: null
+	});
+
+/***/ },
+/* 316 */
+/*!************************************!*\
+  !*** ./actions/routine_actions.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($, _) {"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
+	var C = __webpack_require__(/*! constants/routine_constants.js */ 313);
+	
+	var RoutineActions = {
+	
+	    storeResults: function (type, exerciseId, setNum, reps, weight) {
+	        //Reps can be true/false for completed if lap/plyo/warmup
+	        dispatcher.dispatch(C.INPUT_CHANGED, { type: type, exId: exerciseId, setNum: setNum, reps: reps, weight: weight });
+	    },
+	
+	    getCalendar: function (year, month, user_id, whichMonth) {
+	        $.ajax({
+	            type: "get",
+	            url: "/users/" + user_id + "/calendar/year/" + year + "/month/" + month + ".json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.CALENDAR, { key: whichMonth, data: data });
+	            },
+	            error: function (response) {
+	                alert(response.responseJSON.errors);
+	            }
+	        });
+	    },
+	
+	    getRoutine: function (year, month, day, user_id) {
+	        dispatcher.dispatch(C.LOADING, true);
+	        $.ajax({
+	            type: "get",
+	            url: "/users/" + user_id + "/daily_routines/year/" + year + "/month/" + month + "/day/" + day + ".json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                if (response.status == 404) {
+	                    dispatcher.dispatch(C.ROUTINE_LOADED, {});
+	                } else {
+	                    alert(response.responseJSON.errors);
+	                }
+	            }
+	        });
+	    },
+	
+	    swapWarmup: function (peid, exid) {
+	        var payload = JSON.stringify({ performed_warm_up: { warmup_id: exid } });
+	        $.ajax({
+	            type: "put",
+	            url: "/performed_warm_ups/" + peid + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            data: payload,
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(response.responseJSON.errors);
+	            }
+	        });
+	    },
+	
+	    swapStrength: function (peid, exid) {
+	        var payload = JSON.stringify({ performed_exercise: { exercise_id: exid } });
+	        $.ajax({
+	            type: "put",
+	            url: "/performed_exercises/" + peid + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            data: payload,
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(response.responseJSON.errors);
+	            }
+	        });
+	    },
+	
+	    swapPlyo: function (peid, exid) {
+	        var payload = JSON.stringify({ performed_plyometric: { plyometric_id: exid } });
+	        $.ajax({
+	            type: "put",
+	            url: "/performed_plyometrics/" + peid + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            data: payload,
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(response.responseJSON.errors);
+	            }
+	        });
+	    },
+	
+	    swapSprint: function (peid, exid) {
+	        var payload = JSON.stringify({ performed_sprint: { sprint_id: exid } });
+	        $.ajax({
+	            type: "put",
+	            url: "/performed_sprints/" + peid + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            data: payload,
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(response.responseJSON.errors);
+	            }
+	        });
+	    },
+	
+	    deleteExercise: function (type, peid) {
+	        var url = "/performed_" + type + "/" + peid + ".json";
+	        $.ajax({
+	            type: "delete",
+	            url: url,
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(response.responseJSON.errors);
+	            }
+	        });
+	    },
+	
+	    addExercise: function (routineId, type, exId) {
+	        $.ajax({
+	            type: "post",
+	            url: "/daily_routines/" + routineId + "/" + type + "/" + exId + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(response.responseJSON.errors);
+	            }
+	        });
+	    },
+	
+	    resetRoutine: function (routineId) {
+	        dispatcher.dispatch(C.LOADING, true);
+	        $.ajax({
+	            type: "get",
+	            url: "/daily_routines/" + routineId + "/reset.json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(response.responseJSON.errors);
+	            }
+	        });
+	    },
+	
+	    postComment: function (routineId, comment) {
+	        var payload = JSON.stringify({ message: { message_type: 5, to_id: routineId, message: comment } });
+	        $.ajax({
+	            type: "post",
+	            url: "/messages.json",
+	            data: payload,
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (data) {},
+	            error: function (response) {
+	                alert(response.responseJSON.errors);
+	            }
+	        });
+	    },
+	
+	    skipWorkout: function (routineId) {
+	        dispatcher.dispatch(C.LOADING, true);
+	        $.ajax({
+	            type: "put",
+	            url: "/daily_routines/" + routineId + "/skip.json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(response.responseJSON.errors);
+	            }
+	        });
+	    },
+	
+	    completeWorkout: function (routine) {
+	        _.each(routine.performed_sprints, function (ps) {
+	            ps.laps_attributes = ps.laps;
+	        });
+	        routine.performed_sprints_attributes = routine.performed_sprints;
+	        _.each(routine.performed_exercises, function (pe) {
+	            pe.weight_sets_attributes = pe.weight_sets;
+	        });
+	        routine.performed_exercises_attributes = routine.performed_exercises;
+	
+	        routine.performed_plyometrics_attributes = routine.performed_plyometrics;
+	        routine.performed_warm_ups_attributes = routine.performed_warm_ups;
+	
+	        var payload = JSON.stringify({ daily_routine: routine });
+	        dispatcher.dispatch(C.LOADING, true);
+	        $.ajax({
+	            type: "put",
+	            url: "/daily_routines/" + routine.id + "/close.json",
+	            dataType: "json",
+	            data: payload,
+	            contentType: "application/json; charset=utf-8",
+	            success: function (data) {
+	                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+	            },
+	            error: function (response) {
+	                alert(response.responseJSON.errors);
+	            }
+	        });
+	    }
+	
+	};
+	
+	module.exports = RoutineActions;
+	//dispatcher.dispatch(C.ROUTINE_LOADED, data)
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 246), __webpack_require__(/*! underscore */ 312)))
+
+/***/ },
+/* 317 */
+/*!*************************************!*\
+  !*** ./actions/exercise_actions.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
+	
+	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 237);
+	var C = __webpack_require__(/*! constants/exercise_constants.js */ 315);
+	
+	var ExerciseActions = {
+	
+	    getExercises: function () {
+	        $.ajax({
+	            type: "get",
+	            url: "/warmups.json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.WARMUPS_LOADED, data);
+	            }
+	        });
+	        $.ajax({
+	            type: "get",
+	            url: "/plyometrics.json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.PLYOS_LOADED, data);
+	            }
+	        });
+	        $.ajax({
+	            type: "get",
+	            url: "/exercise_types.json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.STRENGTH_LOADED, data);
+	            }
+	        });
+	        $.ajax({
+	            type: "get",
+	            url: "/sprints.json",
+	            dataType: "json",
+	            success: function (data) {
+	                dispatcher.dispatch(C.SPRINTS_LOADED, data);
+	            }
+	        });
+	    }
+	};
+	
+	module.exports = ExerciseActions;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 246)))
+
+/***/ },
+/* 318 */
+/*!************************************!*\
+  !*** ./views/do-work/calendar.jsx ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React, _) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 250);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 33);
+	
+	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 316);
+	
+	var _routine_actions2 = _interopRequireDefault(_routine_actions);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! views/do-work/calendar.scss */ 319);
+	
+	var CalendarCell = function (_React$Component) {
+	    _inherits(CalendarCell, _React$Component);
+	
+	    function CalendarCell(props) {
+	        _classCallCheck(this, CalendarCell);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CalendarCell).call(this, props));
+	
+	        _this.click = _this.click.bind(_this);
+	        _this.state = {
+	            date: new Date(_this.props.dayObj.year, _this.props.dayObj.month - 1, _this.props.dayObj.day_of_month)
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(CalendarCell, [{
+	        key: 'click',
+	        value: function click() {
+	            var url = '/do-work/' + this.props.dayObj.year + '/' + this.props.dayObj.month + '/' + this.props.dayObj.day_of_month;
+	            _reactRouter.browserHistory.push(url);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	            var monthNames = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	
+	            var classes = this.props.dayObj.day_of_month == this.props.day && this.props.dayObj.year == this.props.year && this.props.dayObj.month == this.props.month ? "col-xs-2 calendar-cell selected" : "col-xs-2 calendar-cell";
+	
+	            classes += this.state.date.getMonth() ? '' : ' no-cursor';
+	
+	            if (this.props.border) {
+	                classes += ' border';
+	            }
+	            return React.createElement(
+	                'div',
+	                null,
+	                this.state.date.getMonth() ? React.createElement(
+	                    'div',
+	                    { className: classes, onClick: function onClick() {
+	                            return _this2.click();
+	                        } },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'cal-subtext' },
+	                        days[this.props.dayObj.day_of_week]
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'cal-text' },
+	                        monthNames[this.state.date.getMonth()] + ', ' + this.props.dayObj.day_of_month
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'cal-subtext' },
+	                        this.props.dayObj.workout_status
+	                    )
+	                ) : null,
+	                !this.state.date.getMonth() ? React.createElement(
+	                    'div',
+	                    { className: classes },
+	                    React.createElement('div', { className: 'cal-subtext' }),
+	                    React.createElement('div', { className: 'cal-text' }),
+	                    React.createElement('div', { className: 'cal-subtext' })
+	                ) : null
+	            );
+	        }
+	    }]);
+	
+	    return CalendarCell;
+	}(React.Component);
+	
+	var Calendar = function (_React$Component2) {
+	    _inherits(Calendar, _React$Component2);
+	
+	    function Calendar(props) {
+	        _classCallCheck(this, Calendar);
+	
+	        var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(Calendar).call(this, props));
+	
+	        _this3.state = {
+	            loaded: false,
+	            daysToShow: [],
+	            leftArrowEnabled: true,
+	            rightArrowEnabled: true
+	        };
+	        _this3.rowSize = 5;
+	        return _this3;
+	    }
+	
+	    _createClass(Calendar, [{
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(nextProps) {
+	            this.getRowToShow(nextProps);
+	        }
+	    }, {
+	        key: 'getRowToShow',
+	        value: function getRowToShow(props) {
+	            var daysToShow = [];
+	            var index = props.day - 1;
+	            if (props.calendar && props.calendar.attributes && props.prev_calendar && props.prev_calendar.attributes && props.next_calendar && props.next_calendar.attributes && !this.state.loaded) {
+	                var days = _.filter(props.calendar.attributes.calendar_month.days, function (day) {
+	                    return day.day_of_month != 0;
+	                });
+	                var prevDays = _.filter(props.prev_calendar.attributes.calendar_month.days, function (day) {
+	                    return day.day_of_month != 0;
+	                });
+	                var nextDays = _.filter(props.next_calendar.attributes.calendar_month.days, function (day) {
+	                    return day.day_of_month != 0;
+	                });
+	
+	                index += prevDays.length;
+	                var allDays = prevDays.concat(days).concat(nextDays);
+	                daysToShow = allDays.slice(index - 1, index + this.rowSize);
+	                this.setState({ loaded: true, daysToShow: daysToShow, current_index: index, allDays: allDays });
+	            }
+	        }
+	    }, {
+	        key: 'flowLeft',
+	        value: function flowLeft() {
+	            if (this.state.leftArrowEnabled) {
+	                var index = this.state.current_index - (this.rowSize + 1);
+	                var leftArrowEnabled = index > 0;
+	                if (index <= 0) {
+	                    var newIndex = index + this.rowSize;
+	                    var daysToShow = this.state.allDays.slice(0, newIndex);
+	                    var padCount = Math.abs(index) + 1;
+	                    for (var i = 0; i < padCount; i++) {
+	                        daysToShow.unshift({ day_of_month: "padday" + i, month: "paddmonth" + i });
+	                    }
+	                } else {
+	                    var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
+	                }
+	                this.setState({
+	                    daysToShow: daysToShow,
+	                    current_index: index,
+	                    leftArrowEnabled: leftArrowEnabled,
+	                    rightArrowEnabled: true
+	                });
+	            }
+	        }
+	    }, {
+	        key: 'flowRight',
+	        value: function flowRight() {
+	            if (this.state.rightArrowEnabled) {
+	                var index = this.state.current_index + (this.rowSize + 1);
+	                var rightArrowEnabled = index + this.rowSize < this.state.allDays.length;
+	                var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
+	                this.setState({
+	                    daysToShow: daysToShow,
+	                    current_index: index,
+	                    rightArrowEnabled: rightArrowEnabled,
+	                    leftArrowEnabled: true
+	                });
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this4 = this;
+	
+	            var leftArrowClasses = this.state.leftArrowEnabled ? "left col-xs-1" : "left col-xs-1 disabled";
+	            var rightArrowClasses = this.state.rightArrowEnabled ? "right col-xs-1" : "right col-xs-1 disabled";
+	            return React.createElement(
+	                'div',
+	                { className: 'row calendar' },
+	                React.createElement('span', { className: leftArrowClasses, onClick: function onClick() {
+	                        return _this4.flowLeft();
+	                    } }),
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-xs-10 cal-days' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        this.state.daysToShow.map(function (e, index) {
+	                            return React.createElement(CalendarCell, _extends({}, this.props, { dayObj: e, dayMonth: e.month, key: e.day_of_month + '' + e.month, border: index != 0 }));
+	                        }.bind(this))
+	                    )
+	                ),
+	                React.createElement('span', { className: rightArrowClasses, onClick: function onClick() {
+	                        return _this4.flowRight();
+	                    } })
+	            );
+	        }
+	    }]);
+	
+	    return Calendar;
+	}(React.Component);
+	
+	exports.default = Calendar;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1), __webpack_require__(/*! underscore */ 312)))
+
+/***/ },
 /* 319 */
 /*!*********************************************!*\
   !*** ../styles/views/do-work/calendar.scss ***!
@@ -40179,9 +40248,13 @@
 	
 	var _menu_modal2 = _interopRequireDefault(_menu_modal);
 	
-	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 315);
+	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 316);
 	
 	var _routine_actions2 = _interopRequireDefault(_routine_actions);
+	
+	var _routine_constants = __webpack_require__(/*! constants/routine_constants */ 313);
+	
+	var _routine_constants2 = _interopRequireDefault(_routine_constants);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -40244,6 +40317,7 @@
 	        value: function change(elem) {
 	            var check = this.refs.complete;
 	            var completed = check.getValue();
+	            _routine_actions2.default.storeResults(_routine_constants2.default.WARMUP, this.props.exercise.id, 0, completed);
 	        }
 	    }, {
 	        key: 'showTips',
@@ -63951,7 +64025,7 @@
 	
 	var _menu_modal2 = _interopRequireDefault(_menu_modal);
 	
-	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 315);
+	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 316);
 	
 	var _routine_actions2 = _interopRequireDefault(_routine_actions);
 	
@@ -64114,7 +64188,7 @@
 	                    { className: 'col-xs-7' },
 	                    this.props.exercise.weight_sets.map(function (e, index) {
 	                        return React.createElement(_weight_set2.default, { weightSet: e, gray: index % 2 == 0, key: this.props.exercise.id + '' + (index + 1),
-	                            exercise: this.props.exercise.exercise, disabled: this.props.closed });
+	                            setNum: index + 1, exercise: this.props.exercise.exercise, disabled: this.props.closed });
 	                    }.bind(this))
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.exercise.tips, close: this.close }),
@@ -64152,6 +64226,14 @@
 	
 	var _vert_circle_check2 = _interopRequireDefault(_vert_circle_check);
 	
+	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 316);
+	
+	var _routine_actions2 = _interopRequireDefault(_routine_actions);
+	
+	var _routine_constants = __webpack_require__(/*! constants/routine_constants */ 313);
+	
+	var _routine_constants2 = _interopRequireDefault(_routine_constants);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -64169,12 +64251,40 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WeightSet).call(this, props));
 	
 	        _this.change = _this.change.bind(_this);
+	        _this.showErrorState = _this.showErrorState.bind(_this);
 	        return _this;
 	    }
 	
 	    _createClass(WeightSet, [{
 	        key: 'change',
-	        value: function change(e) {}
+	        value: function change(e) {
+	            if (this.props.exercise.for_time) {
+	                var completed = this.refs.reps.getValue();
+	                var reps = completed ? 1 : 0;
+	                _routine_actions2.default.storeResults(_routine_constants2.default.WEIGHTS, this.props.exercise.id, this.props.setNum, reps, 0);
+	            } else if (this.props.exercise.category == 7 && this.props.weightSet.rec_weight == 0 || this.props.exercise.category == 3) {
+	                var reps = this.refs.value;
+	                var weight = 0;
+	                if (isNaN(reps) && reps && reps.length > 0) {
+	                    this.showErrorState();
+	                } else {
+	                    _routine_actions2.default.storeResults(_routine_constants2.default.WEIGHTS, this.props.exercise.id, this.props.setNum, reps, 0);
+	                }
+	            } else {
+	                var reps = this.refs.reps.value;
+	                var weight = this.refs.weight.value;
+	                if (isNaN(reps) && reps && reps.length > 0 || isNaN(weight) && weight && weight.length > 0) {
+	                    this.showErrorState();
+	                } else {
+	                    _routine_actions2.default.storeResults(_routine_constants2.default.WEIGHTS, this.props.exercise.id, this.props.setNum, reps, weight);
+	                }
+	            }
+	        }
+	    }, {
+	        key: 'showErrorState',
+	        value: function showErrorState() {
+	            alert('not valid!');
+	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -64193,8 +64303,8 @@
 	                    'span',
 	                    { className: 'double', key: '2'
 	                    },
-	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3',
-	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
+	                    React.createElement(_vert_circle_check2.default, { ref: 'reps', id: this.props.weightSet.id + 'reps',
+	                        defaultChecked: this.props.exercise.completed, label: 'Complete', onBlur: this.change })
 	                )] : this.props.exercise.category == 7 && this.props.weightSet.rec_weight == 0 || this.props.exercise.category == 3 ? [React.createElement(
 	                    'span',
 	                    { className: 'double', key: '0'
@@ -64207,7 +64317,7 @@
 	                    { className: 'double', key: '2'
 	                    },
 	                    React.createElement('input', { ref: 'reps', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'reps',
-	                        onChange: this.props.onChange, defaultValue: this.props.weightSet.perf_reps }),
+	                        onBlur: this.change, defaultValue: this.props.weightSet.perf_reps }),
 	                    React.createElement(
 	                        'label',
 	                        { 'for': this.props.weightSet.id + 'reps' },
@@ -64232,7 +64342,7 @@
 	                    { className: 'col', key: '3'
 	                    },
 	                    React.createElement('input', { ref: 'weight', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'weight',
-	                        onChange: this.props.onChange, defaultValue: this.props.weightSet.perf_weight }),
+	                        onBlur: this.change, defaultValue: this.props.weightSet.perf_weight }),
 	                    React.createElement(
 	                        'label',
 	                        { 'for': '{this.props.weightSet.id + \'weight\'}' },
@@ -64243,7 +64353,7 @@
 	                    { className: 'col', key: '4'
 	                    },
 	                    React.createElement('input', { ref: 'reps', type: 'text', className: 'transparent-input standard-text', id: this.props.weightSet.id + 'reps',
-	                        onChange: this.props.onChange, defaultValue: this.props.weightSet.perf_reps }),
+	                        onBlur: this.change, defaultValue: this.props.weightSet.perf_reps }),
 	                    React.createElement(
 	                        'label',
 	                        { 'for': this.props.weightSet.id + 'reps' },
@@ -64345,9 +64455,13 @@
 	
 	var _menu_modal2 = _interopRequireDefault(_menu_modal);
 	
-	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 315);
+	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 316);
 	
 	var _routine_actions2 = _interopRequireDefault(_routine_actions);
+	
+	var _routine_constants = __webpack_require__(/*! constants/routine_constants */ 313);
+	
+	var _routine_constants2 = _interopRequireDefault(_routine_constants);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -64397,6 +64511,7 @@
 	        value: function change(elem) {
 	            var check = this.refs[elem.target.id];
 	            var checked = check.getValue();
+	            _routine_actions2.default.storeResults(_routine_constants2.default.PLYOS, this.props.exercise.id, this.refs[elem.target.id].props.setNum, checked);
 	        }
 	    }, {
 	        key: 'showVideo',
@@ -64492,19 +64607,19 @@
 	                    'div',
 	                    { className: 'col-xs-1 col-xs-offset-4' },
 	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '1', id: this.props.exercise.id + '1',
-	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
+	                        setNum: 1, defaultChecked: this.props.exercise.peformed_one, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-1' },
 	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '2', id: this.props.exercise.id + '2',
-	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
+	                        setNum: 2, defaultChecked: this.props.exercise.performed_two, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-1' },
 	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3',
-	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
+	                        setNum: 3, defaultChecked: this.props.exercise.performed_three, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.plyometric.tips, close: this.close }),
 	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.plyometric.video_link, close: this.closeVideo }),
@@ -64596,9 +64711,13 @@
 	
 	var _menu_modal2 = _interopRequireDefault(_menu_modal);
 	
-	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 315);
+	var _routine_actions = __webpack_require__(/*! actions/routine_actions */ 316);
 	
 	var _routine_actions2 = _interopRequireDefault(_routine_actions);
+	
+	var _routine_constants = __webpack_require__(/*! constants/routine_constants */ 313);
+	
+	var _routine_constants2 = _interopRequireDefault(_routine_constants);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -64657,6 +64776,7 @@
 	        value: function change(e) {
 	            var check = this.refs[e.target.id];
 	            var checked = check.getValue();
+	            _routine_actions2.default.storeResults(_routine_constants2.default.SPRINTS, this.props.exercise.id, this.refs[e.target.id].props.lapNum, checked);
 	        }
 	    }, {
 	        key: 'showTips',
@@ -64756,6 +64876,7 @@
 	                                'div',
 	                                { className: 'col-xs-8' },
 	                                React.createElement(_vert_circle_check2.default, {
+	                                    lapNum: index + 1,
 	                                    ref: this.props.exercise.laps[index].id,
 	                                    id: this.props.exercise.laps[index].id,
 	                                    defaultChecked: this.props.exercise.laps[index].completed,

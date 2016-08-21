@@ -35,7 +35,7 @@ class CloseRoutineService
       process_provided
 
       # Get points based on the percentage of exercises completed
-      points = process_completed / process_provided * 100 rescue 0
+      points = @routine.count_ex_completed / @routine.count_ex_provided * 100 rescue 0
       @routine.user.points += points
 
       already_closed = @routine.closed

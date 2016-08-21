@@ -41,7 +41,7 @@ class DoWork extends React.Component {
             month: month,
             day: day,
             calendar: {},
-            routine: { comments: []},
+            routine: { comments: [], weight: undefined},
             user: {},
             loading: true,
             date: today,
@@ -91,6 +91,7 @@ class DoWork extends React.Component {
 
     onChange () {
         var data = RoutineStore.getData();
+        data.routine = data.routine || this.state.routine;
         var user = UserStore.getData();
         var exercises = ExerciseStore.getData();
         this.setState(
@@ -120,7 +121,14 @@ class DoWork extends React.Component {
     }
 
     submit() {
-        RoutineActions.completeWorkout(this.state.routine);
+        var userWeight = this.refs.userWeight.value;
+        if ((!userWeight) || isNaN(userWeight)) {
+            alert('enter a valid weight!');
+        } else {
+            //@TODO disable submit button
+            this.state.routine.weight = userWeight;
+            RoutineActions.completeWorkout(this.state.routine);
+        }
     }
 
     skip() {
@@ -270,7 +278,7 @@ class DoWork extends React.Component {
                             </div>
                             <div className="row last-row">
                                 <div className="col-xs-3">
-                                    <input type="text" className="user-weight"/>
+                                    <input ref="userWeight" type="text" className="user-weight" defaultValue={this.state.routine.weight} />
                                     <span className="standard-text white ">Your Weight (lbs)</span>
                                 </div>
                                 <div className="col-xs-6 col-xs-offset-3 text-right">
@@ -285,13 +293,11 @@ class DoWork extends React.Component {
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Leave a comment</div>
                             </div>
-                            <If condition={this.state.routine && this.state.routine.length > 0} >
                             {
                                 this.state.routine.comments.map(function(e, index) {
                                     return <Comment comment={e} key={e.id} />
                                 }.bind(this))
                             }
-                            </If>
                             <div className="row comment-row">
                                 <div className="col-xs-6 text-right">
                                     <textarea ref="commentBox" className="leave-comment" rows="10" cols="80"></textarea>

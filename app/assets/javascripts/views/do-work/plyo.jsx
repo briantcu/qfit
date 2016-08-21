@@ -5,6 +5,7 @@ import TipsModal from 'views/do-work/tips_modal';
 import VideoModal from 'views/do-work/video_modal';
 import MenuModal from 'views/do-work/menu_modal';
 import RoutineActions from 'actions/routine_actions';
+import RoutineConstants from 'constants/routine_constants';
 
 require('views/do-work/plyo.scss');
 
@@ -35,6 +36,7 @@ class Plyo extends React.Component {
     change(elem) {
         var check = this.refs[elem.target.id];
         var checked = check.getValue();
+        RoutineActions.storeResults(RoutineConstants.PLYOS, this.props.exercise.id, this.refs[elem.target.id].props.setNum, checked);
     }
     showVideo() {
         this.setState({showVideo: true});
@@ -77,15 +79,15 @@ class Plyo extends React.Component {
             </div>
             <div className="col-xs-1 col-xs-offset-4">
                 <VertCircleCheck ref={this.props.exercise.id + '1'} id={this.props.exercise.id + '1'}
-                                 defaultChecked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
+                                 setNum={1} defaultChecked={this.props.exercise.peformed_one} label={'Complete'} change={ this.change } />
             </div>
             <div className="col-xs-1">
                 <VertCircleCheck ref={this.props.exercise.id + '2'} id={this.props.exercise.id + '2'}
-                                 defaultChecked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
+                                 setNum={2} defaultChecked={this.props.exercise.performed_two} label={'Complete'} change={ this.change } />
             </div>
             <div className="col-xs-1">
                 <VertCircleCheck ref={this.props.exercise.id + '3'} id={this.props.exercise.id + '3'}
-                                 defaultChecked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
+                                 setNum={3} defaultChecked={this.props.exercise.performed_three} label={'Complete'} change={ this.change } />
             </div>
 
             <TipsModal show={this.state.showTips} tips={this.props.exercise.plyometric.tips} close={this.close} />
