@@ -278,7 +278,7 @@ class DoWork extends React.Component {
                             </div>
                             <div className="row last-row">
                                 <div className="col-xs-3">
-                                    <input ref="userWeight" type="text" className="user-weight" defaultValue={this.state.routine.weight} />
+                                    <input ref="userWeight" type="text" className="user-weight" value={this.state.routine.weight} />
                                     <span className="standard-text white ">Your Weight (lbs)</span>
                                 </div>
                                 <div className="col-xs-6 col-xs-offset-3 text-right">

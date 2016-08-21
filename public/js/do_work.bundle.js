@@ -487,7 +487,7 @@
 	                                    React.createElement(
 	                                        'div',
 	                                        { className: 'col-xs-3' },
-	                                        React.createElement('input', { ref: 'userWeight', type: 'text', className: 'user-weight', defaultValue: this.state.routine.weight }),
+	                                        React.createElement('input', { ref: 'userWeight', type: 'text', className: 'user-weight', value: this.state.routine.weight }),
 	                                        React.createElement(
 	                                            'span',
 	                                            { className: 'standard-text white ' },
@@ -40424,7 +40424,7 @@
 	                    'div',
 	                    { className: 'col-xs-1 col-xs-offset-6' },
 	                    React.createElement(_vert_circle_check2.default, { ref: 'complete', id: 'stretch' + this.props.exercise.id,
-	                        defaultChecked: this.props.exercise.completed, label: 'Complete', change: this.change })
+	                        checked: this.props.exercise.completed, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.warmup.tips, close: this.close }),
 	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.warmup.video_link, close: this.closeVideo }),
@@ -64304,7 +64304,7 @@
 	                    { className: 'double', key: '2'
 	                    },
 	                    React.createElement(_vert_circle_check2.default, { ref: 'reps', id: this.props.weightSet.id + 'reps',
-	                        defaultChecked: this.props.exercise.completed, label: 'Complete', onBlur: this.change })
+	                        checked: this.props.exercise.completed, label: 'Complete', onBlur: this.change })
 	                )] : this.props.exercise.category == 7 && this.props.weightSet.rec_weight == 0 || this.props.exercise.category == 3 ? [React.createElement(
 	                    'span',
 	                    { className: 'double', key: '0'
@@ -64607,19 +64607,19 @@
 	                    'div',
 	                    { className: 'col-xs-1 col-xs-offset-4' },
 	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '1', id: this.props.exercise.id + '1',
-	                        setNum: 1, defaultChecked: this.props.exercise.peformed_one, label: 'Complete', change: this.change })
+	                        setNum: 1, checked: this.props.exercise.peformed_one, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-1' },
 	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '2', id: this.props.exercise.id + '2',
-	                        setNum: 2, defaultChecked: this.props.exercise.performed_two, label: 'Complete', change: this.change })
+	                        setNum: 2, checked: this.props.exercise.performed_two, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(
 	                    'div',
 	                    { className: 'col-xs-1' },
 	                    React.createElement(_vert_circle_check2.default, { ref: this.props.exercise.id + '3', id: this.props.exercise.id + '3',
-	                        setNum: 3, defaultChecked: this.props.exercise.performed_three, label: 'Complete', change: this.change })
+	                        setNum: 3, checked: this.props.exercise.performed_three, label: 'Complete', change: this.change })
 	                ),
 	                React.createElement(_tips_modal2.default, { show: this.state.showTips, tips: this.props.exercise.plyometric.tips, close: this.close }),
 	                React.createElement(_video_modal2.default, { show: this.state.showVideo, link: this.props.exercise.plyometric.video_link, close: this.closeVideo }),
@@ -64879,7 +64879,7 @@
 	                                    lapNum: index + 1,
 	                                    ref: this.props.exercise.laps[index].id,
 	                                    id: this.props.exercise.laps[index].id,
-	                                    defaultChecked: this.props.exercise.laps[index].completed,
+	                                    checked: this.props.exercise.laps[index].completed,
 	                                    key: this.props.exercise.id + '' + (index + 1),
 	                                    label: 'Complete', change: this.change
 	                                })

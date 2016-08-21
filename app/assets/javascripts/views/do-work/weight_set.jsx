@@ -49,7 +49,7 @@ class WeightSet extends React.Component {
                     </span><br/>
                     <span className="double">
                         <VertCircleCheck ref="reps" id={this.props.weightSet.id + 'reps'}
-                                         defaultChecked={this.props.exercise.completed} label={'Complete'} onBlur={ this.change } />
+                                         checked={this.props.exercise.completed} label={'Complete'} onBlur={ this.change } />
                     </span>
                 </When>
                 <When condition={(this.props.exercise.category == 7 && (this.props.weightSet.rec_weight == 0)) || this.props.exercise.category == 3} >
