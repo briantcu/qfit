@@ -53,11 +53,11 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 34);
 	
-	var _fancy_input = __webpack_require__(/*! views/common/fancy_input */ 638);
+	var _fancy_input = __webpack_require__(/*! views/common/fancy_input */ 640);
 	
 	var _fancy_input2 = _interopRequireDefault(_fancy_input);
 	
-	var _slider = __webpack_require__(/*! views/common/slider */ 642);
+	var _slider = __webpack_require__(/*! views/common/slider */ 644);
 	
 	var _slider2 = _interopRequireDefault(_slider);
 	
@@ -65,15 +65,15 @@
 	
 	var _validator2 = _interopRequireDefault(_validator);
 	
-	var _sign_up_actions = __webpack_require__(/*! actions/sign_up_actions */ 645);
+	var _sign_up_actions = __webpack_require__(/*! actions/sign_up_actions */ 647);
 	
 	var _sign_up_actions2 = _interopRequireDefault(_sign_up_actions);
 	
-	var _sign_up_store = __webpack_require__(/*! stores/sign_up_store */ 647);
+	var _sign_up_store = __webpack_require__(/*! stores/sign_up_store */ 649);
 	
 	var _sign_up_store2 = _interopRequireDefault(_sign_up_store);
 	
-	var _sign_up_constants = __webpack_require__(/*! constants/sign_up_constants */ 646);
+	var _sign_up_constants = __webpack_require__(/*! constants/sign_up_constants */ 648);
 	
 	var _sign_up_constants2 = _interopRequireDefault(_sign_up_constants);
 	
@@ -85,7 +85,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! pages/sign_up.scss */ 648);
+	__webpack_require__(/*! pages/sign_up.scss */ 650);
 	
 	var AthleteSignUp = function (_React$Component) {
 	    _inherits(AthleteSignUp, _React$Component);
@@ -35908,7 +35908,9 @@
 /* 635 */,
 /* 636 */,
 /* 637 */,
-/* 638 */
+/* 638 */,
+/* 639 */,
+/* 640 */
 /*!**************************************!*\
   !*** ./views/common/fancy_input.jsx ***!
   \**************************************/
@@ -35932,7 +35934,7 @@
 	
 	var _util2 = _interopRequireDefault(_util);
 	
-	var _floatl = __webpack_require__(/*! floatl */ 639);
+	var _floatl = __webpack_require__(/*! floatl */ 641);
 	
 	var _floatl2 = _interopRequireDefault(_floatl);
 	
@@ -35944,7 +35946,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/fancy_input.scss */ 640);
+	__webpack_require__(/*! common/fancy_input.scss */ 642);
 	
 	var FancyInput = function (_React$Component) {
 	    _inherits(FancyInput, _React$Component);
@@ -36024,7 +36026,7 @@
 	exports.default = FancyInput;
 
 /***/ },
-/* 639 */
+/* 641 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/floatl/dist/js/floatl.js ***!
   \******************************************************************/
@@ -36125,7 +36127,7 @@
 	});
 
 /***/ },
-/* 640 */
+/* 642 */
 /*!*****************************************!*\
   !*** ../styles/common/fancy_input.scss ***!
   \*****************************************/
@@ -36134,7 +36136,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./fancy_input.scss */ 641);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./fancy_input.scss */ 643);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 239)(content, {});
@@ -36154,7 +36156,7 @@
 	}
 
 /***/ },
-/* 641 */
+/* 643 */
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/fancy_input.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -36171,7 +36173,7 @@
 
 
 /***/ },
-/* 642 */
+/* 644 */
 /*!*********************************!*\
   !*** ./views/common/slider.jsx ***!
   \*********************************/
@@ -36199,7 +36201,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/slider.scss */ 643);
+	__webpack_require__(/*! common/slider.scss */ 645);
 	
 	var Slider = function (_React$Component) {
 	    _inherits(Slider, _React$Component);
@@ -36263,7 +36265,7 @@
 	exports.default = Slider;
 
 /***/ },
-/* 643 */
+/* 645 */
 /*!************************************!*\
   !*** ../styles/common/slider.scss ***!
   \************************************/
@@ -36272,7 +36274,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./slider.scss */ 644);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./slider.scss */ 646);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 239)(content, {});
@@ -36292,7 +36294,7 @@
 	}
 
 /***/ },
-/* 644 */
+/* 646 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/slider.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -36309,7 +36311,7 @@
 
 
 /***/ },
-/* 645 */
+/* 647 */
 /*!************************************!*\
   !*** ./actions/sign_up_actions.js ***!
   \************************************/
@@ -36318,7 +36320,7 @@
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 241);
-	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 646);
+	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 648);
 	
 	var SignUpActions = {
 	
@@ -36366,7 +36368,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 250)))
 
 /***/ },
-/* 646 */
+/* 648 */
 /*!****************************************!*\
   !*** ./constants/sign_up_constants.js ***!
   \****************************************/
@@ -36384,7 +36386,7 @@
 	});
 
 /***/ },
-/* 647 */
+/* 649 */
 /*!*********************************!*\
   !*** ./stores/sign_up_store.js ***!
   \*********************************/
@@ -36394,7 +36396,7 @@
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 241);
 	var Store = __webpack_require__(/*! ./store.js */ 243);
-	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 646);
+	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 648);
 	
 	var SignUpStore = new Store({
 	    signUpStatus: { status: "", errors: [] },
@@ -36439,7 +36441,7 @@
 	module.exports = SignUpStore;
 
 /***/ },
-/* 648 */
+/* 650 */
 /*!************************************!*\
   !*** ../styles/pages/sign_up.scss ***!
   \************************************/
@@ -36448,7 +36450,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./sign_up.scss */ 649);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./sign_up.scss */ 651);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 239)(content, {});
@@ -36468,7 +36470,7 @@
 	}
 
 /***/ },
-/* 649 */
+/* 651 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/sign_up.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************/

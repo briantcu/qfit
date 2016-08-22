@@ -65677,7 +65677,7 @@
 	                    { className: 'double', key: '2'
 	                    },
 	                    React.createElement(_vert_circle_check2.default, { ref: 'reps', id: this.props.weightSet.id + 'reps', onChange: this.fakeChange,
-	                        checked: this.props.exercise.completed, label: 'Complete', onBlur: this.change })
+	                        checked: this.props.exercise.perf_reps && this.props.exercise.perf_reps > 0, label: 'Complete', onBlur: this.change })
 	                )] : this.props.exercise.category == 7 && this.props.weightSet.rec_weight == 0 || this.props.exercise.category == 3 ? [React.createElement(
 	                    'span',
 	                    { className: 'double', key: '0'

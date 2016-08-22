@@ -20,6 +20,8 @@ Qfit::Application.routes.draw do
   get '/do-work', to: 'pages#do_work'
   get '/do-work/:year/:month/:day', to: 'pages#do_work'
 
+  get '/', to: 'pages#home'
+
 
   #****************** API *********************
   get '/schedule/program_type/:program_type_id/weight_schedule/:weight_schedule_id', to: 'workout_schedule_suggestions#retrieve_suggested_schedule'

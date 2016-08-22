@@ -39,8 +39,12 @@ class Schedule extends React.Component {
         var days = [];
         var errors = [];
         for (var i = 0; i < 7; i++) {
+            var id;
+            if (this.state.schedule.weekly_schedule_days) {
+                id =  this.state.schedule.weekly_schedule_days[i].id
+            }
             var checked = false;
-            var day = {day: i};
+            var day = {day: i, id: id};
             var wId = 'w' + i;
             var pId = 'p' + i;
             var sId = 's' + i;
@@ -105,7 +109,6 @@ class Schedule extends React.Component {
                 errors.push(`Please choose at least ${this.props.suggested_schedule.num_sprint_days} sprinting days`);
             }
         }
-
 
         if (errors.length > 0) {
             this.setState({errors: errors});

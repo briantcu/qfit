@@ -2,6 +2,10 @@ class PagesController < ApplicationController
   before_filter :verify_logged_in_html, only: [:setup, :coaches, :schedule, :do_work]
   before_filter :can_access_user, only: [:setup, :coaches, :schedule, :do_work]
 
+  def home
+    render template: 'pages/home'
+  end
+
   def sign_up
     render layout: 'full_page'
   end
