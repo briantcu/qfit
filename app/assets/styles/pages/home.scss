@@ -5,6 +5,55 @@
   width: 100%;
   background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center fixed;
   background-size: cover;
+  border-bottom: 12px solid $lightning;
+  color: white;
+}
+
+#header-row {
+  padding-top: 25px;
+  padding-left: 80px !important;
+  color: white;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.1px;
+  a {
+    color: white;
+    margin-right: 40px;
+  }
+}
+
+.headline {
+  font-size: 64px;
+  color: $lightning;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.subline {
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
+  max-width: 850px;
+  margin: auto;
+}
+
+.header-links {
+  padding-top: 15px;
+}
+
+.main-row {
+  margin-bottom: 50px;
+  margin-top: 200px;
+}
+
+.sign-up {
+  border: solid 1px #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  height: 40px;
+  width: 172px;
+  margin: auto;
+  font-size: 20px;
+  letter-spacing: -0.2px;
+  cursor: pointer;
+  padding-top: 5px;
 }
 
 
