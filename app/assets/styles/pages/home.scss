@@ -26,6 +26,7 @@
 }
 
 #three {
+  border-bottom: 12px solid $lightning;
   .brick {
     height: 314px;
     font-size: 36px;
@@ -66,6 +67,69 @@
   #stretch {
     background: url(https://s3.amazonaws.com/quadfit/background-quad-stretch.png) no-repeat;
     background-size: cover;
+  }
+}
+
+#four {
+  #view-and-share {
+    color: $purple;
+    font-size: 44px;
+    line-height: 1.1;
+    padding-top: 50px;
+  }
+
+  .sub {
+    font-size: 18px;
+    line-height: 1.6;
+    color: $gray3;
+    margin: auto;
+    max-width: 620px;
+    padding-top: 20px;
+    margin-bottom: 100px;
+  }
+  .workout {
+    background: url(https://s3.amazonaws.com/quadfit/background-workout.png) no-repeat;
+    background-size: cover;
+    max-height: 374px;
+  }
+  .workout-img {
+    margin-top: -30px;
+  }
+}
+
+#five {
+  background: url(https://s3.amazonaws.com/quadfit/background-tracking.png) no-repeat;
+  background-size: cover;
+  .tracking-img {
+    padding-top: 150px;
+    margin-left: -250px;
+  }
+  .details {
+    color: white;
+    padding-top: 75px;
+    margin: auto;
+    max-width: 900px;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .op {
+    opacity: 0.8;
+  }
+  .track {
+    font-size: 44px;
+    line-height: 1.1;
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom: 24px;
+  }
+  .sub-details {
+    margin-bottom: 50px;
+  }
+  .more {
+    padding-bottom: 50px;
+    max-width: 250px;
+  }
+  .icon {
+    padding-bottom: 15px;
   }
 }
 
@@ -124,6 +188,10 @@
 
 
 @media (min-width: 979px) {
+  #five {
+    min-height: 800px;
+  }
+
     #one {
       min-height: 770px;
       width: 100%;
@@ -153,6 +221,10 @@
 }
 
 @media (max-width: 979px) and (min-width: 768px) {
+  #five {
+    min-height: 800px;
+  }
+
   #one {
     min-height: 500px;
     width: 100%;
