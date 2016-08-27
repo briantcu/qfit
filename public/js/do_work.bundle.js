@@ -517,7 +517,7 @@
 	                                    )
 	                                )
 	                            ),
-	                            React.createElement(
+	                            this.state.routine.id ? React.createElement(
 	                                'div',
 	                                { className: 'comments sec container' },
 	                                React.createElement(
@@ -545,7 +545,7 @@
 	                                            disabled: false })
 	                                    )
 	                                )
-	                            )
+	                            ) : null
 	                        )
 	                    )
 	                ),

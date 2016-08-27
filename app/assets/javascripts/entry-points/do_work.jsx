@@ -293,7 +293,7 @@ class DoWork extends React.Component {
                                 </div>
                             </div>
                         </div>
-
+                        <If condition={this.state.routine.id} >
                         <div className="comments sec container">
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Leave a comment</div>
@@ -311,7 +311,7 @@ class DoWork extends React.Component {
                                 </div>
                             </div>
                         </div>
-
+                        </If>
                     </div>
                 </div>
             </div>

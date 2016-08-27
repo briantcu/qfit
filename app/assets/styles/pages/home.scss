@@ -1,6 +1,48 @@
 @import "../common/common";
 
 #one {
-  background-color: $purple;
-  height: 770px;
+  min-height: 770px;
+  width: 100%;
+  background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+@media (min-width: 979px) {
+    #one {
+      min-height: 770px;
+      width: 100%;
+      background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center;
+      background-size: cover;
+    }
+}
+
+@media all and (max-width: 767px)  {
+  #one {
+    min-height: 500px;
+    width: 100%;
+    background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center;
+    background-size: cover;
+  }
+
+}
+
+@media all and (max-width: 480px)  {
+  #one {
+    min-height: 300px;
+    width: 100%;
+    background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center;
+    background-size: cover;
+  }
+
+}
+
+@media (max-width: 979px) and (min-width: 768px) {
+  #one {
+    min-height: 500px;
+    width: 100%;
+    background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center;
+    background-size: cover;
+  }
+
 }
