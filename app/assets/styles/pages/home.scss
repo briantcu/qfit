@@ -9,6 +9,21 @@
   color: white;
 }
 
+#two {
+  color: $gray3;
+  font-size: 20px;
+  .sub {
+    padding-top: 25px;
+    padding-bottom: 50px;
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+  }
+  .content {
+    line-height: 1.6;
+    letter-spacing: -0.2px;
+  }
+}
+
 #header-row {
   padding-top: 25px;
   padding-left: 80px !important;
@@ -20,6 +35,12 @@
     color: white;
     margin-right: 40px;
   }
+}
+
+.about {
+  font-size: 64px;
+  letter-spacing: -0.6px;
+  padding-top: 50px;
 }
 
 .headline {

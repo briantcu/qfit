@@ -67,6 +67,10 @@ h1 {
   }
 }
 
+.lightning-underline {
+  border-bottom: 4px solid $lightning;
+}
+
 .bold-link {
   color: $dark-purple;
   text-decoration: underline;
