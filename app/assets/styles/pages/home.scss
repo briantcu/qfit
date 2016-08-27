@@ -12,6 +12,7 @@
 #two {
   color: $gray3;
   font-size: 20px;
+  margin-bottom: 90px;
   .sub {
     padding-top: 25px;
     padding-bottom: 50px;
@@ -21,6 +22,50 @@
   .content {
     line-height: 1.6;
     letter-spacing: -0.2px;
+  }
+}
+
+#three {
+  .brick {
+    height: 314px;
+    font-size: 36px;
+    letter-spacing: -0.3px;
+    text-align: center;
+    padding-top: 120px;
+  }
+
+  .details {
+    font-size: 18px;
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+    background-color: $gray2;
+  }
+  .left {
+    padding-right: 5%;
+    padding-left: 20%;
+    text-align: right;
+  }
+  .right {
+    padding-left: 5%;
+    padding-right: 20%;
+    text-align: left;
+  }
+
+  #sprinting {
+    background: url(https://s3.amazonaws.com/quadfit/background-quad-sprinting.png) no-repeat;
+    background-size: cover;
+  }
+  #plyos {
+    background: url(https://s3.amazonaws.com/quadfit/background-quad-plyometrics.png) no-repeat;
+    background-size: cover;
+  }
+  #strength {
+    background: url(https://s3.amazonaws.com/quadfit/background-quad-weightlifting.png) no-repeat;
+    background-size: cover;
+  }
+  #stretch {
+    background: url(https://s3.amazonaws.com/quadfit/background-quad-stretch.png) no-repeat;
+    background-size: cover;
   }
 }
 
