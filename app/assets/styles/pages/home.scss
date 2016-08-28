@@ -134,9 +134,7 @@
 }
 
 #six {
-  background-color: $gray5;
-  background: url(https://s3.amazonaws.com/quadfit/image-quadpod.png) no-repeat;
-  background-position: 50% 300px;
+  background: $gray5 url(https://s3.amazonaws.com/quadfit/image-quadpod.png) no-repeat 50% 300px;
   overflow: hidden;
   .title {
     color: $purple;
@@ -162,6 +160,25 @@
     font-size: 18px;
     line-height: 1.6;
     padding-bottom: 50px;
+  }
+}
+
+#seven {
+  color: white;
+  background: url(https://s3.amazonaws.com/quadfit/background-coaches.png) no-repeat;
+  background-size: cover;
+  .title {
+    font-size: 44px;
+    line-height: 1.1;
+    padding-top: 85px;
+  }
+  .sub {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 620px;
+    padding-top: 20px;
+    margin: auto auto 50px;
+    opacity: 0.8;
   }
 }
 
