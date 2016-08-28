@@ -284,12 +284,24 @@ h1 {
     letter-spacing: -0.2px; }
   .get-started .sign-up {
     border: solid 1px #4a4a4a;
-    margin-left: 20px; }
+    margin-left: 20px;
+    margin-top: 5px; }
 
 .footer {
   background-color: #271b37;
   height: 194px;
-  color: white; }
+  color: white;
+  padding-top: 60px;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  vertical-align: bottom; }
+  .footer .logo {
+    padding-left: 100px; }
+  .footer span {
+    margin-right: 30px; }
+  .footer .links {
+    padding-top: 30px;
+    padding-right: 70px; }
 
 #header-row {
   padding-top: 25px;
