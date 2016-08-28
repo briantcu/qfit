@@ -103,6 +103,21 @@ var UserActions = {
         });
     },
 
+    getConversation: function(userId) {
+        $.ajax({
+            type: 'get',
+            url: '/messages/user_id/'+userId+'.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(feed) {
+                dispatcher.dispatch(C.CONVO_LOADED, feed);
+            },
+            error: function(results) {
+                alert('Something went wrong!');
+            }
+        });
+    },
+
     sendInvitations: function(invites) {
         if (invites && invites.length > 0) {
             var payload = {pod_invite: {sent_to: invites}};
@@ -121,6 +136,24 @@ var UserActions = {
                 }
             });
         }
+    },
+
+    sendDM: function(receiver, message) {
+        var payload = {message: {to_id: receiver, message_type: 2, message: message}};
+        var data = JSON.stringify(payload);
+        $.ajax({
+            type: 'post',
+            data: data,
+            url: '/messages.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (results) {
+                dispatcher.dispatch(C.INVITES_SENT, results);
+            },
+            error: function (results) {
+                alert(results);
+            }
+        });
     }
 
 };

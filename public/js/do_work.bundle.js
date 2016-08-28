@@ -171,7 +171,8 @@
 	            exercises: {},
 	            showAddEx: false,
 	            exercise_type: undefined,
-	            invites: {}
+	            invites: {},
+	            conversation: {}
 	        };
 	        _this.onChange = _this.onChange.bind(_this);
 	        return _this;
@@ -247,7 +248,8 @@
 	                exercises: exercises,
 	                feed: qpData.feed,
 	                quad_pod: qpData.pod,
-	                invites: qpData.invites
+	                invites: qpData.invites,
+	                conversation: qpData.conversation
 	            });
 	        }
 	    }, {
@@ -29395,7 +29397,8 @@
 	    SCHEDULE_LOADED: null,
 	    POD_LOADED: null,
 	    FEED_LOADED: null,
-	    INVITES_SENT: null
+	    INVITES_SENT: null,
+	    CONVO_LOADED: null
 	});
 
 /***/ },
@@ -29533,6 +29536,21 @@
 	        });
 	    },
 	
+	    getConversation: function (userId) {
+	        $.ajax({
+	            type: "get",
+	            url: "/messages/user_id/" + userId + ".json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (feed) {
+	                dispatcher.dispatch(C.CONVO_LOADED, feed);
+	            },
+	            error: function (results) {
+	                alert("Something went wrong!");
+	            }
+	        });
+	    },
+	
 	    sendInvitations: function (invites) {
 	        if (invites && invites.length > 0) {
 	            var payload = { pod_invite: { sent_to: invites } };
@@ -29551,6 +29569,24 @@
 	                }
 	            });
 	        }
+	    },
+	
+	    sendDM: function (receiver, message) {
+	        var payload = { message: { to_id: receiver, message_type: 2, message: message } };
+	        var data = JSON.stringify(payload);
+	        $.ajax({
+	            type: "post",
+	            data: data,
+	            url: "/messages.json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (results) {
+	                dispatcher.dispatch(C.INVITES_SENT, results);
+	            },
+	            error: function (results) {
+	                alert(results);
+	            }
+	        });
 	    }
 	
 	};
@@ -41211,6 +41247,7 @@
 	    feed: {},
 	    pod: [],
 	    invites: [],
+	    conversation: {},
 	
 	    setPod: function (data) {
 	        this.pod = data;
@@ -41224,11 +41261,16 @@
 	        this.invites = data;
 	    },
 	
+	    setConversation: function (data) {
+	        this.conversation = data;
+	    },
+	
 	    getData: function () {
 	        return {
 	            feed: this.feed,
 	            pod: this.pod,
-	            invites: this.invites
+	            invites: this.invites,
+	            conversation: this.conversation
 	        };
 	    }
 	});
@@ -41250,6 +41292,12 @@
 	dispatcher.register(C.INVITES_SENT, function (data) {
 	    if (data) {
 	        QuadPodStore.setInvites(data);
+	        QuadPodStore.change();
+	    }
+	});
+	dispatcher.register(C.CONVO_LOADED, function (data) {
+	    if (data) {
+	        QuadPodStore.setConversation(data);
 	        QuadPodStore.change();
 	    }
 	});
@@ -66695,6 +66743,8 @@
 	    value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 34);
@@ -66734,6 +66784,12 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(QuadPod).call(this, props));
 	
 	        _this.invite = _this.invite.bind(_this);
+	        _this.showConversation = _this.showConversation.bind(_this);
+	        _this.showFeed = _this.showFeed.bind(_this);
+	        _this.state = {
+	            viewingConversation: false,
+	            transitioning: false
+	        };
 	        return _this;
 	    }
 	
@@ -66751,8 +66807,27 @@
 	            _user_actions2.default.sendInvitations(invites);
 	        }
 	    }, {
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(nextProps) {
+	            this.setState({ transitioning: false });
+	        }
+	    }, {
+	        key: 'showConversation',
+	        value: function showConversation(userId) {
+	            _user_actions2.default.getConversation(userId);
+	            this.setState({ viewingConversation: true, transitioning: true });
+	        }
+	    }, {
+	        key: 'showFeed',
+	        value: function showFeed() {
+	            _user_actions2.default.getFeed();
+	            this.setState({ viewingConversation: false, transitioning: true });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+	
 	            return React.createElement(
 	                'div',
 	                { className: 'quad-pod' },
@@ -66786,7 +66861,7 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-12 col-sm-5' },
-	                                React.createElement(_friends2.default, this.props),
+	                                React.createElement(_friends2.default, _extends({}, this.props, { showConversation: this.showConversation })),
 	                                React.createElement(
 	                                    'div',
 	                                    { className: 'qp-section' },
@@ -66862,8 +66937,19 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'col-xs-12 col-sm-7' },
-	                                React.createElement(_feed2.default, this.props)
-	                            )
+	                                React.createElement(_feed2.default, _extends({}, this.props, { viewingConversation: this.state.viewingConversation, transitioning: this.state.transitioning }))
+	                            ),
+	                            this.state.viewingConversation ? React.createElement(
+	                                'div',
+	                                { className: 'col-xs-12 col-sm-7' },
+	                                React.createElement(
+	                                    'span',
+	                                    { className: 'small-link', onClick: function onClick() {
+	                                            return _this2.showFeed();
+	                                        } },
+	                                    'Back to Feed'
+	                                )
+	                            ) : null
 	                        )
 	                    )
 	                )
@@ -66926,12 +67012,16 @@
 	                    'div',
 	                    { className: 'sec-main' },
 	                    this.props.quad_pod && this.props.quad_pod.length > 0 ? this.props.quad_pod.map(function (e) {
+	                        var _this2 = this;
+	
 	                        return React.createElement(
 	                            'div',
-	                            { className: 'friend gray-border' },
+	                            { key: e.id, className: 'friend gray-border' },
 	                            React.createElement(
 	                                'span',
-	                                null,
+	                                { onClick: function onClick() {
+	                                        return _this2.props.showConversation(e.id);
+	                                    } },
 	                                'Message flag'
 	                            ),
 	                            React.createElement(
@@ -67047,6 +67137,16 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 34);
 	
+	var _user_actions = __webpack_require__(/*! actions/user_actions */ 312);
+	
+	var _user_actions2 = _interopRequireDefault(_user_actions);
+	
+	var _conversation = __webpack_require__(/*! views/quad-pod/conversation */ 703);
+	
+	var _conversation2 = _interopRequireDefault(_conversation);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -67067,15 +67167,71 @@
 	    _createClass(Feed, [{
 	        key: 'render',
 	        value: function render() {
+	
+	            if (this.props.transitioning) {
+	                return React.createElement(
+	                    'div',
+	                    { className: 'qp-section feed loading' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'sec-header' },
+	                        'Loading...'
+	                    )
+	                );
+	            }
+	
 	            return React.createElement(
 	                'div',
 	                { className: 'qp-section feed' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'sec-header' },
-	                    'Your Feed'
-	                ),
-	                React.createElement('div', { className: 'sec-main' })
+	                !this.props.viewingConversation ? React.createElement(
+	                    'span',
+	                    null,
+	                    React.createElement(
+	                        'div',
+	                        { className: 'sec-header' },
+	                        'Your Feed ',
+	                        React.createElement(
+	                            'span',
+	                            null,
+	                            'POST'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'sec-main' },
+	                        this.props.feed && this.props.feed.length > 0 ? this.props.feed.map(function (e) {
+	                            return React.createElement(
+	                                'div',
+	                                { className: 'friend gray-border' },
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    'Avatar'
+	                                ),
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    e.user_name
+	                                ),
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    'PowerIndex: ',
+	                                    e.power_index
+	                                ),
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    'x'
+	                                )
+	                            );
+	                        }.bind(this)) : React.createElement(
+	                            'div',
+	                            null,
+	                            'Nothing here yet! You will see messages from your Quad Pod and links to their completed workouts. You can get things going by posting to this feed with the button above. Everyone in your Quad Pod will see it!'
+	                        )
+	                    )
+	                ) : React.createElement(_conversation2.default, this.props)
 	            );
 	        }
 	    }]);
@@ -67223,6 +67379,188 @@
 	
 	// exports
 
+
+/***/ },
+/* 648 */,
+/* 649 */,
+/* 650 */,
+/* 651 */,
+/* 652 */,
+/* 653 */,
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */,
+/* 671 */,
+/* 672 */,
+/* 673 */,
+/* 674 */,
+/* 675 */,
+/* 676 */,
+/* 677 */,
+/* 678 */,
+/* 679 */,
+/* 680 */,
+/* 681 */,
+/* 682 */,
+/* 683 */,
+/* 684 */,
+/* 685 */,
+/* 686 */,
+/* 687 */,
+/* 688 */,
+/* 689 */,
+/* 690 */,
+/* 691 */,
+/* 692 */,
+/* 693 */,
+/* 694 */,
+/* 695 */,
+/* 696 */,
+/* 697 */,
+/* 698 */,
+/* 699 */,
+/* 700 */,
+/* 701 */,
+/* 702 */,
+/* 703 */
+/*!*****************************************!*\
+  !*** ./views/quad-pod/conversation.jsx ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 34);
+	
+	var _user_actions = __webpack_require__(/*! actions/user_actions */ 312);
+	
+	var _user_actions2 = _interopRequireDefault(_user_actions);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Conversation = function (_React$Component) {
+	    _inherits(Conversation, _React$Component);
+	
+	    function Conversation(props) {
+	        _classCallCheck(this, Conversation);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Conversation).call(this, props));
+	
+	        _this.sendDM = _this.sendDM.bind(_this);
+	        return _this;
+	    }
+	
+	    _createClass(Conversation, [{
+	        key: 'sendDM',
+	        value: function sendDM(receiverId) {
+	            var message = this.refs.messageBox.value.trim();
+	            if (message) {
+	                _user_actions2.default.sendDM(receiverId);
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            return React.createElement(
+	                'span',
+	                null,
+	                React.createElement(
+	                    'div',
+	                    { className: 'sec-header' },
+	                    this.props.conversation.user.user_name
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'sec-main' },
+	                    this.props.conversation && this.props.conversation.messages.length > 0 ? this.props.conversation.messages.map(function (e) {
+	                        return React.createElement(
+	                            'div',
+	                            { className: 'friend gray-border' },
+	                            e.poster_id == this.props.user.id ? [React.createElement('span', {
+	                                key: '0'
+	                            }), React.createElement(
+	                                'span',
+	                                {
+	                                    key: '1'
+	                                },
+	                                e.message
+	                            ), React.createElement(
+	                                'span',
+	                                {
+	                                    key: '2'
+	                                },
+	                                e.created_at
+	                            )] : [React.createElement('span', {
+	                                key: '0'
+	                            }), React.createElement(
+	                                'span',
+	                                {
+	                                    key: '1'
+	                                },
+	                                e.message
+	                            ), React.createElement(
+	                                'span',
+	                                {
+	                                    key: '2'
+	                                },
+	                                e.created_at
+	                            )]
+	                        );
+	                    }.bind(this)) : React.createElement(
+	                        'div',
+	                        null,
+	                        'Nothing here yet! Send a message below to get things started.'
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'post-row' },
+	                        React.createElement('textarea', { ref: 'messageBox', className: '', rows: '5', cols: '40' }),
+	                        React.createElement(
+	                            'span',
+	                            { onClick: function onClick() {
+	                                    return _this2.sendDM(_this2.props.conversation.user.id);
+	                                } },
+	                            'Click '
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Conversation;
+	}(React.Component);
+	
+	exports.default = Conversation;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ }
 /******/ ]);

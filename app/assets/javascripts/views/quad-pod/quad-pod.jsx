@@ -11,6 +11,12 @@ class QuadPod extends React.Component {
     constructor(props) {
         super(props);
         this.invite = this.invite.bind(this);
+        this.showConversation = this.showConversation.bind(this);
+        this.showFeed = this.showFeed.bind(this);
+        this.state = {
+            viewingConversation: false,
+            transitioning: false
+        };
     }
 
     invite(e) {
@@ -23,6 +29,20 @@ class QuadPod extends React.Component {
             }
         });
         UserActions.sendInvitations(invites);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({transitioning: false});
+    }
+
+    showConversation (userId) {
+        UserActions.getConversation(userId);
+        this.setState({viewingConversation: true, transitioning: true});
+    }
+
+    showFeed () {
+        UserActions.getFeed();
+        this.setState({viewingConversation: false, transitioning: true});
     }
 
     render () {
@@ -41,7 +61,7 @@ class QuadPod extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-12 col-sm-5">
-                            <Friends {...this.props} />
+                            <Friends {...this.props} showConversation={this.showConversation} />
                             <div className="qp-section">
                                 <div className="sec-header">Invite Friends to Your Pod</div>
                                 <div className="sec-main gray-border">
@@ -86,8 +106,13 @@ class QuadPod extends React.Component {
                             </div>
                         </div>
                         <div className="col-xs-12 col-sm-7">
-                            <Feed {...this.props} />
+                            <Feed {...this.props} viewingConversation={this.state.viewingConversation} transitioning={this.state.transitioning} />
                         </div>
+                        <If condition={this.state.viewingConversation} >
+                            <div className="col-xs-12 col-sm-7">
+                                <span className="small-link" onClick={() => this.showFeed() }>Back to Feed</span>
+                            </div>
+                        </If>
                     </div>
                 </div>
             </div>

@@ -103,6 +103,7 @@ Qfit::Application.routes.draw do
   resources :one_rep_maxes
 
   resources :messages
+  get '/messages/user_id/:user_id', to: 'messages#conversation'
 
   resources :likes
 

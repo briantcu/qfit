@@ -6,6 +6,7 @@ var QuadPodStore = new Store({
     feed: {},
     pod: [],
     invites: [],
+    conversation: {},
 
     setPod: function(data){
         this.pod = data;
@@ -19,11 +20,16 @@ var QuadPodStore = new Store({
         this.invites = data;
     },
 
+    setConversation: function(data) {
+        this.conversation = data;
+    },
+
     getData: function(){
         return {
             feed: this.feed,
             pod: this.pod,
-            invites: this.invites
+            invites: this.invites,
+            conversation: this.conversation
         };
     }
 });
@@ -45,6 +51,12 @@ dispatcher.register(C.FEED_LOADED, function(data) {
 dispatcher.register(C.INVITES_SENT, function(data) {
     if(data){
         QuadPodStore.setInvites(data);
+        QuadPodStore.change();
+    }
+});
+dispatcher.register(C.CONVO_LOADED, function(data) {
+    if(data){
+        QuadPodStore.setConversation(data);
         QuadPodStore.change();
     }
 });

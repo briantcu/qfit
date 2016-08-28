@@ -5,5 +5,6 @@ module.exports = keyMirror({
     SCHEDULE_LOADED: null,
     POD_LOADED: null,
     FEED_LOADED: null,
-    INVITES_SENT: null
+    INVITES_SENT: null,
+    CONVO_LOADED: null
 });

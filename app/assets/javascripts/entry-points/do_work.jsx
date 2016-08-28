@@ -50,7 +50,8 @@ class App extends React.Component {
             exercises: {},
             showAddEx: false,
             exercise_type: undefined,
-            invites: {}
+            invites: {},
+            conversation: {}
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -120,7 +121,8 @@ class App extends React.Component {
                 exercises: exercises,
                 feed: qpData.feed,
                 quad_pod: qpData.pod,
-                invites: qpData.invites
+                invites: qpData.invites,
+                conversation: qpData.conversation
             }
         );
     }

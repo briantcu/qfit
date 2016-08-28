@@ -16,8 +16,8 @@ class Friends extends React.Component {
                 <When condition={this.props.quad_pod && this.props.quad_pod.length > 0} >
                         {
                             this.props.quad_pod.map(function(e) {
-                                return <div className="friend gray-border">
-                                    <span>Message flag</span>
+                                return <div key={e.id} className="friend gray-border">
+                                    <span onClick={ () => this.props.showConversation(e.id)}>Message flag</span>
                                     <span>Avatar</span>
                                     <span>{e.user_name}</span>
                                     <span>PowerIndex: {e.power_index}</span>
