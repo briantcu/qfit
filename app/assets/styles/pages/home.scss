@@ -172,6 +172,9 @@
     line-height: 1.1;
     padding-top: 85px;
   }
+  .coach-img {
+    margin-bottom: -50px;
+  }
   .sub {
     font-size: 18px;
     line-height: 1.6;
@@ -180,6 +183,78 @@
     margin: auto auto 50px;
     opacity: 0.8;
   }
+}
+
+#pricing{
+  .title {
+    font-size: 44px;
+    line-height: 1.1;
+    padding-top: 85px;
+    padding-bottom: 10px;
+    color: $purple
+  }
+  .sub {
+    font-size: 18px;
+    line-height: 1.6;
+    color: $gray3;
+    max-width: 620px;
+    margin: auto auto 30px;
+  }
+  .table-wrapper {
+    margin: auto;
+    width: 820px;
+  }
+  table td:nth-child(odd) {
+    background-color: $gray1;
+  }
+  table td {
+    height: 50px;
+    text-align: center;
+    padding-top: 13px;
+  }
+  table {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    letter-spacing: -0.2px;
+    color: $gray3;
+    width: 820px;
+  }
+  .coaches {
+    text-align: center;
+    background-color: $lightning !important;
+  }
+  .athletes {
+    text-align: center;
+    color: white;
+    background-color: $purple !important;
+  }
+  .labell {
+    padding-right: 15px;
+    text-align: right !important;
+  }
+}
+
+.get-started {
+  height: 130px;
+  background-color: $lightning;
+  margin-top: 80px;
+  color: $gray3;
+  padding-top: 40px;
+  .cta {
+    font-size: 34px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.2px;
+  }
+  .sign-up {
+    border: solid 1px $gray3;
+    margin-left: 20px;
+  }
+}
+
+.footer {
+  background-color: $dark-purple;
+  height: 194px;
+  color: white;
 }
 
 #header-row {
@@ -233,6 +308,7 @@
   letter-spacing: -0.2px;
   cursor: pointer;
   padding-top: 5px;
+  display: inline-block;
 }
 
 
