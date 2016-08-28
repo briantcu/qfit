@@ -183,6 +183,33 @@ h1 {
   #five .icon {
     padding-bottom: 15px; }
 
+#six {
+  background-color: #f4f4f4;
+  background: url(https://s3.amazonaws.com/quadfit/image-quadpod.png) no-repeat;
+  background-position: 50% 300px;
+  overflow: hidden; }
+  #six .title {
+    color: #7953aa;
+    font-size: 44px;
+    line-height: 1.1;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    margin: auto;
+    max-width: 700px; }
+  #six .first {
+    padding-top: 200px; }
+  #six .share-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #303234;
+    line-height: 1.3; }
+  #six .share {
+    color: #747e80;
+    font-size: 18px;
+    line-height: 1.6;
+    padding-bottom: 50px; }
+
 #header-row {
   padding-top: 25px;
   padding-left: 80px !important;
@@ -235,25 +262,33 @@ h1 {
     min-height: 770px;
     width: 100%;
     background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center;
-    background-size: cover; } }
+    background-size: cover; }
+  #six {
+    height: 950px; } }
 
 @media all and (max-width: 767px) {
   #one {
     min-height: 500px;
     width: 100%;
     background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center;
-    background-size: cover; } }
+    background-size: cover; }
+  #six {
+    height: 60px; } }
 
 @media all and (max-width: 480px) {
   #one {
     min-height: 300px;
     width: 100%;
     background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center;
-    background-size: cover; } }
+    background-size: cover; }
+  #six {
+    height: 60px; } }
 
 @media (max-width: 979px) and (min-width: 768px) {
   #five {
     min-height: 800px; }
+  #six {
+    height: 950px; }
   #one {
     min-height: 500px;
     width: 100%;
