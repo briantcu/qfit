@@ -66922,7 +66922,58 @@
 	                    { className: 'sec-header' },
 	                    'Your Pod'
 	                ),
-	                React.createElement('div', { className: 'sec-main' })
+	                React.createElement(
+	                    'div',
+	                    { className: 'sec-main' },
+	                    this.props.quad_pod && this.props.quad_pod.length > 0 ? this.props.quad_pod.map(function (e) {
+	                        return React.createElement(
+	                            'div',
+	                            { className: 'friend gray-border' },
+	                            React.createElement(
+	                                'span',
+	                                null,
+	                                'Message flag'
+	                            ),
+	                            React.createElement(
+	                                'span',
+	                                null,
+	                                'Avatar'
+	                            ),
+	                            React.createElement(
+	                                'span',
+	                                null,
+	                                e.user_name
+	                            ),
+	                            React.createElement(
+	                                'span',
+	                                null,
+	                                'PowerIndex: ',
+	                                e.power_index
+	                            ),
+	                            React.createElement(
+	                                'span',
+	                                null,
+	                                'x'
+	                            )
+	                        );
+	                    }.bind(this)) : React.createElement(
+	                        'div',
+	                        null,
+	                        'You don\'t have anyone in your Quad Pod yet! Invite friends below, or connect with other Quadfit users through the ',
+	                        React.createElement(
+	                            'a',
+	                            { href: '/leaderboards' },
+	                            'Leaderboards'
+	                        ),
+	                        '. You can also meet other Quadfit users in our ',
+	                        React.createElement(
+	                            'a',
+	                            { href: '' },
+	                            'Reddit sub'
+	                        ),
+	                        '.'
+	                    )
+	                )
 	            );
 	        }
 	    }]);
