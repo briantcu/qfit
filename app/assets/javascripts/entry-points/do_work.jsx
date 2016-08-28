@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 import RoutineStore from 'stores/routine_store';
 import UserStore from 'stores/user_store';
 import ExerciseStore from 'stores/exercise_store';
+import QuadPodStore from 'stores/quad_pod_store';
 import RoutineActions from 'actions/routine_actions';
 import UserActions from 'actions/user_actions';
 import ExerciseActions from 'actions/exercise_actions';
@@ -57,10 +58,13 @@ class App extends React.Component {
         RoutineStore.addChangeListener(this.onChange.bind(this));
         UserStore.addChangeListener(this.onChange);
         ExerciseStore.addChangeListener(this.onChange);
+        QuadPodStore.addChangeListener(this.onChange);
         this.load();
     }
 
     componentWillReceiveProps(nextProps) {
+        //@TODO need to handle this so that if you're on a particular workout, go to progress, and come back, you
+        //see the same workout
         var year, month, day;
         year = nextProps.params.year;
         if (year) {
@@ -80,6 +84,7 @@ class App extends React.Component {
         UserStore.removeChangeListener(this.onChange);
         ExerciseStore.removeChangeListener(this.onChange);
         RoutineStore.removeChangeListener(this.onChange.bind(this));
+        QuadPodStore.removeChangeListener(this.onChange.bind(this));
     }
 
     load() {
@@ -93,6 +98,8 @@ class App extends React.Component {
         RoutineActions.getCalendar(lastMonth.getFullYear(), lastMonth.getMonth() + 1, gon.current_user_id, C.PREV_CALENDAR);
         RoutineActions.getCalendar(nextMonth.getFullYear(), nextMonth.getMonth() + 1, gon.current_user_id, C.NEXT_CALENDAR);
         RoutineActions.getRoutine(this.state.year, this.state.month, this.state.day, gon.current_user_id);
+        UserActions.getFeed();
+        UserActions.getPod();
     }
 
     onChange () {
@@ -100,6 +107,7 @@ class App extends React.Component {
         data.routine = data.routine || this.state.routine;
         var user = UserStore.getData();
         var exercises = ExerciseStore.getData();
+        var qpData = QuadPodStore.getData();
         this.setState(
             {
                 calendar: data.calendar,
@@ -108,7 +116,9 @@ class App extends React.Component {
                 routine: data.routine,
                 loading: data.loading,
                 user: user.user,
-                exercises: exercises
+                exercises: exercises,
+                feed: qpData.feed,
+                quad_pod: qpData.pod
             }
         );
     }
@@ -123,6 +133,17 @@ class App extends React.Component {
         return <div>
             <Header user={this.state.user} showWorkoutNav={true} active={active} />
             {childrenWithProps}
+            <div className="row footer">
+                <div className="col-sm-5 col-xs-3 logo">
+                    <img src="https://s3.amazonaws.com/quadfit/logo.png" />
+                </div>
+                <div className="col-sm-7 col-xs-9 text-right links">
+                    <span>Made with grit in San Francisco</span>
+                    <span>About</span>
+                    <span>Contact</span>
+                    <span>FAQ</span>
+                </div>
+            </div>
         </div>
     }
 }
@@ -205,6 +226,7 @@ class DoWork extends React.Component {
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <div className="row main">

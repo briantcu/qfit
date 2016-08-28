@@ -13,7 +13,7 @@ class Header extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-xs-2">
-                        <img className="logo" src="https://s3.amazonaws.com/quadfit/logo%403x.png" />
+                        <a href="/"><img className="logo" src="https://s3.amazonaws.com/quadfit/logo%403x.png" /></a>
                     </div>
                     <If condition={this.props.showWorkoutNav}>
                         <div className="col-xs-8 text-center">     \

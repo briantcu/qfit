@@ -166,3 +166,23 @@
     color: $light-gray;
   }
 }
+
+.footer {
+  background-color: $dark-purple;
+  height: 194px;
+  color: white;
+  padding-top: 60px;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  vertical-align: bottom;
+  .logo {
+    padding-left: 100px;
+  }
+  span {
+    margin-right: 30px;
+  }
+  .links {
+    padding-top: 30px;
+    padding-right: 70px;
+  }
+}

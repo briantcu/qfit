@@ -71,6 +71,36 @@ var UserActions = {
                 }
             });
         }
+    },
+
+    getPod: function() {
+        $.ajax({
+            type: 'get',
+            url: '/friends.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(pod) {
+                dispatcher.dispatch(C.POD_LOADED, pod);
+            },
+            error: function(results) {
+                alert('Something went wrong!');
+            }
+        });
+    },
+
+    getFeed: function() {
+        $.ajax({
+            type: 'get',
+            url: '/messages.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(feed) {
+                dispatcher.dispatch(C.FEED_LOADED, feed);
+            },
+            error: function(results) {
+                alert('Something went wrong!');
+            }
+        });
     }
 
 };

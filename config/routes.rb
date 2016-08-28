@@ -18,6 +18,8 @@ Qfit::Application.routes.draw do
   get '/program', to: 'pages#setup_redirect'
   get '/schedule', to: 'pages#schedule'
   get '/workout', to: 'pages#do_work'
+  get '/quad-pod', to: 'pages#do_work'
+  get '/progress', to: 'pages#do_work'
   get '/workout/:year/:month/:day', to: 'pages#do_work'
 
   get '/', to: 'pages#home'

@@ -1,8 +1,8 @@
-json.array!(@inbox) do |message|
-  json.extract! message, :id, :poster_id, :message, :parent_id, :to_id, :type
+json.inbox @inbox do |message|
+  json.extract! message, :id, :poster_id, :message, :parent_id, :to_id, :message_type
   json.url message_url(message, format: :json)
 end
-json.array!(@outbox) do |message|
-  json.extract! message, :id, :poster_id, :message, :parent_id, :to_id, :type
+json.outbox @outbox do |message|
+  json.extract! message, :id, :poster_id, :message, :parent_id, :to_id, :message_type
   json.url message_url(message, format: :json)
 end
