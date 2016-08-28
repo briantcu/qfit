@@ -148,7 +148,7 @@ var UserActions = {
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function (results) {
-                dispatcher.dispatch(C.INVITES_SENT, results);
+                UserActions.getConversation(receiver);
             },
             error: function (results) {
                 alert(results);

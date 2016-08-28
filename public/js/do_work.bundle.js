@@ -29581,7 +29581,7 @@
 	            dataType: "json",
 	            contentType: "application/json; charset=utf-8",
 	            success: function (results) {
-	                dispatcher.dispatch(C.INVITES_SENT, results);
+	                UserActions.getConversation(receiver);
 	            },
 	            error: function (results) {
 	                alert(results);
@@ -67481,7 +67481,7 @@
 	        value: function sendDM(receiverId) {
 	            var message = this.refs.messageBox.value.trim();
 	            if (message) {
-	                _user_actions2.default.sendDM(receiverId);
+	                _user_actions2.default.sendDM(receiverId, message);
 	            }
 	        }
 	    }, {
@@ -67503,7 +67503,7 @@
 	                    this.props.conversation && this.props.conversation.messages.length > 0 ? this.props.conversation.messages.map(function (e) {
 	                        return React.createElement(
 	                            'div',
-	                            { className: 'friend gray-border' },
+	                            { key: e.id, className: 'friend gray-border' },
 	                            e.poster_id == this.props.user.id ? [React.createElement('span', {
 	                                key: '0'
 	                            }), React.createElement(

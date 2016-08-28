@@ -12,7 +12,7 @@ class Conversation extends React.Component {
     sendDM (receiverId) {
         var message = this.refs.messageBox.value.trim();
         if (message) {
-            UserActions.sendDM(receiverId);
+            UserActions.sendDM(receiverId, message);
         }
     }
 
@@ -24,7 +24,7 @@ class Conversation extends React.Component {
                         <When condition={this.props.conversation && this.props.conversation.messages.length > 0}>
                             {
                                 this.props.conversation.messages.map(function (e) {
-                                    return <div className="friend gray-border">
+                                    return <div key={e.id} className="friend gray-border">
                                         <Choose>
                                             <When condition={e.poster_id == this.props.user.id}>
                                                 <span>{}</span>
