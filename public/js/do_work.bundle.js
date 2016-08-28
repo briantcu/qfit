@@ -119,6 +119,10 @@
 	
 	var _comment2 = _interopRequireDefault(_comment);
 	
+	var _quadPod = __webpack_require__(/*! views/quad-pod/quad-pod */ 693);
+	
+	var _quadPod2 = _interopRequireDefault(_quadPod);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -129,13 +133,13 @@
 	
 	__webpack_require__(/*! pages/do_work.scss */ 636);
 	
-	var DoWork = function (_React$Component) {
-	    _inherits(DoWork, _React$Component);
+	var App = function (_React$Component) {
+	    _inherits(App, _React$Component);
 	
-	    function DoWork(props) {
-	        _classCallCheck(this, DoWork);
+	    function App(props) {
+	        _classCallCheck(this, App);
 	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DoWork).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
 	
 	        var year, month, day;
 	        var urlArray = location.pathname.split('/');
@@ -165,19 +169,10 @@
 	            exercise_type: undefined
 	        };
 	        _this.onChange = _this.onChange.bind(_this);
-	        _this.addEx = _this.addEx.bind(_this);
-	        _this.closeAddEx = _this.closeAddEx.bind(_this);
-	        _this.skip = _this.skip.bind(_this);
-	        _this.weightChanged = _this.weightChanged.bind(_this);
 	        return _this;
 	    }
 	
-	    _createClass(DoWork, [{
-	        key: 'weightChanged',
-	        value: function weightChanged() {
-	            this.state.routine.weight = this.refs.userWeight.value;
-	        }
-	    }, {
+	    _createClass(App, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            _routine_store2.default.addChangeListener(this.onChange.bind(this));
@@ -233,9 +228,54 @@
 	            });
 	        }
 	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            var childrenWithProps = React.Children.map(this.props.children, function (child) {
+	                return React.cloneElement(child, Object.assign({}, _this2.state));
+	            });
+	
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(_header2.default, { user: this.state.user }),
+	                childrenWithProps
+	            );
+	        }
+	    }]);
+	
+	    return App;
+	}(React.Component);
+	
+	var DoWork = function (_React$Component2) {
+	    _inherits(DoWork, _React$Component2);
+	
+	    function DoWork(props) {
+	        _classCallCheck(this, DoWork);
+	
+	        var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(DoWork).call(this, props));
+	
+	        _this3.state = {
+	            showAddEx: false
+	        };
+	        _this3.addEx = _this3.addEx.bind(_this3);
+	        _this3.closeAddEx = _this3.closeAddEx.bind(_this3);
+	        _this3.skip = _this3.skip.bind(_this3);
+	        _this3.weightChanged = _this3.weightChanged.bind(_this3);
+	        return _this3;
+	    }
+	
+	    _createClass(DoWork, [{
+	        key: 'weightChanged',
+	        value: function weightChanged() {
+	            //@TODO set weight on the model, not directly. Use actions.
+	            this.state.routine.weight = this.refs.userWeight.value;
+	        }
+	    }, {
 	        key: 'addEx',
 	        value: function addEx(e) {
-	            _routine_actions2.default.addExercise(this.state.routine.id, this.state.exercise_type, e);
+	            _routine_actions2.default.addExercise(this.props.routine.id, this.state.exercise_type, e);
 	            this.setState({ showAddEx: false });
 	        }
 	    }, {
@@ -255,9 +295,9 @@
 	            if (!userWeight || isNaN(userWeight)) {
 	                alert('enter a valid weight!');
 	            } else {
-	                //@TODO disable submit button
+	                //@TODO disable submit button, handle user weight
 	                this.state.routine.weight = userWeight;
-	                _routine_actions2.default.completeWorkout(this.state.routine);
+	                _routine_actions2.default.completeWorkout(this.props.routine);
 	            }
 	        }
 	    }, {
@@ -265,7 +305,7 @@
 	        value: function skip() {
 	            var r = confirm("Are you sure you want to skip this workout?");
 	            if (r == true) {
-	                _routine_actions2.default.skipWorkout(this.state.routine.id);
+	                _routine_actions2.default.skipWorkout(this.props.routine.id);
 	            }
 	        }
 	    }, {
@@ -273,7 +313,7 @@
 	        value: function reset() {
 	            var r = confirm("Are you sure you want to reset this workout?");
 	            if (r == true) {
-	                _routine_actions2.default.resetRoutine(this.state.routine.id);
+	                _routine_actions2.default.resetRoutine(this.props.routine.id);
 	            }
 	        }
 	    }, {
@@ -281,19 +321,18 @@
 	        value: function leaveComment() {
 	            var commentText = this.refs.commentBox.value;
 	            if (commentText) {
-	                _routine_actions2.default.postComment(this.state.routine.id, commentText);
+	                _routine_actions2.default.postComment(this.props.routine.id, commentText);
 	            }
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
+	            var _this4 = this;
 	
 	            return React.createElement(
 	                'div',
 	                { className: 'do-work' },
-	                React.createElement(_header2.default, { user: this.state.user }),
-	                React.createElement(_calendar2.default, this.state),
+	                React.createElement(_calendar2.default, this.props),
 	                React.createElement(
 	                    'div',
 	                    { className: 'row subnav' },
@@ -309,14 +348,14 @@
 	                                React.createElement(
 	                                    'span',
 	                                    { onClick: function onClick() {
-	                                            return _this2.submit();
+	                                            return _this4.submit();
 	                                        } },
 	                                    'Complete this Workout'
 	                                ),
 	                                React.createElement(
 	                                    'span',
 	                                    { onClick: function onClick() {
-	                                            return _this2.skip();
+	                                            return _this4.skip();
 	                                        } },
 	                                    'Skip this Workout'
 	                                ),
@@ -347,7 +386,7 @@
 	                        { className: 'container' },
 	                        React.createElement(
 	                            'div',
-	                            { className: this.state.loading ? 'loading row' : 'row' },
+	                            { className: this.props.loading ? 'loading row' : 'row' },
 	                            React.createElement(
 	                                'div',
 	                                { className: 'stretching sec container' },
@@ -361,7 +400,7 @@
 	                                        React.createElement(
 	                                            'span',
 	                                            { className: 'add-ex', onClick: function onClick() {
-	                                                    return _this2.showAddEx('warmups');
+	                                                    return _this4.showAddEx('warmups');
 	                                                } },
 	                                            'Add Exercise'
 	                                        )
@@ -370,13 +409,13 @@
 	                                React.createElement(
 	                                    'div',
 	                                    { className: 'exercise-section' },
-	                                    this.state.routine && this.state.routine.performed_warm_ups && this.state.routine.performed_warm_ups.length > 0 ? this.state.routine.performed_warm_ups.map(function (e, index) {
+	                                    this.props.routine && this.props.routine.performed_warm_ups && this.props.routine.performed_warm_ups.length > 0 ? this.props.routine.performed_warm_ups.map(function (e, index) {
 	                                        if (e.status == 2) {
 	                                            return;
 	                                        }
-	                                        return React.createElement(_stretch2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0,
-	                                            closed: this.state.routine.closed });
-	                                    }.bind(this)) : !this.state.loading ? React.createElement(
+	                                        return React.createElement(_stretch2.default, { exercises: this.props.exercises, exercise: e, key: e.id, border: index != 0,
+	                                            closed: this.props.routine.closed });
+	                                    }.bind(this)) : !this.props.loading ? React.createElement(
 	                                        'span',
 	                                        null,
 	                                        'No Stretching'
@@ -396,7 +435,7 @@
 	                                        React.createElement(
 	                                            'span',
 	                                            { className: 'add-ex', onClick: function onClick() {
-	                                                    return _this2.showAddEx('weights');
+	                                                    return _this4.showAddEx('weights');
 	                                                } },
 	                                            'Add Exercise'
 	                                        )
@@ -405,13 +444,13 @@
 	                                React.createElement(
 	                                    'div',
 	                                    { className: 'exercise-section' },
-	                                    this.state.routine && this.state.routine.performed_exercises && this.state.routine.performed_exercises.length > 0 ? this.state.routine.performed_exercises.map(function (e, index) {
+	                                    this.props.routine && this.props.routine.performed_exercises && this.props.routine.performed_exercises.length > 0 ? this.props.routine.performed_exercises.map(function (e, index) {
 	                                        if (e.status == 2) {
 	                                            return;
 	                                        }
-	                                        return React.createElement(_strength2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0,
-	                                            closed: this.state.routine.closed });
-	                                    }.bind(this)) : !this.state.loading ? React.createElement(
+	                                        return React.createElement(_strength2.default, { exercises: this.props.exercises, exercise: e, key: e.id, border: index != 0,
+	                                            closed: this.props.routine.closed });
+	                                    }.bind(this)) : !this.props.loading ? React.createElement(
 	                                        'span',
 	                                        null,
 	                                        'No Strength'
@@ -431,7 +470,7 @@
 	                                        React.createElement(
 	                                            'span',
 	                                            { className: 'add-ex', onClick: function onClick() {
-	                                                    return _this2.showAddEx('plyos');
+	                                                    return _this4.showAddEx('plyos');
 	                                                } },
 	                                            'Add Exercise'
 	                                        )
@@ -440,13 +479,13 @@
 	                                React.createElement(
 	                                    'div',
 	                                    { className: 'exercise-section' },
-	                                    this.state.routine && this.state.routine.performed_plyometrics && this.state.routine.performed_plyometrics.length > 0 ? this.state.routine.performed_plyometrics.map(function (e, index) {
+	                                    this.props.routine && this.props.routine.performed_plyometrics && this.props.routine.performed_plyometrics.length > 0 ? this.props.routine.performed_plyometrics.map(function (e, index) {
 	                                        if (e.status == 2) {
 	                                            return;
 	                                        }
-	                                        return React.createElement(_plyo2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0,
-	                                            closed: this.state.routine.closed });
-	                                    }.bind(this)) : !this.state.loading ? React.createElement(
+	                                        return React.createElement(_plyo2.default, { exercises: this.props.exercises, exercise: e, key: e.id, border: index != 0,
+	                                            closed: this.props.routine.closed });
+	                                    }.bind(this)) : !this.props.loading ? React.createElement(
 	                                        'span',
 	                                        null,
 	                                        'No Plyos'
@@ -466,7 +505,7 @@
 	                                        React.createElement(
 	                                            'span',
 	                                            { className: 'add-ex', onClick: function onClick() {
-	                                                    return _this2.showAddEx('sprinting');
+	                                                    return _this4.showAddEx('sprinting');
 	                                                } },
 	                                            'Add Exercise'
 	                                        )
@@ -475,13 +514,13 @@
 	                                React.createElement(
 	                                    'div',
 	                                    { className: 'exercise-section' },
-	                                    this.state.routine && this.state.routine.performed_sprints && this.state.routine.performed_sprints.length > 0 ? this.state.routine.performed_sprints.map(function (e, index) {
+	                                    this.props.routine && this.props.routine.performed_sprints && this.props.routine.performed_sprints.length > 0 ? this.props.routine.performed_sprints.map(function (e, index) {
 	                                        if (e.status == 2) {
 	                                            return;
 	                                        }
-	                                        return React.createElement(_sprint2.default, { exercises: this.state.exercises, exercise: e, key: e.id, border: index != 0,
-	                                            closed: this.state.routine.closed });
-	                                    }.bind(this)) : !this.state.loading ? React.createElement(
+	                                        return React.createElement(_sprint2.default, { exercises: this.props.exercises, exercise: e, key: e.id, border: index != 0,
+	                                            closed: this.props.routine.closed });
+	                                    }.bind(this)) : !this.props.loading ? React.createElement(
 	                                        'span',
 	                                        null,
 	                                        'No sprinting'
@@ -493,7 +532,7 @@
 	                                    React.createElement(
 	                                        'div',
 	                                        { className: 'col-xs-3' },
-	                                        React.createElement('input', { ref: 'userWeight', type: 'text', className: 'user-weight', value: this.state.routine.weight, onChange: this.weightChanged }),
+	                                        React.createElement('input', { ref: 'userWeight', type: 'text', className: 'user-weight', value: this.props.routine.weight, onChange: this.weightChanged }),
 	                                        React.createElement(
 	                                            'span',
 	                                            { className: 'standard-text white ' },
@@ -506,18 +545,18 @@
 	                                        React.createElement(
 	                                            'span',
 	                                            { className: 'reset-link', onClick: function onClick() {
-	                                                    return _this2.reset();
+	                                                    return _this4.reset();
 	                                                } },
 	                                            'Reset Workout'
 	                                        ),
 	                                        React.createElement(_button2.default, { ref: 'completeWorkout', buttonText: 'Complete Workout', onClick: function onClick() {
-	                                                return _this2.submit();
+	                                                return _this4.submit();
 	                                            },
 	                                            disabled: false, inverse: true })
 	                                    )
 	                                )
 	                            ),
-	                            this.state.routine.id ? React.createElement(
+	                            this.props.routine.id ? React.createElement(
 	                                'div',
 	                                { className: 'comments sec container' },
 	                                React.createElement(
@@ -529,7 +568,7 @@
 	                                        'Leave a comment'
 	                                    )
 	                                ),
-	                                this.state.routine.comments.map(function (e, index) {
+	                                this.props.routine.comments.map(function (e, index) {
 	                                    return React.createElement(_comment2.default, { comment: e, key: e.id });
 	                                }.bind(this)),
 	                                React.createElement(
@@ -540,7 +579,7 @@
 	                                        { className: 'col-xs-6 text-right' },
 	                                        React.createElement('textarea', { ref: 'commentBox', className: 'leave-comment', rows: '10', cols: '80' }),
 	                                        React.createElement(_button2.default, { ref: 'leaveComment', buttonText: 'Submit', onClick: function onClick() {
-	                                                return _this2.leaveComment();
+	                                                return _this4.leaveComment();
 	                                            },
 	                                            disabled: false })
 	                                    )
@@ -549,7 +588,7 @@
 	                        )
 	                    )
 	                ),
-	                React.createElement(_menu_modal2.default, { show: this.state.showAddEx, close: this.closeAddEx, click: this.addEx, exercises: this.state.exercises, type: this.state.exercise_type })
+	                React.createElement(_menu_modal2.default, { show: this.state.showAddEx, close: this.closeAddEx, click: this.addEx, exercises: this.props.exercises, type: this.state.exercise_type })
 	            );
 	        }
 	    }]);
@@ -562,8 +601,13 @@
 	    { history: _reactRouter.browserHistory },
 	    React.createElement(
 	        _reactRouter.Route,
-	        { path: '/do-work', component: DoWork },
-	        React.createElement(_reactRouter.Route, { path: ':year/:month/:day', component: DoWork })
+	        { path: '/', component: App },
+	        React.createElement(
+	            _reactRouter.Route,
+	            { path: 'workout', component: DoWork },
+	            React.createElement(_reactRouter.Route, { path: ':year/:month/:day', component: DoWork })
+	        ),
+	        React.createElement(_reactRouter.Route, { path: 'quad-pod', component: _quadPod2.default })
 	    )
 	), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
@@ -23505,7 +23549,7 @@
 	                dataType: "json",
 	                contentType: "application/json; charset=utf-8",
 	                success: function (results) {
-	                    location.href = "/do-work";
+	                    location.href = "/workout";
 	                },
 	                error: function (results) {
 	                    alert(results);
@@ -23519,7 +23563,7 @@
 	                dataType: "json",
 	                contentType: "application/json; charset=utf-8",
 	                success: function (results) {
-	                    location.href = "/do-work";
+	                    location.href = "/workout";
 	                },
 	                error: function (results) {
 	                    alert(results);
@@ -41347,7 +41391,7 @@
 	    _createClass(CalendarCell, [{
 	        key: 'click',
 	        value: function click() {
-	            var url = '/do-work/' + this.props.dayObj.year + '/' + this.props.dayObj.month + '/' + this.props.dayObj.day_of_month;
+	            var url = '/workout/' + this.props.dayObj.year + '/' + this.props.dayObj.month + '/' + this.props.dayObj.day_of_month;
 	            _reactRouter.browserHistory.push(url);
 	        }
 	    }, {
@@ -66479,6 +66523,100 @@
 	
 	// exports
 
+
+/***/ },
+/* 638 */,
+/* 639 */,
+/* 640 */,
+/* 641 */,
+/* 642 */,
+/* 643 */,
+/* 644 */,
+/* 645 */,
+/* 646 */,
+/* 647 */,
+/* 648 */,
+/* 649 */,
+/* 650 */,
+/* 651 */,
+/* 652 */,
+/* 653 */,
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */,
+/* 671 */,
+/* 672 */,
+/* 673 */,
+/* 674 */,
+/* 675 */,
+/* 676 */,
+/* 677 */,
+/* 678 */,
+/* 679 */,
+/* 680 */,
+/* 681 */,
+/* 682 */,
+/* 683 */,
+/* 684 */,
+/* 685 */,
+/* 686 */,
+/* 687 */,
+/* 688 */,
+/* 689 */,
+/* 690 */,
+/* 691 */,
+/* 692 */,
+/* 693 */
+/*!*************************************!*\
+  !*** ./views/quad-pod/quad-pod.jsx ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 34);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var QuadPod = function (_React$Component) {
+	    _inherits(QuadPod, _React$Component);
+	
+	    function QuadPod(props) {
+	        _classCallCheck(this, QuadPod);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(QuadPod).call(this, props));
+	
+	        _this.state = {};
+	        return _this;
+	    }
+	
+	    return QuadPod;
+	}(React.Component);
+	
+	exports.default = QuadPod;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ }
 /******/ ]);

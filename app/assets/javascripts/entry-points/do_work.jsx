@@ -16,10 +16,11 @@ import C from 'constants/routine_constants';
 import MenuModal from 'views/do-work/menu_modal';
 import Button from 'views/common/button';
 import Comment from 'views/do-work/comment';
+import QuadPod from 'views/quad-pod/quad-pod';
 
 require('pages/do_work.scss');
 
-class DoWork extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
         var year, month, day;
@@ -50,14 +51,6 @@ class DoWork extends React.Component {
             exercise_type: undefined
         };
         this.onChange = this.onChange.bind(this);
-        this.addEx = this.addEx.bind(this);
-        this.closeAddEx = this.closeAddEx.bind(this);
-        this.skip = this.skip.bind(this);
-        this.weightChanged = this.weightChanged.bind(this);
-    }
-
-    weightChanged() {
-        this.state.routine.weight = this.refs.userWeight.value;
     }
 
     componentDidMount () {
@@ -112,8 +105,37 @@ class DoWork extends React.Component {
         );
     }
 
+    render () {
+        const childrenWithProps = React.Children.map(this.props.children,
+            (child) => React.cloneElement(child, Object.assign({}, this.state))
+        );
+
+        return <div>
+            <Header user={this.state.user} />
+            {childrenWithProps}
+        </div>
+    }
+}
+
+class DoWork extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showAddEx: false,
+        };
+        this.addEx = this.addEx.bind(this);
+        this.closeAddEx = this.closeAddEx.bind(this);
+        this.skip = this.skip.bind(this);
+        this.weightChanged = this.weightChanged.bind(this);
+    }
+
+    weightChanged() {
+        //@TODO set weight on the model, not directly. Use actions.
+        this.state.routine.weight = this.refs.userWeight.value;
+    }
+
     addEx(e) {
-        RoutineActions.addExercise(this.state.routine.id, this.state.exercise_type, e);
+        RoutineActions.addExercise(this.props.routine.id, this.state.exercise_type, e);
         this.setState({showAddEx: false});
     }
 
@@ -130,37 +152,36 @@ class DoWork extends React.Component {
         if ((!userWeight) || isNaN(userWeight)) {
             alert('enter a valid weight!');
         } else {
-            //@TODO disable submit button
+            //@TODO disable submit button, handle user weight
             this.state.routine.weight = userWeight;
-            RoutineActions.completeWorkout(this.state.routine);
+            RoutineActions.completeWorkout(this.props.routine);
         }
     }
 
     skip() {
         var r = confirm("Are you sure you want to skip this workout?");
         if (r == true) {
-            RoutineActions.skipWorkout(this.state.routine.id);
+            RoutineActions.skipWorkout(this.props.routine.id);
         }
     }
 
     reset() {
         var r=confirm("Are you sure you want to reset this workout?");
         if (r==true) {
-            RoutineActions.resetRoutine(this.state.routine.id);
+            RoutineActions.resetRoutine(this.props.routine.id);
         }
     }
 
     leaveComment() {
         var commentText = this.refs.commentBox.value;
         if (commentText) {
-            RoutineActions.postComment(this.state.routine.id, commentText);
+            RoutineActions.postComment(this.props.routine.id, commentText);
         }
     }
 
     render () {
         return <div className="do-work">
-            <Header user={this.state.user} />
-            <Calendar {...this.state} />
+            <Calendar {...this.props} />
 
             <div className="row subnav">
                 <div className="container">
@@ -178,7 +199,7 @@ class DoWork extends React.Component {
 
             <div className="row main">
                 <div className="container">
-                    <div className={this.state.loading ? 'loading row' : 'row'}>
+                    <div className={this.props.loading ? 'loading row' : 'row'}>
 
                         <div className="stretching sec container">
                             <div className="row">
@@ -187,18 +208,18 @@ class DoWork extends React.Component {
                             </div>
                             <div className="exercise-section">
                                 <Choose>
-                                    <When condition={this.state.routine && this.state.routine.performed_warm_ups && this.state.routine.performed_warm_ups.length > 0}>
+                                    <When condition={this.props.routine && this.props.routine.performed_warm_ups && this.props.routine.performed_warm_ups.length > 0}>
                                         {
-                                            this.state.routine.performed_warm_ups.map(function(e, index) {
+                                            this.props.routine.performed_warm_ups.map(function(e, index) {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Stretch exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}
-                                                closed={this.state.routine.closed} />
+                                                return <Stretch exercises={this.props.exercises} exercise={e} key={e.id} border={index != 0}
+                                                closed={this.props.routine.closed} />
                                             }.bind(this))
                                         }
                                     </When>
-                                    <When condition={!this.state.loading} >
+                                    <When condition={!this.props.loading} >
                                         <span>No Stretching</span>
                                     </When>
                                 </Choose>
@@ -213,18 +234,18 @@ class DoWork extends React.Component {
                             </div>
                             <div className="exercise-section">
                                 <Choose>
-                                    <When condition={this.state.routine && this.state.routine.performed_exercises && this.state.routine.performed_exercises.length > 0}>
+                                    <When condition={this.props.routine && this.props.routine.performed_exercises && this.props.routine.performed_exercises.length > 0}>
                                         {
-                                            this.state.routine.performed_exercises.map(function(e, index) {
+                                            this.props.routine.performed_exercises.map(function(e, index) {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Strength exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}
-                                                                 closed={this.state.routine.closed} />
+                                                return <Strength exercises={this.props.exercises} exercise={e} key={e.id} border={index != 0}
+                                                                 closed={this.props.routine.closed} />
                                             }.bind(this))
                                         }
                                     </When>
-                                    <When condition={!this.state.loading} >
+                                    <When condition={!this.props.loading} >
                                         <span>No Strength</span>
                                     </When>
                                 </Choose>
@@ -239,18 +260,18 @@ class DoWork extends React.Component {
                             </div>
                             <div className="exercise-section">
                                 <Choose>
-                                    <When condition={this.state.routine && this.state.routine.performed_plyometrics && this.state.routine.performed_plyometrics.length > 0}>
+                                    <When condition={this.props.routine && this.props.routine.performed_plyometrics && this.props.routine.performed_plyometrics.length > 0}>
                                         {
-                                            this.state.routine.performed_plyometrics.map(function(e, index) {
+                                            this.props.routine.performed_plyometrics.map(function(e, index) {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Plyo exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}
-                                                             closed={this.state.routine.closed} />
+                                                return <Plyo exercises={this.props.exercises} exercise={e} key={e.id} border={index != 0}
+                                                             closed={this.props.routine.closed} />
                                             }.bind(this))
                                         }
                                     </When>
-                                    <When condition={!this.state.loading} >
+                                    <When condition={!this.props.loading} >
                                         <span>No Plyos</span>
                                     </When>
                                 </Choose>
@@ -265,25 +286,25 @@ class DoWork extends React.Component {
                             </div>
                             <div className="exercise-section">
                                 <Choose>
-                                    <When condition={this.state.routine && this.state.routine.performed_sprints && this.state.routine.performed_sprints.length > 0}>
+                                    <When condition={this.props.routine && this.props.routine.performed_sprints && this.props.routine.performed_sprints.length > 0}>
                                         {
-                                            this.state.routine.performed_sprints.map(function(e, index) {
+                                            this.props.routine.performed_sprints.map(function(e, index) {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Sprint exercises={this.state.exercises} exercise={e} key={e.id} border={index != 0}
-                                                               closed={this.state.routine.closed} />
+                                                return <Sprint exercises={this.props.exercises} exercise={e} key={e.id} border={index != 0}
+                                                               closed={this.props.routine.closed} />
                                             }.bind(this))
                                         }
                                     </When>
-                                    <When condition={!this.state.loading} >
+                                    <When condition={!this.props.loading} >
                                         <span>No sprinting</span>
                                     </When>
                                 </Choose>
                             </div>
                             <div className="row last-row">
                                 <div className="col-xs-3">
-                                    <input ref="userWeight" type="text" className="user-weight" value={this.state.routine.weight} onChange={this.weightChanged}/>
+                                    <input ref="userWeight" type="text" className="user-weight" value={this.props.routine.weight} onChange={this.weightChanged}/>
                                     <span className="standard-text white ">Your Weight (lbs)</span>
                                 </div>
                                 <div className="col-xs-6 col-xs-offset-3 text-right">
@@ -293,13 +314,13 @@ class DoWork extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <If condition={this.state.routine.id} >
+                        <If condition={this.props.routine.id} >
                         <div className="comments sec container">
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Leave a comment</div>
                             </div>
                             {
-                                this.state.routine.comments.map(function(e, index) {
+                                this.props.routine.comments.map(function(e, index) {
                                     return <Comment comment={e} key={e.id} />
                                 }.bind(this))
                             }
@@ -315,15 +336,18 @@ class DoWork extends React.Component {
                     </div>
                 </div>
             </div>
-            <MenuModal show={this.state.showAddEx} close={this.closeAddEx} click={this.addEx} exercises={this.state.exercises} type={this.state.exercise_type}/>
+            <MenuModal show={this.state.showAddEx} close={this.closeAddEx} click={this.addEx} exercises={this.props.exercises} type={this.state.exercise_type}/>
         </div>;
     }
 }
 
 render((
     <Router history={browserHistory}>
-        <Route path="/do-work" component={DoWork}>
-            <Route path=":year/:month/:day" component={DoWork}/>
+        <Route path="/" component={App}>
+            <Route path="workout" component={DoWork}>
+                <Route path=":year/:month/:day" component={DoWork}/>
+            </Route>
+            <Route path="quad-pod" component={QuadPod} />
         </Route>
     </Router>
 ), document.getElementById('app'));

@@ -23246,7 +23246,7 @@
 	                dataType: "json",
 	                contentType: "application/json; charset=utf-8",
 	                success: function (results) {
-	                    location.href = "/do-work";
+	                    location.href = "/workout";
 	                },
 	                error: function (results) {
 	                    alert(results);
@@ -23260,7 +23260,7 @@
 	                dataType: "json",
 	                contentType: "application/json; charset=utf-8",
 	                success: function (results) {
-	                    location.href = "/do-work";
+	                    location.href = "/workout";
 	                },
 	                error: function (results) {
 	                    alert(results);

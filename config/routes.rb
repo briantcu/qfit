@@ -17,8 +17,8 @@ Qfit::Application.routes.draw do
   get '/commitment', to: 'pages#setup_redirect'
   get '/program', to: 'pages#setup_redirect'
   get '/schedule', to: 'pages#schedule'
-  get '/do-work', to: 'pages#do_work'
-  get '/do-work/:year/:month/:day', to: 'pages#do_work'
+  get '/workout', to: 'pages#do_work'
+  get '/workout/:year/:month/:day', to: 'pages#do_work'
 
   get '/', to: 'pages#home'
 

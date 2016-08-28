@@ -14,7 +14,7 @@ class CalendarCell extends React.Component {
     }
 
     click() {
-        var url = '/do-work/' + this.props.dayObj.year + '/' + this.props.dayObj.month + '/' + this.props.dayObj.day_of_month;
+        var url = '/workout/' + this.props.dayObj.year + '/' + this.props.dayObj.month + '/' + this.props.dayObj.day_of_month;
         browserHistory.push(url);
     }
 
