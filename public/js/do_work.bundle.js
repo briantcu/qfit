@@ -119,7 +119,7 @@
 	
 	var _comment2 = _interopRequireDefault(_comment);
 	
-	var _quadPod = __webpack_require__(/*! views/quad-pod/quad-pod */ 693);
+	var _quadPod = __webpack_require__(/*! views/quad-pod/quad-pod */ 636);
 	
 	var _quadPod2 = _interopRequireDefault(_quadPod);
 	
@@ -131,7 +131,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! pages/do_work.scss */ 636);
+	__webpack_require__(/*! pages/do_work.scss */ 637);
 	
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
@@ -183,9 +183,17 @@
 	    }, {
 	        key: 'componentWillReceiveProps',
 	        value: function componentWillReceiveProps(nextProps) {
-	            var year = nextProps.params.year;
-	            var month = nextProps.params.month;
-	            var day = nextProps.params.day;
+	            var year, month, day;
+	            year = nextProps.params.year;
+	            if (year) {
+	                month = nextProps.params.month;
+	                day = nextProps.params.day;
+	            } else {
+	                var today = new Date();
+	                year = today.getFullYear();
+	                month = today.getMonth() + 1;
+	                day = today.getDate();
+	            }
 	            this.setState({ year: year, month: month, day: day });
 	            _routine_actions2.default.getRoutine(year, month, day, gon.current_user_id);
 	        }
@@ -232,6 +240,8 @@
 	        value: function render() {
 	            var _this2 = this;
 	
+	            var active = location.pathname.split('/')[1];
+	
 	            var childrenWithProps = React.Children.map(this.props.children, function (child) {
 	                return React.cloneElement(child, Object.assign({}, _this2.state));
 	            });
@@ -239,7 +249,7 @@
 	            return React.createElement(
 	                'div',
 	                null,
-	                React.createElement(_header2.default, { user: this.state.user }),
+	                React.createElement(_header2.default, { user: this.state.user, showWorkoutNav: true, active: active }),
 	                childrenWithProps
 	            );
 	        }
@@ -22487,6 +22497,8 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 34);
 	
+	var _reactRouter = __webpack_require__(/*! react-router */ 254);
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -22521,9 +22533,33 @@
 	                            { className: 'col-xs-2' },
 	                            React.createElement('img', { className: 'logo', src: 'https://s3.amazonaws.com/quadfit/logo%403x.png' })
 	                        ),
+	                        this.props.showWorkoutNav ? React.createElement(
+	                            'div',
+	                            { className: 'col-xs-8 text-center' },
+	                            '     \\',
+	                            React.createElement(
+	                                'div',
+	                                { className: 'nav' },
+	                                React.createElement(
+	                                    _reactRouter.Link,
+	                                    { className: this.props.active == 'workout' ? 'btn active' : 'btn', to: '/workout' },
+	                                    'WORKOUT'
+	                                ),
+	                                React.createElement(
+	                                    _reactRouter.Link,
+	                                    { className: this.props.active == 'progress' ? 'btn active' : 'btn', to: '/progress' },
+	                                    'PROGRESS'
+	                                ),
+	                                React.createElement(
+	                                    _reactRouter.Link,
+	                                    { className: this.props.active == 'quad-pod' ? 'btn active' : 'btn', to: '/quad-pod' },
+	                                    'QUAD POD'
+	                                )
+	                            )
+	                        ) : null,
 	                        this.props.user.avatars ? React.createElement(
 	                            'div',
-	                            { className: 'col-xs-1 col-xs-offset-9' },
+	                            { className: this.props.showWorkoutNav ? "col-xs-1 col-xs-offset-1" : "col-xs-1 col-xs-offset-9" },
 	                            React.createElement('img', { src: '' + this.props.user.avatars })
 	                        ) : null
 	                    )
@@ -66480,107 +66516,6 @@
 
 /***/ },
 /* 636 */
-/*!************************************!*\
-  !*** ../styles/pages/do_work.scss ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./do_work.scss */ 637);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 239)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./do_work.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./do_work.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 637 */
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/do_work.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 238)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 638 */,
-/* 639 */,
-/* 640 */,
-/* 641 */,
-/* 642 */,
-/* 643 */,
-/* 644 */,
-/* 645 */,
-/* 646 */,
-/* 647 */,
-/* 648 */,
-/* 649 */,
-/* 650 */,
-/* 651 */,
-/* 652 */,
-/* 653 */,
-/* 654 */,
-/* 655 */,
-/* 656 */,
-/* 657 */,
-/* 658 */,
-/* 659 */,
-/* 660 */,
-/* 661 */,
-/* 662 */,
-/* 663 */,
-/* 664 */,
-/* 665 */,
-/* 666 */,
-/* 667 */,
-/* 668 */,
-/* 669 */,
-/* 670 */,
-/* 671 */,
-/* 672 */,
-/* 673 */,
-/* 674 */,
-/* 675 */,
-/* 676 */,
-/* 677 */,
-/* 678 */,
-/* 679 */,
-/* 680 */,
-/* 681 */,
-/* 682 */,
-/* 683 */,
-/* 684 */,
-/* 685 */,
-/* 686 */,
-/* 687 */,
-/* 688 */,
-/* 689 */,
-/* 690 */,
-/* 691 */,
-/* 692 */,
-/* 693 */
 /*!*************************************!*\
   !*** ./views/quad-pod/quad-pod.jsx ***!
   \*************************************/
@@ -66617,6 +66552,52 @@
 	
 	exports.default = QuadPod;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 637 */
+/*!************************************!*\
+  !*** ../styles/pages/do_work.scss ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./do_work.scss */ 638);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 239)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./do_work.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./do_work.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 638 */
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/do_work.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 238)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
 
 /***/ }
 /******/ ]);

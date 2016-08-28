@@ -61,9 +61,17 @@ class App extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        var year = nextProps.params.year;
-        var month = nextProps.params.month;
-        var day = nextProps.params.day;
+        var year, month, day;
+        year = nextProps.params.year;
+        if (year) {
+            month = nextProps.params.month;
+            day = nextProps.params.day;
+        } else {
+            var today = new Date();
+            year = today.getFullYear();
+            month = today.getMonth() + 1;
+            day = today.getDate();
+        }
         this.setState({year: year, month: month, day: day});
         RoutineActions.getRoutine(year, month, day, gon.current_user_id);
     }
@@ -106,12 +114,14 @@ class App extends React.Component {
     }
 
     render () {
+        var active = location.pathname.split('/')[1];
+
         const childrenWithProps = React.Children.map(this.props.children,
             (child) => React.cloneElement(child, Object.assign({}, this.state))
         );
 
         return <div>
-            <Header user={this.state.user} />
+            <Header user={this.state.user} showWorkoutNav={true} active={active} />
             {childrenWithProps}
         </div>
     }

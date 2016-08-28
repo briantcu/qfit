@@ -9,5 +9,34 @@
     width: 100%;
     padding-top: 20px;
   }
+  .btn {
+    height: 40px;
+    background-color: $dark-purple;
+    width: 129px;
+    display: inline-block;
+    float: left;
+    border: 1px solid $purp4;
+    border-radius: 0;
+    padding-top: 8px;
+    color: white !important;
+    &:hover {
+      color: white;
+      border: 1px solid $purple;
+    }
+  }
+
+  .active {
+    border: 1px solid $purple;
+    background-color: $purp3;
+  }
+
+  .nav {
+    width: 390px;
+    margin: 10px auto auto;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: white !important;
+  }
 
 }

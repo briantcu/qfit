@@ -84,6 +84,29 @@ h1 {
   .header .logo {
     width: 100%;
     padding-top: 20px; }
+  .header .btn {
+    height: 40px;
+    background-color: #271b37;
+    width: 129px;
+    display: inline-block;
+    float: left;
+    border: 1px solid #5a3e7f;
+    border-radius: 0;
+    padding-top: 8px;
+    color: white !important; }
+    .header .btn:hover {
+      color: white;
+      border: 1px solid #7953aa; }
+  .header .active {
+    border: 1px solid #7953aa;
+    background-color: #34244a; }
+  .header .nav {
+    width: 390px;
+    margin: 10px auto auto;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: white !important; }
 body {
   font-family: 'Open Sans', sans-serif; }
 
