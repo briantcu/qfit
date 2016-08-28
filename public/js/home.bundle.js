@@ -50,7 +50,7 @@
 
 	'use strict';
 	
-	__webpack_require__(/*! pages/home.scss */ 641);
+	__webpack_require__(/*! pages/home.scss */ 648);
 
 /***/ },
 
@@ -370,7 +370,7 @@
 
 /***/ },
 
-/***/ 641:
+/***/ 648:
 /*!*********************************!*\
   !*** ../styles/pages/home.scss ***!
   \*********************************/
@@ -379,7 +379,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./home.scss */ 642);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./home.scss */ 649);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 302)(content, {});
@@ -400,7 +400,7 @@
 
 /***/ },
 
-/***/ 642:
+/***/ 649:
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/home.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************/

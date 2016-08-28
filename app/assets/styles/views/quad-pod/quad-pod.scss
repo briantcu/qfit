@@ -2,6 +2,9 @@
 
 .quad-pod {
 
+  .gray-border {
+    border-bottom: solid 1px $gray2;
+  }
   .main {
     background-color: $gray2;
     color: $dark-purple;
@@ -33,12 +36,30 @@
         height: 50px;
       }
       .sec-main {
-        padding-left: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
         padding-top: 10px;
+        padding-bottom: 10px;
         font-size: 15.6px;
         line-height: 1.5;
         letter-spacing: -0.2px;
       }
+    }
+    input {
+      background-color: $gray1;
+      border: solid 1px $lavender;
+      width: 211px;
+      height: 35px;
+      margin-left: 10px;
+      padding-left: 5px;
+    }
+    .input-row {
+      margin-top: 10px;
+    }
+    .submit-row {
+      margin-top: 15px;
+      margin-left: 10px;
+      padding-bottom: 20px;
     }
   }
 

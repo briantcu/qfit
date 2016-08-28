@@ -3,8 +3,9 @@ var Store = require('./store.js');
 var C = require('constants/user_constants.js');
 
 var QuadPodStore = new Store({
-    feed: [],
+    feed: {},
     pod: [],
+    invites: [],
 
     setPod: function(data){
         this.pod = data;
@@ -14,10 +15,15 @@ var QuadPodStore = new Store({
         this.feed = data;
     },
 
+    setInvites: function(data) {
+        this.invites = data;
+    },
+
     getData: function(){
         return {
             feed: this.feed,
-            pod: this.pod
+            pod: this.pod,
+            invites: this.invites
         };
     }
 });
@@ -32,6 +38,13 @@ dispatcher.register(C.POD_LOADED, function(data) {
 dispatcher.register(C.FEED_LOADED, function(data) {
     if(data){
         QuadPodStore.setFeed(data);
+        QuadPodStore.change();
+    }
+});
+
+dispatcher.register(C.INVITES_SENT, function(data) {
+    if(data){
+        QuadPodStore.setInvites(data);
         QuadPodStore.change();
     }
 });

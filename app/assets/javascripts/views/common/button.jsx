@@ -12,7 +12,7 @@ class Button extends React.Component {
     }
 
     loading() {
-        $(this.refs.but)
+        $(this.refs.button);
     }
 
     render () {

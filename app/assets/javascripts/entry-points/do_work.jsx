@@ -49,7 +49,8 @@ class App extends React.Component {
             date: today,
             exercises: {},
             showAddEx: false,
-            exercise_type: undefined
+            exercise_type: undefined,
+            invites: {}
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -118,7 +119,8 @@ class App extends React.Component {
                 user: user.user,
                 exercises: exercises,
                 feed: qpData.feed,
-                quad_pod: qpData.pod
+                quad_pod: qpData.pod,
+                invites: qpData.invites
             }
         );
     }

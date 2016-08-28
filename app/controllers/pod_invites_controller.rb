@@ -28,14 +28,16 @@ class PodInvitesController < ApplicationController
 
   # POST /pod_invites.json
   def create
-    @pod_invite = PodInvite.new(pod_invite_params)
-    @pod_invite.inviter = current_user
-    response = QuadPodService.instance.send_invite(@pod_invite)
-
-    if response[:status] == 'success'
-      render action: 'show', status: :created, location: response[:pod_invite]
-    else
-      render status: 400, json: { 'message' => response[:message] }
+    @successes = Array.new
+    @failures = Array.new
+    params[:pod_invite][:sent_to].each do |send_to|
+      pod_invite = PodInvite.new(sent_to: send_to, inviter: current_user)
+      response = QuadPodService.instance.send_invite(pod_invite)
+      if response[:status] == 'success'
+        @successes.push(response)
+      else
+        @failures.push(response)
+      end
     end
   end
 

@@ -67,6 +67,12 @@ h1 {
 .purple {
   color: #7953aa; }
 
+.green {
+  color: green; }
+
+.red {
+  color: red; }
+
 .small-link {
   opacity: 0.9;
   font-family: 'Open Sans', sans-serif;
@@ -175,6 +181,12 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.green {
+  color: green; }
+
+.red {
+  color: red; }
 
 .small-link {
   opacity: 0.9;
@@ -349,6 +361,12 @@ h1 {
 .purple {
   color: #7953aa; }
 
+.green {
+  color: green; }
+
+.red {
+  color: red; }
+
 .small-link {
   opacity: 0.9;
   font-family: 'Open Sans', sans-serif;
@@ -432,6 +450,12 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.green {
+  color: green; }
+
+.red {
+  color: red; }
 
 .small-link {
   opacity: 0.9;
@@ -569,6 +593,12 @@ h1 {
 .purple {
   color: #7953aa; }
 
+.green {
+  color: green; }
+
+.red {
+  color: red; }
+
 .small-link {
   opacity: 0.9;
   font-family: 'Open Sans', sans-serif;
@@ -671,6 +701,12 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.green {
+  color: green; }
+
+.red {
+  color: red; }
 
 .small-link {
   opacity: 0.9;
@@ -1298,6 +1334,12 @@ h1 {
 .purple {
   color: #7953aa; }
 
+.green {
+  color: green; }
+
+.red {
+  color: red; }
+
 .small-link {
   opacity: 0.9;
   font-family: 'Open Sans', sans-serif;
@@ -1375,6 +1417,12 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.green {
+  color: green; }
+
+.red {
+  color: red; }
 
 .small-link {
   opacity: 0.9;
@@ -1488,6 +1536,12 @@ h1 {
 .purple {
   color: #7953aa; }
 
+.green {
+  color: green; }
+
+.red {
+  color: red; }
+
 .small-link {
   opacity: 0.9;
   font-family: 'Open Sans', sans-serif;
@@ -1565,6 +1619,12 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.green {
+  color: green; }
+
+.red {
+  color: red; }
 
 .small-link {
   opacity: 0.9;
@@ -1653,6 +1713,12 @@ h1 {
 .purple {
   color: #7953aa; }
 
+.green {
+  color: green; }
+
+.red {
+  color: red; }
+
 .small-link {
   opacity: 0.9;
   font-family: 'Open Sans', sans-serif;
@@ -1736,6 +1802,12 @@ h1 {
 .purple {
   color: #7953aa; }
 
+.green {
+  color: green; }
+
+.red {
+  color: red; }
+
 .small-link {
   opacity: 0.9;
   font-family: 'Open Sans', sans-serif;
@@ -1745,6 +1817,9 @@ h1 {
   color: #7953aa;
   text-decoration: underline;
   cursor: pointer; }
+
+.quad-pod .gray-border {
+  border-bottom: solid 1px #e6e6e6; }
 
 .quad-pod .main {
   background-color: #e6e6e6;
@@ -1774,11 +1849,26 @@ h1 {
       border-bottom: solid 2px #7953aa;
       height: 50px; }
     .quad-pod .main .qp-section .sec-main {
-      padding-left: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
       padding-top: 10px;
+      padding-bottom: 10px;
       font-size: 15.6px;
       line-height: 1.5;
       letter-spacing: -0.2px; }
+  .quad-pod .main input {
+    background-color: #fbf8fc;
+    border: solid 1px #ede4f1;
+    width: 211px;
+    height: 35px;
+    margin-left: 10px;
+    padding-left: 5px; }
+  .quad-pod .main .input-row {
+    margin-top: 10px; }
+  .quad-pod .main .submit-row {
+    margin-top: 15px;
+    margin-left: 10px;
+    padding-bottom: 20px; }
 body {
   font-family: 'Open Sans', sans-serif; }
 
@@ -1847,6 +1937,12 @@ h1 {
 
 .purple {
   color: #7953aa; }
+
+.green {
+  color: green; }
+
+.red {
+  color: red; }
 
 .small-link {
   opacity: 0.9;

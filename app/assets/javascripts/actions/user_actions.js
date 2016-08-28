@@ -101,6 +101,26 @@ var UserActions = {
                 alert('Something went wrong!');
             }
         });
+    },
+
+    sendInvitations: function(invites) {
+        if (invites && invites.length > 0) {
+            var payload = {pod_invite: {sent_to: invites}};
+            var data = JSON.stringify(payload);
+            $.ajax({
+                type: 'post',
+                data: data,
+                url: '/pod_invites.json',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                success: function (results) {
+                    dispatcher.dispatch(C.INVITES_SENT, results);
+                },
+                error: function (results) {
+                    alert(results);
+                }
+            });
+        }
     }
 
 };

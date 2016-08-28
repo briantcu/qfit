@@ -78,6 +78,7 @@ class QuadPodService
       inviter.points += gd.points
       inviter.save
     end
+    invite
   end
 
   def create_token(invite)
