@@ -18,6 +18,7 @@ import MenuModal from 'views/do-work/menu_modal';
 import Button from 'views/common/button';
 import Comment from 'views/do-work/comment';
 import QuadPod from 'views/quad-pod/quad-pod';
+import Footer from 'views/common/footer';
 
 require('pages/do_work.scss');
 
@@ -137,17 +138,7 @@ class App extends React.Component {
         return <div>
             <Header user={this.state.user} showWorkoutNav={true} active={active} />
             {childrenWithProps}
-            <div className="row footer">
-                <div className="col-sm-5 col-xs-3 logo">
-                    <img src="https://s3.amazonaws.com/quadfit/logo.png" />
-                </div>
-                <div className="col-sm-7 col-xs-9 text-right links">
-                    <span>Made with grit in San Francisco</span>
-                    <span>About</span>
-                    <span>Contact</span>
-                    <span>FAQ</span>
-                </div>
-            </div>
+            <Footer />
         </div>
     }
 }

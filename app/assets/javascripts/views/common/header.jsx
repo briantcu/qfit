@@ -18,9 +18,18 @@ class Header extends React.Component {
                     <If condition={this.props.showWorkoutNav}>
                         <div className="col-xs-8 text-center">     \
                             <div className="nav">
-                                <Link className={(this.props.active == 'workout') ? 'btn active' : 'btn'} to={`/workout`}>WORKOUT</Link>
-                                <Link className={(this.props.active == 'progress') ? 'btn active' : 'btn'} to={`/progress`}>PROGRESS</Link>
-                                <Link className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} to={`/quad-pod`}>QUAD POD</Link>
+                                <If condition={this.props.trueLinks}>
+                                    <a className="btn" href="/workout">WORKOUT</a>
+                                    <a className="btn" href="/progress">PROGRESS</a>
+                                    <a className="btn" href="/quad-pod">QUAD POD</a>
+                                </If>
+                                <If condition={!this.props.trueLinks}>
+                                    <Link className={(this.props.active == 'workout') ? 'btn active' : 'btn'}
+                                          to={`/workout`}>WORKOUT</Link>
+                                    < Link className={(this.props.active == 'progress') ? 'btn active' : 'btn'} to={`/progress`}>PROGRESS</Link>
+                                    <Link className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} to={`/quad-pod`}>QUAD POD</Link>
+                                </If>
+
                             </div>
                         </div>
                     </If>

@@ -16,7 +16,8 @@ var config = {
         coaches: 'entry-points/coaches.jsx',
         do_work: 'entry-points/do_work.jsx',
         more_info: 'entry-points/more_info.jsx',
-        home: 'entry-points/home.jsx'
+        home: 'entry-points/home.jsx',
+        profile: 'entry-points/profile.jsx'
     },
     output: {
         filename: '[name].bundle.js',

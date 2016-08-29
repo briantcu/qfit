@@ -23,6 +23,7 @@ Qfit::Application.routes.draw do
   get '/workout/:year/:month/:day', to: 'pages#do_work'
 
   get '/', to: 'pages#home'
+  get '/profile', to: 'pages#profile'
 
 
   #****************** API *********************

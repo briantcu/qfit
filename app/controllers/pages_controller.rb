@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :verify_logged_in_html, only: [:setup, :coaches, :schedule, :do_work]
+  before_filter :verify_logged_in_html, only: [:setup, :coaches, :schedule, :do_work, :profile]
   before_filter :can_access_user, only: [:setup, :coaches, :schedule, :do_work]
 
   def home
@@ -12,6 +12,13 @@ class PagesController < ApplicationController
 
   def sign_up_coach
     render layout: 'full_page'
+  end
+
+  def profile
+    gon.push({
+                 current_user_id: current_user.id
+             })
+   render template: 'pages/profile'
   end
 
   def setup

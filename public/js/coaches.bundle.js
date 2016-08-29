@@ -24767,21 +24767,39 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'nav' },
-	                                React.createElement(
-	                                    _reactRouter.Link,
-	                                    { className: this.props.active == 'workout' ? 'btn active' : 'btn', to: '/workout' },
+	                                this.props.trueLinks ? [React.createElement(
+	                                    'a',
+	                                    { className: 'btn', href: '/workout', key: '0'
+	                                    },
 	                                    'WORKOUT'
-	                                ),
-	                                React.createElement(
-	                                    _reactRouter.Link,
-	                                    { className: this.props.active == 'progress' ? 'btn active' : 'btn', to: '/progress' },
+	                                ), React.createElement(
+	                                    'a',
+	                                    { className: 'btn', href: '/progress', key: '1'
+	                                    },
 	                                    'PROGRESS'
-	                                ),
-	                                React.createElement(
-	                                    _reactRouter.Link,
-	                                    { className: this.props.active == 'quad-pod' ? 'btn active' : 'btn', to: '/quad-pod' },
+	                                ), React.createElement(
+	                                    'a',
+	                                    { className: 'btn', href: '/quad-pod', key: '2'
+	                                    },
 	                                    'QUAD POD'
-	                                )
+	                                )] : null,
+	                                !this.props.trueLinks ? [React.createElement(
+	                                    _reactRouter.Link,
+	                                    { className: this.props.active == 'workout' ? 'btn active' : 'btn',
+	                                        to: '/workout', key: '0'
+	                                    },
+	                                    'WORKOUT'
+	                                ), React.createElement(
+	                                    _reactRouter.Link,
+	                                    { className: this.props.active == 'progress' ? 'btn active' : 'btn', to: '/progress', key: '1'
+	                                    },
+	                                    'PROGRESS'
+	                                ), React.createElement(
+	                                    _reactRouter.Link,
+	                                    { className: this.props.active == 'quad-pod' ? 'btn active' : 'btn', to: '/quad-pod', key: '2'
+	                                    },
+	                                    'QUAD POD'
+	                                )] : null
 	                            )
 	                        ) : null,
 	                        this.props.user.avatars ? React.createElement(

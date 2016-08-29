@@ -127,6 +127,10 @@
 	
 	var _quadPod2 = _interopRequireDefault(_quadPod);
 	
+	var _footer = __webpack_require__(/*! views/common/footer */ 710);
+	
+	var _footer2 = _interopRequireDefault(_footer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -135,7 +139,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! pages/do_work.scss */ 648);
+	__webpack_require__(/*! pages/do_work.scss */ 651);
 	
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
@@ -268,39 +272,7 @@
 	                null,
 	                React.createElement(_header2.default, { user: this.state.user, showWorkoutNav: true, active: active }),
 	                childrenWithProps,
-	                React.createElement(
-	                    'div',
-	                    { className: 'row footer' },
-	                    React.createElement(
-	                        'div',
-	                        { className: 'col-sm-5 col-xs-3 logo' },
-	                        React.createElement('img', { src: 'https://s3.amazonaws.com/quadfit/logo.png' })
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'col-sm-7 col-xs-9 text-right links' },
-	                        React.createElement(
-	                            'span',
-	                            null,
-	                            'Made with grit in San Francisco'
-	                        ),
-	                        React.createElement(
-	                            'span',
-	                            null,
-	                            'About'
-	                        ),
-	                        React.createElement(
-	                            'span',
-	                            null,
-	                            'Contact'
-	                        ),
-	                        React.createElement(
-	                            'span',
-	                            null,
-	                            'FAQ'
-	                        )
-	                    )
-	                )
+	                React.createElement(_footer2.default, null)
 	            );
 	        }
 	    }]);
@@ -22594,21 +22566,39 @@
 	                            React.createElement(
 	                                'div',
 	                                { className: 'nav' },
-	                                React.createElement(
-	                                    _reactRouter.Link,
-	                                    { className: this.props.active == 'workout' ? 'btn active' : 'btn', to: '/workout' },
+	                                this.props.trueLinks ? [React.createElement(
+	                                    'a',
+	                                    { className: 'btn', href: '/workout', key: '0'
+	                                    },
 	                                    'WORKOUT'
-	                                ),
-	                                React.createElement(
-	                                    _reactRouter.Link,
-	                                    { className: this.props.active == 'progress' ? 'btn active' : 'btn', to: '/progress' },
+	                                ), React.createElement(
+	                                    'a',
+	                                    { className: 'btn', href: '/progress', key: '1'
+	                                    },
 	                                    'PROGRESS'
-	                                ),
-	                                React.createElement(
-	                                    _reactRouter.Link,
-	                                    { className: this.props.active == 'quad-pod' ? 'btn active' : 'btn', to: '/quad-pod' },
+	                                ), React.createElement(
+	                                    'a',
+	                                    { className: 'btn', href: '/quad-pod', key: '2'
+	                                    },
 	                                    'QUAD POD'
-	                                )
+	                                )] : null,
+	                                !this.props.trueLinks ? [React.createElement(
+	                                    _reactRouter.Link,
+	                                    { className: this.props.active == 'workout' ? 'btn active' : 'btn',
+	                                        to: '/workout', key: '0'
+	                                    },
+	                                    'WORKOUT'
+	                                ), React.createElement(
+	                                    _reactRouter.Link,
+	                                    { className: this.props.active == 'progress' ? 'btn active' : 'btn', to: '/progress', key: '1'
+	                                    },
+	                                    'PROGRESS'
+	                                ), React.createElement(
+	                                    _reactRouter.Link,
+	                                    { className: this.props.active == 'quad-pod' ? 'btn active' : 'btn', to: '/quad-pod', key: '2'
+	                                    },
+	                                    'QUAD POD'
+	                                )] : null
 	                            )
 	                        ) : null,
 	                        this.props.user.avatars ? React.createElement(
@@ -66773,7 +66763,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/quad-pod/quad-pod.scss */ 646);
+	__webpack_require__(/*! views/quad-pod/quad-pod.scss */ 649);
 	
 	var QuadPod = function (_React$Component) {
 	    _inherits(QuadPod, _React$Component);
@@ -67210,7 +67200,7 @@
 	
 	var _conversation2 = _interopRequireDefault(_conversation);
 	
-	var _feed_item = __webpack_require__(/*! views/quad-pod/feed_item */ 707);
+	var _feed_item = __webpack_require__(/*! views/quad-pod/feed_item */ 646);
 	
 	var _feed_item2 = _interopRequireDefault(_feed_item);
 	
@@ -67222,7 +67212,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/quad-pod/feed.scss */ 644);
+	__webpack_require__(/*! views/quad-pod/feed.scss */ 647);
 	
 	var Feed = function (_React$Component) {
 	    _inherits(Feed, _React$Component);
@@ -67320,7 +67310,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/quad-pod/conversation.scss */ 705);
+	__webpack_require__(/*! views/quad-pod/conversation.scss */ 644);
 	
 	var Conversation = function (_React$Component) {
 	    _inherits(Conversation, _React$Component);
@@ -67459,199 +67449,6 @@
 
 /***/ },
 /* 644 */
-/*!******************************************!*\
-  !*** ../styles/views/quad-pod/feed.scss ***!
-  \******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./feed.scss */ 645);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 302)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./feed.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./feed.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 645 */
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/quad-pod/feed.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 301)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 646 */
-/*!**********************************************!*\
-  !*** ../styles/views/quad-pod/quad-pod.scss ***!
-  \**********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./quad-pod.scss */ 647);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 302)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./quad-pod.scss", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./quad-pod.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 647 */
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/quad-pod/quad-pod.scss ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 301)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 648 */
-/*!************************************!*\
-  !*** ../styles/pages/do_work.scss ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./do_work.scss */ 649);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 302)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./do_work.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./do_work.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 649 */
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/do_work.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 301)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 650 */,
-/* 651 */,
-/* 652 */,
-/* 653 */,
-/* 654 */,
-/* 655 */,
-/* 656 */,
-/* 657 */,
-/* 658 */,
-/* 659 */,
-/* 660 */,
-/* 661 */,
-/* 662 */,
-/* 663 */,
-/* 664 */,
-/* 665 */,
-/* 666 */,
-/* 667 */,
-/* 668 */,
-/* 669 */,
-/* 670 */,
-/* 671 */,
-/* 672 */,
-/* 673 */,
-/* 674 */,
-/* 675 */,
-/* 676 */,
-/* 677 */,
-/* 678 */,
-/* 679 */,
-/* 680 */,
-/* 681 */,
-/* 682 */,
-/* 683 */,
-/* 684 */,
-/* 685 */,
-/* 686 */,
-/* 687 */,
-/* 688 */,
-/* 689 */,
-/* 690 */,
-/* 691 */,
-/* 692 */,
-/* 693 */,
-/* 694 */,
-/* 695 */,
-/* 696 */,
-/* 697 */,
-/* 698 */,
-/* 699 */,
-/* 700 */,
-/* 701 */,
-/* 702 */,
-/* 703 */,
-/* 704 */,
-/* 705 */
 /*!**************************************************!*\
   !*** ../styles/views/quad-pod/conversation.scss ***!
   \**************************************************/
@@ -67660,7 +67457,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./conversation.scss */ 706);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./conversation.scss */ 645);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 302)(content, {});
@@ -67680,7 +67477,7 @@
 	}
 
 /***/ },
-/* 706 */
+/* 645 */
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/quad-pod/conversation.scss ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -67697,7 +67494,7 @@
 
 
 /***/ },
-/* 707 */
+/* 646 */
 /*!**************************************!*\
   !*** ./views/quad-pod/feed_item.jsx ***!
   \**************************************/
@@ -67758,6 +67555,329 @@
 	}(_react2.default.Component);
 	
 	exports.default = FeedItem;
+
+/***/ },
+/* 647 */
+/*!******************************************!*\
+  !*** ../styles/views/quad-pod/feed.scss ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./feed.scss */ 648);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 302)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./feed.scss", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./feed.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 648 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/quad-pod/feed.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 301)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 649 */
+/*!**********************************************!*\
+  !*** ../styles/views/quad-pod/quad-pod.scss ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./quad-pod.scss */ 650);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 302)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./quad-pod.scss", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./quad-pod.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 650 */
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/quad-pod/quad-pod.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 301)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 651 */
+/*!************************************!*\
+  !*** ../styles/pages/do_work.scss ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./do_work.scss */ 652);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 302)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./do_work.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./do_work.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 652 */
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/do_work.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 301)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 653 */,
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */,
+/* 671 */,
+/* 672 */,
+/* 673 */,
+/* 674 */,
+/* 675 */,
+/* 676 */,
+/* 677 */,
+/* 678 */,
+/* 679 */,
+/* 680 */,
+/* 681 */,
+/* 682 */,
+/* 683 */,
+/* 684 */,
+/* 685 */,
+/* 686 */,
+/* 687 */,
+/* 688 */,
+/* 689 */,
+/* 690 */,
+/* 691 */,
+/* 692 */,
+/* 693 */,
+/* 694 */,
+/* 695 */,
+/* 696 */,
+/* 697 */,
+/* 698 */,
+/* 699 */,
+/* 700 */,
+/* 701 */,
+/* 702 */,
+/* 703 */,
+/* 704 */,
+/* 705 */,
+/* 706 */,
+/* 707 */,
+/* 708 */,
+/* 709 */,
+/* 710 */
+/*!*********************************!*\
+  !*** ./views/common/footer.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 236);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 34);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! common/footer.scss */ 711);
+	
+	var Footer = function (_React$Component) {
+	    _inherits(Footer, _React$Component);
+	
+	    function Footer(props) {
+	        _classCallCheck(this, Footer);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Footer).call(this, props));
+	    }
+	
+	    _createClass(Footer, [{
+	        key: 'render',
+	        value: function render() {
+	
+	            return React.createElement(
+	                'div',
+	                { className: 'row footer' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-sm-5 col-xs-3 logo' },
+	                    React.createElement('img', { src: 'https://s3.amazonaws.com/quadfit/logo.png' })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-sm-7 col-xs-9 text-right links' },
+	                    React.createElement(
+	                        'span',
+	                        null,
+	                        'Made with grit in San Francisco'
+	                    ),
+	                    React.createElement(
+	                        'span',
+	                        null,
+	                        'About'
+	                    ),
+	                    React.createElement(
+	                        'span',
+	                        null,
+	                        'Contact'
+	                    ),
+	                    React.createElement(
+	                        'span',
+	                        null,
+	                        'FAQ'
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Footer;
+	}(React.Component);
+	
+	exports.default = Footer;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 711 */
+/*!************************************!*\
+  !*** ../styles/common/footer.scss ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./footer.scss */ 712);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 302)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./footer.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./footer.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 712 */
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/footer.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 301)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
 
 /***/ }
 /******/ ]);

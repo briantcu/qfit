@@ -1,0 +1,68 @@
+@import '../common/common';
+
+.profile {
+
+  .gray-border {
+    border-bottom: solid 1px $gray2;
+  }
+  .main {
+    background-color: $gray2;
+    color: $dark-purple;
+    min-height: 900px;
+    .p-header {
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: -1.1px;
+      padding-top: 30px;
+    }
+    .purple-bot-container {
+      @include border-bottom;
+      height: 50px;
+      display: block;
+    }
+    .error {
+      border-bottom: 1px solid red;
+    }
+    .p-sub {
+      color: $purple;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.1;
+      padding-left: 5px;
+      padding-bottom: 30px;
+    }
+    .p-section {
+      background-color: white;
+      margin-bottom: 30px;
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: -0.6px;
+      padding-top: 10px;
+      float: left;
+      width: 100%;
+      display: block;
+      border-radius: 3px;
+      .sec-header {
+        padding-left: 15px;
+        border-bottom: solid 2px $purple;
+        height: 50px;
+      }
+      .sec-main {
+        margin-left: 20px;
+        margin-right: 10px;
+        padding-top: 30px;
+        padding-bottom: 10px;
+        font-weight: 300;
+        letter-spacing: -0.6px;
+        float: left;
+        display: block;
+      }
+    }
+    .button-wrap {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  }
+
+
+}
