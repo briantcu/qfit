@@ -8,7 +8,7 @@
   .main {
     background-color: $gray2;
     color: $dark-purple;
-    min-height: 800px;
+    min-height: 900px;
     .qp-header {
       font-size: 48px;
       font-weight: 300;
@@ -30,6 +30,10 @@
       font-weight: 300;
       letter-spacing: -0.6px;
       padding-top: 10px;
+      float: left;
+      width: 100%;
+      display: block;
+      border-radius: 3px;
       .sec-header {
         padding-left: 10px;
         border-bottom: solid 2px $purple;
@@ -43,6 +47,8 @@
         font-size: 15.6px;
         line-height: 1.5;
         letter-spacing: -0.2px;
+        float: left;
+        display: block;
       }
     }
     input {
@@ -53,10 +59,17 @@
       margin-left: 10px;
       padding-left: 5px;
     }
+    textarea {
+      resize: none;
+    }
     .input-row {
       margin-top: 10px;
+      float: left;
+      display: block;
     }
     .submit-row {
+      float: left;
+      display: block;
       margin-top: 15px;
       margin-left: 10px;
       padding-bottom: 20px;

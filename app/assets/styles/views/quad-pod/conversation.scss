@@ -1,0 +1,96 @@
+@import '../../common/common';
+
+.conversation {
+  .sec-main {
+    padding-top: 0px !important;
+  }
+  .you {
+    text-align: right;
+    .avi-wrap {
+      float: right;
+    }
+    .message-wrap {
+      float: left;
+    }
+  }
+
+  .them {
+    text-align: left;
+    .avi-wrap {
+      float: left;
+    }
+    .message-wrap {
+      float: right;
+    }
+  }
+
+  .message-row {
+    float: left;
+    display: block;
+    width: 100%;
+    min-height: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+  }
+
+  .message-wrap {
+    width: 90%;
+  }
+
+  .avi-wrap {
+    width: 10%;
+  }
+
+  .message-text {
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.2px;
+    color: $gray3;
+    padding-top: 5px;
+  }
+  .message-date {
+    font-size: 12px;
+    line-height: 1.7;
+    letter-spacing: -0.2px;
+    color: $gray6;
+  }
+
+  .post-row {
+    margin-top: 20px;
+    display: block;
+    float: left;
+    width: 100%
+  }
+  .message-box {
+    height: 100%;
+    background-color: $gray5;
+    color: $gray6;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    padding: 10px;
+    border: none;
+    float: left;
+    width: 80%;
+    &:focus {
+      outline: none;
+    }
+  }
+  .submit {
+    background-color: $purple;
+    color: white;
+    cursor: pointer;
+    height: 100%;
+    width: 20%;
+    float: right;
+    padding-top: 17px;
+    text-align: center;
+  }
+  .input-wrap {
+    display: block;
+    width: 100%;
+    float: left;
+    height: 60px;
+  }
+}

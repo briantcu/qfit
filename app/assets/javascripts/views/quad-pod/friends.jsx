@@ -1,4 +1,5 @@
 import {render} from 'react-dom';
+import Avatar from 'views/common/avatar';
 
 require('views/quad-pod/friends.scss');
 
@@ -17,11 +18,11 @@ class Friends extends React.Component {
                         {
                             this.props.quad_pod.map(function(e) {
                                 return <div key={e.id} className="friend gray-border">
-                                    <span onClick={ () => this.props.showConversation(e.id)}>Message flag</span>
-                                    <span>Avatar</span>
-                                    <span>{e.user_name}</span>
-                                    <span>PowerIndex: {e.power_index}</span>
-                                    <span>x</span>
+                                    <span className="flag" onClick={ () => this.props.showConversation(e.id)}>FLAG</span>
+                                    <span className="avi-wrap"><Avatar user={e}/></span>
+                                    <span className="username">{e.user_name}</span>
+                                    <span className="pi">PowerIndex: {e.power_index}</span>
+                                    <span className="remove">x</span>
                                 </div>
                             }.bind(this))
                         }

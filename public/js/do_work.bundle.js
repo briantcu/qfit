@@ -135,7 +135,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! pages/do_work.scss */ 646);
+	__webpack_require__(/*! pages/do_work.scss */ 648);
 	
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
@@ -66753,7 +66753,7 @@
 	
 	var _friends2 = _interopRequireDefault(_friends);
 	
-	var _feed = __webpack_require__(/*! views/quad-pod/feed */ 641);
+	var _feed = __webpack_require__(/*! views/quad-pod/feed */ 642);
 	
 	var _feed2 = _interopRequireDefault(_feed);
 	
@@ -66773,7 +66773,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/quad-pod/quad-pod.scss */ 644);
+	__webpack_require__(/*! views/quad-pod/quad-pod.scss */ 646);
 	
 	var QuadPod = function (_React$Component) {
 	    _inherits(QuadPod, _React$Component);
@@ -66980,13 +66980,19 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 34);
 	
+	var _avatar = __webpack_require__(/*! views/common/avatar */ 639);
+	
+	var _avatar2 = _interopRequireDefault(_avatar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/quad-pod/friends.scss */ 639);
+	__webpack_require__(/*! views/quad-pod/friends.scss */ 640);
 	
 	var Friends = function (_React$Component) {
 	    _inherits(Friends, _React$Component);
@@ -67019,30 +67025,30 @@
 	                            { key: e.id, className: 'friend gray-border' },
 	                            React.createElement(
 	                                'span',
-	                                { onClick: function onClick() {
+	                                { className: 'flag', onClick: function onClick() {
 	                                        return _this2.props.showConversation(e.id);
 	                                    } },
-	                                'Message flag'
+	                                'FLAG'
 	                            ),
 	                            React.createElement(
 	                                'span',
-	                                null,
-	                                'Avatar'
+	                                { className: 'avi-wrap' },
+	                                React.createElement(_avatar2.default, { user: e })
 	                            ),
 	                            React.createElement(
 	                                'span',
-	                                null,
+	                                { className: 'username' },
 	                                e.user_name
 	                            ),
 	                            React.createElement(
 	                                'span',
-	                                null,
+	                                { className: 'pi' },
 	                                'PowerIndex: ',
 	                                e.power_index
 	                            ),
 	                            React.createElement(
 	                                'span',
-	                                null,
+	                                { className: 'remove' },
 	                                'x'
 	                            )
 	                        );
@@ -67076,6 +67082,65 @@
 
 /***/ },
 /* 639 */
+/*!*********************************!*\
+  !*** ./views/common/avatar.jsx ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 34);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Avatar = function (_React$Component) {
+	    _inherits(Avatar, _React$Component);
+	
+	    function Avatar(props) {
+	        _classCallCheck(this, Avatar);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Avatar).call(this, props));
+	    }
+	
+	    _createClass(Avatar, [{
+	        key: 'imagePath',
+	        value: function imagePath() {
+	            var path = "https://s3.amazonaws.com/quadfit/blank-avi.png";
+	            if (this.props.user && this.props.user.avatars && this.props.user.avatars.length > 0) {
+	                path = this.props.user.avatars[0];
+	            }
+	            return path;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement('img', { src: this.imagePath(), alt: this.props.user.user_name, className: 'img-circle', width: '48', height: '48' });
+	        }
+	    }]);
+	
+	    return Avatar;
+	}(_react2.default.Component);
+	
+	exports.default = Avatar;
+
+/***/ },
+/* 640 */
 /*!*********************************************!*\
   !*** ../styles/views/quad-pod/friends.scss ***!
   \*********************************************/
@@ -67084,7 +67149,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./friends.scss */ 640);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./friends.scss */ 641);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 302)(content, {});
@@ -67104,7 +67169,7 @@
 	}
 
 /***/ },
-/* 640 */
+/* 641 */
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/quad-pod/friends.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -67121,7 +67186,7 @@
 
 
 /***/ },
-/* 641 */
+/* 642 */
 /*!*********************************!*\
   !*** ./views/quad-pod/feed.jsx ***!
   \*********************************/
@@ -67141,9 +67206,13 @@
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
-	var _conversation = __webpack_require__(/*! views/quad-pod/conversation */ 703);
+	var _conversation = __webpack_require__(/*! views/quad-pod/conversation */ 643);
 	
 	var _conversation2 = _interopRequireDefault(_conversation);
+	
+	var _feed_item = __webpack_require__(/*! views/quad-pod/feed_item */ 707);
+	
+	var _feed_item2 = _interopRequireDefault(_feed_item);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -67153,7 +67222,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! views/quad-pod/feed.scss */ 642);
+	__webpack_require__(/*! views/quad-pod/feed.scss */ 644);
 	
 	var Feed = function (_React$Component) {
 	    _inherits(Feed, _React$Component);
@@ -67200,31 +67269,7 @@
 	                        'div',
 	                        { className: 'sec-main' },
 	                        this.props.feed && this.props.feed.length > 0 ? this.props.feed.map(function (e) {
-	                            return React.createElement(
-	                                'div',
-	                                { className: 'friend gray-border' },
-	                                React.createElement(
-	                                    'span',
-	                                    null,
-	                                    'Avatar'
-	                                ),
-	                                React.createElement(
-	                                    'span',
-	                                    null,
-	                                    e.user_name
-	                                ),
-	                                React.createElement(
-	                                    'span',
-	                                    null,
-	                                    'PowerIndex: ',
-	                                    e.power_index
-	                                ),
-	                                React.createElement(
-	                                    'span',
-	                                    null,
-	                                    'x'
-	                                )
-	                            );
+	                            return React.createElement(_feed_item2.default, { item: e, key: e.id });
 	                        }.bind(this)) : React.createElement(
 	                            'div',
 	                            null,
@@ -67243,7 +67288,177 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 642 */
+/* 643 */
+/*!*****************************************!*\
+  !*** ./views/quad-pod/conversation.jsx ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 34);
+	
+	var _user_actions = __webpack_require__(/*! actions/user_actions */ 312);
+	
+	var _user_actions2 = _interopRequireDefault(_user_actions);
+	
+	var _avatar = __webpack_require__(/*! views/common/avatar */ 639);
+	
+	var _avatar2 = _interopRequireDefault(_avatar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(/*! views/quad-pod/conversation.scss */ 705);
+	
+	var Conversation = function (_React$Component) {
+	    _inherits(Conversation, _React$Component);
+	
+	    function Conversation(props) {
+	        _classCallCheck(this, Conversation);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Conversation).call(this, props));
+	
+	        _this.sendDM = _this.sendDM.bind(_this);
+	        _this.clearInput = _this.clearInput.bind(_this);
+	        _this.fillPlaceholder = _this.fillPlaceholder.bind(_this);
+	        return _this;
+	    }
+	
+	    _createClass(Conversation, [{
+	        key: 'sendDM',
+	        value: function sendDM(receiverId) {
+	            var message = this.refs.messageBox.value.trim();
+	            if (message) {
+	                _user_actions2.default.sendDM(receiverId, message);
+	            }
+	        }
+	    }, {
+	        key: 'clearInput',
+	        value: function clearInput() {
+	            if (this.refs.messageBox.value == 'Type a message') {
+	                this.refs.messageBox.value = '';
+	            }
+	        }
+	    }, {
+	        key: 'fillPlaceholder',
+	        value: function fillPlaceholder() {
+	            if (this.refs.messageBox.value == '') {
+	                this.refs.messageBox.value = 'Type a message';
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            return React.createElement(
+	                'div',
+	                { className: 'conversation' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'sec-header' },
+	                    this.props.conversation.user.user_name
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'sec-main' },
+	                    this.props.conversation && this.props.conversation.messages.length > 0 ? this.props.conversation.messages.map(function (e) {
+	                        return React.createElement(
+	                            'div',
+	                            { key: e.id, className: 'gray-border message-row' },
+	                            e.poster_id == this.props.user.id ? React.createElement(
+	                                'div',
+	                                { className: 'you' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'message-wrap' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'message-text' },
+	                                        e.message
+	                                    ),
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'message-date' },
+	                                        e.created_at
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'avi-wrap' },
+	                                    React.createElement(_avatar2.default, { user: this.props.user })
+	                                )
+	                            ) : React.createElement(
+	                                'div',
+	                                { className: 'them' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'avi-wrap' },
+	                                    React.createElement(_avatar2.default, { user: this.props.conversation.user })
+	                                ),
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'message-wrap' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'message-text' },
+	                                        e.message
+	                                    ),
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'message-date' },
+	                                        e.created_at
+	                                    )
+	                                )
+	                            )
+	                        );
+	                    }.bind(this)) : React.createElement(
+	                        'div',
+	                        null,
+	                        'Nothing here yet! Send a message below to get things started.'
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'post-row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'input-wrap' },
+	                            React.createElement('textarea', { defaultValue: 'Type a message', ref: 'messageBox', className: 'message-box', rows: '3',
+	                                cols: '60', onBlur: this.fillPlaceholder, onFocus: this.clearInput }),
+	                            React.createElement(
+	                                'div',
+	                                { onClick: function onClick() {
+	                                        return _this2.sendDM(_this2.props.conversation.user.id);
+	                                    }, className: 'submit' },
+	                                'SEND'
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Conversation;
+	}(React.Component);
+	
+	exports.default = Conversation;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+
+/***/ },
+/* 644 */
 /*!******************************************!*\
   !*** ../styles/views/quad-pod/feed.scss ***!
   \******************************************/
@@ -67252,7 +67467,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./feed.scss */ 643);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./feed.scss */ 645);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 302)(content, {});
@@ -67272,7 +67487,7 @@
 	}
 
 /***/ },
-/* 643 */
+/* 645 */
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/quad-pod/feed.scss ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -67289,7 +67504,7 @@
 
 
 /***/ },
-/* 644 */
+/* 646 */
 /*!**********************************************!*\
   !*** ../styles/views/quad-pod/quad-pod.scss ***!
   \**********************************************/
@@ -67298,7 +67513,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./quad-pod.scss */ 645);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./quad-pod.scss */ 647);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 302)(content, {});
@@ -67318,7 +67533,7 @@
 	}
 
 /***/ },
-/* 645 */
+/* 647 */
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/quad-pod/quad-pod.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -67335,7 +67550,7 @@
 
 
 /***/ },
-/* 646 */
+/* 648 */
 /*!************************************!*\
   !*** ../styles/pages/do_work.scss ***!
   \************************************/
@@ -67344,7 +67559,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./do_work.scss */ 647);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./do_work.scss */ 649);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 302)(content, {});
@@ -67364,7 +67579,7 @@
 	}
 
 /***/ },
-/* 647 */
+/* 649 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/do_work.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -67381,8 +67596,6 @@
 
 
 /***/ },
-/* 648 */,
-/* 649 */,
 /* 650 */,
 /* 651 */,
 /* 652 */,
@@ -67436,13 +67649,61 @@
 /* 700 */,
 /* 701 */,
 /* 702 */,
-/* 703 */
-/*!*****************************************!*\
-  !*** ./views/quad-pod/conversation.jsx ***!
-  \*****************************************/
+/* 703 */,
+/* 704 */,
+/* 705 */
+/*!**************************************************!*\
+  !*** ../styles/views/quad-pod/conversation.scss ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./../../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../../~/css-loader!./../../../../../~/sass-loader!./conversation.scss */ 706);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 302)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./conversation.scss", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/extract-text-webpack-plugin/loader.js?{\"remove\":true}!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./conversation.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 706 */
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/views/quad-pod/conversation.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 301)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 707 */
+/*!**************************************!*\
+  !*** ./views/quad-pod/feed_item.jsx ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -67450,11 +67711,11 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
 	var _reactDom = __webpack_require__(/*! react-dom */ 34);
-	
-	var _user_actions = __webpack_require__(/*! actions/user_actions */ 312);
-	
-	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -67464,103 +67725,39 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var Conversation = function (_React$Component) {
-	    _inherits(Conversation, _React$Component);
+	var FeedItem = function (_React$Component) {
+	    _inherits(FeedItem, _React$Component);
 	
-	    function Conversation(props) {
-	        _classCallCheck(this, Conversation);
+	    function FeedItem(props) {
+	        _classCallCheck(this, FeedItem);
 	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Conversation).call(this, props));
-	
-	        _this.sendDM = _this.sendDM.bind(_this);
-	        return _this;
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(FeedItem).call(this, props));
 	    }
 	
-	    _createClass(Conversation, [{
-	        key: 'sendDM',
-	        value: function sendDM(receiverId) {
-	            var message = this.refs.messageBox.value.trim();
-	            if (message) {
-	                _user_actions2.default.sendDM(receiverId, message);
-	            }
-	        }
-	    }, {
+	    _createClass(FeedItem, [{
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
-	
-	            return React.createElement(
-	                'span',
-	                null,
-	                React.createElement(
-	                    'div',
-	                    { className: 'sec-header' },
-	                    this.props.conversation.user.user_name
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'gray-border' },
+	                _react2.default.createElement(
+	                    'span',
+	                    null,
+	                    'Avatar'
 	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'sec-main' },
-	                    this.props.conversation && this.props.conversation.messages.length > 0 ? this.props.conversation.messages.map(function (e) {
-	                        return React.createElement(
-	                            'div',
-	                            { key: e.id, className: 'friend gray-border' },
-	                            e.poster_id == this.props.user.id ? [React.createElement('span', {
-	                                key: '0'
-	                            }), React.createElement(
-	                                'span',
-	                                {
-	                                    key: '1'
-	                                },
-	                                e.message
-	                            ), React.createElement(
-	                                'span',
-	                                {
-	                                    key: '2'
-	                                },
-	                                e.created_at
-	                            )] : [React.createElement('span', {
-	                                key: '0'
-	                            }), React.createElement(
-	                                'span',
-	                                {
-	                                    key: '1'
-	                                },
-	                                e.message
-	                            ), React.createElement(
-	                                'span',
-	                                {
-	                                    key: '2'
-	                                },
-	                                e.created_at
-	                            )]
-	                        );
-	                    }.bind(this)) : React.createElement(
-	                        'div',
-	                        null,
-	                        'Nothing here yet! Send a message below to get things started.'
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'post-row' },
-	                        React.createElement('textarea', { ref: 'messageBox', className: '', rows: '5', cols: '40' }),
-	                        React.createElement(
-	                            'span',
-	                            { onClick: function onClick() {
-	                                    return _this2.sendDM(_this2.props.conversation.user.id);
-	                                } },
-	                            'Click '
-	                        )
-	                    )
+	                _react2.default.createElement(
+	                    'span',
+	                    null,
+	                    'x'
 	                )
 	            );
 	        }
 	    }]);
 	
-	    return Conversation;
-	}(React.Component);
+	    return FeedItem;
+	}(_react2.default.Component);
 	
-	exports.default = Conversation;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
+	exports.default = FeedItem;
 
 /***/ }
 /******/ ]);

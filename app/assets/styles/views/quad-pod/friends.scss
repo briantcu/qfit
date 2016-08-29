@@ -2,12 +2,32 @@
 
 .friends {
   .friend {
-    height: 50px;
-    padding-top: 10px;
+    height: 60px;
+    .flag {
+      width: 40px;
+      display: inline-block;
+    }
+    .pi {
+      width: 112px;
+      display: inline-block;
+      text-align: right;
+    }
+    .remove {
+      width: 20px;
+      display: inline-block;
+      text-align: right;
+    }
+    .username {
+      width: 180px;
+      display: inline-block;
+    }
   }
   .sec-main {
     padding-bottom: 0px !important;
   }
-
+  .avi-wrap {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 
 }

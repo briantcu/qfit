@@ -1,6 +1,7 @@
 import {render} from 'react-dom';
 import UserActions from 'actions/user_actions';
 import Conversation from'views/quad-pod/conversation';
+import FeedItem from 'views/quad-pod/feed_item';
 
 require('views/quad-pod/feed.scss');
 
@@ -27,12 +28,7 @@ class Feed extends React.Component {
                                 <When condition={this.props.feed && this.props.feed.length > 0}>
                                     {
                                         this.props.feed.map(function (e) {
-                                            return <div className="friend gray-border">
-                                                <span>Avatar</span>
-                                                <span>{e.user_name}</span>
-                                                <span>PowerIndex: {e.power_index}</span>
-                                                <span>x</span>
-                                            </div>
+                                            return <FeedItem item={e} key={e.id} />
                                         }.bind(this))
                                     }
                                 </When>
