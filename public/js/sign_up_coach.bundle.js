@@ -36279,6 +36279,11 @@
 	            return this.props.unchecked;
 	        }
 	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.setState({ label: this.props.is_checked ? this.props.checked : this.props.unchecked });
+	        }
+	    }, {
 	        key: 'handleLabel',
 	        value: function handleLabel() {
 	            if (this.refs.slider.checked) {
@@ -36301,7 +36306,7 @@
 	                    _react2.default.createElement('input', { ref: 'slider', id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox',
 	                        onChange: function onChange() {
 	                            return _this2.handleLabel();
-	                        } }),
+	                        }, defaultChecked: this.props.is_checked }),
 	                    _react2.default.createElement('label', { htmlFor: 'cmn-toggle-4' })
 	                ),
 	                _react2.default.createElement(

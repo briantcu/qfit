@@ -251,7 +251,7 @@
 	                                                    React.createElement(
 	                                                        'span',
 	                                                        { className: 'purple-bot-container ' + (this.state.passwordErrors.length > 0 ? 'error' : null) },
-	                                                        React.createElement(_fancy_input2.default, { ref: 'password', name: 'password', placeholder: 'Password', type: 'password',
+	                                                        React.createElement(_fancy_input2.default, { ref: 'password', name: 'password', placeholder: 'New Password', type: 'password',
 	                                                            errors: this.state.passwordErrors })
 	                                                    )
 	                                                )
@@ -265,7 +265,7 @@
 	                                                    React.createElement(
 	                                                        'span',
 	                                                        { className: 'purple-bot-container' },
-	                                                        React.createElement(_slider2.default, { ref: 'sex', checked: 'female', unchecked: 'male' })
+	                                                        React.createElement(_slider2.default, { ref: 'sex', checked: 'female', unchecked: 'male', is_checked: this.state.user.sex == 'female' })
 	                                                    )
 	                                                )
 	                                            ), React.createElement(
@@ -42345,6 +42345,11 @@
 	            return this.props.unchecked;
 	        }
 	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.setState({ label: this.props.is_checked ? this.props.checked : this.props.unchecked });
+	        }
+	    }, {
 	        key: 'handleLabel',
 	        value: function handleLabel() {
 	            if (this.refs.slider.checked) {
@@ -42367,7 +42372,7 @@
 	                    _react2.default.createElement('input', { ref: 'slider', id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox',
 	                        onChange: function onChange() {
 	                            return _this2.handleLabel();
-	                        } }),
+	                        }, defaultChecked: this.props.is_checked }),
 	                    _react2.default.createElement('label', { htmlFor: 'cmn-toggle-4' })
 	                ),
 	                _react2.default.createElement(

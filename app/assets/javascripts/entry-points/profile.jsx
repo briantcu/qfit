@@ -103,7 +103,7 @@ class Profile extends React.Component {
                                         <div className="row">
                                             <div className="col-md-12">
                                                 <span className={`purple-bot-container ${this.state.passwordErrors.length > 0 ? 'error' : null}`}>
-                                                    <FancyInput ref="password" name="password" placeholder="Password" type="password"
+                                                    <FancyInput ref="password" name="password" placeholder="New Password" type="password"
                                                                 errors={this.state.passwordErrors} />
                                                 </span>
                                             </div>
@@ -111,7 +111,7 @@ class Profile extends React.Component {
                                         <div className="row">
                                             <div className="col-md-12">
                                                 <span className="purple-bot-container">
-                                                    <Slider ref="sex" checked="female" unchecked="male"/>
+                                                    <Slider ref="sex" checked="female" unchecked="male" is_checked={this.state.user.sex == 'female'} />
                                                 </span>
                                             </div>
                                         </div>

@@ -18,6 +18,10 @@ class Slider extends React.Component {
         return this.props.unchecked;
     }
 
+    componentDidMount() {
+        this.setState({label: (this.props.is_checked) ? this.props.checked : this.props.unchecked} );
+    }
+
     handleLabel() {
         if (this.refs.slider.checked) {
             this.setState({label: this.props.checked});
@@ -29,7 +33,7 @@ class Slider extends React.Component {
     render () {
         return <span><div className="switch">
                 <input ref="slider" id="cmn-toggle-4" className="cmn-toggle cmn-toggle-round-flat" type="checkbox"
-                       onChange={ () => this.handleLabel()} />
+                       onChange={ () => this.handleLabel()} defaultChecked={this.props.is_checked} />
                 <label htmlFor="cmn-toggle-4" />
         </div><span className="selected-text standard-text">{this.state.label}</span></span>;
     }
