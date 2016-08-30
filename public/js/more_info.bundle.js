@@ -36019,7 +36019,7 @@
 	                    { className: 'floatl__label' },
 	                    this.props.placeholder
 	                ) : null,
-	                _react2.default.createElement('input', { ref: 'inputField', type: this.props.type, className: 'transparent-input standard-text floatl__input',
+	                _react2.default.createElement('input', { ref: 'inputField', type: this.props.type, className: 'transparent-input standard-text floatl__input', defaultValue: this.props.value,
 	                    name: '' + this.props.name, placeholder: '' + this.props.placeholder, onChange: function onChange() {
 	                        return _this2.changed();
 	                    } }),
@@ -36242,7 +36242,6 @@
 	    }, {
 	        key: 'handleLabel',
 	        value: function handleLabel() {
-	            console.log(this.refs.slider.checked);
 	            if (this.refs.slider.checked) {
 	                this.setState({ label: this.props.checked });
 	            } else {
@@ -36260,7 +36259,8 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'switch' },
-	                    _react2.default.createElement('input', { ref: 'slider', id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox', onChange: function onChange() {
+	                    _react2.default.createElement('input', { ref: 'slider', id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox',
+	                        onChange: function onChange() {
 	                            return _this2.handleLabel();
 	                        } }),
 	                    _react2.default.createElement('label', { htmlFor: 'cmn-toggle-4' })

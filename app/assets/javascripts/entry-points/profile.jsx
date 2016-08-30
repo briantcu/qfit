@@ -75,11 +75,12 @@ class Profile extends React.Component {
                                 <div className="p-section">
                                     <div className="sec-header">Your Personal Settings</div>
                                     <div className="sec-main">
+                                        <If condition={this.state.user.first_name}>
                                         <div className="row">
                                             <div className="col-md-12">
-                                                <span className={`purple-bot-container ${this.state.firstNameErrors.length > 0 ? 'error' : null}`}>
+                                                <span className={`purple-bot-container border-top ${this.state.firstNameErrors.length > 0 ? 'error' : null}`}>
                                                     <FancyInput ref="firstName" name="first_name" placeholder="First Name" type="text"
-                                                                errors={this.state.firstNameErrors} />
+                                                                errors={this.state.firstNameErrors} value={this.state.user.first_name} />
                                                 </span>
                                             </div>
                                         </div>
@@ -87,7 +88,7 @@ class Profile extends React.Component {
                                             <div className="col-md-12">
                                                 <span className={`purple-bot-container ${this.state.lastNameErrors.length > 0 ? 'error' : null}`}>
                                                     <FancyInput ref="lastName" name="last_name" placeholder="Last Name" type="text"
-                                                                errors={this.state.lastNameErrors} />
+                                                                errors={this.state.lastNameErrors} value={this.state.user.last_name} />
                                                 </span>
                                             </div>
                                         </div>
@@ -95,7 +96,7 @@ class Profile extends React.Component {
                                             <div className="col-md-12">
                                                 <span className={`purple-bot-container ${this.state.emailErrors.length > 0 ? 'error' : null}`}>
                                                     <FancyInput ref="email" name="email" placeholder="Email Address" type="text"
-                                                                errors={this.state.emailErrors} />
+                                                                errors={this.state.emailErrors} value={this.state.user.email} />
                                                 </span>
                                             </div>
                                         </div>
@@ -119,9 +120,10 @@ class Profile extends React.Component {
                                                 <If condition={this.state.signUpStatus.status == C.FAILURE}>
                                                     <div>{this.state.signUpStatus.errors.join(', ')}</div>
                                                 </If>
-                                                <Button onClick={ () => this.submit()} buttonText={"Submit"} />
+                                                <Button onClick={ () => this.submit()} buttonText={"Save"} />
                                             </div>
                                         </div>
+                                        </If>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +132,7 @@ class Profile extends React.Component {
                                     <div className="sec-header">Premium Account</div>
                                     <div className="sec-main">
                                         <div>Get access to even more exercises and unlimited reporting on workout progress
-                                        for only $9.99 a month!</div>
+                                        for only <span className="purple">$9.99</span> a month!</div>
                                         <div className="button-wrap">
                                             <Button onClick={this.changeAccount} buttonText={"Get Premium"} />
                                         </div>

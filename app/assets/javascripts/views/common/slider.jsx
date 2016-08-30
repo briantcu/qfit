@@ -19,7 +19,6 @@ class Slider extends React.Component {
     }
 
     handleLabel() {
-        console.log(this.refs.slider.checked);
         if (this.refs.slider.checked) {
             this.setState({label: this.props.checked});
         } else {
@@ -29,7 +28,8 @@ class Slider extends React.Component {
 
     render () {
         return <span><div className="switch">
-                <input ref="slider" id="cmn-toggle-4" className="cmn-toggle cmn-toggle-round-flat" type="checkbox" onChange={ () => this.handleLabel()}/>
+                <input ref="slider" id="cmn-toggle-4" className="cmn-toggle cmn-toggle-round-flat" type="checkbox"
+                       onChange={ () => this.handleLabel()} />
                 <label htmlFor="cmn-toggle-4" />
         </div><span className="selected-text standard-text">{this.state.label}</span></span>;
     }

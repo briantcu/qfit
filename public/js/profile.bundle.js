@@ -199,23 +199,24 @@
 	                                        React.createElement(
 	                                            'div',
 	                                            { className: 'sec-main' },
-	                                            React.createElement(
+	                                            this.state.user.first_name ? [React.createElement(
 	                                                'div',
-	                                                { className: 'row' },
+	                                                { className: 'row', key: '0'
+	                                                },
 	                                                React.createElement(
 	                                                    'div',
 	                                                    { className: 'col-md-12' },
 	                                                    React.createElement(
 	                                                        'span',
-	                                                        { className: 'purple-bot-container ' + (this.state.firstNameErrors.length > 0 ? 'error' : null) },
+	                                                        { className: 'purple-bot-container border-top ' + (this.state.firstNameErrors.length > 0 ? 'error' : null) },
 	                                                        React.createElement(_fancy_input2.default, { ref: 'firstName', name: 'first_name', placeholder: 'First Name', type: 'text',
-	                                                            errors: this.state.firstNameErrors })
+	                                                            errors: this.state.firstNameErrors, value: this.state.user.first_name })
 	                                                    )
 	                                                )
-	                                            ),
-	                                            React.createElement(
+	                                            ), React.createElement(
 	                                                'div',
-	                                                { className: 'row' },
+	                                                { className: 'row', key: '1'
+	                                                },
 	                                                React.createElement(
 	                                                    'div',
 	                                                    { className: 'col-md-12' },
@@ -223,13 +224,13 @@
 	                                                        'span',
 	                                                        { className: 'purple-bot-container ' + (this.state.lastNameErrors.length > 0 ? 'error' : null) },
 	                                                        React.createElement(_fancy_input2.default, { ref: 'lastName', name: 'last_name', placeholder: 'Last Name', type: 'text',
-	                                                            errors: this.state.lastNameErrors })
+	                                                            errors: this.state.lastNameErrors, value: this.state.user.last_name })
 	                                                    )
 	                                                )
-	                                            ),
-	                                            React.createElement(
+	                                            ), React.createElement(
 	                                                'div',
-	                                                { className: 'row' },
+	                                                { className: 'row', key: '2'
+	                                                },
 	                                                React.createElement(
 	                                                    'div',
 	                                                    { className: 'col-md-12' },
@@ -237,13 +238,13 @@
 	                                                        'span',
 	                                                        { className: 'purple-bot-container ' + (this.state.emailErrors.length > 0 ? 'error' : null) },
 	                                                        React.createElement(_fancy_input2.default, { ref: 'email', name: 'email', placeholder: 'Email Address', type: 'text',
-	                                                            errors: this.state.emailErrors })
+	                                                            errors: this.state.emailErrors, value: this.state.user.email })
 	                                                    )
 	                                                )
-	                                            ),
-	                                            React.createElement(
+	                                            ), React.createElement(
 	                                                'div',
-	                                                { className: 'row' },
+	                                                { className: 'row', key: '3'
+	                                                },
 	                                                React.createElement(
 	                                                    'div',
 	                                                    { className: 'col-md-12' },
@@ -254,10 +255,10 @@
 	                                                            errors: this.state.passwordErrors })
 	                                                    )
 	                                                )
-	                                            ),
-	                                            React.createElement(
+	                                            ), React.createElement(
 	                                                'div',
-	                                                { className: 'row' },
+	                                                { className: 'row', key: '4'
+	                                                },
 	                                                React.createElement(
 	                                                    'div',
 	                                                    { className: 'col-md-12' },
@@ -267,10 +268,10 @@
 	                                                        React.createElement(_slider2.default, { ref: 'sex', checked: 'female', unchecked: 'male' })
 	                                                    )
 	                                                )
-	                                            ),
-	                                            React.createElement(
+	                                            ), React.createElement(
 	                                                'div',
-	                                                { className: 'row submit-row' },
+	                                                { className: 'row submit-row', key: '5'
+	                                                },
 	                                                React.createElement(
 	                                                    'div',
 	                                                    { className: 'col-md-12' },
@@ -281,9 +282,9 @@
 	                                                    ) : null,
 	                                                    React.createElement(_button2.default, { onClick: function onClick() {
 	                                                            return _this2.submit();
-	                                                        }, buttonText: "Submit" })
+	                                                        }, buttonText: "Save" })
 	                                                )
-	                                            )
+	                                            )] : null
 	                                        )
 	                                    )
 	                                ),
@@ -304,7 +305,13 @@
 	                                            React.createElement(
 	                                                'div',
 	                                                null,
-	                                                'Get access to even more exercises and unlimited reporting on workout progress for only $9.99 a month!'
+	                                                'Get access to even more exercises and unlimited reporting on workout progress for only ',
+	                                                React.createElement(
+	                                                    'span',
+	                                                    { className: 'purple' },
+	                                                    '$9.99'
+	                                                ),
+	                                                ' a month!'
 	                                            ),
 	                                            React.createElement(
 	                                                'div',
@@ -42117,7 +42124,7 @@
 	                    { className: 'floatl__label' },
 	                    this.props.placeholder
 	                ) : null,
-	                _react2.default.createElement('input', { ref: 'inputField', type: this.props.type, className: 'transparent-input standard-text floatl__input',
+	                _react2.default.createElement('input', { ref: 'inputField', type: this.props.type, className: 'transparent-input standard-text floatl__input', defaultValue: this.props.value,
 	                    name: '' + this.props.name, placeholder: '' + this.props.placeholder, onChange: function onChange() {
 	                        return _this2.changed();
 	                    } }),
@@ -42340,7 +42347,6 @@
 	    }, {
 	        key: 'handleLabel',
 	        value: function handleLabel() {
-	            console.log(this.refs.slider.checked);
 	            if (this.refs.slider.checked) {
 	                this.setState({ label: this.props.checked });
 	            } else {
@@ -42358,7 +42364,8 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'switch' },
-	                    _react2.default.createElement('input', { ref: 'slider', id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox', onChange: function onChange() {
+	                    _react2.default.createElement('input', { ref: 'slider', id: 'cmn-toggle-4', className: 'cmn-toggle cmn-toggle-round-flat', type: 'checkbox',
+	                        onChange: function onChange() {
 	                            return _this2.handleLabel();
 	                        } }),
 	                    _react2.default.createElement('label', { htmlFor: 'cmn-toggle-4' })
