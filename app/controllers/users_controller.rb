@@ -52,7 +52,8 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :get_calendar, :fitness_assessment, :get_progress]
-  before_filter :can_access_user, only: [:show, :update, :get_calendar, :fitness_assessment, :get_progress]
+  before_filter :can_access_user, only: [:show, :get_calendar, :fitness_assessment, :get_progress]
+  before_filter :is_user, only: [:update]
 
   # GET /users/1.json
   def show
@@ -114,7 +115,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :sex, :phone, :user_name, :weight, :birth_year)
+    params.require(:user).permit(:first_name, :last_name, :email, :sex, :phone, :user_name, :weight, :birth_year, :password)
   end
 
   def fitness_assessment_params
@@ -127,6 +128,12 @@ class UsersController < ApplicationController
     return unauthorized if current_user.nil?
     unauthorized unless (current_user.id == @user.id ||
         (current_user.is_coach_of_user?(@user.id)) ||
+        (current_user.is_super_user?))
+    end
+
+  def is_user
+    return unauthorized if current_user.nil?
+    unauthorized unless (current_user.id == @user.id ||
         (current_user.is_super_user?))
   end
 
