@@ -20,7 +20,7 @@ class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            signUpStatus: {status: '', errors: []},
+            saveStatus: {status: '', errors: []},
             isUsernameUnique: true,
             usernameErrors: [],
             firstNameErrors: [],
@@ -58,23 +58,16 @@ class Profile extends React.Component {
         this.setState(
             {
                 user: user.user,
-                isUsernameUnique: isUsernameUnique
+                isUsernameUnique: isUsernameUnique,
+                saveStatus: data.saveStatus
             }
         );
-
-        //if (data.signUpStatus.status == C.SUCCESS) {
-        //    location.href = '/setup/goal';
-        //}
 
         if (isUsernameUnique) {
             this.setState({usernameErrors: []});
         } else {
             this.setState({usernameErrors: ["Username isn't available."]});
         }
-
-        this.setState({
-            signUpStatus: data.signUpStatus
-        });
 
         this.state.formSubmitted = false;
     }
@@ -96,11 +89,12 @@ class Profile extends React.Component {
 
     packageData () {
         var user = {};
-        user['id'] = this.state.user.id;
         user['email'] = this.refs.email.getValue();
         user['first_name'] = this.refs.firstName.getValue();
         user['last_name'] = this.refs.lastName.getValue();
-        user['password'] = this.refs.password.getValue();
+        if (this.refs.password.getValue()) {
+            user['password'] = this.refs.password.getValue();
+        }
         user['user_name'] = this.refs.username.getValue();
         return {user: user};
     }
@@ -137,10 +131,12 @@ class Profile extends React.Component {
             hasErrors = true;
         }
 
-        var strength = this.refs.password.getStrength();
-        if (strength < 2) {
-            this.setState({passwordErrors: ['Your password is too weak']});
-            hasErrors = true;
+        if (this.refs.password.getValue()) {
+            var strength = this.refs.password.getStrength();
+            if (strength < 2) {
+                this.setState({passwordErrors: ['Your password is too weak']});
+                hasErrors = true;
+            }
         }
         return hasErrors;
     }
@@ -211,8 +207,11 @@ class Profile extends React.Component {
                                         </div>
                                         <div className="row submit-row">
                                             <div className="col-md-12">
-                                                <If condition={this.state.signUpStatus != C.FAILURE}>
-                                                    <div>{this.state.signUpStatus.errors.join(', ')}</div>
+                                                <If condition={this.state.saveStatus.status == C.FAILURE}>
+                                                    <div>{this.state.saveStatus.errors.join(', ')}</div>
+                                                </If>
+                                                <If condition={this.state.saveStatus.status == C.SUCCESS}>
+                                                    <div>SUCCESS!</div>
                                                 </If>
                                                 <Button onClick={ () => this.submit()} buttonText={"Save"} />
                                             </div>

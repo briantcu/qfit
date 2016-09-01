@@ -126,7 +126,7 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Profile).call(this, props));
 	
 	        _this.state = {
-	            signUpStatus: { status: '', errors: [] },
+	            saveStatus: { status: '', errors: [] },
 	            isUsernameUnique: true,
 	            usernameErrors: [],
 	            firstNameErrors: [],
@@ -169,22 +169,15 @@
 	            isUsernameUnique = isUsernameUnique || this.state.user.user_name == this.refs.username.getValue();
 	            this.setState({
 	                user: user.user,
-	                isUsernameUnique: isUsernameUnique
+	                isUsernameUnique: isUsernameUnique,
+	                saveStatus: data.saveStatus
 	            });
-	
-	            //if (data.signUpStatus.status == C.SUCCESS) {
-	            //    location.href = '/setup/goal';
-	            //}
 	
 	            if (isUsernameUnique) {
 	                this.setState({ usernameErrors: [] });
 	            } else {
 	                this.setState({ usernameErrors: ["Username isn't available."] });
 	            }
-	
-	            this.setState({
-	                signUpStatus: data.signUpStatus
-	            });
 	
 	            this.state.formSubmitted = false;
 	        }
@@ -207,11 +200,12 @@
 	        key: 'packageData',
 	        value: function packageData() {
 	            var user = {};
-	            user['id'] = this.state.user.id;
 	            user['email'] = this.refs.email.getValue();
 	            user['first_name'] = this.refs.firstName.getValue();
 	            user['last_name'] = this.refs.lastName.getValue();
-	            user['password'] = this.refs.password.getValue();
+	            if (this.refs.password.getValue()) {
+	                user['password'] = this.refs.password.getValue();
+	            }
 	            user['user_name'] = this.refs.username.getValue();
 	            return { user: user };
 	        }
@@ -250,10 +244,12 @@
 	                hasErrors = true;
 	            }
 	
-	            var strength = this.refs.password.getStrength();
-	            if (strength < 2) {
-	                this.setState({ passwordErrors: ['Your password is too weak'] });
-	                hasErrors = true;
+	            if (this.refs.password.getValue()) {
+	                var strength = this.refs.password.getStrength();
+	                if (strength < 2) {
+	                    this.setState({ passwordErrors: ['Your password is too weak'] });
+	                    hasErrors = true;
+	                }
 	            }
 	            return hasErrors;
 	        }
@@ -388,10 +384,15 @@
 	                                                React.createElement(
 	                                                    'div',
 	                                                    { className: 'col-md-12' },
-	                                                    this.state.signUpStatus != _profile_constants2.default.FAILURE ? React.createElement(
+	                                                    this.state.saveStatus.status == _profile_constants2.default.FAILURE ? React.createElement(
 	                                                        'div',
 	                                                        null,
-	                                                        this.state.signUpStatus.errors.join(', ')
+	                                                        this.state.saveStatus.errors.join(', ')
+	                                                    ) : null,
+	                                                    this.state.saveStatus.status == _profile_constants2.default.SUCCESS ? React.createElement(
+	                                                        'div',
+	                                                        null,
+	                                                        'SUCCESS!'
 	                                                    ) : null,
 	                                                    React.createElement(_button2.default, { onClick: function onClick() {
 	                                                            return _this2.submit();
@@ -31242,6 +31243,7 @@
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 304);
 	var Store = __webpack_require__(/*! ./store.js */ 306);
 	var C = __webpack_require__(/*! constants/user_constants.js */ 308);
+	var PC = __webpack_require__(/*! constants/profile_constants.js */ 670);
 	
 	var UserStore = new Store({
 	    user: {},
@@ -31258,6 +31260,13 @@
 	});
 	
 	dispatcher.register(C.LOADED, function (data) {
+	    if (data) {
+	        UserStore.setUser(data);
+	        UserStore.change();
+	    }
+	});
+	
+	dispatcher.register(PC.SAVED, function (data) {
 	    if (data) {
 	        UserStore.setUser(data);
 	        UserStore.change();
@@ -45427,7 +45436,10 @@
 	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 309);
 	
 	module.exports = keyMirror({
-	    LOADED: null
+	    LOADED: null,
+	    FAILURE: null,
+	    SUCCESS: null,
+	    SAVED: null
 	});
 
 /***/ },
@@ -45440,27 +45452,27 @@
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 304);
-	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 666);
+	var C = __webpack_require__(/*! constants/profile_constants.js */ 670);
 	
 	var ProfileActions = {
 	
 	    update: function (payload) {
 	        var data = JSON.stringify(payload);
 	        $.ajax({
-	            type: "post",
+	            type: "put",
 	            data: data,
-	            url: "/users.json",
+	            url: "/users/" + gon.current_user_id + ".json",
 	            dataType: "json",
 	            contentType: "application/json; charset=utf-8",
 	            success: function (results) {
 	                var payload = results;
 	                payload.success = true;
-	                dispatcher.dispatch(C.SIGN_UP, payload);
+	                dispatcher.dispatch(C.SAVED, payload);
 	            },
 	            error: function (results) {
 	                var payload = results.responseJSON;
 	                payload.success = false;
-	                dispatcher.dispatch(C.SIGN_UP, payload);
+	                dispatcher.dispatch(C.SAVED, payload);
 	            }
 	        });
 	    }
@@ -45484,14 +45496,25 @@
 	
 	var ProfileStore = new Store({
 	    data: {},
+	    saveStatus: { status: "", errors: [] },
 	
 	    setData: function (data) {
 	        this.data = data;
 	    },
 	
+	    setSaveStatus: function (data) {
+	        if (data.success) {
+	            this.saveStatus.status = C.SUCCESS;
+	        } else {
+	            this.saveStatus.status = C.FAILURE;
+	            this.saveStatus.errors = data;
+	        }
+	    },
+	
 	    getData: function () {
 	        return {
-	            data: this.data
+	            data: this.data,
+	            saveStatus: this.saveStatus
 	        };
 	    }
 	});
@@ -45499,6 +45522,13 @@
 	dispatcher.register(C.LOADED, function (data) {
 	    if (data) {
 	        ProfileStore.setData(data);
+	        ProfileStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.SAVED, function (data) {
+	    if (data) {
+	        ProfileStore.setSaveStatus(data);
 	        ProfileStore.change();
 	    }
 	});

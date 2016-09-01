@@ -1,6 +1,7 @@
 var dispatcher = require('global_dispatcher.js');
 var Store = require('./store.js');
 var C = require('constants/user_constants.js');
+var PC = require('constants/profile_constants.js');
 
 var UserStore = new Store({
     user: {},
@@ -17,6 +18,13 @@ var UserStore = new Store({
 });
 
 dispatcher.register(C.LOADED, function(data) {
+    if(data){
+        UserStore.setUser(data);
+        UserStore.change();
+    }
+});
+
+dispatcher.register(PC.SAVED, function(data) {
     if(data){
         UserStore.setUser(data);
         UserStore.change();

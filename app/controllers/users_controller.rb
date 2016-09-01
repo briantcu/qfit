@@ -62,7 +62,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     if @user.update(convert_data_uri_to_upload(user_params))
-      head :no_content
+      render :show
     else
       render json: @user.errors, status: :unprocessable_entity
     end

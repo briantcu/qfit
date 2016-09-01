@@ -28830,6 +28830,7 @@
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 304);
 	var Store = __webpack_require__(/*! ./store.js */ 306);
 	var C = __webpack_require__(/*! constants/user_constants.js */ 308);
+	var PC = __webpack_require__(/*! constants/profile_constants.js */ 670);
 	
 	var UserStore = new Store({
 	    user: {},
@@ -28846,6 +28847,13 @@
 	});
 	
 	dispatcher.register(C.LOADED, function (data) {
+	    if (data) {
+	        UserStore.setUser(data);
+	        UserStore.change();
+	    }
+	});
+	
+	dispatcher.register(PC.SAVED, function (data) {
 	    if (data) {
 	        UserStore.setUser(data);
 	        UserStore.change();
@@ -67821,6 +67829,38 @@
 	
 	// exports
 
+
+/***/ },
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */
+/*!****************************************!*\
+  !*** ./constants/profile_constants.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 309);
+	
+	module.exports = keyMirror({
+	    LOADED: null,
+	    FAILURE: null,
+	    SUCCESS: null,
+	    SAVED: null
+	});
 
 /***/ }
 /******/ ]);
