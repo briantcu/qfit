@@ -148,12 +148,7 @@
 	        key: 'onToken',
 	        value: function onToken(token) {
 	            console.log(token);
-	            //fetch('/save-stripe-token', {
-	            //    method: 'POST',
-	            //    body: JSON.stringify(token),
-	            //}).then(token => {
-	            //    alert(`We are in business, ${token.email}`);
-	            //});
+	            _profile_actions2.default.checkout(token, _profile_constants2.default.PREMIUM_CHECKOUT);
 	        }
 	    }, {
 	        key: 'componentDidMount',
@@ -399,12 +394,12 @@
 	                                                React.createElement(
 	                                                    'div',
 	                                                    { className: 'col-md-12' },
-	                                                    this.state.saveStatus.status == _profile_constants2.default.FAILURE ? React.createElement(
+	                                                    this.state.saveStatus.status == _profile_constants2.default.PROFILE_FAILURE ? React.createElement(
 	                                                        'div',
 	                                                        null,
 	                                                        this.state.saveStatus.errors.join(', ')
 	                                                    ) : null,
-	                                                    this.state.saveStatus.status == _profile_constants2.default.SUCCESS ? React.createElement(
+	                                                    this.state.saveStatus.status == _profile_constants2.default.PROFILE_SUCCESS ? React.createElement(
 	                                                        'div',
 	                                                        null,
 	                                                        'SUCCESS!'
@@ -450,9 +445,13 @@
 	                                                    stripeKey: 'pk_test_Qn7vO7ACSbGqKp7tBXget5Du',
 	                                                    amount: 999,
 	                                                    name: 'Quadfit, LLC',
-	                                                    image: '/img/documentation/checkout/marketplace.png',
+	                                                    image: 'https://s3.amazonaws.com/quadfit/logo-1.jpg',
 	                                                    description: 'Premium Membership',
-	                                                    panelLabel: 'Get Premium'
+	                                                    panelLabel: 'Get Premium',
+	                                                    label: 'Get Premium',
+	                                                    allowRememberMe: false,
+	                                                    email: this.state.user.email,
+	                                                    local: 'auto'
 	                                                })
 	                                            )
 	                                        )
@@ -31324,7 +31323,7 @@
 	    }
 	});
 	
-	dispatcher.register(PC.SAVED, function (data) {
+	dispatcher.register(PC.PROFILE_SAVED, function (data) {
 	    if (data) {
 	        UserStore.setUser(data);
 	        UserStore.change();
@@ -31902,9 +31901,10 @@
 	
 	module.exports = keyMirror({
 	    LOADED: null,
-	    FAILURE: null,
-	    SUCCESS: null,
-	    SAVED: null
+	    PROFILE_FAILURE: null,
+	    PROFILE_SUCCESS: null,
+	    PROFILE_SAVED: null,
+	    PREMIUM_CHECKOUT: null
 	});
 
 /***/ },
@@ -45550,8 +45550,8 @@
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
-	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 304);
-	var C = __webpack_require__(/*! constants/profile_constants.js */ 310);
+	var dispatcher = __webpack_require__(/*! global_dispatcher */ 304);
+	var C = __webpack_require__(/*! constants/profile_constants */ 310);
 	
 	var ProfileActions = {
 	
@@ -45566,12 +45566,32 @@
 	            success: function (results) {
 	                var payload = results;
 	                payload.success = true;
-	                dispatcher.dispatch(C.SAVED, payload);
+	                dispatcher.dispatch(C.PROFILE_SAVED, payload);
 	            },
 	            error: function (results) {
 	                var payload = results.responseJSON;
 	                payload.success = false;
-	                dispatcher.dispatch(C.SAVED, payload);
+	                dispatcher.dispatch(C.PROFILE_SAVED, payload);
+	            }
+	        });
+	    },
+	
+	    checkout: function (token, type) {
+	        var data = { checkout_type: type, token: token };
+	        data = JSON.stringify(data);
+	        $.ajax({
+	            type: "post",
+	            data: data,
+	            url: "/checkout.json",
+	            dataType: "json",
+	            contentType: "application/json; charset=utf-8",
+	            success: function (results) {
+	                var payload = results;
+	                payload.success = true;
+	            },
+	            error: function (results) {
+	                var payload = results.responseJSON;
+	                payload.success = false;
 	            }
 	        });
 	    }
@@ -45603,9 +45623,9 @@
 	
 	    setSaveStatus: function (data) {
 	        if (data.success) {
-	            this.saveStatus.status = C.SUCCESS;
+	            this.saveStatus.status = C.PROFILE_SUCCESS;
 	        } else {
-	            this.saveStatus.status = C.FAILURE;
+	            this.saveStatus.status = C.PROFILE_FAILURE;
 	            this.saveStatus.errors = data;
 	        }
 	    },
@@ -45625,7 +45645,7 @@
 	    }
 	});
 	
-	dispatcher.register(C.SAVED, function (data) {
+	dispatcher.register(C.PROFILE_SAVED, function (data) {
 	    if (data) {
 	        ProfileStore.setSaveStatus(data);
 	        ProfileStore.change();

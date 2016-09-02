@@ -36,12 +36,7 @@ class Profile extends React.Component {
 
     onToken (token)  {
         console.log(token);
-        //fetch('/save-stripe-token', {
-        //    method: 'POST',
-        //    body: JSON.stringify(token),
-        //}).then(token => {
-        //    alert(`We are in business, ${token.email}`);
-        //});
+        ProfileActions.checkout(token, C.PREMIUM_CHECKOUT);
     }
 
     componentDidMount () {
@@ -218,10 +213,10 @@ class Profile extends React.Component {
                                         </div>
                                         <div className="row submit-row">
                                             <div className="col-md-12">
-                                                <If condition={this.state.saveStatus.status == C.FAILURE}>
+                                                <If condition={this.state.saveStatus.status == C.PROFILE_FAILURE}>
                                                     <div>{this.state.saveStatus.errors.join(', ')}</div>
                                                 </If>
-                                                <If condition={this.state.saveStatus.status == C.SUCCESS}>
+                                                <If condition={this.state.saveStatus.status == C.PROFILE_SUCCESS}>
                                                     <div>SUCCESS!</div>
                                                 </If>
                                                 <Button onClick={ () => this.submit()} buttonText={"Save"} />
@@ -244,9 +239,13 @@ class Profile extends React.Component {
                                                     stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
                                                     amount={999}
                                                     name="Quadfit, LLC"
-                                                    image="/img/documentation/checkout/marketplace.png"
+                                                    image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
                                                     description="Premium Membership"
                                                     panelLabel="Get Premium"
+                                                    label="Get Premium"
+                                                    allowRememberMe={false}
+                                                    email={this.state.user.email}
+                                                    local="auto"
                                                 />
                                             </div>
                                         </div>

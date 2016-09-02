@@ -28853,7 +28853,7 @@
 	    }
 	});
 	
-	dispatcher.register(PC.SAVED, function (data) {
+	dispatcher.register(PC.PROFILE_SAVED, function (data) {
 	    if (data) {
 	        UserStore.setUser(data);
 	        UserStore.change();
@@ -29431,9 +29431,10 @@
 	
 	module.exports = keyMirror({
 	    LOADED: null,
-	    FAILURE: null,
-	    SUCCESS: null,
-	    SAVED: null
+	    PROFILE_FAILURE: null,
+	    PROFILE_SUCCESS: null,
+	    PROFILE_SAVED: null,
+	    PREMIUM_CHECKOUT: null
 	});
 
 /***/ },

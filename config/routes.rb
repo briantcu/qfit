@@ -27,6 +27,8 @@ Qfit::Application.routes.draw do
 
 
   #****************** API *********************
+  post '/checkout', to: 'checkout_controller#create'
+
   get '/schedule/program_type/:program_type_id/weight_schedule/:weight_schedule_id', to: 'workout_schedule_suggestions#retrieve_suggested_schedule'
 
   resources :program_types

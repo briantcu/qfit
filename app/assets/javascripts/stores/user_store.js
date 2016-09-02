@@ -24,7 +24,7 @@ dispatcher.register(C.LOADED, function(data) {
     }
 });
 
-dispatcher.register(PC.SAVED, function(data) {
+dispatcher.register(PC.PROFILE_SAVED, function(data) {
     if(data){
         UserStore.setUser(data);
         UserStore.change();

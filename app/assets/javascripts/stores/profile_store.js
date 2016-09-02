@@ -12,9 +12,9 @@ var ProfileStore = new Store({
 
     setSaveStatus: function(data) {
         if (data.success) {
-            this.saveStatus.status = C.SUCCESS;
+            this.saveStatus.status = C.PROFILE_SUCCESS;
         } else {
-            this.saveStatus.status = C.FAILURE;
+            this.saveStatus.status = C.PROFILE_FAILURE;
             this.saveStatus.errors = data;
         }
     },
@@ -34,7 +34,7 @@ dispatcher.register(C.LOADED, function(data) {
     }
 });
 
-dispatcher.register(C.SAVED, function(data) {
+dispatcher.register(C.PROFILE_SAVED, function(data) {
     if(data){
         ProfileStore.setSaveStatus(data);
         ProfileStore.change();
