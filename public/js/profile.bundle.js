@@ -59,7 +59,7 @@
 	
 	var _user_store2 = _interopRequireDefault(_user_store);
 	
-	var _user_actions = __webpack_require__(/*! actions/user_actions */ 312);
+	var _user_actions = __webpack_require__(/*! actions/user_actions */ 313);
 	
 	var _user_actions2 = _interopRequireDefault(_user_actions);
 	
@@ -67,23 +67,23 @@
 	
 	var _header2 = _interopRequireDefault(_header);
 	
-	var _footer = __webpack_require__(/*! views/common/footer */ 651);
+	var _footer = __webpack_require__(/*! views/common/footer */ 652);
 	
 	var _footer2 = _interopRequireDefault(_footer);
 	
-	var _button = __webpack_require__(/*! views/common/button */ 600);
+	var _button = __webpack_require__(/*! views/common/button */ 601);
 	
 	var _button2 = _interopRequireDefault(_button);
 	
-	var _fancy_input = __webpack_require__(/*! views/common/fancy_input */ 658);
+	var _fancy_input = __webpack_require__(/*! views/common/fancy_input */ 659);
 	
 	var _fancy_input2 = _interopRequireDefault(_fancy_input);
 	
-	var _slider = __webpack_require__(/*! views/common/slider */ 662);
+	var _slider = __webpack_require__(/*! views/common/slider */ 663);
 	
 	var _slider2 = _interopRequireDefault(_slider);
 	
-	var _profile_constants = __webpack_require__(/*! constants/profile_constants */ 670);
+	var _profile_constants = __webpack_require__(/*! constants/profile_constants */ 310);
 	
 	var _profile_constants2 = _interopRequireDefault(_profile_constants);
 	
@@ -91,21 +91,25 @@
 	
 	var _validator2 = _interopRequireDefault(_validator);
 	
-	var _sign_up_actions = __webpack_require__(/*! actions/sign_up_actions */ 665);
+	var _sign_up_actions = __webpack_require__(/*! actions/sign_up_actions */ 666);
 	
 	var _sign_up_actions2 = _interopRequireDefault(_sign_up_actions);
 	
-	var _profile_actions = __webpack_require__(/*! actions/profile_actions */ 671);
+	var _profile_actions = __webpack_require__(/*! actions/profile_actions */ 712);
 	
 	var _profile_actions2 = _interopRequireDefault(_profile_actions);
 	
-	var _profile_store = __webpack_require__(/*! stores/profile_store */ 672);
+	var _profile_store = __webpack_require__(/*! stores/profile_store */ 713);
 	
 	var _profile_store2 = _interopRequireDefault(_profile_store);
 	
-	var _sign_up_store = __webpack_require__(/*! stores/sign_up_store */ 667);
+	var _sign_up_store = __webpack_require__(/*! stores/sign_up_store */ 668);
 	
 	var _sign_up_store2 = _interopRequireDefault(_sign_up_store);
+	
+	var _reactStripeCheckout = __webpack_require__(/*! react-stripe-checkout */ 714);
+	
+	var _reactStripeCheckout2 = _interopRequireDefault(_reactStripeCheckout);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -115,7 +119,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! pages/profile.scss */ 673);
+	__webpack_require__(/*! pages/profile.scss */ 715);
 	
 	var Profile = function (_React$Component) {
 	    _inherits(Profile, _React$Component);
@@ -141,6 +145,17 @@
 	    }
 	
 	    _createClass(Profile, [{
+	        key: 'onToken',
+	        value: function onToken(token) {
+	            console.log(token);
+	            //fetch('/save-stripe-token', {
+	            //    method: 'POST',
+	            //    body: JSON.stringify(token),
+	            //}).then(token => {
+	            //    alert(`We are in business, ${token.email}`);
+	            //});
+	        }
+	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            _user_store2.default.addChangeListener(this.onChange);
@@ -402,7 +417,7 @@
 	                                        )
 	                                    )
 	                                ),
-	                                React.createElement(
+	                                this.state.user.paid_tier == 1 ? React.createElement(
 	                                    'div',
 	                                    { className: 'col-xs-12 col-sm-6' },
 	                                    React.createElement(
@@ -430,11 +445,54 @@
 	                                            React.createElement(
 	                                                'div',
 	                                                { className: 'button-wrap' },
-	                                                React.createElement(_button2.default, { onClick: this.changeAccount, buttonText: "Get Premium" })
+	                                                React.createElement(_reactStripeCheckout2.default, {
+	                                                    token: this.onToken,
+	                                                    stripeKey: 'pk_test_Qn7vO7ACSbGqKp7tBXget5Du',
+	                                                    amount: 999,
+	                                                    name: 'Quadfit, LLC',
+	                                                    image: '/img/documentation/checkout/marketplace.png',
+	                                                    description: 'Premium Membership',
+	                                                    panelLabel: 'Get Premium'
+	                                                })
 	                                            )
 	                                        )
 	                                    )
-	                                )
+	                                ) : null,
+	                                this.state.user.paid_tier == 2 ? React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-12 col-sm-6' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'p-section' },
+	                                        React.createElement(
+	                                            'div',
+	                                            { className: 'sec-header' },
+	                                            'Your Account'
+	                                        ),
+	                                        React.createElement(
+	                                            'div',
+	                                            { className: 'sec-main' },
+	                                            React.createElement(
+	                                                'div',
+	                                                null,
+	                                                'You have a premium account, which gives you access to the complete Quadfit library of exercises and unlimited reporting for only',
+	                                                React.createElement(
+	                                                    'span',
+	                                                    { className: 'purple' },
+	                                                    '$9.99'
+	                                                ),
+	                                                ' a month!'
+	                                            ),
+	                                            React.createElement('br', null),
+	                                            'If you choose to downgrade your account you\'ll lose access to the complete Quadfit library, and you\'ll only be able to see your progress for the last month.',
+	                                            React.createElement(
+	                                                'div',
+	                                                { className: 'button-wrap' },
+	                                                React.createElement(_button2.default, { onClick: this.changeAccount, buttonText: "Downgrade" })
+	                                            )
+	                                        )
+	                                    )
+	                                ) : null
 	                            )
 	                        )
 	                    )
@@ -25014,7 +25072,7 @@
 	                                )] : null
 	                            )
 	                        ) : null,
-	                        this.props.user.avatars ? React.createElement(
+	                        this.props.user.avatars && this.props.user.avatars.length > 0 ? React.createElement(
 	                            'div',
 	                            { className: this.props.showWorkoutNav ? "col-xs-1 col-xs-offset-1" : "col-xs-1 col-xs-offset-9" },
 	                            React.createElement('img', { src: '' + this.props.user.avatars })
@@ -31243,7 +31301,7 @@
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 304);
 	var Store = __webpack_require__(/*! ./store.js */ 306);
 	var C = __webpack_require__(/*! constants/user_constants.js */ 308);
-	var PC = __webpack_require__(/*! constants/profile_constants.js */ 670);
+	var PC = __webpack_require__(/*! constants/profile_constants.js */ 310);
 	
 	var UserStore = new Store({
 	    user: {},
@@ -31832,9 +31890,27 @@
 	module.exports = keyMirror;
 
 /***/ },
-/* 310 */,
+/* 310 */
+/*!****************************************!*\
+  !*** ./constants/profile_constants.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 309);
+	
+	module.exports = keyMirror({
+	    LOADED: null,
+	    FAILURE: null,
+	    SUCCESS: null,
+	    SAVED: null
+	});
+
+/***/ },
 /* 311 */,
-/* 312 */
+/* 312 */,
+/* 313 */
 /*!*********************************!*\
   !*** ./actions/user_actions.js ***!
   \*********************************/
@@ -32003,10 +32079,10 @@
 	};
 	
 	module.exports = UserActions;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 313)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 314)))
 
 /***/ },
-/* 313 */
+/* 314 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/jquery/dist/jquery.js ***!
   \***************************************************************/
@@ -41857,7 +41933,6 @@
 
 
 /***/ },
-/* 314 */,
 /* 315 */,
 /* 316 */,
 /* 317 */,
@@ -42143,7 +42218,8 @@
 /* 597 */,
 /* 598 */,
 /* 599 */,
-/* 600 */
+/* 600 */,
+/* 601 */
 /*!*********************************!*\
   !*** ./views/common/button.jsx ***!
   \*********************************/
@@ -42173,9 +42249,9 @@
 	
 	window.jQuery = $;
 	
-	__webpack_require__(/*! bootstrap */ 601);
+	__webpack_require__(/*! bootstrap */ 602);
 	
-	__webpack_require__(/*! common/button.scss */ 614);
+	__webpack_require__(/*! common/button.scss */ 615);
 	
 	var Button = function (_React$Component) {
 	    _inherits(Button, _React$Component);
@@ -42208,31 +42284,31 @@
 	}(_react2.default.Component);
 	
 	exports.default = Button;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 313)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 314)))
 
 /***/ },
-/* 601 */
+/* 602 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/dist/js/npm.js ***!
   \******************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// This file is autogenerated via the `commonjs` Grunt task. You can require() this file in a CommonJS environment.
-	__webpack_require__(/*! ../../js/transition.js */ 602)
-	__webpack_require__(/*! ../../js/alert.js */ 603)
-	__webpack_require__(/*! ../../js/button.js */ 604)
-	__webpack_require__(/*! ../../js/carousel.js */ 605)
-	__webpack_require__(/*! ../../js/collapse.js */ 606)
-	__webpack_require__(/*! ../../js/dropdown.js */ 607)
-	__webpack_require__(/*! ../../js/modal.js */ 608)
-	__webpack_require__(/*! ../../js/tooltip.js */ 609)
-	__webpack_require__(/*! ../../js/popover.js */ 610)
-	__webpack_require__(/*! ../../js/scrollspy.js */ 611)
-	__webpack_require__(/*! ../../js/tab.js */ 612)
-	__webpack_require__(/*! ../../js/affix.js */ 613)
+	__webpack_require__(/*! ../../js/transition.js */ 603)
+	__webpack_require__(/*! ../../js/alert.js */ 604)
+	__webpack_require__(/*! ../../js/button.js */ 605)
+	__webpack_require__(/*! ../../js/carousel.js */ 606)
+	__webpack_require__(/*! ../../js/collapse.js */ 607)
+	__webpack_require__(/*! ../../js/dropdown.js */ 608)
+	__webpack_require__(/*! ../../js/modal.js */ 609)
+	__webpack_require__(/*! ../../js/tooltip.js */ 610)
+	__webpack_require__(/*! ../../js/popover.js */ 611)
+	__webpack_require__(/*! ../../js/scrollspy.js */ 612)
+	__webpack_require__(/*! ../../js/tab.js */ 613)
+	__webpack_require__(/*! ../../js/affix.js */ 614)
 
 /***/ },
-/* 602 */
+/* 603 */
 /*!********************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/transition.js ***!
   \********************************************************************/
@@ -42300,7 +42376,7 @@
 
 
 /***/ },
-/* 603 */
+/* 604 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/alert.js ***!
   \***************************************************************/
@@ -42403,7 +42479,7 @@
 
 
 /***/ },
-/* 604 */
+/* 605 */
 /*!****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/button.js ***!
   \****************************************************************/
@@ -42532,7 +42608,7 @@
 
 
 /***/ },
-/* 605 */
+/* 606 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/carousel.js ***!
   \******************************************************************/
@@ -42778,7 +42854,7 @@
 
 
 /***/ },
-/* 606 */
+/* 607 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/collapse.js ***!
   \******************************************************************/
@@ -42998,7 +43074,7 @@
 
 
 /***/ },
-/* 607 */
+/* 608 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/dropdown.js ***!
   \******************************************************************/
@@ -43172,7 +43248,7 @@
 
 
 /***/ },
-/* 608 */
+/* 609 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/modal.js ***!
   \***************************************************************/
@@ -43518,7 +43594,7 @@
 
 
 /***/ },
-/* 609 */
+/* 610 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/tooltip.js ***!
   \*****************************************************************/
@@ -44041,7 +44117,7 @@
 
 
 /***/ },
-/* 610 */
+/* 611 */
 /*!*****************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/popover.js ***!
   \*****************************************************************/
@@ -44158,7 +44234,7 @@
 
 
 /***/ },
-/* 611 */
+/* 612 */
 /*!*******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/scrollspy.js ***!
   \*******************************************************************/
@@ -44339,7 +44415,7 @@
 
 
 /***/ },
-/* 612 */
+/* 613 */
 /*!*************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/tab.js ***!
   \*************************************************************/
@@ -44503,7 +44579,7 @@
 
 
 /***/ },
-/* 613 */
+/* 614 */
 /*!***************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/bootstrap/js/affix.js ***!
   \***************************************************************/
@@ -44674,7 +44750,7 @@
 
 
 /***/ },
-/* 614 */
+/* 615 */
 /*!************************************!*\
   !*** ../styles/common/button.scss ***!
   \************************************/
@@ -44683,7 +44759,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./button.scss */ 615);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./button.scss */ 616);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 302)(content, {});
@@ -44703,7 +44779,7 @@
 	}
 
 /***/ },
-/* 615 */
+/* 616 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/button.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -44720,7 +44796,6 @@
 
 
 /***/ },
-/* 616 */,
 /* 617 */,
 /* 618 */,
 /* 619 */,
@@ -44755,7 +44830,8 @@
 /* 648 */,
 /* 649 */,
 /* 650 */,
-/* 651 */
+/* 651 */,
+/* 652 */
 /*!*********************************!*\
   !*** ./views/common/footer.jsx ***!
   \*********************************/
@@ -44779,7 +44855,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/footer.scss */ 652);
+	__webpack_require__(/*! common/footer.scss */ 653);
 	
 	var Footer = function (_React$Component) {
 	    _inherits(Footer, _React$Component);
@@ -44837,7 +44913,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! react */ 1)))
 
 /***/ },
-/* 652 */
+/* 653 */
 /*!************************************!*\
   !*** ../styles/common/footer.scss ***!
   \************************************/
@@ -44846,7 +44922,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./footer.scss */ 653);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./footer.scss */ 654);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 302)(content, {});
@@ -44866,7 +44942,7 @@
 	}
 
 /***/ },
-/* 653 */
+/* 654 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/footer.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -44883,11 +44959,11 @@
 
 
 /***/ },
-/* 654 */,
 /* 655 */,
 /* 656 */,
 /* 657 */,
-/* 658 */
+/* 658 */,
+/* 659 */
 /*!**************************************!*\
   !*** ./views/common/fancy_input.jsx ***!
   \**************************************/
@@ -44911,7 +44987,7 @@
 	
 	var _util2 = _interopRequireDefault(_util);
 	
-	var _floatl = __webpack_require__(/*! floatl */ 659);
+	var _floatl = __webpack_require__(/*! floatl */ 660);
 	
 	var _floatl2 = _interopRequireDefault(_floatl);
 	
@@ -44923,7 +44999,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/fancy_input.scss */ 660);
+	__webpack_require__(/*! common/fancy_input.scss */ 661);
 	
 	var FancyInput = function (_React$Component) {
 	    _inherits(FancyInput, _React$Component);
@@ -45003,7 +45079,7 @@
 	exports.default = FancyInput;
 
 /***/ },
-/* 659 */
+/* 660 */
 /*!******************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/floatl/dist/js/floatl.js ***!
   \******************************************************************/
@@ -45104,7 +45180,7 @@
 	});
 
 /***/ },
-/* 660 */
+/* 661 */
 /*!*****************************************!*\
   !*** ../styles/common/fancy_input.scss ***!
   \*****************************************/
@@ -45113,7 +45189,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./fancy_input.scss */ 661);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./fancy_input.scss */ 662);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 302)(content, {});
@@ -45133,7 +45209,7 @@
 	}
 
 /***/ },
-/* 661 */
+/* 662 */
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/fancy_input.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -45150,7 +45226,7 @@
 
 
 /***/ },
-/* 662 */
+/* 663 */
 /*!*********************************!*\
   !*** ./views/common/slider.jsx ***!
   \*********************************/
@@ -45178,7 +45254,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! common/slider.scss */ 663);
+	__webpack_require__(/*! common/slider.scss */ 664);
 	
 	var Slider = function (_React$Component) {
 	    _inherits(Slider, _React$Component);
@@ -45247,7 +45323,7 @@
 	exports.default = Slider;
 
 /***/ },
-/* 663 */
+/* 664 */
 /*!************************************!*\
   !*** ../styles/common/slider.scss ***!
   \************************************/
@@ -45256,7 +45332,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./slider.scss */ 664);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./slider.scss */ 665);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 302)(content, {});
@@ -45276,7 +45352,7 @@
 	}
 
 /***/ },
-/* 664 */
+/* 665 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/common/slider.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -45293,7 +45369,7 @@
 
 
 /***/ },
-/* 665 */
+/* 666 */
 /*!************************************!*\
   !*** ./actions/sign_up_actions.js ***!
   \************************************/
@@ -45302,7 +45378,7 @@
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 304);
-	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 666);
+	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 667);
 	
 	var SignUpActions = {
 	
@@ -45347,10 +45423,10 @@
 	};
 	
 	module.exports = SignUpActions;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 313)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 314)))
 
 /***/ },
-/* 666 */
+/* 667 */
 /*!****************************************!*\
   !*** ./constants/sign_up_constants.js ***!
   \****************************************/
@@ -45368,7 +45444,7 @@
 	});
 
 /***/ },
-/* 667 */
+/* 668 */
 /*!*********************************!*\
   !*** ./stores/sign_up_store.js ***!
   \*********************************/
@@ -45378,7 +45454,7 @@
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 304);
 	var Store = __webpack_require__(/*! ./store.js */ 306);
-	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 666);
+	var C = __webpack_require__(/*! constants/sign_up_constants.js */ 667);
 	
 	var SignUpStore = new Store({
 	    signUpStatus: { status: "", errors: [] },
@@ -45423,27 +45499,50 @@
 	module.exports = SignUpStore;
 
 /***/ },
-/* 668 */,
 /* 669 */,
-/* 670 */
-/*!****************************************!*\
-  !*** ./constants/profile_constants.js ***!
-  \****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var keyMirror = __webpack_require__(/*! helpers/KeyMirror */ 309);
-	
-	module.exports = keyMirror({
-	    LOADED: null,
-	    FAILURE: null,
-	    SUCCESS: null,
-	    SAVED: null
-	});
-
-/***/ },
-/* 671 */
+/* 670 */,
+/* 671 */,
+/* 672 */,
+/* 673 */,
+/* 674 */,
+/* 675 */,
+/* 676 */,
+/* 677 */,
+/* 678 */,
+/* 679 */,
+/* 680 */,
+/* 681 */,
+/* 682 */,
+/* 683 */,
+/* 684 */,
+/* 685 */,
+/* 686 */,
+/* 687 */,
+/* 688 */,
+/* 689 */,
+/* 690 */,
+/* 691 */,
+/* 692 */,
+/* 693 */,
+/* 694 */,
+/* 695 */,
+/* 696 */,
+/* 697 */,
+/* 698 */,
+/* 699 */,
+/* 700 */,
+/* 701 */,
+/* 702 */,
+/* 703 */,
+/* 704 */,
+/* 705 */,
+/* 706 */,
+/* 707 */,
+/* 708 */,
+/* 709 */,
+/* 710 */,
+/* 711 */,
+/* 712 */
 /*!************************************!*\
   !*** ./actions/profile_actions.js ***!
   \************************************/
@@ -45452,7 +45551,7 @@
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 304);
-	var C = __webpack_require__(/*! constants/profile_constants.js */ 670);
+	var C = __webpack_require__(/*! constants/profile_constants.js */ 310);
 	
 	var ProfileActions = {
 	
@@ -45479,10 +45578,10 @@
 	};
 	
 	module.exports = ProfileActions;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 313)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 314)))
 
 /***/ },
-/* 672 */
+/* 713 */
 /*!*********************************!*\
   !*** ./stores/profile_store.js ***!
   \*********************************/
@@ -45492,7 +45591,7 @@
 	
 	var dispatcher = __webpack_require__(/*! global_dispatcher.js */ 304);
 	var Store = __webpack_require__(/*! ./store.js */ 306);
-	var C = __webpack_require__(/*! constants/profile_constants.js */ 670);
+	var C = __webpack_require__(/*! constants/profile_constants.js */ 310);
 	
 	var ProfileStore = new Store({
 	    data: {},
@@ -45537,7 +45636,543 @@
 	module.exports = ProfileStore;
 
 /***/ },
-/* 673 */
+/* 714 */
+/*!****************************************************************************!*\
+  !*** /Users/brianregan/Projects/qfit/~/react-stripe-checkout/dist/main.js ***!
+  \****************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var scriptLoading = false;
+	var scriptLoaded = false;
+	var scriptDidError = false;
+	
+	var ReactStripeCheckout = function (_React$Component) {
+	  _inherits(ReactStripeCheckout, _React$Component);
+	
+	  function ReactStripeCheckout(props) {
+	    _classCallCheck(this, ReactStripeCheckout);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ReactStripeCheckout).call(this, props));
+	
+	    _this.onScriptLoaded = function () {
+	      if (!ReactStripeCheckout.stripeHandler) {
+	        ReactStripeCheckout.stripeHandler = StripeCheckout.configure({
+	          key: _this.props.stripeKey
+	        });
+	        if (_this.hasPendingClick) {
+	          _this.showStripeDialog();
+	        }
+	      }
+	    };
+	
+	    _this.onScriptError = function () {
+	      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	        args[_key] = arguments[_key];
+	      }
+	
+	      _this.hideLoadingDialog();
+	      if (_this.props.onScriptError) {
+	        _this.props.onScriptError.apply(_this, args);
+	      }
+	    };
+	
+	    _this.onClosed = function () {
+	      for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	        args[_key2] = arguments[_key2];
+	      }
+	
+	      _this.setState({ open: false });
+	      if (_this.props.closed) {
+	        _this.props.closed.apply(_this, args);
+	      }
+	    };
+	
+	    _this.onOpened = function () {
+	      for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+	        args[_key3] = arguments[_key3];
+	      }
+	
+	      _this.setState({ open: true });
+	      if (_this.props.opened) {
+	        _this.props.opened.apply(_this, args);
+	      }
+	    };
+	
+	    _this.getConfig = function () {
+	      return ['token', 'image', 'name', 'description', 'amount', 'locale', 'currency', 'panelLabel', 'zipCode', 'shippingAddress', 'billingAddress', 'email', 'allowRememberMe', 'bitcoin', 'alipay', 'alipayReusable'].reduce(function (config, key) {
+	        return _extends({}, config, _this.props.hasOwnProperty(key) && _defineProperty({}, key, _this.props[key]));
+	      }, {
+	        opened: _this.onOpened,
+	        closed: _this.onClosed
+	      });
+	    };
+	
+	    _this.onClick = function () {
+	      // eslint-disable-line react/sort-comp
+	      if (_this.props.disabled) {
+	        return;
+	      }
+	
+	      if (scriptDidError) {
+	        try {
+	          throw new Error('Tried to call onClick, but StripeCheckout failed to load');
+	        } catch (x) {} // eslint-disable-line no-empty
+	      } else if (ReactStripeCheckout.stripeHandler) {
+	        _this.showStripeDialog();
+	      } else {
+	        _this.showLoadingDialog();
+	        _this.hasPendingClick = true;
+	      }
+	    };
+	
+	    _this.handleOnMouseDown = function () {
+	      _this.setState({
+	        buttonActive: true
+	      });
+	    };
+	
+	    _this.handleOnMouseUp = function () {
+	      _this.setState({
+	        buttonActive: false
+	      });
+	    };
+	
+	    _this.state = {
+	      open: false,
+	      buttonActive: false
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(ReactStripeCheckout, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+	
+	      if (scriptLoaded) {
+	        return;
+	      }
+	
+	      if (scriptLoading) {
+	        return;
+	      }
+	
+	      scriptLoading = true;
+	
+	      var script = document.createElement('script');
+	      if (typeof this.props.onScriptTagCreated === 'function') {
+	        this.props.onScriptTagCreated(script);
+	      }
+	
+	      script.src = 'https://checkout.stripe.com/checkout.js';
+	      script.async = 1;
+	
+	      this.loadPromise = function () {
+	        var canceled = false;
+	        var promise = new Promise(function (resolve, reject) {
+	          script.onload = function () {
+	            scriptLoaded = true;
+	            scriptLoading = false;
+	            resolve();
+	            _this2.onScriptLoaded();
+	          };
+	          script.onerror = function (event) {
+	            scriptDidError = true;
+	            scriptLoading = false;
+	            reject(event);
+	            _this2.onScriptError(event);
+	          };
+	        });
+	        var wrappedPromise = new Promise(function (accept, cancel) {
+	          promise.then(function () {
+	            return canceled ? cancel({ isCanceled: true }) : accept();
+	          }); // eslint-disable-line no-confusing-arrow
+	          promise.catch(function (error) {
+	            return canceled ? cancel({ isCanceled: true }) : cancel(error);
+	          }); // eslint-disable-line no-confusing-arrow
+	        });
+	
+	        return {
+	          promise: wrappedPromise,
+	          cancel: function cancel() {
+	            canceled = true;
+	          }
+	        };
+	      }();
+	
+	      this.loadPromise.promise.then(this.onScriptLoaded).catch(this.onScriptError);
+	
+	      document.body.appendChild(script);
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate() {
+	      if (!scriptLoading) {
+	        this.updateStripeHandler();
+	      }
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      if (this.loadPromise) {
+	        this.loadPromise.cancel();
+	      }
+	      if (ReactStripeCheckout.stripeHandler && this.state.open) {
+	        ReactStripeCheckout.stripeHandler.open({ closed: null });
+	        ReactStripeCheckout.stripeHandler.close();
+	      }
+	    }
+	  }, {
+	    key: 'updateStripeHandler',
+	    value: function updateStripeHandler() {
+	      if (!ReactStripeCheckout.stripeHandler || this.props.reconfigureOnUpdate) {
+	        ReactStripeCheckout.stripeHandler = StripeCheckout.configure({
+	          key: this.props.stripeKey
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'showLoadingDialog',
+	    value: function showLoadingDialog() {
+	      if (this.props.showLoadingDialog) {
+	        for (var _len4 = arguments.length, args = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+	          args[_key4] = arguments[_key4];
+	        }
+	
+	        this.props.showLoadingDialog.apply(this, args);
+	      }
+	    }
+	  }, {
+	    key: 'hideLoadingDialog',
+	    value: function hideLoadingDialog() {
+	      if (this.props.hideLoadingDialog) {
+	        for (var _len5 = arguments.length, args = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+	          args[_key5] = arguments[_key5];
+	        }
+	
+	        this.props.hideLoadingDialog.apply(this, args);
+	      }
+	    }
+	  }, {
+	    key: 'showStripeDialog',
+	    value: function showStripeDialog() {
+	      this.hideLoadingDialog();
+	      ReactStripeCheckout.stripeHandler.open(this.getConfig());
+	    }
+	  }, {
+	    key: 'renderDefaultStripeButton',
+	    value: function renderDefaultStripeButton() {
+	      return _react2.default.createElement(
+	        'button',
+	        _extends({}, _defineProperty({}, this.props.triggerEvent, this.onClick), {
+	          className: this.props.className,
+	          onMouseDown: this.handleOnMouseDown,
+	          onFocus: this.handleOnMouseDown,
+	          onMouseUp: this.handleOnMouseUp,
+	          onMouseOut: this.handleOnMouseUp,
+	          onBlur: this.handleOnMouseUp,
+	          style: _extends({}, {
+	            overflow: 'hidden',
+	            display: 'inline-block',
+	            background: 'linear-gradient(#28a0e5,#015e94)',
+	            border: 0,
+	            padding: 1,
+	            textDecoration: 'none',
+	            borderRadius: 5,
+	            boxShadow: '0 1px 0 rgba(0,0,0,0.2)',
+	            cursor: 'pointer',
+	            visibility: 'visible',
+	            userSelect: 'none'
+	          }, this.state.buttonActive && {
+	            background: '#005d93'
+	          }, this.props.style)
+	        }),
+	        _react2.default.createElement(
+	          'span',
+	          {
+	            style: _extends({}, {
+	              backgroundImage: 'linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4)',
+	              fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
+	              fontSize: 14,
+	              position: 'relative',
+	              padding: '0 12px',
+	              display: 'block',
+	              height: 30,
+	              lineHeight: '30px',
+	              color: '#fff',
+	              fontWeight: 'bold',
+	              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.25)',
+	              textShadow: '0 -1px 0 rgba(0,0,0,0.25)',
+	              borderRadius: 4
+	            }, this.state.buttonActive && {
+	              color: '#eee',
+	              boxShadow: 'inset 0 1px 0 rgba(0,0,0,0.1)',
+	              backgroundImage: 'linear-gradient(#008cdd,#008cdd 85%,#239adf)'
+	            }, this.props.textStyle)
+	          },
+	          this.props.label
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'renderDisabledButton',
+	    value: function renderDisabledButton() {
+	      return _react2.default.createElement(
+	        'button',
+	        {
+	          disabled: true,
+	          style: {
+	            background: 'rgba(0,0,0,0.2)',
+	            overflow: 'hidden',
+	            display: 'inline-block',
+	            border: 0,
+	            padding: 1,
+	            textDecoration: 'none',
+	            borderRadius: 5,
+	            userSelect: 'none'
+	          }
+	        },
+	        _react2.default.createElement(
+	          'span',
+	          {
+	            style: {
+	              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.25)',
+	              fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
+	              fontSize: 14,
+	              position: 'relative',
+	              padding: '0 12px',
+	              display: 'block',
+	              height: 30,
+	              lineHeight: '30px',
+	              borderRadius: 4,
+	              color: '#999',
+	              background: '#f8f9fa',
+	              textShadow: '0 1px 0 rgba(255,255,255,0.5)'
+	            }
+	          },
+	          this.props.label
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      if (this.props.desktopShowModal === true && !this.state.open) {
+	        this.onClick();
+	      } else if (this.props.desktopShowModal === false && this.state.open) {
+	        ReactStripeCheckout.stripeHandler.close();
+	      }
+	
+	      var ComponentClass = this.props.ComponentClass;
+	
+	      if (this.props.children) {
+	        return _react2.default.createElement(ComponentClass, _extends({}, _defineProperty({}, this.props.triggerEvent, this.onClick), {
+	          children: this.props.children
+	        }));
+	      }
+	      return this.props.disabled ? this.renderDisabledButton() : this.renderDefaultStripeButton();
+	    }
+	  }]);
+	
+	  return ReactStripeCheckout;
+	}(_react2.default.Component);
+	
+	ReactStripeCheckout.defaultProps = {
+	  className: 'StripeCheckout',
+	  label: 'Pay With Card',
+	  locale: 'auto',
+	  ComponentClass: 'span',
+	  reconfigureOnUpdate: false,
+	  triggerEvent: 'onClick'
+	};
+	ReactStripeCheckout.propTypes = {
+	  // Opens / closes the checkout modal by value
+	  // WARNING: does not work on mobile due to browser security restrictions
+	  // NOTE: Must be set to false when receiving token to prevent modal from
+	  //       opening automatically after closing
+	  desktopShowModal: _react2.default.PropTypes.bool,
+	
+	  triggerEvent: _react2.default.PropTypes.oneOf(['onClick', 'onTouchTap', 'onTouchStart']),
+	
+	  // If included, will render the default blue button with label text.
+	  // (Requires including stripe-checkout.css or adding the .styl file
+	  // to your pipeline)
+	  label: _react2.default.PropTypes.string,
+	
+	  // Custom styling for default button
+	  style: _react2.default.PropTypes.object,
+	  // Custom styling for <span> tag inside default button
+	  textStyle: _react2.default.PropTypes.object,
+	
+	  // Prevents any events from opening the popup
+	  // Adds the disabled prop to the button and adjusts the styling as well
+	  disabled: _react2.default.PropTypes.bool,
+	
+	  // Named component to wrap button (eg. div)
+	  ComponentClass: _react2.default.PropTypes.string,
+	
+	  // Show a loading indicator
+	  showLoadingDialog: _react2.default.PropTypes.func,
+	  // Hide the loading indicator
+	  hideLoadingDialog: _react2.default.PropTypes.func,
+	
+	  // Run this method when the scrupt fails to load. Will run if the internet
+	  // connection is offline when attemting to load the script.
+	  onScriptError: _react2.default.PropTypes.func,
+	
+	  // Runs when the script tag is created, but before it is added to the DOM
+	  onScriptTagCreated: _react2.default.PropTypes.func,
+	
+	  // By default, any time the React component is updated, it will call
+	  // StripeCheckout.configure, which may result in additional XHR calls to the
+	  // stripe API.  If you know the first configuration is all you need, you
+	  // can set this to false.  Subsequent updates will affect the StripeCheckout.open
+	  // (e.g. different prices)
+	  reconfigureOnUpdate: _react2.default.PropTypes.bool,
+	
+	  // =====================================================
+	  // Required by stripe
+	  // see Stripe docs for more info:
+	  //   https://stripe.com/docs/checkout#integration-custom
+	  // =====================================================
+	
+	  // Your publishable key (test or live).
+	  // can't use "key" as a prop in react, so have to change the keyname
+	  stripeKey: _react2.default.PropTypes.string.isRequired,
+	
+	  // The callback to invoke when the Checkout process is complete.
+	  //   function(token)
+	  //     token is the token object created.
+	  //     token.id can be used to create a charge or customer.
+	  //     token.email contains the email address entered by the user.
+	  token: _react2.default.PropTypes.func.isRequired,
+	
+	  // ==========================
+	  // Highly Recommended Options
+	  // ==========================
+	
+	  // Name of the company or website.
+	  name: _react2.default.PropTypes.string,
+	
+	  // A description of the product or service being purchased.
+	  description: _react2.default.PropTypes.string,
+	
+	  // A relative URL pointing to a square image of your brand or product. The
+	  // recommended minimum size is 128x128px. The recommended image types are
+	  // .gif, .jpeg, and .png.
+	  image: _react2.default.PropTypes.string,
+	
+	  // The amount (in cents) that's shown to the user. Note that you will still
+	  // have to explicitly include it when you create a charge using the API.
+	  amount: _react2.default.PropTypes.number,
+	
+	  // Specify auto to display Checkout in the user's preferred language, if
+	  // available. English will be used by default.
+	  //
+	  // https://support.stripe.com/questions/what-languages-does-stripe-checkout-support
+	  // for more info.
+	  locale: _react2.default.PropTypes.oneOf(['auto', // (Default) Automatically chosen by checkout
+	  'zh', // Chinese
+	  'nl', // Dutch
+	  'en', // English
+	  'fr', // French
+	  'de', // German
+	  'it', // Italian
+	  'jp', // Japanease
+	  'es']),
+	
+	  // ==============
+	  // Optional Props
+	  // ==============
+	
+	  // The currency of the amount (3-letter ISO code). The default is USD.
+	  currency: _react2.default.PropTypes.oneOf(['AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD', // eslint-disable-line comma-spacing
+	  'BDT', 'BGN', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BSD', 'BWP', 'BZD', 'CAD', 'CDF', // eslint-disable-line comma-spacing
+	  'CHF', 'CLP', 'CNY', 'COP', 'CRC', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 'EEK', // eslint-disable-line comma-spacing
+	  'EGP', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEL', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', // eslint-disable-line comma-spacing
+	  'HKD', 'HNL', 'HRK', 'HTG', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JMD', 'JPY', 'KES', // eslint-disable-line comma-spacing
+	  'KGS', 'KHR', 'KMF', 'KRW', 'KYD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LTL', // eslint-disable-line comma-spacing
+	  'LVL', 'MAD', 'MDL', 'MGA', 'MKD', 'MNT', 'MOP', 'MRO', 'MUR', 'MVR', 'MWK', 'MXN', // eslint-disable-line comma-spacing
+	  'MYR', 'MZN', 'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'PAB', 'PEN', 'PGK', 'PHP', // eslint-disable-line comma-spacing
+	  'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SEK', // eslint-disable-line comma-spacing
+	  'SGD', 'SHP', 'SLL', 'SOS', 'SRD', 'STD', 'SVC', 'SZL', 'THB', 'TJS', 'TOP', 'TRY', // eslint-disable-line comma-spacing
+	  'TTD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'UYU', 'UZS', 'VND', 'VUV', 'WST', 'XAF', // eslint-disable-line comma-spacing
+	  'XCD', 'XOF', 'XPF', 'YER', 'ZAR', 'ZMW']),
+	
+	  // The label of the payment button in the Checkout form (e.g. “Subscribe”,
+	  // “Pay {{amount}}”, etc.). If you include {{amount}}, it will be replaced
+	  // by the provided amount. Otherwise, the amount will be appended to the
+	  // end of your label.
+	  panelLabel: _react2.default.PropTypes.string,
+	
+	  // Specify whether Checkout should validate the billing ZIP code (true or
+	  // false)
+	  zipCode: _react2.default.PropTypes.bool,
+	
+	  // Specify whether Checkout should collect the user's billing address
+	  // (true or false). The default is false.
+	  billingAddress: _react2.default.PropTypes.bool,
+	
+	  // Specify whether Checkout should collect the user's shipping address
+	  // (true or false). The default is false.
+	  shippingAddress: _react2.default.PropTypes.bool,
+	
+	  // Specify whether Checkout should validate the billing ZIP code (true or
+	  // false). The default is false.
+	  email: _react2.default.PropTypes.string,
+	
+	  // Specify whether to include the option to "Remember Me" for future
+	  // purchases (true or false). The default is true.
+	  allowRememberMe: _react2.default.PropTypes.bool,
+	
+	  // Specify whether to accept Bitcoin in Checkout. The default is false.
+	  bitcoin: _react2.default.PropTypes.bool,
+	
+	  // Specify whether to accept Alipay ('auto', true, or false). The default
+	  // is false.
+	  alipay: _react2.default.PropTypes.oneOf(['auto', true, false]),
+	
+	  // Specify if you need reusable access to the customer's Alipay account
+	  // (true or false). The default is false.
+	  alipayReusable: _react2.default.PropTypes.bool,
+	
+	  // function() The callback to invoke when Checkout is opened (not supported
+	  // in IE6 and IE7).
+	  opened: _react2.default.PropTypes.func,
+	
+	  // function() The callback to invoke when Checkout is closed (not supported
+	  // in IE6 and IE7).
+	  closed: _react2.default.PropTypes.func
+	};
+	exports.default = ReactStripeCheckout;
+
+
+/***/ },
+/* 715 */
 /*!************************************!*\
   !*** ../styles/pages/profile.scss ***!
   \************************************/
@@ -45546,7 +46181,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./profile.scss */ 674);
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./../../../../~/extract-text-webpack-plugin/loader.js?{"remove":true}!./../../../../~/css-loader!./../../../../~/sass-loader!./profile.scss */ 716);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 302)(content, {});
@@ -45566,7 +46201,7 @@
 	}
 
 /***/ },
-/* 674 */
+/* 716 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** /Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!/Users/brianregan/Projects/qfit/~/extract-text-webpack-plugin/loader.js?{"remove":true}!/Users/brianregan/Projects/qfit/~/css-loader!/Users/brianregan/Projects/qfit/~/sass-loader!../styles/pages/profile.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************/

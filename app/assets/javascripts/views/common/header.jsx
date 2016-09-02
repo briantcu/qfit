@@ -33,7 +33,7 @@ class Header extends React.Component {
                             </div>
                         </div>
                     </If>
-                    <If condition={this.props.user.avatars} >
+                    <If condition={this.props.user.avatars && this.props.user.avatars.length > 0} >
                         <div className={(this.props.showWorkoutNav) ? "col-xs-1 col-xs-offset-1" : "col-xs-1 col-xs-offset-9"}>
                             <img src={`${this.props.user.avatars}`} />
                         </div>

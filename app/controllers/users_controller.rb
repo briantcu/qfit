@@ -50,6 +50,8 @@
 #  image                       :string
 #
 
+require "stripe"
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :get_calendar, :fitness_assessment, :get_progress]
   before_filter :can_access_user, only: [:show, :get_calendar, :fitness_assessment, :get_progress]
@@ -66,6 +68,17 @@ class UsersController < ApplicationController
     else
       render json: @user.errors, status: :unprocessable_entity
     end
+  end
+
+  def premium_member
+    Stripe.api_key = "sk_test_UMmjXKClIIsWlkkIC2MwFe1b"
+    token = params[:stripeToken]
+
+    customer = Stripe::Customer.create(
+        :source => token,
+        :plan => "PremiumMember",
+        :email => current_user.email
+    )
   end
 
   #GET /users/:id/calendar/year/:year_id/month/:month_id

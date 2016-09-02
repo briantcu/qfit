@@ -10,6 +10,8 @@ gem 'omniauth-facebook'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 gem 'pg'
 
 gem 'gon', '6.0.1'
