@@ -18,7 +18,8 @@ var config = {
         more_info: 'entry-points/more_info.jsx',
         home: 'entry-points/home.jsx',
         account: 'entry-points/account.jsx',
-        login: 'entry-points/login.jsx'
+        login: 'entry-points/login.jsx',
+        forgot: 'entry-points/forgot.jsx'
     },
     output: {
         filename: '[name].bundle.js',

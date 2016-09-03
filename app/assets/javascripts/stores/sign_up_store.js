@@ -6,6 +6,7 @@ var SignUpStore = new Store({
     signUpStatus: {status: '', errors: []},
     isUsernameUnique: true,
     loginStatus: {status: '', errors: []},
+    pwResetStatus: {status: '', errors: []},
 
     setSignUpStatus: function(params){
         if (params.success) {
@@ -26,6 +27,14 @@ var SignUpStore = new Store({
         } else {
             this.loginStatus.status = C.FAILURE;
             this.loginStatus.errors = params;
+        }
+    },
+    setResetStatus: function(params) {
+        if (params.success) {
+            this.pwResetStatus.status = C.SUCCESS;
+        } else {
+            this.pwResetStatus.status = C.FAILURE;
+            this.pwResetStatus.errors = params;
         }
     },
 
@@ -54,6 +63,13 @@ dispatcher.register(C.UNIQUE_USERNAME, function(data) {
 dispatcher.register(C.LOGIN_ATTEMPT, function(data) {
     if(data){
         SignUpStore.setLoginStatus(data);
+        SignUpStore.change();
+    }
+});
+
+dispatcher.register(C.PW_RESET, function(data) {
+    if(data){
+        SignUpStore.setResetStatus(data);
         SignUpStore.change();
     }
 });

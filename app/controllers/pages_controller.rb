@@ -18,6 +18,10 @@ class PagesController < ApplicationController
     render layout: 'full_page'
   end
 
+  def forgot
+    render layout: 'full_page'
+  end
+
   def account
     gon.push({
                  current_user_id: current_user.id

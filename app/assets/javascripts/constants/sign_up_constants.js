@@ -5,5 +5,6 @@ module.exports = keyMirror({
     UNIQUE_USERNAME: null,
     SUCCESS: null,
     FAILURE: null,
-    LOGIN_ATTEMPT: null
+    LOGIN_ATTEMPT: null,
+    PW_RESET: null
 });

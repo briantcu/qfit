@@ -61,6 +61,28 @@ var SignUpActions = {
                 dispatcher.dispatch(C.LOGIN_ATTEMPT, payload);
             }
         });
+    },
+
+    forgotPassword: function(email) {
+        var payload = {email: email};
+        var data = JSON.stringify(payload);
+        $.ajax({
+            type: 'post',
+            data: data,
+            url: '/forgot_password.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(results) {
+                var payload = results;
+                payload.success = true;
+                dispatcher.dispatch(C.PW_RESET, payload);
+            },
+            error: function(results) {
+                var payload = results.responseJSON;
+                payload.success = false;
+                dispatcher.dispatch(C.PW_RESET, payload);
+            }
+        });
     }
 };
 

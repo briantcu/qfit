@@ -6,6 +6,7 @@ Qfit::Application.routes.draw do
   get '/sign-up-coach', to: 'pages#sign_up_coach'
   get '/more-info', to: 'pages#more_info'
   get '/sign-in', to: 'pages#login'
+  get '/forgot', to: 'pages#forgot'
 
   get '/setup/goal', to: 'pages#setup'
   get '/setup/quads', to: 'pages#setup_redirect'
