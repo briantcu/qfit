@@ -123,12 +123,30 @@ class SubscriptionService
     #if for an individual, downgrade paid_tier. leave status as active, keep creating workouts
     #if for a coach, make inactive, stop creating workouts for players
     #@TODO prob put a message on queue so you can respond to webhook
+    subscription = Stripe::Subscription.retrieve(user.subscription_id)
+    if subscription.status != 'active'
+      if (user.level == 5)
+        #coach
+        user.status = 2
+      else
+        user.paid_tier = 1
+      end
+    end
   end
 
   def reactivate_user
     # if for an individual, make sure paid_tier is in line with what they're paying for. change active_until
     # if for coach, make sure active is set properly and create job to create workouts. update active_until
     #@TODO prob put a message on queue so you can respond to webhook
+    subscription = Stripe::Subscription.retrieve(user.subscription_id)
+    if subscription.status == 'active'
+      if (user.level == 5)
+        #coach
+        user.status = 2
+      else
+        user.paid_tier = 1
+      end
+    end
   end
 
 end
