@@ -12,8 +12,7 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            signUpStatus: {status: '', errors: []},
-            usernameErrors: [],
+            loginStatus: {status: '', errors: []},
             emailErrors: [],
             passwordErrors: []
         };
@@ -37,15 +36,14 @@ class Login extends React.Component {
     onChange () {
         var data = SignUpStore.getData();
 
-        if (data.signUpStatus.status == C.SUCCESS) {
+        if (data.loginStatus.status == C.SUCCESS) {
             location.href = '/workout';
-        } else {
+        } else if (data.loginStatus.status == C.FAILURE)  {
             this.setState({
-                signUpStatus: data.signUpStatus
+                loginStatus: data.loginStatus,
+                formSubmitted: false
             });
         }
-
-        this.state.formSubmitted = false;
     }
 
     submit () {
@@ -86,12 +84,12 @@ class Login extends React.Component {
     }
 
     render () {
-        return <div className="athlete-sign-up row">
+        return <div className="login row">
             <div className="col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form">
                 <div className="row">
                     <div className="col-md-12">
                         <h1>Sign in to your account</h1>
-                        <a href="/sign-up" className="info-text subtle-link">New here? Sign up here.</a>
+                        <a href="/sign-up" className="info-text subtle-link">New here? Sign up!</a>
                     </div>
                 </div>
                 <div className="row">
@@ -120,14 +118,14 @@ class Login extends React.Component {
                     <div className="col-md-12">
                             <span className={`purple-bot-container ${this.state.passwordErrors.length > 0 ? 'error' : null}`}>
                                 <FancyInput ref="password" name="password" placeholder="Password" type="password"
-                                            errors={this.state.passwordErrors} />
+                                            errors={this.state.passwordErrors} hideMeter={true} />
                             </span>
                     </div>
                 </div>
                 <div className="row submit-row">
                     <div className="col-md-12">
-                        <If condition={this.state.signUpStatus.status == C.FAILURE}>
-                            <div>{this.state.signUpStatus.errors.join(', ')}</div>
+                        <If condition={this.state.loginStatus.status == C.FAILURE}>
+                            <div>{this.state.loginStatus.errors.join(', ')}</div>
                         </If>
                         <span onClick={ () => this.submit()} className="submit-button purple-text">Sign In</span>
                         <a href="" className="help-text bold-link">Forgot your password?</a>

@@ -40,6 +40,27 @@ var SignUpActions = {
                 }
             }
         });
+    },
+
+    login: function(payload) {
+        var data = JSON.stringify(payload);
+        $.ajax({
+            type: 'post',
+            data: data,
+            url: '/sign_in.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(results) {
+                var payload = results;
+                payload.success = true;
+                dispatcher.dispatch(C.LOGIN_ATTEMPT, payload);
+            },
+            error: function(results) {
+                var payload = results.responseJSON;
+                payload.success = false;
+                dispatcher.dispatch(C.LOGIN_ATTEMPT, payload);
+            }
+        });
     }
 };
 

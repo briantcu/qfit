@@ -5,7 +5,7 @@ Qfit::Application.routes.draw do
   get '/sign-up', to: 'pages#sign_up'
   get '/sign-up-coach', to: 'pages#sign_up_coach'
   get '/more-info', to: 'pages#more_info'
-  get '/login', to: 'pages#login'
+  get '/sign-in', to: 'pages#login'
 
   get '/setup/goal', to: 'pages#setup'
   get '/setup/quads', to: 'pages#setup_redirect'
@@ -23,7 +23,7 @@ Qfit::Application.routes.draw do
   get '/workout/:year/:month/:day', to: 'pages#do_work'
 
   get '/', to: 'pages#home'
-  get '/profile', to: 'pages#profile'
+  get '/account', to: 'pages#account'
 
 
   #****************** API *********************

@@ -15,14 +15,14 @@ class PagesController < ApplicationController
   end
 
   def login
-
+    render layout: 'full_page'
   end
 
-  def profile
+  def account
     gon.push({
                  current_user_id: current_user.id
              })
-   render template: 'pages/profile'
+   render template: 'pages/account'
   end
 
   def setup

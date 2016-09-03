@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160903021717) do
+ActiveRecord::Schema.define(version: 20160903053123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -502,7 +502,6 @@ ActiveRecord::Schema.define(version: 20160903021717) do
     t.string   "user_name",                   limit: 255
     t.integer  "sprint_diff",                             default: 1
     t.float    "weight"
-    t.integer  "level"
     t.integer  "program_type_id"
     t.integer  "birth_year"
     t.date     "subscription_date"

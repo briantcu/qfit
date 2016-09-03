@@ -47,7 +47,7 @@ class FancyInput extends React.Component {
                     </Choose>
                     <input ref="inputField" type={this.props.type} className="transparent-input standard-text floatl__input" defaultValue={this.props.value}
                            name={`${this.props.name}`} placeholder={`${this.props.placeholder}`} onChange={() => this.changed()}/>
-                    <If condition={this.props.type == 'password'}>
+                    <If condition={(this.props.type == 'password') && !this.props.hideMeter }>
                         <span className="pw-strength">
                             <div className={this.state.strength > 3 ? 'indicator full' : 'indicator'}></div>
                             <div className={this.state.strength > 2 ? 'indicator full' : 'indicator'}></div>

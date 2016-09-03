@@ -14,10 +14,10 @@ import ProfileActions from 'actions/profile_actions';
 import ProfileStore from 'stores/profile_store';
 import SignUpStore from 'stores/sign_up_store';
 import StripeCheckout from 'react-stripe-checkout';
-require('pages/profile.scss');
+require('pages/account.scss');
 
 
-class Profile extends React.Component {
+class Account extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -156,7 +156,7 @@ class Profile extends React.Component {
                         <div className="row">
                             <div className="col-xs-12">
                                 <div className="p-header">
-                                    Your Profile
+                                    Your Account
                                 </div>
                                 <div className="p-sub">
                                     Change your personal settings or upgrade your account!
@@ -277,4 +277,4 @@ class Profile extends React.Component {
     }
 }
 
-render(<Profile />, document.getElementById('app'));
+render(<Account />, document.getElementById('app'));
