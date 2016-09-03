@@ -91,6 +91,7 @@ RSpec.describe RoutineService do
         wsd.sprinting = true
         wsd.save
         day_index += 1
+        day_index = 0 if day_index == 7
       end
     end
 
@@ -247,6 +248,7 @@ RSpec.describe RoutineService do
           wsd.sprinting = true
           wsd.save
           day_index += 1
+          day_index = 0 if day_index == 7
         end
       end
 
@@ -400,6 +402,7 @@ RSpec.describe RoutineService do
         wsd.sprinting = true
         wsd.save
         day_index += 1
+        day_index = 0 if day_index == 7
       end
     end
 
@@ -455,6 +458,7 @@ RSpec.describe RoutineService do
         wsd.sprinting = true
         wsd.save
         day_index += 1
+        day_index = 0 if day_index == 7
       end
     end
 
