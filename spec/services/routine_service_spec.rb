@@ -6,7 +6,6 @@ RSpec.describe RoutineService do
     before(:each) do
       @user = FactoryGirl.create(:user)
       @user_schedule = UserSchedule.create_user_schedule({user_id: @user.id, program_type_id: 1, program_id: 1})
-      #@user_schedule.create_weekly_schedule_days
       @user_schedule.setup_phases
       @user_schedule.save!
       day_index = Date.today.wday
@@ -18,6 +17,7 @@ RSpec.describe RoutineService do
         wsd.sprinting = true
         wsd.save
         day_index += 1
+        day_index = 0 if day_index == 7
       end
     end
 
@@ -53,6 +53,7 @@ RSpec.describe RoutineService do
         wsd.sprinting = true
         wsd.save!
         day_index += 1
+        day_index = 0 if day_index == 7
       end
 
       sub_user = FactoryGirl.create(:user, sub_user: true)
