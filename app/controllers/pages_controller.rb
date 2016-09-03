@@ -14,6 +14,10 @@ class PagesController < ApplicationController
     render layout: 'full_page'
   end
 
+  def login
+
+  end
+
   def profile
     gon.push({
                  current_user_id: current_user.id
