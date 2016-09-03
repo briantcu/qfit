@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || determine_redirect(resource)
+  end
+
   def unauthorized
     render json: { success: false, errors: 'Unauthorized' }, status: :unauthorized
   end
@@ -34,4 +38,13 @@ class ApplicationController < ActionController::Base
     redirect_to('/login') unless current_user.present?
   end
 
+  def determine_redirect(user)
+    if user.user_name.blank? || user.sex.blank?
+      '/more-info'
+    elsif (user.program_type.blank?) || (user.user_schedule.blank?) ||  user.user_schedule.invalid? || user.hor_push_max.blank?
+      '/setup/goal'
+    else
+      '/workout'
+    end
+  end
 end

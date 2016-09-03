@@ -32,6 +32,10 @@ class UserSchedule < ActiveRecord::Base
   validates_presence_of :user_id, :program_id, :program_type_id, :phase_one_start, :phase_two_start, :phase_three_start,
                         :phase_four_start, :sign_up_date
 
+  def invalid?
+    program_id.blank? || program_type_id.blank? || phase_one_start.blank?
+  end
+
   def update_self!(params)
     self.update(params)
     setup_phases

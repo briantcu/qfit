@@ -5,8 +5,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
     else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
-      session["devise.facebook_user"] = @user
+      @user.save
+      sign_in @user
+      session[:current_user_id] = @user.id
+      session[:user_id] = @user.id
       redirect_to '/more-info'
     end
   end

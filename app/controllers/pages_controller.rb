@@ -6,6 +6,8 @@ class PagesController < ApplicationController
     render template: 'pages/home'
   end
 
+
+  ########## SIGN IN/UP
   def sign_up
     render layout: 'full_page'
   end
@@ -22,13 +24,16 @@ class PagesController < ApplicationController
     render layout: 'full_page'
   end
 
-  def account
+  def more_info
     gon.push({
-                 current_user_id: current_user.id
+                 new_user: session["devise.facebook_user"]
              })
-   render template: 'pages/account'
+    render layout: 'full_page'
   end
 
+
+
+  ############### SETUP
   def setup
     gon.push({
                  current_user_id: session[:current_user_id] || current_user.id
@@ -43,6 +48,22 @@ class PagesController < ApplicationController
     render template: 'pages/setup_coach'
   end
 
+  def schedule
+    gon.push({
+                 current_user_id: session[:current_user_id] || current_user.id
+             })
+    render template: 'pages/setup'
+  end
+
+
+  ######### PAGES
+  def account
+    gon.push({
+                 current_user_id: current_user.id
+             })
+    render template: 'pages/account'
+  end
+
   def coaches
     gon.push({
                  current_user_id: current_user.id,
@@ -51,15 +72,13 @@ class PagesController < ApplicationController
     render template: 'pages/coaches'
   end
 
-  def schedule
-    gon.push({
-                 current_user_id: session[:current_user_id] || current_user.id
-             })
-    render template: 'pages/setup'
-  end
-
   def do_work
     current_user_id = session[:current_user_id] || current_user.id
+    user = User.find(current_user_id)
+    if (user.program_type.blank?) || (user.user_schedule.blank?) ||  user.user_schedule.invalid? || user.hor_push_max.blank?
+      setup_redirect
+    end
+
     routine = nil
     if params[:year].present?
       routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], current_user_id)
@@ -74,13 +93,6 @@ class PagesController < ApplicationController
 
   def setup_redirect
     redirect_to '/setup/goal'
-  end
-
-  def more_info
-    gon.push({
-                 new_user: session["devise.facebook_user"]
-             })
-    render layout: 'full_page'
   end
 
   private
