@@ -147,7 +147,6 @@
 	    _createClass(Profile, [{
 	        key: 'onToken',
 	        value: function onToken(token) {
-	            console.log(token);
 	            _profile_actions2.default.checkout(token, _profile_constants2.default.PREMIUM_CHECKOUT);
 	        }
 	    }, {
@@ -31904,7 +31903,8 @@
 	    PROFILE_FAILURE: null,
 	    PROFILE_SUCCESS: null,
 	    PROFILE_SAVED: null,
-	    PREMIUM_CHECKOUT: null
+	    PREMIUM_CHECKOUT: null,
+	    CHECKOUT_COMPLETED: null
 	});
 
 /***/ },
@@ -45577,7 +45577,7 @@
 	    },
 	
 	    checkout: function (token, type) {
-	        var data = { checkout_type: type, token: token };
+	        var data = { checkout_type: type, token: token.id };
 	        data = JSON.stringify(data);
 	        $.ajax({
 	            type: "post",
@@ -45588,10 +45588,10 @@
 	            success: function (results) {
 	                var payload = results;
 	                payload.success = true;
+	                dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
 	            },
 	            error: function (results) {
-	                var payload = results.responseJSON;
-	                payload.success = false;
+	                alert("There was an error processing your request. We are investigating.");
 	            }
 	        });
 	    }
@@ -45616,6 +45616,7 @@
 	var ProfileStore = new Store({
 	    data: {},
 	    saveStatus: { status: "", errors: [] },
+	    checkout: {},
 	
 	    setData: function (data) {
 	        this.data = data;
@@ -45633,8 +45634,13 @@
 	    getData: function () {
 	        return {
 	            data: this.data,
-	            saveStatus: this.saveStatus
+	            saveStatus: this.saveStatus,
+	            checkout: this.checkout
 	        };
+	    },
+	
+	    setCheckoutData: function (data) {
+	        this.checkout = data;
 	    }
 	});
 	
@@ -45648,6 +45654,13 @@
 	dispatcher.register(C.PROFILE_SAVED, function (data) {
 	    if (data) {
 	        ProfileStore.setSaveStatus(data);
+	        ProfileStore.change();
+	    }
+	});
+	
+	dispatcher.register(C.CHECKOUT_COMPLETED, function (data) {
+	    if (data) {
+	        ProfileStore.setCheckoutData(data);
 	        ProfileStore.change();
 	    }
 	});

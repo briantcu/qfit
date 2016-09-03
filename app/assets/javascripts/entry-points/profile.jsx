@@ -35,7 +35,6 @@ class Profile extends React.Component {
     }
 
     onToken (token)  {
-        console.log(token);
         ProfileActions.checkout(token, C.PREMIUM_CHECKOUT);
     }
 

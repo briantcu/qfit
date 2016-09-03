@@ -5,6 +5,7 @@ var C = require('constants/profile_constants.js');
 var ProfileStore = new Store({
     data: {},
     saveStatus: {status: '', errors: []},
+    checkout: {},
 
     setData: function(data){
         this.data = data;
@@ -22,8 +23,13 @@ var ProfileStore = new Store({
     getData: function(){
         return {
             data: this.data,
-            saveStatus: this.saveStatus
+            saveStatus: this.saveStatus,
+            checkout: this.checkout
         };
+    },
+
+    setCheckoutData: function(data) {
+        this.checkout = data;
     }
 });
 
@@ -37,6 +43,13 @@ dispatcher.register(C.LOADED, function(data) {
 dispatcher.register(C.PROFILE_SAVED, function(data) {
     if(data){
         ProfileStore.setSaveStatus(data);
+        ProfileStore.change();
+    }
+});
+
+dispatcher.register(C.CHECKOUT_COMPLETED, function(data) {
+    if(data){
+        ProfileStore.setCheckoutData(data);
         ProfileStore.change();
     }
 });

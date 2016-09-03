@@ -25,7 +25,7 @@ var ProfileActions = {
     },
 
     checkout: function(token, type) {
-        var data = {checkout_type: type, token: token};
+        var data = {checkout_type: type, token: token.id};
         data = JSON.stringify(data);
         $.ajax({
             type: 'post',
@@ -36,10 +36,10 @@ var ProfileActions = {
             success: function(results) {
                 var payload = results;
                 payload.success = true;
+                dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
             },
             error: function(results) {
-                var payload = results.responseJSON;
-                payload.success = false;
+                alert('There was an error processing your request. We are investigating.')
             }
         });
     }

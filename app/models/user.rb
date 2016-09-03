@@ -50,8 +50,10 @@
 #  image                       :string  #Social image link
 #
 
-# Status: 1 = active, 2 = disabled
+# Status: 1 = active, 2 = disabled, 3 = active with failed payment
 # Experience level = 1-3
+# paid_tier: 1 = basic, 2 = premium
+
 class User < ActiveRecord::Base
 
   mount_uploader :avatars, AvatarUploader
@@ -66,6 +68,7 @@ class User < ActiveRecord::Base
   after_commit :check_user_name
 
   validates :user_name, uniqueness: true, allow_blank: true, allow_nil: true
+  validates :email, presence: true
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
