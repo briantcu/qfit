@@ -22,6 +22,7 @@ doc/app
 
 public/.DS_Store
 
+*.bundle.*
 .elasticbeanstalk
 .elasticbeanstalk/
 
