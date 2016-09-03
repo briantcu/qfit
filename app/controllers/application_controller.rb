@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def verify_logged_in_html
-    redirect_to('/login') unless current_user.present?
+    redirect_to('/sign-in') unless current_user.present?
   end
 
   def determine_redirect(user)

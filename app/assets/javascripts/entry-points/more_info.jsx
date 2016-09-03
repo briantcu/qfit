@@ -174,8 +174,7 @@ class AthleteSignUp extends React.Component {
                         <If condition={this.state.signUpStatus.status == C.FAILURE}>
                             <div>{this.state.signUpStatus.errors.join(', ')}</div>
                         </If>
-                        <span onClick={ () => this.submit()} className="submit-button purple-text">Sign Up</span>
-                        <a href="" className="help-text bold-link">Have an account? Login here.</a>
+                        <span onClick={ () => this.submit()} className="submit-button purple-text get-started">Get Started</span>
                     </div>
                 </div>
             </div>

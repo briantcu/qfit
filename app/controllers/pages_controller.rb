@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
+  before_action :set_athlete, only: [:do_work]
   before_filter :verify_logged_in_html, only: [:setup, :coaches, :schedule, :do_work, :profile]
   before_filter :can_access_user, only: [:setup, :coaches, :schedule, :do_work]
+  before_filter :has_min_info, only: [:do_work]
 
   def home
     render template: 'pages/home'
@@ -73,19 +75,13 @@ class PagesController < ApplicationController
   end
 
   def do_work
-    current_user_id = session[:current_user_id] || current_user.id
-    user = User.find(current_user_id)
-    if (user.program_type.blank?) || (user.user_schedule.blank?) ||  user.user_schedule.invalid? || user.hor_push_max.blank?
-      setup_redirect
-    end
-
     routine = nil
     if params[:year].present?
-      routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], current_user_id)
+      routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], @user.id)
     end
 
     gon.push({
-                 current_user_id: session[:current_user_id] || current_user.id,
+                 current_user_id: @user.id,
                  routine: routine
              })
     render template: 'pages/do_work'
@@ -96,6 +92,17 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def has_min_info
+    if (@user.program_type.blank?) || (@user.user_schedule.blank?) ||  @user.user_schedule.invalid? || @user.hor_push_max.blank?
+      setup_redirect
+    end
+  end
+
+  def set_athlete
+    current_user_id = session[:current_user_id] || current_user.id
+    @user = User.find(current_user_id)
+  end
 
   def can_access_user
     return unauthorized if current_user.nil?
