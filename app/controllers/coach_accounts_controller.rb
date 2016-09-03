@@ -9,6 +9,7 @@
 #  created_at    :datetime
 #  updated_at    :datetime
 #  active        :boolean          default(TRUE)
+#  active_until  :datetime
 #
 
 class CoachAccountsController < ApplicationController

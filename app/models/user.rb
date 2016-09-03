@@ -23,7 +23,6 @@
 #  user_name                   :string(255)
 #  sprint_diff                 :integer          default(1)
 #  weight                      :float
-#  level                       :integer
 #  program_type_id             :integer
 #  birth_year                  :integer
 #  subscription_date           :date
@@ -47,11 +46,16 @@
 #  facebook                    :string
 #  provider                    :string
 #  uid                         :string
-#  image                       :string  #Social image link
+#  image                       :string
+#  stripe_id                   :string
+#  active_until                :datetime
+#  subscription_id             :string
+#  level                       :integer
 #
 
 # Status: 1 = active, 2 = disabled, 3 = active with failed payment
 # Experience level = 1-3
+# Level: 1 = sub, 2= reg user, 5 coach
 # paid_tier: 1 = basic, 2 = premium
 
 class User < ActiveRecord::Base

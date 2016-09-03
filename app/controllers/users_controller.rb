@@ -23,7 +23,6 @@
 #  user_name                   :string(255)
 #  sprint_diff                 :integer          default(1)
 #  weight                      :float
-#  level                       :integer
 #  program_type_id             :integer
 #  birth_year                  :integer
 #  subscription_date           :date
@@ -48,6 +47,10 @@
 #  provider                    :string
 #  uid                         :string
 #  image                       :string
+#  stripe_id                   :string
+#  active_until                :datetime
+#  subscription_id             :string
+#  level                       :integer
 #
 
 require "stripe"
