@@ -2,34 +2,23 @@
 
 .forgot {
 
-  .buffer {
-    height: 80px;
-    padding-top: 30px;
-  }
-
-  .fb-button {
-    width: 100%;
-    height: 50px;
-    border-radius: 3px;
-    background-color: $fb-blue;
-    font-family: 'Open Sans', sans-serif;
+  .subtext {
+    font-size: 12px;
     font-weight: 600;
-    font-size: 18px;
-    color: white;
-    display: block;
-    cursor: pointer;
-    margin-top: 35px;
-    padding-top: 11px;
+    letter-spacing: -0.3px;
+    color: $light-gray;
   }
 
   .form {
     max-width: 498px;
   }
 
-  .purple-bot-container {
+  .purple-container {
     @include border-bottom;
+    @include border-top;
     height: 50px;
     display: block;
+    margin-top: 50px;
   }
 
   h1 {
@@ -60,7 +49,7 @@
 
   .submit-button {
     color: $purple;
-    width: 156px;
+    width: 220px;
     height: 48px;
     border: solid 3px $purple;
     margin-right: 30px;

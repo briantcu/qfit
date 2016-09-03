@@ -59,6 +59,10 @@ h1 {
   border-bottom: 1px solid $purple;
 }
 
+@mixin border-top {
+  border-top: 1px solid $purple;
+}
+
 .subtle-link {
   color: $light-gray;
   text-decoration: underline;

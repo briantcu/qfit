@@ -128,7 +128,7 @@ class Login extends React.Component {
                             <div>{this.state.loginStatus.errors.join(', ')}</div>
                         </If>
                         <span onClick={ () => this.submit()} className="submit-button purple-text">Sign In</span>
-                        <a href="" className="help-text bold-link">Forgot your password?</a>
+                        <a href="/forgot" className="help-text bold-link">Forgot your password?</a>
                     </div>
                 </div>
             </div>

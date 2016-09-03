@@ -74,14 +74,13 @@ class Forgot extends React.Component {
             <div className="col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form">
                 <div className="row">
                     <div className="col-md-12">
-                        <h1>Forgot your password?</h1>
-                        Or register is a <a href="/sign-up-coach" className="info-text subtle-link">Coach</a>
-                        or an <a href="/sign-up" className="info-text subtle-link">Athlete</a>
+                        <h1>Forgot password?</h1>
+                        <span className="subtext">Or register is a <a href="/sign-up-coach" className="info-text subtle-link">Coach</a> or an <a href="/sign-up" className="info-text subtle-link">Athlete</a></span>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md-12">
-                            <span className={`purple-bot-container ${this.state.emailErrors.length > 0 ? 'error' : null}`}>
+                            <span className={`purple-container ${this.state.emailErrors.length > 0 ? 'error' : null}`}>
                                 <FancyInput ref="email" name="email" placeholder="Email Address" type="text"
                                             errors={this.state.emailErrors} />
                             </span>
@@ -96,7 +95,7 @@ class Forgot extends React.Component {
                             <div>We just sent you an email with a password reset link!</div>
                         </If>
                         <span onClick={ () => this.submit()} className="submit-button purple-text">Reset Password</span>
-                        <a href="/login" className="help-text bold-link">Or sign in to your account</a>
+                        <a href="/sign-in" className="help-text bold-link">Or sign in to your account</a>
                     </div>
                 </div>
             </div>
