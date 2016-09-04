@@ -16,7 +16,7 @@ class Avatar extends React.Component {
     }
 
     render () {
-        return <img src={this.imagePath()} alt={this.props.user.user_name} className="img-circle" width="48" height="48"/>;
+        return <a href="/account"><img src={this.imagePath()} alt={this.props.user.user_name} className="img-circle" width="48" height="48"/></a>;
     }
 }
 export default Avatar;
