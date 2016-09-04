@@ -1,5 +1,6 @@
 import {render} from 'react-dom';
 import { Router, Route, Link, browserHistory } from 'react-router'
+import Avatar from 'views/common/avatar';
 
 require('common/header.scss');
 
@@ -33,11 +34,9 @@ class Header extends React.Component {
                             </div>
                         </div>
                     </If>
-                    <If condition={this.props.user.avatars && this.props.user.avatars.length > 0} >
-                        <div className={(this.props.showWorkoutNav) ? "col-xs-1 col-xs-offset-1" : "col-xs-1 col-xs-offset-9"}>
-                            <img src={`${this.props.user.avatars}`} />
-                        </div>
-                    </If>
+                    <div className={(this.props.showWorkoutNav) ? "col-xs-1 col-xs-offset-1 avi" : "col-xs-1 col-xs-offset-9 avi"}>
+                        <Avatar user={this.props.user} />
+                    </div>
                 </div>
             </div>
         </div>

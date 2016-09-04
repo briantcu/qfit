@@ -9,8 +9,8 @@ class Avatar extends React.Component {
 
     imagePath() {
         var path = "https://s3.amazonaws.com/quadfit/blank-avi.png";
-        if (this.props.user && this.props.user.avatars && this.props.user.avatars.length > 0) {
-            path = this.props.user.avatars[0];
+        if (this.props.user && this.props.user.avatar) {
+            path = this.props.user.avatar;
         }
         return path;
     }

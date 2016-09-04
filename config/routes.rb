@@ -12,7 +12,7 @@ Qfit::Application.routes.draw do
   get '/setup/quads', to: 'pages#setup_redirect'
 
   get '/setup-coach', to: 'pages#setup_coach'
-  get '/coaches-corner', to: 'pages#coaches'
+  get '/coaches', to: 'pages#coaches'
 
   get '/fitness', to: 'pages#setup_redirect'
   get '/commitment', to: 'pages#setup_redirect'

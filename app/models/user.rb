@@ -73,6 +73,7 @@ class User < ActiveRecord::Base
 
   validates :user_name, uniqueness: true, allow_blank: true, allow_nil: true
   validates :email, presence: true, uniqueness: true
+  validates_inclusion_of :sex, in: %w( male female ), :allow_blank => true
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
@@ -87,20 +88,20 @@ class User < ActiveRecord::Base
   has_many :laps, through: :performed_sprints
   has_many :weight_sets, through: :performed_exercises
   has_many :user_goals
-  has_many :user_pointses
+  has_many :user_points, class_name: UserPoints
   has_many :players, class_name: User, foreign_key: :master_user_id
   has_many :inbox, class_name: Message, foreign_key: :to_id
   has_many :outbox, class_name: Message, foreign_key: :poster_id
 
   has_one :group_join, dependent: :destroy
-  has_one :sign_up_code, dependent: :destroy
   has_one :group, through: :group_join
+  has_one :sign_up_code, dependent: :destroy
   has_one :user_schedule, dependent: :destroy
   has_one :coach_account, dependent: :destroy
 
   belongs_to :program_type
   belongs_to :coach, foreign_key: :master_user_id, class_name: User
-  validates_inclusion_of :sex, in: %w( male female ), :allow_blank => true
+
 
   scope :sub_users, -> {where(sub_user: true)}
   scope :regular_users, -> {where(sub_user: false, administrator: false)}
@@ -136,7 +137,6 @@ class User < ActiveRecord::Base
         end
       end
       user.image = auth.info.image
-      # @TODO convert auth.info.gender if it exists to sex. make sure it is male or female. it's in auth.extra.raw_info
     end
   end
 
@@ -148,6 +148,14 @@ class User < ActiveRecord::Base
         self.points += gd.points
         self.save
       end
+    end
+  end
+
+  def avatar_path
+    if avatars.present? && avatars.url.present?
+      avatars.url
+    else
+      image
     end
   end
 
