@@ -68,7 +68,7 @@ class Leaders extends React.Component {
                                     <div className="sec-main">
                                         {
                                             this.state.leaders.male_power_index.map(function (e, index) {
-                                                return <Leader key={index} />
+                                                return <Leader key={index} leader={e.leader} />
                                             }.bind(this))
                                         }
                                     </div>
@@ -85,7 +85,7 @@ class Leaders extends React.Component {
                                     <div className="sec-main">
                                         {
                                             this.state.leaders.female_power_index.map(function (e, index) {
-                                                return <Leader key={index} />
+                                                return <Leader key={index} leader={e.leader} />
                                             }.bind(this))
                                         }
                                     </div>
@@ -104,7 +104,7 @@ class Leaders extends React.Component {
                                     <div className="sec-main">
                                         {
                                             this.state.leaders.male_power_index_ratio.map(function (e, index) {
-                                                return <Leader key={index} />
+                                                return <Leader key={index} leader={e.leader} />
                                             }.bind(this))
                                         }
                                     </div>
@@ -121,7 +121,7 @@ class Leaders extends React.Component {
                                     <div className="sec-main">
                                         {
                                             this.state.leaders.female_power_index_ratio.map(function (e, index) {
-                                                return <Leader key={index} />
+                                                return <Leader key={index} leader={e.leader} />
                                             }.bind(this))
                                         }
                                     </div>
@@ -140,7 +140,7 @@ class Leaders extends React.Component {
                                     <div className="sec-main">
                                         {
                                             this.state.leaders.sprints_performed.map(function (e, index) {
-                                                return <Leader key={index} />
+                                                return <Leader key={index} leader={e.leader} />
                                             }.bind(this))
                                         }
                                     </div>
@@ -157,7 +157,7 @@ class Leaders extends React.Component {
                                     <div className="sec-main">
                                         {
                                             this.state.leaders.plyos_performed.map(function (e, index) {
-                                                return <Leader key={index} />
+                                                return <Leader key={index} leader={e.leader} />
                                             }.bind(this))
                                         }
                                     </div>
@@ -176,7 +176,7 @@ class Leaders extends React.Component {
                                     <div className="sec-main">
                                         {
                                             this.state.leaders.sets_performed.map(function (e, index) {
-                                                return <Leader key={index} />
+                                                return <Leader key={index} leader={e.leader} />
                                             }.bind(this))
                                         }
                                     </div>
@@ -193,7 +193,7 @@ class Leaders extends React.Component {
                                     <div className="sec-main">
                                         {
                                             this.state.leaders.reps_performed.map(function (e, index) {
-                                                return <Leader key={index} />
+                                                return <Leader key={index} leader={e.leader} />
                                             }.bind(this))
                                         }
                                     </div>

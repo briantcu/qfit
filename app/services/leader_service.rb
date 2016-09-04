@@ -1,4 +1,5 @@
 class LeaderService
+  include Singleton
 
   def populate_leaderboards
     Leader.destroy_all
@@ -13,15 +14,15 @@ class LeaderService
   private
 
   def insert_power_index_leaders
-    male_leaders   = User.logged_in_recently.males.order(power_index: :desc).limit(5)
+    male_leaders   = User.logged_in_recently.males.select('*, power_index AS value').order(power_index: :desc).limit(5)
     female_leaders = User.logged_in_recently.females.order(power_index: :desc).limit(5)
     create_leaders(male_leaders, Leader::MALE_POWER_INDEX)
     create_leaders(female_leaders, Leader::FEMALE_POWER_INDEX)
   end
 
   def insert_pi_ratio_leaders
-    male_leaders   = User.logged_in_recently.males.select('*, (power_index/ weight) AS ratio ').order('ratio desc').limit(5)
-    female_leaders = User.logged_in_recently.females.select('*, (power_index/ weight) AS ratio ').order('ratio desc').limit(5)
+    male_leaders   = User.logged_in_recently.males.select('*, (power_index/ weight) AS value ').order('value desc').limit(5)
+    female_leaders = User.logged_in_recently.females.select('*, (power_index/ weight) AS value ').order('value desc').limit(5)
     create_leaders(male_leaders, Leader::MALE_POWER_INDEX_RATIO)
     create_leaders(female_leaders, Leader::FEMALE_POWER_INDEX_RATIO)
   end
@@ -37,12 +38,12 @@ class LeaderService
   end
 
   def insert_most_sets_performed
-    leaders = User.logged_in_recently.most_sets(Date.today - 3.weeks)
+    leaders = User.logged_in_recently.most_sets_performed(Date.today - 3.weeks)
     create_leaders(leaders, Leader::SETS_PERFORMED)
   end
 
   def insert_most_reps_performed
-    leaders = User.logged_in_recently.most_reps(Date.today - 3.weeks)
+    leaders = User.logged_in_recently.most_reps_performed(Date.today - 3.weeks)
     create_leaders(leaders, Leader::REPS_PERFORMED)
   end
 

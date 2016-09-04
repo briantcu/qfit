@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
   scope :sub_users, -> {where(sub_user: true)}
   scope :regular_users, -> {where(sub_user: false, administrator: false)}
   scope :without_group, -> {where(:group.empty?)}
-  scope :logged_in_recently, -> {where('last_sign_in_at > ?', Time.now - 21.days)}
+  scope :logged_in_recently, -> {where('last_sign_in_at > ? or users.created_at > ?', Time.now - 21.days, Time.now - 21.days)}
   scope :males, -> {where(sex: 'male')}
   scope :females, -> {where(sex: 'female')}
   scope :most_sprinted, -> (date){select('users.*, count(laps.lap_number) AS value')
