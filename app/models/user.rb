@@ -102,25 +102,38 @@ class User < ActiveRecord::Base
   belongs_to :program_type
   belongs_to :coach, foreign_key: :master_user_id, class_name: User
 
-
   scope :sub_users, -> {where(sub_user: true)}
   scope :regular_users, -> {where(sub_user: false, administrator: false)}
   scope :without_group, -> {where(:group.empty?)}
   scope :logged_in_recently, -> {where('last_sign_in_at > ?', Time.now - 21.days)}
   scope :males, -> {where(sex: 'male')}
   scope :females, -> {where(sex: 'female')}
-  scope :most_sprinted, -> {select('users.*, count(laps.lap_number) AS value').joins(:laps)
-                            .group('users.id').where('laps.completed = true').order('value DESC').limit(5)}
-  scope :most_plyos, -> {select('users.*, count(performed_plyometrics.id) AS value').joins(:performed_plyometrics)
-                            .group('users.id')
-                         .where('performed_plyometrics.performed_one = true')
-                         .where('performed_plyometrics.performed_two = true')
-                         .where('performed_plyometrics.performed_three = true')
-                         .order('value DESC').limit(5)}
-  scope :most_sets_performed, -> {select('users.*, count(weight_sets.id) AS value').joins(:weight_sets)
-                            .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)}
-  scope :most_reps_performed, -> {select('users.*, sum(weight_sets.perf_reps) AS value').joins(:weight_sets)
-                                  .group('users.id').where('weight_sets.perf_reps > 0').order('value DESC').limit(5)}
+  scope :most_sprinted, -> (date){select('users.*, count(laps.lap_number) AS value')
+                                      .joins(:laps)
+                                      .group('users.id')
+                                      .where('laps.completed = true')
+                                      .where('laps.created_at > ?', date)
+                                      .order('value DESC').limit(5)}
+  scope :most_plyos, -> (date){select('users.*, count(performed_plyometrics.id) AS value')
+                                   .joins(:performed_plyometrics)
+                                   .group('users.id')
+                                   .where('performed_plyometrics.performed_one = true')
+                                   .where('performed_plyometrics.performed_two = true')
+                                   .where('performed_plyometrics.performed_three = true')
+                                   .where('performed_plyometrics.created_at > ?', date)
+                                   .order('value DESC').limit(5)}
+  scope :most_sets_performed, -> (date){select('users.*, count(weight_sets.id) AS value')
+                                            .joins(:weight_sets)
+                                            .group('users.id')
+                                            .where('weight_sets.perf_reps > 0')
+                                            .where('weight_sets.created_at > ?', date)
+                                            .order('value DESC').limit(5)}
+  scope :most_reps_performed, -> (date){select('users.*, sum(weight_sets.perf_reps) AS value')
+                                            .joins(:weight_sets)
+                                            .group('users.id')
+                                            .where('weight_sets.perf_reps > 0')
+                                            .where('weight_sets.created_at > ?', date)
+                                            .order('value DESC').limit(5)}
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|

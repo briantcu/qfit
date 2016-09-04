@@ -18,6 +18,7 @@ Qfit::Application.routes.draw do
   get '/commitment', to: 'pages#setup_redirect'
   get '/program', to: 'pages#setup_redirect'
   get '/schedule', to: 'pages#schedule'
+
   get '/workout', to: 'pages#do_work'
   get '/quad-pod', to: 'pages#do_work'
   get '/progress', to: 'pages#do_work'
@@ -25,7 +26,7 @@ Qfit::Application.routes.draw do
 
   get '/', to: 'pages#home'
   get '/account', to: 'pages#account'
-
+  get '/leaderboards', to: 'pages#leaders'
 
   #****************** API *********************
   post '/checkout', to: 'subscriptions#create'

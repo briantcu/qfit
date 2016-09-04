@@ -19,7 +19,8 @@ var config = {
         home: 'entry-points/home.jsx',
         account: 'entry-points/account.jsx',
         login: 'entry-points/login.jsx',
-        forgot: 'entry-points/forgot.jsx'
+        forgot: 'entry-points/forgot.jsx',
+        leaders: 'entry-points/leaders.jsx'
     },
     output: {
         filename: '[name].bundle.js',

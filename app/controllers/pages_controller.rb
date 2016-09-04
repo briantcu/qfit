@@ -87,6 +87,15 @@ class PagesController < ApplicationController
     render template: 'pages/do_work'
   end
 
+  def leaders
+    gon.push(
+        {
+            current_user_id: current_user.id
+        }
+    )
+    render template: 'pages/leaders'
+  end
+
   def setup_redirect
     redirect_to '/setup/goal'
   end

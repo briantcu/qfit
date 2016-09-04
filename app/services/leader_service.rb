@@ -1,6 +1,7 @@
 class LeaderService
 
   def populate_leaderboards
+    Leader.destroy_all
     insert_power_index_leaders
     insert_pi_ratio_leaders
     insert_most_laps_sprinted
@@ -26,22 +27,22 @@ class LeaderService
   end
 
   def insert_most_laps_sprinted
-    leaders = User.logged_in_recently.most_sprinted
+    leaders = User.logged_in_recently.most_sprinted(Date.today - 3.weeks)
     create_leaders(leaders, Leader::SPRINTS_PERFORMED)
   end
 
   def insert_most_plyos_performed
-    leaders = User.logged_in_recently.most_plyos
+    leaders = User.logged_in_recently.most_plyos(Date.today - 3.weeks)
     create_leaders(leaders, Leader::PLYOS_PERFORMED)
   end
 
   def insert_most_sets_performed
-    leaders = User.logged_in_recently.most_sets
+    leaders = User.logged_in_recently.most_sets(Date.today - 3.weeks)
     create_leaders(leaders, Leader::SETS_PERFORMED)
   end
 
   def insert_most_reps_performed
-    leaders = User.logged_in_recently.most_reps
+    leaders = User.logged_in_recently.most_reps(Date.today - 3.weeks)
     create_leaders(leaders, Leader::REPS_PERFORMED)
   end
 
