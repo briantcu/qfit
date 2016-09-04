@@ -28,7 +28,7 @@ class PagesController < ApplicationController
 
   def more_info
     gon.push({
-                 new_user: session["devise.facebook_user"]
+                 current_user_id: current_user.id
              })
     render layout: 'full_page'
   end

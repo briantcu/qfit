@@ -31,7 +31,7 @@ class Slider extends React.Component {
     }
 
     render () {
-        return <span><div className="switch">
+        return <span className="slider"><div className="switch">
                 <input ref="slider" id="cmn-toggle-4" className="cmn-toggle cmn-toggle-round-flat" type="checkbox"
                        onChange={ () => this.handleLabel()} defaultChecked={this.props.is_checked} />
                 <label htmlFor="cmn-toggle-4" />
