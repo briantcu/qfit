@@ -19,6 +19,7 @@ import Button from 'views/common/button';
 import Comment from 'views/do-work/comment';
 import QuadPod from 'views/quad-pod/quad-pod';
 import Footer from 'views/common/footer';
+import Progress from 'views/do-work/progress';
 
 require('pages/do_work.scss');
 
@@ -375,6 +376,7 @@ render((
                 <Route path=":year/:month/:day" component={DoWork}/>
             </Route>
             <Route path="quad-pod" component={QuadPod} />
+            <Route path="progress" component={Progress} />
         </Route>
     </Router>
 ), document.getElementById('app'));

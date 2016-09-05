@@ -1,0 +1,67 @@
+@import "../../common/common";
+
+.progress-tab {
+  .main {
+    background-color: $gray2;
+    color: $dark-purple;
+    min-height: 900px;
+
+    .controls-row {
+      padding-bottom: 30px;
+      select {
+        margin-right: 20px;
+      }
+    }
+
+    .qfButton {
+      padding-top: 6px !important;
+      padding-bottom: 6px !important;
+    }
+
+    .title-row {
+      padding-left: 0px !important;
+    }
+
+    .form-control {
+      width: 185px;
+      display: inline-block !important;
+    }
+    .pr-header {
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: -1.1px;
+      padding-top: 30px;
+    }
+    .pr-sub {
+      color: $purple;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.1;
+      padding-left: 5px;
+      padding-bottom: 30px;
+    }
+    .info-bar {
+      color: white;
+      background-color: $dark-purple;
+      height: 100px;
+      font-size: 27px;
+      padding-top: 30px;
+    }
+    .chart-area {
+      background-color: white;
+      height: 380px;
+    }
+    .chart-header {
+      font-size: 12px;
+      color: #4f5362;
+      padding-top: 40px;
+      padding-bottom: 20px;
+      background-color: white;
+      height: 100px;
+      span {
+        margin-right: 20px;
+      }
+    }
+  }
+
+}
