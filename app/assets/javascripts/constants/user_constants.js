@@ -6,5 +6,6 @@ module.exports = keyMirror({
     POD_LOADED: null,
     FEED_LOADED: null,
     INVITES_SENT: null,
-    CONVO_LOADED: null
+    CONVO_LOADED: null,
+    CHART_LOADED: null
 });

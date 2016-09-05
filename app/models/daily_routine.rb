@@ -39,7 +39,7 @@ class DailyRoutine < ActiveRecord::Base
 
   scope :completed, -> {where('closed = true and count_ex_completed  > 0')}
   scope :open, -> {where(closed: false)}
-  scope :closed_since, -> (date) {where('closed = 1 and day_performed > ?', date)}
+  scope :since, -> (date) {where('day_performed > ? and day_performed < ?', date, Date.today + 1.day)}
 
   belongs_to :user
   has_many :custom_exercises, -> { order('id ASC') }, :foreign_key => :routine_id, dependent: :destroy

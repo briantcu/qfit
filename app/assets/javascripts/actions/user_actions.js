@@ -154,6 +154,25 @@ var UserActions = {
                 alert(results);
             }
         });
+    },
+
+    getProgress: function(userId, chartType, period, exerciseId) {
+        var url = '/users/'+ userId +'/progress/'+ chartType + '/' +period+'.json';
+        if (exerciseId) {
+            url = url + '?exercise_id=' + exerciseId;
+        }
+        $.ajax({
+            type: 'get',
+            url: url,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                dispatcher.dispatch(C.CHART_LOADED, data);
+            },
+            error: function(results) {
+                alert('Something went wrong!');
+            }
+        });
     }
 
 };
