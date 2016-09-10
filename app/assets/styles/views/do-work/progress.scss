@@ -13,6 +13,29 @@
       }
     }
 
+    .period {
+      font-size: 12px;
+      font-weight: bold;
+      color: $gray8;
+      letter-spacing: -0.1px;
+      cursor: pointer;
+    }
+
+    .small-title {
+      font-size: 12px;
+      color: $grayer;
+      text-transform: uppercase;
+    }
+
+    .selected-period {
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: -0.1px;
+      color: $grayer;
+      border-bottom: 3px solid $lightning;
+      cursor: pointer;
+    }
+
     .val-label {
       opacity: 0.3;
       font-size: 11px;
@@ -29,7 +52,7 @@
     }
 
     .form-control {
-      width: 185px;
+      width: 265px;
       display: inline-block !important;
     }
     .pr-header {
@@ -42,9 +65,10 @@
       color: $purple;
       font-size: 18px;
       font-weight: 600;
-      line-height: 1.1;
+      line-height: 1.4;
       padding-left: 5px;
       padding-bottom: 30px;
+      min-height: 105px;
     }
     .info-bar {
       color: white;

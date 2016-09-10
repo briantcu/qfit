@@ -38,7 +38,7 @@ class ProgressService
       when 1
         @routines = @user.daily_routines.since(Date.today - 3.months)
       when 2
-        @routines = @user.daily_routines.since(Date.today - 6.months)
+        @routines = @user.daily_routines
       when 3
         @routines = @user.daily_routines.since(Date.today - 1.year)
       else

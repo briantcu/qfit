@@ -1,10 +1,3 @@
-GIT
-  remote: https://github.com/stripe/stripe-ruby
-  revision: 805b65478c0fa392e628fdbaec74e9e01e507be3
-  specs:
-    stripe (1.53.0)
-      rest-client (>= 1.4, < 4.0)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -367,6 +360,8 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     sqlite3 (1.3.11)
+    stripe (1.53.0)
+      rest-client (>= 1.4, < 4.0)
     test-unit (3.1.8)
       power_assert
     thor (0.19.1)
@@ -426,7 +421,7 @@ DEPENDENCIES
   sdoc
   sidekiq
   sqlite3
-  stripe!
+  stripe
   test-unit
   to_factory
   turbolinks
