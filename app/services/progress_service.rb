@@ -35,11 +35,11 @@ class ProgressService
 
   def get_routines
     case @period
-      when 1
+      when '1'
         @routines = @user.daily_routines.since(Date.today - 3.months)
-      when 2
+      when '2'
         @routines = @user.daily_routines
-      when 3
+      when '3'
         @routines = @user.daily_routines.since(Date.today - 1.year)
       else
         @routines = @user.daily_routines.since(Date.today - 1.month)

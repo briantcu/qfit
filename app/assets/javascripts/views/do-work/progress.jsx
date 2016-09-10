@@ -3,6 +3,7 @@ import Button from 'views/common/button';
 import { LineChart } from 'react-chartkick';
 import UserActions from 'actions/user_actions';
 import UserStore from 'stores/user_store';
+import Chart from 'chart.js'
 
 window.Chart = require('chart.js');
 require('views/do-work/progress.scss');
@@ -43,6 +44,37 @@ class Progress extends React.Component {
     onChange() {
         var chartData = UserStore.getData().chart;
         this.formatChartData(chartData);
+        var ctx = document.getElementById("myChart");
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [0,1,3,5,9],
+                datasets: [{
+                    data: [7,6,9,11,12],
+                    spanGaps: true
+                }]
+            },
+            optons: {
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            display: true
+                        }
+                    }],
+                    xAxes: [{
+                        display: false,
+                        gridLines: {
+                            display: true
+                        }
+                    }],
+                    gridLines: {
+                        display: false
+                    }
+                },
+                lineTension: 0,
+                backgroundColor: 'black'
+            }
+        });
     }
 
     formatChartData(chartData) {
@@ -58,7 +90,7 @@ class Progress extends React.Component {
             _.each(chartData.dataset, function(data) {
                 dataset[data.date] = data.value;
             });
-
+            console.log(dataset);
             this.setState({max: max.value, min: min.value, hasData: true, dataset: dataset, title: chartData.title});
         } else {
             this.setState({hasData: false, min: 'N/A', max: 'N/A', title: chartData.title})
@@ -137,10 +169,14 @@ class Progress extends React.Component {
                                     {this.state.title}
                                 </div>
                                 <div className="col-xs-5 text-right">
-                                    <span onClick={() => this.periodChanged(this.periods.one_month) } className={(this.state.period ==  this.periods.one_month) ? 'selected-period' : 'period'}>Last 30 Days</span>
-                                    <span onClick={() => this.periodChanged(this.periods.three_months) } className={(this.state.period == this.periods.three_months) ? 'selected-period' : 'period'}>Last 90 Days</span>
-                                    <span onClick={() => this.periodChanged(this.periods.one_year) } className={(this.state.period ==  this.periods.one_year) ? 'selected-period' : 'period'}>Last Year</span>
-                                    <span onClick={() => this.periodChanged(this.periods.all_time) } className={(this.state.period ==  this.periods.all_time) ? 'selected-period' : 'period'}>All Time</span>
+                                    <span onClick={() => this.periodChanged(this.periods.one_month) }
+                                          className={(this.state.period ==  this.periods.one_month) ? 'selected-period' : 'period'}>Last 30 Days</span>
+                                    <span onClick={() => this.periodChanged(this.periods.three_months) }
+                                          className={(this.state.period == this.periods.three_months) ? 'selected-period' : 'period'}>Last 90 Days</span>
+                                    <span onClick={() => this.periodChanged(this.periods.one_year) }
+                                          className={(this.state.period ==  this.periods.one_year) ? 'selected-period' : 'period'}>Last Year</span>
+                                    <span onClick={() => this.periodChanged(this.periods.all_time) }
+                                          className={(this.state.period ==  this.periods.all_time) ? 'selected-period' : 'period'}>All Time</span>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +184,7 @@ class Progress extends React.Component {
                         <div className="col-xs-12 chart-area">
                             <Choose>
                                 <When condition={this.state.dataset && this.state.hasData}>
-                                    <LineChart data={this.state.dataset} spanGaps={true} />
+                                    <canvas id="myChart" width="400" height="400"></canvas>
                                 </When>
                                 <Otherwise>
                                     <span>No Data</span>
