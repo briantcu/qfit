@@ -44,37 +44,45 @@ class Progress extends React.Component {
     onChange() {
         var chartData = UserStore.getData().chart;
         this.formatChartData(chartData);
-        var ctx = document.getElementById("myChart");
-        var chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [0,1,3,5,9],
-                datasets: [{
-                    data: [7,6,9,11,12],
-                    spanGaps: true
-                }]
-            },
-            optons: {
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            display: true
-                        }
-                    }],
-                    xAxes: [{
-                        display: false,
-                        gridLines: {
-                            display: true
-                        }
-                    }],
-                    gridLines: {
-                        display: false
-                    }
+        var ctx = document.getElementById("myChart").getContext("2d");;
+        if (ctx) {
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: this.state.labels,
+                    datasets: [{
+                        lineTension: 0,
+                        data: this.state.dataset,
+                        spanGaps: true
+                    }]
                 },
-                lineTension: 0,
-                backgroundColor: 'black'
-            }
-        });
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    title: {
+                        display: false
+                    },
+                    line: {
+                        fill: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                display: false
+                            }
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true
+                            }
+                        }]
+                    },
+                    lineTension: 0,
+                    backgroundColor: 'black'
+                }
+            });
+        }
     }
 
     formatChartData(chartData) {
@@ -85,13 +93,9 @@ class Progress extends React.Component {
             var min = _.min(chartData.dataset, function (data) {
                 return data.value;
             });
+            var labels = _.pluck(chartData.dataset, 'x');
 
-            var dataset = {};
-            _.each(chartData.dataset, function(data) {
-                dataset[data.date] = data.value;
-            });
-            console.log(dataset);
-            this.setState({max: max.value, min: min.value, hasData: true, dataset: dataset, title: chartData.title});
+            this.setState({max: max.value, min: min.value, hasData: true, dataset: chartData.dataset, title: chartData.title, labels: labels });
         } else {
             this.setState({hasData: false, min: 'N/A', max: 'N/A', title: chartData.title})
         }
@@ -184,7 +188,7 @@ class Progress extends React.Component {
                         <div className="col-xs-12 chart-area">
                             <Choose>
                                 <When condition={this.state.dataset && this.state.hasData}>
-                                    <canvas id="myChart" width="400" height="400"></canvas>
+                                    <canvas id="myChart" width="450" height="450" />
                                 </When>
                                 <Otherwise>
                                     <span>No Data</span>

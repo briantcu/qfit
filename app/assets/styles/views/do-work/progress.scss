@@ -79,7 +79,12 @@
     }
     .chart-area {
       background-color: white;
-      height: 380px;
+      height: 580px;
+      margin-bottom: 50px;
+    }
+    #myChart {
+      width: 100% !important;
+      height: 450px !important;
     }
     .chart-header {
       font-size: 12px;
