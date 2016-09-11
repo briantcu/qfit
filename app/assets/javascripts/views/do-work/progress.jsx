@@ -15,6 +15,8 @@ class Progress extends React.Component {
         this.changeChart = this.changeChart.bind(this);
         this.onChange = this.onChange.bind(this);
         this.formatChartData = this.formatChartData.bind(this);
+        this.afterScaleUpdate = this.afterScaleUpdate.bind(this);
+        this.drawMonthBar = this.drawMonthBar.bind(this);
         this.chartTypes = ['user_weight', 'power_index', 'completed_workouts', 'exercise'];
         this.periods = {
             three_months: 1,
@@ -47,7 +49,7 @@ class Progress extends React.Component {
         var chartData = UserStore.getData().chart;
         this.formatChartData(chartData);
         var ctx = document.getElementById("myChart");
-
+        this.formMonthBar(chartData);
         if (ctx) {
             var chart = new Chart(ctx, {
                 type: 'line',
@@ -63,6 +65,9 @@ class Progress extends React.Component {
                     }]
                 },
                 options: {
+                    animation: {
+                        onComplete: this.drawMonthBar
+                    },
                     borderColor: "rgba(0,0,0,0)",
                     fill: false,
                     responsive: true,
@@ -93,14 +98,75 @@ class Progress extends React.Component {
                                 zeroLineWidth: 0,
                                 zeroLineColor: "rgba(0,0,0,0)",
                                 display: true
-                            }
+                            },
+                            ticks: {
+                                display: true,
+                                callback: function(value, index, values) {
+                                    return value.slice(-2);
+                                }
+                            },
+                            afterFit: function(scale) {
+                                if (scale.id == 'x-axis-0'){
+                                    scale.height = 80;
+                                }
+                            },
+                            afterUpdate: this.afterScaleUpdate
                         }]
                     },
                     lineTension: 0
                 }
             });
+            //this.drawMonthBar();
         }
-        this.formMonthBar(chartData)
+
+    }
+
+    afterScaleUpdate(scale) {
+        this.scaleWidth = scale.width;
+        this.chartHeight = scale.chart.chart.height;
+        this.chartWidth = scale.chart.chart.width;
+    }
+
+    drawMonthBar() {
+        if (this.monthBarData) {
+            var colorArray = ['rgba(121, 83, 170, 0.46)', 'rgba(213, 221, 34, 0.61)'];
+
+            var totalTicks = 0;
+            for (var property in this.monthBarData) {
+                if (this.monthBarData.hasOwnProperty(property)) {
+                    totalTicks += this.monthBarData[property];
+                }
+            }
+
+            var context = document.getElementById("myChart").getContext("2d");
+
+            var index = 0;
+            var offset = (this.chartWidth - this.scaleWidth); //scale is right justified
+            for (var property in this.monthBarData) {
+                if (this.monthBarData.hasOwnProperty(property)) { //{august: 22}, {september: 8}
+                    context.beginPath();
+                    context.moveTo(offset, this.chartHeight - 20);
+
+                    var barWidth = ((this.monthBarData[property] / totalTicks) * (this.scaleWidth)) - 3; //3 is a hack, but works
+
+                    var endingPoint = barWidth + offset;
+                    context.lineTo(endingPoint, this.chartHeight - 20);
+
+
+                    context.lineWidth = 16;
+                    context.strokeStyle = colorArray[index];
+                    context.stroke();
+                    index++;
+
+                    context.font="11px OpenSans";
+                    context.textAlign = 'center';
+                    context.fillStyle = "#fff";
+                    var midwayPoint = endingPoint - (barWidth / 2);
+                    context.fillText(property.toUpperCase(),midwayPoint,this.chartHeight - 16);
+                    offset += barWidth;
+                }
+            }
+        }
     }
 
     formMonthBar(chartData) {
@@ -115,6 +181,7 @@ class Progress extends React.Component {
                 monthBarData[monthName] = monthBarData[monthName] + 1;
             }
         }
+        this.monthBarData = monthBarData;
     }
 
     formatChartData(chartData) {
@@ -135,8 +202,6 @@ class Progress extends React.Component {
                 min = 'N/A';
             }
             var labels = _.pluck(chartData.dataset, 'x');
-            labels = _.map(labels, function(label){ return label.slice(-2);});
-
             this.setState({max: max, min: min, hasData: chartData.has_data, dataset: chartData.dataset, title: chartData.title, labels: labels });
         } else {
             this.setState({hasData: false, min: 'N/A', max: 'N/A', title: chartData.title})
