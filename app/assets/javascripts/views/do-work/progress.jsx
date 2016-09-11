@@ -230,12 +230,20 @@ class Progress extends React.Component {
 
     changeChart() {
         this.setState({chartType: this.refs.chartType.value});
-        UserActions.getProgress(gon.current_user_id, this.chartTypes[this.refs.chartType.value], this.state.period, this.refs.exercises.value);
+        var exerciseId = 0;
+        if (this.refs.exercises) {
+            exerciseId = this.refs.exercise.value;
+        }
+        UserActions.getProgress(gon.current_user_id, this.chartTypes[this.refs.chartType.value], this.state.period, exerciseId);
     }
 
     periodChanged(period) {
         this.setState({period: period});
-        UserActions.getProgress(gon.current_user_id, this.chartTypes[this.refs.chartType.value], period, this.refs.exercises.value);
+        var exerciseId = 0;
+        if (this.refs.exercises) {
+            exerciseId = this.refs.exercise.value;
+        }
+        UserActions.getProgress(gon.current_user_id, this.chartTypes[this.refs.chartType.value], period, exerciseId);
     }
 
     render() {
