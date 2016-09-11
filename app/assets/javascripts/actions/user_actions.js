@@ -173,6 +173,21 @@ var UserActions = {
                 alert('Something went wrong!');
             }
         });
+    },
+
+    getMaxes: function() {
+        $.ajax({
+            type: 'get',
+            url: '/user_maxes.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                dispatcher.dispatch(C.MAXES_LOADED, data);
+            },
+            error: function(results) {
+                alert('Something went wrong!');
+            }
+        });
     }
 
 };

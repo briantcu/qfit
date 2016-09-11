@@ -30,7 +30,8 @@ class Progress extends React.Component {
             max: 'N/A',
             period: 4,
             title: 'Weight',
-            chartType: 0
+            chartType: 0,
+            maxes: []
         };
 
     }
@@ -39,6 +40,7 @@ class Progress extends React.Component {
         Chart.defaults.global.defaultFontColor = 'rgba(168, 172, 185, 1)';
         UserStore.addChangeListener(this.onChange);
         UserActions.getProgress(gon.current_user_id, this.chartTypes[0], this.periods.one_month);
+        UserActions.getMaxes();
     }
 
     componentWillUnmount () {
@@ -46,10 +48,13 @@ class Progress extends React.Component {
     }
 
     onChange() {
-        var chartData = UserStore.getData().chart;
+        var data = UserStore.getData();
+        var chartData = data.chart;
+        var maxes = data.maxes;
+        this.setState({maxes: maxes});
         this.formatChartData(chartData);
-        var ctx = document.getElementById("myChart");
         this.formMonthBar(chartData);
+        var ctx = document.getElementById("myChart");
         if (ctx) {
             var chart = new Chart(ctx, {
                 type: 'line',
@@ -116,7 +121,6 @@ class Progress extends React.Component {
                     lineTension: 0
                 }
             });
-            //this.drawMonthBar();
         }
 
     }
@@ -226,12 +230,12 @@ class Progress extends React.Component {
 
     changeChart() {
         this.setState({chartType: this.refs.chartType.value});
-        UserActions.getProgress(gon.current_user_id, this.chartTypes[this.refs.chartType.value], this.state.period);
+        UserActions.getProgress(gon.current_user_id, this.chartTypes[this.refs.chartType.value], this.state.period, this.refs.exercises.value);
     }
 
     periodChanged(period) {
         this.setState({period: period});
-        UserActions.getProgress(gon.current_user_id, this.chartTypes[this.refs.chartType.value], period);
+        UserActions.getProgress(gon.current_user_id, this.chartTypes[this.refs.chartType.value], period, this.refs.exercises.value);
     }
 
     render() {
@@ -251,8 +255,19 @@ class Progress extends React.Component {
                                     <option value="0">Weight</option>
                                     <option value="1">PowerIndex</option>
                                     <option value="2">% of Workouts Completed by Week</option>
-                                    <option value="3">Specific Exercise Progress</option>
+                                    <If condition={this.state.maxes.length > 0}>
+                                        <option value="3">Specific Exercise Progress</option>
+                                    </If>
                                 </select>
+                                <If condition={this.state.chartType == 'exercise'}>
+                                    <select id="exerciseSelect" ref="exercises" className="form-control" onChange={() => this.changeChart() }>
+                                        {
+                                            this.state.maxes.map(function(max) {
+                                                return <option value={max.exercise_id}>{max.exercise}</option>
+                                            })
+                                        }
+                                    </select>
+                                </If>
                             </div>
                         </div>
                     </div>

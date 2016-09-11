@@ -6,15 +6,21 @@ var PC = require('constants/profile_constants.js');
 var UserStore = new Store({
     user: {},
     chart: {},
+    maxes: [],
 
     setUser: function(data){
         this.user = data;
     },
 
+    setMaxes: function(data){
+        this.maxes = data;
+    },
+
     getData: function(){
         return {
             user: this.user,
-            chart: this.chart
+            chart: this.chart,
+            maxes: this.maxes
         };
     },
     setChart: function(data){
@@ -39,6 +45,13 @@ dispatcher.register(PC.PROFILE_SAVED, function(data) {
 dispatcher.register(C.CHART_LOADED, function(data) {
     if(data){
         UserStore.setChart(data);
+        UserStore.change();
+    }
+});
+
+dispatcher.register(C.MAXES_LOADED, function(data) {
+    if(data){
+        UserStore.setMaxes(data);
         UserStore.change();
     }
 });
