@@ -33,6 +33,7 @@ class Progress extends React.Component {
     }
 
     componentDidMount () {
+        Chart.defaults.global.defaultFontColor = 'rgba(168, 172, 185, 1)';
         UserStore.addChangeListener(this.onChange);
         UserActions.getProgress(gon.current_user_id, this.chartTypes[0], this.periods.one_month);
     }
@@ -44,21 +45,31 @@ class Progress extends React.Component {
     onChange() {
         var chartData = UserStore.getData().chart;
         this.formatChartData(chartData);
-        var ctx = document.getElementById("myChart").getContext("2d");;
+        var ctx = document.getElementById("myChart").getContext("2d");
+
         if (ctx) {
+            ctx.canvas.height = 450;
             var chart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: this.state.labels,
                     datasets: [{
+                        fill: false,
+                        backgroundColor: 'rgba(121, 83, 170, 1)',
+                        borderColor: 'rgba(121, 83, 170, 1)',
                         lineTension: 0,
                         data: this.state.dataset,
                         spanGaps: true
                     }]
                 },
                 options: {
+                    borderColor: "rgba(0,0,0,0)",
+                    fill: false,
                     responsive: true,
                     maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
                     title: {
                         display: false
                     },
@@ -74,12 +85,13 @@ class Progress extends React.Component {
                         xAxes: [{
                             display: true,
                             gridLines: {
+                                zeroLineWidth: 0,
+                                zeroLineColor: "rgba(0,0,0,0)",
                                 display: true
                             }
                         }]
                     },
-                    lineTension: 0,
-                    backgroundColor: 'black'
+                    lineTension: 0
                 }
             });
         }
@@ -94,6 +106,7 @@ class Progress extends React.Component {
                 return data.value;
             });
             var labels = _.pluck(chartData.dataset, 'x');
+            labels = _.map(labels, function(label){ return label.slice(-2);});
 
             this.setState({max: max.value, min: min.value, hasData: true, dataset: chartData.dataset, title: chartData.title, labels: labels });
         } else {
@@ -150,7 +163,6 @@ class Progress extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-
                         <div className="col-xs-12 info-bar">
                            <div className="row">
                                <div className="col-xs-10">
@@ -188,7 +200,7 @@ class Progress extends React.Component {
                         <div className="col-xs-12 chart-area">
                             <Choose>
                                 <When condition={this.state.dataset && this.state.hasData}>
-                                    <canvas id="myChart" width="450" height="450" />
+                                    <canvas id="myChart" height="450" width="800" />
                                 </When>
                                 <Otherwise>
                                     <span>No Data</span>

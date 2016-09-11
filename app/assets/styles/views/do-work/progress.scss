@@ -65,7 +65,7 @@
       color: $purple;
       font-size: 18px;
       font-weight: 600;
-      line-height: 1.4;
+      line-height: 1.5;
       padding-left: 5px;
       padding-bottom: 30px;
       min-height: 105px;
@@ -81,10 +81,9 @@
       background-color: white;
       height: 580px;
       margin-bottom: 50px;
-    }
-    #myChart {
-      width: 100% !important;
-      height: 450px !important;
+      padding-bottom: 50px;
+      padding-left: 30px;
+      padding-right: 30px;
     }
     .chart-header {
       font-size: 12px;
