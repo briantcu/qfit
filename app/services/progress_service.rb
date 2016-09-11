@@ -22,15 +22,15 @@ class ProgressService
     chart_data = []
     case @chart_type
       when 'user_weight'
-        proc = Proc.new {|r| {r.day_performed => r.weight} }
+        proc = Proc.new {|r| {r.day_performed => r.weight} if r.weight.present? }
         title = 'Weight'
         label = 'Pounds'
       when 'power_index'
-        proc = Proc.new {|r| {r.day_performed => r.power_index} }
+        proc = Proc.new {|r| {r.day_performed => r.power_index } if r.power_index.present? }
         title = 'PowerIndex'
         label = 'PowerIndex'
       when 'completed_workouts'
-        proc = Proc.new {|r| {r.day_performed => (r.count_ex_completed / r.count_ex_provided)} rescue nil  }
+        proc = Proc.new {|r| {r.day_performed => (r.count_ex_completed / r.count_ex_provided)} rescue { r.day_performed => 0 }  }
         title = '% of Workouts Completed'
         label = '%'
       else 'exercise'
@@ -39,16 +39,23 @@ class ProgressService
         label = 'Pounds'
     end
 
+    has_data = false
     (@start_date..Date.today).each do |date|
       r = @routines.detect {|r| r.day_performed == date}
       if r.present?
-        chart_data << proc.call(r)
+        obj = proc.call(r)
+        if obj.present?
+          has_data = true
+          chart_data <<  obj
+        else
+          chart_data << { date => nil }
+        end
       else
         chart_data << { date => nil }
       end
     end
 
-    ProgressData.new('', label, chart_data, title)
+    ProgressData.new('', label, chart_data, title, has_data, @start_date, Date.today)
   end
 
   private

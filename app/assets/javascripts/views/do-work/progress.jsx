@@ -4,6 +4,7 @@ import { LineChart } from 'react-chartkick';
 import UserActions from 'actions/user_actions';
 import UserStore from 'stores/user_store';
 import Chart from 'chart.js'
+import moment from 'moment'
 
 window.Chart = require('chart.js');
 require('views/do-work/progress.scss');
@@ -45,10 +46,9 @@ class Progress extends React.Component {
     onChange() {
         var chartData = UserStore.getData().chart;
         this.formatChartData(chartData);
-        var ctx = document.getElementById("myChart").getContext("2d");
+        var ctx = document.getElementById("myChart");
 
         if (ctx) {
-            ctx.canvas.height = 450;
             var chart = new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -80,7 +80,12 @@ class Progress extends React.Component {
                         yAxes: [{
                             gridLines: {
                                 display: false
+                            },
+                            ticks: {
+                                suggestedMin: 0,
+                                beginAtZero: true
                             }
+
                         }],
                         xAxes: [{
                             display: true,
@@ -95,20 +100,44 @@ class Progress extends React.Component {
                 }
             });
         }
+        this.formMonthBar(chartData)
+    }
+
+    formMonthBar(chartData) {
+        var startDate = moment(chartData.start_date);
+        var endDate = moment(chartData.end_date);
+        var monthBarData = {};
+        for(var date = moment(startDate); date.diff(endDate) < 0; date.add(1, 'days')) {
+            var monthName = date.format('MMMM');
+            if (!monthBarData[monthName]) {
+                monthBarData[monthName] = 1;
+            } else {
+                monthBarData[monthName] = monthBarData[monthName] + 1;
+            }
+        }
     }
 
     formatChartData(chartData) {
         if (chartData.dataset && chartData.dataset.length > 0) {
-            var max = _.max(chartData.dataset, function (data) {
-                return data.value;
-            });
-            var min = _.min(chartData.dataset, function (data) {
-                return data.value;
-            });
+            if (chartData.has_data) {
+                var max = _.max(chartData.dataset, function (data) {
+                    return data.y;
+                });
+                var min = _.min(chartData.dataset, function (data) {
+                    if (data.y) {
+                        return data.y;
+                    }
+                });
+                max = max.y;
+                min = min.y;
+            } else {
+                max = 'N/A';
+                min = 'N/A';
+            }
             var labels = _.pluck(chartData.dataset, 'x');
             labels = _.map(labels, function(label){ return label.slice(-2);});
 
-            this.setState({max: max.value, min: min.value, hasData: true, dataset: chartData.dataset, title: chartData.title, labels: labels });
+            this.setState({max: max, min: min, hasData: chartData.has_data, dataset: chartData.dataset, title: chartData.title, labels: labels });
         } else {
             this.setState({hasData: false, min: 'N/A', max: 'N/A', title: chartData.title})
         }
@@ -200,7 +229,7 @@ class Progress extends React.Component {
                         <div className="col-xs-12 chart-area">
                             <Choose>
                                 <When condition={this.state.dataset && this.state.hasData}>
-                                    <canvas id="myChart" height="450" width="800" />
+                                    <canvas id="myChart" />
                                 </When>
                                 <Otherwise>
                                     <span>No Data</span>
