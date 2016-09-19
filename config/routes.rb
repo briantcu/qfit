@@ -21,6 +21,7 @@ Qfit::Application.routes.draw do
 
   get '/workout', to: 'pages#do_work'
   get '/quad-pod', to: 'pages#do_work'
+  get '/quad-pod', to: 'pages#do_work'
   get '/progress', to: 'pages#do_work'
   get '/workout/:year/:month/:day', to: 'pages#do_work'
 
@@ -174,6 +175,5 @@ Qfit::Application.routes.draw do
   resources :coach_accounts
   delete '/coach_accounts/:id/users/:user_id', to: 'coach_accounts#delete_user'
   post '/coach_accounts/:id/send_invite', to: 'coach_accounts#send_invite'
-  post '/coach_accounts/:id/add_user', to: 'coach_accounts#add_user'
 
 end

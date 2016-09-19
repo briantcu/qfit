@@ -26,16 +26,6 @@ RSpec.describe CoachAccountsController, type: :controller do
       sign_in @coach
     end
 
-    it 'should add a new user' do
-      new_user = FactoryGirl.create(:user, email: 'briantcu@gmail.com')
-      allow_any_instance_of(RegistrationService).to receive(:register_user_for_coach).and_return(new_user)
-      post :add_user, id: @coach_account.id, user: {email: 'briantcu@gmail.com', first_name: 'brian', last_name: 'regan', sex: 'male'}, format: :json
-      body = JSON.parse(response.body)
-      expect(body['first_name']).to eq('Brian')
-      expect(body['last_name']).to eq('Regan')
-      expect(body['id']).not_to eq(nil)
-    end
-
     it 'should delete a user you own' do
       player = FactoryGirl.create(:user, level: 1, master_user_id: @coach.id)
       expect(@coach.players.count).to eq(1)
@@ -69,11 +59,6 @@ RSpec.describe CoachAccountsController, type: :controller do
 
     it 'should not allow access to coach account' do
       get :show, id: @coach_account.id, format: :json
-      expect(response.status).to eq(401)
-    end
-
-    it 'should not allow adding to coach account' do
-      post :add_user, id: @coach_account.id, user: {email: 'briantcu@gmail.com', first_name: 'brian', last_name: 'regan', sex: 'male'}, format: :json
       expect(response.status).to eq(401)
     end
   end

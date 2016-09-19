@@ -19,16 +19,6 @@ class CoachAccountsController < ApplicationController
   def show
   end
 
-  def add_user
-    if @coach_account.is_maxed_out?
-      render status: 471, json: { errors: 'Coach is maxed out'}
-    else
-      @user = User.new(sign_up_params)
-      @user = RegistrationService.instance.register_user_for_coach(@user, current_user)
-      session[:current_user_id] = @user.id
-    end
-  end
-
   def delete_user
     user = User.find(params[:user_id])
     EmailService.perform_async(:coach_deleted_you, {email: user.email})
