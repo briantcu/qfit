@@ -38,7 +38,9 @@ class CoachAccountsController < ApplicationController
 
   def send_invite
     send_to = params[:send_to]
-    render json: CoachInviteService.instance.send_invite(send_to, @coach_account)
+    sign_up_type = params[:sign_up_type]
+    render status: 401, json: {} unless send_to.present? && sign_up_type.present?
+    render json: CoachInviteService.instance.send_invite(send_to, @coach_account, sign_up_type)
   end
 
   private

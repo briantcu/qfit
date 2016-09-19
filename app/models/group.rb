@@ -64,6 +64,21 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def copy_schedule_to_user(user)
+    return unless user.group.id == self.id
+    group_schedule = self.group_schedule
+    user_schedule = user.user_schedule
+    if user_schedule.blank?
+      user_schedule = UserSchedule.create_user_schedule({user_id: user.id, program_type_id: 1, program_id: 1}) # placeholder values
+    end
+    user_schedule.program_id = group_schedule.program_id
+    user_schedule.phase_one_start = group_schedule.phase_one_start
+    user_schedule.phase_two_start = group_schedule.phase_two_start
+    user_schedule.phase_three_start = group_schedule.phase_three_start
+    user_schedule.phase_four_start = group_schedule.phase_four_start
+    user_schedule.save!
+  end
+
   def update_program_info
     self.current_phase = self.group_schedule.get_current_phase
     self.save!

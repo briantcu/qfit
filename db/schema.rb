@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160903180736) do
+ActiveRecord::Schema.define(version: 20160919010622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -406,11 +406,16 @@ ActiveRecord::Schema.define(version: 20160903180736) do
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "sign_up_codes", force: :cascade do |t|
-    t.string   "code",       limit: 255
+    t.string   "code",         limit: 255
     t.integer  "user_id"
-    t.string   "email",      limit: 255
+    t.string   "email",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sign_up_type"
+    t.string   "sent_to"
+    t.string   "sent_to_type"
+    t.boolean  "used",                     default: false
+    t.integer  "group_id"
   end
 
   create_table "sprint_detail_sequences", force: :cascade do |t|

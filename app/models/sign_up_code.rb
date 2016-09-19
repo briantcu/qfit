@@ -2,23 +2,32 @@
 #
 # Table name: sign_up_codes
 #
-#  id         :integer          not null, primary key
-#  code       :string(255)
-#  user_id    :integer
-#  email      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id           :integer          not null, primary key
+#  code         :string(255)
+#  user_id      :integer
+#  email        :string(255)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  sign_up_type :string
+#  sent_to      :string
+#  sent_to_type :string
+#  used         :boolean          default(FALSE)
+#  group_id     :integer
 #
+
+# sign_up_type: 'member', 'team'
+# sent_to_type: 'phone', 'email'
 
 class SignUpCode < ActiveRecord::Base
   belongs_to :user
   has_many :sent_codes, foreign_key: :code
+  belongs_to :group
 
-  #@TODO add restrictions for uniqueness of code and user id
-
-  def self.create_code(user_id)
-
+  def self.unique_code
+    code = loop do
+      random_token = SecureRandom.hex(3)
+      break random_token unless SignUpCode.where(code: random_token).present?
+    end
+    code
   end
-
-
 end

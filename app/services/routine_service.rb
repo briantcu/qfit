@@ -49,6 +49,7 @@ class RoutineService
     delete_old_workouts(entity)
     if user.group.present?
       # sync with group workouts
+      group.copy_schedule_to_user(user)
       group.copy_workouts_to_user(user)
     else
       today = Date.today
