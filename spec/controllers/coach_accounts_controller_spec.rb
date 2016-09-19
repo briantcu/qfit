@@ -45,7 +45,7 @@ RSpec.describe CoachAccountsController, type: :controller do
 
     it 'should call coach invite service to send an invite' do
       allow_any_instance_of(CoachInviteService).to receive(:send_invite).with('briantcu@gmail.com', @coach_account, 'team', 4).and_return({ status: 'success', message: 'Success', sent_code: '123'})
-      post :send_invite, id: @coach_account.id, send_to: 'briantcu@gmail.com', format: :json
+      post :send_invite, id: @coach_account.id, send_to: 'briantcu@gmail.com', sign_up_type: 'team', template_id: 4, format: :json
     end
   end
 
