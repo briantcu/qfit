@@ -5,7 +5,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
     else
+
       begin
+        params = request.env["omniauth.params"]
+        is_coach = params['coach'].present?
         @user.save!
       rescue => e
         # Maybe an error if we don't get an email from FB
@@ -15,8 +18,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in @user
         session[:current_user_id] = @user.id
         session[:user_id] = @user.id
-        redirect_to '/more-info'
+
+        if is_coach
+          redirect_to '/coach'
+        else
+          redirect_to '/more-info'
+        end
       end
+
     end
   end
 

@@ -121,7 +121,7 @@ class CoachSignUp extends React.Component {
     }
 
     fbLogin() {
-        location.href = '/users/auth/facebook';
+        location.href = '/users/auth/facebook?coach=true';
     }
 
     render () {

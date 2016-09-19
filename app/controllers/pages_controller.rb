@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   before_filter :verify_logged_in_html, only: [:setup, :coaches, :schedule, :do_work, :profile]
   before_filter :can_access_user, only: [:setup, :coaches, :schedule, :do_work]
   before_filter :has_min_info, only: [:do_work]
+  before_filter :save_sign_up_code_in_session, only: [:sign_up]
 
   def home
     render template: 'pages/home'
@@ -11,6 +12,9 @@ class PagesController < ApplicationController
 
   ########## SIGN IN/UP
   def sign_up
+    gon.push({
+                 sign_up_code: session[:sign_up_code]
+             })
     render layout: 'full_page'
   end
 
@@ -28,7 +32,8 @@ class PagesController < ApplicationController
 
   def more_info
     gon.push({
-                 current_user_id: current_user.id
+                 current_user_id: current_user.id,
+                 sign_up_code: session[:sign_up_code]
              })
     render layout: 'full_page'
   end
@@ -120,5 +125,9 @@ class PagesController < ApplicationController
         (current_user.is_super_user?))
   end
 
-
+  def save_sign_up_code_in_session
+    if params[:qfcode]
+      session[:sign_up_code] = params[:qfcode]
+    end
+  end
 end

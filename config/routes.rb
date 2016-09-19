@@ -34,10 +34,8 @@ Qfit::Application.routes.draw do
 
   get '/schedule/program_type/:program_type_id/weight_schedule/:weight_schedule_id', to: 'workout_schedule_suggestions#retrieve_suggested_schedule'
 
-  resources :program_types
-
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations',
-                                    passwords: 'users/passwords', omniauth_callbacks: "users/omniauth_callbacks" }
+                                    passwords: 'users/passwords', omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
     get 'sign_in', to: 'users/sessions#new'
     post 'sign_in', to: 'users/sessions#create'

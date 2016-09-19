@@ -3,3 +3,4 @@ webpack --watch -d
 Session:
     current_user_id - ID of user you're operating on. Not necessarily the current_user, if the current_user is a coach
     user_id - ID of person actually signed in
+    sign_up_code - set when the user enters the site with 'qfcode' param
