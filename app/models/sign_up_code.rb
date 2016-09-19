@@ -22,6 +22,7 @@ class SignUpCode < ActiveRecord::Base
   belongs_to :user
   has_many :sent_codes, foreign_key: :code
   belongs_to :group
+  validates_presence_of :user_id, :code, :sign_up_type, :sent_to, :sent_to_type, :group_id
 
   def self.unique_code
     code = loop do

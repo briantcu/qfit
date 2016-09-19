@@ -38,7 +38,15 @@ class CoachInviteService
 
   def process_invite(to, coach_account, type, sign_up_type, template_id)
     code = SignUpCode.unique_code
-    sent_code = SignUpCode.create(code: code, sent_to: to, sent_to_type: type, sign_up_type: sign_up_type, group_id: template_id)
+    sent_code = SignUpCode.create(
+        code: code,
+        sent_to: to,
+        sent_to_type: type,
+        sign_up_type: sign_up_type,
+        group_id: template_id,
+        user_id: coach_account.user_id
+    )
+
     if type == :email
       EmailService.perform_async(:coach_invite, {user_id: coach_account.user.id, email: to})
     else

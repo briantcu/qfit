@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
 
   has_one :group_join, dependent: :destroy
   has_one :group, through: :group_join
-  has_one :sign_up_code, dependent: :destroy
+  has_many :sign_up_codes, dependent: :destroy
   has_one :user_schedule, dependent: :destroy
   has_one :coach_account, dependent: :destroy
 
