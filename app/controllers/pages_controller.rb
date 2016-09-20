@@ -38,7 +38,8 @@ class PagesController < ApplicationController
     gon.push(
         {
             current_user_id: current_user.try(:id),
-            onboarding_user: onboarding_user_light
+            onboarding_user: onboarding_user_light,
+            sign_up_code: session[:sign_up_code]
         }
     )
     render layout: 'full_page'

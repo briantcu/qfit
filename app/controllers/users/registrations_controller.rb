@@ -5,30 +5,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     #Check validity of sign up code.
-    sign_up_code = nil
-    if params[:user][:sign_up_code].present?
-      sign_up_code = SignUpCode.where(code: params[:user][:sign_up_code]).first
-      if sign_up_code.nil?
+    sign_up_code = try_sign_up_code
+    if sign_up_code.present?
+      sign_up_code_record = SignUpCode.where(code: sign_up_code).first
+      if sign_up_code_record.nil?
         render status: 470, json: { :errors => 'Invalid sign up code'} and return
       else
-        if sign_up_code.user.coach_account.is_maxed_out?
-          EmailService.perform_async(:coach_maxed, {user_id: sign_up_code.user.id})
+        if sign_up_code_record.user.coach_account.is_maxed_out?
+          EmailService.perform_async(:coach_maxed, {user_id: sign_up_code_record.user.id})
           render status: 471, json: { :errors => 'Coach is maxed out'} and return
         end
       end
     end
 
-    # If they're coming in from more-info, because they signed up via FB
-    if params[:more]
-      user_params = session[:onboarding_user].merge(sign_up_params)
-      user_params['password'] = Devise.friendly_token[0,20]
-    else
-      user_params = sign_up_params
-    end
-    @user = User.new(user_params)
+    create_user
 
     begin
-      RegistrationService.instance.register_user(@user, sign_up_code, params[:user][:account_type])
+      RegistrationService.instance.register_user(@user, sign_up_code_record, params[:user][:account_type])
       check_tokens
       handle_session
       render json: @user.to_json, status: 201 and return
@@ -51,6 +44,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if params[:invite_token].present?
       QuadPodService.instance.accept_invite_new_user(params[:invite_token], @user)
     end
+  end
+
+  def try_sign_up_code
+    sign_up_code = params[:user][:sign_up_code]
+    if sign_up_code.blank?
+      sign_up_code = session[:sign_up_code]
+    end
+    sign_up_code
+  end
+
+  def create_user
+    # If they're coming in from more-info, because they signed up via FB
+    if params[:more]
+      user_params = session[:onboarding_user].merge(sign_up_params)
+      user_params['password'] = Devise.friendly_token[0,20]
+    else
+      user_params = sign_up_params
+    end
+    @user = User.new(user_params)
   end
 
   def sign_up_params

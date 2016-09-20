@@ -18,7 +18,8 @@ class AthleteSignUp extends React.Component {
             firstNameErrors: [],
             lastNameErrors: [],
             emailErrors: [],
-            passwordErrors: []
+            passwordErrors: [],
+            signUpCode: gon.sign_up_code
         };
     }
 
@@ -78,6 +79,7 @@ class AthleteSignUp extends React.Component {
         user['sex'] = this.refs.sex.getValue();
         user['account_type'] = 'user';
         user['user_name'] = this.refs.username.getValue();
+        user['sign_up_code'] = this.refs.signUpCode.getValue();
         return {user: user, invite_token: ''};
     }
 
@@ -192,6 +194,14 @@ class AthleteSignUp extends React.Component {
                         <div className="col-md-12">
                             <span className="purple-bot-container">
                                 <Slider ref="sex" checked="female" unchecked="male"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <span className={`purple-bot-container`}>
+                                <FancyInput ref="signUpCode" name="signUpCode" placeholder="Sign Up Code (If You Have One)" type="text"
+                                            value={this.state.signUpCode} />
                             </span>
                         </div>
                     </div>
