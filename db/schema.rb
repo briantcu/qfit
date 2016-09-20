@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919014633) do
+ActiveRecord::Schema.define(version: 20160920032758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -384,14 +384,6 @@ ActiveRecord::Schema.define(version: 20160919014633) do
   create_table "routine_messages", force: :cascade do |t|
     t.integer  "daily_routine_id"
     t.text     "message"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "sent_codes", force: :cascade do |t|
-    t.string   "code",       limit: 255
-    t.string   "receiver",   limit: 255
-    t.boolean  "used"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

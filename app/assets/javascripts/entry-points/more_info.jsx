@@ -8,7 +8,7 @@ import UserActions from 'actions/user_actions';
 import SignUpStore from 'stores/sign_up_store';
 import ProfileStore from 'stores/profile_store';
 import UserStore from 'stores/user_store';
-import C from 'constants/profile_constants';
+import C from 'constants/sign_up_constants';
 
 require('pages/sign_up.scss');
 
@@ -16,23 +16,20 @@ class AthleteSignUp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            saveStatus: {status: '', errors: []},
+            signUpStatus: {status: '', errors: []},
             isUsernameUnique: true,
             usernameErrors: [],
             firstNameErrors: [],
             lastNameErrors: [],
             emailErrors: [],
-            user: {}
+            user: gon.onboarding_user
         };
         this.onChange = this.onChange.bind(this);
         this.evalUsername = this.evalUsername.bind(this);
     }
 
     componentDidMount () {
-        UserStore.addChangeListener(this.onChange);
-        ProfileStore.addChangeListener(this.onChange);
         SignUpStore.addChangeListener(this.onChange);
-        UserActions.getUser(gon.current_user_id);
         var that = this;
         $(document).keypress(function(e) {
             if(e.which == 13) {
@@ -42,25 +39,21 @@ class AthleteSignUp extends React.Component {
     }
 
     componentWillUnmount () {
-        ProfileStore.removeChangeListener(this.onChange);
-        UserStore.removeChangeListener(this.onChange);
         SignUpStore.removeChangeListener(this.onChange);
         $(document).off("keypress");
     }
 
     onChange () {
-        var user = UserStore.getData();
-        var data = ProfileStore.getData();
         var isUsernameUnique = SignUpStore.getData().isUsernameUnique;
+        var signUpStatus = SignUpStore.getData().signUpStatus;
 
-        if (data.saveStatus.status == C.PROFILE_SUCCESS) {
+        if (signUpStatus.status == C.SUCCESS) {
             location.href = '/setup/goal';
         }
         this.setState(
             {
-                user: user.user,
                 isUsernameUnique: isUsernameUnique,
-                saveStatus: data.saveStatus
+                signUpStatus: signUpStatus
             }
         );
 
@@ -77,7 +70,7 @@ class AthleteSignUp extends React.Component {
         if (!this.state.formSubmitted) {
             this.state.formSubmitted = true;
             if (!this.hasErrors()) {
-                ProfileActions.update(this.packageData());
+                SignUpActions.signUp(this.packageData());
             } else {
                 this.state.formSubmitted = false;
             }
@@ -174,8 +167,8 @@ class AthleteSignUp extends React.Component {
                     </div>
                     <div className="row submit-row">
                         <div className="col-md-12">
-                            <If condition={this.state.saveStatus.status == C.PROFILE_FAILURE}>
-                                <div>{this.state.saveStatus.errors.join(', ')}</div>
+                            <If condition={this.state.signUpStatus.status == C.FAILURE}>
+                                <div>{this.state.signUpStatus.errors.join(', ')}</div>
                             </If>
                             <span onClick={ () => this.submit()} className="submit-button purple-text get-started">Get Started</span>
                         </div>

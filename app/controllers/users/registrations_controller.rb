@@ -18,7 +18,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
 
-    @user = User.new(sign_up_params)
+    # If they're coming in from more-info, because they signed up via FB
+    if params[:more]
+      user_params = session[:onboarding_user].merge(sign_up_params)
+      user_params['password'] = Devise.friendly_token[0,20]
+    else
+      user_params = sign_up_params
+    end
+    @user = User.new(user_params)
 
     begin
       RegistrationService.instance.register_user(@user, sign_up_code, params[:user][:account_type])

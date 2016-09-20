@@ -31,13 +31,18 @@ class PagesController < ApplicationController
   end
 
   def more_info
-    gon.push({
-                 current_user_id: current_user.id,
-                 sign_up_code: session[:sign_up_code]
-             })
+    onboarding_user_light = {}
+    onboarding_user_light[:first_name] = session[:onboarding_user]['first_name']
+    onboarding_user_light[:last_name] = session[:onboarding_user]['last_name']
+    onboarding_user_light[:email] = session[:onboarding_user]['email']
+    gon.push(
+        {
+            current_user_id: current_user.try(:id),
+            onboarding_user: onboarding_user_light
+        }
+    )
     render layout: 'full_page'
   end
-
 
 
   ############### SETUP

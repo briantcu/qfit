@@ -8,7 +8,7 @@ var SignUpActions = {
         $.ajax({
             type: 'post',
             data: data,
-            url: '/users.json',
+            url: '/users.json?more=true',
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function(results) {
