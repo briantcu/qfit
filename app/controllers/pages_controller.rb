@@ -133,6 +133,7 @@ class PagesController < ApplicationController
 
   def save_sign_up_code_in_session
     if params[:qfcode]
+      SessionService.instance.session = session
       SessionService.instance.set_sign_up_code(params[:qfcode])
     end
   end

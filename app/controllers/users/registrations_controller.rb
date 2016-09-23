@@ -37,6 +37,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def handle_session
     sign_in @user
+    SessionService.instance.session = session
     SessionService.instance.set_current_user_id(@user.id)
   end
 

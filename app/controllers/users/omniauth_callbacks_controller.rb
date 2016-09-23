@@ -11,6 +11,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       begin
         is_coach = request.env['omniauth.params']['coach'].present?
 
+        SessionService.instance.session = session
         if is_coach # no more info needed for coach, so create user and sign in
           @user = RegistrationService.instance.register_user(@user, nil, 'coach')
           sign_in @user
