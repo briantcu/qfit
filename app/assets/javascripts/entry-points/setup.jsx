@@ -169,6 +169,7 @@ render((
         <Route path="/" component={App}>
             <Route path="setup" >
                 <Route path="goal" component={Goal} />
+                <Route path="coach" component={Coach} />
                 <Route path="quads" component={Quads} />
             </Route>
             <Route path="fitness" component={Fitness} />

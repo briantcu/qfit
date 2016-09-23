@@ -4,8 +4,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   skip_before_filter :require_no_authentication
 
   def create
-    SessionService.instance.session = session
-    #Check validity of sign up code.
+    SessionService.instance.session = session # Used in RegistrationService
+
     sign_up_code_record = nil
     sign_up_code = try_sign_up_code
     if sign_up_code.present?
@@ -25,7 +25,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     begin
       RegistrationService.instance.register_user(@user, sign_up_code_record, params[:user][:account_type])
       check_tokens
-      handle_session
+      sign_in @user
       render json: @user.to_json, status: 201 and return
     rescue Exception => e
       Rollbar.error(e)
@@ -35,11 +35,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
-
-  def handle_session
-    sign_in @user
-    SessionService.instance.set_current_user_id(@user.id)
-  end
 
   def check_tokens
     if params[:invite_token].present?

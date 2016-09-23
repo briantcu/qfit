@@ -12,7 +12,6 @@ var config = {
         sign_up: 'entry-points/sign_up.jsx',
         sign_up_coach: 'entry-points/sign_up_coach.jsx',
         setup: 'entry-points/setup.jsx',
-        setup_coach: 'entry-points/setup_coach.jsx',
         coaches: 'entry-points/coaches.jsx',
         do_work: 'entry-points/do_work.jsx',
         more_info: 'entry-points/more_info.jsx',

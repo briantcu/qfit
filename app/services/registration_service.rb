@@ -35,7 +35,7 @@ class RegistrationService
         end
       end
     end
-    SessionService.set_onboarding(true)
+    SessionService.instance.set_onboarding(true)
     user
   end
 end
