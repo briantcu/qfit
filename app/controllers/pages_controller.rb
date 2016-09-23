@@ -1,9 +1,10 @@
 class PagesController < ApplicationController
+  before_action :verify_logged_in_html, only: [:setup, :coaches, :schedule, :do_work, :account]
+  before_action :can_access_user, only: [:setup, :coaches, :schedule, :do_work]
   before_action :set_athlete, only: [:do_work]
-  before_filter :verify_logged_in_html, only: [:setup, :coaches, :schedule, :do_work, :profile]
-  before_filter :can_access_user, only: [:setup, :coaches, :schedule, :do_work]
-  before_filter :has_min_info, only: [:do_work]
-  before_filter :save_sign_up_code_in_session, only: [:sign_up]
+  before_action :set_gon_info, only: [:setup, :coaches, :schedule, :do_work, :account]
+  before_action :has_min_info, only: [:do_work]
+  before_action :save_sign_up_code_in_session, only: [:sign_up]
 
   def home
     render template: 'pages/home'
@@ -12,9 +13,11 @@ class PagesController < ApplicationController
 
   ########## SIGN IN/UP
   def sign_up
-    gon.push({
-                 sign_up_code: session[:sign_up_code]
-             })
+    gon.push(
+        {
+            sign_up_code: session[:sign_up_code]
+        }
+    )
     render layout: 'full_page'
   end
 
@@ -37,7 +40,6 @@ class PagesController < ApplicationController
     onboarding_user_light[:email] = session[:onboarding_user]['email']
     gon.push(
         {
-            current_user_id: current_user.try(:id),
             onboarding_user: onboarding_user_light,
             sign_up_code: session[:sign_up_code]
         }
@@ -48,40 +50,20 @@ class PagesController < ApplicationController
 
   ############### SETUP
   def setup
-    gon.push({
-                 current_user_id: session[:current_user_id] || current_user.id
-             })
-    render template: 'pages/setup'
-  end
-
-  def setup_coach
-    gon.push({
-                 current_user_id: current_user.id
-             })
     render template: 'pages/setup'
   end
 
   def schedule
-    gon.push({
-                 current_user_id: session[:current_user_id] || current_user.id
-             })
     render template: 'pages/setup'
   end
 
 
   ######### PAGES
   def account
-    gon.push({
-                 current_user_id: current_user.id
-             })
     render template: 'pages/account'
   end
 
   def coaches
-    gon.push({
-                 current_user_id: current_user.id,
-                 coach_account_id: current_user.coach_account.id
-             })
     render template: 'pages/coaches'
   end
 
@@ -91,10 +73,11 @@ class PagesController < ApplicationController
       routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], @user.id)
     end
 
-    gon.push({
-                 current_user_id: @user.id,
-                 routine: routine
-             })
+    gon.push(
+        {
+            routine: routine
+        }
+    )
     render template: 'pages/do_work'
   end
 
@@ -136,5 +119,18 @@ class PagesController < ApplicationController
       SessionService.instance.session = session
       SessionService.instance.set_sign_up_code(params[:qfcode])
     end
+  end
+
+  def set_gon_info
+    gon.push(
+        {
+            current_user_id: @user.id,
+            user_id: current_user.id,
+            is_coach: current_user.is_coach?,
+            is_sub_user: current_user.is_sub_user?,
+            is_individual: current_user.is_individual?,
+            coach_account_id: current_user.coach_account.try(:id)
+        }
+    )
   end
 end

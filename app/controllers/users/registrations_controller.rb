@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   skip_before_filter :require_no_authentication
 
   def create
+    SessionService.instance.session = session
     #Check validity of sign up code.
     sign_up_code_record = nil
     sign_up_code = try_sign_up_code
@@ -37,7 +38,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def handle_session
     sign_in @user
-    SessionService.instance.session = session
     SessionService.instance.set_current_user_id(@user.id)
   end
 
