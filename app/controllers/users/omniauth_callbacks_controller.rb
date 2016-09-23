@@ -14,11 +14,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         if is_coach # no more info needed for coach, so create user and sign in
           @user = RegistrationService.instance.register_user(@user, nil, 'coach')
           sign_in @user
-          session[:current_user_id] = @user.id
-          session[:user_id] = @user.id
+          SessionService.instance.set_current_user_id(@user.id)
         else
           # Stash the user attributes so we can create the account after getting more info
-          session[:onboarding_user] = @user.attributes
+          SessionService.instance.set_onboarding_user(@user.attributes)
         end
 
       rescue => e

@@ -5,9 +5,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     #Check validity of sign up code.
+    sign_up_code_record = nil
     sign_up_code = try_sign_up_code
     if sign_up_code.present?
-      sign_up_code_record = SignUpCode.where(code: sign_up_code).first
+      sign_up_code_record = SignUpCode.where(code: sign_up_code, used: false).first
       if sign_up_code_record.nil?
         render status: 470, json: { :errors => 'Invalid sign up code'} and return
       else
@@ -36,8 +37,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def handle_session
     sign_in @user
-    session[:current_user_id] = @user.id
-    session[:user_id] = @user.id
+    SessionService.instance.set_current_user_id(@user.id)
   end
 
   def check_tokens

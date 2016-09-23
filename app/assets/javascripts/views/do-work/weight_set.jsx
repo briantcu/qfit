@@ -11,8 +11,7 @@ class WeightSet extends React.Component {
     }
 
     change (e) {
-        console.log('here');
-        if (this.props.exercise.htmlFor_time) {
+        if (this.props.exercise.for_time) {
             var completed = this.refs.reps.getValue();
             var reps = completed ? 1 : 0;
             RoutineActions.storeResults(RoutineConstants.WEIGHTS, this.props.exercise.id, this.props.setNum, reps, 0);
@@ -48,7 +47,7 @@ class WeightSet extends React.Component {
         var classes = this.props.gray ? 'weight-set gray' : 'weight-set';
         return <div className={classes} >
             <Choose>
-                <When condition={this.props.exercise.htmlFor_time} >
+                <When condition={this.props.exercise.for_time} >
                     <span className="double">
                        30 seconds
                     </span><br/>

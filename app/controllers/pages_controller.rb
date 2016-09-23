@@ -58,7 +58,7 @@ class PagesController < ApplicationController
     gon.push({
                  current_user_id: current_user.id
              })
-    render template: 'pages/setup_coach'
+    render template: 'pages/setup'
   end
 
   def schedule
@@ -133,7 +133,7 @@ class PagesController < ApplicationController
 
   def save_sign_up_code_in_session
     if params[:qfcode]
-      session[:sign_up_code] = params[:qfcode]
+      SessionService.instance.set_sign_up_code(params[:qfcode])
     end
   end
 end
