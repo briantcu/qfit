@@ -68,7 +68,6 @@ class PagesController < ApplicationController
   end
 
   def do_work
-    routine = nil
     if params[:year].present?
       routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], @user.id)
     end

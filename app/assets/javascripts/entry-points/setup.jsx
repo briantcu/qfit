@@ -9,6 +9,7 @@ import Fitness from 'views/setup/fitness';
 import Schedule from 'views/setup/schedule';
 import Program from 'views/setup/program';
 import Commitment from 'views/setup/commitment';
+import Coach from 'views/setup/coach';
 
 import UserStore from 'stores/user_store';
 import UserScheduleStore from 'stores/user_schedule_store';
@@ -38,13 +39,15 @@ class App extends React.Component {
             quads: {},
             activeNav: activeNav,
             user_schedule: {schedule: {}},
-            suggested_schedule: {}
+            suggested_schedule: {},
+            isConfigured: false
         };
         this.nextPage = this.nextPage.bind(this);
         this.onChange = this.onChange.bind(this);
         this.fitnessSubmitted = this.fitnessSubmitted.bind(this);
         this.fetchSuggestedSchedule = this.fetchSuggestedSchedule.bind(this);
         this.previousPage = this.previousPage.bind(this);
+        this.configure = this.configure.bind(this);
     }
 
     nextPage(childView, additionalData) {
@@ -94,6 +97,7 @@ class App extends React.Component {
         ProgramStore.addChangeListener(this.onChange);
         FitnessAssessmentStore.addChangeListener(this.onChange);
         UserActions.getUser(gon.current_user_id);
+        this.configure();
     }
 
     componentWillUnmount () {
@@ -101,6 +105,20 @@ class App extends React.Component {
         UserScheduleStore.removeChangeListener(this.onChange);
         ProgramStore.removeChangeListener(this.onChange);
         FitnessAssessmentStore.removeChangeListener(this.onChange);
+    }
+
+    componentWillReceiveProps (nextProps) {
+        console.log(nextProps);
+        // Does routing map exist? If not, set it
+        // Does sub nav exist? If not, set it
+        // Set actions for actions being passed down to child components via props
+        this.configure();
+    }
+
+    configure() {
+        if (!this.state.isConfigured) {
+            // Check gon for onboarding, viewing, team_id, user_id, context
+        }
     }
 
     onChange () {
