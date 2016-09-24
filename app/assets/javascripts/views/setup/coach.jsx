@@ -15,24 +15,41 @@ class Coach extends React.Component {
     change (elem) {
     }
 
+    buttonClicked(option) {
+
+    }
+
     render () {
-        return <div className="goal">
+        return <div className="coach">
 
             <div className="row">
                 <div className="container">
                     <div className="row">
-                        <div className="col-xs-6 col-xs-offset-3 text-center">
-                            <h1 className="purple">What's Your Main Goal?</h1>
+                        <div className="col-xs-12 text-center">
+                            <h1 className="purple">Let's Create a Workout Plan</h1>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 header-text text-center">
-                            This will help us build your customized workout program.
+                            Make a Selection
                         </div>
                     </div>
-
                     <div className="row">
-
+                        <div className="col-xs-6 col-xs-offset-3 header-text text-center">
+                            <Button buttonText="Create a Team Plan" onClick={ () => this.buttonClicked('team') } />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-6 col-xs-offset-3 header-text text-center">
+                            <hr className="hr-left" />
+                            <span className="text-uppercase info-text">or</span>
+                            <hr className="hr-right" />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-6 col-xs-offset-3 header-text text-center">
+                            <Button buttonText="Create a Plan for an Individual" onClick={ () => this.buttonClicked('individual') } />
+                        </div>
                     </div>
                 </div>
             </div>
