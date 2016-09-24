@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   before_action :verify_logged_in_html, only: [:setup, :coaches, :schedule, :do_work, :account]
+  before_action :set_current_user, only: [:do_work, :setup, :schedule, :account, :coaches]
   before_action :can_access_user, only: [:setup, :coaches, :schedule, :do_work]
-  before_action :set_athlete, only: [:do_work]
   before_action :set_gon_info, only: [:setup, :coaches, :schedule, :do_work, :account]
   before_action :has_min_info, only: [:do_work]
   before_action :save_sign_up_code_in_session, only: [:sign_up]
@@ -101,15 +101,15 @@ class PagesController < ApplicationController
     end
   end
 
-  def set_athlete
+  def set_current_user
     current_user_id = session[:current_user_id] || current_user.id
     @user = User.find(current_user_id)
   end
 
   def can_access_user
     return unauthorized if current_user.nil?
-    unauthorized unless (current_user.id == session[:current_user_id] ||
-        (current_user.is_coach_of_user?(session[:current_user_id])) ||
+    unauthorized unless (current_user.id == @user.id ||
+        (current_user.is_coach_of_user?(@user.id)) ||
         (current_user.is_super_user?))
   end
 

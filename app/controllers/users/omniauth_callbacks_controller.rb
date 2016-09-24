@@ -9,14 +9,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       # User is signing up
       begin
+        session_service = SessionService.new(session)
         is_coach = request.env['omniauth.params']['coach'].present?
 
         if is_coach # no more info needed for coach, so create user and sign in
-          @user = RegistrationService.instance.register_user(@user, nil, 'coach')
+          @user = RegistrationService.instance.register_user(@user, nil, 'coach', session_service)
           sign_in @user
         else
           # Stash the user attributes so we can create the account after getting more info
-          session_service = SessionService.new(session)
           session_service.set_onboarding_user(@user.attributes)
         end
 
@@ -27,7 +27,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       else
 
         if is_coach
-          redirect_to '/setup-coach'
+          redirect_to '/setup/coach'
         else
           redirect_to '/more-info'
         end

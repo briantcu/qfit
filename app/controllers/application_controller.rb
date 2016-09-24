@@ -39,12 +39,12 @@ class ApplicationController < ActionController::Base
   end
 
   def determine_redirect(user)
-    if (user.user_name.blank? || user.sex.blank?) && (user.level != 5) # || user.email.blank?
+    if (user.user_name.blank? || user.sex.blank?) && (!user.is_coach?) # || user.email.blank?
       '/more-info'
+    elsif user.is_coach?
+      '/coach'
     elsif (user.program_type.blank?) || (user.user_schedule.blank?) ||  user.user_schedule.invalid? || user.hor_push_max.blank?
       '/setup/goal'
-    elsif user.level == 5 # coach
-      '/coach'
     else
       '/workout'
     end

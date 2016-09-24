@@ -11,8 +11,8 @@ Qfit::Application.routes.draw do
   get '/setup/goal', to: 'pages#setup'
   get '/setup/quads', to: 'pages#setup_redirect'
 
-  get '/setup-coach', to: 'pages#setup_coach'
-  get '/coaches', to: 'pages#coaches'
+  get '/setup/coach', to: 'pages#setup'
+  get '/coach', to: 'pages#coaches'
 
   get '/fitness', to: 'pages#setup_redirect'
   get '/commitment', to: 'pages#setup_redirect'
