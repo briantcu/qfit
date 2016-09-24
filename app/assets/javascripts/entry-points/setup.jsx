@@ -108,7 +108,6 @@ class App extends React.Component {
     }
 
     componentWillReceiveProps (nextProps) {
-        console.log(nextProps);
         // Does routing map exist? If not, set it
         // Does sub nav exist? If not, set it
         // Set actions for actions being passed down to child components via props
@@ -118,7 +117,17 @@ class App extends React.Component {
     configure() {
         if (!this.state.isConfigured) {
             // Check gon for onboarding, viewing, team_id, user_id, context
+            this.defineRoutes();
+            this.defineActions();
         }
+    }
+
+    defineRoutes() {
+        // Set sub nav elements too
+    }
+
+    defineActions() {
+
     }
 
     onChange () {

@@ -4,8 +4,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   skip_before_filter :require_no_authentication
 
   def create
-    SessionService.instance.session = session # Used in RegistrationService
-
     sign_up_code_record = nil
     sign_up_code = try_sign_up_code
     if sign_up_code.present?
@@ -23,7 +21,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     create_user
 
     begin
-      RegistrationService.instance.register_user(@user, sign_up_code_record, params[:user][:account_type])
+      session_service = SessionService.new(session)
+      RegistrationService.instance.register_user(@user, sign_up_code_record, params[:user][:account_type], session_service)
       check_tokens
       sign_in @user
       render json: @user.to_json, status: 201 and return

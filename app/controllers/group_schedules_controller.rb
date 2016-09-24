@@ -32,8 +32,8 @@ class GroupSchedulesController < ApplicationController
         @group_schedule.create_weekly_schedule_days
         update_group_record
         RoutineService.new(@group_schedule.group, 'NEW', Date.today, false).create_routines
-        SessionService.instance.session = session
-        SessionService.instance.set_onboarding(false) # onboarding is done
+        session_service = SessionService.new(session)
+        session_service.set_onboarding(false) # onboarding is done
         render action: :show, status: :created, location: @group_schedule
       else
         render json: @group_schedule.errors, status: :unprocessable_entity

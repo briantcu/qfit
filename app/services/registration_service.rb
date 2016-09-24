@@ -3,7 +3,7 @@ require 'singleton'
 class RegistrationService
   include Singleton
 
-  def register_user(user, sign_up_code_record, account_type)
+  def register_user(user, sign_up_code_record, account_type, session_service)
     User.transaction do
       #If not creating from admin, send welcome email and log them in
       if account_type == 'coach'
@@ -19,8 +19,8 @@ class RegistrationService
           if user.save!
             EmailService.perform_async(:new_user, {user_id: user.id})
           end
-          SessionService.instance.set_viewing('user')
-          SessionService.instance.set_setup_context('user')
+          session_service.set_viewing('user')
+          session_service.set_setup_context('user')
         else
           #Sub user
           user.assign_attributes(level: 1, sub_user: true, master_user_id: sign_up_code_record.user_id)
@@ -30,12 +30,12 @@ class RegistrationService
             sign_up_code_record.update_columns(used: true)
           end
           UserSchedule.create_user_schedule({user_id: user.id, program_type_id: 1, program_id: 1})
-          SessionService.instance.set_viewing('user')
-          SessionService.instance.set_setup_context('subUser')
+          session_service.set_viewing('user')
+          session_service.set_setup_context('subUser')
         end
       end
     end
-    SessionService.instance.set_onboarding(true)
+    session_service.set_onboarding(true)
     user
   end
 end

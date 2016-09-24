@@ -1,5 +1,3 @@
-require 'singleton'
-
 # current_user_id - ID of user you're operating on. Not necessarily the current_user, if the current_user is a coach
 # current_team_id
 # sign_up_code - set when the user enters the site with 'qfcode' param
@@ -10,9 +8,11 @@ require 'singleton'
 
 
 class SessionService
-  include Singleton
-
   attr_accessor :session
+
+  def initialize(session)
+    self.session = session
+  end
 
   def set_current_user_id(id)
     session[:current_user_id] = id

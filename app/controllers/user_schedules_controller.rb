@@ -36,8 +36,8 @@ class UserSchedulesController < ApplicationController
       if @user_schedule = UserSchedule.create_user_schedule(user_schedule_params)
         update_user_record
         RoutineService.new(@user_schedule.user, 'NEW', Date.today, false).create_routines
-        SessionService.instance.session = session
-        SessionService.instance.set_onboarding(false) # onboarding is done
+        session_service = SessionService.new(session)
+        session_service.set_onboarding(false) # onboarding is done
         render action: 'show', status: :created, location: @user_schedule
       else
         render json: @user_schedule.errors, status: :unprocessable_entity

@@ -16,8 +16,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           sign_in @user
         else
           # Stash the user attributes so we can create the account after getting more info
-          SessionService.instance.session = session
-          SessionService.instance.set_onboarding_user(@user.attributes)
+          session_service = SessionService.new(session)
+          session_service.set_onboarding_user(@user.attributes)
         end
 
       rescue => e
