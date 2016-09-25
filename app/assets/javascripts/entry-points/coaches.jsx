@@ -47,7 +47,7 @@ class Coaches extends React.Component {
 
     render () {
         return <div className="coaches">
-            <Header user={this.state.user} />
+            <Header user={this.state.user} showWorkoutNav={true} active={'coach'} trueLinks={true}/>
             <div className="row main">
                 <div className="container">
                     <div className='row'>

@@ -20,6 +20,8 @@ import Comment from 'views/do-work/comment';
 import QuadPod from 'views/quad-pod/quad-pod';
 import Footer from 'views/common/footer';
 import Progress from 'views/do-work/progress';
+import TeamActions from 'actions/team_actions';
+import TeamStore from 'stores/team_store';
 
 require('pages/do_work.scss');
 
@@ -58,14 +60,6 @@ class App extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
-    componentDidMount () {
-        RoutineStore.addChangeListener(this.onChange.bind(this));
-        UserStore.addChangeListener(this.onChange);
-        ExerciseStore.addChangeListener(this.onChange);
-        QuadPodStore.addChangeListener(this.onChange);
-        this.load();
-    }
-
     componentWillReceiveProps(nextProps) {
         //@TODO need to handle this so that if you're on a particular workout, go to progress, and come back, you
         //see the same workout
@@ -84,8 +78,18 @@ class App extends React.Component {
         RoutineActions.getRoutine(year, month, day, gon.current_user_id);
     }
 
+    componentDidMount () {
+        RoutineStore.addChangeListener(this.onChange.bind(this));
+        UserStore.addChangeListener(this.onChange);
+        TeamStore.addChangeListener(this.onChange);
+        ExerciseStore.addChangeListener(this.onChange);
+        QuadPodStore.addChangeListener(this.onChange);
+        this.load();
+    }
+
     componentWillUnmount () {
         UserStore.removeChangeListener(this.onChange);
+        TeamStore.removeChangeListener(this.onChange);
         ExerciseStore.removeChangeListener(this.onChange);
         RoutineStore.removeChangeListener(this.onChange.bind(this));
         QuadPodStore.removeChangeListener(this.onChange.bind(this));
@@ -93,15 +97,21 @@ class App extends React.Component {
 
     load() {
         UserActions.getUser(gon.current_user_id);
+        if (gon.viewing == 'team') {
+            TeamActions.getTeam(gon.team_id);
+        }
         ExerciseActions.getExercises();
+
         var lastMonth = new Date(this.state.date.getTime());
         lastMonth.setMonth(lastMonth.getMonth() - 1);
         var nextMonth = new Date(this.state.date.getTime());
         nextMonth.setMonth(nextMonth.getMonth() + 1);
+
         RoutineActions.getCalendar(this.state.year, this.state.month, gon.current_user_id, C.CALENDAR);
         RoutineActions.getCalendar(lastMonth.getFullYear(), lastMonth.getMonth() + 1, gon.current_user_id, C.PREV_CALENDAR);
         RoutineActions.getCalendar(nextMonth.getFullYear(), nextMonth.getMonth() + 1, gon.current_user_id, C.NEXT_CALENDAR);
         RoutineActions.getRoutine(this.state.year, this.state.month, this.state.day, gon.current_user_id);
+
         UserActions.getFeed();
         UserActions.getPod();
     }
@@ -148,7 +158,7 @@ class DoWork extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showAddEx: false,
+            showAddEx: false
         };
         this.addEx = this.addEx.bind(this);
         this.closeAddEx = this.closeAddEx.bind(this);

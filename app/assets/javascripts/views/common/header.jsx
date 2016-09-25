@@ -20,15 +20,25 @@ class Header extends React.Component {
                         <div className="col-xs-8 text-center">     \
                             <div className="nav">
                                 <If condition={this.props.trueLinks}>
-                                    <a className="btn" href="/workout">WORKOUT</a>
-                                    <a className="btn" href="/progress">PROGRESS</a>
-                                    <a className="btn" href="/quad-pod">QUAD POD</a>
+                                    <If condition={gon.is_coach} >
+                                        <a className={(this.props.active == 'coach') ? 'btn active' : 'btn'}  href="/coach">COACH</a>
+                                    </If>
+                                    <a className={(this.props.active == 'workout') ? 'btn active' : 'btn'}  href="/workout">WORKOUT</a>
+                                    <a className={(this.props.active == 'progress') ? 'btn active' : 'btn'}  href="/progress">PROGRESS</a>
+                                    <If condition={!gon.is_coach} >
+                                        <a className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} href="/quad-pod">QUAD POD</a>
+                                    </If>
                                 </If>
                                 <If condition={!this.props.trueLinks}>
+                                    <If condition={gon.is_coach} >
+                                        <Link className={(this.props.active == 'coach') ? 'btn active' : 'btn'} to={`/coach`}>COACH</Link>
+                                    </If>
                                     <Link className={(this.props.active == 'workout') ? 'btn active' : 'btn'}
                                           to={`/workout`}>WORKOUT</Link>
-                                    < Link className={(this.props.active == 'progress') ? 'btn active' : 'btn'} to={`/progress`}>PROGRESS</Link>
-                                    <Link className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} to={`/quad-pod`}>QUAD POD</Link>
+                                    <Link className={(this.props.active == 'progress') ? 'btn active' : 'btn'} to={`/progress`}>PROGRESS</Link>
+                                    <If condition={!gon.is_coach} >
+                                        <Link className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} to={`/quad-pod`}>QUAD POD</Link>
+                                    </If>
                                 </If>
 
                             </div>
