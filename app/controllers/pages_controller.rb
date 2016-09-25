@@ -130,12 +130,11 @@ class PagesController < ApplicationController
 
   def set_gon_setup_context
     viewing = session[:viewing] || 'user'
-    setup_context = session[:setup_context] || 'user'
     gon.push(
         {
             team_id: session[:team_id],
             viewing: viewing,
-            setup_context: setup_context,
+            setup_context: session[:setup_context],
             onboarding: session[:onboarding]
         }
     )

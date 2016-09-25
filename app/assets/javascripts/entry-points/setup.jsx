@@ -125,34 +125,36 @@ class App extends React.Component {
 
     defineRoutes() {
         var navElements = [];
-        if (gon.setup_context == 'user') {
-            navElements.push({class: '', label: 'Goal'});
-            navElements.push({class: '', label:'Quads'});
-            if (gon.setup_context.onboarding) {
-                navElements.push({class: '', label:'Fitness Assessment'});
-            }
-            navElements.push({class: '', label: 'Commitment'});
-            navElements.push({class: '', label: 'Schedule'});
-        } else if (gon.setup_context == 'sub_user') {
-            if (gon.setup_context.onboarding) {
-                navElements.push({class: '', label: 'Fitness Assessment'});
-            }
-        } else if (gon.setup_context == 'coach_sub') {
-            navElements.push({class: '', label: 'Goal'});
-            navElements.push({class: '', label: 'Quads'});
-            navElements.push({class: '', label: 'Commitment'});
-            navElements.push({class: '', label: 'Schedule'});
-        } else if (gon.setup_context == 'coach_team') {
-            navElements.push({class: '', label: 'Quads'});
-            navElements.push({class: '', label: 'Commitment'});
-            navElements.push({class: '', label: 'Schedule'});
+        var routes = [];
+
+        if (gon.setup_context == 'user' || gon.setup_context == 'coach_sub') {
+            navElements.push({class: this.getNavClass(['Goal']), label: 'Goal'});
+            routes.push({route: '/setup/goal'});
         }
 
-        if (navElements.length == 0) {
-            location.href = '/workout';
-        } else {
-            this.setState({navElements: navElements});
+        if (gon.setup_context && gon.setup_context != 'sub_user') {
+            navElements.push({class: this.getNavClass(['Quads']), label: 'Quads'});
+            routes.push({route: '/setup/quads'});
         }
+
+        if ((gon.onboarding && gon.setup_context == 'user') || (gon.setup_context == 'sub_user')) {
+            navElements.push({class: this.getNavClass(['Fitness']), label: 'Fitness Assessment'});
+            routes.push({route: '/fitness'});
+        }
+
+        if (gon.setup_context && gon.setup_context != 'sub_user') {
+            navElements.push({class: this.getNavClass(['Program, Commitment']), label: 'Commitment'});
+            routes.push({route: '/commitment'});
+            routes.push({route: '/program'});
+            navElements.push({class: this.getNavClass(['Schedule']), label: 'Schedule'});
+            routes.push({route: '/schedule'});
+        }
+
+        this.setState({navElements: navElements, routes: routes});
+    }
+
+    getNavClass(names) {
+        return (names.indexOf(this.props.children.type.name) > 0) ? 'bold-text' : '';
     }
 
     defineActions() {

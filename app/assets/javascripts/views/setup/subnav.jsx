@@ -13,9 +13,9 @@ class Subnav extends React.Component {
                 <div className="row">
                     <div className="col-xs-16 text-center">
                         {
-                            this.props.elements.map(function (e) {
-                                return <span className={e.class} >{e.label}</span>
-                            }.bind(this))
+                            this.props.elements.map(function (e, index) {
+                                return <span key={index} className={e.class} >{e.label}</span>
+                            })
                         }
                     </div>
                 </div>
