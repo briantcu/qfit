@@ -56,7 +56,7 @@ class App extends React.Component {
                 }
                 browserHistory.push(nextRoute.route);
             }
-        });
+        }.bind(this));
     }
 
     previousPage() {
@@ -66,11 +66,11 @@ class App extends React.Component {
     componentDidMount () {
         UserStore.addChangeListener(this.onChange);
         UserScheduleStore.addChangeListener(this.onChange);
+        UserActions.getUser(gon.current_user_id);
+
         ProgramStore.addChangeListener(this.onChange);
         FitnessAssessmentStore.addChangeListener(this.onChange);
-        UserActions.getUser(gon.current_user_id);
-        this.defineRoutes();
-        this.defineActions();
+        this.defineRoutes(this.props.children.type.name);
     }
 
     componentWillUnmount () {
@@ -81,32 +81,31 @@ class App extends React.Component {
     }
 
     componentWillReceiveProps (nextProps) {
-        this.defineRoutes();
-        this.defineActions();
+        this.defineRoutes(nextProps.children.type.name);
     }
 
-    defineRoutes() {
+    defineRoutes(currentView) {
         var navElements = [];
         var routes = [];
 
         if (this.props.children.type.name != 'Coach') {
             if (gon.setup_context == 'user' || gon.setup_context == 'coach_sub') {
-                navElements.push({class: this.getNavClass(['Goal']), label: 'Goal'});
+                navElements.push({class: this.getNavClass(['Goal'], currentView), label: 'Goal'});
                 routes.push({route: '/setup/goal', name: 'Goal'});
             }
 
             if (gon.setup_context && gon.setup_context != 'sub_user') {
-                navElements.push({class: this.getNavClass(['Quads']), label: 'Quads'});
+                navElements.push({class: this.getNavClass(['Quads'], currentView), label: 'Quads'});
                 routes.push({route: '/setup/quads', name: 'Quads'});
             }
 
             if ((gon.onboarding && gon.setup_context == 'user') || (gon.setup_context == 'sub_user')) {
-                navElements.push({class: this.getNavClass(['Fitness']), label: 'Fitness Assessment'});
+                navElements.push({class: this.getNavClass(['Fitness'], currentView), label: 'Fitness Assessment'});
                 routes.push({route: '/fitness', name: 'Fitness'});
             }
 
             if (gon.setup_context && gon.setup_context != 'sub_user') {
-                navElements.push({class: this.getNavClass(['Program, Commitment, Schedule']), label: 'Schedule'});
+                navElements.push({class: this.getNavClass(['Program', 'Commitment', 'Schedule'], currentView), label: 'Schedule'});
                 routes.push({route: '/commitment', name: 'Commitment'});
                 routes.push({route: '/program', name: 'Program'});
                 routes.push({route: '/schedule', name: 'Schedule'});
@@ -116,17 +115,14 @@ class App extends React.Component {
         this.setState({navElements: navElements, routes: routes});
     }
 
-    defineActions() {
-
-    }
-
-    getNavClass(names) {
-        return (names.indexOf(this.props.children.type.name) > -1) ? 'bold-text' : '';
+    getNavClass(names, currentView) {
+        return (names.indexOf(currentView) > -1) ? 'bold-text' : '';
     }
 
     onChange () {
         var data = UserStore.getData();
         var schedule = UserScheduleStore.getData();
+
         var fitness = FitnessAssessmentStore.getData();
         var program = ProgramStore.getData();
         this.setState({
@@ -147,7 +143,6 @@ class App extends React.Component {
             user_schedule: schedule
         });
         if (fitness.complete) {
-            // @TODO this doesn't look right
             FitnessAssessmentActions.submit(this.state, this.fitnessSubmitted);
         }
     }

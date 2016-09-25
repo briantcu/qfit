@@ -23,7 +23,7 @@ class SquareCheck extends React.Component {
             <span className="square-check">
                 <If condition={!this.props.disabled}>
                     <input ref="check" type="checkbox" className="check"
-                           defaultChecked={this.props.checked} />
+                           checked={this.props.checked} />
                 </If>
                 <If condition={this.props.disabled}>
                     <input ref="check" type="checkbox" className="check"

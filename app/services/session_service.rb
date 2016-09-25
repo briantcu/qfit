@@ -2,9 +2,9 @@
 # current_team_id
 # sign_up_code - set when the user enters the site with 'qfcode' param
 # onboarding_user - set when the user signs up with FB but we need more info. hash of the user attributes
-# onboarding - boolean indicating whether or not the user is in the onboarding flow
-# viewing - team vs user
-# setup_context - user, sub_user, coach_sub, coach_team - used to determine the flow during setup
+# onboarding - boolean indicating whether or not the user is in the onboarding flow. if false, then updating the workout plan
+# viewing - team vs user. used to determine which endpoints to use to fetch user data. Also how to display do-work
+# setup_context - user, sub_user, coach_sub, coach_team - used to determine the flow during setup, routes etc.
 
 
 class SessionService

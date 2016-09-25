@@ -19,6 +19,7 @@ var UserScheduleStore = new Store({
     sprinting: false,
 
     setSchedule: function(data){
+        //@TODO is this necessary, or just set this.schedule = data?
         data.weekly_schedule_days.forEach(function(day, i) {
             if (day.weights) {
                 this.weights = true;

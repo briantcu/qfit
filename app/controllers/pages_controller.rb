@@ -94,7 +94,11 @@ class PagesController < ApplicationController
   end
 
   def setup_redirect
-    redirect_to '/setup/goal'
+    if session[:setup_context] == 'user' || session[:setup_context] == 'coach_sub' || session[:setup_context].blank?
+      redirect_to '/setup/goal'
+    else
+      redirect_to '/setup/quads'
+    end
   end
 
   private

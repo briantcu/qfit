@@ -29,7 +29,6 @@ class GroupSchedulesController < ApplicationController
     if existing_group_schedule.nil?
       @group_schedule = GroupSchedule.create_group_schedule(group_schedule_params)
       if @group_schedule.save
-        @group_schedule.create_weekly_schedule_days
         update_group_record
         RoutineService.new(@group_schedule.group, 'NEW', Date.today, false).create_routines
         session_service = SessionService.new(session)
