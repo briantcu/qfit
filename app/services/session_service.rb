@@ -4,7 +4,7 @@
 # onboarding_user - set when the user signs up with FB but we need more info. hash of the user attributes
 # onboarding - boolean indicating whether or not the user is in the onboarding flow
 # viewing - team vs user
-# setup_context - user, subUser, coachSub, coachTeam - used to determine the flow during setup
+# setup_context - user, sub_user, coach_sub, coach_team - used to determine the flow during setup
 
 
 class SessionService
@@ -40,5 +40,9 @@ class SessionService
 
   def set_setup_context(context)
     session[:setup_context] = context
+  end
+
+  def set_team_id(id)
+    session[:team_id] = id
   end
 end

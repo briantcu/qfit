@@ -9,7 +9,7 @@ Qfit::Application.routes.draw do
   get '/more-info', to: 'pages#more_info'
 
   get '/setup/goal', to: 'pages#setup'
-  get '/setup/quads', to: 'pages#setup_redirect'
+  get '/setup/quads', to: 'pages#setup'
 
   get '/setup/coach', to: 'pages#setup'
   get '/coach', to: 'pages#coaches'

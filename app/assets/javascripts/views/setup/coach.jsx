@@ -1,22 +1,17 @@
 import {render} from 'react-dom';
-import FitnessAssessmentActions from 'actions/fitness_assessment_actions';
-var C = require('constants/fitness_assessment_constants.js');
 import VCircleCheck from 'views/common/vert_circle_check';
 import Button from 'views/common/button';
+import CoachActions from 'actions/coach_actions';
 
 require('views/setup/coach.scss');
 
 class Coach extends React.Component {
     constructor(props) {
         super(props);
-        this.change = this.change.bind(this);
-    }
-
-    change (elem) {
     }
 
     buttonClicked(option) {
-
+        CoachActions.createTempTeam(option == 'team');
     }
 
     render () {
@@ -36,6 +31,8 @@ class Coach extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 header-text text-center">
+                            If you'd like to create a workout plan for a team, like a Varsity Basketball team, choose this option.
+                            Later you'll be able to invite players to join this team on Quadfit, and they'll automatically get the workout we're about to create.
                             <Button buttonText="Create a Team Plan" onClick={ () => this.buttonClicked('team') } />
                         </div>
                     </div>
@@ -48,6 +45,8 @@ class Coach extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 header-text text-center">
+                            If you'd like to create a plan for an individual, choose this option. Later we'll send them an email or text, which they'll use
+                            to sign up for Quadfit, and they'll automatically get the workout we're about to create.
                             <Button buttonText="Create a Plan for an Individual" onClick={ () => this.buttonClicked('individual') } />
                         </div>
                     </div>

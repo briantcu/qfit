@@ -14,6 +14,8 @@
 #  shared                  :boolean
 #  created_at              :datetime
 #  updated_at              :datetime
+#  is_template             :boolean          default(FALSE)
+#  program_type            :integer
 #
 
 require 'test_helper'

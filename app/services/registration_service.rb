@@ -31,7 +31,7 @@ class RegistrationService
           end
           UserSchedule.create_user_schedule({user_id: user.id, program_type_id: 1, program_id: 1})
           session_service.set_viewing('user')
-          session_service.set_setup_context('subUser')
+          session_service.set_setup_context('sub_user')
         end
       end
     end

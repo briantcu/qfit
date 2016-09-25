@@ -14,6 +14,8 @@
 #  shared                  :boolean
 #  created_at              :datetime
 #  updated_at              :datetime
+#  is_template             :boolean          default(FALSE)
+#  program_type            :integer
 #
 
 class GroupsController < ApplicationController
@@ -28,10 +30,24 @@ class GroupsController < ApplicationController
 
   # POST /groups.json
   def create
-    @group = current_user.build_group(group_params)
+    # You're overloading groups to act as workout templates too for use during coach onboarding
+    group_attrs = group_params
+    for_team = params[:group][:for_team].present? && params[:group][:for_team]
+    group_attrs.delete(:for_team)
+    @group = Group.new(group_attrs)
 
     @group.coach_user_id = current_user.id
-    if @group.save
+    if @group.save!
+      session_service = SessionService.new(session)
+      session_service.set_team_id(@group.id)
+      session_service.set_viewing('team')
+
+      unless for_team
+        session_service.set_setup_context('coach_sub')
+      else
+        session_service.set_setup_context('coach_team')
+      end
+
       render action: 'show', status: :created, location: @group
     else
       render json: @group.errors, status: :unprocessable_entity
@@ -83,8 +99,7 @@ class GroupsController < ApplicationController
     unauthorized unless (current_user.is_coach? && (@group.coach_user_id == current_user.id))
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def group_params
-    params.require(:group).permit(:name, :shared)
+    params.require(:group).permit(:name, :shared, :is_template, :for_team)
   end
 end

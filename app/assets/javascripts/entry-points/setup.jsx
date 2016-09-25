@@ -51,7 +51,7 @@ class App extends React.Component {
                 if (nextRoute.name == 'Program' && skipProgram) {
                     nextRoute = this.state.routes[index + 2];
                 }
-                if (childView == 'Program' || skipProgram) {
+                if (nextRoute.name == 'Schedule') {
                     this.fetchSuggestedSchedule();
                 }
                 browserHistory.push(nextRoute.route);
@@ -81,9 +81,6 @@ class App extends React.Component {
     }
 
     componentWillReceiveProps (nextProps) {
-        // Does routing map exist? If not, set it
-        // Does sub nav exist? If not, set it
-        // Set actions for actions being passed down to child components via props
         this.defineRoutes();
         this.defineActions();
     }
@@ -92,26 +89,28 @@ class App extends React.Component {
         var navElements = [];
         var routes = [];
 
-        if (gon.setup_context == 'user' || gon.setup_context == 'coach_sub') {
-            navElements.push({class: this.getNavClass(['Goal']), label: 'Goal'});
-            routes.push({route: '/setup/goal', name: 'Goal'});
-        }
+        if (this.props.children.type.name != 'Coach') {
+            if (gon.setup_context == 'user' || gon.setup_context == 'coach_sub') {
+                navElements.push({class: this.getNavClass(['Goal']), label: 'Goal'});
+                routes.push({route: '/setup/goal', name: 'Goal'});
+            }
 
-        if (gon.setup_context && gon.setup_context != 'sub_user') {
-            navElements.push({class: this.getNavClass(['Quads']), label: 'Quads'});
-            routes.push({route: '/setup/quads', name: 'Quads'});
-        }
+            if (gon.setup_context && gon.setup_context != 'sub_user') {
+                navElements.push({class: this.getNavClass(['Quads']), label: 'Quads'});
+                routes.push({route: '/setup/quads', name: 'Quads'});
+            }
 
-        if ((gon.onboarding && gon.setup_context == 'user') || (gon.setup_context == 'sub_user')) {
-            navElements.push({class: this.getNavClass(['Fitness']), label: 'Fitness Assessment'});
-            routes.push({route: '/fitness', name: 'Fitness'});
-        }
+            if ((gon.onboarding && gon.setup_context == 'user') || (gon.setup_context == 'sub_user')) {
+                navElements.push({class: this.getNavClass(['Fitness']), label: 'Fitness Assessment'});
+                routes.push({route: '/fitness', name: 'Fitness'});
+            }
 
-        if (gon.setup_context && gon.setup_context != 'sub_user') {
-            navElements.push({class: this.getNavClass(['Program, Commitment, Schedule']), label: 'Schedule'});
-            routes.push({route: '/commitment', name: 'Commitment'});
-            routes.push({route: '/program', name: 'Program'});
-            routes.push({route: '/schedule', name: 'Schedule'});
+            if (gon.setup_context && gon.setup_context != 'sub_user') {
+                navElements.push({class: this.getNavClass(['Program, Commitment, Schedule']), label: 'Schedule'});
+                routes.push({route: '/commitment', name: 'Commitment'});
+                routes.push({route: '/program', name: 'Program'});
+                routes.push({route: '/schedule', name: 'Schedule'});
+            }
         }
 
         this.setState({navElements: navElements, routes: routes});
@@ -122,7 +121,7 @@ class App extends React.Component {
     }
 
     getNavClass(names) {
-        return (names.indexOf(this.props.children.type.name) > 0) ? 'bold-text' : '';
+        return (names.indexOf(this.props.children.type.name) > -1) ? 'bold-text' : '';
     }
 
     onChange () {
