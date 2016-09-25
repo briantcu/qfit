@@ -21,7 +21,7 @@ class Program extends React.Component {
     }
 
     submit () {
-        this.props.next('PROGRAM');
+        this.props.next('Program');
     }
 
     render () {

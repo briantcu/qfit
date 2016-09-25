@@ -47,9 +47,9 @@ class Commitment extends React.Component {
         if (this.state.time == 30) {
             var program = this.getProgram();
             ProgramActions.setStrengthProgram(program);
-            this.props.next('COMMITMENT', true);
+            this.props.next('Commitment', true);
         } else {
-            this.props.next('COMMITMENT');
+            this.props.next('Commitment');
         }
     }
 

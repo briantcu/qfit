@@ -26,18 +26,11 @@ require('pages/setup.scss');
 class App extends React.Component {
     constructor(props) {
         super(props);
-        var url = window.location.pathname;
-        var activeNav = 'setup';
-        if (url == '/schedule') {
-            activeNav = 'schedule';
-        }
-
         this.state = {
             user: {},
             goal: C.MASS,
             program: {},
             quads: {},
-            activeNav: activeNav,
             user_schedule: {schedule: {}},
             suggested_schedule: {},
             isConfigured: false,
@@ -48,47 +41,25 @@ class App extends React.Component {
         this.fitnessSubmitted = this.fitnessSubmitted.bind(this);
         this.fetchSuggestedSchedule = this.fetchSuggestedSchedule.bind(this);
         this.previousPage = this.previousPage.bind(this);
-        this.configure = this.configure.bind(this);
+        this.defineRoutes = this.defineRoutes.bind(this);
     }
 
-    nextPage(childView, additionalData) {
-        //Sees which child view called, evaluates the state, and calls to route to the next page
-        if (childView == "GOAL") {
-            browserHistory.push('/setup/quads');
-        } else if (childView == "QUADS") {
-
-            if (this.state.user.hor_push_max > 0) {
-                this.setState({activeNav: 'schedule'});
-                browserHistory.push('/commitment');
-            } else {
-                this.setState({activeNav: 'fitness'});
-                browserHistory.push('/fitness');
+    nextPage(childView, skipProgram) {
+        _.each(this.state.routes, function(route, index) {
+            if (route.name == childView) {
+                var nextRoute = this.state.routes[index + 1];
+                if (nextRoute.name == 'Program' && skipProgram) {
+                    nextRoute = this.state.routes[index + 2];
+                }
+                if (childView == 'Program' || skipProgram) {
+                    this.fetchSuggestedSchedule();
+                }
+                browserHistory.push(nextRoute.route);
             }
-
-        } else if (childView == "COMMITMENT") {
-
-            this.setState({activeNav: 'schedule'});
-            if (additionalData) {
-                this.fetchSuggestedSchedule();
-                browserHistory.push('/schedule');
-            } else {
-                browserHistory.push('/program');
-            }
-
-        } else if (childView == "PROGRAM") {
-            this.fetchSuggestedSchedule();
-            browserHistory.push('/schedule');
-        }
+        });
     }
 
-    previousPage(childView) {
-        if (childView == "QUADS") {
-            this.setState({activeNav: 'setup'});
-        } else if (childView == "FITNESS") {
-            this.setState({activeNav: 'setup'});
-        } else if (childView == "COMMITMENT") {
-            this.setState({activeNav: 'fitness'});
-        }
+    previousPage() {
         browserHistory.goBack();
     }
 
@@ -98,7 +69,8 @@ class App extends React.Component {
         ProgramStore.addChangeListener(this.onChange);
         FitnessAssessmentStore.addChangeListener(this.onChange);
         UserActions.getUser(gon.current_user_id);
-        this.configure();
+        this.defineRoutes();
+        this.defineActions();
     }
 
     componentWillUnmount () {
@@ -112,15 +84,8 @@ class App extends React.Component {
         // Does routing map exist? If not, set it
         // Does sub nav exist? If not, set it
         // Set actions for actions being passed down to child components via props
-        this.configure();
-    }
-
-    configure() {
-        if (!this.state.isConfigured) {
-            // Check gon for onboarding, viewing, team_id, user_id, context
-            this.defineRoutes();
-            this.defineActions();
-        }
+        this.defineRoutes();
+        this.defineActions();
     }
 
     defineRoutes() {
@@ -129,36 +94,35 @@ class App extends React.Component {
 
         if (gon.setup_context == 'user' || gon.setup_context == 'coach_sub') {
             navElements.push({class: this.getNavClass(['Goal']), label: 'Goal'});
-            routes.push({route: '/setup/goal'});
+            routes.push({route: '/setup/goal', name: 'Goal'});
         }
 
         if (gon.setup_context && gon.setup_context != 'sub_user') {
             navElements.push({class: this.getNavClass(['Quads']), label: 'Quads'});
-            routes.push({route: '/setup/quads'});
+            routes.push({route: '/setup/quads', name: 'Quads'});
         }
 
         if ((gon.onboarding && gon.setup_context == 'user') || (gon.setup_context == 'sub_user')) {
             navElements.push({class: this.getNavClass(['Fitness']), label: 'Fitness Assessment'});
-            routes.push({route: '/fitness'});
+            routes.push({route: '/fitness', name: 'Fitness'});
         }
 
         if (gon.setup_context && gon.setup_context != 'sub_user') {
-            navElements.push({class: this.getNavClass(['Program, Commitment']), label: 'Commitment'});
-            routes.push({route: '/commitment'});
-            routes.push({route: '/program'});
-            navElements.push({class: this.getNavClass(['Schedule']), label: 'Schedule'});
-            routes.push({route: '/schedule'});
+            navElements.push({class: this.getNavClass(['Program, Commitment, Schedule']), label: 'Schedule'});
+            routes.push({route: '/commitment', name: 'Commitment'});
+            routes.push({route: '/program', name: 'Program'});
+            routes.push({route: '/schedule', name: 'Schedule'});
         }
 
         this.setState({navElements: navElements, routes: routes});
     }
 
-    getNavClass(names) {
-        return (names.indexOf(this.props.children.type.name) > 0) ? 'bold-text' : '';
-    }
-
     defineActions() {
 
+    }
+
+    getNavClass(names) {
+        return (names.indexOf(this.props.children.type.name) > 0) ? 'bold-text' : '';
     }
 
     onChange () {
@@ -184,6 +148,7 @@ class App extends React.Component {
             user_schedule: schedule
         });
         if (fitness.complete) {
+            // @TODO this doesn't look right
             FitnessAssessmentActions.submit(this.state, this.fitnessSubmitted);
         }
     }
@@ -216,7 +181,7 @@ class App extends React.Component {
 
         return <div>
             <Header user={this.state.user} />
-            <Subnav activeNav={this.state.activeNav} elements={this.state.navElements} />
+            <Subnav elements={this.state.navElements} />
             {childrenWithProps}
         </div>
     }

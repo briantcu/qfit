@@ -30,7 +30,7 @@ class Quads extends React.Component {
                         stretching: true
                     }
                 );
-                this.props.next("QUADS");
+                this.props.next("Quads");
             } else {
                 this.setState({valid: false, formSubmitted: false});
             }

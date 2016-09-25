@@ -55,7 +55,7 @@ class Goal extends React.Component {
 
                     <div className="row">
                         <div className="col-xs-2 col-xs-offset-5 button-row">
-                            <Button ref="next" buttonText="Continue" onClick={ () => this.props.next('GOAL') }
+                            <Button ref="next" buttonText="Continue" onClick={ () => this.props.next('Goal') }
                                     disabled={false} />
                         </div>
                     </div>
