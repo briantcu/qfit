@@ -31,9 +31,10 @@ class GroupSchedulesController < ApplicationController
       if @group_schedule.save
         update_group_record
         RoutineService.new(@group_schedule.group, 'NEW', Date.today, false).create_routines
+        next_routine = GroupRoutine.get_open_workouts_start_today(@group_schedule.group).first
         session_service = SessionService.new(session)
         session_service.set_onboarding(false) # onboarding is done
-        render action: :show, status: :created, location: @group_schedule
+        render action: :show, status: :created, location: "/workout/#{next_routine.try(:id)}"
       else
         render json: @group_schedule.errors, status: :unprocessable_entity
       end
@@ -51,7 +52,8 @@ class GroupSchedulesController < ApplicationController
       @group_schedule.save!
       update_group_record
       RoutineService.sched_change_happened(@group_schedule.group)
-      render action: :show, status: :ok, location: @group_schedule
+      next_routine = GroupRoutine.get_open_workouts_start_today(@group_schedule.group).first
+      render action: :show, status: :ok, location: "/workout/#{next_routine.try(:id)}"
     else
       render json: @group_schedule.errors, status: :unprocessable_entity
     end

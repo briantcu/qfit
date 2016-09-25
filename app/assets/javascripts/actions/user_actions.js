@@ -49,8 +49,8 @@ var UserActions = {
                 url: '/user_schedules/'+ schedule.id +'.json',
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",
-                success: function(results) {
-                    location.href = '/workout';
+                success: function(results, status, xhr) {
+                    location.href = xhr.getResponseHeader('Location');
                 },
                 error: function(results) {
                     alert(results);
@@ -63,8 +63,8 @@ var UserActions = {
                 url: '/user_schedules.json',
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",
-                success: function(results) {
-                    location.href = '/workout';
+                success: function(results, status, xhr) {
+                    location.href = xhr.getResponseHeader('Location');
                 },
                 error: function(results) {
                     alert(results);

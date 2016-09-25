@@ -82,11 +82,21 @@ class PagesController < ApplicationController
   end
 
   def do_work
-    if params[:year].present?
-      routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], @user.id)
+    viewing = session[:viewing] || 'user'
+    if viewing == 'user'
+      if params[:year].present?
+        routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], @user.id)
+      elsif params[:workout_id].present?
+        routine = DailyRoutine.find(params[:workout_id])
+      end
+    else
+      if params[:year].present?
+        routine = GroupRoutine.get_routine_by_date(params[:month], params[:year], params[:day], @user.id)
+      elsif params[:workout_id].present?
+        routine = GroupRoutine.find(params[:workout_id])
+      end
     end
 
-    viewing = session[:viewing] || 'user'
     gon.push(
         {
             team_id: session[:team_id],

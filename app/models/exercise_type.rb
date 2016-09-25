@@ -14,7 +14,7 @@ class ExerciseType < ActiveRecord::Base
   def get_exercises(experience_level, paid_tier)
     #Experience level is 1-3
     paid_tier ||= 1
-    experience_level ||= 3
+    experience_level ||= 1
     if self.id == 14
       Exercise.where('exercise_type_id = 14 or exercise_type_id = 15 or exercise_type_id = 16')
           .where('difficulty <= ?', experience_level).where('paid_tier <= ?', paid_tier).all

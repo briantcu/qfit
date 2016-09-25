@@ -24,6 +24,7 @@ Qfit::Application.routes.draw do
   get '/quad-pod', to: 'pages#do_work'
   get '/progress', to: 'pages#do_work'
   get '/workout/:year/:month/:day', to: 'pages#do_work'
+  get '/workout/:workout_id', to: 'pages#do_work'
 
   get '/', to: 'pages#home'
   get '/account', to: 'pages#account'

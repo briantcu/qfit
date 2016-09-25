@@ -67,10 +67,10 @@ class App extends React.Component {
     }
 
     componentDidMount () {
+        UserStore.addChangeListener(this.onChange);
+        UserActions.getUser(gon.current_user_id);
         if (gon.viewing == 'user') {
-            UserStore.addChangeListener(this.onChange);
             UserScheduleStore.addChangeListener(this.onChange);
-            UserActions.getUser(gon.current_user_id);
         } else {
             TeamStore.addChangeListener(this.onChange);
             TeamScheduleStore.addChangeListener(this.onChange);
@@ -163,13 +163,28 @@ class App extends React.Component {
     }
 
     fetchSuggestedSchedule() {
-        if (this.state.user_schedule.schedule.id) {
-            var goal = this.state.user_schedule.schedule.program_type_id;
-            var strengthProgram = this.state.user_schedule.schedule.program_id;
-            ProgramActions.getSuggestedSchedule(goal, strengthProgram);
+        var fitness = FitnessAssessmentStore.getData();
+        var program = ProgramStore.getData();
+        if (gon.viewing == 'user') {
+            var schedule = UserScheduleStore.getData();
+            if (schedule.schedule.id) {
+                var goal = schedule.schedule.program_type_id;
+                var strengthProgram = schedule.schedule.program_id;
+            } else {
+                var goal = fitness.goal;
+                var strengthProgram = program.strengthProgram;
+            }
         } else {
-            ProgramActions.getSuggestedSchedule(this.state.goal, this.state.program.strengthProgram);
+            var schedule = TeamScheduleStore.getData();
+            if (schedule.schedule.id) {
+                var goal = fitness.goal;
+                var strengthProgram = schedule.schedule.program_id;
+            } else {
+                var goal = fitness.goal;
+                var strengthProgram = program.strengthProgram;
+            }
         }
+        ProgramActions.getSuggestedSchedule(goal, strengthProgram);
     }
 
     fitnessSubmitted() {

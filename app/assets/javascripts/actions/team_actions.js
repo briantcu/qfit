@@ -3,13 +3,13 @@ var C = require('constants/user_constants.js');
 
 var TeamActions = {
 
-    getUser: function (team_id) {
+    getTeam: function (team_id) {
         $.ajax({
             type: 'get',
             url: '/groups/' + team_id + '.json',
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            success: function (user) {
+            success: function (team) {
                 dispatcher.dispatch(C.TEAM_LOADED, team);
                 if (team.group_schedule) {
                     this.getSchedule(team.group_schedule.id);
@@ -49,8 +49,8 @@ var TeamActions = {
                 url: '/group_schedules/' + schedule.id + '.json',
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",
-                success: function (results) {
-                    location.href = '/workout';
+                success: function (results, status, xhr) {
+                    location.href = xhr.getResponseHeader('Location');
                 },
                 error: function (results) {
                     alert(results);
@@ -63,8 +63,8 @@ var TeamActions = {
                 url: '/group_schedules.json',
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",
-                success: function (results) {
-                    location.href = '/workout';
+                success: function (results, status, xhr) {
+                    location.href = xhr.getResponseHeader('Location');
                 },
                 error: function (results) {
                     alert(results);
@@ -72,4 +72,6 @@ var TeamActions = {
             });
         }
     }
-}
+};
+
+export default TeamActions;

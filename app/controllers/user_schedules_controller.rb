@@ -36,9 +36,10 @@ class UserSchedulesController < ApplicationController
       if @user_schedule = UserSchedule.create_user_schedule(user_schedule_params)
         update_user_record
         RoutineService.new(@user_schedule.user, 'NEW', Date.today, false).create_routines
+        next_routine = DailyRoutine.get_open_workouts_start_today(@user_schedule.user).first
         session_service = SessionService.new(session)
         session_service.set_onboarding(false) # onboarding is done
-        render action: 'show', status: :created, location: @user_schedule
+        render action: 'show', status: :created, location: "/workout/#{next_routine.try(:id)}"
       else
         render json: @user_schedule.errors, status: :unprocessable_entity
       end
@@ -54,7 +55,8 @@ class UserSchedulesController < ApplicationController
     if @user_schedule.update_self!(user_schedule_params)
       update_user_record
       RoutineService.sched_change_happened(@user_schedule.user)
-      render action: 'show', status: :ok, location: @user_schedule
+      next_routine = DailyRoutine.get_open_workouts_start_today(@user_schedule.user).first
+      render action: 'show', status: :ok, location: "/workout/#{next_routine.try(:id)}"
     else
       render json: @user_schedule.errors, status: :unprocessable_entity
     end
