@@ -41,6 +41,30 @@ var RoutineActions = {
         });
     },
 
+    getById: function(id) {
+        dispatcher.dispatch(C.LOADING, true);
+        if (gon.viewing == 'user') {
+            var url = '/daily_routines/'+id+'.json';
+        } else {
+            var url = '/group_routines/'+id+'.json';
+        }
+        $.ajax({
+            type: 'get',
+            url: url,
+            dataType: 'json',
+            success: function(data) {
+                dispatcher.dispatch(C.ROUTINE_LOADED, data)
+            },
+            error: function(response) {
+                if (response.status == 404) {
+                    dispatcher.dispatch(C.ROUTINE_LOADED, {});
+                } else {
+                    alert(response.responseJSON.errors);
+                }
+            }
+        });
+    },
+
     swapWarmup: function(peid, exid) {
         var payload = JSON.stringify({performed_warm_up: { warmup_id: exid}});
         $.ajax({

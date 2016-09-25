@@ -86,15 +86,16 @@ class Strength extends React.Component {
                     </div>
                 </span>
             </div>
-            <div className="col-xs-7">
-                {
-                    this.props.exercise.weight_sets.map(function(e, index) {
-                        return <WeightSet weightSet={e} gray={index % 2 == 0} key={this.props.exercise.id + '' + (index + 1)}
-                                          setNum={index + 1} exercise={this.props.exercise.exercise} disabled={this.props.closed} />;
-                    }.bind(this))
-                }
-            </div>
-
+            <If condition={gon.viewing == 'user'}>
+                <div className="col-xs-7">
+                    {
+                        this.props.exercise.weight_sets.map(function(e, index) {
+                            return <WeightSet weightSet={e} gray={index % 2 == 0} key={this.props.exercise.id + '' + (index + 1)}
+                                              setNum={index + 1} exercise={this.props.exercise.exercise} disabled={this.props.closed} />;
+                        }.bind(this))
+                    }
+                </div>
+            </If>
             <TipsModal show={this.state.showTips} tips={this.props.exercise.exercise.tips} close={this.close} />
             <VideoModal show={this.state.showVideo} link={this.props.exercise.exercise.video_link} close={this.closeVideo} />
             <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props}

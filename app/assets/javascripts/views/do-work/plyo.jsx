@@ -77,19 +77,20 @@ class Plyo extends React.Component {
                     </div>
                 </span>
             </div>
-            <div className="col-xs-1 col-xs-offset-4">
-                <VertCircleCheck ref={this.props.exercise.id + '1'} id={this.props.exercise.id + '1'}
-                                 setNum={1} checked={this.props.exercise.peformed_one} label={'Complete'} change={ this.change } />
-            </div>
-            <div className="col-xs-1">
-                <VertCircleCheck ref={this.props.exercise.id + '2'} id={this.props.exercise.id + '2'}
-                                 setNum={2} checked={this.props.exercise.performed_two} label={'Complete'} change={ this.change } />
-            </div>
-            <div className="col-xs-1">
-                <VertCircleCheck ref={this.props.exercise.id + '3'} id={this.props.exercise.id + '3'}
-                                 setNum={3} checked={this.props.exercise.performed_three} label={'Complete'} change={ this.change } />
-            </div>
-
+            <If condition={gon.viewing == 'user'}>
+                <div className="col-xs-1 col-xs-offset-4">
+                    <VertCircleCheck ref={this.props.exercise.id + '1'} id={this.props.exercise.id + '1'}
+                                     setNum={1} checked={this.props.exercise.peformed_one} label={'Complete'} change={ this.change } />
+                </div>
+                <div className="col-xs-1">
+                    <VertCircleCheck ref={this.props.exercise.id + '2'} id={this.props.exercise.id + '2'}
+                                     setNum={2} checked={this.props.exercise.performed_two} label={'Complete'} change={ this.change } />
+                </div>
+                <div className="col-xs-1">
+                    <VertCircleCheck ref={this.props.exercise.id + '3'} id={this.props.exercise.id + '3'}
+                                     setNum={3} checked={this.props.exercise.performed_three} label={'Complete'} change={ this.change } />
+                </div>
+            </If>
             <TipsModal show={this.state.showTips} tips={this.props.exercise.plyometric.tips} close={this.close} />
             <VideoModal show={this.state.showVideo} link={this.props.exercise.plyometric.video_link} close={this.closeVideo} />
             <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props} type="plyometrics"/>

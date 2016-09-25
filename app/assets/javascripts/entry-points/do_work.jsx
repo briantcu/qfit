@@ -31,7 +31,7 @@ class App extends React.Component {
         var year, month, day;
         var urlArray = location.pathname.split('/');
         var today;
-        if (urlArray.length > 2) {
+        if (urlArray.length > 3) {
             today = new Date(this.props.params.year, this.props.params.month - 1, this.props.params.day);
             year = this.props.params.year;
             month = this.props.params.month;
@@ -110,7 +110,12 @@ class App extends React.Component {
         RoutineActions.getCalendar(this.state.year, this.state.month, gon.current_user_id, C.CALENDAR);
         RoutineActions.getCalendar(lastMonth.getFullYear(), lastMonth.getMonth() + 1, gon.current_user_id, C.PREV_CALENDAR);
         RoutineActions.getCalendar(nextMonth.getFullYear(), nextMonth.getMonth() + 1, gon.current_user_id, C.NEXT_CALENDAR);
-        RoutineActions.getRoutine(this.state.year, this.state.month, this.state.day, gon.current_user_id);
+        if (gon.routine) {
+            RoutineActions.getById(gon.routine.id);
+        } else {
+            RoutineActions.getRoutine(this.state.year, this.state.month, this.state.day, gon.current_user_id);
+        }
+
 
         UserActions.getFeed();
         UserActions.getPod();
@@ -352,7 +357,7 @@ class DoWork extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <If condition={this.props.routine.id} >
+                        <If condition={this.props.routine.id && gon.viewing == 'user'} >
                         <div className="comments sec container">
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Leave a comment</div>

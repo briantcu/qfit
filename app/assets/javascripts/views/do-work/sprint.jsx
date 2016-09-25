@@ -87,6 +87,7 @@ class Sprint extends React.Component {
                     this.props.exercise.sprint_details.map(function(e, index) {
                         return <div className="row detail-row" key={this.props.exercise.id + '' + (index + 1)}>
                                 <div className="col-xs-4 detail">{e.detail}</div>
+                                <If condition={gon.viewing == 'user'}>
                                 <div className="col-xs-8">
                                     <VertCircleCheck
                                         lapNum={index + 1}
@@ -97,6 +98,7 @@ class Sprint extends React.Component {
                                         label={'Complete'} change={ this.change }
                                          />
                                 </div>
+                                </If>
                             </div>
                     }.bind(this))
                 }

@@ -100,11 +100,12 @@ class Stretch extends React.Component {
                     </div>
                 </span>
             </div>
-            <div className="col-xs-1 col-xs-offset-6">
-                <VertCircleCheck ref="complete" id={'stretch' + this.props.exercise.id}
-                             checked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
-            </div>
-
+            <If condition={gon.viewing == 'user'}>
+                <div className="col-xs-1 col-xs-offset-6">
+                    <VertCircleCheck ref="complete" id={'stretch' + this.props.exercise.id}
+                                 checked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
+                </div>
+            </If>
             <TipsModal show={this.state.showTips} tips={this.props.exercise.warmup.tips} close={this.close} />
             <VideoModal show={this.state.showVideo} link={this.props.exercise.warmup.video_link} close={this.closeVideo} />
             <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props}
