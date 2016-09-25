@@ -12,10 +12,13 @@ import Commitment from 'views/setup/commitment';
 import Coach from 'views/setup/coach';
 
 import UserStore from 'stores/user_store';
+import TeamStore from 'stores/team_store';
+import TeamScheduleStore from 'stores/team_schedule_store';
 import UserScheduleStore from 'stores/user_schedule_store';
 import FitnessAssessmentStore from 'stores/fitness_assessment_store';
 import ProgramStore from 'stores/program_store';
 import UserActions from 'actions/user_actions';
+import TeamActions from 'actions/team_actions';
 import ProgramActions from 'actions/program_actions';
 import FitnessAssessmentActions from 'actions/fitness_assessment_actions';
 
@@ -64,9 +67,15 @@ class App extends React.Component {
     }
 
     componentDidMount () {
-        UserStore.addChangeListener(this.onChange);
-        UserScheduleStore.addChangeListener(this.onChange);
-        UserActions.getUser(gon.current_user_id);
+        if (gon.viewing == 'user') {
+            UserStore.addChangeListener(this.onChange);
+            UserScheduleStore.addChangeListener(this.onChange);
+            UserActions.getUser(gon.current_user_id);
+        } else {
+            TeamStore.addChangeListener(this.onChange);
+            TeamScheduleStore.addChangeListener(this.onChange);
+            TeamActions.getTeam(gon.team_id);
+        }
 
         ProgramStore.addChangeListener(this.onChange);
         FitnessAssessmentStore.addChangeListener(this.onChange);
@@ -75,6 +84,8 @@ class App extends React.Component {
 
     componentWillUnmount () {
         UserStore.removeChangeListener(this.onChange);
+        TeamStore.removeChangeListener(this.onChange);
+        TeamScheduleStore.removeChangeListener(this.onChange);
         UserScheduleStore.removeChangeListener(this.onChange);
         ProgramStore.removeChangeListener(this.onChange);
         FitnessAssessmentStore.removeChangeListener(this.onChange);
@@ -122,6 +133,8 @@ class App extends React.Component {
     onChange () {
         var data = UserStore.getData();
         var schedule = UserScheduleStore.getData();
+        var team = TeamStore.getData();
+        var teamSchedule = TeamScheduleStore.getData();
 
         var fitness = FitnessAssessmentStore.getData();
         var program = ProgramStore.getData();
@@ -140,7 +153,9 @@ class App extends React.Component {
             module: fitness.module,
             program: program,
             suggested_schedule: program.suggested_schedule,
-            user_schedule: schedule
+            user_schedule: schedule,
+            team_schedule: teamSchedule,
+            team: team.team
         });
         if (fitness.complete) {
             FitnessAssessmentActions.submit(this.state, this.fitnessSubmitted);

@@ -55,6 +55,19 @@ class PagesController < ApplicationController
   end
 
   def schedule
+    if session[:viewing] == 'team'
+      team = Group.find(session[:team_id])
+      if team.group_schedule.blank?
+        setup_redirect
+        return
+      end
+    else
+      if @user.user_schedule.blank?
+        setup_redirect
+        return
+      end
+    end
+
     render template: 'pages/setup'
   end
 

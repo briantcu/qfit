@@ -1,10 +1,10 @@
 var dispatcher = require('global_dispatcher.js');
 var Store = require('./store.js');
-var C = require('constants/user_constants.js');
+var C = require('constants/team_constants.js');
 
-var UserScheduleStore = new Store({
+var TeamScheduleStore = new Store({
     schedule: {
-        weekly_schedule_days: [
+        group_schedule_days: [
             {weights: false, plyos: false, sprinting: false},
             {weights: false, plyos: false, sprinting: false},
             {weights: false, plyos: false, sprinting: false},
@@ -19,7 +19,7 @@ var UserScheduleStore = new Store({
     sprinting: false,
 
     setSchedule: function(data){
-        data.weekly_schedule_days.forEach(function(day, i) {
+        data.group_schedule_days.forEach(function(day, i) {
             if (day.weights) {
                 this.weights = true;
             }
@@ -44,12 +44,12 @@ var UserScheduleStore = new Store({
     }
 });
 
-dispatcher.register(C.SCHEDULE_LOADED, function(data) {
+dispatcher.register(C.TEAM_SCHEDULE_LOADED, function(data) {
     if(data){
-        UserScheduleStore.setSchedule(data);
-        UserScheduleStore.change();
+        TeamScheduleStore.setSchedule(data);
+        TeamScheduleStore.change();
     }
 });
 
 
-export default UserScheduleStore;
+export default TeamScheduleStore;
