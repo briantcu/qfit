@@ -127,8 +127,10 @@ class PagesController < ApplicationController
   private
 
   def has_min_info
-    if (@user.program_type.blank?) || (@user.user_schedule.blank?) ||  @user.user_schedule.invalid? || @user.hor_push_max.blank?
-      setup_redirect
+    if session[:viewing] == 'user'
+      if (@user.program_type.blank?) || (@user.user_schedule.blank?) ||  @user.user_schedule.invalid? || @user.hor_push_max.blank?
+        setup_redirect
+      end
     end
   end
 

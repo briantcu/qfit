@@ -16,7 +16,8 @@
 class GroupSchedulesController < ApplicationController
   before_filter :verify_logged_in
   before_action :set_group_schedule, only: [:show, :update]
-  before_filter :verify_is_logged_in_or_coach, only: [:create, :update]
+  before_filter :verify_is_coach, only: [:create, :update]
+  before_filter :verify_owns_group, only: [:update]
 
   # GET /group_schedules/1.json
   def show
@@ -74,7 +75,11 @@ class GroupSchedulesController < ApplicationController
                                             group_schedule_days_attributes: [:id, :day, :weights, :plyometrics, :stretching, :sprinting])
   end
 
-  def verify_is_logged_in_or_coach
+  def verify_is_coach
+    unauthorized unless current_user.is_coach?
+  end
+
+  def verify_owns_group
     group_id = params[:group_schedule][:group_id].to_i
     coach = Group.get_coach(group_id)
     return unauthorized if coach.nil?

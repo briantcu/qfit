@@ -4,7 +4,7 @@ var C = require('constants/user_constants.js');
 
 var UserScheduleStore = new Store({
     schedule: {
-        weekly_schedule_days: [
+        schedule_days: [
             {weights: false, plyos: false, sprinting: false},
             {weights: false, plyos: false, sprinting: false},
             {weights: false, plyos: false, sprinting: false},
@@ -31,6 +31,7 @@ var UserScheduleStore = new Store({
             }
 
         }.bind(this));
+        data.schedule_days = data.weekly_schedule_days;
         this.schedule = data;
     },
 

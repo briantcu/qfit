@@ -4,7 +4,7 @@ var C = require('constants/team_constants.js');
 
 var TeamScheduleStore = new Store({
     schedule: {
-        group_schedule_days: [
+        schedule_days: [
             {weights: false, plyos: false, sprinting: false},
             {weights: false, plyos: false, sprinting: false},
             {weights: false, plyos: false, sprinting: false},
@@ -31,6 +31,7 @@ var TeamScheduleStore = new Store({
             }
 
         }.bind(this));
+        data.schedule_days = data.group_schedule_days;
         this.schedule = data;
     },
 

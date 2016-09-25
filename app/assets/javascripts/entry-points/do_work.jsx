@@ -374,6 +374,7 @@ render((
         <Route path="/" component={App}>
             <Route path="workout" component={DoWork}>
                 <Route path=":year/:month/:day" component={DoWork}/>
+                <Route path=":workout_id" component={DoWork}/>
             </Route>
             <Route path="quad-pod" component={QuadPod} />
             <Route path="progress" component={Progress} />

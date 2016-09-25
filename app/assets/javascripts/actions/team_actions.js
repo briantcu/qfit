@@ -1,5 +1,5 @@
 var dispatcher = require('global_dispatcher.js');
-var C = require('constants/user_constants.js');
+var C = require('constants/team_constants.js');
 
 var TeamActions = {
 
@@ -37,8 +37,8 @@ var TeamActions = {
     },
 
     setSchedule: function (schedule) {
-        schedule.group_schedule_days_attributes = schedule.weekly_schedule_days;
-        delete schedule.weekly_schedule_days;
+        schedule.group_schedule_days_attributes = schedule.schedule_days;
+        delete schedule.schedule_days;
 
         var group_schedule = {group_schedule: schedule};
         var data = JSON.stringify(group_schedule);

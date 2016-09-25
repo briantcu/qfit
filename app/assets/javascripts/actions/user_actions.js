@@ -37,8 +37,8 @@ var UserActions = {
     },
 
     setSchedule: function(schedule) {
-        schedule.weekly_schedule_days_attributes = schedule.weekly_schedule_days;
-        delete schedule.weekly_schedule_days;
+        schedule.weekly_schedule_days_attributes = schedule.schedule_days;
+        delete schedule.schedule_days;
 
         var user_schedule = {user_schedule: schedule};
         var data = JSON.stringify(user_schedule);

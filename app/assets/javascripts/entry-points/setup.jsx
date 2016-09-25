@@ -138,6 +138,11 @@ class App extends React.Component {
 
         var fitness = FitnessAssessmentStore.getData();
         var program = ProgramStore.getData();
+        if (gon.viewing == 'user') {
+            var user_schedule = schedule;
+        } else {
+            var user_schedule = teamSchedule;
+        }
         this.setState({
             user: data.user,
             goal: fitness.goal,
@@ -153,8 +158,7 @@ class App extends React.Component {
             module: fitness.module,
             program: program,
             suggested_schedule: program.suggested_schedule,
-            user_schedule: schedule,
-            team_schedule: teamSchedule,
+            user_schedule: user_schedule,
             team: team.team
         });
         if (fitness.complete) {
