@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   before_action :set_gon_info, only: [:setup, :coaches, :schedule, :do_work, :account]
   before_action :has_min_info, only: [:do_work]
   before_action :save_sign_up_code_in_session, only: [:sign_up]
+  before_action :set_gon_setup_context, only: [:setup, :schedule]
 
   def home
     render template: 'pages/home'
@@ -72,8 +73,11 @@ class PagesController < ApplicationController
       routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], @user.id)
     end
 
+    viewing = session[:viewing] || 'user'
     gon.push(
         {
+            team_id: session[:team_id],
+            viewing: viewing,
             routine: routine
         }
     )
@@ -104,6 +108,10 @@ class PagesController < ApplicationController
   def set_current_user
     current_user_id = session[:current_user_id] || current_user.id
     @user = User.find(current_user_id)
+    if session[:current_user_id].blank?
+      session_service = SessionService.new(session)
+      session_service.set_current_user_id(@user.id)
+    end
   end
 
   def can_access_user
@@ -118,6 +126,19 @@ class PagesController < ApplicationController
       session_service = SessionService.new(session)
       session_service.set_sign_up_code(params[:qfcode])
     end
+  end
+
+  def set_gon_setup_context
+    viewing = session[:viewing] || 'user'
+    setup_context = session[:setup_context] || 'user'
+    gon.push(
+        {
+            team_id: session[:team_id],
+            viewing: viewing,
+            setup_context: setup_context,
+            onboarding: session[:onboarding]
+        }
+    )
   end
 
   def set_gon_info

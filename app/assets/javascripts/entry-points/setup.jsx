@@ -40,7 +40,8 @@ class App extends React.Component {
             activeNav: activeNav,
             user_schedule: {schedule: {}},
             suggested_schedule: {},
-            isConfigured: false
+            isConfigured: false,
+            navElements: []
         };
         this.nextPage = this.nextPage.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -123,7 +124,35 @@ class App extends React.Component {
     }
 
     defineRoutes() {
-        // Set sub nav elements too
+        var navElements = [];
+        if (gon.setup_context == 'user') {
+            navElements.push({class: '', label: 'Goal'});
+            navElements.push({class: '', label:'Quads'});
+            if (gon.setup_context.onboarding) {
+                navElements.push({class: '', label:'Fitness Assessment'});
+            }
+            navElements.push({class: '', label: 'Commitment'});
+            navElements.push({class: '', label: 'Schedule'});
+        } else if (gon.setup_context == 'sub_user') {
+            if (gon.setup_context.onboarding) {
+                navElements.push({class: '', label: 'Fitness Assessment'});
+            }
+        } else if (gon.setup_context == 'coach_sub') {
+            navElements.push({class: '', label: 'Goal'});
+            navElements.push({class: '', label: 'Quads'});
+            navElements.push({class: '', label: 'Commitment'});
+            navElements.push({class: '', label: 'Schedule'});
+        } else if (gon.setup_context == 'coach_team') {
+            navElements.push({class: '', label: 'Quads'});
+            navElements.push({class: '', label: 'Commitment'});
+            navElements.push({class: '', label: 'Schedule'});
+        }
+
+        if (navElements.length == 0) {
+            location.href = '/workout';
+        } else {
+            this.setState({navElements: navElements});
+        }
     }
 
     defineActions() {
@@ -185,7 +214,7 @@ class App extends React.Component {
 
         return <div>
             <Header user={this.state.user} />
-            <Subnav activeNav={this.state.activeNav} />
+            <Subnav activeNav={this.state.activeNav} elements={this.state.navElements} />
             {childrenWithProps}
         </div>
     }
