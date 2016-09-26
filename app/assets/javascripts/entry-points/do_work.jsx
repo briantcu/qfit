@@ -36,6 +36,12 @@ class App extends React.Component {
             year = this.props.params.year;
             month = this.props.params.month;
             day = this.props.params.day;
+        } else if (gon.routine) {
+            var dateArray = gon.routine.day_performed.split('-');
+            today = new Date(dateArray[0], dateArray[1] - 1, dateArray[2]);
+            year = today.getFullYear();
+            month = today.getMonth() + 1;
+            day = today.getDate();
         } else {
             today = new Date();
             year = today.getFullYear();
@@ -100,6 +106,12 @@ class App extends React.Component {
         if (gon.viewing == 'team') {
             TeamActions.getTeam(gon.team_id);
         }
+        if (gon.viewing == 'user') {
+            var id = gon.current_user_id;
+        } else {
+            var id = gon.team_id;
+        }
+
         ExerciseActions.getExercises();
 
         var lastMonth = new Date(this.state.date.getTime());
@@ -107,15 +119,14 @@ class App extends React.Component {
         var nextMonth = new Date(this.state.date.getTime());
         nextMonth.setMonth(nextMonth.getMonth() + 1);
 
-        RoutineActions.getCalendar(this.state.year, this.state.month, gon.current_user_id, C.CALENDAR);
-        RoutineActions.getCalendar(lastMonth.getFullYear(), lastMonth.getMonth() + 1, gon.current_user_id, C.PREV_CALENDAR);
-        RoutineActions.getCalendar(nextMonth.getFullYear(), nextMonth.getMonth() + 1, gon.current_user_id, C.NEXT_CALENDAR);
+        RoutineActions.getCalendar(this.state.year, this.state.month, id, C.CALENDAR, (gon.viewing == 'user'));
+        RoutineActions.getCalendar(lastMonth.getFullYear(), lastMonth.getMonth() + 1, id, C.PREV_CALENDAR, (gon.viewing == 'user'));
+        RoutineActions.getCalendar(nextMonth.getFullYear(), nextMonth.getMonth() + 1, id, C.NEXT_CALENDAR, (gon.viewing == 'user'));
         if (gon.routine) {
             RoutineActions.getById(gon.routine.id);
         } else {
-            RoutineActions.getRoutine(this.state.year, this.state.month, this.state.day, gon.current_user_id);
+            RoutineActions.getRoutine(this.state.year, this.state.month, this.state.day, id);
         }
-
 
         UserActions.getFeed();
         UserActions.getPod();
@@ -347,34 +358,38 @@ class DoWork extends React.Component {
                             </div>
                             <div className="row last-row">
                                 <div className="col-xs-3">
-                                    <input ref="userWeight" type="text" className="user-weight" value={this.props.routine.weight} onChange={this.weightChanged}/>
-                                    <span className="standard-text white ">Your Weight (lbs)</span>
+                                    <If condition={this.props.routine.id && gon.viewing == 'user'} >
+                                        <input ref="userWeight" type="text" className="user-weight" value={this.props.routine.weight} onChange={this.weightChanged}/>
+                                        <span className="standard-text white ">Your Weight (lbs)</span>
+                                    </If>
                                 </div>
                                 <div className="col-xs-6 col-xs-offset-3 text-right">
                                     <span className="reset-link" onClick={() => this.reset()}>Reset Workout</span>
-                                    <Button ref="completeWorkout" buttonText="Complete Workout" onClick={ () => this.submit() }
+                                    <If condition={this.props.routine.id && gon.viewing == 'user'} >
+                                        <Button ref="completeWorkout" buttonText="Complete Workout" onClick={ () => this.submit() }
                                             disabled={false} inverse={true}/>
+                                    </If>
                                 </div>
                             </div>
                         </div>
                         <If condition={this.props.routine.id && gon.viewing == 'user'} >
-                        <div className="comments sec container">
-                            <div className="row">
-                                <div className="col-xs-12 sec-header">Leave a comment</div>
-                            </div>
-                            {
-                                this.props.routine.comments.map(function(e, index) {
-                                    return <Comment comment={e} key={e.id} />
-                                }.bind(this))
-                            }
-                            <div className="row comment-row">
-                                <div className="col-xs-6 text-right">
-                                    <textarea ref="commentBox" className="leave-comment" rows="10" cols="80"></textarea>
-                                    <Button ref="leaveComment" buttonText="Submit" onClick={ () => this.leaveComment() }
-                                            disabled={false} />
+                            <div className="comments sec container">
+                                <div className="row">
+                                    <div className="col-xs-12 sec-header">Leave a comment</div>
+                                </div>
+                                {
+                                    this.props.routine.comments.map(function(e, index) {
+                                        return <Comment comment={e} key={e.id} />
+                                    }.bind(this))
+                                }
+                                <div className="row comment-row">
+                                    <div className="col-xs-6 text-right">
+                                        <textarea ref="commentBox" className="leave-comment" rows="10" cols="80"></textarea>
+                                        <Button ref="leaveComment" buttonText="Submit" onClick={ () => this.leaveComment() }
+                                                disabled={false} />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </If>
                     </div>
                 </div>

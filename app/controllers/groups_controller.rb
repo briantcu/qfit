@@ -71,6 +71,16 @@ class GroupsController < ApplicationController
     head :no_content
   end
 
+  def get_calendar
+    @calendar = UserCalendar.new(:user_id => params[:id], :month_id => params[:month_id], :year_id => params[:year_id], :is_user => false)
+    if @calendar.valid?
+      @calendar.populate_calendar
+      render :json => @calendar.as_json
+    else
+      render json: @calendar.errors, status: :unprocessable_entity
+    end
+  end
+
   def new_user
     user = User.find(params[:user_id])
     return unauthorized unless current_user.is_coach_of_user?(user.id)

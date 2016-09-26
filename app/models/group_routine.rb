@@ -70,6 +70,12 @@ class GroupRoutine < ActiveRecord::Base
     end
   end
 
+  def self.get_routines_for_month(group_id, month, year)
+    first = Date.new(year, month, 1)
+    last = first.end_of_month
+    GroupRoutine.where(:group_id => group_id).where('day_performed >= ?', first).where('day_performed <= ?', last)
+  end
+
   def self.get_open_workouts_start_today(entity)
     now = Date.today
     GroupRoutine.where(:group_id => entity.id).where('day_performed >= ?', now)
@@ -294,6 +300,10 @@ class GroupRoutine < ActiveRecord::Base
     now = Date.today
     workouts = GroupRoutine.where(:group_id => entity.id, :day_performed => now)
     workouts.count > 0
+  end
+
+  def get_workout_status
+    'active'
   end
 
   def reset

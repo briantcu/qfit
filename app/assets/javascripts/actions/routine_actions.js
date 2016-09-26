@@ -8,10 +8,15 @@ var RoutineActions = {
         dispatcher.dispatch(C.INPUT_CHANGED, {type: type, exId: exerciseId, setNum: setNum, reps: reps, weight: weight});
     },
 
-    getCalendar: function(year, month, user_id, whichMonth) {
+    getCalendar: function(year, month, user_id, whichMonth, forUser) {
+        if (forUser) {
+            var url = '/users/'+user_id+'/calendar/year/'+year+'/month/'+month+'.json';
+        } else {
+            var url = '/groups/'+user_id+'/calendar/year/'+year+'/month/'+month+'.json';
+        }
         $.ajax({
             type: 'get',
-            url: '/users/'+user_id+'/calendar/year/'+year+'/month/'+month+'.json',
+            url: url,
             dataType: 'json',
             success: function(data) {
                 dispatcher.dispatch(C.CALENDAR, {key: whichMonth, data: data})
@@ -22,11 +27,16 @@ var RoutineActions = {
         });
     },
 
-    getRoutine: function(year, month, day, user_id) {
+    getRoutine: function(year, month, day, id) {
         dispatcher.dispatch(C.LOADING, true);
+        if (gon.viewing == 'user') {
+            var url = '/users/'+id+'/daily_routines/year/'+year+'/month/'+month+'/day/'+day+'.json';
+        } else {
+            var url = '/groups/'+id+'/group_routines/year/'+year+'/month/'+month+'/day/'+day+'.json';
+        }
         $.ajax({
             type: 'get',
-            url: '/users/'+user_id+'/daily_routines/year/'+year+'/month/'+month+'/day/'+day+'.json',
+            url: url,
             dataType: 'json',
             success: function(data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)

@@ -8,19 +8,25 @@ class UserCalendar
   attribute :month_id, type: Integer
   attribute :year_id, type: Integer
   attribute :calendar_month
+  attribute :is_user, type: Boolean
 
   validates :user_id, presence: true
   validates :year_id, presence: true, :inclusion => {:in => 2010..2149}
   validates :month_id, presence: true, :inclusion => {:in => 1..12}
-  validate :must_have_user
 
   def populate_calendar
     self.calendar_month = CalendarMonth.new
     self.calendar_month.days = []
     first_of_month = Date.new(self.year_id, self.month_id, 1)
     end_of_month = first_of_month.end_of_month.day
-    user = User.find(self.user_id)
-    routines = DailyRoutine.get_routines_for_month(self.user_id, self.month_id, self.year_id)
+
+    if self.is_user
+      user = User.find(self.user_id)
+      routines = DailyRoutine.get_routines_for_month(self.user_id, self.month_id, self.year_id)
+    else
+      user = Group.find(self.user_id)
+      routines = GroupRoutine.get_routines_for_month(self.user_id, self.month_id, self.year_id)
+    end
 
     pad_month(normalize_day(first_of_month.cwday))
 
@@ -60,10 +66,6 @@ class UserCalendar
 
   def normalize_day(day)
     (day == 7) ? 0 : day #Normalize Sunday
-  end
-
-  def must_have_user
-    errors.add(:base, 'Invalid user id') unless User.where(:id => self.user_id).count == 1
   end
 
   def find_routine_for_date(routines, day)

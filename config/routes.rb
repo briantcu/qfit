@@ -170,6 +170,8 @@ Qfit::Application.routes.draw do
   resources :groups
   post '/groups/:id/users', to: 'groups#new_user'
   delete '/groups/:id/users/:user_id', to: 'groups#remove_user'
+  get '/groups/:id/calendar/year/:year_id/month/:month_id', to: 'groups#get_calendar'
+  get '/groups/:group_id/group_routines/year/:year/month/:month/day/:day', to: 'group_routines#routine_by_date'
 
   resources :coach_accounts
   delete '/coach_accounts/:id/users/:user_id', to: 'coach_accounts#delete_user'

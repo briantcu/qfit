@@ -48,6 +48,10 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def will_workout_for_day?(day)
+    self.group_schedule.group_schedule_days[day].stretching
+  end
+
   def create_routine(date, custom = false)
     if self.group_schedule.is_valid_workout_day?(date) || custom
       group_routine = GroupRoutine.create_routine(self.id, date)
