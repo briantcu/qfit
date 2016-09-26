@@ -26,6 +26,10 @@
     }
   }
 
+  .sprinting {
+    margin-bottom: 50px;
+  }
+
   .leave-comment {
     background-color: $gray1;
     border: solid 1px #d8d8d8;
@@ -94,7 +98,6 @@
     margin-top: 40px;
     display: block;
     float: left;
-    min-height: 200px;
     width: 100%;
     background-color: white;
     border-radius: 3px;
@@ -140,6 +143,7 @@
 
   .exercise-section {
     padding: 15px 10px 10px 0px;
+    min-height: 100px;
   }
 
   .ex-info {

@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   before_action :set_gon_info, only: [:setup, :coaches, :schedule, :do_work, :account]
   before_action :has_min_info, only: [:do_work]
   before_action :save_sign_up_code_in_session, only: [:sign_up]
-  before_action :set_gon_setup_context, only: [:setup, :schedule]
+  before_action :set_gon_setup_context, only: [:setup, :schedule, :do_work]
 
   def home
     render template: 'pages/home'

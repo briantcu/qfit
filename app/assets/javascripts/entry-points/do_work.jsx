@@ -22,6 +22,7 @@ import Footer from 'views/common/footer';
 import Progress from 'views/do-work/progress';
 import TeamActions from 'actions/team_actions';
 import TeamStore from 'stores/team_store';
+import { Modal } from 'react-bootstrap';
 
 require('pages/do_work.scss');
 
@@ -64,6 +65,7 @@ class App extends React.Component {
             conversation: {}
         };
         this.onChange = this.onChange.bind(this);
+        this.finishOnboarding = this.finishOnboarding.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -101,6 +103,18 @@ class App extends React.Component {
         QuadPodStore.removeChangeListener(this.onChange.bind(this));
     }
 
+    finishOnboarding() {
+        if (this.props.context == 'coach_team') {
+            console.log('adding team');
+        }
+
+        if (this.props.context == 'coach_sub') {
+            console.log('adding sub');
+        }
+
+        this.setState({showActionModal: false});
+    }
+
     load() {
         UserActions.getUser(gon.current_user_id);
         if (gon.viewing == 'team') {
@@ -133,6 +147,8 @@ class App extends React.Component {
     }
 
     onChange () {
+        var team = TeamStore.getData();
+        var showActionModal = team.team.is_template;
         var data = RoutineStore.getData();
         data.routine = data.routine || this.state.routine;
         var user = UserStore.getData();
@@ -150,7 +166,11 @@ class App extends React.Component {
                 feed: qpData.feed,
                 quad_pod: qpData.pod,
                 invites: qpData.invites,
-                conversation: qpData.conversation
+                conversation: qpData.conversation,
+                team: team.team,
+                showActionModal: showActionModal,
+                context: gon.setup_context,
+                finishOnboarding: this.finishOnboarding
             }
         );
     }
@@ -179,6 +199,7 @@ class DoWork extends React.Component {
         this.addEx = this.addEx.bind(this);
         this.closeAddEx = this.closeAddEx.bind(this);
         this.weightChanged = this.weightChanged.bind(this);
+
     }
 
     weightChanged() {
@@ -388,6 +409,22 @@ class DoWork extends React.Component {
                 </div>
             </div>
             <MenuModal show={this.state.showAddEx} close={this.closeAddEx} click={this.addEx} exercises={this.props.exercises} type={this.state.exercise_type}/>
+            <Modal show={this.props.showActionModal} >
+                <Modal.Header>
+                    <Modal.Title>Last Step!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <If condition={this.props.context == 'coach_sub'} >
+                        Sign up sub
+                    </If>
+                    <If condition={this.props.context == 'coach_team'} >
+                        Sign up team
+                    </If>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button buttonText="Submit" onClick={this.props.finishOnboarding}>Submit</Button>
+                </Modal.Footer>
+            </Modal>
         </div>;
     }
 }
