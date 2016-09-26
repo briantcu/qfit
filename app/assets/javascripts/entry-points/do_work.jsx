@@ -91,7 +91,12 @@ class App extends React.Component {
             day = today.getDate();
         }
         this.setState({year: year, month: month, day: day});
-        RoutineActions.getRoutine(year, month, day, gon.current_user_id);
+        if (gon.viewing == 'user') {
+            var id = gon.current_user_id;
+        } else {
+            var id = gon.team_id;
+        }
+        RoutineActions.getRoutine(year, month, day, id);
     }
 
     componentDidMount () {

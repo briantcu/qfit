@@ -31,7 +31,7 @@ class Header extends React.Component {
                                 </If>
                                 <If condition={!this.props.trueLinks}>
                                     <If condition={gon.is_coach} >
-                                        <Link className={(this.props.active == 'coach') ? 'btn active' : 'btn'} to={`/coach`}>COACH</Link>
+                                        <a className={(this.props.active == 'coach') ? 'btn active' : 'btn'}  href="/coach">COACH</a>
                                     </If>
                                     <Link className={(this.props.active == 'workout') ? 'btn active' : 'btn'}
                                           to={`/workout`}>WORKOUT</Link>

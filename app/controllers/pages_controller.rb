@@ -83,19 +83,7 @@ class PagesController < ApplicationController
 
   def do_work
     viewing = session[:viewing] || 'user'
-    if viewing == 'user'
-      if params[:year].present?
-        routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], @user.id)
-      elsif params[:workout_id].present?
-        routine = DailyRoutine.find(params[:workout_id])
-      end
-    else
-      if params[:year].present?
-        routine = GroupRoutine.get_routine_by_date(params[:month], params[:year], params[:day], @user.id)
-      elsif params[:workout_id].present?
-        routine = GroupRoutine.find(params[:workout_id])
-      end
-    end
+    routine = get_routine(viewing)
 
     gon.push(
         {
@@ -125,6 +113,25 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def get_routine(viewing)
+    routine = nil
+
+    if viewing == 'user'
+      if params[:year].present?
+        routine = DailyRoutine.get_routine_by_date(params[:month], params[:year], params[:day], @user.id)
+      elsif params[:workout_id].present?
+        routine = DailyRoutine.find(params[:workout_id])
+      end
+    else
+      if params[:year].present?
+        routine = GroupRoutine.get_routine_by_date(params[:month], params[:year], params[:day], @user.id)
+      elsif params[:workout_id].present?
+        routine = GroupRoutine.find(params[:workout_id])
+      end
+    end
+    routine
+  end
 
   def has_min_info
     if session[:viewing] == 'user'
