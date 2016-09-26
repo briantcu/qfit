@@ -19,7 +19,8 @@ class GroupPerformedPlyosController < ApplicationController
   def update
     if @group_performed_plyo.plyometric_id != params[:group_performed_plyo][:plyometric_id]
       @group_performed_plyo.update_ex(group_performed_plyo_params)
-      render action: 'show', status: :ok, location: @group_performed_plyo
+      @group_routine = @group_performed_plyo.group_routine
+      render 'group_routines/show'
     else
       render json: @group_performed_plyo.errors, status: :unprocessable_entity
     end
@@ -28,7 +29,8 @@ class GroupPerformedPlyosController < ApplicationController
   # DELETE /group_performed_plyos/1.json
   def destroy
     @group_performed_plyo.destroy_ex
-    render json: {success: true}
+    @group_routine = @group_performed_plyo.group_routine
+    render 'group_routines/show'
   end
 
   private

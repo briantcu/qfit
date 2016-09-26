@@ -44,7 +44,7 @@ class GroupRoutinesController < ApplicationController
     exercise = Exercise.find(params[:exercise_id])
     perf_ex = @group_routine.add_weights(exercise, 1, 0)
     @group_routine.note_weights_changed(true)
-    render json: perf_ex, status: :created
+    render action: :show, status: :ok, location: @group_routine
   end
 
   # POST '/group_routines/:id/sprints/:sprint_id'
@@ -52,7 +52,7 @@ class GroupRoutinesController < ApplicationController
     sprint = Sprint.find(params[:sprint_id])
     perf_sprint = @group_routine.add_sprint(sprint.id, 1, 0)
     @group_routine.note_sprints_changed(true)
-    render json: perf_sprint, status: :created
+    render action: :show, status: :ok, location: @group_routine
   end
 
   # POST '/group_routines/:id/warmups/:warmup_id'
@@ -60,7 +60,7 @@ class GroupRoutinesController < ApplicationController
     warmup = Warmup.find(params[:warmup_id])
     perf_wu = @group_routine.add_warmup(warmup.id, 1, 0)
     @group_routine.note_warmups_changed(true)
-    render json: perf_wu.to_json
+    render action: :show, status: :ok, location: @group_routine
   end
 
   # POST '/group_routines/:id/plyos/:plyometric_id'
@@ -68,13 +68,13 @@ class GroupRoutinesController < ApplicationController
     plyo = Plyometric.find(params[:plyometric_id])
     perf_plyo = @group_routine.add_plyometric(plyo.id, 1, 0)
     @group_routine.note_plyos_changed(true)
-    render json: perf_plyo, status: :created
+    render action: :show, status: :ok, location: @group_routine
   end
 
   # POST '/group_routines/:id/custom/:type/:name'
   def add_custom
     custom = @group_routine.add_custom_exercise(params[:name], params[:type], 0)
-    render json: custom, status: :created
+    render action: :show, status: :ok, location: @group_routine
   end
 
   def reset

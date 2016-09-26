@@ -76,10 +76,16 @@ var RoutineActions = {
     },
 
     swapWarmup: function(peid, exid) {
-        var payload = JSON.stringify({performed_warm_up: { warmup_id: exid}});
+        if (gon.viewing == 'user') {
+            var payload = JSON.stringify({performed_warm_up: { warmup_id: exid}});
+            var url = '/performed_warm_ups/'+peid+'.json';
+        } else {
+            var payload = JSON.stringify({group_performed_warmup: { warmup_id: exid}});
+            var url = '/group_performed_warmups/'+peid+'.json';
+        }
         $.ajax({
             type: 'put',
-            url: '/performed_warm_ups/'+peid+'.json',
+            url: url,
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             data: payload,
@@ -93,10 +99,16 @@ var RoutineActions = {
     },
 
     swapStrength: function(peid, exid) {
-        var payload = JSON.stringify({performed_exercise: { exercise_id: exid}});
+        if (gon.viewing == 'user') {
+            var payload = JSON.stringify({performed_exercise: { exercise_id: exid}});
+            var url = '/performed_exercises/'+peid+'.json';
+        } else {
+            var payload = JSON.stringify({group_performed_exercise: { exercise_id: exid}});
+            var url = '/group_performed_exercises/'+peid+'.json';
+        }
         $.ajax({
             type: 'put',
-            url: '/performed_exercises/'+peid+'.json',
+            url: url,
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             data: payload,
@@ -110,10 +122,16 @@ var RoutineActions = {
     },
 
     swapPlyo: function(peid, exid) {
-        var payload = JSON.stringify({performed_plyometric: { plyometric_id: exid}});
+        if (gon.viewing == 'user') {
+            var payload = JSON.stringify({performed_plyometric: { plyometric_id: exid}});
+            var url = '/performed_plyometrics/'+peid+'.json';
+        } else {
+            var payload = JSON.stringify({group_performed_plyometric: { plyometric_id: exid}});
+            var url = '/group_performed_plyometrics/'+peid+'.json';
+        }
         $.ajax({
             type: 'put',
-            url: '/performed_plyometrics/'+peid+'.json',
+            url: url,
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             data: payload,
@@ -127,10 +145,17 @@ var RoutineActions = {
     },
 
     swapSprint: function(peid, exid) {
-        var payload = JSON.stringify({performed_sprint: { sprint_id: exid}});
+
+        if (gon.viewing == 'user') {
+            var payload = JSON.stringify({performed_sprint: { sprint_id: exid}});
+            var url = '/performed_sprints/'+peid+'.json';
+        } else {
+            var payload = JSON.stringify({group_performed_sprint: { sprint_id: exid}});
+            var url = '/group_performed_sprints/'+peid+'.json';
+        }
         $.ajax({
             type: 'put',
-            url: '/performed_sprints/'+peid+'.json',
+            url: url,
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             data: payload,
@@ -144,7 +169,15 @@ var RoutineActions = {
     },
 
     deleteExercise: function(type, peid) {
-        var url = '/performed_' + type + '/' + peid + '.json';
+        if (gon.viewing == 'user') {
+            var url = '/performed_' + type + '/' + peid + '.json';
+        } else {
+            if (type == "warm_ups") {
+                type = "warmups";
+            }
+            var url = '/group_performed_' + type + '/' + peid + '.json';
+        }
+
         $.ajax({
             type: 'delete',
             url: url,
@@ -160,10 +193,18 @@ var RoutineActions = {
     },
 
     addExercise: function(routineId, type, exId) {
+        if (gon.viewing == 'user') {
+            var url = '/daily_routines/'+ routineId + '/'+ type + '/' +exId+'.json';
+        } else {
+            if (type == "warm_ups") {
+                type = "warmups";
+            }
+            var url = '/group_routines/'+ routineId + '/'+ type + '/' +exId+'.json';
+        }
 
         $.ajax({
             type: 'post',
-            url: '/daily_routines/'+ routineId + '/'+ type + '/' +exId+'.json',
+            url: url,
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function(data) {
@@ -177,9 +218,14 @@ var RoutineActions = {
 
     resetRoutine: function(routineId) {
         dispatcher.dispatch(C.LOADING, true);
+        if (gon.viewing == 'user') {
+            var url = '/daily_routines/'+ routineId + '/reset.json';
+        } else {
+            var url = '/group_routines/'+ routineId + '/reset.json';
+        }
         $.ajax({
             type: 'get',
-            url: '/daily_routines/' + routineId + '/reset.json',
+            url: url,
             dataType: 'json',
             success: function (data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
@@ -202,21 +248,6 @@ var RoutineActions = {
                 //dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(response.responseJSON.errors);
-            }
-        });
-    },
-
-    skipWorkout: function(routineId) {
-        dispatcher.dispatch(C.LOADING, true);
-        $.ajax({
-            type: 'put',
-            url: '/daily_routines/' + routineId + '/skip.json',
-            dataType: 'json',
-            success: function (data) {
-                dispatcher.dispatch(C.ROUTINE_LOADED, data)
-            },
-            error: function (response) {
                 alert(response.responseJSON.errors);
             }
         });

@@ -178,7 +178,6 @@ class DoWork extends React.Component {
         };
         this.addEx = this.addEx.bind(this);
         this.closeAddEx = this.closeAddEx.bind(this);
-        this.skip = this.skip.bind(this);
         this.weightChanged = this.weightChanged.bind(this);
     }
 
@@ -211,13 +210,6 @@ class DoWork extends React.Component {
         }
     }
 
-    skip() {
-        var r = confirm("Are you sure you want to skip this workout?");
-        if (r == true) {
-            RoutineActions.skipWorkout(this.props.routine.id);
-        }
-    }
-
     reset() {
         var r=confirm("Are you sure you want to reset this workout?");
         if (r==true) {
@@ -242,7 +234,6 @@ class DoWork extends React.Component {
                         <div className="col-xs-10 col-xs-offset-1 text-center">
                             <If condition={gon.viewing != 'team'} >
                                 <span onClick={ () => this.submit()} >Complete this Workout</span>
-                                <span onClick={ () => this.skip()} >Skip this Workout</span>
                             </If>
                             <span>Change Schedule</span>
                             <span>Change Program</span>

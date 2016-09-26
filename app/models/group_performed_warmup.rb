@@ -11,7 +11,7 @@
 #
 
 class GroupPerformedWarmup < ActiveRecord::Base
-  belongs_to :group_routine
+  belongs_to :group_routine, foreign_key: :routine_id
   belongs_to :warmup
 
   def self.add_exercise(exercise_id, status, routine_id)
@@ -49,6 +49,6 @@ class GroupPerformedWarmup < ActiveRecord::Base
   private
 
   def get_user_exes
-    PerformedWarmUp.where(group_performed_warmups: self.id)
+    PerformedWarmUp.where(group_warmup_id: self.id)
   end
 end

@@ -20,7 +20,8 @@ class GroupPerformedExercisesController < ApplicationController
   def update
     if @group_performed_exercise.exercise_id != params[:group_performed_exercise][:exercise_id]
       @group_performed_exercise.update_ex(group_performed_exercise_params)
-      render action: 'show', status: :ok, location: @group_performed_exercise
+      @group_routine = @group_performed_exercise.group_routine
+      render 'group_routines/show'
     else
       render json: @group_performed_exercise.errors, status: :unprocessable_entity
     end
@@ -29,7 +30,8 @@ class GroupPerformedExercisesController < ApplicationController
   # DELETE /group_performed_exercises/1.json
   def destroy
     @group_performed_exercise.destroy_ex
-    render json: {success: true}
+    @group_routine = @group_performed_exercise.group_routine
+    render 'group_routines/show'
   end
 
   private

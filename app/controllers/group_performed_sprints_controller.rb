@@ -20,7 +20,8 @@ class GroupPerformedSprintsController < ApplicationController
   def update
     if @group_performed_sprint.sprint_id != params[:group_performed_sprint][:sprint_id]
       @group_performed_sprint.update_ex(group_performed_sprint_params)
-      render action: 'show', status: :ok, location: @group_performed_sprint
+      @group_routine = @group_performed_sprint.group_routine
+      render 'group_routines/show'
     else
       render json: @group_performed_sprint.errors, status: :unprocessable_entity
     end
@@ -30,7 +31,8 @@ class GroupPerformedSprintsController < ApplicationController
   # DELETE /group_performed_sprints/1.json
   def destroy
     @group_performed_sprint.destroy_ex
-    render json: {success: true}
+    @group_routine = @group_performed_sprint.group_routine
+    render 'group_routines/show'
   end
 
   private
