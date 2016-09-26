@@ -240,8 +240,10 @@ class DoWork extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-10 col-xs-offset-1 text-center">
-                            <span onClick={ () => this.submit()} >Complete this Workout</span>
-                            <span onClick={ () => this.skip()} >Skip this Workout</span>
+                            <If condition={gon.viewing != 'team'} >
+                                <span onClick={ () => this.submit()} >Complete this Workout</span>
+                                <span onClick={ () => this.skip()} >Skip this Workout</span>
+                            </If>
                             <span>Change Schedule</span>
                             <span>Change Program</span>
                             <span>Share Workout</span>
