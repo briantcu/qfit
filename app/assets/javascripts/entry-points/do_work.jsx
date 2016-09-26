@@ -23,6 +23,9 @@ import Progress from 'views/do-work/progress';
 import TeamActions from 'actions/team_actions';
 import TeamStore from 'stores/team_store';
 import { Modal } from 'react-bootstrap';
+import CoachActions from 'actions/coach_actions';
+import validator from 'validator';
+import FancyInput from 'views/common/fancy_input';
 
 require('pages/do_work.scss');
 
@@ -62,10 +65,15 @@ class App extends React.Component {
             showAddEx: false,
             exercise_type: undefined,
             invites: {},
-            conversation: {}
+            conversation: {},
+            showBanner: false,
+            context: gon.setup_context
         };
         this.onChange = this.onChange.bind(this);
         this.finishOnboarding = this.finishOnboarding.bind(this);
+        this.inviteSent = this.inviteSent.bind(this);
+        this.teamSaved = this.teamSaved.bind(this);
+        this.showSuccess = this.showSuccess.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -103,16 +111,45 @@ class App extends React.Component {
         QuadPodStore.removeChangeListener(this.onChange.bind(this));
     }
 
-    finishOnboarding() {
-        if (this.props.context == 'coach_team') {
-            console.log('adding team');
+    finishOnboarding(name_or_invite_info) {
+        if (this.state.context == 'coach_team') {
+            CoachActions.updateTeam(this.state.team.id, name_or_invite_info, this.teamSaved);
         }
 
-        if (this.props.context == 'coach_sub') {
-            console.log('adding sub');
+        if (this.state.context == 'coach_sub') {
+            CoachActions.sendInvite(name_or_invite_info, this.state.team.id, 'member', this.inviteSent);
         }
+    }
 
-        this.setState({showActionModal: false});
+    inviteSent(response) {
+        if (response.status == 'success') {
+            this.setState({showActionModal: false, bannerContent: this.showSuccess, showBanner: true, context: null});
+        } else {
+            this.setState({finishErrors: response.message});
+        }
+    }
+
+    showSuccess() {
+        //@TODO Provide more details about how these workouts will continue to get created. Send to deep dive page
+        return <div>
+            Invite sent! You'll be notified once they sign up, and they'll show up in the members section on the <a href="/coach">Coach page</a>.
+            In the meantime, you can modify this workout, or head over
+            to <a href="/coach">Coach</a> to send more invites or create some teams.
+        </div>;
+    }
+
+    teamSaved() {
+        this.setState({showActionModal: false, bannerContent: this.showTeamSuccess, showBanner: true});
+    }
+
+    showTeamSuccess() {
+        return <div>
+            Team created!
+            You can modify this workout, or head over
+            to <a href="/coach">Coach</a> to invite people to join your team on Quadfit. They'll get a version of this workout
+            customized to their fitness level and the goals you set for them. They won't be able to modify this workout, so
+            you'll be in complete control.
+        </div>;
     }
 
     load() {
@@ -148,7 +185,7 @@ class App extends React.Component {
 
     onChange () {
         var team = TeamStore.getData();
-        var showActionModal = team.team.is_template;
+        var showActionModal = (team.team.is_template && this.state.context);
         var data = RoutineStore.getData();
         data.routine = data.routine || this.state.routine;
         var user = UserStore.getData();
@@ -169,7 +206,6 @@ class App extends React.Component {
                 conversation: qpData.conversation,
                 team: team.team,
                 showActionModal: showActionModal,
-                context: gon.setup_context,
                 finishOnboarding: this.finishOnboarding
             }
         );
@@ -194,17 +230,29 @@ class DoWork extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showAddEx: false
+            showAddEx: false,
+            sendTo: undefined,
+            sendToErrors: []
         };
         this.addEx = this.addEx.bind(this);
         this.closeAddEx = this.closeAddEx.bind(this);
         this.weightChanged = this.weightChanged.bind(this);
-
+        this.saveSendTo = this.saveSendTo.bind(this);
+        this.finishOnboarding = this.finishOnboarding.bind(this);
     }
 
     weightChanged() {
         //@TODO set weight on the model, not directly. Use actions.
         this.state.routine.weight = this.refs.userWeight.value;
+    }
+
+    saveSendTo(value) {
+        if (!validator.isEmail(value) && !validator.isMobilePhone(value) && value.length > 5) {
+            this.setState({sendToErrors: ['Please enter a valid email or mobile number']});
+        } else {
+            this.setState({sendTo: value, sendToErrors: []});
+        }
+
     }
 
     addEx(e) {
@@ -232,7 +280,7 @@ class DoWork extends React.Component {
     }
 
     reset() {
-        var r=confirm("Are you sure you want to reset this workout?");
+        var r=confirm("Are you sure you want to remove all of your modifications to this workout?");
         if (r==true) {
             RoutineActions.resetRoutine(this.props.routine.id);
         }
@@ -245,8 +293,21 @@ class DoWork extends React.Component {
         }
     }
 
+    finishOnboarding() {
+        this.props.finishOnboarding(this.state.sendTo);
+    }
+
     render () {
         return <div className="do-work">
+            <If condition={this.props.showBanner} >
+                <div className="row banner-row">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xs-12">{this.props.bannerContent()}</div>
+                        </div>
+                    </div>
+                </div>
+            </If>
             <Calendar {...this.props} />
 
             <div className="row subnav">
@@ -411,18 +472,20 @@ class DoWork extends React.Component {
             <MenuModal show={this.state.showAddEx} close={this.closeAddEx} click={this.addEx} exercises={this.props.exercises} type={this.state.exercise_type}/>
             <Modal show={this.props.showActionModal} >
                 <Modal.Header>
-                    <Modal.Title>Last Step!</Modal.Title>
+                    <Modal.Title>Last Step! Send this workout to someone!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <If condition={this.props.context == 'coach_sub'} >
-                        Sign up sub
+                        <FancyInput placeholder="Email or Mobile #" type="text" changedCallback={this.saveSendTo}
+                                    errors={this.state.sendToErrors} />
+                        <span>{this.props.finishErrors}</span>
                     </If>
                     <If condition={this.props.context == 'coach_team'} >
                         Sign up team
                     </If>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button buttonText="Submit" onClick={this.props.finishOnboarding}>Submit</Button>
+                    <Button buttonText="Submit" onClick={this.finishOnboarding}>Submit</Button>
                 </Modal.Footer>
             </Modal>
         </div>;

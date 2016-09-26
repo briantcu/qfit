@@ -42,10 +42,10 @@ class GroupsController < ApplicationController
       session_service.set_team_id(@group.id)
       session_service.set_viewing('team')
 
-      unless for_team
-        session_service.set_setup_context('coach_sub')
-      else
+      if for_team
         session_service.set_setup_context('coach_team')
+      else
+        session_service.set_setup_context('coach_sub')
       end
 
       render action: 'show', status: :created, location: @group

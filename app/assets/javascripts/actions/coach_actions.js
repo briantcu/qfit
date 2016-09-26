@@ -32,6 +32,41 @@ var CoachActions = {
                 }
             }
         });
+    },
+
+    sendInvite: function(send_to, group_id, sign_up_type, callback) {
+        var data = {send_to: send_to, sign_up_type: sign_up_type, template_id: group_id};
+        data = JSON.stringify(data);
+        $.ajax({
+            type: 'post',
+            url: '/coach_accounts/' + gon.coach_account_id + '/send_invite.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: data,
+            success: function(response) {
+                callback(response);
+            }
+        });
+    },
+
+    updateTeam: function(id, name, callback) {
+        var payload = {group: {name: name, is_template: false}};
+        var data = JSON.stringify(payload);
+        $.ajax({
+            type: 'put',
+            data: data,
+            url: '/groups/'+ id + '.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(results) {
+                callback(results);
+            },
+            error: function(results) {
+                var payload = results.responseJSON;
+                payload.success = false;
+                dispatcher.dispatch(C.PROFILE_SAVED, payload);
+            }
+        });
     }
 
 };
