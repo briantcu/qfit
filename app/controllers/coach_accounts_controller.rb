@@ -23,7 +23,7 @@ class CoachAccountsController < ApplicationController
   def delete_user
     user = User.find(params[:user_id])
     EmailService.perform_async(:coach_deleted_you, {email: user.email})
-    user.update_attributes!(level: 2, paid_tier: 1)
+    user.update_attributes!(level: 2, paid_tier: 1, master_user_id: nil)
     render status: 201, json: {}
   end
 
