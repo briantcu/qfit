@@ -37,7 +37,7 @@ class Login extends React.Component {
         var data = SignUpStore.getData();
 
         if (data.loginStatus.status == C.SUCCESS) {
-            location.href = '/workout';
+            location.href = data.loginStatus.location;
         } else if (data.loginStatus.status == C.FAILURE)  {
             this.setState({
                 loginStatus: data.loginStatus,
@@ -50,7 +50,7 @@ class Login extends React.Component {
         if (!this.state.formSubmitted) {
             this.state.formSubmitted = true;
             if (!this.hasErrors()) {
-                SignUpActions.signUp(this.packageData());
+                SignUpActions.login(this.packageData());
             } else {
                 this.state.formSubmitted = false;
             }
@@ -72,8 +72,9 @@ class Login extends React.Component {
             hasErrors = true;
         }
 
-        if (strength < 2) {
-            this.setState({passwordErrors: ['Your password is too weak']});
+        var password = this.refs.password.getValue();
+        if (password.length == 0) {
+            this.setState({passwordErrors: ['Please enter your password']});
             hasErrors = true;
         }
         return hasErrors;
@@ -125,7 +126,7 @@ class Login extends React.Component {
                 <div className="row submit-row">
                     <div className="col-md-12">
                         <If condition={this.state.loginStatus.status == C.FAILURE}>
-                            <div>{this.state.loginStatus.errors.join(', ')}</div>
+                            <div>{this.state.loginStatus.errors}</div>
                         </If>
                         <span onClick={ () => this.submit()} className="submit-button purple-text">Sign In</span>
                         <a href="/forgot" className="help-text bold-link">Forgot your password?</a>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160925034901) do
+ActiveRecord::Schema.define(version: 20161001024115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,13 +50,13 @@ ActiveRecord::Schema.define(version: 20160925034901) do
     t.integer  "sp_day_id"
     t.integer  "pl_day_id"
     t.integer  "wu_day_id"
-    t.boolean  "modified"
-    t.boolean  "pl_modified"
-    t.boolean  "wt_modified"
-    t.boolean  "wu_modified"
-    t.boolean  "sp_modified"
+    t.boolean  "modified",           default: false
+    t.boolean  "pl_modified",        default: false
+    t.boolean  "wt_modified",        default: false
+    t.boolean  "wu_modified",        default: false
+    t.boolean  "sp_modified",        default: false
     t.boolean  "changes_saved",      default: false
-    t.boolean  "closed"
+    t.boolean  "closed",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "group_routine_id"
@@ -529,6 +529,20 @@ ActiveRecord::Schema.define(version: 20160925034901) do
     t.datetime "active_until"
     t.string   "subscription_id"
     t.integer  "level"
+    t.string   "dummyone"
+    t.string   "dummytwo"
+    t.string   "dummythree"
+    t.string   "dummyfour"
+    t.string   "dummyfive"
+    t.string   "dummysix"
+    t.string   "dummyseven"
+    t.string   "dummyeight"
+    t.string   "dummynine"
+    t.string   "dummyten"
+    t.string   "dummyeleven"
+    t.string   "dummytwelve"
+    t.string   "dummythirteen"
+    t.string   "dummyfourteen"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

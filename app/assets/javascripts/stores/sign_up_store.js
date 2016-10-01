@@ -24,9 +24,10 @@ var SignUpStore = new Store({
     setLoginStatus: function(params) {
         if (params.success) {
             this.loginStatus.status = C.SUCCESS;
+            this.loginStatus.location = params.location;
         } else {
             this.loginStatus.status = C.FAILURE;
-            this.loginStatus.errors = params;
+            this.loginStatus.errors = params.errors;
         }
     },
     setResetStatus: function(params) {

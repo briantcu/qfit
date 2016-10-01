@@ -35,13 +35,26 @@ class Users::SessionsController < Devise::SessionsController
       sign_in(:user, user)
       user.ensure_authentication_token
       # Make sure some routines get created if the user hasn't logged in in a while
-      if RoutineService.get_open_workouts_start_today(user).count == 0
+      if RoutineService.get_open_workouts_start_today(user).count == 0 && !user.is_coach?
         RoutineService.new(user, 'CRON', Date.today, false).create_routines
       end
       session_service = SessionService.new(session)
       session_service.set_current_user_id(user.id)
-      render json: {success: true, token: user.authentication_token, user_id: user.id, user_name: user.user_name} and return
+      location = determine_redirect(user)
+      render json: {success: true, token: user.authentication_token, user_id: user.id, user_name: user.user_name, location: location} and return
     end
     failure
+  end
+
+  def determine_redirect(user)
+    if (user.user_name.blank? || user.sex.blank?) && (!user.is_coach?) # || user.email.blank?
+      '/more-info'
+    elsif user.is_coach?
+      '/coach'
+    elsif (user.program_type.blank?) || (user.user_schedule.blank?) ||  user.user_schedule.invalid? || user.hor_push_max.blank?
+      '/setup/goal'
+    else
+      '/workout'
+    end
   end
 end
