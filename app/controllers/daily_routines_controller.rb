@@ -83,6 +83,15 @@ class DailyRoutinesController < ApplicationController
     render json: {}, status: 201
   end
 
+  def update
+    if @daily_routine.update(daily_routine_params)
+      @daily_routine.save!
+      render action: :show, status: :ok, location: @daily_routine
+    else
+      render json: @daily_routine.errors, status: :unprocessable_entity
+    end
+  end
+
   # PATCH/PUT /daily_routines/1/close.json
   def close
     if @daily_routine.update(daily_routine_params)

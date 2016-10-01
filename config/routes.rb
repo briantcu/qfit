@@ -158,6 +158,7 @@ Qfit::Application.routes.draw do
   post '/daily_routines/:id/warmups/:warmup_id', to: 'daily_routines#add_warmup'
   post '/daily_routines/:id/plyos/:plyometric_id', to: 'daily_routines#add_plyo'
   put '/daily_routines/:id/close', to: 'daily_routines#close'
+  put '/daily_routines/:id', to: 'daily_routines#update'
   put '/daily_routines/:id/skip', to: 'daily_routines#skip'
   put '/users/:user_id/daily_routines/skip_all', to: 'daily_routines#skip_all'
   post '/daily_routines/:id/custom/:type/:name', to: 'daily_routines#add_custom'
