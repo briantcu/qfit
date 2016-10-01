@@ -1,0 +1,21 @@
+@import "../../common/common";
+
+.team {
+
+  .team-name {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .row {
+    height: 70px;
+    border-bottom: solid 1px #c9c9c9;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+
+  .first {
+    padding-left: 0px !important;
+  }
+
+}

@@ -5,6 +5,8 @@ import UserStore from 'stores/user_store';
 import CoachStore from 'stores/coach_store';
 import UserActions from 'actions/user_actions';
 import CoachActions from 'actions/coach_actions';
+import Team from 'views/coaches/team';
+import Athlete from 'views/coaches/athlete';
 
 require('pages/coaches.scss');
 
@@ -13,7 +15,7 @@ class Coaches extends React.Component {
         super(props);
         this.state = {
             user: {},
-            coach_account: {}
+            coach_account: {teams: [], individuals: [], sign_up_codes: []}
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -56,7 +58,8 @@ class Coaches extends React.Component {
                     </div>
                     <div className='row standard-text purple'>
                         Create Teams and add Athletes, and we'll handle the workouts.<br/>
-                        You have used {this.state.coach_account.used_accounts} of {this.state.coach_account.num_accts} athlete accounts. You can increase/decrease your number of accounts HERE.
+                        You have used {this.state.coach_account.used_accounts} of {this.state.coach_account.num_accts} athlete accounts. You can increase/decrease your number of
+                        accounts <a href="/account">HERE</a>.
                     </div>
                     <div className='row'>
                         <div className="container sec first-sec">
@@ -66,6 +69,15 @@ class Coaches extends React.Component {
                                 </div>
                                 <div className="col-xs-3 col-xs-offset-7 action">
                                     Create New Team
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="container">
+                                    {
+                                        this.state.coach_account.teams.map(function(e) {
+                                            return <Team team={e} key={e.id} />
+                                        }.bind(this))
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -80,6 +92,15 @@ class Coaches extends React.Component {
                                     Add a new Account
                                 </div>
                             </div>
+                            <div className="row">
+                                <div className="container">
+                                    {
+                                        this.state.coach_account.individuals.map(function(e) {
+                                            return <Athlete athlete={e} key={e.id} />
+                                        }.bind(this))
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className='row'>
@@ -87,6 +108,17 @@ class Coaches extends React.Component {
                             <div className="row head">
                                 <div className="col-xs-12 sec-header">
                                     Sign Up Codes
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="container">
+                                    {
+                                        this.state.coach_account.sign_up_codes.map(function(e) {
+                                            return <div className="row sign-up-code">
+                                                    {e}
+                                            </div>
+                                        })
+                                    }
                                 </div>
                             </div>
                         </div>

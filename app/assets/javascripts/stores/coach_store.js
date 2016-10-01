@@ -3,7 +3,7 @@ var Store = require('./store.js');
 var C = require('constants/coach_constants.js');
 
 var CoachStore = new Store({
-    account: [],
+    account: {individuals: [], teams: [], sign_up_codes: []},
 
     setPlyos: function(data){
         this.plyometrics = data;
