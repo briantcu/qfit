@@ -67,6 +67,36 @@ var CoachActions = {
                 dispatcher.dispatch(C.PROFILE_SAVED, payload);
             }
         });
+    },
+
+    viewTeam: function(id) {
+        var data = {group_id: id};
+        data = JSON.stringify(data);
+        $.ajax({
+            type: 'post',
+            url: '/view/groups.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: data,
+            success: function(response) {
+                location.href = '/workout';
+            }
+        });
+    },
+
+    viewAthlete: function(id) {
+        var data = {user_id: id};
+        data = JSON.stringify(data);
+        $.ajax({
+            type: 'post',
+            url: '/view/users.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: data,
+            success: function(response) {
+                location.href = '/workout';
+            }
+        });
     }
 
 };

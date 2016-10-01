@@ -189,7 +189,7 @@ class User < ActiveRecord::Base
   end
 
   def is_coach?
-    self.level == 5
+    self.level == 5 || self.level == 7
   end
 
   def is_super_user?

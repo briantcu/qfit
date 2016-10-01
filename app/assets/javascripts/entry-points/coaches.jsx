@@ -18,6 +18,8 @@ class Coaches extends React.Component {
             coach_account: {teams: [], individuals: [], sign_up_codes: []}
         };
         this.onChange = this.onChange.bind(this);
+        this.viewTeam = this.viewTeam.bind(this);
+        this.viewAthlete = this.viewAthlete.bind(this);
     }
 
     componentDidMount () {
@@ -40,6 +42,14 @@ class Coaches extends React.Component {
                 coach_account: coach_account.account
             }
         )
+    }
+
+    viewTeam (id) {
+        CoachActions.viewTeam(id);
+    }
+
+    viewAthlete(id) {
+        CoachActions.viewAthlete(id);
     }
 
     load() {
@@ -75,7 +85,8 @@ class Coaches extends React.Component {
                                 <div className="container">
                                     {
                                         this.state.coach_account.teams.map(function(e) {
-                                            return <Team team={e} key={e.id} teams={this.state.coach_account.teams}/>
+                                            return <Team team={e} key={e.id} teams={this.state.coach_account.teams} viewTeam={this.viewTeam}
+                                            viewAthlete={this.viewAthlete} />
                                         }.bind(this))
                                     }
                                 </div>
@@ -96,7 +107,8 @@ class Coaches extends React.Component {
                                 <div className="container">
                                     {
                                         this.state.coach_account.individuals.map(function(e) {
-                                            return <Athlete athlete={e} key={e.id} onTeam={false} teams={this.state.coach_account.teams} />
+                                            return <Athlete athlete={e} key={e.id} onTeam={false} teams={this.state.coach_account.teams}
+                                                            viewAthlete={this.viewAthlete} />
                                         }.bind(this))
                                     }
                                 </div>

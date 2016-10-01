@@ -176,5 +176,7 @@ Qfit::Application.routes.draw do
   resources :coach_accounts
   delete '/coach_accounts/:id/users/:user_id', to: 'coach_accounts#delete_user'
   post '/coach_accounts/:id/send_invite', to: 'coach_accounts#send_invite'
+  post '/view/users', to: 'coach_accounts#view_user'
+  post '/view/groups', to: 'coach_accounts#view_team'
 
 end

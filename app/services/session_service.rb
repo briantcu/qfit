@@ -30,10 +30,6 @@ class SessionService
     session[:onboarding] = onboarding
   end
 
-  def set_current_team_id(id)
-    session[:current_team_id] = id
-  end
-
   def set_viewing(viewing)
     session[:viewing] = viewing
   end

@@ -27,7 +27,7 @@ class Athlete extends React.Component {
                 </select>
                 <If condition={!this.props.onTeam}>
                     <span className="actions">
-                        <span className="norm-link">View Workout</span>
+                        <span className="norm-link" onClick={() => this.props.viewAthlete(this.props.athlete.id)}>View Workout</span>
                         <span className="separator">|</span>
                         <span className="norm-link">Delete Individual</span>
                     </span>
