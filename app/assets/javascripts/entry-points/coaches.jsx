@@ -75,7 +75,7 @@ class Coaches extends React.Component {
                                 <div className="container">
                                     {
                                         this.state.coach_account.teams.map(function(e) {
-                                            return <Team team={e} key={e.id} />
+                                            return <Team team={e} key={e.id} teams={this.state.coach_account.teams}/>
                                         }.bind(this))
                                     }
                                 </div>
@@ -96,7 +96,7 @@ class Coaches extends React.Component {
                                 <div className="container">
                                     {
                                         this.state.coach_account.individuals.map(function(e) {
-                                            return <Athlete athlete={e} key={e.id} />
+                                            return <Athlete athlete={e} key={e.id} onTeam={false} teams={this.state.coach_account.teams} />
                                         }.bind(this))
                                     }
                                 </div>

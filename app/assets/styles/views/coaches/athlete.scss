@@ -2,4 +2,19 @@
 
 .athlete {
 
+  height: 70px;
+  border-bottom: solid 1px #c9c9c9;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  padding-top: 18px !important;
+
+  select {
+    width: 204px;
+    display: inline-block;
+  }
+
+  .first {
+    padding-left: 0px !important;
+  }
+
 }
