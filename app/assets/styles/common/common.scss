@@ -66,6 +66,7 @@ h1 {
 .subtle-link {
   color: $light-gray;
   text-decoration: underline;
+  cursor: pointer;
   &:hover {
     color: $purple;
   }
@@ -78,6 +79,16 @@ h1 {
 .bold-link {
   color: $dark-purple;
   text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    color: $purple;
+  }
+}
+
+.norm-link {
+  color: $purple;
+  text-decoration: underline;
+  cursor: pointer;
   &:hover {
     color: $purple;
   }

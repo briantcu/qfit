@@ -11,10 +11,15 @@
   select {
     width: 204px;
     display: inline-block;
+    margin-left: 20px;
   }
 
   .first {
     padding-left: 0px !important;
+  }
+
+  .last {
+    padding-right: 0px !important;
   }
 
 }

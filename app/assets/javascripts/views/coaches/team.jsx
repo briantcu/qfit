@@ -14,12 +14,12 @@ class Team extends React.Component {
         return <div className="team">
             <div className="row">
                 <div className="col-xs-4 first team-name">{this.props.team.name}</div>
-                <div className="col-xs-8 text-right">
-                    <span>Let group see each other's workouts</span>
-                    <span>|</span>
-                    <span>View Workout</span>
-                    <span>|</span>
-                    <span>Delete Group</span>
+                <div className="col-xs-8 text-right last">
+                    <span className="actions">
+                        <span className="norm-link">View Workout</span>
+                        <span className="separator">|</span>
+                        <span className="norm-link">Delete Group</span>
+                    </span>
                 </div>
             </div>
             {

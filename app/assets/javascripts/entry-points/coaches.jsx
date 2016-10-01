@@ -92,7 +92,7 @@ class Coaches extends React.Component {
                                     Add a new Account
                                 </div>
                             </div>
-                            <div className="row">
+                            <div className="row main">
                                 <div className="container">
                                     {
                                         this.state.coach_account.individuals.map(function(e) {
@@ -110,7 +110,7 @@ class Coaches extends React.Component {
                                     Sign Up Codes
                                 </div>
                             </div>
-                            <div className="row">
+                            <div className="row main">
                                 <div className="container">
                                     {
                                         this.state.coach_account.sign_up_codes.map(function(e) {

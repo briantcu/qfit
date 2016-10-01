@@ -31,6 +31,8 @@ class Group < ActiveRecord::Base
   has_one :group_schedule, dependent: :destroy
   has_many :group_routines
 
+  scope :not_template, -> {where(is_template: false)}
+
   def get_schedule
     group_schedule
   end
