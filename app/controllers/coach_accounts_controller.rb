@@ -13,8 +13,8 @@
 #
 
 class CoachAccountsController < ApplicationController
-  before_filter :verify_owns_account, except: [:view_team, :view_athlete]
-  before_filter :verify_owns_user, only: [:delete_user, :view_athlete]
+  before_filter :verify_owns_account, except: [:view_team, :view_user]
+  before_filter :verify_owns_user, only: [:delete_user, :view_user]
   before_filter :verify_owns_team, only: [:view_team]
 
   def show
@@ -46,7 +46,7 @@ class CoachAccountsController < ApplicationController
     render status: 200, json: {}
   end
 
-  def view_athlete
+  def view_user
     session_service = SessionService.new(session)
     session_service.set_current_user_id(params[:user_id])
     session_service.set_viewing('user')
