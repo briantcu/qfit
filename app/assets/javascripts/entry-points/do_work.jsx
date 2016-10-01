@@ -74,6 +74,9 @@ class App extends React.Component {
         this.inviteSent = this.inviteSent.bind(this);
         this.teamSaved = this.teamSaved.bind(this);
         this.showSuccess = this.showSuccess.bind(this);
+        this.evalBanner = this.evalBanner.bind(this);
+        this.viewingTeamBanner = this.viewingTeamBanner.bind(this);
+        this.viewingUserBanner = this.viewingUserBanner.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -100,6 +103,17 @@ class App extends React.Component {
     }
 
     componentDidMount () {
+        var scrollFn = function() {
+            var bannerRow = $(".banner-row");
+            if ($(window).scrollTop() > 100) {
+                bannerRow.addClass("fixed");
+            } else {
+                bannerRow.removeClass("fixed");
+            }
+        };
+        var debounced = _.debounce(scrollFn, 5);
+
+        window.addEventListener('scroll', debounced);
         RoutineStore.addChangeListener(this.onChange.bind(this));
         UserStore.addChangeListener(this.onChange);
         TeamStore.addChangeListener(this.onChange);
@@ -136,7 +150,7 @@ class App extends React.Component {
 
     showSuccess() {
         //@TODO Provide more details about how these workouts will continue to get created. Send to deep dive page
-        return <div>
+        return <div className="col-xs-12">
             Invite sent! You'll be notified once they sign up, and they'll show up in the members section on the <a href="/coach">Coach page</a>.
             In the meantime, you can modify this workout, or head over
             to <a href="/coach">Coach</a> to send more invites or create some teams.
@@ -148,7 +162,7 @@ class App extends React.Component {
     }
 
     showTeamSuccess() {
-        return <div>
+        return <div className="col-xs-12">
             Team created!
             You can modify this workout, or head over
             to <a href="/coach">Coach</a> to invite people to join your team on Quadfit. They'll get a version of this workout
@@ -214,6 +228,50 @@ class App extends React.Component {
                 finishOnboarding: this.finishOnboarding
             }
         );
+        this.evalBanner();
+    }
+
+    evalBanner() {
+        if (!this.state.showBanner) {
+            if (this.shouldShowTeamBanner()) {
+                this.setState({showBanner: true, bannerContent: this.viewingTeamBanner});
+            } else if (this.shouldShowUserBanner()) {
+                this.setState({showBanner: true, bannerContent: this.viewingUserBanner});
+            }
+        }
+    }
+
+    shouldShowTeamBanner() {
+        return (gon.is_coach && gon.viewing == 'team' && this.state.team && this.state.team.name && !gon.setup_context);
+    }
+
+    shouldShowUserBanner() {
+        if (gon.is_coach) {
+            return (gon.viewing == 'user' && this.state.user && this.state.user.first_name);
+        } else {
+            return ((gon.user_id != gon.current_user_id) && this.state.user && this.state.user.first_name);
+        }
+    }
+
+    viewingUserBanner() {
+        if (gon.is_coach) {
+            return <div>
+                <span className="col-xs-4 col-xs-offset-4 text-center bold">Viewing workout for {this.state.user.first_name} {this.state.user.last_name}</span>
+                <span className="col-xs-4 text-right"><a className="link" href="/coach">Back to Coach page</a></span>
+            </div>;
+        } else {
+            return <div>
+                <span className="col-xs-4 col-xs-offset-4 text-center bold">Viewing workout for {this.state.user.user_name}</span>
+                <span className="col-xs-4 text-right"><a className="link" href="/coach">View your workout</a></span>
+            </div>;
+        }
+    }
+
+    viewingTeamBanner() {
+        return <div>
+            <span className="col-xs-4 col-xs-offset-4 text-center bold">Viewing workout for {this.state.team.name}</span>
+            <span className="col-xs-4 text-right"><a className="link" href="/coach">Back to Coach page</a></span>
+        </div>;
     }
 
     render () {
@@ -225,6 +283,15 @@ class App extends React.Component {
 
         return <div>
             <Header user={this.state.user} showWorkoutNav={true} active={active} />
+            <If condition={this.state.showBanner} >
+                <div className="row banner-row">
+                    <div className="container">
+                        <div className="row">
+                            {this.state.bannerContent()}
+                        </div>
+                    </div>
+                </div>
+            </If>
             {childrenWithProps}
             <Footer />
         </div>
@@ -304,15 +371,6 @@ class DoWork extends React.Component {
 
     render () {
         return <div className="do-work">
-            <If condition={this.props.showBanner} >
-                <div className="row banner-row">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-xs-12">{this.props.bannerContent()}</div>
-                        </div>
-                    </div>
-                </div>
-            </If>
             <Calendar {...this.props} />
 
             <div className="row subnav">
