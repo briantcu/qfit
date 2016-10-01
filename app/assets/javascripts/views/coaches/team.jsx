@@ -24,7 +24,8 @@ class Team extends React.Component {
             </div>
             {
                 this.props.team.players.map(function(e) {
-                    return <Athlete athlete={e} key={e.id} onTeam={true} teams={this.props.teams} viewAthlete={this.props.viewAthlete} />
+                    return <Athlete athlete={e} key={e.id} onTeam={true} teams={this.props.teams} viewAthlete={this.props.viewAthlete}
+                    team_id={this.props.team.id} />
                 }.bind(this))
             }
         </div>;

@@ -13,6 +13,7 @@ json.teams @coach_account.coach_groups.not_template do |group|
     json.first_name user.first_name
     json.last_name user.last_name
     json.flag_text user.flag_text_for_coach
+    json.program_type_id user.program_type_id
   end
 end
 json.individuals @coach_account.players.without_group do |player|
@@ -20,4 +21,5 @@ json.individuals @coach_account.players.without_group do |player|
   json.first_name player.first_name
   json.last_name player.last_name
   json.flag_text player.flag_text_for_coach
+  json.program_type_id player.program_type_id
 end
