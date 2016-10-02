@@ -38,6 +38,10 @@ class AddAthleteModal extends React.Component {
         this.setState({step: newState});
     }
 
+    choseIndividual() {
+        CoachActions.createTempTeam(false);
+    }
+
     goalChanged (elem) {
         var check = this.refs[this.goalMap[elem.target.id]];
         if (check.getValue()) {
@@ -63,7 +67,7 @@ class AddAthleteModal extends React.Component {
             <If condition={this.props.showTeamOption}>
                 <Button buttonText="Add to Team" onClick={() => this.changeState('chose-team')} /> OR
             </If>
-            <Button buttonText={this.props.showTeamOption ? 'Create Individual Plan' : 'Create Workout Plan'} onClick={this.startTeam} />
+            <Button buttonText={this.props.showTeamOption ? 'Create Individual Plan' : 'Create Workout Plan'} onClick={() => this.choseIndividual()} />
         </div>
     }
 
