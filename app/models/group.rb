@@ -85,6 +85,14 @@ class Group < ActiveRecord::Base
     user_schedule.phase_three_start = group_schedule.phase_three_start
     user_schedule.phase_four_start = group_schedule.phase_four_start
     user_schedule.save!
+    group_schedule.group_schedule_days.each do |day|
+      user_day = user_schedule.weekly_schedule_days.detect { |ud| ud.day == day.day}
+      user_day.weights = day.weights
+      user_day.plyometrics = day.plyometrics
+      user_day.stretching = day.stretching
+      user_day.sprinting = day.sprinting
+      user_day.save!
+    end
   end
 
   def update_program_info

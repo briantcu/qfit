@@ -169,8 +169,7 @@ Qfit::Application.routes.draw do
   resources :custom_exercises
 
   resources :groups
-  post '/groups/:id/users', to: 'groups#new_user'
-  delete '/groups/:id/users/:user_id', to: 'groups#remove_user'
+  post '/groups/:id', to: 'groups#change_group'
   get '/groups/:id/calendar/year/:year_id/month/:month_id', to: 'groups#get_calendar'
   get '/groups/:group_id/group_routines/year/:year/month/:month/day/:day', to: 'group_routines#routine_by_date'
 

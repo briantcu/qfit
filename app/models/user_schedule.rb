@@ -30,7 +30,7 @@ class UserSchedule < ActiveRecord::Base
   belongs_to :program, :foreign_key => :program_id
   accepts_nested_attributes_for :weekly_schedule_days, allow_destroy: true
   validates_presence_of :user_id, :program_id, :program_type_id, :phase_one_start, :phase_two_start, :phase_three_start,
-                        :phase_four_start, :sign_up_date
+                        :phase_four_start
 
   def invalid?
     program_id.blank? || program_type_id.blank? || phase_one_start.blank?

@@ -97,6 +97,25 @@ var CoachActions = {
                 location.href = '/workout';
             }
         });
+    },
+
+    changeTeam: function(newTeam, athleteId) {
+        var data = {user_id: athleteId};
+        data = JSON.stringify(data);
+        $.ajax({
+            type: 'post',
+            url: '/groups/'+ newTeam + '.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: data,
+            success: function(response) {
+                this.getAccount(gon.coach_account_id);
+            }.bind(this)
+        });
+    },
+
+    changeProgram: function(programId, athleteId) {
+
     }
 
 };

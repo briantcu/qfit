@@ -20,9 +20,9 @@
 
 class GroupsController < ApplicationController
   before_filter :verify_logged_in
-  before_action :set_group, except: [:create]
+  before_action :set_group, except: [:create, :change_group]
   before_filter :verify_coach, only: [:create]
-  before_filter :verify_owns_group, except: [:create]
+  before_filter :verify_owns_group, except: [:create, :change_group]
 
   # GET /groups/1.json
   def show
@@ -81,18 +81,24 @@ class GroupsController < ApplicationController
     end
   end
 
-  def new_user
+  def change_group
     user = User.find(params[:user_id])
     return unauthorized unless current_user.is_coach_of_user?(user.id)
-    @group.add_member(user)
-    RoutineService.group_status_changed(user)
-  end
 
-  def remove_user
-    user = User.find(params[:user_id])
-    return unauthorized unless current_user.is_coach_of_user?(user.id)
-    GroupJoin.find_by(group_id: @group.id, user_id: user.id).destroy!
+    # Remove from any group that they're a part of
+    if user.group.present?
+      GroupJoin.find_by(user_id: user.id).destroy!
+    end
+
+    # If id passed in is 0, then this is simply removal from a group
+    if params[:id] != 0 && params[:id] != '0'
+      set_group
+      return unauthorized unless current_user.owns_group?(@group.id)
+      @group.add_member(user)
+    end
+
     RoutineService.group_status_changed(user)
+    render json: {}, status: 200
   end
 
   private

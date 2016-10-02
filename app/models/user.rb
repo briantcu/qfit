@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
 
   scope :sub_users, -> {where(sub_user: true)}
   scope :regular_users, -> {where(sub_user: false, administrator: false)}
-  scope :without_group, -> {where(:group.empty?)}
+  scope :without_group ,-> {}
   scope :logged_in_recently, -> {where('last_sign_in_at > ?', Time.now - 3.weeks)}
   scope :males, -> {where(sex: 'male')}
   scope :females, -> {where(sex: 'female')}
@@ -134,6 +134,9 @@ class User < ActiveRecord::Base
                                             .where('weight_sets.perf_reps > 0')
                                             .where('weight_sets.created_at > ?', date)
                                             .order('value DESC').limit(5)}
+  def self.without_group
+    includes(:group_join).where(group_joins: { id: nil })
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|

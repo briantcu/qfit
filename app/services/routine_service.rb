@@ -46,11 +46,11 @@ class RoutineService
   end
 
   def self.group_status_changed(user)
-    delete_old_workouts(entity)
+    delete_old_workouts(user)
     if user.group.present?
       # sync with group workouts
-      group.copy_schedule_to_user(user)
-      group.copy_workouts_to_user(user)
+      user.group.copy_schedule_to_user(user)
+      user.group.copy_workouts_to_user(user)
     else
       today = Date.today
       routine_service = RoutineService.new(user, 'REMOVED', today, true)
