@@ -65,9 +65,9 @@ class GroupsController < ApplicationController
 
   # DELETE /groups/1.json
   def destroy
-    members = @group.members
+    #members = @group.members
     @group.destroy!
-    members.each { |member| RoutineService.group_status_changed(member)}
+    #members.each { |member| RoutineService.group_status_changed(member)} not needed?
     head :no_content
   end
 

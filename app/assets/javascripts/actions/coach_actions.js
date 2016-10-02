@@ -112,6 +112,30 @@ var CoachActions = {
                 this.getAccount(gon.coach_account_id);
             }.bind(this)
         });
+    },
+
+    deleteTeam: function(teamId) {
+        $.ajax({
+            type: 'delete',
+            url: '/groups/'+ teamId + '.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(response) {
+                this.getAccount(gon.coach_account_id);
+            }.bind(this)
+        });
+    },
+
+    deleteUser: function(userId) {
+        $.ajax({
+            type: 'delete',
+            url: '/coach_accounts/' + gon.coach_account_id + '/users/'+userId +'.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                dispatcher.dispatch(C.ACCOUNT_LOADED, data)
+            }
+        });
     }
 
 };

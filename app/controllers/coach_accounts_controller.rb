@@ -22,9 +22,12 @@ class CoachAccountsController < ApplicationController
 
   def delete_user
     user = User.find(params[:user_id])
+    if user.group.present?
+      GroupJoin.find_by(user_id: user.id).destroy!
+    end
     EmailService.perform_async(:coach_deleted_you, {email: user.email})
     user.update_attributes!(level: 2, paid_tier: 1, master_user_id: nil)
-    render status: 201, json: {}
+    render :show
   end
 
   def send_invite

@@ -9,10 +9,18 @@ class Athlete extends React.Component {
     constructor(props) {
         super(props);
         this.changeTeam = this.changeTeam.bind(this);
+        this.delete = this.delete.bind(this);
     }
 
     changeTeam(e) {
         CoachActions.changeTeam(e.target.value, this.props.athlete.id);
+    }
+
+    delete() {
+        var r = confirm("Are you sure? This can't be undone.");
+        if (r == true) {
+            CoachActions.deleteUser(this.props.athlete.id);
+        }
     }
 
     render () {
@@ -28,9 +36,9 @@ class Athlete extends React.Component {
                     }
                 </select>
                 <span className="actions">
-                    <span className="norm-link" onClick={() => this.props.viewAthlete(this.props.athlete.id)}>View Workout</span>
+                    <span className="norm-link" onClick={() => this.props.viewAthlete(this.props.athlete.id)}>View Workout/Progress</span>
                     <span className="separator">|</span>
-                    <span className="norm-link">Delete Individual</span>
+                    <span className="norm-link" onClick={this.delete}>Delete Individual</span>
                 </span>
             </div>
         </div>;
