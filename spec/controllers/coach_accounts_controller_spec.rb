@@ -31,7 +31,7 @@ RSpec.describe CoachAccountsController, type: :controller do
       expect(@coach.players.count).to eq(1)
       expect(EmailService).to receive(:perform_async).with(:coach_deleted_you, {email: player.email})
       delete :delete_user, id: @coach_account.id, user_id: player.id, format: :json
-      expect(response.status).to eq(201)
+      expect(response.status).to eq(200)
       expect(@coach.players.count).to eq(0)
     end
 
