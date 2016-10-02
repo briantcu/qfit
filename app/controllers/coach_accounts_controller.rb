@@ -34,11 +34,12 @@ class CoachAccountsController < ApplicationController
     send_to = params[:send_to]
     sign_up_type = params[:sign_up_type]
     template_id = params[:template_id]
+    program_type_id = params[:program_type_id]
     session_service = SessionService.new(session)
     session_service.set_setup_context(nil)
     session_service.set_onboarding(false)
     render(status: 401, json: {}) unless (send_to.present? && sign_up_type.present? && template_id.present?)
-    render json: CoachInviteService.instance.send_invite(send_to, @coach_account, sign_up_type, template_id)
+    render json: CoachInviteService.instance.send_invite(send_to, @coach_account, sign_up_type, template_id, program_type_id)
   end
 
   def view_team

@@ -34,8 +34,8 @@ var CoachActions = {
         });
     },
 
-    sendInvite: function(send_to, group_id, sign_up_type, callback) {
-        var data = {send_to: send_to, sign_up_type: sign_up_type, template_id: group_id};
+    sendInvite: function(send_to, group_id, sign_up_type, callback, program_type_id) {
+        var data = {send_to: send_to, sign_up_type: sign_up_type, template_id: group_id, program_type_id: program_type_id};
         data = JSON.stringify(data);
         $.ajax({
             type: 'post',

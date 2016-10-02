@@ -7,6 +7,9 @@ import UserActions from 'actions/user_actions';
 import CoachActions from 'actions/coach_actions';
 import Team from 'views/coaches/team';
 import Athlete from 'views/coaches/athlete';
+import { Modal } from 'react-bootstrap';
+import Button from 'views/common/button';
+import AddAthleteModal from 'views/coaches/add_athlete_modal';
 
 require('pages/coaches.scss');
 
@@ -15,11 +18,18 @@ class Coaches extends React.Component {
         super(props);
         this.state = {
             user: {},
-            coach_account: {teams: [], individuals: [], sign_up_codes: []}
+            coach_account: {teams: [], individuals: [], sign_up_codes: []},
+            showTeamModal: false,
+            showAddUserModal: false
         };
         this.onChange = this.onChange.bind(this);
         this.viewTeam = this.viewTeam.bind(this);
         this.viewAthlete = this.viewAthlete.bind(this);
+        this.createTeam = this.createTeam.bind(this);
+        this.cancelTeamCreation = this.cancelTeamCreation.bind(this);
+        this.startTeam = this.startTeam.bind(this);
+        this.addUser = this.addUser.bind(this);
+        this.cancelAddUser = this.cancelAddUser.bind(this);
     }
 
     componentDidMount () {
@@ -44,8 +54,28 @@ class Coaches extends React.Component {
         )
     }
 
+    createTeam() {
+        this.setState({showTeamModal: true});
+    }
+
+    cancelTeamCreation() {
+        this.setState({showTeamModal: false});
+    }
+
+    startTeam() {
+        CoachActions.createTempTeam(true);
+    }
+
     viewTeam (id) {
         CoachActions.viewTeam(id);
+    }
+
+    addUser() {
+        this.setState({showAddUserModal: true});
+    }
+
+    cancelAddUser() {
+        this.setState({showAddUserModal: false});
     }
 
     viewAthlete(id) {
@@ -78,7 +108,7 @@ class Coaches extends React.Component {
                                     Teams
                                 </div>
                                 <div className="col-xs-3 col-xs-offset-7 action">
-                                    Create New Team
+                                    <span className="hover" onClick={this.createTeam}>Add a New Team</span>
                                 </div>
                             </div>
                             <div className="row">
@@ -100,7 +130,7 @@ class Coaches extends React.Component {
                                     Athletes
                                 </div>
                                 <div className="col-xs-3 col-xs-offset-7 action">
-                                    Add a new Account
+                                    <span className="hover" onClick={this.addUser}>Add a New Athlete Account</span>
                                 </div>
                             </div>
                             <div className="row main">
@@ -137,6 +167,21 @@ class Coaches extends React.Component {
                     </div>
                 </div>
             </div>
+            <Modal show={this.state.showTeamModal} >
+                <Modal.Header closeButton onHide={this.cancelTeamCreation}>
+                    <Modal.Title>Let's get started!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Before you can add a new team, you'll have to create a workout for that team. After we guide you
+                    through that easy process, you'll be able to give the team a name, and then invite people to join the team.
+                    Once they join, they'll automatically get the team's workout.
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button buttonText="Get Started" onClick={this.startTeam} />
+                </Modal.Footer>
+            </Modal>
+            <AddAthleteModal show={this.state.showAddUserModal} showTeamOption={this.state.coach_account.teams.length > 0}
+                cancel={this.cancelAddUser}  coachAccount={this.state.coach_account} />
         </div>;
     }
 }
