@@ -13,7 +13,7 @@
 #
 
 class CoachAccountsController < ApplicationController
-  before_filter :verify_owns_account, except: [:view_team, :view_user]
+  before_filter :verify_owns_account, except: [:view_team, :view_user, :delete_code]
   before_filter :verify_owns_user, only: [:delete_user, :view_user]
   before_filter :verify_owns_team, only: [:view_team]
 
@@ -40,6 +40,14 @@ class CoachAccountsController < ApplicationController
     session_service.set_onboarding(false)
     render(status: 401, json: {}) unless (send_to.present? && sign_up_type.present? && template_id.present?)
     render json: CoachInviteService.instance.send_invite(send_to, @coach_account, sign_up_type, template_id, program_type_id)
+  end
+
+  def delete_code
+    code = SignUpCode.find(params[:id])
+    render(status: 401, json: {}) unless (current_user.present? && code.user_id == current_user.id)
+    code.destroy!
+    @coach_account = CoachAccount.find_by(user_id: current_user.id)
+    render :show
   end
 
   def view_team

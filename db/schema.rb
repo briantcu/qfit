@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002212533) do
+ActiveRecord::Schema.define(version: 20161002220354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -411,6 +411,7 @@ ActiveRecord::Schema.define(version: 20161002212533) do
     t.boolean  "used",                        default: false
     t.integer  "group_id"
     t.integer  "program_type_id"
+    t.datetime "redeemed_at"
   end
 
   create_table "sprint_detail_sequences", force: :cascade do |t|

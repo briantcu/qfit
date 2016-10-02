@@ -50,8 +50,6 @@ Qfit::Application.routes.draw do
     post 'forgot_password', to: 'users/passwords#forgot'
   end
 
-  resources :weekly_schedule_days
-
   resources :warmups
 
   resources :user_schedules
@@ -67,35 +65,13 @@ Qfit::Application.routes.draw do
   put '/users/:id/change_email', to: 'users#change_email'
   get '/username_exists/:username', to: 'users#username_exists'
 
-  resources :tips
-
-  resources :sprint_detail_sequences
-
-  resources :sprint_details
-
   resources :sprints
-
-  resources :weight_sets
-
-  resources :sent_codes
-
-  resources :sign_up_codes
-
-  resources :program_phase_lookups
-
-  resources :program_day_sequences
-
-  resources :program_days
-
-  resources :programs
 
   resources :pod_invites
   put '/pod_invites/:id/accept', to: 'pod_invites#accept'
   put '/pod_invites/:id/deny', to: 'pod_invites#deny'
 
   resources :plyometrics
-
-  resources :phases
 
   resources :performed_warm_ups
 
@@ -105,18 +81,12 @@ Qfit::Application.routes.draw do
 
   resources :performed_exercises
 
-  resources :one_rep_maxes
-
   resources :messages
   get '/messages/user_id/:user_id', to: 'messages#conversation'
 
   resources :likes
 
   resources :leaders
-
-  resources :laps
-
-  resources :group_schedule_days
 
   resources :group_schedules
 
@@ -137,8 +107,6 @@ Qfit::Application.routes.draw do
 
   resources :group_performed_exercises
 
-  resources :group_joins
-
   resources :group_custom_exercises
 
   resources :friends
@@ -148,8 +116,6 @@ Qfit::Application.routes.draw do
   resources :exercise_types
 
   resources :exercises
-
-  resources :day_exercises
 
   resources :daily_routines
   get '/users/:user_id/daily_routines/year/:year/month/:month/day/:day', to: 'daily_routines#routine_by_date'
@@ -178,5 +144,6 @@ Qfit::Application.routes.draw do
   post '/coach_accounts/:id/send_invite', to: 'coach_accounts#send_invite'
   post '/view/users', to: 'coach_accounts#view_user'
   post '/view/groups', to: 'coach_accounts#view_team'
+  delete '/sign_up_codes/:id', to: 'coach_accounts#delete_code'
 
 end

@@ -26,56 +26,11 @@ var util = {
             }
         }
     },
-    getParameterByName: function(name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
-            results = regex.exec(location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    },
     isString: function(obj){
         return typeof obj === 'string';
     },
     empty: function(str){
         return !(str && util.isString(str) && str.length > 0);
-    },
-    notEmpty: function(str){
-        return !util.empty(str);
-    },
-    isXss: function(str){
-        return /j\s*?a\s*?v\s*?a\s*?s\s*?c\s*?r\s*?i\s*?p\s*?t\s*?\:|<script/ig.test(str);
-    },
-    setCookie: function(name, value, days) {
-        var expires;
-        if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = '; expires=' + date.toGMTString();
-        }
-        else {
-            expires = '';
-        }
-        document.cookie = name + '=' + value + expires + '; path=/';
-    },
-    getCookie: function(c_name) {
-        if (document.cookie.length > 0) {
-            var c_start = document.cookie.indexOf(c_name + '=');
-            if (c_start != -1) {
-                c_start = c_start + c_name.length + 1;
-                var c_end = document.cookie.indexOf(';', c_start);
-                if (c_end == -1) {
-                    c_end = document.cookie.length;
-                }
-                return window.unescape(document.cookie.substring(c_start, c_end));
-            }
-        }
-        return '';
-    },
-    // TODO: add browser support check
-    historyPushState: function(url, state){
-        window.history.pushState(state, document.title, url);
-    },
-    historyReplaceState: function(url, state){
-        window.history.replaceState(state, document.title, url);
     },
 
     getPasswordStrength: function (pwd) {
@@ -92,6 +47,11 @@ var util = {
         if (pwd.length > 12) score++;
 
         return score;
+    },
+
+    formatDate: function(fullDateString) {
+        var date = new Date(fullDateString);
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear().toString().substr(2,2);
     }
 };
 

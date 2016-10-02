@@ -10,6 +10,7 @@ import Athlete from 'views/coaches/athlete';
 import { Modal } from 'react-bootstrap';
 import Button from 'views/common/button';
 import AddAthleteModal from 'views/coaches/add_athlete_modal';
+import Util from 'helpers/util';
 
 require('pages/coaches.scss');
 
@@ -30,6 +31,7 @@ class Coaches extends React.Component {
         this.startTeam = this.startTeam.bind(this);
         this.addUser = this.addUser.bind(this);
         this.cancelAddUser = this.cancelAddUser.bind(this);
+        this.deleteCode = this.deleteCode.bind(this);
     }
 
     componentDidMount () {
@@ -85,6 +87,13 @@ class Coaches extends React.Component {
     load() {
         UserActions.getUser(gon.current_user_id);
         CoachActions.getAccount(gon.coach_account_id);
+    }
+
+    deleteCode(codeId) {
+        var r = confirm("Are you sure? The athlete won't be able to sign up with this code.");
+        if (r == true) {
+            CoachActions.deleteCode(codeId);
+        }
     }
 
     render () {
@@ -157,9 +166,19 @@ class Coaches extends React.Component {
                                     {
                                         this.state.coach_account.sign_up_codes.map(function(e) {
                                             return <div className="row sign-up-code">
-                                                    {e}
+                                                    <div className="col-xs-4">
+                                                        Sent to <span className="purple">{e.sent_to}</span> on {Util.formatDate(e.created_at)}
+                                                    </div>
+                                                    <div className="col-xs-4">
+                                                        Status: {e.used ? 'Used: ' + Util.formatDate(e.redeemed_at) : 'Unused'}
+                                                    </div>
+                                                    <If condition={!e.used}>
+                                                        <div className="col-xs-4 text-right">
+                                                            <span onClick={() => this.deleteCode(e.id)} className="norm-link">Delete Code</span>
+                                                        </div>
+                                                    </If>
                                             </div>
-                                        })
+                                        }.bind(this))
                                     }
                                 </div>
                             </div>

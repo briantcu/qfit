@@ -136,7 +136,21 @@ var CoachActions = {
                 dispatcher.dispatch(C.ACCOUNT_LOADED, data)
             }
         });
+    },
+
+    deleteCode: function(codeId) {
+        $.ajax({
+            type: 'delete',
+            url: '/sign_up_codes/' +codeId +'.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                dispatcher.dispatch(C.ACCOUNT_LOADED, data)
+            }
+        });
     }
+
+
 
 };
 

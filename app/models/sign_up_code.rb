@@ -2,17 +2,19 @@
 #
 # Table name: sign_up_codes
 #
-#  id           :integer          not null, primary key
-#  code         :string(255)
-#  user_id      :integer
-#  email        :string(255)
-#  created_at   :datetime
-#  updated_at   :datetime
-#  sign_up_type :string
-#  sent_to      :string
-#  sent_to_type :string
-#  used         :boolean          default(FALSE)
-#  group_id     :integer
+#  id              :integer          not null, primary key
+#  code            :string(255)
+#  user_id         :integer
+#  email           :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  sign_up_type    :string
+#  sent_to         :string
+#  sent_to_type    :string
+#  used            :boolean          default(FALSE)
+#  group_id        :integer
+#  program_type_id :integer
+#  redeemed_at     :datetime
 #
 
 # sign_up_type: 'member', 'team'
