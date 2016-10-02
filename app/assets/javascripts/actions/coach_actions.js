@@ -112,10 +112,6 @@ var CoachActions = {
                 this.getAccount(gon.coach_account_id);
             }.bind(this)
         });
-    },
-
-    changeProgram: function(programId, athleteId) {
-
     }
 
 };

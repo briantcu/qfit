@@ -10,14 +10,11 @@ class Athlete extends React.Component {
         super(props);
         this.changeTeam = this.changeTeam.bind(this);
         this.changeProgram = this.changeProgram.bind(this);
+        this.changesSaved = this.changesSaved.bind(this);
     }
 
     changeTeam(e) {
         CoachActions.changeTeam(e.target.value, this.props.athlete.id);
-    }
-
-    changeProgram(e) {
-        CoachActions.changeProgram(e.target.value, this.props.athlete.id);
     }
 
     render () {
@@ -32,16 +29,11 @@ class Athlete extends React.Component {
                         }.bind(this))
                     }
                 </select>
-                <select defaultValue={this.props.athlete.program_type_id} className="form-control" onChange={this.changeProgram}>
-                    <option value="1">PowerLean</option>
-                    <option value="2">PowerMass</option>
-                    <option value="3">PowerRip</option>
-                </select>
-                    <span className="actions">
-                        <span className="norm-link" onClick={() => this.props.viewAthlete(this.props.athlete.id)}>View Workout</span>
-                        <span className="separator">|</span>
-                        <span className="norm-link">Delete Individual</span>
-                    </span>
+                <span className="actions">
+                    <span className="norm-link" onClick={() => this.props.viewAthlete(this.props.athlete.id)}>View Workout</span>
+                    <span className="separator">|</span>
+                    <span className="norm-link">Delete Individual</span>
+                </span>
             </div>
         </div>;
     }
