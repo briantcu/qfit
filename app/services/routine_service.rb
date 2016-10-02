@@ -242,7 +242,7 @@ class RoutineService
     end
 
     workouts.each do |workout|
-      workout.destroy
+      workout.destroy!
     end
   end
 

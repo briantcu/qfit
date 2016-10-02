@@ -97,7 +97,7 @@ class GroupsController < ApplicationController
       @group.add_member(user)
     end
 
-    RoutineService.group_status_changed(user)
+    RoutineService.group_status_changed(user.reload)
     render json: {}, status: 200
   end
 

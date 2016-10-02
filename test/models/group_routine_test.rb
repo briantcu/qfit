@@ -10,11 +10,11 @@
 #  sp_day_id      :integer
 #  pl_day_id      :integer
 #  wu_day_id      :integer
-#  modified       :boolean
-#  pl_modified    :boolean
-#  wt_modified    :boolean
-#  wu_modified    :boolean
-#  sp_modified    :boolean
+#  modified       :boolean          default(FALSE)
+#  pl_modified    :boolean          default(FALSE)
+#  wt_modified    :boolean          default(FALSE)
+#  wu_modified    :boolean          default(FALSE)
+#  sp_modified    :boolean          default(FALSE)
 #  changes_saved  :boolean          default(FALSE)
 #  created_at     :datetime
 #  updated_at     :datetime

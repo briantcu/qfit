@@ -9,8 +9,6 @@ class Athlete extends React.Component {
     constructor(props) {
         super(props);
         this.changeTeam = this.changeTeam.bind(this);
-        this.changeProgram = this.changeProgram.bind(this);
-        this.changesSaved = this.changesSaved.bind(this);
     }
 
     changeTeam(e) {
