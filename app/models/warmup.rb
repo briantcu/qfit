@@ -9,6 +9,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  ex_type    :integer
+#  thumbnail  :string
 #
 
 class Warmup < ActiveRecord::Base

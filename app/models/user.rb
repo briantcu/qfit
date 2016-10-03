@@ -104,7 +104,6 @@ class User < ActiveRecord::Base
   has_many :user_goals
   has_many :user_points, class_name: UserPoints
   has_many :players, class_name: User, foreign_key: :master_user_id
-  has_many :inbox, class_name: Message, foreign_key: :to_id
   has_many :outbox, class_name: Message, foreign_key: :poster_id
 
   has_one :group_join, dependent: :destroy
@@ -168,6 +167,10 @@ class User < ActiveRecord::Base
       end
       user.image = auth.info.image
     end
+  end
+
+  def inbox
+    Message.where(poster_id: friends.map(&:id)).where(message_type: [1,2,3]).order(created_at: :desc).limit(20)
   end
 
   def check_user_name

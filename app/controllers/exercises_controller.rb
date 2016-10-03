@@ -16,6 +16,7 @@
 #  updated_at       :datetime
 #  paid_tier        :integer          default(1)
 #  for_time         :boolean
+#  thumbnail        :string
 #
 
 class ExercisesController < ApplicationController

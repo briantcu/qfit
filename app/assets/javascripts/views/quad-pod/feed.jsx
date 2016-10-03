@@ -25,9 +25,9 @@ class Feed extends React.Component {
                         <div className="sec-header">Your Feed <span>POST</span></div>
                         <div className="sec-main">
                             <Choose>
-                                <When condition={this.props.feed && this.props.feed.length > 0}>
+                                <When condition={this.props.feed && this.props.feed.inbox && this.props.feed.inbox.length > 0}>
                                     {
-                                        this.props.feed.map(function (e) {
+                                        this.props.feed.inbox.map(function (e) {
                                             return <FeedItem item={e} key={e.id} />
                                         }.bind(this))
                                     }

@@ -9,6 +9,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  paid_tier   :integer          default(1)
+#  thumbnail   :string
 #
 
 class PlyometricsController < ApplicationController

@@ -1,11 +1,19 @@
-INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time) VALUES (1, 1, '83347318', 1, 0.65, 1, null, false, 'Clean Pull', false, null, null, 1, null);
-INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time) VALUES (2, 1, '83085524', 1, 0.25, 1, null, false, 'Squat Jump', false, null, null, 1, null);
-INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time) VALUES (3, 1, '83357080', 1, 0.68, 1, null, false, 'Snatch Pull', false, null, null, 1, null);
-INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time) VALUES (4, 1, '83082802', 2, 0.23, 2, null, false, 'One Arm Dumbbell Snatch', false, null, null, 1, null);
-INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time) VALUES (5, 1, '83079812', 1, 0.71, 1, null, false, 'Hang Jump Shrug', false, null, null, 1, null);
-INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time) VALUES (6, 1, '83078151', 1, 0.58, 1, null, false, 'Clean High Pull', false, null, null, 1, null);
-INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time) VALUES (7, 1, '83085296', 1, 0.58, 1, null, false, 'Snatch High Pull', false, null, null, 1, null);
-INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time) VALUES (8, 1, '83347321', 1, 0.48, 1, null, false, 'Hang Power Clean', false, null, null, 1, null);
+INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
+VALUES (1, 1, '176552753', 1, 0.65, 1, 2, false, 'Clean Pull', false, null, null, 1, false);
+INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
+VALUES (2, 1, '176556418', 1, 0.25, 1, 2, false, 'Squat Jump', false, null, null, 1, false);
+INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
+VALUES (3, 1, '176556603', 1, 0.68, 1, 2, false, 'Snatch Pull', false, null, null, 1, false);
+INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
+VALUES (4, 1, '176553001', 2, 0.23, 2, 2, false, 'One Arm Dumbbell Snatch', false, null, null, 1, false);
+INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
+VALUES (5, 1, '176552965', 1, 0.71, 1, 2, false, 'Hang Jump Shrug', false, null, null, 1, false);
+INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
+VALUES (6, 1, '176555134', 1, 0.58, 1, 2, false, 'Clean High Pull', false, null, null, 1, false);
+INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
+VALUES (7, 1, '176556601', 1, 0.58, 1, 2, false, 'Snatch High Pull', false, null, null, 1, false);
+INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
+VALUES (8, 1, '83347321', 1, 0.48, 1, null, false, 'Hang Power Clean', false, null, null, 1, null);
 INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time) VALUES (9, 1, '83080931', 1, 0.48, 1, null, false, 'Hang Power Snatch', false, null, null, 1, null);
 INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time) VALUES (10, 1, '83083262', 1, 0.48, 1, null, false, 'Power Clean', false, null, null, 1, null);
 INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time) VALUES (11, 1, '83395098', 1, 0.48, 1, null, false, 'Power Snatch', false, null, null, 1, null);
