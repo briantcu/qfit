@@ -325,3 +325,6 @@ VALUES (189,16,null,null,3,null,false,'2 to 1 V Up',false,false,'176550350'),
   (186, 16, 2, .17, 8, null, false,'Upper Ab Crunch',false,false,'176556415'),
   (187, 16, null, null, 3, null, false,'V Ups',false,false,'176556416'),
   (188, 16, null, null, 6, null, false,'Single Leg Med Ball Slams',false,false,'176557662');
+
+INSERT INTO exercises (exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
+VALUES (2, '185567184', 2, .5, 2, 3, true, 'Dumbbel Stepup with Press', false, null, null, 2, false);

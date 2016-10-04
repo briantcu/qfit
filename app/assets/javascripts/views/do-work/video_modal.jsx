@@ -10,18 +10,23 @@ class VideoModal extends React.Component {
     }
 
     getVideoHtml() {
-        var width = $(window).width();
-        var vWidth, vHeight;
-        if (width < 480) {
-            vWidth = 320;
-            vHeight = 180
+        if (this.props.link.split('.').length < 2) {
+            var width = $(window).width();
+            var vWidth, vHeight;
+            if (width < 480) {
+                vWidth = 320;
+                vHeight = 180
+            } else {
+                vWidth = 480;
+                vHeight = 270;
+            }
+            var videoHtml = '<iframe src="//player.vimeo.com/video/' + this.props.link +
+                '" width="' + vWidth + '" height="' + vHeight + '" ' + 'frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+            return {__html: videoHtml};
         } else {
-            vWidth = 480;
-            vHeight = 270;
+            var html = '<div>There is no video for this exercise. We thought it was self explanatory.</div>';
+            return {__html: html};
         }
-        var videoHtml = '<iframe src="//player.vimeo.com/video/'+ this.props.link +
-            '" width="' + vWidth + '" height="'+vHeight+'" ' + 'frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
-        return {__html: videoHtml};
     }
 
     render() {

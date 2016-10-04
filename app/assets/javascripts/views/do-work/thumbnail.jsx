@@ -11,10 +11,18 @@ class Thumbnail extends React.Component {
     }
 
     componentWillMount() {
-        if (this.props.exercise.video_link.split('.').length > 2) {
-            this.setState({url: this.props.exercise.video_link});
+        this.updateThumb(this.props);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.updateThumb(nextProps);
+    }
+
+    updateThumb(props) {
+        if (props.exercise.video_link.split('.').length > 2) {
+            this.setState({url: props.exercise.video_link});
         } else {
-            this.setState({url: this.props.exercise.thumbnail});
+            this.setState({url: props.exercise.thumbnail});
         }
     }
 
