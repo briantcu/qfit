@@ -5,41 +5,17 @@ require('views/do-work/thumbnail.scss');
 class Thumbnail extends React.Component {
     constructor(props) {
         super(props);
-        this.showThumb = this.showThumb.bind(this);
         this.state = {
             url: undefined
         };
     }
 
     componentWillMount() {
-        if (this.props.exercise.is_stretch) {
+        if (this.props.exercise.video_link.split('.').length > 2) {
             this.setState({url: this.props.exercise.video_link});
         } else {
-            this.loadThumb();
+            this.setState({url: this.props.exercise.thumbnail});
         }
-    }
-
-    loadThumb() {
-        var url = "http://vimeo.com/api/v2/video/" + this.props.exercise.video_link + ".json";
-        if (this.props.exercise.video_link) {
-
-            $.ajax({
-                type: 'get',
-                url: url,
-                dataType: 'json',
-                success: function (data) {
-                    this.showThumb(data);
-                }.bind(this),
-                error: function (response) {
-                    alert(JSON.parse(response.responseJSON));
-                }
-            });
-        }
-    }
-
-    showThumb(data) {
-        var url = data[0].thumbnail_medium;
-        this.setState({url: url});
     }
 
     render() {
