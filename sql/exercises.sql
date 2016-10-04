@@ -67,7 +67,7 @@ VALUES (33, 6, '176557647', 2, 0.4, 2, 1, false, 'One Arm Dumbbell Decline Press
 INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
 VALUES (34, 5, '176550406', 1, 0.19, 9, 1, false, 'Back Extension', false, null, null, 1, false);
 INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
-VALUES (35, 5, '83085724', null, null, 3, 1, false, 'Supine Hip Extension', false, null, null, 1, false);
+VALUES (35, 5, '176553011', null, null, 3, 1, false, 'Supine Hip Extension', false, null, null, 1, false);
 INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
 VALUES (36, 5, '176556396', null, null, 3, 1, false, 'Swiss Ball Pull In', false, null, null, 1, false);
 INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
@@ -121,7 +121,7 @@ VALUES (61, 8, '176552945', 2, 0.25, 2, 1, false, 'Dumbbell Press', false, null,
 INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
 VALUES (62, 8, '185274394', 2, 0.25, 2, 1, false, 'Dumbbell One Arm Press', false, null, null, 1, false);
 INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
-VALUES (63, 8, '83084623', null, null, 3, 2, true, 'Side To Side Jackknife Pushup', false, null, null, 1, false);
+VALUES (63, 8, '185274374', null, null, 3, 2, true, 'Side To Side Jackknife Pushup', false, null, null, 1, false);
 INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
 VALUES (64, 9, '176557785', 2, 0.6, 1, 1, false, 'Shoulder Press', false, null, null, 1, false);
 INSERT INTO exercises (id, exercise_type_id, video_link, look_up_value, percent_of_luv, category, difficulty, is_body_weight, name, is_image, created_at, updated_at, paid_tier, for_time)
@@ -295,17 +295,17 @@ VALUES (189,16,null,null,3,null,false,'2 to 1 V Up',false,false,'176550350'),
   (156, 10, null, null, 3, null,false,'Elevated Horizontal Side to Side Pullup',false,false,'176553009'),
   (157, 15, null, null, 4, null,false,'Front Plank Complex',false,true,'176553006'),
   (158, 1, 2, .23, 2, null,false,'Hang Kettlebell Snatch',false,false,'176552966'),
-  (159, 1, 2, .23, 2, null,false,'Kettlebell Snatch',false,false,''),
-  (160, 1, 2, .45, 2, null,false,'Kettlebell Swing Through',false,false,''),
-  (161, 7, null, null, 6, null,false,'Kneeling Med Ball Wall Blasts',false,false,''),
-  (162, 1, null, null, 8, null,false,'Landmine with Extension',false,false,''),
-  (163, 16, null, null, 8, null,false,'Little Bigs',false,false,''),
-  (164, 14, null, null, 6, null,false,'Med Ball Front Rotation',false,false,''),
-  (165, 16, null, null, 6, null,false,'Med Ball Reverse Crunch with Bridge',false,false,''),
+  (159, 1, 2, .23, 2, null,false,'Kettlebell Snatch',false,false,'185333812'),
+  (160, 1, 2, .45, 2, null,false,'Kettlebell Swing Through',false,false,'185333820'),
+  (161, 7, null, null, 6, null,false,'Kneeling Med Ball Wall Blasts',false,false,'185333821'),
+  (162, 1, null, null, 8, null,false,'Landmine with Extension',false,false,'185430819'),
+  (163, 16, null, null, 8, null,false,'Little Bigs',false,false,'185334000'),
+  (164, 14, null, null, 6, null,false,'Med Ball Front Rotation',false,false,'185430959'),
+  (165, 16, null, null, 6, null,false,'Med Ball Reverse Crunch with Bridge',false,false,'185334098'),
   (166, 7, null, null, 6, null,false,'Med Ball Wall Blasts',false,false,'176555252'),
-  (167, 15, null, null, 4, null,false,'One Arm Bosu Plank',false,true, ''),
-  (168, 2, 1, .52, 1, null,false,'Paperboy',false,false,''),
-  (169, 15, null, null, 4, null,false,'Swiss Ball Plank Complex',false,true,''),
+  (167, 15, null, null, 4, null,false,'One Arm Bosu Plank',false,true, '185334194'),
+  (168, 2, 1, .52, 1, null,false,'Paperboy',false,false,'185431089'),
+  (169, 15, null, null, 4, null,false,'Swiss Ball Plank Complex',false,true,'185334202'),
   (170, 6, null, null, 3, null,false,'Plyo Pushup with Med Ball',false,false,'176557761'),
   (171, 16, null, null, 3, null,false,'Reverse Crunch with Bridge',false,false,'176557776'),
   (172, 16, null, null, 3, null,false,'Side Crunch',false,false,'176557787'),

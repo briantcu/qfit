@@ -504,6 +504,8 @@ INSERT INTO tips (id, exercise_type, tip, exercise_id, created_at, updated_at) V
 INSERT INTO tips (id, exercise_type, tip, exercise_id, created_at, updated_at) VALUES (505, 4, 'Perform each sprint at 80% max speed.', 18, null, null);
 INSERT INTO tips (id, exercise_type, tip, exercise_id, created_at, updated_at) VALUES (506, 4, 'Your jogging period is your recovery time.', 18, null, null);
 
+SELECT setval('tips_id_seq', (SELECT MAX(id) FROM tips));
+
 INSERT INTO tips (exercise_type, tip, exercise_id)
 VALUES
   (3,'Use a shorter box than you would normally use for box jumps.',19),
