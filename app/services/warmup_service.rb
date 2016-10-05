@@ -77,7 +77,7 @@ class WarmupService
     end
     num_warmups_for_index = warmups.count - 1
 
-    (0..count).each do |i|
+    (0..count - 1).each do |i|
       while true
         index = rand(0..(num_warmups_for_index))
         warmup = warmups.at(index)
