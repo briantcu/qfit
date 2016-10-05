@@ -296,6 +296,17 @@ class GroupRoutine < ActiveRecord::Base
     contains
   end
 
+  def has_warmup?(exercise)
+    contains = false
+    self.group_performed_warmups.each do |warmup|
+      if warmup.warmup_id == exercise.id
+        contains = true
+        break
+      end
+    end
+    contains
+  end
+
   def self.has_open_workout_today?(entity)
     now = Date.today
     workouts = GroupRoutine.where(:group_id => entity.id, :day_performed => now)
