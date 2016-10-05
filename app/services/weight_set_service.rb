@@ -56,7 +56,7 @@ class WeightSetService
       return
     end
 
-    @user_max = calculate_user_max * 1.03
+    @user_max = calculate_user_max * 1.015
     @rec_max_array = create_rec_max_array(STANDARD_ATROPHY)
     normalize_loads_for_reps
     validate_loads

@@ -88,11 +88,14 @@ class Stretch extends React.Component {
     render() {
         var classes = (this.props.border) ? 'stretch exercise row top-border' : 'stretch exercise row';
         return <div className={classes}>
-            <div className="col-xs-5">
+            <div className="col-xs-7">
                 <Thumbnail exercise={this.props.exercise.warmup} click={this.showVideo}/>
                 <span className="ex-info">
                     <div className="ex-name">{this.props.exercise.warmup.name}</div>
-                    <div className="ex-subtext">Recommended: {this.props.exercise.warmup.is_stretch ? '3 x 30 seconds' : '5 minutes'} </div>
+                    <div className="ex-subtext">
+                        Recommended: {this.props.exercise.warmup.ex_type != 3 ? '3 x 30 seconds' : '5 minutes'}&nbsp;
+                        {this.props.exercise.warmup.ex_type != 1 ? '(Perform before the rest of your workout)' : '(Perform after your workout)'}
+                    </div>
                     <div className="ex-subtext">
                         <u className="link" onClick={ () => this.showTips()} >Read Tips</u> |
                         <u className="link" onClick={ () => this.showSwap()} >Swap</u> |
@@ -101,7 +104,7 @@ class Stretch extends React.Component {
                 </span>
             </div>
             <If condition={gon.viewing == 'user'}>
-                <div className="col-xs-1 col-xs-offset-6">
+                <div className="col-xs-1 col-xs-offset-4">
                     <VertCircleCheck ref="complete" id={'stretch' + this.props.exercise.id}
                                  checked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
                 </div>

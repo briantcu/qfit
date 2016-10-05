@@ -295,7 +295,18 @@ class DailyRoutine < ActiveRecord::Base
   def has_plyo?(exercise)
     contains = false
     self.performed_plyometrics.each do |plyo|
-      if plyo.plyometric.id == exercise.id
+      if plyo.plyometric_id == exercise.id
+        contains = true
+        break
+      end
+    end
+    contains
+  end
+
+  def has_warmup?(exercise)
+    contains = false
+    self.performed_warm_ups.each do |warmup|
+      if warmup.warmup_id == exercise.id
         contains = true
         break
       end

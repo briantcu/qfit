@@ -9,11 +9,6 @@ class WarmupService
   SPRINTING = 3
 
   ROWING_MACHINE = 12
-  INCHWORM = 14
-  MED_BALL_LUNGE = 15
-  PIRIFORMIS_STRETCH = 9
-  HAMSTRING_STRETCH = 2
-  QUAD_STRETCH = 10
 
   @entity
   @routine
@@ -22,13 +17,11 @@ class WarmupService
     @entity = entity
     @routine = routine
 
+    # warmup
     @routine.add_warmup(ROWING_MACHINE, 3, 0)
-    @routine.add_warmup(INCHWORM, 3, 0)
-    @routine.add_warmup(MED_BALL_LUNGE, 3, 0)
-    @routine.add_warmup(PIRIFORMIS_STRETCH, 3, 0)
-    @routine.add_warmup(HAMSTRING_STRETCH, 3, 0)
-    @routine.add_warmup(QUAD_STRETCH, 3, 0)
 
+    add_dynamic_stretches
+    add_static_stretches
   end
 
   def copy_exercises(entity, routine, previous_routine)
@@ -64,5 +57,35 @@ class WarmupService
       end
     end
 
+  end
+
+  private
+
+  def add_dynamic_stretches
+    add_stretches(2, 2)
+  end
+
+  def add_static_stretches
+    add_stretches(3, 1)
+  end
+
+  def add_stretches(count, type)
+    if @entity.is_group?
+      warmups = Warmup.where(ex_type: type)
+    else
+      warmups = Warmup.where('paid_tier <= ?', @entity.paid_tier).where(ex_type: type)
+    end
+    num_warmups_for_index = warmups.count - 1
+
+    (0..count).each do |i|
+      while true
+        index = rand(0..(num_warmups_for_index))
+        warmup = warmups.at(index)
+        if ExerciseValidatorService.instance.is_valid_warmup(@entity, @routine, warmup)
+          @routine.add_warmup(warmup.id, 3, 0)
+          break
+        end
+      end
+    end
   end
 end

@@ -11,6 +11,14 @@ class ExerciseValidatorService
     true
   end
 
+  def is_valid_warmup(entity, routine, exercise)
+    if routine.has_warmup?(exercise)
+      return false
+    end
+
+    true
+  end
+
   def is_valid_exercise(entity, routine, exercise)
 
     #@TODO
@@ -18,7 +26,7 @@ class ExerciseValidatorService
     #experience
     #strength level
 
-    if matches_user_strength_level(entity, exercise)
+    if matches_user_strength_level?(entity, exercise)
       return true
     else
       return false
@@ -28,7 +36,7 @@ class ExerciseValidatorService
 
   private
 
-  def matches_user_strength_level(entity, exercise)
+  def matches_user_strength_level?(entity, exercise)
     if entity.is_group?
       return true
     end

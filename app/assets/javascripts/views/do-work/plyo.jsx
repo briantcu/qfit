@@ -93,7 +93,7 @@ class Plyo extends React.Component {
             </If>
             <TipsModal show={this.state.showTips} tips={this.props.exercise.plyometric.tips} close={this.close} />
             <VideoModal show={this.state.showVideo} link={this.props.exercise.plyometric.video_link} close={this.closeVideo} />
-            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props} type="plyometrics"/>
+            <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props} type="plyos"/>
         </div>
     }
 }
