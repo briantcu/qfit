@@ -70,12 +70,12 @@ Qfit::Application.configure do
   config.action_mailer.default_url_options = { :host => "www.quadfit.com" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      :address => 'email-smtp.us-east-1.amazonaws.com',
+      :address => "email-smtp.us-east-1.amazonaws.com",
+      :port => 587,
+      :user_name => 'AKIAIAWCM4K6K5S4KHPQ',
+      :password => 'ApZGmkzQ96snhfuZzGqggQmychbEUadDQFvEq7xmQMXr',
       :authentication => :login,
-      :user_name => 'user',
-      :password => 'password',
-      :enable_starttls_auto => true,
-      :port => 465
+      :enable_starttls_auto => true
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
