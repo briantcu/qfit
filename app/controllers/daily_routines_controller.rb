@@ -86,7 +86,7 @@ class DailyRoutinesController < ApplicationController
   def update
     if @daily_routine.update(daily_routine_params)
       @daily_routine.save!
-      render action: :show, status: :ok, location: @daily_routine
+      render action: :show, status: :ok
     else
       render json: @daily_routine.errors, status: :unprocessable_entity
     end
@@ -174,7 +174,7 @@ class DailyRoutinesController < ApplicationController
   # GET '/daily_routines/:id/reset'
   def reset
     @daily_routine.reset
-    render action: 'show', status: :ok, location: @daily_routine
+    render action: 'show', status: :ok
   end
 
   def shared

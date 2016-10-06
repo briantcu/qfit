@@ -48,7 +48,7 @@ class GroupsController < ApplicationController
         session_service.set_setup_context('coach_sub')
       end
 
-      render action: 'show', status: :created, location: @group
+      render action: 'show', status: :created
     else
       render json: @group.errors, status: :unprocessable_entity
     end

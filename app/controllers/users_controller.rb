@@ -114,7 +114,7 @@ class UsersController < ApplicationController
     @fitness_assessment_submission = FitnessAssessmentSubmission.new(fitness_assessment_params)
     if @fitness_assessment_submission.valid?
       @user = @fitness_assessment_submission.process_submission
-      render action: 'show', status: :ok, location: @user
+      render action: 'show', status: :ok
     else
       render json: @fitness_assessment_submission.errors, status: :unprocessable_entity
     end

@@ -41,7 +41,7 @@ class MessagesController < ApplicationController
     @message.poster = current_user
 
     if @message.save!
-      render action: 'show', status: :created, location: @message
+      render action: 'show', status: :created
     else
       render json: @message.errors, status: :unprocessable_entity
     end
