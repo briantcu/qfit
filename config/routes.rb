@@ -27,6 +27,7 @@ Qfit::Application.routes.draw do
   get '/workout/:workout_id', to: 'pages#do_work'
 
   get '/', to: 'pages#home'
+  get '', to: 'pages#home'
   get '/account', to: 'pages#account'
   get '/leaderboards', to: 'pages#leaders'
 
@@ -50,47 +51,69 @@ Qfit::Application.routes.draw do
     post 'forgot_password', to: 'users/passwords#forgot'
   end
 
-  resources :warmups
+  get '/warmups', to: 'warmups#index'
+  get '/warmups/:id', to: 'warmups#show'
 
-  resources :user_schedules
+  get '/user_schedules/:id', to: 'user_schedules#show'
+  post '/user_schedules', to: 'user_schedules#create'
+  put '/user_schedules/:id', to: 'user_schedules#update'
 
-  resources :user_goals
+  get '/user_goals', to: 'user_goals#index'
 
-  resources :user_maxes
+  get '/user_maxes', to: 'user_maxes#index'
 
-  resources :users
+  get '/users/:id', to: 'users#show'
+  put '/users/:id', to: 'users#update'
   post '/users/:id/fitness', to: 'users#fitness_assessment'
   get '/users/:id/calendar/year/:year_id/month/:month_id', to: 'users#get_calendar'
   get 'users/:id/progress/:chart_type/:period', to: 'users#get_progress'
   put '/users/:id/change_email', to: 'users#change_email'
   get '/username_exists/:username', to: 'users#username_exists'
 
-  resources :sprints
+  get '/sprints', to: 'sprints#index'
+  get '/sprints/:id', to: 'sprints#show'
 
-  resources :pod_invites
+  get '/pod_invites', to: 'pod_invites#index'
+  get '/pod_invites/:id', to: 'pod_invites#show'
+  post '/pod_invites', to: 'pod_invites#create'
   put '/pod_invites/:id/accept', to: 'pod_invites#accept'
   put '/pod_invites/:id/deny', to: 'pod_invites#deny'
 
-  resources :plyometrics
+  get '/plyometrics', to: 'plyometrics#index'
 
-  resources :performed_warm_ups
+  get '/performed_warm_ups/:id', to: 'performed_warm_ups#show'
+  put '/performed_warm_ups/:id', to: 'performed_warm_ups#update'
+  delete '/performed_warm_ups/:id', to: 'performed_warm_ups#destroy'
 
-  resources :performed_sprints
 
-  resources :performed_plyometrics
+  get '/performed_plyometrics/:id', to: 'performed_plyometrics#show'
+  put '/performed_plyometrics/:id', to: 'performed_plyometrics#update'
+  delete '/performed_plyometrics/:id', to: 'performed_plyometrics#destroy'
 
-  resources :performed_exercises
+  get '/performed_sprints/:id', to: 'performed_sprints#show'
+  put '/performed_sprints/:id', to: 'performed_sprints#update'
+  delete '/performed_sprints/:id', to: 'performed_sprints#destroy'
 
-  resources :messages
+  get '/performed_exercises/:id', to: 'performed_exercises#show'
+  put '/performed_exercises/:id', to: 'performed_exercises#update'
+  delete '/performed_exercises/:id', to: 'performed_exercises#destroy'
+
   get '/messages/user_id/:user_id', to: 'messages#conversation'
+  get '/messages', to: 'messages#index'
+  get '/messages/:id', to: 'messages#show'
+  post '/messages', to: 'messages#create'
+  delete '/messages/:id', to: 'messages#destroy'
 
-  resources :likes
+  post '/likes', to: 'likes#create'
+  delete '/likes/:id', to: 'likes#destroy'
 
-  resources :leaders
+  get '/leaders', to: 'leaders#index'
 
-  resources :group_schedules
+  get '/group_schedules/:id', to: 'group_schedules#show'
+  post '/group_schedules', to: 'group_schedules#create'
+  put '/group_schedules', to: 'group_schedules#update'
 
-  resources :group_routines
+  get '/group_routines/:id', to: 'group_routines#show'
   get '/groups/:group_id/group_routines/year/:year/month/:month/day/:day', to: 'group_routines#routine_by_date'
   post '/group_routines/:id/weights/:exercise_id', to: 'group_routines#add_weight'
   post '/group_routines/:id/sprinting/:sprint_id', to: 'group_routines#add_sprint'
@@ -99,25 +122,33 @@ Qfit::Application.routes.draw do
   post '/group_routines/:id/custom/:type/:name', to: 'group_routines#add_custom'
   get '/group_routines/:id/reset', to: 'group_routines#reset'
 
-  resources :group_performed_warmups
+  delete '/group_performed_warmups/:id', to: 'group_performed_warmups#destroy'
+  put '/group_performed_warmups/:id', to: 'group_performed_warmups#update'
 
-  resources :group_performed_sprints
+  delete '/group_performed_sprints/:id', to: 'group_performed_sprints#destroy'
+  put '/group_performed_sprints/:id', to: 'group_performed_sprints#update'
 
-  resources :group_performed_plyos
+  delete '/group_performed_plyos/:id', to: 'group_performed_plyos#destroy'
+  put '/group_performed_plyos/:id', to: 'group_performed_plyos#update'
 
-  resources :group_performed_exercises
+  delete '/group_performed_exercises/:id', to: 'group_performed_exercises#destroy'
+  put '/group_performed_exercises/:id', to: 'group_performed_exercises#update'
 
-  resources :group_custom_exercises
+  delete '/group_custom_exercises/:id', to: 'group_custom_exercises#destroy'
 
-  resources :friends
+  get '/friends', to: 'friends#index'
+  get '/friends/:id', to: 'friends#show'
 
-  resources :faqs
+  get '/faqs', to: 'faqs#index'
 
-  resources :exercise_types
+  get '/exercise_types', to: 'exercise_types#index'
+  get '/exercise_types/:id', to: 'exercise_types#show'
 
-  resources :exercises
+  get '/exercises/:id', to: 'exercises#show'
 
-  resources :daily_routines
+  get '/daily_routines', to: 'daily_routines#index'
+  get '/daily_routines/:id', to: 'daily_routines#show'
+  put '/daily_routines/:id', to: 'daily_routines#update'
   get '/users/:user_id/daily_routines/year/:year/month/:month/day/:day', to: 'daily_routines#routine_by_date'
   post '/daily_routines/:id/weights/:exercise_id', to: 'daily_routines#add_weight'
   post '/daily_routines/:id/sprinting/:sprint_id', to: 'daily_routines#add_sprint'
@@ -132,14 +163,17 @@ Qfit::Application.routes.draw do
   get '/daily_routines', to: 'daily_routines#index'
   put 'daily_routines/:id/shared', to: 'daily_routines#shared'
 
-  resources :custom_exercises
+  delete '/custom_exercises/:id', to: 'custom_exercises#destroy'
 
-  resources :groups
+  get '/groups/:id', to: 'groups#show'
+  post '/groups', to: 'groups#create'
+  put '/groups/:id', to: 'groups#update'
+  delete '/groups/:id', to: 'groups#destroy'
   post '/groups/:id', to: 'groups#change_group'
   get '/groups/:id/calendar/year/:year_id/month/:month_id', to: 'groups#get_calendar'
   get '/groups/:group_id/group_routines/year/:year/month/:month/day/:day', to: 'group_routines#routine_by_date'
 
-  resources :coach_accounts
+  get '/coach_accounts/:id', to: 'coach_accounts#show'
   delete '/coach_accounts/:id/users/:user_id', to: 'coach_accounts#delete_user'
   post '/coach_accounts/:id/send_invite', to: 'coach_accounts#send_invite'
   post '/view/users', to: 'coach_accounts#view_user'
