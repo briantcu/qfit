@@ -32,7 +32,7 @@ Qfit::Application.routes.draw do
   get '/leaderboards', to: 'pages#leaders'
 
   #****************** API *********************
-  post '/checkout', to: 'subscriptions#create'
+  post '/checkout.json', to: 'subscriptions#create'
 
   get '/schedule/program_type/:program_type_id/weight_schedule/:weight_schedule_id', to: 'workout_schedule_suggestions#retrieve_suggested_schedule'
 
@@ -162,6 +162,7 @@ Qfit::Application.routes.draw do
   get '/daily_routines/:id/reset', to: 'daily_routines#reset'
   get '/daily_routines', to: 'daily_routines#index'
   put 'daily_routines/:id/shared', to: 'daily_routines#shared'
+  post '/daily_routines', to: 'daily_routines#create'
 
   delete '/custom_exercises/:id', to: 'custom_exercises#destroy'
 

@@ -51,7 +51,7 @@ class DailyRoutinesController < ApplicationController
   def create
     date = Date.new(params[:daily_routine][:year].to_i, params[:daily_routine][:month].to_i, params[:daily_routine][:day].to_i)
     @daily_routine = DailyRoutine.create_routine(params[:daily_routine][:user_id], date, 0, 0, false)
-    render action: :show, status: :created, location: @daily_routine
+    render action: :show, status: :created
   end
 
   #GET /users/:user_id/daily_routines/year/:year/month/:month/day/:day
@@ -68,7 +68,7 @@ class DailyRoutinesController < ApplicationController
   def skip
     service = CloseRoutineService.new(@daily_routine)
     @daily_routine = service.skip_routine
-    render action: :show, status: :ok, location: @daily_routine
+    render action: :show, status: :ok
   end
 
   #PUT /users/:user_id/daily_routines/skip_all
@@ -97,7 +97,7 @@ class DailyRoutinesController < ApplicationController
     if @daily_routine.update(daily_routine_params)
       service = CloseRoutineService.new(@daily_routine)
       @daily_routine = service.close_routine
-      render action: :show, status: :ok, location: @daily_routine
+      render action: :show, status: :ok
     else
       render json: @daily_routine.errors, status: :unprocessable_entity
     end
@@ -181,7 +181,7 @@ class DailyRoutinesController < ApplicationController
     @daily_routine.user.points += 10
     @daily_routine.user.save!
     @daily_routine.update_attributes(shared: true)
-    render action: :show, status: :ok, location: @daily_routine
+    render action: :show, status: :ok
   end
 
   private
