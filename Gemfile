@@ -7,6 +7,8 @@ gem 'rails', '4.2.6'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem 'sinatra'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
