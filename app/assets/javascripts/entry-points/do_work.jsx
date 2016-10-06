@@ -544,7 +544,8 @@ class DoWork extends React.Component {
                         <span>{this.props.finishErrors}</span>
                     </If>
                     <If condition={this.props.context == 'coach_team'} >
-                        Sign up team
+                        <FancyInput placeholder="Team Name" type="text" changedCallback={this.saveSendTo}
+                                    errors={this.state.sendToErrors} />
                     </If>
                 </Modal.Body>
                 <Modal.Footer>
