@@ -12,12 +12,6 @@ class QuadfitMailer < ApplicationMailer
     mail(to: @coach.email, subject: "Your sign up code was used")
   end
 
-  def send_new_sub_user_email_from_coach(user, temp_password)
-    @user = user
-    @temp_password = temp_password
-    mail(to: @user.email, subject: "You've been signed up for Quadfit!")
-  end
-
   def send_new_sub_user_email_from_self_sign_up(user)
     @user = user
     mail(to: @user.email, subject: "Welcome to Quadfit!")
@@ -45,7 +39,8 @@ class QuadfitMailer < ApplicationMailer
     mail(to: invite.sent_to, subject: "Quad Pod Invite from #{@inviter.first_name} #{@inviter_last_name}")
   end
 
-  def send_coach_sign_up_invite(to, coach)
+  def send_coach_sign_up_invite(to, coach, code)
+    @code = code
     subject = "#{coach.first_name} #{coach.last_name} wants to be your coach on Quadfit"
     mail(to: to, subject: subject)
   end

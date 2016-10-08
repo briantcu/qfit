@@ -52,7 +52,7 @@ class Account extends React.Component {
     }
 
     load() {
-        UserActions.getUser(gon.current_user_id);
+        UserActions.getUser(gon.user_id);
     }
 
     onChange () {

@@ -1,23 +1,23 @@
 update performed_exercises set exercise_id = 86 where exercise_id = 117;
 update group_performed_exercises set exercise_id = 86 where exercise_id = 117;
 delete from exercises where id = 117;
-delete from one_rep_maxes where id = 117;
+delete from user_maxes where exercise_id = 117;
 update performed_exercises set exercise_id = 76 where exercise_id = 75;
 update group_performed_exercises set exercise_id = 76 where exercise_id = 75;
 delete from exercises where id = 75;
-delete from one_rep_maxes where id = 75;
+delete from user_maxes where exercise_id = 75;
 update performed_exercises set exercise_id = 163 where exercise_id = 110;
 update group_performed_exercises set exercise_id = 163 where exercise_id = 110;
 delete from exercises where id = 110;
-delete from one_rep_maxes where id = 110;
+delete from user_maxes where exercise_id = 110;
 update performed_exercises set exercise_id = 111 where exercise_id = 112;
 update group_performed_exercises set exercise_id = 111 where exercise_id = 112;
 delete from exercises where id = 112;
-delete from one_rep_maxes where id = 112;
+delete from user_maxes where exercise_id = 112;
 update performed_exercises set exercise_id = 163 where exercise_id = 113;
 update group_performed_exercises set exercise_id = 163 where exercise_id = 113;
 delete from exercises where id = 113;
-delete from one_rep_maxes where id = 113;
+delete from user_maxes where exercise_id = 113;
 
 update performed_plyometrics set plyometric_id = 33 where plyometric_id = 2;
 update group_performed_plyos set plyometric_id = 33 where plyometric_id = 2;

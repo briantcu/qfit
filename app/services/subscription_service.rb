@@ -125,7 +125,7 @@ class SubscriptionService
     #@TODO prob put a message on queue so you can respond to webhook
     subscription = Stripe::Subscription.retrieve(user.subscription_id)
     if subscription.status != 'active'
-      if (user.is_coach?)
+      if user.is_coach?
         #coach
         user.status = 2
       else

@@ -87,17 +87,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def premium_member
-    Stripe.api_key = "sk_test_UMmjXKClIIsWlkkIC2MwFe1b"
-    token = params[:stripeToken]
-
-    customer = Stripe::Customer.create(
-        :source => token,
-        :plan => "PremiumMember",
-        :email => current_user.email
-    )
-  end
-
   #GET /users/:id/calendar/year/:year_id/month/:month_id
   def get_calendar
     @calendar = UserCalendar.new(:user_id => params[:id], :month_id => params[:month_id], :year_id => params[:year_id], :is_user => true)

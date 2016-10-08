@@ -8,8 +8,6 @@ class EmailService
         send_new_user_email(options)
       when :coach_sub_signed_up
         notify_coach_sub_signed_up(options)
-      when :new_sub_email_from_coach
-        send_new_sub_user_email_from_coach(options)
       when :new_sub_email_from_self
         send_new_sub_user_email_from_self_sign_up(options)
       when :new_coach
@@ -29,55 +27,50 @@ class EmailService
 
   def send_new_user_email(options)
     user = User.find(options[:user_id])
-    QuadfitMailer.send_new_user_email(user).deliver
+    QuadfitMailer.send_new_user_email(user).deliver_now
   end
 
   def notify_coach_sub_signed_up(options)
     coach = User.find(options[:coach_id])
     user = User.find(options[:user_id])
-    QuadfitMailer.notify_coach_sub_signed_up(coach, user).deliver
-  end
-
-  def send_new_sub_user_email_from_coach(options)
-    user = User.find(options[:user_id])
-    password = options[:temp_password]
-    QuadfitMailer.send_new_sub_user_email_from_coach(user, password).deliver
+    QuadfitMailer.notify_coach_sub_signed_up(coach, user).deliver_now
   end
 
   def send_new_sub_user_email_from_self_sign_up(options)
     user = User.find(options[:user_id])
-    QuadfitMailer.send_new_sub_user_email_from_self_sign_up(user).deliver
+    QuadfitMailer.send_new_sub_user_email_from_self_sign_up(user).deliver_now
   end
 
   def send_new_coach_email(options)
     user = User.find(options[:user_id])
-    QuadfitMailer.send_new_coach_email(user).deliver
+    QuadfitMailer.send_new_coach_email(user).deliver_now
   end
 
   def coach_deleted_you(options)
     email = options[:email]
-    QuadfitMailer.coach_deleted_you(email).deliver
+    QuadfitMailer.coach_deleted_you(email).deliver_now
   end
 
   def send_existing_user_pod_invite(options)
     invite = PodInvite.find(options[:invite_id])
-    QuadfitMailer.send_existing_user_pod_invite(invite).deliver
+    QuadfitMailer.send_existing_user_pod_invite(invite).deliver_now
   end
 
   def send_new_user_pod_invite(options)
     invite = PodInvite.find(options[:invite_id])
     token = options[:token]
-    QuadfitMailer.send_new_user_pod_invite(invite, token).deliver
+    QuadfitMailer.send_new_user_pod_invite(invite, token).deliver_now
   end
 
   def send_coach_sign_up_invite(options)
     coach = User.find(options[:user_id])
     to = options[:phone]
-    QuadfitMailer.send_coach_sign_up_invite(to, coach).deliver
+    code = options[:sign_up_code]
+    QuadfitMailer.send_coach_sign_up_invite(to, coach, code).deliver_now
   end
 
   def notify_coach_is_maxed(options)
     coach = User.find(options[:user_id])
-    QuadfitMailer.notify_coach_is_maxed(coach).deliver
+    QuadfitMailer.notify_coach_is_maxed(coach).deliver_now
   end
 end

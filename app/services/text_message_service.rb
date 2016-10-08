@@ -31,7 +31,7 @@ class TextMessageService
   def send_coach_sign_up_invite(options)
     coach = User.find(options[:user_id])
     to = options[:phone]
-    message = "#{coach.first_name} #{coach.last_name} wants to be your coach on Quadfit. Sign up! https://www.quadfit.com?suc=#{coach.sign_up_code}"
+    message = "#{coach.first_name} #{coach.last_name} wants to be your coach on Quadfit. Sign up! https://www.quadfit.com?qfcode=#{options[:sign_up_code]}"
     send_text(to, message)
   end
 

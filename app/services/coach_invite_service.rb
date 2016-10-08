@@ -49,9 +49,9 @@ class CoachInviteService
     )
 
     if type == :email
-      EmailService.perform_async(:coach_invite, {user_id: coach_account.user.id, email: to})
+      EmailService.perform_async(:coach_invite, {user_id: coach_account.user.id, email: to, sign_up_code: sent_code})
     else
-      TextMessageService.perform_async(:coach_invite, {user_id: coach_account.user.id, phone: to})
+      TextMessageService.perform_async(:coach_invite, {user_id: coach_account.user.id, phone: to, sign_up_code: sent_code})
     end
 
     unless UserGoal.where(user_id: coach_account.user.id, goal_definition_id: 8).first.present?
