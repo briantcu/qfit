@@ -40,7 +40,6 @@
 #  authentication_token        :string(255)
 #  experience_level            :integer
 #  points                      :integer          default(10)
-#  avatars                     :json
 #  status                      :integer          default(1)
 #  paid_tier                   :integer          default(1)
 #  facebook                    :string
@@ -65,6 +64,8 @@
 #  dummytwelve                 :string
 #  dummythirteen               :string
 #  dummyfourteen               :string
+#  needs_pw_reset              :boolean
+#  avatar                      :string
 #
 
 require 'test_helper'

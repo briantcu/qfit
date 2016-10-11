@@ -40,7 +40,6 @@
 #  authentication_token        :string(255)
 #  experience_level            :integer
 #  points                      :integer          default(10)
-#  avatars                     :json
 #  status                      :integer          default(1)
 #  paid_tier                   :integer          default(1)
 #  facebook                    :string
@@ -65,6 +64,8 @@
 #  dummytwelve                 :string
 #  dummythirteen               :string
 #  dummyfourteen               :string
+#  needs_pw_reset              :boolean
+#  avatar                      :string
 #
 
 # Status: 1 = active, 2 = disabled, 3 = active with failed payment
@@ -74,7 +75,7 @@
 
 class User < ActiveRecord::Base
 
-  mount_uploader :avatars, AvatarUploader
+  mount_uploader :avatar, AvatarUploader
 
   before_save :ensure_authentication_token
 
@@ -185,8 +186,8 @@ class User < ActiveRecord::Base
   end
 
   def avatar_path
-    if avatars.present? && avatars.url.present?
-      avatars.url
+    if avatar.file.present?
+      avatar
     else
       image
     end

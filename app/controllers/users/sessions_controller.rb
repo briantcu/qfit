@@ -31,6 +31,11 @@ class Users::SessionsController < Devise::SessionsController
     user = User.find_by_email(email)
     return failure unless user.present?
 
+    if user.needs_pw_reset
+      user.send_reset_password_instructions
+      render json: {success: false, errors: 'Looks like you need a password reset! We just emailed you instructions.'} and return
+    end
+
     if user.valid_password?(password)
       sign_in(:user, user)
       user.ensure_authentication_token

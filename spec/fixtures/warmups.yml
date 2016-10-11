@@ -10,6 +10,7 @@
 #  updated_at :datetime
 #  ex_type    :integer
 #  thumbnail  :string
+#  paid_tier  :integer
 #
 
 ---

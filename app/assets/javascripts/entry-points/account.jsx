@@ -14,6 +14,7 @@ import ProfileActions from 'actions/profile_actions';
 import ProfileStore from 'stores/profile_store';
 import SignUpStore from 'stores/sign_up_store';
 import StripeCheckout from 'react-stripe-checkout';
+import Dropzone from 'react-dropzone';
 require('pages/account.scss');
 
 
@@ -32,6 +33,7 @@ class Account extends React.Component {
         };
         this.onChange = this.onChange.bind(this);
         this.evalUsername = this.evalUsername.bind(this);
+        this.onDrop = this.onDrop.bind(this);
     }
 
     onToken (token)  {
@@ -146,6 +148,22 @@ class Account extends React.Component {
         return hasErrors;
     }
 
+    imagePath() {
+        var path = "https://s3.amazonaws.com/quadfit/blank-avi.png";
+        if (this.state.user && this.state.user.avatar) {
+            path = this.state.user.avatar;
+        }
+        return path;
+    }
+
+    onDrop(files) {
+        console.log('Received files: ', files);
+    }
+
+    onOpenClick () {
+        this.dropzone.open();
+    }
+
     render () {
 
         return <div>
@@ -168,6 +186,17 @@ class Account extends React.Component {
                                 <div className="p-section">
                                     <div className="sec-header">Your Personal Settings</div>
                                     <div className="sec-main">
+                                        <div className="row avi-row">
+                                            <div className="col-md-12 text-center">
+                                                <span>
+                                                    <Dropzone ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop} multiple={false} maxSize={4000} accept={'image/*'}>
+                                                        <img src={this.imagePath()} alt={this.state.user.user_name} onClick={() => this.onOpenClick() }
+                                                             className="img-circle" width="100" height="100"/>
+                                                    </Dropzone>
+                                                </span>
+                                            </div>
+                                        </div>
+
                                         <If condition={this.state.user.first_name}>
                                             <div className="row">
                                                 <div className="col-md-12">

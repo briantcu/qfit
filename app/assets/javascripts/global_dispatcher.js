@@ -1,4 +1,4 @@
-var util = require('helpers/util.js');
+var util = require('helpers/util.js').default;
 
 var Dispatcher = function(){
     this.callbacks = {};

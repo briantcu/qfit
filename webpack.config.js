@@ -35,7 +35,7 @@ var config = {
     },
     module: {
         loaders: [
-            { test: /\.js$/, exclude: /node_modules/, loader: '6to5-loader' },
+            { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
             { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel' },
             { test: /\.scss$/, loaders: ['style', 'css', 'sass']},
             { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass')}
