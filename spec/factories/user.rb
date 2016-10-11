@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory(:user) do
     administrator false
     authentication_token "vAxymkkMvBEC-uamQ1by"
-    avatars nil
+    avatar nil
     birth_year nil
     current_phase 1
     current_sign_in_at "2016-03-27T17:34 CDT"
