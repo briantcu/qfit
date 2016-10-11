@@ -1,5 +1,6 @@
 var dispatcher = require('global_dispatcher.js');
 var C = require('constants/user_constants.js');
+import request from 'superagent';
 
 var UserActions = {
 
@@ -187,6 +188,14 @@ var UserActions = {
             error: function(results) {
                 alert('Something went wrong!');
             }
+        });
+    },
+
+    uploadAvatar: function(files) {
+        var req = request.post('/avatar.json');
+        req.attach('file', files[0]);
+        req.end(function(user) {
+            dispatcher.dispatch(C.LOADED, user);
         });
     }
 

@@ -71,6 +71,7 @@
 require "stripe"
 
 class UsersController < ApplicationController
+  before_action :verify_logged_in_html, only: [:avatar]
   before_action :set_user, only: [:show, :update, :get_calendar, :fitness_assessment, :get_progress]
   before_filter :can_access_user, only: [:show, :get_calendar, :fitness_assessment, :get_progress]
   before_filter :is_user, only: [:update]
@@ -81,11 +82,19 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1.json
   def update
-    if @user.update(convert_data_uri_to_upload(user_params))
+    if @user.update(user_params)
       render :show
     else
       render json: @user.errors, status: :unprocessable_entity
     end
+  end
+
+  def avatar
+    file = params[:file]
+    current_user.avatar = file
+    current_user.save!
+    @user = current_user
+    render :show
   end
 
   #GET /users/:id/calendar/year/:year_id/month/:month_id
@@ -135,7 +144,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :sex, :phone, :user_name, :weight, :birth_year, :password)
+    params.require(:user).permit(:first_name, :last_name, :email, :sex, :phone, :user_name, :weight, :birth_year, :password, :password_confirmation)
   end
 
   def fitness_assessment_params

@@ -8,7 +8,7 @@ var ProfileActions = {
         $.ajax({
             type: 'put',
             data: data,
-            url: '/users/'+ gon.current_user_id + '.json',
+            url: '/users/'+ gon.user_id + '.json',
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function(results) {

@@ -19,6 +19,7 @@
     "react-dropzone": "^3.6.0",
     "react-router": "^2.8.1",
     "react-stripe-checkout": "^2.2.5",
+    "superagent": "^2.3.0",
     "underscore": "^1.8.3",
     "validator": "^6.0.0",
     "webpack": "^1.13.0"

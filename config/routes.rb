@@ -75,6 +75,7 @@ Qfit::Application.routes.draw do
   get 'users/:id/progress/:chart_type/:period', to: 'users#get_progress'
   put '/users/:id/change_email', to: 'users#change_email'
   get '/username_exists/:username', to: 'users#username_exists'
+  post '/avatar', to: 'users#avatar'
 
   get '/sprints', to: 'sprints#index'
   get '/sprints/:id', to: 'sprints#show'

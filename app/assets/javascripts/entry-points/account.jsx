@@ -101,6 +101,7 @@ class Account extends React.Component {
         user['last_name'] = this.refs.lastName.getValue();
         if (this.refs.password.getValue()) {
             user['password'] = this.refs.password.getValue();
+            user['password_confirmation'] = this.refs.password.getValue();
         }
         user['user_name'] = this.refs.username.getValue();
         return {user: user};
@@ -157,11 +158,7 @@ class Account extends React.Component {
     }
 
     onDrop(files) {
-        console.log('Received files: ', files);
-    }
-
-    onOpenClick () {
-        this.dropzone.open();
+        UserActions.uploadAvatar(files);
     }
 
     render () {
@@ -188,10 +185,10 @@ class Account extends React.Component {
                                     <div className="sec-main">
                                         <div className="row avi-row">
                                             <div className="col-md-12 text-center">
-                                                <span>
-                                                    <Dropzone ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop} multiple={false} maxSize={4000} accept={'image/*'}>
-                                                        <img src={this.imagePath()} alt={this.state.user.user_name} onClick={() => this.onOpenClick() }
-                                                             className="img-circle" width="100" height="100"/>
+                                                <span className="dropzone-wrapper">
+                                                    <Dropzone ref={(node) => { this.dropzone = node; }} onDrop={this.onDrop} multiple={false} maxSize={4000000} accept={'image/*'}>
+                                                        <img src={this.imagePath()} alt={this.state.user.user_name}
+                                                             className="img-circle hover" width="100" height="100"/>
                                                     </Dropzone>
                                                 </span>
                                             </div>

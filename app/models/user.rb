@@ -187,7 +187,7 @@ class User < ActiveRecord::Base
 
   def avatar_path
     if avatar.file.present?
-      avatar
+      avatar.url
     else
       image
     end

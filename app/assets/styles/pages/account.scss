@@ -8,6 +8,14 @@
 
   .avi-row {
     padding-bottom: 30px;
+    .dropzone-wrapper div {
+      height: 100px !important;
+      width: 100px !important;
+      margin-right: auto;
+      margin-left: auto;
+      border: none;
+      border-style: none !important;
+    }
   }
 
   .submit-row {
