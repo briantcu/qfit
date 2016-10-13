@@ -1,7 +1,6 @@
 class Users::PasswordsController < Devise::PasswordsController
 
   before_filter :verify_logged_in, only: [:update]
-  prepend_before_filter :require_no_authentication, only: [:forgot]
 
   def update
     if current_user.update_with_password(change_password_params)
@@ -17,12 +16,12 @@ class Users::PasswordsController < Devise::PasswordsController
     if user.present?
       user.send_reset_password_instructions
       if successfully_sent?(user)
-        head status: 200
+        render status: 200, json: {}
       else
         render status: 422, json: { :errors => 'A problem was encountered sending the password reset email.'}
       end
     else
-      render status: 404, json: { :errors => 'User with email not found'}
+      render status: 404, json: { :errors => 'There is no account with that email!'}
     end
   end
 

@@ -89,9 +89,9 @@ class Forgot extends React.Component {
                 <div className="row submit-row">
                     <div className="col-md-12">
                         <If condition={this.state.pwResetStatus.status == C.FAILURE}>
-                            <div>{this.state.pwResetStatus.errors.join(', ')}</div>
+                            <div>{this.state.pwResetStatus.errors}</div>
                         </If>
-                        <If condition={this.state.pwResetStatus.status == C.SUCESS}>
+                        <If condition={this.state.pwResetStatus.status == C.SUCCESS}>
                             <div>We just sent you an email with a password reset link!</div>
                         </If>
                         <span onClick={ () => this.submit()} className="submit-button purple-text">Reset Password</span>

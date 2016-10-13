@@ -35,7 +35,7 @@ var SignUpStore = new Store({
             this.pwResetStatus.status = C.SUCCESS;
         } else {
             this.pwResetStatus.status = C.FAILURE;
-            this.pwResetStatus.errors = params;
+            this.pwResetStatus.errors = params.errors;
         }
     },
 
@@ -43,7 +43,8 @@ var SignUpStore = new Store({
         return {
             signUpStatus: this.signUpStatus,
             isUsernameUnique: this.isUsernameUnique,
-            loginStatus: this.loginStatus
+            loginStatus: this.loginStatus,
+            pwResetStatus: this.pwResetStatus
         };
     }
 });

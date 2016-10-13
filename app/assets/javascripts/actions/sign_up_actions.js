@@ -73,7 +73,7 @@ var SignUpActions = {
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function(results) {
-                var payload = results;
+                var payload = {};
                 payload.success = true;
                 dispatcher.dispatch(C.PW_RESET, payload);
             },
