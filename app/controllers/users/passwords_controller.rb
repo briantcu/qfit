@@ -1,13 +1,18 @@
 class Users::PasswordsController < Devise::PasswordsController
 
-  before_filter :verify_logged_in, only: [:update]
+  skip_before_filter :require_no_authentication
 
   def update
-    if current_user.update_with_password(change_password_params)
-      sign_in current_user, bypass: true
-      render status: 201, json: {}
+    user = User.reset_password_by_token(
+        reset_password_token: params[:user][:reset_password_token],
+        password: params[:user][:password],
+        password_confirmation: params[:user][:password_confirmation]
+    )
+    if user.errors.empty?
+      sign_in user, bypass: true
+      render status: 201, json: {location: determine_redirect(user)}
     else
-      render status: 404, json: {}
+      render status: 422, json: {errors: user.errors.full_messages}
     end
   end
 
@@ -32,7 +37,7 @@ class Users::PasswordsController < Devise::PasswordsController
   end
 
   def change_password_params
-    params.require(:user).permit(:password, :password_confirmation, :current_password)
+    params.require(:user).permit(:password, :password_confirmation)
   end
 
   def verify_logged_in

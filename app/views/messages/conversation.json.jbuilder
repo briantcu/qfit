@@ -4,5 +4,5 @@ end
 json.user do
   json.id @user.id
   json.user_name @user.user_name
-  json.avatars @user.avatars
+  json.avatar @user.avatar_path
 end
