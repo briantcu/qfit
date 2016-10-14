@@ -112,7 +112,7 @@ class Progress extends React.Component {
                             },
                             afterFit: function(scale) {
                                 if (scale.id == 'x-axis-0'){
-                                    scale.height = 80;
+                                    scale.height = 40;
                                 }
                             },
                             afterUpdate: this.afterScaleUpdate
@@ -142,33 +142,22 @@ class Progress extends React.Component {
                 }
             }
 
-            var context = document.getElementById("myChart").getContext("2d");
-
+            var timeline = $("#timeline");
+            timeline.html('');
             var index = 0;
             var offset = (this.chartWidth - this.scaleWidth); //scale is right justified
+            timeline.css('left', offset);
             for (var property in this.monthBarData) {
                 if (this.monthBarData.hasOwnProperty(property)) { //{august: 22}, {september: 8}
-                    context.beginPath();
-                    context.moveTo(offset, this.chartHeight - 20);
-
+                    var bar = $("<span class='timeline-bar'></span>");
                     var barWidth = ((this.monthBarData[property] / totalTicks) * (this.scaleWidth)) - 3; //3 is a hack, but works
-
-                    var endingPoint = barWidth + offset;
-                    context.lineTo(endingPoint, this.chartHeight - 20);
-
-
-                    context.lineWidth = 16;
-                    context.strokeStyle = colorArray[index];
-                    context.stroke();
+                    bar.css('width', barWidth);
+                    bar.css('background-color', colorArray[index]);
                     index ++;
                     index = index % 2;
-
-                    context.font="11px OpenSans";
-                    context.textAlign = 'center';
-                    context.fillStyle = "#fff";
-                    var midwayPoint = endingPoint - (barWidth / 2);
-                    context.fillText(property.toUpperCase(),midwayPoint,this.chartHeight - 16);
+                    bar.text(property.toUpperCase());
                     offset += barWidth;
+                    timeline.append(bar);
                 }
             }
         }
