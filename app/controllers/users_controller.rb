@@ -113,6 +113,9 @@ class UsersController < ApplicationController
     @fitness_assessment_submission = FitnessAssessmentSubmission.new(fitness_assessment_params)
     if @fitness_assessment_submission.valid?
       @user = @fitness_assessment_submission.process_submission
+      if @user.is_sub_user?
+        process_sub_user
+      end
       render action: 'show', status: :ok
     else
       render json: @fitness_assessment_submission.errors, status: :unprocessable_entity
@@ -138,6 +141,15 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def process_sub_user
+    group = @user.used_sign_up_code.group
+    group.add_member(@user)
+    RoutineService.group_status_changed(@user)
+    session_service = SessionService.new(session)
+    session_service.set_setup_context(nil)
+    session_service.set_onboarding(false)
+  end
 
   def set_user
     @user = User.find(params[:id])

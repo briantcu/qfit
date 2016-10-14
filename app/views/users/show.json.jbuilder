@@ -6,4 +6,7 @@ if @user.user_schedule.present?
 end
 json.avatar @user.avatar_path
 json.coach_account_id @user.coach_account.try(:id)
+json.is_coach @user.is_coach?
+json.is_sub_user @user.is_sub_user?
+json.is_individual @user.is_individual?
 

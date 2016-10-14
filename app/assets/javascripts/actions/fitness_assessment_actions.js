@@ -59,9 +59,13 @@ var FitnessAssessmentActions = {
             data: payload,
             contentType: "application/json; charset=utf-8",
             success: function(user) {
-                dispatcher.dispatch(C.RESET);
-                dispatcher.dispatch(UC.LOADED, user);
-                callback();
+                if (user.is_sub_user) {
+                    location.href = '/workout';
+                } else {
+                    dispatcher.dispatch(C.RESET);
+                    dispatcher.dispatch(UC.LOADED, user);
+                    callback();
+                }
             },
             error: function(results) {
                 alert('Something went wrong!');
