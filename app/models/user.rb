@@ -110,6 +110,7 @@ class User < ActiveRecord::Base
   has_one :group_join, dependent: :destroy
   has_one :group, through: :group_join
   has_many :sign_up_codes, dependent: :destroy
+  has_one :used_sign_up_code, class_name: SignUpCode, foreign_key: :used_by_id
   has_one :user_schedule, dependent: :destroy
   has_one :coach_account, dependent: :destroy
 

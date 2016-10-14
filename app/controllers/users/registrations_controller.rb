@@ -25,6 +25,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       RegistrationService.instance.register_user(@user, sign_up_code_record, params[:user][:account_type], session_service)
       check_tokens
       sign_in @user
+      session_service.set_sign_up_code(nil)
       render json: @user.to_json, status: 201 and return
     rescue Exception => e
       Rollbar.error(e)

@@ -23,11 +23,11 @@ class RegistrationService
           session_service.set_setup_context('user')
         else
           #Sub user
-          user.assign_attributes(level: 1, sub_user: true, master_user_id: sign_up_code_record.user_id)
+          user.assign_attributes(level: 1, sub_user: true, master_user_id: sign_up_code_record.user_id, program_type_id: sign_up_code_record.program_type_id)
           if user.save!
             EmailService.perform_async(:new_sub_email_from_self, {user_id: user.id})
             EmailService.perform_async(:coach_sub_signed_up, {user_id: user.id, coach_id: sign_up_code_record.user.id})
-            sign_up_code_record.update_columns(used: true)
+            sign_up_code_record.update_columns(used: true, used_by_id: user.id)
           end
           UserSchedule.create_user_schedule({user_id: user.id, program_type_id: 1, program_id: 1})
           session_service.set_viewing('user')

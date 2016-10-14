@@ -15,6 +15,7 @@
 #  group_id        :integer
 #  program_type_id :integer
 #  redeemed_at     :datetime
+#  used_by_id      :integer
 #
 
 # sign_up_type: 'member', 'team'
@@ -23,6 +24,7 @@
 class SignUpCode < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
+  belongs_to :sub_user, foreign_key: :used_by_id, class_name: User
   validates_presence_of :user_id, :code, :sign_up_type, :sent_to, :sent_to_type, :group_id
   scope :unused, -> {where(used: false)}
 

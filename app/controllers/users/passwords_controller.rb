@@ -29,18 +29,4 @@ class Users::PasswordsController < Devise::PasswordsController
       render status: 404, json: { :errors => 'There is no account with that email!'}
     end
   end
-
-  private
-
-  def set_user
-    @user = User.find(params[:id])
-  end
-
-  def change_password_params
-    params.require(:user).permit(:password, :password_confirmation)
-  end
-
-  def verify_logged_in
-    unauthorized unless current_user.present?
-  end
 end
