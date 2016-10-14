@@ -49,4 +49,13 @@ class QuadfitMailer < ApplicationMailer
     subject = "Sign up failed - Your Quadfit account is maxed out"
     mail(to: coach.email, subject: subject)
   end
+
+  def nightly_job(total_time, users, players, groups)
+    subject = "nightly job"
+    @total_time = total_time
+    @users = users
+    @players = players
+    @groups = groups
+    mail(to: 'brian@quadfit.com', subject: subject)
+  end
 end
