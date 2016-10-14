@@ -160,7 +160,8 @@ class Progress extends React.Component {
                     context.lineWidth = 16;
                     context.strokeStyle = colorArray[index];
                     context.stroke();
-                    index++;
+                    index ++;
+                    index = index % 2;
 
                     context.font="11px OpenSans";
                     context.textAlign = 'center';
@@ -192,7 +193,9 @@ class Progress extends React.Component {
         if (chartData.dataset && chartData.dataset.length > 0) {
             if (chartData.has_data) {
                 var max = _.max(chartData.dataset, function (data) {
-                    return data.y;
+                    if (data.y) {
+                        return data.y;
+                    }
                 });
                 var min = _.min(chartData.dataset, function (data) {
                     if (data.y) {
@@ -201,6 +204,12 @@ class Progress extends React.Component {
                 });
                 max = max.y;
                 min = min.y;
+                if (!max) {
+                    max = 'N/A';
+                }
+                if (!min) {
+                    min = 'N/A';
+                }
             } else {
                 max = 'N/A';
                 min = 'N/A';
@@ -232,7 +241,12 @@ class Progress extends React.Component {
         this.setState({chartType: this.refs.chartType.value});
         var exerciseId = 0;
         if (this.refs.exercises) {
-            exerciseId = this.refs.exercise.value;
+            exerciseId = this.refs.exercises.value;
+        } else if (this.state.maxes.length > 0) {
+            exerciseId = this.state.maxes[0].exercise_id;
+        }
+        if ((this.chartTypes[this.refs.chartType.value] == 'exercise') && exerciseId == 0) {
+            return;
         }
         UserActions.getProgress(gon.current_user_id, this.chartTypes[this.refs.chartType.value], this.state.period, exerciseId);
     }
@@ -241,7 +255,10 @@ class Progress extends React.Component {
         this.setState({period: period});
         var exerciseId = 0;
         if (this.refs.exercises) {
-            exerciseId = this.refs.exercise.value;
+            exerciseId = this.refs.exercises.value;
+        }
+        if ((this.chartTypes[this.state.chartType] == 'exercise') && exerciseId == 0) {
+            return;
         }
         UserActions.getProgress(gon.current_user_id, this.chartTypes[this.refs.chartType.value], period, exerciseId);
     }
@@ -267,7 +284,7 @@ class Progress extends React.Component {
                                         <option value="3">Specific Exercise Progress</option>
                                     </If>
                                 </select>
-                                <If condition={this.state.chartType == 'exercise'}>
+                                <If condition={this.chartTypes[this.state.chartType] == 'exercise'}>
                                     <select id="exerciseSelect" ref="exercises" className="form-control" onChange={() => this.changeChart() }>
                                         {
                                             this.state.maxes.map(function(max) {
@@ -323,7 +340,7 @@ class Progress extends React.Component {
                                     <span>No Data</span>
                                 </Otherwise>
                             </Choose>
-
+                            <div id="timeline"></div>
                         </div>
                     </div>
                 </div>

@@ -34,8 +34,8 @@ class ProgressService
         title = '% of Workouts Completed'
         label = '%'
       else 'exercise'
-        proc = Proc.new {|r| {r.day_performed => r.performed_exercises.detect{ |ex| ex.id == @exercise.id}.try(:one_rep_max)} }
-        title = '"#{@exercise.name} Estimated One Rep Max"'
+        proc = Proc.new {|r| {r.day_performed => r.performed_exercises.detect{ |ex| ex.try(:id) == @exercise.try(:id)}.try(:one_rep_max)} }
+        title = "#{@exercise.name} Estimated One Rep Max"
         label = 'Pounds'
     end
 
