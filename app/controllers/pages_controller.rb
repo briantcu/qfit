@@ -19,6 +19,10 @@ class PagesController < ApplicationController
     render template: 'pages/leaders'
   end
 
+  def terms
+    render template: 'pages/terms'
+  end
+
   private
 
   def verify_is_coach

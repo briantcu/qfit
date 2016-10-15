@@ -36,6 +36,10 @@ var FitnessAssessmentActions = {
         dispatcher.dispatch(C.ASSISTED_PUSHUPS, count);
     },
 
+    setExperienceLevel: function(level) {
+        dispatcher.dispatch(C.EX_LEVEL, level);
+    },
+
     submit: function(data, callback) {
         var local_data = {};
         local_data.fitness_assessment_submission = {};
@@ -48,7 +52,7 @@ var FitnessAssessmentActions = {
         local_data.fitness_assessment_submission.push_ups = data.pushups;
         local_data.fitness_assessment_submission.pull_ups = data.pullups;
         local_data.fitness_assessment_submission.assisted_push_ups = data.assistedPushups;
-        local_data.fitness_assessment_submission.experience_level = 2;
+        local_data.fitness_assessment_submission.experience_level = data.experienceLevel;
         local_data.fitness_assessment_submission.sex = data.user.sex;
         var payload = JSON.stringify(local_data);
 

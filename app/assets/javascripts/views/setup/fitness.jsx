@@ -10,7 +10,7 @@ class Fitness extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            step: 1,
+            step: 0,
             userWeightNextDisabled: true,
             benchNextDisabled: false,
             squatNextDisabled: false,
@@ -18,7 +18,7 @@ class Fitness extends React.Component {
             assistedNextDisabled: true,
             pullupsNextDisabled: false
         };
-        this.stepStack = [1];
+        this.stepStack = [0];
     }
 
     changeStep(step) {
@@ -30,6 +30,10 @@ class Fitness extends React.Component {
         this.stepStack.pop();
         var step = this.stepStack[this.stepStack.length - 1];
         this.setState({step: step});
+    }
+
+    experienceLevelSubmitted() {
+        FitnessAssessmentActions.setExperienceLevel(Number(this.refs.experienceLevel.value));
     }
 
     userWeightChanged() {
@@ -114,6 +118,29 @@ class Fitness extends React.Component {
                         Answer these questions as well as you can.<br/>Leave areas you don't know blank.
                     </div>
                 </div>
+                <If condition={this.state.step == 0}>
+                    <div className="row">
+                        <div className="col-xs-6 col-xs-offset-3 text-center">
+                            <div className="question">What's your level of experience?</div>
+                            <select ref="experienceLevel" className="form-control">
+                                <option value="0">Beginner</option>
+                                <option value="1">Intermediate</option>
+                                <option value="2">Advanced</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
+                            <Button buttonText="Continue" onClick={ () => this.experienceLevelSubmitted() } />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-6 col-xs-offset-3 back-link text-center">
+                            <span onClick={ () => this.props.previousPage('FITNESS') } className="small-link">Back</span>
+                        </div>
+                    </div>
+                </If>
+
                 <If condition={this.state.step == 1}>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 text-center">
@@ -129,7 +156,7 @@ class Fitness extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-3 back-link text-center">
-                            <span onClick={ () => this.props.previousPage('FITNESS') } className="small-link">Back</span>
+                            <span onClick={ () => this.back() } className="small-link">Back</span>
                         </div>
                     </div>
                 </If>

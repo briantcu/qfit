@@ -12,5 +12,6 @@ module.exports = keyMirror({
     PUSHUPS: null,
     ASSISTED_PUSHUPS: null,
     SQUAT: null,
-    RESET: null
+    RESET: null,
+    EX_LEVEL: null
 });

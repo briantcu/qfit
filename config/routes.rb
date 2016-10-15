@@ -37,6 +37,7 @@ Qfit::Application.routes.draw do
   get '', to: 'pages#home'
   get '/account', to: 'pages#account'
   get '/leaderboards', to: 'pages#leaders'
+  get '/terms', to: 'pages#terms'
 
   #****************** API *********************
   post '/checkout.json', to: 'subscriptions#create'

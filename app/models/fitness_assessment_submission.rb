@@ -36,7 +36,7 @@ class FitnessAssessmentSubmission
     user.hor_pull_max = @hor_pull_max
     user.hor_push_max = @hor_push_max
     user.knee_dom_max = @knee_dom_max
-    user.save
+    user.save!
     user
   end
 

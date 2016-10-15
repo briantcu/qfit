@@ -15,6 +15,7 @@ var FitnessAssessmentStore = new Store({
     squatReps: undefined,
     complete: false,
     module: undefined,
+    experienceLevel: 1,
 
     setQuads: function(quads){
         for (var key in quads) {
@@ -33,6 +34,10 @@ var FitnessAssessmentStore = new Store({
         } else if (goal == C.MASS) {
             this.module = 'PowerMass';
         }
+    },
+
+    setExperienceLevel: function(level) {
+        this.experienceLevel = level;
     },
 
     setUserWeight: function(weight) {
@@ -79,7 +84,8 @@ var FitnessAssessmentStore = new Store({
             squatWeight: this.squatWeight,
             squatReps: this.squatReps,
             complete: this.complete,
-            module: this.module
+            module: this.module,
+            experienceLevel: this.experienceLevel
         };
     }
 });
@@ -143,6 +149,11 @@ dispatcher.register(C.ASSISTED_PUSHUPS, function(data) {
 
 dispatcher.register(C.RESET, function() {
     FitnessAssessmentStore.reset();
+    FitnessAssessmentStore.change();
+});
+
+dispatcher.register(C.EX_LEVEL, function(level) {
+    FitnessAssessmentStore.setExperienceLevel(level);
     FitnessAssessmentStore.change();
 });
 

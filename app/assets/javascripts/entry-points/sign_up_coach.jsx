@@ -196,6 +196,11 @@ class CoachSignUp extends React.Component {
                         <a href="" className="help-text bold-link">Have an account? Login here.</a>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        By clicking Sign Up you agree to the <a href="/terms" target="_blank" className="help-text bold-link">user agreement.</a>
+                    </div>
+                </div>
             </div>
         </div>;
     }

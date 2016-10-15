@@ -211,7 +211,12 @@ class AthleteSignUp extends React.Component {
                                 <div>{this.state.signUpStatus.errors.join(', ')}</div>
                             </If>
                             <span onClick={ () => this.submit()} className="submit-button purple-text">Sign Up</span>
-                            <a href="" className="help-text bold-link">Have an account? Login here.</a>
+                            <a href="/sign-in" className="help-text bold-link">Have an account? Login here.</a>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            By clicking Sign Up you agree to the <a href="/terms" target="_blank" className="help-text bold-link">user agreement.</a>
                         </div>
                     </div>
                 </div>
