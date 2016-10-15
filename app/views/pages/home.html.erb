@@ -5,17 +5,31 @@
 
 <div class="container-fluid" id="one">
   <div class="row" id="header-row">
-    <div class="col-xs-5 header-links">
-      <a href="/sign-up">For Athletes</a>
-      <a href="/sign-up-coach">For Coaches</a>
-    </div>
-    <div class="col-xs-2 text-center">
-      <img src="https://s3.amazonaws.com/quadfit/logo.png" />
-    </div>
-    <div class="col-xs-5 text-right header-links">
-      <a href="#pricing">Pricing</a>
-      <a href="/sign-in">Sign In</a>
-    </div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand visible-xs-inline" href="/"><img src="https://s3.amazonaws.com/quadfit/logo.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/sign-up">For Athletes</a></li>
+            <li><a href="/sign-up-coach">For Coaches</a></li>
+          </ul>
+          <span class="text-center hidden-xs logo">
+            <a href="/"><img src="https://s3.amazonaws.com/quadfit/logo.png" /></a>
+          </span>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="/sign-in">Sign In</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
   <div class="row main-row">
     <div class="col-xs-8 col-xs-offset-2 text-center">
@@ -301,3 +315,5 @@
 </div>
 
 <script src="<%= Qfit::Application.config.assets_prefix %>/js/home.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
