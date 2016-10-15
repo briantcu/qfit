@@ -128,3 +128,57 @@ h1 {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.navbar-default {
+  background: none !important;
+  border: none !important;
+  .navbar-header {
+    height: 100px;
+  }
+  .navbar-collapse {
+    background-color: transparent;
+  }
+  .navbar-nav {
+    width: 40%;
+  }
+  .navbar-right {
+    width: auto !important;
+  }
+  .logo {
+    width: 20%;
+    display: inline-block;
+  }
+  a {
+    color: white !important;
+    margin-right: 40px;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+  .navbar-toggle {
+    border-color: #cccbcc !important;
+    background-color: transparent !important;
+    margin-top: 32px !important;
+  }
+  .icon-bar {
+    background-color: #cccbcc !important;
+  }
+  @media (max-width: 768px) {
+    .navbar-collapse {
+      background-color: #271b37;
+    }
+    #header-row {
+      padding-top: 0px;
+    }
+    .main {
+      padding-top: 100px !important;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    a {
+      padding-left: 0px !important;
+      font-size: 12px !important;
+    }
+  }
+}
+
