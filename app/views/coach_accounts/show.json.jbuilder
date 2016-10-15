@@ -5,6 +5,7 @@ json.sign_up_codes @coach_account.user.sign_up_codes do |sign_up_code|
 end
 json.num_used_accounts @coach_account.players.count
 json.num_sent_codes @coach_account.user.sign_up_codes.unused.count
+json.can_send_codes @coach_account.can_send_codes?
 json.teams @coach_account.coach_groups.not_template do |group|
   json.extract! group, :id, :name
   json.players group.members do |user|

@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       else
         if sign_up_code_record.user.coach_account.is_maxed_out?
           EmailService.perform_async(:coach_maxed, {user_id: sign_up_code_record.user.id})
-          render status: 471, json: { :errors => 'Coach is maxed out'} and return
+          render status: 471, json: { :errors => 'Uh oh! Your coach has already used all of their accounts.'} and return
         end
       end
     end

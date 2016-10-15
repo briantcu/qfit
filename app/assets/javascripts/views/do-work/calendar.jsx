@@ -131,8 +131,8 @@ class Calendar extends React.Component {
         var rightArrowClasses = this.state.rightArrowEnabled ? "right col-xs-1" : "right col-xs-1 disabled";
         return <div className="row calendar">
                 <span className={leftArrowClasses} onClick={ () => this.flowLeft() } />
-                <div className="col-xs-10 cal-days">
-                 <div className="row">
+            <div className="container">
+                <div className="row cal-days">
 
                     {
                         this.state.daysToShow.map(function(e, index) {
@@ -141,9 +141,8 @@ class Calendar extends React.Component {
                     }
 
                  </div>
-                 </div>
-                <span className={rightArrowClasses} onClick={ () => this.flowRight() } />
-
+            </div>
+            <span className={rightArrowClasses} onClick={ () => this.flowRight() } />
         </div>
     }
 }

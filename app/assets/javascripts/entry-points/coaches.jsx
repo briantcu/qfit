@@ -19,7 +19,7 @@ class Coaches extends React.Component {
         super(props);
         this.state = {
             user: {},
-            coach_account: {teams: [], individuals: [], sign_up_codes: []},
+            coach_account: {teams: [], individuals: [], sign_up_codes: [], can_send_codes: true, num_used_accts: 0, num_accts: 5},
             showTeamModal: false,
             showAddUserModal: false
         };
@@ -107,8 +107,17 @@ class Coaches extends React.Component {
                     </div>
                     <div className='row standard-text purple'>
                         Create Teams and add Athletes, and we'll handle the workouts.<br/>
-                        You have used {this.state.coach_account.used_accounts} of {this.state.coach_account.num_accts} athlete accounts. You can increase/decrease your number of
-                        accounts <a href="/account">HERE</a>.
+                        You have a maximum of {this.state.coach_account.num_accts} athlete accounts.
+                        You can upgrade/downgrade your account <a className="norm-link" href="/account">HERE</a>. <br />
+                        <If condition={!this.state.coach_account.can_send_codes}>
+                            You have a limit of {this.state.coach_account.num_accts} athlete accounts, but you have sent {this.state.coach_account.num_sent_codes} sign up codes
+                            and have {this.state.coach_account.num_used_accounts} existing athlete accounts. You'll need to
+                            <a className="norm-link" href="/account">upgrade your account</a> to send more sign up codes.<br/>
+                        </If>
+                        <If condition={this.state.coach_account.num_used_accounts > this.state.coach_account.num_accts} >
+                            You have exceeded your athlete account limit. Workouts will no longer be created for your athletes until you
+                            <a className="norm-link" href="/account">upgrade your account</a>, or delete some existing athlete accounts.
+                        </If>
                     </div>
                     <div className='row'>
                         <div className="container sec first-sec">
@@ -138,9 +147,11 @@ class Coaches extends React.Component {
                                 <div className="col-xs-2 sec-header">
                                     Athletes
                                 </div>
-                                <div className="col-xs-3 col-xs-offset-7 action">
-                                    <span className="hover" onClick={this.addUser}>Add a New Athlete Account</span>
-                                </div>
+                                <If condition={this.state.coach_account.can_send_codes} >
+                                    <div className="col-xs-3 col-xs-offset-7 action">
+                                        <span className="hover" onClick={this.addUser}>Add a New Athlete Account</span>
+                                    </div>
+                                </If>
                             </div>
                             <div className="row main">
                                 <div className="container">

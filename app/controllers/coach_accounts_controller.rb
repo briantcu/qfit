@@ -31,6 +31,10 @@ class CoachAccountsController < ApplicationController
   end
 
   def send_invite
+    unless @coach_account.can_send_codes?
+      render(status: 401, json: {errors: 'You have exceeded your account limit! You can upgrade your account, or delete some sign up codes or athlete accounts.'}) and return
+    end
+
     send_to = params[:send_to]
     sign_up_type = params[:sign_up_type]
     template_id = params[:template_id]
@@ -38,7 +42,10 @@ class CoachAccountsController < ApplicationController
     session_service = SessionService.new(session)
     session_service.set_setup_context(nil)
     session_service.set_onboarding(false)
-    render(status: 401, json: {}) unless (send_to.present? && sign_up_type.present? && template_id.present?)
+    unless send_to.present? && sign_up_type.present? && template_id.present?
+      render(status: 401, json: {}) and return
+    end
+
     template = Group.find(template_id)
     if program_type_id.blank?
       program_type_id = template.program_type
@@ -48,7 +55,9 @@ class CoachAccountsController < ApplicationController
 
   def delete_code
     code = SignUpCode.find(params[:id])
-    render(status: 401, json: {}) unless (current_user.present? && code.user_id == current_user.id)
+    unless current_user.present? && code.user_id == current_user.id
+      render(status: 401, json: {}) and return
+    end
     code.destroy!
     @coach_account = CoachAccount.find_by(user_id: current_user.id)
     render :show

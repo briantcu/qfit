@@ -20,4 +20,8 @@ class CoachAccount < ActiveRecord::Base
   def is_maxed_out?
     players.count >= num_accts
   end
+
+  def can_send_codes?
+    (user.sign_up_codes.unused.count + players.count) < num_accts
+  end
 end
