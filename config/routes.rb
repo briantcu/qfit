@@ -8,29 +8,29 @@ Qfit::Application.routes.draw do
 
 
   #***************** WEBSITE ******************
-  get '/sign-up', to: 'pages#sign_up'
-  get '/sign-up-coach', to: 'pages#sign_up_coach'
-  get '/sign-in', to: 'pages#login'
-  get '/forgot', to: 'pages#forgot'
-  get '/more-info', to: 'pages#more_info'
+  get '/sign-up', to: 'sign_in_up#sign_up'
+  get '/sign-up-coach', to: 'sign_in_up#sign_up_coach'
+  get '/sign-in', to: 'sign_in_up#login'
+  get '/forgot', to: 'sign_in_up#forgot'
+  get '/more-info', to: 'sign_in_up#more_info'
 
-  get '/setup/goal', to: 'pages#setup'
-  get '/setup/quads', to: 'pages#setup'
+  get '/setup/goal', to: 'workout_management#setup'
+  get '/setup/quads', to: 'workout_management#setup'
 
-  get '/setup/coach', to: 'pages#setup'
+  get '/setup/coach', to: 'workout_management#setup'
   get '/coach', to: 'pages#coaches'
 
-  get '/fitness', to: 'pages#setup_redirect'
-  get '/commitment', to: 'pages#setup_redirect'
-  get '/program', to: 'pages#setup_redirect'
-  get '/schedule', to: 'pages#schedule'
+  get '/fitness', to: 'workout_management#setup_redirect'
+  get '/commitment', to: 'workout_management#setup_redirect'
+  get '/program', to: 'workout_management#setup_redirect'
+  get '/schedule', to: 'workout_management#schedule'
 
-  get '/workout', to: 'pages#do_work'
-  get '/quad-pod', to: 'pages#do_work'
-  get '/quad-pod', to: 'pages#do_work'
-  get '/progress', to: 'pages#do_work'
-  get '/workout/:year/:month/:day', to: 'pages#do_work'
-  get '/workout/:workout_id', to: 'pages#do_work'
+  get '/workout', to: 'workout_management#do_work'
+  get '/quad-pod', to: 'workout_management#do_work'
+  get '/quad-pod', to: 'workout_management#do_work'
+  get '/progress', to: 'workout_management#do_work'
+  get '/workout/:year/:month/:day', to: 'workout_management#do_work'
+  get '/workout/:workout_id', to: 'workout_management#do_work'
 
   get '/', to: 'pages#home'
   get '', to: 'pages#home'
