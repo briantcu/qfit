@@ -14,15 +14,16 @@ Qfit::Application.routes.draw do
   get '/forgot', to: 'sign_in_up#forgot'
   get '/more-info', to: 'sign_in_up#more_info'
 
-  get '/setup/goal', to: 'workout_management#setup'
-  get '/setup/quads', to: 'workout_management#setup'
+  get '/setup/goal', to: 'workout_management#setup_goal'
+  get '/setup/quads', to: 'workout_management#setup_quads'
 
-  get '/setup/coach', to: 'workout_management#setup'
+  get '/setup/coach', to: 'workout_management#setup_coach'
   get '/coach', to: 'pages#coaches'
 
   get '/fitness', to: 'workout_management#setup_redirect'
   get '/commitment', to: 'workout_management#setup_redirect'
   get '/program', to: 'workout_management#setup_redirect'
+
   get '/schedule', to: 'workout_management#schedule'
 
   get '/workout', to: 'workout_management#do_work'

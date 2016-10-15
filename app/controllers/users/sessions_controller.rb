@@ -45,6 +45,7 @@ class Users::SessionsController < Devise::SessionsController
       end
       session_service = SessionService.new(session)
       session_service.set_current_user_id(user.id)
+      session_service.set_viewing('user') unless user.is_coach?
       location = determine_redirect(user)
       render json: {success: true, token: user.authentication_token, user_id: user.id, user_name: user.user_name, location: location} and return
     end

@@ -16,11 +16,6 @@ class PagesController < ApplicationController
   end
 
   def leaders
-    gon.push(
-        {
-            current_user_id: current_user.id
-        }
-    )
     render template: 'pages/leaders'
   end
 
@@ -35,6 +30,7 @@ class PagesController < ApplicationController
   def set_gon_info
     gon.push(
         {
+            current_user_id: current_user.id,
             user_id: current_user.id,
             is_coach: current_user.is_coach?,
             is_sub_user: current_user.is_sub_user?,

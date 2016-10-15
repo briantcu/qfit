@@ -26,6 +26,10 @@ class GroupSchedule < ActiveRecord::Base
   accepts_nested_attributes_for :group_schedule_days, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
   validates_presence_of :group_id, :program_id, :phase_one_start, :phase_two_start, :phase_three_start, :phase_four_start
 
+  def invalid?
+    phase_one_start.blank?
+  end
+
   def setup_phases
     now = Date.today
     set_dates(now)

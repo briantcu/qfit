@@ -1,12 +1,20 @@
 class WorkoutManagementController < ApplicationController
-  before_action :verify_logged_in_html, only: [:setup, :schedule, :do_work]
-  before_action :set_current_user, only: [:do_work, :setup, :schedule]
-  before_action :can_access_user, only: [:setup, :schedule, :do_work]
-  before_action :set_gon_info, only: [:setup, :schedule, :do_work]
+  before_action :verify_logged_in_html
+  before_action :set_current_user
+  before_action :can_access_user
+  before_action :verify_coach_session_present, except: [:setup_coach]
   before_action :has_min_info, only: [:do_work]
-  before_action :set_gon_setup_context, only: [:setup, :schedule, :do_work]
+  before_action :set_gon_info
 
-  def setup
+  def setup_goal
+    render template: 'pages/setup'
+  end
+
+  def setup_quads
+    render template: 'pages/setup'
+  end
+
+  def setup_coach
     render template: 'pages/setup'
   end
 
@@ -33,23 +41,22 @@ class WorkoutManagementController < ApplicationController
 
     gon.push(
         {
-            team_id: session[:team_id],
-            viewing: viewing,
             routine: routine
         }
     )
     render template: 'pages/do_work'
   end
 
-  private
-
+  # /fitness /commitment /program
   def setup_redirect
-    if session[:setup_context] == 'user' || session[:setup_context] == 'coach_sub' || session[:setup_context].blank?
+    if session[:setup_context] == 'user' || session[:setup_context] == 'coach_sub' || (session[:setup_context].blank? && session[:viewing] != 'team')
       redirect_to '/setup/goal'
     else
       redirect_to '/setup/quads'
     end
   end
+
+  private
 
   def get_routine(viewing)
     routine = nil
@@ -76,6 +83,13 @@ class WorkoutManagementController < ApplicationController
         setup_redirect
       end
     end
+
+    if session[:viewing] == 'team'
+      team = Group.find(session[:team_id])
+      if team.group_schedule.blank? || team.group_schedule.invalid?
+        setup_redirect
+      end
+    end
   end
 
   def set_current_user
@@ -94,19 +108,22 @@ class WorkoutManagementController < ApplicationController
         (current_user.is_super_user?))
   end
 
-  def set_gon_setup_context
-    viewing = session[:viewing] || 'user'
-    gon.push(
-        {
-            team_id: session[:team_id],
-            viewing: viewing,
-            setup_context: session[:setup_context],
-            onboarding: session[:onboarding]
-        }
-    )
+  def verify_coach_session_present
+    return unless current_user.is_coach?
+    if session[:viewing].blank?
+      redirect_to '/coach' and return
+    end
+    if session[:viewing] == 'user' and session[:current_user_id].blank?
+      redirect_to '/coach' and return
+    end
+
+    if session[:viewing] == 'team' and session[:team_id].blank?
+      redirect_to '/coach'
+    end
   end
 
   def set_gon_info
+    viewing = session[:viewing] || 'user'
     gon.push(
         {
             current_user_id: @user.id,
@@ -114,7 +131,11 @@ class WorkoutManagementController < ApplicationController
             is_coach: current_user.is_coach?,
             is_sub_user: current_user.is_sub_user?,
             is_individual: current_user.is_individual?,
-            coach_account_id: current_user.coach_account.try(:id)
+            coach_account_id: current_user.coach_account.try(:id),
+            team_id: session[:team_id],
+            viewing: viewing,
+            setup_context: session[:setup_context],
+            onboarding: session[:onboarding]
         }
     )
   end
