@@ -73,8 +73,6 @@ class SubscriptionService
   end
 
   def update_subscription(user, new_plan)
-    #@TODO don't give them the option to downgrade if they have more active users than the downgraded level
-
     begin
       subscription = Stripe::Subscription.retrieve(user.subscription_id)
       subscription.plan = new_plan
@@ -116,7 +114,7 @@ class SubscriptionService
       elsif %w(customer.subscription.updated invoice.payment_succeeded).include? event.type
         reactivate_user(user)
       elsif event.type == 'invoice.payment_failed'
-        deactivate_user(user)
+        deactivate_user(user, true)
         #@TODO send email
       else
         Qfit::Application.config.logger.info('Got stripe type ' + event.type)
@@ -140,34 +138,35 @@ class SubscriptionService
     customer.id
   end
 
-  def deactivate_user(user)
+  def deactivate_user(user, failed_payment = false)
     #if for an individual, downgrade paid_tier. leave status as active, keep creating workouts
     #if for a coach, make inactive, stop creating workouts for players
-    #@TODO prob put a message on queue so you can respond to webhook
     subscription = Stripe::Subscription.retrieve(user.subscription_id)
+    # @TODO will a sub not be active with a failed payment?
     if subscription.status != 'active'
       if user.is_coach?
-        #coach
-        user.status = 2
+        #@TODO upgrade or downgrade coach active users?
+        user.status = failed_payment ? 3 : 2
       else
-        user.paid_tier = 1
+        user.paid_tier = 1  # downgrade paid tier
       end
     end
+    user.save!
   end
 
   def reactivate_user(user)
     # if for an individual, make sure paid_tier is in line with what they're paying for. change active_until
     # if for coach, make sure active is set properly and create job to create workouts. update active_until
-    #@TODO prob put a message on queue so you can respond to webhook
     subscription = Stripe::Subscription.retrieve(user.subscription_id)
     if subscription.status == 'active'
       if user.is_coach?
-        #coach
-        user.status = 2
+        # @TODO look at subscription type and make sure num_accts is in sync
+        user.status = 1 #active
       else
-        user.paid_tier = 1
+        user.paid_tier = 2
       end
     end
+    user.save!
   end
 
   def get_plan_from_type(type)
