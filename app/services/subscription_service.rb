@@ -9,6 +9,9 @@ class SubscriptionService
 
   #Stripe plan types
   PREMIUM_MEMBER = 'PremiumMember'
+  GOLD_COACH = 'GoldCoach'
+  SILVER_COACH = 'SilverCoach'
+  BRONZE_COACH = 'BronzeCoach'
 
   #@TODO set API key in env var
   Stripe.api_key = "sk_test_UMmjXKClIIsWlkkIC2MwFe1b"
@@ -198,8 +201,13 @@ class SubscriptionService
   end
 
   def get_num_accts_from_plan(plan)
-    # @TODO
-    20
+    if plan == GOLD_COACH
+      1000000
+    elsif plan == SILVER_COACH
+      99
+    elsif plan == BRONZE_COACH
+      30
+    end
   end
 
 end
