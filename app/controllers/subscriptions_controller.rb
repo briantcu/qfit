@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
 
-  before_filter :verify_logged_in, only: [:create]
+  before_filter :verify_logged_in, except: [:stripe_event]
 
   # /checkout
   def create
@@ -13,6 +13,14 @@ class SubscriptionsController < ApplicationController
     else
       render status: 422, json: {errors: result[:message]}
     end
+  end
+
+  def update
+
+  end
+
+  def delete
+
   end
 
   def stripe_event

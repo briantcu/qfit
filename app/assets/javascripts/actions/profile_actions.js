@@ -39,7 +39,9 @@ var ProfileActions = {
                 dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
             },
             error: function(results) {
-                alert('There was an error processing your request. We are investigating.')
+                var payload = results;
+                payload.success = false;
+                dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
             }
         });
     }

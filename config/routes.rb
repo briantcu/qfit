@@ -42,6 +42,8 @@ Qfit::Application.routes.draw do
   #****************** API *********************
   post '/checkout.json', to: 'subscriptions#create'
   post '/stripe_event', to: 'subscriptions#stripe_event'
+  put '/subscription.json', to: 'subscriptions#update'
+  delete '/subscription.json', to: 'subscriptions#delete'
 
   get '/schedule/program_type/:program_type_id/weight_schedule/:weight_schedule_id', to: 'workout_schedule_suggestions#retrieve_suggested_schedule'
 

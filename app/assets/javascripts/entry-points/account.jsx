@@ -13,8 +13,9 @@ import SignUpActions from 'actions/sign_up_actions';
 import ProfileActions from 'actions/profile_actions';
 import ProfileStore from 'stores/profile_store';
 import SignUpStore from 'stores/sign_up_store';
-import StripeCheckout from 'react-stripe-checkout';
 import Dropzone from 'react-dropzone';
+import Subscription from 'views/account/subscription';
+
 require('pages/account.scss');
 
 
@@ -29,7 +30,8 @@ class Account extends React.Component {
             lastNameErrors: [],
             emailErrors: [],
             passwordErrors: [],
-            user: {}
+            user: {},
+            checkout: {}
         };
         this.onChange = this.onChange.bind(this);
         this.evalUsername = this.evalUsername.bind(this);
@@ -66,7 +68,8 @@ class Account extends React.Component {
             {
                 user: user.user,
                 isUsernameUnique: isUsernameUnique,
-                saveStatus: data.saveStatus
+                saveStatus: data.saveStatus,
+                checkoutStatus: data.checkout
             }
         );
 
@@ -251,49 +254,7 @@ class Account extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <If condition={this.state.user.paid_tier == 1}>
-                                <div className="col-xs-12 col-sm-6">
-                                    <div className="p-section">
-                                        <div className="sec-header">Premium Account</div>
-                                        <div className="sec-main">
-                                            <div>Get access to even more exercises and unlimited reporting on workout progress
-                                            for only <span className="purple">$9.99</span> a month!</div>
-                                            <div className="button-wrap">
-                                                <StripeCheckout
-                                                    token={this.onToken}
-                                                    stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
-                                                    amount={999}
-                                                    name="Quadfit, LLC"
-                                                    image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
-                                                    description="Premium Subscription"
-                                                    panelLabel="Get Premium"
-                                                    label="Get Premium"
-                                                    allowRememberMe={false}
-                                                    email={this.state.user.email}
-                                                    local="auto"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </If>
-                            <If condition={this.state.user.paid_tier == 2}>
-                                <div className="col-xs-12 col-sm-6">
-                                    <div className="p-section">
-                                        <div className="sec-header">Your Account</div>
-                                        <div className="sec-main">
-                                            <div>You have a premium account, which gives you access to the complete Quadfit library of exercises
-                                                and unlimited reporting for only
-                                                <span className="purple">$9.99</span> a month!</div><br/>
-                                                If you choose to downgrade your account you'll lose access to the complete Quadfit library,
-                                                and you'll only be able to see your progress for the last month.
-                                            <div className="button-wrap">
-                                                <Button onClick={this.changeAccount} buttonText={"Downgrade"} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </If>
+                            <Subscription {...this.state} onToken={this.onToken}/>
                         </div>
                     </div>
                 </div>
