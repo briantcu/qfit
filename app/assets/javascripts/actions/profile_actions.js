@@ -44,6 +44,28 @@ var ProfileActions = {
                 dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
             }
         });
+    },
+
+    updateSubscription: function(type) {
+        var data = {type: type};
+        data = JSON.stringify(data);
+        $.ajax({
+            type: 'put',
+            data: data,
+            url: '/subscription.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(results) {
+                var payload = results;
+                payload.success = true;
+                dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
+            },
+            error: function(results) {
+                var payload = results;
+                payload.success = false;
+                dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
+            }
+        });
     }
 };
 

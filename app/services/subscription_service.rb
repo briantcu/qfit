@@ -20,8 +20,8 @@ class SubscriptionService
 
     plan = get_plan_from_type(checkout_type)
 
-    if plan.blank?
-      Rollbar.error('Invalid plan ' + checkout_type)
+    if plan.blank? || stripe_customer_id.blank?
+      Rollbar.error('Cannot create plan. checkout type: ' + checkout_type + ' and user: ' + user.id.to_s)
       response[:status] = 'failed'
       response[:message] = "Sorry! We can't process your request right now, but we're looking into it."
     else
@@ -72,7 +72,8 @@ class SubscriptionService
     response
   end
 
-  def update_subscription(user, new_plan)
+  def update_subscription(user, new_type)
+    new_plan = get_plan_from_type(new_type)
     begin
       subscription = Stripe::Subscription.retrieve(user.subscription_id)
       subscription.plan = new_plan
@@ -130,12 +131,16 @@ class SubscriptionService
 
   def retrieve_or_create_stripe_customer_id(user, stripe_token)
     return user.stripe_id if user.stripe_id.present?
-    customer = Stripe::Customer.create(
-        source: stripe_token,
-        email: user.email
-    )
-    user.update!(stripe_id: customer.id)
-    customer.id
+    begin
+      customer = Stripe::Customer.create(
+          source: stripe_token,
+          email: user.email
+      )
+      user.update!(stripe_id: customer.id)
+      customer.id
+    rescue => e
+      Rollbar.error(e)
+    end
   end
 
   def deactivate_user(user, failed_payment = false)

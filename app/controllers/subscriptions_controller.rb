@@ -16,7 +16,13 @@ class SubscriptionsController < ApplicationController
   end
 
   def update
-
+    new_type = params[:type]
+    SubscriptionService.instance.update_subscription(current_user, new_type)
+    if result[:status] == 'succeeded'
+      render status: 201, json: {}
+    else
+      render status: 422, json: {errors: result[:message]}
+    end
   end
 
   def delete

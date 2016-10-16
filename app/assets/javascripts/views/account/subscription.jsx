@@ -32,7 +32,7 @@ class Subscription extends React.Component {
                                 />
                             </div>
                             <If condition={this.props.checkout.status}>
-                                <div>Checkout success!</div>
+                                <div>Subscription updated successfully!</div>
                             </If>
                             <If condition={!this.props.checkout.status && this.props.checkout.errors}>
                                 <div>{this.props.checkout.errors}</div>
