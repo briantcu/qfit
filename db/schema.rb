@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014041531) do
+ActiveRecord::Schema.define(version: 20161016051151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -438,6 +438,16 @@ ActiveRecord::Schema.define(version: 20161014041531) do
     t.integer  "num_laps"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "subscription_events", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "subscription_id"
+    t.string   "event"
+    t.string   "stripe_event_id"
+    t.string   "subscription_status"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "tips", force: :cascade do |t|

@@ -120,7 +120,15 @@ class SubscriptionService
 
       EmailService.perform_async(:notify_payment_failed, {user_id: user.id}) if event.type == 'invoice.payment_failed'
 
-      sync_subscription(user)
+      subscription = Stripe::Subscription.retrieve(user.subscription_id)
+      SubscriptionEvent.create(
+          user_id: user.id,
+          subscription_id: user.subscription_id,
+          event: event.type,
+          stripe_event: event.id,
+          subscription_status: subscription.status
+      )
+      sync_subscription(user, subscription)
 
     rescue => e
       Qfit::Application.config.logger.info(e)
@@ -144,8 +152,7 @@ class SubscriptionService
     end
   end
 
-  def sync_subscription(user)
-    subscription = Stripe::Subscription.retrieve(user.subscription_id)
+  def sync_subscription(user, subscription)
     if subscription.status == 'active'
 
       # ACTIVE SUBSCRIPTION
