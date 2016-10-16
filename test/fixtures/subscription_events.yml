@@ -18,12 +18,12 @@ one:
   user_id: 1
   subscription_id: MyString
   event: MyString
-  stripe_event: 
+  stripe_event_id:
   subscription_status: MyString
 
 two:
   user_id: 1
   subscription_id: MyString
   event: MyString
-  stripe_event: 
+  stripe_event_id:
   subscription_status: MyString
