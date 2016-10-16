@@ -106,19 +106,25 @@ class SubscriptionService
       return
     end
 
-    Qfit::Application.config.logger.info(event)
-    stripe_user_id = event.data['object']['customer']
-    user = User.find_by(stripe_id: stripe_user_id)
-    Qfit::Application.config.logger.info('Processing event for user id ' + user.id.to_s)
-    if event.type == 'customer.subscription.deleted'
-      deactivate_user(user)
-    elsif %w(customer.subscription.updated invoice.payment_succeeded).include? event.type
-      reactivate_user(user)                                                
-    elsif event.type == 'invoice.payment_failed'
-      deactivate_user(user)
-      #@TODO send email
-    else
-      Rollbar.warning(event.type)
+    begin
+      Qfit::Application.config.logger.info(event)
+      stripe_user_id = event.data['object']['customer']
+      user = User.find_by(stripe_id: stripe_user_id)
+      Qfit::Application.config.logger.info('Processing event for user id ' + user.id.to_s)
+      if event.type == 'customer.subscription.deleted'
+        deactivate_user(user)
+      elsif %w(customer.subscription.updated invoice.payment_succeeded).include? event.type
+        reactivate_user(user)
+      elsif event.type == 'invoice.payment_failed'
+        deactivate_user(user)
+        #@TODO send email
+      else
+        Qfit::Application.config.logger.info('Got stripe type ' + event.type)
+        Rollbar.warning(event.type)
+      end
+    rescue => e
+      Qfit::Application.config.logger.info(e)
+      Rollbar.error(e)
     end
   end
 
