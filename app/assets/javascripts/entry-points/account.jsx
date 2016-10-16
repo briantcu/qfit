@@ -265,7 +265,7 @@ class Account extends React.Component {
                                                     amount={999}
                                                     name="Quadfit, LLC"
                                                     image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
-                                                    description="Premium Membership"
+                                                    description="Premium Subscription"
                                                     panelLabel="Get Premium"
                                                     label="Get Premium"
                                                     allowRememberMe={false}

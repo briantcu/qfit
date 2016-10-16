@@ -18,24 +18,35 @@ class SubscriptionService
 
     stripe_customer_id = retrieve_or_create_stripe_customer_id(user, stripe_token)
 
-    begin
-      subscription = Stripe::Subscription.create(
-          customer: stripe_customer_id,
-          plan: PREMIUM_MEMBER
-      )
-    rescue Stripe::CardError => e
-      body = e.json_body
-      err  = body[:error]
-      response[:status] = 'failed'
-      response[:message] = err[:message]
-    rescue => e
-      Rollbar.error(e)
+    plan = get_plan_from_type(checkout_type)
+
+    if plan.blank?
+      Rollbar.error('Invalid plan ' + checkout_type)
       response[:status] = 'failed'
       response[:message] = "Sorry! We can't process your request right now, but we're looking into it."
     else
-      current_user.update!(active_until: subscription.current_period_end, subscription_id: subscription.id)
+      begin
+        subscription = Stripe::Subscription.create(
+            customer: stripe_customer_id,
+            plan: plan
+        )
+      rescue Stripe::CardError => e
+        Qfit::Application.config.logger.info('error checking out for user ' + user.id.to_s)
+        Qfit::Application.config.logger.info(e)
+        body = e.json_body
+        err  = body[:error]
+        response[:status] = 'failed'
+        response[:message] = err[:message]
+      rescue => e
+        Qfit::Application.config.logger.info('sending to rollbar - error checking out for user ' + user.id.to_s)
+        Qfit::Application.config.logger.info(e)
+        Rollbar.error(e)
+        response[:status] = 'failed'
+        response[:message] = "Sorry! We can't process your request right now, but we're looking into it."
+      else
+        current_user.update!(active_until: subscription.current_period_end, subscription_id: subscription.id)
+      end
     end
-
     response
   end
 
@@ -95,10 +106,14 @@ class SubscriptionService
       return
     end
 
+    Qfit::Application.config.logger.info(event)
+    stripe_user_id = event.data['object']['customer']
+    user = User.find_by(stripe_id: stripe_user_id)
+    Qfit::Application.config.logger.info('Processing event for user id ' + user.id.to_s)
     if event.type == 'customer.subscription.deleted'
       deactivate_user(user)
     elsif %w(customer.subscription.updated invoice.payment_succeeded).include? event.type
-      reactivate_user
+      reactivate_user(user)                                                
     elsif event.type == 'invoice.payment_failed'
       deactivate_user(user)
       #@TODO send email
@@ -134,18 +149,24 @@ class SubscriptionService
     end
   end
 
-  def reactivate_user
+  def reactivate_user(user)
     # if for an individual, make sure paid_tier is in line with what they're paying for. change active_until
     # if for coach, make sure active is set properly and create job to create workouts. update active_until
     #@TODO prob put a message on queue so you can respond to webhook
     subscription = Stripe::Subscription.retrieve(user.subscription_id)
     if subscription.status == 'active'
-      if (user.is_coach?)
+      if user.is_coach?
         #coach
         user.status = 2
       else
         user.paid_tier = 1
       end
+    end
+  end
+
+  def get_plan_from_type(type)
+    if type == PREMIUM_CHECKOUT
+      PREMIUM_MEMBER
     end
   end
 
