@@ -6,6 +6,9 @@ class SubscriptionService
 
   #Quadfit checkout types
   PREMIUM_CHECKOUT  = 'PREMIUM_CHECKOUT'
+  GOLD_CHECKOUT = 'GOLD_CHECKOUT'
+  BRONZE_CHECKOUT = 'BRONZE_CHECKOUT'
+  SILVER_CHECKOUT = 'SILVER_CHECKOUT'
 
   #Stripe plan types
   PREMIUM_MEMBER = 'PremiumMember'
@@ -56,12 +59,10 @@ class SubscriptionService
   def update_billing(user, stripe_token)
     response = {status: 'success', message: 'none'}
 
-    customer = Stripe::Customer.retrieve(user.stripe_id)
-    customer.source = stripe_token
-
     begin
+      customer = Stripe::Customer.retrieve(user.stripe_id)
+      customer.source = stripe_token
       customer.save
-      #@TODO maybe reactivate customer, see if you can charge them right now, or if you even need to
     rescue Stripe::CardError => e
       body = e.json_body
       err  = body[:error]
@@ -100,7 +101,7 @@ class SubscriptionService
       subscription.delete
     rescue => e
       Rollbar.error(e)
-    else
+    ensure
       deactivate_user(user)
     end
   end
@@ -123,15 +124,22 @@ class SubscriptionService
 
       EmailService.perform_async(:notify_payment_failed, {user_id: user.id}) if event.type == 'invoice.payment_failed'
 
-      subscription = Stripe::Subscription.retrieve(user.subscription_id)
+      begin
+        subscription = Stripe::Subscription.retrieve(user.subscription_id)
+      rescue Stripe::InvalidRequestError => e
+        deactivate_user(user) # Subscription no longer exists
+      rescue => e
+        Rollbar.error(e)
+      end
+
       SubscriptionEvent.create(
           user_id: user.id,
           subscription_id: user.subscription_id,
           event: event.type,
           stripe_event: event.id,
-          subscription_status: subscription.status
+          subscription_status: subscription.try(:status)
       )
-      sync_subscription(user, subscription)
+      sync_subscription(user, subscription) if subscription.present?
 
     rescue => e
       Qfit::Application.config.logger.info(e)
@@ -167,29 +175,34 @@ class SubscriptionService
 
         user.status = 1 # active
         user.active_until = subscription.current_period_end
+        user.save!
       else
         user.paid_tier = 2
+        user.status = 1 # active
         user.active_until = subscription.current_period_end
+        user.save!
       end
     else
 
       # NOT ACTIVE
-      if user.is_coach?
-        if subscription.status == 'canceled' || subscription.status == 'unpaid'
-          status = 2 # sub is done
-        else
-          status = 3 # billing failed
-        end
-        user.status = status
+      if subscription.status == 'canceled' || subscription.status == 'unpaid'
+        deactivate_user(user)
       else
-        if subscription.status == 'canceled' || subscription.status == 'unpaid'
-          # deactivated subscription
-          user.paid_tier = 1  # downgrade paid tier, which means you'll still create workouts, just won't get extras
-          user.status = 1
-        else
-          user.status = 3 # which means you'll keep recognizing them as having a sub, but you won't give them extras
-        end
+        user.status = 3 # billing failed
+        user.save!
       end
+    end
+
+  end
+
+  def deactivate_user(user)
+    if user.is_coach?
+      user.coach_account.num_accts = 5
+      user.coach_account.save!
+      user.status = 1
+    else
+      user.paid_tier = 1
+      user.status = 1
     end
     user.save!
   end
@@ -197,6 +210,12 @@ class SubscriptionService
   def get_plan_from_type(type)
     if type == PREMIUM_CHECKOUT
       PREMIUM_MEMBER
+    elsif type == GOLD_CHECKOUT
+      GOLD_COACH
+    elsif type == BRONZE_CHECKOUT
+      BRONZE_COACH
+    elsif type == SILVER_CHECKOUT
+      SILVER_COACH
     end
   end
 

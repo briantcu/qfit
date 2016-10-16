@@ -26,7 +26,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def delete
-
+    SubscriptionService.instance.delete_subscription(current_user)
+    head status: 200
   end
 
   def stripe_event
