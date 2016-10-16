@@ -22,6 +22,8 @@ class EmailService
         send_coach_sign_up_invite(options)
       when :coach_maxed
         notify_coach_is_maxed(options)
+      when :payment_failed
+        notify_payment_failed(options)
     end
   end
 
@@ -72,5 +74,10 @@ class EmailService
   def notify_coach_is_maxed(options)
     coach = User.find(options[:user_id])
     QuadfitMailer.notify_coach_is_maxed(coach).deliver_now
+  end
+
+  def notify_payment_failed(options)
+    user = User.find(options[:user_id])
+    QuadfitMailer.notify_payment_failed(user).deliver_now
   end
 end

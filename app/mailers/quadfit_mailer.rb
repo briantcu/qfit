@@ -58,4 +58,9 @@ class QuadfitMailer < ApplicationMailer
     @groups = groups
     mail(to: 'brian@quadfit.com', subject: subject)
   end
+
+  def notify_payment_failed(user)
+    @user = user
+    mail(to:@user.email, subject: 'Quadfit payment failed')
+  end
 end

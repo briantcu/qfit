@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   before_action :verify_logged_in_html, only: [:coaches, :account]
   before_action :verify_is_coach, only: [:coaches]
   before_action :set_gon_info, only: [:coaches, :account]
+  before_action :clear_coach_session, only: [:home, :coaches]
 
   def home
     render template: 'pages/home'
@@ -28,6 +29,18 @@ class PagesController < ApplicationController
   def verify_is_coach
     unless current_user.is_coach?
       redirect_to '/'
+    end
+  end
+
+  def clear_coach_session
+    if current_user.is_coach?
+      # Get ouf of a possible weird state if they bail out of onboarding
+      session_service = SessionService.new(session)
+      session_service.set_setup_context(nil)
+      session_service.set_onboarding(false)
+      session_service.set_viewing(nil)
+      session_service.set_team_id(nil)
+      session_service.set_current_user_id(nil)
     end
   end
 

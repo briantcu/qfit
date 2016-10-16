@@ -44,7 +44,7 @@ class SubscriptionService
         response[:status] = 'failed'
         response[:message] = "Sorry! We can't process your request right now, but we're looking into it."
       else
-        current_user.update!(active_until: subscription.current_period_end, subscription_id: subscription.id)
+        user.update!(active_until: subscription.current_period_end, subscription_id: subscription.id)
       end
     end
     response
@@ -73,6 +73,7 @@ class SubscriptionService
   end
 
   def update_subscription(user, new_type)
+    # Only for coaches, bc only coaches have multiple sub types
     new_plan = get_plan_from_type(new_type)
     begin
       subscription = Stripe::Subscription.retrieve(user.subscription_id)
@@ -81,8 +82,12 @@ class SubscriptionService
     rescue => e
       Rollbar.error(e)
     else
-      #@TODO upgrade or downgrade coach active users.
-
+      # active_until is updated with subscription.updated webhook
+      if user.is_coach?
+        num_accts = get_num_accts_from_plan(new_plan)
+        user.coach_account.num_accts = num_accts
+        user.coach_account.save!
+      end
     end
   end
 
@@ -107,20 +112,16 @@ class SubscriptionService
 
     begin
       Qfit::Application.config.logger.info(event)
+
       stripe_user_id = event.data['object']['customer']
       user = User.find_by(stripe_id: stripe_user_id)
+
       Qfit::Application.config.logger.info('Processing event for user id ' + user.id.to_s)
-      if event.type == 'customer.subscription.deleted'
-        deactivate_user(user)
-      elsif %w(customer.subscription.updated invoice.payment_succeeded).include? event.type
-        reactivate_user(user)
-      elsif event.type == 'invoice.payment_failed'
-        deactivate_user(user, true)
-        #@TODO send email
-      else
-        Qfit::Application.config.logger.info('Got stripe type ' + event.type)
-        Rollbar.warning(event.type)
-      end
+
+      EmailService.perform_async(:notify_payment_failed, {user_id: user.id}) if event.type == 'invoice.payment_failed'
+
+      sync_subscription(user)
+
     rescue => e
       Qfit::Application.config.logger.info(e)
       Rollbar.error(e)
@@ -143,32 +144,41 @@ class SubscriptionService
     end
   end
 
-  def deactivate_user(user, failed_payment = false)
-    #if for an individual, downgrade paid_tier. leave status as active, keep creating workouts
-    #if for a coach, make inactive, stop creating workouts for players
-    subscription = Stripe::Subscription.retrieve(user.subscription_id)
-    # @TODO will a sub not be active with a failed payment?
-    if subscription.status != 'active'
-      if user.is_coach?
-        #@TODO upgrade or downgrade coach active users?
-        user.status = failed_payment ? 3 : 2
-      else
-        user.paid_tier = 1  # downgrade paid tier
-      end
-    end
-    user.save!
-  end
-
-  def reactivate_user(user)
-    # if for an individual, make sure paid_tier is in line with what they're paying for. change active_until
-    # if for coach, make sure active is set properly and create job to create workouts. update active_until
+  def sync_subscription(user)
     subscription = Stripe::Subscription.retrieve(user.subscription_id)
     if subscription.status == 'active'
+
+      # ACTIVE SUBSCRIPTION
       if user.is_coach?
-        # @TODO look at subscription type and make sure num_accts is in sync
-        user.status = 1 #active
+        plan = subscription.plan['id']
+        num_accts = get_num_accts_from_plan(plan)
+        user.coach_account.num_accts = num_accts
+        user.coach_account.save!
+
+        user.status = 1 # active
+        user.active_until = subscription.current_period_end
       else
         user.paid_tier = 2
+        user.active_until = subscription.current_period_end
+      end
+    else
+
+      # NOT ACTIVE
+      if user.is_coach?
+        if subscription.status == 'canceled' || subscription.status == 'unpaid'
+          status = 2 # sub is done
+        else
+          status = 3 # billing failed
+        end
+        user.status = status
+      else
+        if subscription.status == 'canceled' || subscription.status == 'unpaid'
+          # deactivated subscription
+          user.paid_tier = 1  # downgrade paid tier, which means you'll still create workouts, just won't get extras
+          user.status = 1
+        else
+          user.status = 3 # which means you'll keep recognizing them as having a sub, but you won't give them extras
+        end
       end
     end
     user.save!
@@ -178,6 +188,11 @@ class SubscriptionService
     if type == PREMIUM_CHECKOUT
       PREMIUM_MEMBER
     end
+  end
+
+  def get_num_accts_from_plan(plan)
+    # @TODO
+    20
   end
 
 end
