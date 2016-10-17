@@ -26,21 +26,25 @@ class RoutineService
 
   def self.nightly_workout_creation
     total_time = Benchmark.realtime do
-      #@TODO Make sure that coach account is active for groups and sub users. Modify tests
-      groups = Group.not_template
-      groups.each do |group|
-        RoutineService.new(group, 'CRON', nil, false).create_routines
+      coaches = User.active_coaches
+      coaches.each do |coach|
+        groups = coach.coach_groups.not_template
+        groups.each do |group|
+          RoutineService.new(group, 'CRON', nil, false).create_routines
+        end
+
+        sub_users = coach.players.without_group
+        sub_users.each do |user|
+          RoutineService.new(user, 'CRON', nil, false).create_routines
+        end
       end
-      sub_users = User.sub_users.without_group
-      sub_users.each do |user|
-        RoutineService.new(user, 'CRON', nil, false).create_routines
-      end
+
       users = User.regular_users.logged_in_recently
       users.each do |user|
         RoutineService.new(user, 'CRON', nil, false).create_routines
       end
 
-      QuadfitMailer.nightly_job(total_time, users.count, sub_users.count, groups.count)
+      QuadfitMailer.nightly_job(total_time, users.count, coaches.count)
     end
 
   end

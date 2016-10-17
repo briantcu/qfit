@@ -52,7 +52,7 @@ class Subscription extends React.Component {
             return <div className="button-wrap">
                 <StripeCheckout
                     token={this.props.premiumCheckout}
-                    stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
+                    stripeKey={gon.stripe_key}
                     amount={999}
                     name="Quadfit, LLC"
                     image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
@@ -84,7 +84,7 @@ class Subscription extends React.Component {
                             <span className="update-wrapper">
                                 <StripeCheckout
                                     token={this.props.updateBilling}
-                                    stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
+                                    stripeKey={gon.stripe_key}
                                     name="Quadfit, LLC"
                                     image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
                                     description="Update Billing"

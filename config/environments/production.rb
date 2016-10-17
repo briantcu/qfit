@@ -10,6 +10,9 @@ Qfit::Application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
+  config.stripe_key = 'pk_live_aTQOaVmiDUWnxxMMxBkHwQRB'
+  config.stripe_secret_key = 'sk_live_hSa1uaH3oZvHXE7jrsQmCGZL'
+
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true

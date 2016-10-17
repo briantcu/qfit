@@ -20,6 +20,7 @@ class SprintingService
 
     if @entity.sprint_diff.to_i > 5
       @entity.sprint_diff = 5
+      @entity.save!
     end
 
     sprints = Sprint.where("difficulty <= ?", @entity.sprint_diff.to_i)

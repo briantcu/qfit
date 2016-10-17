@@ -16,8 +16,7 @@ class SubscriptionService
   SILVER_COACH = 'SilverCoach'
   BRONZE_COACH = 'BronzeCoach'
 
-  #@TODO set API key in env var
-  Stripe.api_key = "sk_test_UMmjXKClIIsWlkkIC2MwFe1b"
+  Stripe.api_key = Qfit::Application.config.stripe_secret_key
 
   def activate_subscription(user, checkout_type, stripe_token)
     response = {status: 'success', message: 'none'}

@@ -33,6 +33,9 @@ Qfit::Application.configure do
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
 
+  config.stripe_key = 'pk_test_Qn7vO7ACSbGqKp7tBXget5Du'
+  config.stripe_secret_key = "sk_test_UMmjXKClIIsWlkkIC2MwFe1b"
+
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.

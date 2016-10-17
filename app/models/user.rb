@@ -149,6 +149,12 @@ class User < ActiveRecord::Base
                                             .where('weight_sets.perf_reps > 0')
                                             .where('weight_sets.created_at > ?', date)
                                             .order('value DESC').limit(5)}
+  def self.active_coaches
+    coaches = includes(:coach_account).where(administrator: true, status: 1).where('active_until >= ? ', Time.now)
+    coaches = coaches.select { |coach| !coach.coach_account.is_overloaded? }
+    coaches
+  end
+
   def self.without_group
     includes(:group_join).where(group_joins: { id: nil })
   end
@@ -169,6 +175,19 @@ class User < ActiveRecord::Base
       end
       user.image = auth.info.image
     end
+  end
+
+  def coach_in_good_standing?
+    (administrator) && (status == 1 || status == 4) && (active_until <= Time.now) && (!coach_account.is_overloaded?)
+  end
+
+  def exercise_tier
+    @exercise_tier ||=
+      if (paid_tier == 2) && (active_until >= Time.now) && (status == 1 || status == 4)
+        2
+      else
+        1
+      end
   end
 
   def has_subscription?

@@ -34,6 +34,9 @@ Qfit::Application.configure do
   # Raise an error on page load if there are pending migrations
   config.active_record.migration_error = :page_load
 
+  config.stripe_key = 'pk_test_Qn7vO7ACSbGqKp7tBXget5Du'
+  config.stripe_secret_key = "sk_test_UMmjXKClIIsWlkkIC2MwFe1b"
+
   config.assets_prefix = ''
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large

@@ -50,6 +50,16 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def exercise_tier
+    # Don't need to check to see if the coach is in good standing here because we wouldn't be calling this if it wasn't
+    @exercise_tier ||=
+      if coach.coach_account.num_accts > 5
+        2
+      else
+        1
+      end
+  end
+
   def will_workout_for_day?(day)
     self.group_schedule.group_schedule_days[day].stretching
   end

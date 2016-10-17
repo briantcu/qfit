@@ -69,13 +69,13 @@ class CoachOptions extends React.Component {
                                     <Otherwise>
                                         <StripeCheckout
                                             token={this.props.bronzeCheckout}
-                                            stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
+                                            stripeKey={gon.stripe_key}
                                             amount={2999}
                                             name="Quadfit, LLC"
                                             image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
                                             description="Bronze Subscription"
                                             panelLabel="Get Bronze"
-                                            label="Get Bronze"
+                                            label="Bronze"
                                             allowRememberMe={false}
                                             email={this.props.user.email}
                                             local="auto"
@@ -99,13 +99,13 @@ class CoachOptions extends React.Component {
                                     <Otherwise>
                                         <StripeCheckout
                                             token={this.props.silverCheckout}
-                                            stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
+                                            stripeKey={gon.stripe_key}
                                             amount={7999}
                                             name="Quadfit, LLC"
                                             image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
                                             description="Silver Subscription"
                                             panelLabel="Get Silver"
-                                            label="Get Silver"
+                                            label="Silver"
                                             allowRememberMe={false}
                                             email={this.props.user.email}
                                             local="auto"
@@ -129,13 +129,13 @@ class CoachOptions extends React.Component {
                                     <Otherwise>
                                         <StripeCheckout
                                             token={this.props.goldCheckout}
-                                            stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
+                                            stripeKey={gon.stripe_key}
                                             amount={27999}
                                             name="Quadfit, LLC"
                                             image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
                                             description="Gold Subscription"
                                             panelLabel="Get Gold"
-                                            label="Get Gold"
+                                            label="Gold"
                                             allowRememberMe={false}
                                             email={this.props.user.email}
                                             local="auto"

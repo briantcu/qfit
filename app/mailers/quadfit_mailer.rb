@@ -50,12 +50,11 @@ class QuadfitMailer < ApplicationMailer
     mail(to: coach.email, subject: subject)
   end
 
-  def nightly_job(total_time, users, players, groups)
+  def nightly_job(total_time, users, coaches)
     subject = "nightly job"
     @total_time = total_time
     @users = users
-    @players = players
-    @groups = groups
+    @coaches = coaches
     mail(to: 'brian@quadfit.com', subject: subject)
   end
 

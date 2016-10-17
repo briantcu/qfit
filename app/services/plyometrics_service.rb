@@ -19,7 +19,7 @@ class PlyometricsService
     if @entity.is_group?
       plyos = Plyometric.all
     else
-      plyos = Plyometric.where('paid_tier <= ?', @entity.paid_tier)
+      plyos = Plyometric.where('paid_tier <= ?', @entity.exercise_tier)
     end
     num_plyos_for_index = plyos.count - 1
 

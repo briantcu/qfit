@@ -9,6 +9,7 @@ class PagesController < ApplicationController
   end
 
   def account
+    gon.push({stripe_key: Qfit::Application.config.stripe_key})
     render template: 'pages/account'
   end
 

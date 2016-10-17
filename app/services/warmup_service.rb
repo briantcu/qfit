@@ -73,7 +73,7 @@ class WarmupService
     if @entity.is_group?
       warmups = Warmup.where(ex_type: type)
     else
-      warmups = Warmup.where('paid_tier <= ?', @entity.paid_tier).where(ex_type: type)
+      warmups = Warmup.where('paid_tier <= ?', @entity.exercise_tier).where(ex_type: type)
     end
     num_warmups_for_index = warmups.count - 1
 
