@@ -36,10 +36,15 @@ class Account extends React.Component {
         this.onChange = this.onChange.bind(this);
         this.evalUsername = this.evalUsername.bind(this);
         this.onDrop = this.onDrop.bind(this);
+        this.updateBilling = this.updateBilling.bind(this);
     }
 
     onToken (token)  {
         ProfileActions.checkout(token, C.PREMIUM_CHECKOUT);
+    }
+
+    updateBilling (token) {
+        ProfileActions.updateBilling(token);
     }
 
     componentDidMount () {
@@ -254,7 +259,7 @@ class Account extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <Subscription {...this.state} onToken={this.onToken}/>
+                            <Subscription {...this.state} onToken={this.onToken} changeAccount={this.changeAccount} updateBilling={this.updateBilling}/>
                         </div>
                     </div>
                 </div>

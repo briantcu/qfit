@@ -25,6 +25,17 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def update_billing
+    stripe_token = params[:token]
+
+    result = SubscriptionService.instance.update_billing(current_user, stripe_token)
+    if result[:status] == 'succeeded'
+      render status: 201, json: {}
+    else
+      render status: 422, json: {errors: result[:message]}
+    end
+  end
+
   def delete
     SubscriptionService.instance.delete_subscription(current_user)
     head status: 200
