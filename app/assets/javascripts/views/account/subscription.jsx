@@ -1,5 +1,6 @@
 import {render} from 'react-dom';
 import StripeCheckout from 'react-stripe-checkout';
+import CoachOptions from 'views/account/coach_options';
 
 class Subscription extends React.Component {
     constructor(props) {
@@ -43,14 +44,22 @@ class Subscription extends React.Component {
     }
 
     displayCoachOptions() {
-
+        return <CoachOptions
+            {...this.props}
+            changeAccount={this.props.changeAccount}
+            deleteSubscription={this.props.deleteSubscription}
+            updateBilling={this.props.updateBilling}
+            bronzeCheckout={this.props.bronzeCheckout}
+            silverCheckout={this.props.silverCheckout}
+            goldCheckout={this.props.goldCheckout}
+            />
     }
 
     displayIndividualOptions() {
         if (this.props.user.paid_tier == 1) {
             return <div className="button-wrap">
                 <StripeCheckout
-                    token={this.props.onToken}
+                    token={this.props.premiumCheckout}
                     stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
                     amount={999}
                     name="Quadfit, LLC"
@@ -65,6 +74,10 @@ class Subscription extends React.Component {
             </div>
         } else {
             return <div className="button-wrap">
+                <If condition={this.props.user.status == 3}>
+                    <div>Whoa! Looks like we weren't able to bill you this month. Please update your billing info.</div>
+                </If>
+
                 <StripeCheckout
                     token={this.props.updateBilling}
                     stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
@@ -93,13 +106,19 @@ class Subscription extends React.Component {
                         </div>
                         {this.displayAccountOptions()}
 
+
+                        <If condition={this.props.user.status == 3}>
+                            <div>Whoa! Looks like we weren't able to bill you this month. Please update your billing info.</div>
+                        </If>
+                        <If condition={this.props.user.status == 4}>
+                            <div>Your subscription is set to cancel at the end of this billing period.</div>
+                        </If>
                         <If condition={this.props.checkout.status}>
                             <div>Updated successfully!</div>
                         </If>
                         <If condition={!this.props.checkout.status && this.props.checkout.errors}>
                             <div>{this.props.checkout.errors}</div>
                         </If>
-
                     </div>
                 </div>
             </div>

@@ -25,7 +25,9 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  # /billing
   def update_billing
+    # If you have a failed payment, this won't fix your sub until we get the webhook from stripe
     stripe_token = params[:token]
 
     result = SubscriptionService.instance.update_billing(current_user, stripe_token)
@@ -37,8 +39,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def delete
-    SubscriptionService.instance.delete_subscription(current_user)
-    head status: 200
+    active_until = SubscriptionService.instance.delete_subscription(current_user)
+    render status: 201, json: {message: 'Your subscription will not renew, but you can continue to enjoy your subscription until the billing period ends.'}
   end
 
   def stripe_event

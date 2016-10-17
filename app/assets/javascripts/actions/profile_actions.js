@@ -17,7 +17,7 @@ var ProfileActions = {
                 dispatcher.dispatch(C.PROFILE_SAVED, payload);
             },
             error: function(results) {
-                var payload = results.responseJSON;
+                var payload = results;
                 payload.success = false;
                 dispatcher.dispatch(C.PROFILE_SAVED, payload);
             }
@@ -63,6 +63,20 @@ var ProfileActions = {
             error: function(results) {
                 var payload = results;
                 payload.success = false;
+                dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
+            }
+        });
+    },
+
+    deleteSubscription: function() {
+        $.ajax({
+            type: 'delete',
+            url: '/subscription.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(results) {
+                var payload = results;
+                payload.success = true;
                 dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
             }
         });

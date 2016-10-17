@@ -98,11 +98,13 @@ class SubscriptionService
   def delete_subscription(user)
     begin
       subscription = Stripe::Subscription.retrieve(user.subscription_id)
-      subscription.delete
+      sub = subscription.delete
     rescue => e
       Rollbar.error(e)
     ensure
-      deactivate_user(user)
+      user.status = 4
+      user.save!
+      sub.try(:current_period_end)
     end
   end
 
@@ -223,7 +225,7 @@ class SubscriptionService
     if plan == GOLD_COACH
       1000000
     elsif plan == SILVER_COACH
-      99
+      100
     elsif plan == BRONZE_COACH
       30
     end

@@ -68,7 +68,7 @@
 #  avatar                      :string
 #
 
-# Status: 1 = active, 2 = disabled, 3 = active with failed payment
+# Status: 1 = active, 2 = disabled, 3 = active with failed payment, 4 = active but cancelling
 # Experience level = 1-3
 # Level: 1 = sub, 2= reg user, 5 coach
 # paid_tier: 1 = basic, 2 = premium
@@ -169,6 +169,15 @@ class User < ActiveRecord::Base
       end
       user.image = auth.info.image
     end
+  end
+
+  def has_subscription?
+    # Used to determine if we have a stripe acct for this user
+    if is_coach?
+      return coach_account.num_accts > 5
+    end
+
+    paid_tier == 2
   end
 
   def inbox

@@ -39,8 +39,22 @@ class Account extends React.Component {
         this.updateBilling = this.updateBilling.bind(this);
     }
 
-    onToken (token)  {
-        ProfileActions.checkout(token, C.PREMIUM_CHECKOUT);
+    premiumCheckout (token)  {
+        this.checkout(token, C.PREMIUM_CHECKOUT);
+    }
+
+    bronzeCheckout (token)  {
+        this.checkout(token, C.BRONZE_CHECKOUT);
+    }
+    silverCheckout (token)  {
+        this.checkout(token, C.SILVER_CHECKOUT);
+    }
+    goldCheckout (token)  {
+        this.checkout(token, C.GOLD_CHECKOUT);
+    }
+    
+    checkout (token, type){
+        ProfileActions.checkout(token, type);        
     }
 
     updateBilling (token) {
@@ -87,8 +101,12 @@ class Account extends React.Component {
         this.state.formSubmitted = false;
     }
 
-    changeAccount() {
+    changeAccount(type) {
+        ProfileActions.updateSubscription(type);
+    }
 
+    deleteSubscription() {
+        ProfileActions.deleteSubscription();
     }
 
     submit () {
@@ -259,7 +277,15 @@ class Account extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <Subscription {...this.state} onToken={this.onToken} changeAccount={this.changeAccount} updateBilling={this.updateBilling}/>
+                            <Subscription {...this.state}
+                                premiumCheckout={this.premiumCheckout}
+                                changeAccount={this.changeAccount}
+                                deleteSubscription={this.deleteSubscription}
+                                updateBilling={this.updateBilling}
+                                bronzeCheckout={this.bronzeCheckout}
+                                silverCheckout={this.silverCheckout}
+                                goldCheckout={this.goldCheckout}
+                            />
                         </div>
                     </div>
                 </div>
