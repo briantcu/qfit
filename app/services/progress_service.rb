@@ -6,13 +6,15 @@ class ProgressService
     @exercise = Exercise.find(exercise_id) if exercise_id.present?
     case @period
       when '1'
-        @start_date = (Date.today - 3.months) > @user.daily_routines.oldest.day_performed ? (Date.today - 3.months) : @user.daily_routines.oldest.day_performed
+        @start_date = (Date.today - 3.months) > @user.daily_routines.oldest.day_performed ? (Date.today - 90.days) : @user.daily_routines.oldest.day_performed
       when '2'
         @start_date = (Date.today - 3.years) > @user.daily_routines.oldest.day_performed ? (Date.today - 3.years) : @user.daily_routines.oldest.day_performed
       when '3'
         @start_date = (Date.today - 1.year) > @user.daily_routines.oldest.day_performed ? (Date.today - 1.year) : @user.daily_routines.oldest.day_performed
+      when '5'
+        @start_date = (Date.today - 1.month) > @user.daily_routines.oldest.day_performed ? (Date.today - 60.days) : @user.daily_routines.oldest.day_performed
       else
-        @start_date = (Date.today - 1.month) > @user.daily_routines.oldest.day_performed ? (Date.today - 1.month) : @user.daily_routines.oldest.day_performed
+        @start_date = (Date.today - 1.month) > @user.daily_routines.oldest.day_performed ? (Date.today - 30.days) : @user.daily_routines.oldest.day_performed
     end
   end
 

@@ -21,10 +21,6 @@ class CoachAccount < ActiveRecord::Base
     players.count >= num_accts
   end
 
-  def is_overloaded?
-    players.count > num_accts
-  end
-
   def can_send_codes?
     (user.sign_up_codes.unused.count + players.count) < num_accts
   end

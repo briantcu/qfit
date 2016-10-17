@@ -11,4 +11,5 @@ json.is_coach @user.is_coach?
 json.is_sub_user @user.is_sub_user?
 json.is_individual @user.is_individual?
 json.has_subscription @user.has_subscription?
+json.has_premium_access @user.has_premium_access?
 

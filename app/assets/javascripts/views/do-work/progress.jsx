@@ -22,7 +22,8 @@ class Progress extends React.Component {
             three_months: 1,
             all_time: 2,
             one_year: 3,
-            one_month: 4
+            one_month: 4,
+            two_month: 5
         };
         this.state = {
             hasData: false,
@@ -310,12 +311,24 @@ class Progress extends React.Component {
                                 <div className="col-xs-5 text-right">
                                     <span onClick={() => this.periodChanged(this.periods.one_month) }
                                           className={(this.state.period ==  this.periods.one_month) ? 'selected-period' : 'period'}>Last 30 Days</span>
-                                    <span onClick={() => this.periodChanged(this.periods.three_months) }
-                                          className={(this.state.period == this.periods.three_months) ? 'selected-period' : 'period'}>Last 90 Days</span>
-                                    <span onClick={() => this.periodChanged(this.periods.one_year) }
-                                          className={(this.state.period ==  this.periods.one_year) ? 'selected-period' : 'period'}>Last Year</span>
-                                    <span onClick={() => this.periodChanged(this.periods.all_time) }
-                                          className={(this.state.period ==  this.periods.all_time) ? 'selected-period' : 'period'}>All Time</span>
+                                    <span onClick={() => this.periodChanged(this.periods.two_month) }
+                                          className={(this.state.period ==  this.periods.two_month) ? 'selected-period' : 'period'}>Last 60 Days</span>
+                                    <Choose>
+                                        <When condition={gon.has_premium_access} >
+                                            <span onClick={() => this.periodChanged(this.periods.three_months) }
+                                                  className={(this.state.period == this.periods.three_months) ? 'selected-period' : 'period'}>Last 90 Days</span>
+                                            <span onClick={() => this.periodChanged(this.periods.one_year) }
+                                                  className={(this.state.period ==  this.periods.one_year) ? 'selected-period' : 'period'}>Last Year</span>
+                                            <span onClick={() => this.periodChanged(this.periods.all_time) }
+                                                  className={(this.state.period ==  this.periods.all_time) ? 'selected-period' : 'period'}>All Time</span>
+                                        </When>
+                                        <Otherwise>
+                                            <a className="upgrade-link" href="/account">Upgrade for more</a>
+                                        </Otherwise>
+                                    </Choose>
+
+
+
                                 </div>
                             </div>
                         </div>

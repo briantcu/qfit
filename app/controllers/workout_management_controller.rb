@@ -135,7 +135,8 @@ class WorkoutManagementController < ApplicationController
             team_id: session[:team_id],
             viewing: viewing,
             setup_context: session[:setup_context],
-            onboarding: session[:onboarding]
+            onboarding: session[:onboarding],
+            has_premium_access: @user.has_premium_access?
         }
     )
   end

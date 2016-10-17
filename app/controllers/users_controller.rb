@@ -127,6 +127,12 @@ class UsersController < ApplicationController
     chart_type = params[:chart_type]
     period = params[:period]
     exercise_id = params[:exercise_id]
+    if period != '4' && period != '5'
+      unless @user.has_premium_access?
+        render status: 401, json: {errors: 'You need to upgrade your subscription to be able to do this.'}
+      end
+
+    end
     @progress_data = ProgressService.new(user_id, chart_type, period, exercise_id).get_chart
   end
 

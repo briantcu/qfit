@@ -150,8 +150,8 @@ class User < ActiveRecord::Base
                                             .where('weight_sets.created_at > ?', date)
                                             .order('value DESC').limit(5)}
   def self.active_coaches
-    coaches = includes(:coach_account).where(administrator: true, status: 1).where('active_until >= ? ', Time.now)
-    coaches = coaches.select { |coach| !coach.coach_account.is_overloaded? }
+    coaches = includes(:coach_account).where(administrator: true, status: [1, 4])
+    coaches = coaches.select { |coach| coach.eligible_for_workouts? }
     coaches
   end
 
@@ -177,13 +177,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def coach_in_good_standing?
-    (administrator) && (status == 1 || status == 4) && (active_until <= Time.now) && (!coach_account.is_overloaded?)
-  end
-
   def exercise_tier
     @exercise_tier ||=
-      if (paid_tier == 2) && (active_until >= Time.now) && (status == 1 || status == 4)
+      if has_premium_access?
         2
       else
         1
@@ -191,12 +187,46 @@ class User < ActiveRecord::Base
   end
 
   def has_subscription?
-    # Used to determine if we have a stripe acct for this user
+    # Used to determine if we have a stripe acct for this user. Does not mean sub is in good standing
     if is_coach?
       return coach_account.num_accts > 5
     end
 
     paid_tier == 2
+  end
+
+  def eligible_for_workouts?
+    @eligible_for_workouts ||=
+      if is_coach?
+        if coach_account.num_accts > 5 # They're a paid subscriber
+          players.count <= coach_account.num_accts && active_until >= Time.now && (status == 1 || status == 4)
+        else
+          players.count <= coach_account.num_accts && (status == 1 || status == 4)
+        end
+      else
+        if is_sub_user?
+          coach.eligible_for_workouts?
+        else
+          true
+        end
+      end
+  end
+
+  def has_premium_access?
+    @has_premium_access ||=
+      if is_coach?
+        if coach_account.num_accts > 5 # They're a paid subscriber
+          players.count <= coach_account.num_accts && active_until >= Time.now && (status == 1 || status == 4)
+        else
+          false
+        end
+      else
+        if is_sub_user?
+          coach.has_premium_access?
+        else
+          paid_tier == 2 && (status == 1 || status == 4) && active_until >= Time.now
+        end
+      end
   end
 
   def inbox
