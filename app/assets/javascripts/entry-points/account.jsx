@@ -37,6 +37,10 @@ class Account extends React.Component {
         this.evalUsername = this.evalUsername.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.updateBilling = this.updateBilling.bind(this);
+        this.premiumCheckout = this.premiumCheckout.bind(this);
+        this.bronzeCheckout = this.bronzeCheckout.bind(this);
+        this.silverCheckout = this.silverCheckout.bind(this);
+        this.goldCheckout = this.goldCheckout.bind(this);
     }
 
     premiumCheckout (token)  {
@@ -55,6 +59,14 @@ class Account extends React.Component {
     
     checkout (token, type){
         ProfileActions.checkout(token, type);        
+    }
+
+    changeAccount(type) {
+        ProfileActions.updateSubscription(type);
+    }
+
+    deleteSubscription() {
+        ProfileActions.deleteSubscription();
     }
 
     updateBilling (token) {
@@ -99,14 +111,6 @@ class Account extends React.Component {
         }
 
         this.state.formSubmitted = false;
-    }
-
-    changeAccount(type) {
-        ProfileActions.updateSubscription(type);
-    }
-
-    deleteSubscription() {
-        ProfileActions.deleteSubscription();
     }
 
     submit () {

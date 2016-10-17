@@ -1,45 +1,11 @@
 import {render} from 'react-dom';
 import StripeCheckout from 'react-stripe-checkout';
+import C from 'constants/profile_constants';
+import Button from 'views/common/button';
 
 class CoachOptions extends React.Component {
     constructor(props) {
         super(props);
-    }
-
-    displayIndividualOptions() {
-        if (this.props.user.paid_tier == 1) {
-            return <div className="button-wrap">
-                <StripeCheckout
-                    token={this.props.premiumCheckout}
-                    stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
-                    amount={999}
-                    name="Quadfit, LLC"
-                    image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
-                    description="Premium Subscription"
-                    panelLabel="Get Premium"
-                    label="Get Premium"
-                    allowRememberMe={false}
-                    email={this.props.user.email}
-                    local="auto"
-                />
-            </div>
-        } else {
-            return <div className="button-wrap">
-                <StripeCheckout
-                    token={this.props.updateBilling}
-                    stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
-                    name="Quadfit, LLC"
-                    image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
-                    description="Update Billing"
-                    panelLabel="Update Billing"
-                    label="Update Billing"
-                    allowRememberMe={false}
-                    email={this.props.user.email}
-                    local="auto"
-                />
-                <Button onClick={this.props.changeAccount} buttonText={"Downgrade"}/>
-            </div>
-        }
     }
 
     render() {
@@ -76,10 +42,107 @@ class CoachOptions extends React.Component {
                             <td>Unlimited Tracking</td>
                         </tr>
                         <tr>
-                            <td>2 Months Tracking</td>
-                            <td>Unlimited Tracking</td>
-                            <td>Unlimited Tracking</td>
-                            <td>Unlimited Tracking</td>
+                            <td>
+                                <Choose>
+                                    <When condition={this.props.user.has_subscription} >
+                                        <Button onClick={this.props.deleteSubscription} buttonText={"Trial"}/>
+                                    </When>
+                                    <Otherwise>
+                                        <Button disabled={true} buttonText={"Trial"}/>
+                                        <div className="current">Your Current Plan</div>
+                                    </Otherwise>
+                                </Choose>
+                            </td>
+                            <td>
+                                <Choose>
+                                    <When condition={this.props.user.has_subscription} >
+                                        <Choose>
+                                            <When condition={this.props.user.num_accts == 30} >
+                                                <Button disabled={true} buttonText={"Bronze"}/>
+                                                <div className="current">Your Current Plan</div>
+                                            </When>
+                                            <Otherwise>
+                                                <Button onClick={() => this.props.changeAccount(C.BRONZE_CHECKOUT)} buttonText={"Bronze"}/>
+                                            </Otherwise>
+                                        </Choose>
+                                    </When>
+                                    <Otherwise>
+                                        <StripeCheckout
+                                            token={this.props.bronzeCheckout}
+                                            stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
+                                            amount={2999}
+                                            name="Quadfit, LLC"
+                                            image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
+                                            description="Bronze Subscription"
+                                            panelLabel="Get Bronze"
+                                            label="Get Bronze"
+                                            allowRememberMe={false}
+                                            email={this.props.user.email}
+                                            local="auto"
+                                        />
+                                    </Otherwise>
+                                </Choose>
+                            </td>
+                            <td>
+                                <Choose>
+                                    <When condition={this.props.user.has_subscription} >
+                                        <Choose>
+                                            <When condition={this.props.user.num_accts == 100} >
+                                                <Button disabled={true} buttonText={"Silver"}/>
+                                                <div className="current">Your Current Plan</div>
+                                            </When>
+                                            <Otherwise>
+                                                <Button onClick={() => this.props.changeAccount(C.SILVER_CHECKOUT)} buttonText={"Silver"}/>
+                                            </Otherwise>
+                                        </Choose>
+                                    </When>
+                                    <Otherwise>
+                                        <StripeCheckout
+                                            token={this.props.silverCheckout}
+                                            stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
+                                            amount={7999}
+                                            name="Quadfit, LLC"
+                                            image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
+                                            description="Silver Subscription"
+                                            panelLabel="Get Silver"
+                                            label="Get Silver"
+                                            allowRememberMe={false}
+                                            email={this.props.user.email}
+                                            local="auto"
+                                        />
+                                    </Otherwise>
+                                </Choose>
+                            </td>
+                            <td>
+                                <Choose>
+                                    <When condition={this.props.user.has_subscription} >
+                                        <Choose>
+                                            <When condition={this.props.user.num_accts > 100} >
+                                                <Button disabled={true} buttonText={"Gold"}/>
+                                                <div className="current">Your Current Plan</div>
+                                            </When>
+                                            <Otherwise>
+                                                <Button onClick={() => this.props.changeAccount(C.GOLD_CHECKOUT)} buttonText={"Gold"}/>
+                                            </Otherwise>
+                                        </Choose>
+                                    </When>
+                                    <Otherwise>
+                                        <StripeCheckout
+                                            token={this.props.goldCheckout}
+                                            stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
+                                            amount={27999}
+                                            name="Quadfit, LLC"
+                                            image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
+                                            description="Gold Subscription"
+                                            panelLabel="Get Gold"
+                                            label="Get Gold"
+                                            allowRememberMe={false}
+                                            email={this.props.user.email}
+                                            local="auto"
+                                        />
+                                    </Otherwise>
+                                </Choose>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

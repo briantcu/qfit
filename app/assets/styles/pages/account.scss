@@ -149,6 +149,11 @@
     padding-top: 30px;
     overflow-y: scroll;
 
+    .current {
+      color: $purple;
+      opacity: .65;
+    }
+
     .title {
       font-size: 44px;
       line-height: 1.1;

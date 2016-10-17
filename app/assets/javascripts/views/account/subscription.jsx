@@ -44,15 +44,7 @@ class Subscription extends React.Component {
     }
 
     displayCoachOptions() {
-        return <CoachOptions
-            {...this.props}
-            changeAccount={this.props.changeAccount}
-            deleteSubscription={this.props.deleteSubscription}
-            updateBilling={this.props.updateBilling}
-            bronzeCheckout={this.props.bronzeCheckout}
-            silverCheckout={this.props.silverCheckout}
-            goldCheckout={this.props.goldCheckout}
-            />
+        return <CoachOptions {...this.props} />
     }
 
     displayIndividualOptions() {
@@ -77,19 +69,6 @@ class Subscription extends React.Component {
                 <If condition={this.props.user.status == 3}>
                     <div>Whoa! Looks like we weren't able to bill you this month. Please update your billing info.</div>
                 </If>
-
-                <StripeCheckout
-                    token={this.props.updateBilling}
-                    stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
-                    name="Quadfit, LLC"
-                    image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
-                    description="Update Billing"
-                    panelLabel="Update Billing"
-                    label="Update Billing"
-                    allowRememberMe={false}
-                    email={this.props.user.email}
-                    local="auto"
-                />
                     <Button onClick={this.props.changeAccount} buttonText={"Downgrade"}/>
                 </div>
         }
@@ -99,7 +78,25 @@ class Subscription extends React.Component {
         return <div>
             <div className={this.props.user.is_coach ? "col-xs-12" : "col-xs-12 col-sm-6"}>
                 <div className="p-section">
-                    <div className="sec-header">Subscription</div>
+                    <div className="sec-header">
+                        Subscription
+                        <If condition={this.props.user.has_subscription} >
+                            <span className="update-wrapper">
+                                <StripeCheckout
+                                    token={this.props.updateBilling}
+                                    stripeKey="pk_test_Qn7vO7ACSbGqKp7tBXget5Du"
+                                    name="Quadfit, LLC"
+                                    image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
+                                    description="Update Billing"
+                                    panelLabel="Update Billing"
+                                    label="Update Billing"
+                                    allowRememberMe={false}
+                                    email={this.props.user.email}
+                                    local="auto"
+                                />
+                            </span>
+                        </If>
+                    </div>
                     <div className="sec-main">
                         <div>
                             {this.currentSubText()}
