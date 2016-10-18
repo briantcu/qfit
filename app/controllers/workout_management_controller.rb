@@ -111,14 +111,14 @@ class WorkoutManagementController < ApplicationController
   def verify_coach_session_present
     return unless current_user.is_coach?
     if session[:viewing].blank?
-      redirect_to '/coach' and return
+      redirect_to '/coach?choose=' and return
     end
     if session[:viewing] == 'user' and session[:current_user_id].blank?
-      redirect_to '/coach' and return
+      redirect_to '/coach?choose=' and return
     end
 
     if session[:viewing] == 'team' and session[:team_id].blank?
-      redirect_to '/coach'
+      redirect_to '/coach?choose='
     end
   end
 

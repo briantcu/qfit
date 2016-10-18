@@ -5,6 +5,9 @@ class PagesController < ApplicationController
   before_action :clear_coach_session, only: [:home, :coaches]
 
   def home
+    if current_user
+      redirect_to(determine_redirect(current_user)) and return
+    end
     render template: 'pages/home'
   end
 

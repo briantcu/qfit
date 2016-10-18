@@ -6,6 +6,23 @@ body {
 
 .coaches {
 
+  .banner-row {
+    background-color: $lightning;
+    min-height: 48px;
+    font-size: 18px;
+    line-height: 1.3;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: $dark-purple;
+    .bold {
+      font-weight: 700;
+    }
+    .link {
+      color: $dark-purple;
+      text-decoration: underline;
+    }
+  }
+
   .sec {
     background-color: white;
     margin-top: 20px;

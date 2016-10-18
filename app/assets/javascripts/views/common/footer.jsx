@@ -16,9 +16,6 @@ class Footer extends React.Component {
                 </div>
                 <div className="col-sm-7 col-xs-9 text-right links">
                     <span>Made with grit in San Francisco</span>
-                    <span>About</span>
-                    <span>Contact</span>
-                    <span>FAQ</span>
                 </div>
             </div>;
     }

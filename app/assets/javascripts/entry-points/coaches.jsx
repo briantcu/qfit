@@ -11,17 +11,20 @@ import { Modal } from 'react-bootstrap';
 import Button from 'views/common/button';
 import AddAthleteModal from 'views/coaches/add_athlete_modal';
 import Util from 'helpers/util';
+import URLSearchParams from 'url-search-params';
 
 require('pages/coaches.scss');
 
 class Coaches extends React.Component {
     constructor(props) {
         super(props);
+        var params = new URLSearchParams(window.location.search);
         this.state = {
             user: {},
             coach_account: {teams: [], individuals: [], sign_up_codes: [], can_send_codes: true, num_used_accts: 0, num_accts: 5},
             showTeamModal: false,
-            showAddUserModal: false
+            showAddUserModal: false,
+            showBanner: params.has('choose')
         };
         this.onChange = this.onChange.bind(this);
         this.viewTeam = this.viewTeam.bind(this);
@@ -99,6 +102,18 @@ class Coaches extends React.Component {
     render () {
         return <div className="coaches">
             <Header user={this.state.user} showWorkoutNav={true} active={'coach'} trueLinks={true}/>
+            <If condition={this.state.showBanner} >
+                <div className="row banner-row">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xs-12">
+                                To view workouts for teams, click "Manage Workout" for a particular team below.
+                                To view workouts and progress for athletes, click "View Workout/Progress".
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </If>
             <div className="row main">
                 <div className="container">
                     <div className='row'>
@@ -169,7 +184,7 @@ class Coaches extends React.Component {
                         <div className="container sec last-sec">
                             <div className="row head">
                                 <div className="col-xs-12 sec-header">
-                                    Sign Up Codes
+                                    Sent Invites
                                 </div>
                             </div>
                             <div className="row main">

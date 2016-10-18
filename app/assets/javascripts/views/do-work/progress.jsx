@@ -40,8 +40,10 @@ class Progress extends React.Component {
     componentDidMount () {
         Chart.defaults.global.defaultFontColor = 'rgba(168, 172, 185, 1)';
         UserStore.addChangeListener(this.onChange);
-        UserActions.getProgress(gon.current_user_id, this.chartTypes[0], this.periods.one_month);
-        UserActions.getMaxes();
+        if (gon.viewing == 'user') {
+            UserActions.getProgress(gon.current_user_id, this.chartTypes[0], this.periods.one_month);
+            UserActions.getMaxes();
+        }
     }
 
     componentWillUnmount () {
@@ -339,7 +341,13 @@ class Progress extends React.Component {
                                     <canvas id="myChart" />
                                 </When>
                                 <Otherwise>
-                                    <span>No Data</span>
+                                    <If condition={gon.viewing == 'team'}>
+                                        Progress tracking isn't available for teams, only people.
+                                        Head back to the <a href="/coach">Coach</a> page and click "View Workout/Progress" for an individual.
+                                    </If>
+                                    <If condition={gon.viewing == 'user'}>
+                                        This athlete doesn't have any data yet. Either have them input their workout results, or you can do it for them.
+                                    </If>
                                 </Otherwise>
                             </Choose>
                             <div id="timeline"></div>

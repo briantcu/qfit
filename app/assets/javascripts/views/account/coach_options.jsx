@@ -12,10 +12,6 @@ class CoachOptions extends React.Component {
         return <div className="row" id="pricing">
             <div className="col-xs-12">
                 <table className="table">
-                    <col width="180" />
-                    <col width="180"/>
-                    <col width="180"/>
-                    <col width="180"/>
                     <tbody>
                         <tr>
                             <td className="clear">$0</td>

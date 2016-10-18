@@ -97,7 +97,7 @@ class SubscriptionService
   def delete_subscription(user)
     begin
       subscription = Stripe::Subscription.retrieve(user.subscription_id)
-      sub = subscription.delete
+      sub = subscription.delete(at_period_end: true)
     rescue => e
       Rollbar.error(e)
     ensure
