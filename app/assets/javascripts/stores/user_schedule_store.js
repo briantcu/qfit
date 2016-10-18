@@ -19,20 +19,29 @@ var UserScheduleStore = new Store({
     sprinting: false,
 
     setSchedule: function(data){
+        var weightsCount = 0;
+        var plyosCount = 0;
+        var sprintsCount = 0;
         data.weekly_schedule_days.forEach(function(day, i) {
             if (day.weights) {
                 this.weights = true;
+                weightsCount++;
             }
             if (day.plyometrics) {
                 this.plyos = true;
+                plyosCount++;
             }
             if (day.sprinting) {
                 this.sprinting = true;
+                sprintsCount++;
             }
 
         }.bind(this));
         data.schedule_days = data.weekly_schedule_days;
         this.schedule = data;
+        this.schedule.weightsCount = weightsCount;
+        this.schedule.plyosCount = plyosCount;
+        this.schedule.sprintsCount = sprintsCount;
     },
 
     getData: function(){

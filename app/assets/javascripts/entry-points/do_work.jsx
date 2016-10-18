@@ -263,21 +263,21 @@ class App extends React.Component {
     viewingUserBanner() {
         if (gon.is_coach) {
             return <div>
-                <span className="col-xs-12 col-sm-offset-4 col-sm-4 text-center bold">Viewing workout for {this.state.user.first_name} {this.state.user.last_name}</span>
-                <span className="col-xs-12 col-sm-4 text-right"><a className="link hidden-xs" href="/coach">Back to Coach page</a></span>
+                <span className="col-xs-12 col-sm-offset-3 col-sm-6 text-center bold">Viewing workout for {this.state.user.first_name} {this.state.user.last_name}</span>
+                <span className="col-xs-12 col-sm-3 text-right"><a className="link hidden-xs" href="/coach">Back to Coach</a></span>
             </div>;
         } else {
             return <div>
-                <span className="col-xs-12 col-sm-offset-4 col-sm-4 text-center bold">Viewing workout for {this.state.user.user_name}</span>
-                <span className="col-xs-12 col-sm-4 text-right"><a className="link" href="/coach">View your workout</a></span>
+                <span className="col-xs-12 col-sm-offset-3 col-sm-6 text-center bold">Viewing workout for {this.state.user.user_name}</span>
+                <span className="col-xs-12 col-sm-3 text-right"><a className="link" href="/coach">View yours</a></span>
             </div>;
         }
     }
 
     viewingTeamBanner() {
         return <div>
-            <span className="col-xs-12 col-sm-offset-4 col-sm-4 text-center bold">Viewing workout for {this.state.team.name}</span>
-            <span className="col-xs-12 col-sm-4 text-right"><a className="link hidden-xs" href="/coach">Back to Coach page</a></span>
+            <span className="col-xs-12 col-sm-offset-3 col-sm-6 text-center bold">Viewing workout for {this.state.team.name}</span>
+            <span className="col-xs-12 col-sm-3 text-right"><a className="link hidden-xs" href="/coach">Back to Coach</a></span>
         </div>;
     }
 
@@ -394,11 +394,11 @@ class DoWork extends React.Component {
                         <div className="col-xs-12 col-sm-offset-1 col-sm-11 text-center">
                             <If condition={gon.viewing != 'team' && this.props.routine.id } >
                                 <span onClick={ () => this.submit()} >
-                                    <img src="https://s3.amazonaws.com/quadfit/Icon+-+Complete.png" /> Complete this Workout
+                                    <img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Complete.png" /> Complete this Workout
                                 </span>
                             </If>
-                            <span><img src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Schedule.png" /> Change Schedule</span>
-                            <span><img src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Program.png" /> Change Program</span>
+                            <span><a className="no-hover" href="/schedule"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Schedule.png" /> Change Schedule</a></span>
+                            <span><a className="no-hover" href="/program"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Program.png" /> Change Program</a></span>
                         </div>
                     </div>
                 </div>

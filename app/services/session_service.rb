@@ -5,6 +5,7 @@
 # onboarding - boolean indicating whether or not the user is in the onboarding flow. if false, then updating the workout plan
 # viewing - team vs user. used to determine which endpoints to use to fetch user data. Also how to display do-work
 # setup_context - user, sub_user, coach_sub, coach_team - used to determine the flow during setup, routes etc.
+      # Does not necessarily indicate onboarding. Could just be changing the program.
 
 
 class SessionService

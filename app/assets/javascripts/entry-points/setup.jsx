@@ -31,13 +31,17 @@ class App extends React.Component {
         super(props);
         this.state = {
             user: {},
+            loggedInUser: {},
             goal: C.MASS,
             program: {},
             quads: {},
             user_schedule: {schedule: {}},
             suggested_schedule: {},
             isConfigured: false,
-            navElements: []
+            navElements: [],
+            num_weights_days: undefined,
+            num_plyos_days: undefined,
+            num_sprint_days: undefined
         };
         this.nextPage = this.nextPage.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -68,10 +72,16 @@ class App extends React.Component {
 
     componentDidMount () {
         UserStore.addChangeListener(this.onChange);
-        UserActions.getUser(gon.current_user_id);
         if (gon.viewing == 'user') {
+            if (gon.current_user_id != gon.user_id) {
+                UserActions.getUser(gon.user_id, true);
+                UserActions.getUser(gon.current_user_id);
+            } else {
+                UserActions.getUser(gon.current_user_id, true);
+            }
             UserScheduleStore.addChangeListener(this.onChange);
         } else {
+            UserActions.getUser(gon.user_id, true);
             TeamStore.addChangeListener(this.onChange);
             TeamScheduleStore.addChangeListener(this.onChange);
             TeamActions.getTeam(gon.team_id);
@@ -143,6 +153,8 @@ class App extends React.Component {
         } else {
             var user_schedule = teamSchedule;
         }
+
+        var numDays = this.getNumDays(user_schedule.schedule, program.suggested_schedule);
         this.setState({
             user: data.user,
             goal: fitness.goal,
@@ -156,14 +168,29 @@ class App extends React.Component {
             squatWeight: fitness.squatWeight,
             squatReps: fitness.squatReps,
             module: fitness.module,
+            loggedInUser: data.loggedInUser,
             program: program,
             suggested_schedule: program.suggested_schedule,
             user_schedule: user_schedule,
-            team: team.team
+            team: team.team,
+            num_weights_days: numDays.num_weights_days,
+            num_plyos_days: numDays.num_plyos_days,
+            num_sprint_days: numDays.num_sprint_days
         });
         if (fitness.complete) {
             FitnessAssessmentActions.submit(this.state, this.fitnessSubmitted);
         }
+    }
+
+    getNumDays(schedule, suggested_schedule) {
+        var numDays = {};
+        numDays.num_weights_days = (suggested_schedule.num_weights_days >= 0) ?
+            suggested_schedule.num_weights_days : schedule.weightsCount;
+        numDays.num_plyos_days = (suggested_schedule.num_plyo_days >= 0) ?
+            suggested_schedule.num_plyo_days : schedule.plyosCount;
+        numDays.num_sprint_days = (suggested_schedule.num_sprint_days >= 0) ?
+            suggested_schedule.num_sprint_days : schedule.sprintsCount;
+        return numDays;
     }
 
     fetchSuggestedSchedule() {
@@ -171,22 +198,24 @@ class App extends React.Component {
         var program = ProgramStore.getData();
         if (gon.viewing == 'user') {
             var schedule = UserScheduleStore.getData();
-            if (schedule.schedule.id) {
-                var goal = schedule.schedule.program_type_id;
+            if (program.strengthProgram) {
+                var strengthProgram = program.strengthProgram;
+            } else {
                 var strengthProgram = schedule.schedule.program_id;
+            }
+            if (!fitness.goal) {
+                var goal = schedule.schedule.program_type_id;
             } else {
                 var goal = fitness.goal;
-                var strengthProgram = program.strengthProgram;
             }
         } else {
             var schedule = TeamScheduleStore.getData();
-            if (schedule.schedule.id) {
-                var goal = fitness.goal;
-                var strengthProgram = schedule.schedule.program_id;
-            } else {
-                var goal = fitness.goal;
+            if (program.strengthProgram) {
                 var strengthProgram = program.strengthProgram;
+            } else {
+                var strengthProgram = schedule.schedule.program_id;
             }
+            var goal = fitness.goal;
         }
         ProgramActions.getSuggestedSchedule(goal, strengthProgram);
     }
@@ -208,7 +237,7 @@ class App extends React.Component {
         );
 
         return <div>
-            <Header user={this.state.user} />
+            <Header user={this.state.loggedInUser} />
             <Subnav elements={this.state.navElements} />
             {childrenWithProps}
         </div>

@@ -67,7 +67,7 @@ class CoachAccountsController < ApplicationController
     session_service = SessionService.new(session)
     session_service.set_team_id(params[:group_id])
     session_service.set_viewing('team')
-    session_service.set_setup_context(nil)
+    session_service.set_setup_context('coach_team')
     session_service.set_onboarding(false)
     render status: 200, json: {}
   end
@@ -76,7 +76,7 @@ class CoachAccountsController < ApplicationController
     session_service = SessionService.new(session)
     session_service.set_current_user_id(params[:user_id])
     session_service.set_viewing('user')
-    session_service.set_setup_context(nil)
+    session_service.set_setup_context('coach_sub')
     session_service.set_onboarding(false)
     render status: 200, json: {}
   end

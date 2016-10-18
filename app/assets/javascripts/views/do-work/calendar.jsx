@@ -25,11 +25,13 @@ class CalendarCell extends React.Component {
         ];
 
        var classes = ((this.props.dayObj.day_of_month == this.props.day) && (this.props.dayObj.year == this.props.year) &&
-       (this.props.dayObj.month == this.props.month)) ? "col-xs-3 col-sm-3 col-md-2 calendar-cell selected" : "col-xs-3 col-sm-3 col-md-2  calendar-cell";
+       (this.props.dayObj.month == this.props.month)) ? "col-xs-3 col-sm-2 col-md-2 calendar-cell selected" : "col-xs-3 col-sm-2 col-md-2  calendar-cell";
 
         classes += (this.state.date.getMonth()) ? '' : ' no-cursor';
 
-        classes += (this.props.hiddenSm ? ' hidden-xs hidden-sm' : '');
+        classes += (this.props.hiddenSm ? ' hidden-sm' : '');
+        classes += (this.props.hiddenXs ? ' hidden-xs' : '');
+        classes += (this.props.offsetSm ? ' col-sm-offset-1 col-md-offset-0' : '');
 
         if (this.props.border) {
             classes += ' border'
@@ -129,15 +131,24 @@ class Calendar extends React.Component {
     }
 
     render() {
-        var leftArrowClasses = this.state.leftArrowEnabled ? "left hidden-xs hidden-sm col-xs-1" : "left col-xs-1 hidden-xs hidden-sm disabled";
-        var rightArrowClasses = this.state.rightArrowEnabled ? "right hidden-xs hidden-sm col-xs-1" : "right col-xs-1 hidden-xs hidden-sm disabled";
+        var leftArrowClasses = this.state.leftArrowEnabled ? "left col-xs-1" : "left col-xs-1 disabled";
+        var rightArrowClasses = this.state.rightArrowEnabled ? "right col-xs-1" : "right col-xs-1 disabled";
         return <div className="row calendar">
             <div className="cal-container">
                 <div className="row cal-days">
                     <span className={leftArrowClasses} onClick={ () => this.flowLeft() } />
                     {
                         this.state.daysToShow.map(function(e, index) {
-                            return <CalendarCell {...this.props} dayObj={e} dayMonth={e.month} key={e.day_of_month + '' + e.month} border={index != 0} hiddenSm={index > 3} />
+                            return <CalendarCell
+                                {...this.props}
+                                dayObj={e}
+                                dayMonth={e.month}
+                                key={e.day_of_month + '' + e.month}
+                                border={index != 0}
+                                hiddenSm={index > 3}
+                                hiddenXs={index > 2}
+                                offsetSm={index == 0}
+                            />
                         }.bind(this))
                     }
                     <span className={rightArrowClasses} onClick={ () => this.flowRight() } />

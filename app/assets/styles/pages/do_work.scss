@@ -35,6 +35,14 @@
 }
 
 .do-work {
+
+  .no-hover {
+    &:hover {
+      text-decoration: none;
+      color: $purple;
+    }
+  }
+
   .last-row {
     height: 94px;
     background-color: $purple;
@@ -124,6 +132,11 @@
       letter-spacing: -0.3px;
       font-weight: 600;
       cursor: pointer;
+    }
+    @media (max-width: 480px) {
+      span {
+        margin-right: 20px;
+      }
     }
   }
 

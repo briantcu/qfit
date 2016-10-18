@@ -94,20 +94,20 @@ class Schedule extends React.Component {
             days.push(day);
         }
         if (this.props.quads.strength || this.state.weights) {
-            if (countWeightDays != this.props.suggested_schedule.num_weight_days) {
-                errors.push(`Please choose ${this.props.suggested_schedule.num_weight_days} strength training days`);
+            if (countWeightDays != this.props.num_weights_days) {
+                errors.push(`Please choose ${this.props.num_weights_days} strength training days`);
             }
         }
 
         if (this.props.quads.plyos || this.state.plyos) {
-            if (countPlyoDays < this.props.suggested_schedule.num_plyo_days) {
-                errors.push(`Please choose at least ${this.props.suggested_schedule.num_plyo_days} plyometric days`);
+            if (countPlyoDays < this.props.num_plyos_days) {
+                errors.push(`Please choose at least ${this.props.num_plyo_days} plyometric days`);
             }
         }
 
         if (this.props.quads.sprinting || this.state.sprinting) {
-            if (countSprintDays < this.props.suggested_schedule.num_sprint_days) {
-                errors.push(`Please choose at least ${this.props.suggested_schedule.num_sprint_days} sprinting days`);
+            if (countSprintDays < this.props.num_sprint_days) {
+                errors.push(`Please choose at least ${this.props.num_sprint_days} sprinting days`);
             }
         }
 
@@ -116,8 +116,12 @@ class Schedule extends React.Component {
             $('.qfButton').button('reset');
         } else {
             this.state.schedule.schedule_days = days;
-            this.state.schedule.program_type_id = this.props.suggested_schedule.program_type;
-            this.state.schedule.program_id = this.props.suggested_schedule.program_id;
+            if (this.props.suggested_schedule.program_type) {
+                this.state.schedule.program_type_id = this.props.suggested_schedule.program_type;
+            }
+            if (this.props.suggested_schedule.program_id) {
+                this.state.schedule.program_id = this.props.suggested_schedule.program_id;
+            }
             if (gon.viewing == 'user') {
                 this.state.schedule.user_id = this.props.user.id;
                 UserActions.setSchedule(this.state.schedule);
@@ -159,7 +163,7 @@ class Schedule extends React.Component {
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
                                 Which days will you lift?<br/>
-                                The program you chose has {this.props.suggested_schedule.num_weight_days} lifting days.
+                                The program you chose has {this.props.num_weights_days} lifting days.
                             </div>
                         </div>
                         <div className="row">
@@ -197,7 +201,7 @@ class Schedule extends React.Component {
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
                                 Which days will you do plyometric exercises?<br/>
-                                To meet your goals, we recommend at least {this.props.suggested_schedule.num_plyo_days} plyometric days.
+                                To meet your goals, we recommend at least {this.props.num_plyos_days} plyometric days.
                             </div>
                         </div>
                         <div className="row">
@@ -235,7 +239,7 @@ class Schedule extends React.Component {
                         <div className="row">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
                                 Which days will you sprint?<br/>
-                                To meet your goals, we recommend at least {this.props.suggested_schedule.num_sprint_days} sprinting days.
+                                To meet your goals, we recommend at least {this.props.num_sprint_days} sprinting days.
                             </div>
                         </div>
                         <div className="row">

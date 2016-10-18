@@ -176,10 +176,11 @@ class UserSchedule < ActiveRecord::Base
 
   private
 
-  def rollback_weights(count)
-    if count > 0
+  def rollback_weights(day_count)
+    if day_count > 0
       last_day = self.user.get_last_day_created(WEIGHTS)
-      1..count do
+      rollback = 0
+      day_count.times do
         if last_day == 1
           rollback = ProgramDaySequence.get_total_days(self.program_id)
         else
@@ -195,11 +196,11 @@ class UserSchedule < ActiveRecord::Base
     end
   end
 
-  def rollback_pillar(count, type)
-    if count > 0
+  def rollback_pillar(day_count, type)
+    if day_count > 0
       last_day = self.user.get_last_day_created(type)
-
-      1..count do
+      rollback = 0
+      day_count.times do
         if last_day == 1
           rollback = self.get_total_days_of_pillar(type)
         else

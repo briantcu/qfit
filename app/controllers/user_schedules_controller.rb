@@ -17,15 +17,12 @@
 
 class UserSchedulesController < ApplicationController
   before_filter :verify_logged_in
-  before_action :set_user_schedule, only: [:update]
+  before_action :set_user_schedule, only: [:show, :update]
+  before_action :verify_can_access_schedule, only: [:show]
   before_filter :verify_is_logged_in_or_coach, only: [:create, :update]
 
   # GET /user_schedules/1.json
   def show
-    @user_schedule = current_user.user_schedule
-    if @user_schedule.blank?
-      render status: 404, json: {}
-    end
   end
 
   # POST /user_schedules.json
@@ -84,6 +81,11 @@ class UserSchedulesController < ApplicationController
         (current_user.id == params[:user_schedule][:user_id].to_i ||
             (current_user.is_coach_of_user?(params[:user_schedule][:user_id].to_i)) ||
             (current_user.is_super_user?))
+  end
+
+  def verify_can_access_schedule
+    unauthorized unless
+        (current_user.id == @user_schedule.user_id) || current_user.is_coach_of_user?(@user_schedule.user_id)
   end
 
 end

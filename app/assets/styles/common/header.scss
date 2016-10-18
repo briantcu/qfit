@@ -5,6 +5,7 @@
   background-color: $dark-purple;
   border: solid 1px $dark-gray;
 
+
   .avi {
     padding-top: 25px;
   }
@@ -43,4 +44,10 @@
     color: white !important;
   }
 
+}
+
+@media (max-width: 780px) {
+  .header {
+    height: 160px;
+  }
 }
