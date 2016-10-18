@@ -263,21 +263,21 @@ class App extends React.Component {
     viewingUserBanner() {
         if (gon.is_coach) {
             return <div>
-                <span className="col-xs-4 col-xs-offset-4 text-center bold">Viewing workout for {this.state.user.first_name} {this.state.user.last_name}</span>
-                <span className="col-xs-4 text-right"><a className="link" href="/coach">Back to Coach page</a></span>
+                <span className="col-xs-12 col-sm-offset-4 col-sm-4 text-center bold">Viewing workout for {this.state.user.first_name} {this.state.user.last_name}</span>
+                <span className="col-xs-12 col-sm-4 text-right"><a className="link hidden-xs" href="/coach">Back to Coach page</a></span>
             </div>;
         } else {
             return <div>
-                <span className="col-xs-4 col-xs-offset-4 text-center bold">Viewing workout for {this.state.user.user_name}</span>
-                <span className="col-xs-4 text-right"><a className="link" href="/coach">View your workout</a></span>
+                <span className="col-xs-12 col-sm-offset-4 col-sm-4 text-center bold">Viewing workout for {this.state.user.user_name}</span>
+                <span className="col-xs-12 col-sm-4 text-right"><a className="link" href="/coach">View your workout</a></span>
             </div>;
         }
     }
 
     viewingTeamBanner() {
         return <div>
-            <span className="col-xs-4 col-xs-offset-4 text-center bold">Viewing workout for {this.state.team.name}</span>
-            <span className="col-xs-4 text-right"><a className="link" href="/coach">Back to Coach page</a></span>
+            <span className="col-xs-12 col-sm-offset-4 col-sm-4 text-center bold">Viewing workout for {this.state.team.name}</span>
+            <span className="col-xs-12 col-sm-4 text-right"><a className="link hidden-xs" href="/coach">Back to Coach page</a></span>
         </div>;
     }
 
@@ -376,6 +376,14 @@ class DoWork extends React.Component {
         this.props.finishOnboarding(this.state.sendTo);
     }
 
+    formatValue(value) {
+        if (value == null) {
+            return undefined;
+        } else {
+            return value;
+        }
+    }
+
     render () {
         return <div className="do-work">
             <Calendar {...this.props} />
@@ -383,12 +391,14 @@ class DoWork extends React.Component {
             <div className="row subnav">
                 <div className="container">
                     <div className="row">
-                        <div className="col-xs-10 col-xs-offset-1 text-center">
+                        <div className="col-xs-12 col-sm-offset-1 col-sm-11 text-center">
                             <If condition={gon.viewing != 'team' && this.props.routine.id } >
-                                <span onClick={ () => this.submit()} >Complete this Workout</span>
+                                <span onClick={ () => this.submit()} >
+                                    <img src="https://s3.amazonaws.com/quadfit/Icon+-+Complete.png" /> Complete this Workout
+                                </span>
                             </If>
-                            <span>Change Schedule</span>
-                            <span>Change Program</span>
+                            <span><img src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Schedule.png" /> Change Schedule</span>
+                            <span><img src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Program.png" /> Change Program</span>
                         </div>
                     </div>
                 </div>
@@ -503,7 +513,7 @@ class DoWork extends React.Component {
                             <div className="row last-row">
                                 <div className="col-xs-3">
                                     <If condition={this.props.routine.id && gon.viewing == 'user'} >
-                                        <input ref="userWeight" type="text" className="user-weight" value={this.props.routine.weight} onChange={this.weightChanged}/>
+                                        <input ref="userWeight" type="text" className="user-weight" value={this.formatValue(this.props.routine.weight)} onChange={this.weightChanged}/>
                                         <span className="standard-text white ">Your Weight (lbs)</span>
                                     </If>
                                 </div>

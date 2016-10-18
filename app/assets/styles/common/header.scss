@@ -23,6 +23,9 @@
     border-radius: 0;
     padding-top: 8px;
     color: white !important;
+    font-size: 12px !important;
+    font-weight: 600;
+    letter-spacing: -0.3px;
     &:hover {
       color: white;
       border: 1px solid $purple;
@@ -37,9 +40,6 @@
   .nav {
     width: 390px;
     margin: 10px auto auto;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: -0.3px;
     color: white !important;
   }
 

@@ -25,9 +25,11 @@ class CalendarCell extends React.Component {
         ];
 
        var classes = ((this.props.dayObj.day_of_month == this.props.day) && (this.props.dayObj.year == this.props.year) &&
-       (this.props.dayObj.month == this.props.month)) ? "col-xs-2 calendar-cell selected" : "col-xs-2 calendar-cell";
+       (this.props.dayObj.month == this.props.month)) ? "col-xs-3 col-sm-3 col-md-2 calendar-cell selected" : "col-xs-3 col-sm-3 col-md-2  calendar-cell";
 
         classes += (this.state.date.getMonth()) ? '' : ' no-cursor';
+
+        classes += (this.props.hiddenSm ? ' hidden-xs hidden-sm' : '');
 
         if (this.props.border) {
             classes += ' border'
@@ -127,22 +129,22 @@ class Calendar extends React.Component {
     }
 
     render() {
-        var leftArrowClasses = this.state.leftArrowEnabled ? "left col-xs-1" : "left col-xs-1 disabled";
-        var rightArrowClasses = this.state.rightArrowEnabled ? "right col-xs-1" : "right col-xs-1 disabled";
+        var leftArrowClasses = this.state.leftArrowEnabled ? "left hidden-xs hidden-sm" : "hidden-xs hidden-sm left disabled";
+        var rightArrowClasses = this.state.rightArrowEnabled ? "right hidden-xs hidden-sm" : "hidden-xs hidden-sm right disabled";
         return <div className="row calendar">
-                <span className={leftArrowClasses} onClick={ () => this.flowLeft() } />
-            <div className="container">
+                <span className={leftArrowClasses} onClick={ () => this.flowLeft() } > L </span>
+            <div className="cal-container">
                 <div className="row cal-days">
 
                     {
                         this.state.daysToShow.map(function(e, index) {
-                            return <CalendarCell {...this.props} dayObj={e} dayMonth={e.month} key={e.day_of_month + '' + e.month} border={index != 0} />
+                            return <CalendarCell {...this.props} dayObj={e} dayMonth={e.month} key={e.day_of_month + '' + e.month} border={index != 0} hiddenSm={index > 3} />
                         }.bind(this))
                     }
 
                  </div>
             </div>
-            <span className={rightArrowClasses} onClick={ () => this.flowRight() } />
+            <span className={rightArrowClasses} onClick={ () => this.flowRight() } > R </span>
         </div>
     }
 }

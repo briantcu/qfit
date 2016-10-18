@@ -173,6 +173,7 @@ class DailyRoutinesController < ApplicationController
   # GET '/daily_routines/:id/reset'
   def reset
     @daily_routine.reset
+    @daily_routine.reload
     render action: 'show', status: :ok
   end
 

@@ -79,6 +79,7 @@ class GroupRoutinesController < ApplicationController
 
   def reset
     @group_routine.reset
+    @group_routine.reload
     render action: :show, status: :ok
   end
 

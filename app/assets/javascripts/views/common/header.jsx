@@ -21,23 +21,39 @@ class Header extends React.Component {
                             <div className="nav">
                                 <If condition={this.props.trueLinks}>
                                     <If condition={gon.is_coach} >
-                                        <a className={(this.props.active == 'coach') ? 'btn active' : 'btn'}  href="/coach">COACH</a>
+                                        <a className={(this.props.active == 'coach') ? 'btn active' : 'btn'}  href="/coach">
+                                            <img height="14" width="18" src="https://s3.amazonaws.com/quadfit/iocn-+workout.png"/>  COACH
+                                        </a>
                                     </If>
-                                    <a className={(this.props.active == 'workout') ? 'btn active' : 'btn'}  href="/workout">WORKOUT</a>
-                                    <a className={(this.props.active == 'progress') ? 'btn active' : 'btn'}  href="/progress">PROGRESS</a>
+                                    <a className={(this.props.active == 'workout') ? 'btn active' : 'btn'}  href="/workout">
+                                        <img src="https://s3.amazonaws.com/quadfit/icon-dumbells.png"/> WORKOUT
+                                    </a>
+                                    <a className={(this.props.active == 'progress') ? 'btn active' : 'btn'}  href="/progress">
+                                        <img src="https://s3.amazonaws.com/quadfit/Icon+-+Progress.png"/> PROGRESS
+                                    </a>
                                     <If condition={!gon.is_coach} >
-                                        <a className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} href="/quad-pod">QUAD POD</a>
+                                        <a className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} href="/quad-pod">
+                                            <img src="https://s3.amazonaws.com/quadfit/Icon+-+QuadPod.png"/> QUAD POD
+                                        </a>
                                     </If>
                                 </If>
                                 <If condition={!this.props.trueLinks}>
                                     <If condition={gon.is_coach} >
-                                        <a className={(this.props.active == 'coach') ? 'btn active' : 'btn'}  href="/coach">COACH</a>
+                                        <a className={(this.props.active == 'coach') ? 'btn active' : 'btn'}  href="/coach">
+                                            <img height="14" width="14" src="https://s3.amazonaws.com/quadfit/iocn-+workout.png"/> COACH
+                                        </a>
                                     </If>
                                     <Link className={(this.props.active == 'workout') ? 'btn active' : 'btn'}
-                                          to={`/workout`}>WORKOUT</Link>
-                                    <Link className={(this.props.active == 'progress') ? 'btn active' : 'btn'} to={`/progress`}>PROGRESS</Link>
+                                          to={`/workout`}>
+                                        <img height="14" width="22" src="https://s3.amazonaws.com/quadfit/icon-dumbells.png"/>  WORKOUT
+                                    </Link>
+                                    <Link className={(this.props.active == 'progress') ? 'btn active' : 'btn'} to={`/progress`}>
+                                        <img src="https://s3.amazonaws.com/quadfit/Icon+-+Progress.png"/> PROGRESS
+                                    </Link>
                                     <If condition={!gon.is_coach} >
-                                        <Link className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} to={`/quad-pod`}>QUAD POD</Link>
+                                        <Link className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} to={`/quad-pod`}>
+                                            <img src="https://s3.amazonaws.com/quadfit/Icon+-+QuadPod.png"/> QUAD POD
+                                        </Link>
                                     </If>
                                 </If>
 

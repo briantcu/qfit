@@ -16,10 +16,16 @@ class VideoModal extends React.Component {
             if (width < 480) {
                 vWidth = 320;
                 vHeight = 180
-            } else {
+            }
+            if (width >= 480) {
                 vWidth = 480;
                 vHeight = 270;
             }
+            if (width >= 768) {
+                vWidth = 720;
+                vHeight = 405;
+            }
+
             var videoHtml = '<iframe src="//player.vimeo.com/video/' + this.props.link +
                 '" width="' + vWidth + '" height="' + vHeight + '" ' + 'frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
             return {__html: videoHtml};
@@ -30,17 +36,19 @@ class VideoModal extends React.Component {
     }
 
     render() {
-        return <Modal show={this.props.show} onHide={this.props.close}>
-            <Modal.Header closeButton>
-                <Modal.Title>Video</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <div dangerouslySetInnerHTML={this.getVideoHtml()} />
-            </Modal.Body>
-            <Modal.Footer>
-                <Button buttonText="Close" onClick={this.props.close}>Close</Button>
-            </Modal.Footer>
-        </Modal>
+        return <div className="video-modal">
+                <Modal show={this.props.show} onHide={this.props.close} className="video-modal">
+                    <Modal.Header closeButton>
+                        <Modal.Title>Video</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div dangerouslySetInnerHTML={this.getVideoHtml()} />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button buttonText="Close" onClick={this.props.close}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
     }
 }
 

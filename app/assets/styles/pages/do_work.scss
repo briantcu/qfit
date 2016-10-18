@@ -23,8 +23,18 @@
   margin: 0;
 }
 
-.do-work {
+.video-modal {
+  .modal-body {
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .modal-dialog {
+      width: 768px;
+    }
+  }
+}
 
+.do-work {
   .last-row {
     height: 94px;
     background-color: $purple;
@@ -107,7 +117,7 @@
     border: solid 1px $gray2;
     padding-top: 6px;
     span {
-      margin-right:20px;
+      margin-right: 40px;
       font-family: 'Open Sans', sans-serif;
       color: $purple;
       font-size: 12px;
