@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
   belongs_to :coach, foreign_key: :master_user_id, class_name: User
 
   scope :sub_users, -> {where(sub_user: true)}
-  scope :regular_users, -> {where(sub_user: false, administrator: false)}
+  scope :regular_users, -> {where(sub_user: false, administrator: false, level: 2)}
   scope :without_group ,-> {}
   scope :logged_in_recently, -> {where('last_sign_in_at > ?', Time.now - 3.weeks)}
   scope :males, -> {where(sex: 'male')}
@@ -150,7 +150,7 @@ class User < ActiveRecord::Base
                                             .where('weight_sets.created_at > ?', date)
                                             .order('value DESC').limit(5)}
   def self.active_coaches
-    coaches = includes(:coach_account).where(administrator: true, status: [1, 4])
+    coaches = includes(:coach_account).where(level: [5,7], status: [1, 4])
     coaches = coaches.select { |coach| coach.eligible_for_workouts? }
     coaches
   end

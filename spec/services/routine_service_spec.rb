@@ -30,7 +30,7 @@ RSpec.describe RoutineService do
     end
 
     it 'creates workouts for sub users without a group, regardless of last logged in' do
-      coach = FactoryGirl.create(:user, administrator: true, active_until: Time.now + 7.days, status: 1)
+      coach = FactoryGirl.create(:user, level: 5, active_until: Time.now + 7.days, status: 1)
       FactoryGirl.create(:coach_account, user: coach)
       @user.master_user_id = coach.id
       @user.sub_user = true
@@ -42,7 +42,7 @@ RSpec.describe RoutineService do
     end
 
     it 'creates workouts for groups and members get the workout' do
-      coach = FactoryGirl.create(:user, administrator: true, active_until: Time.now + 7.days, status: 1)
+      coach = FactoryGirl.create(:user, level: 5, active_until: Time.now + 7.days, status: 1)
       FactoryGirl.create(:coach_account, user: coach)
       group = FactoryGirl.create(:group, coach: coach)
       group_schedule = FactoryGirl.create(:group_schedule, group: group)
@@ -233,7 +233,7 @@ RSpec.describe RoutineService do
 
     context 'for group' do
       before(:each) do
-        coach = FactoryGirl.create(:user, administrator: true, active_until: Time.now + 7.days, status: 1)
+        coach = FactoryGirl.create(:user, level: 5, active_until: Time.now + 7.days, status: 1)
         FactoryGirl.create(:coach_account, user: coach)
         @group = FactoryGirl.create(:group, coach: coach)
         @group_schedule = FactoryGirl.create(:group_schedule, group: @group)
@@ -389,7 +389,7 @@ RSpec.describe RoutineService do
 
   context 'for group' do
     before(:each) do
-      coach = FactoryGirl.create(:user, administrator: true, active_until: Time.now + 7.days, status: 1)
+      coach = FactoryGirl.create(:user, level: 5, active_until: Time.now + 7.days, status: 1)
       FactoryGirl.create(:coach_account, user: coach)
       @group = FactoryGirl.create(:group, coach: coach)
       @group_schedule = FactoryGirl.create(:group_schedule, group: @group)
