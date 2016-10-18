@@ -4,14 +4,22 @@ import request from 'superagent';
 
 var UserActions = {
 
-    getUser: function(user_id) {
+    getUser: function(user_id, is_logged_in_user) {
         $.ajax({
             type: 'get',
             url: '/users/'+user_id+'.json',
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function(user) {
-                dispatcher.dispatch(C.LOADED, user);
+                //holy hack batman
+                if (is_logged_in_user) {
+                    dispatcher.dispatch(C.LOADED_LOGGED_IN, user);
+                    if (gon.current_user_id == gon.user_id) {
+                        dispatcher.dispatch(C.LOADED, user);
+                    }
+                } else {
+                    dispatcher.dispatch(C.LOADED, user);
+                }
                 if (user.user_schedule) {
                     this.getSchedule(user.user_schedule.id);
                 }

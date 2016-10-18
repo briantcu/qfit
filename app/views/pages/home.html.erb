@@ -25,7 +25,13 @@
           </span>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#pricing">Pricing</a></li>
-            <li><a href="/sign-in">Sign In</a></li>
+            <% if current_user && current_user.is_coach? %>
+              <li><a href="/coach">Coach</a></li>
+            <% elsif current_user %>
+              <li><a href="/workout">Workout</a></li>
+            <% else %>
+              <li><a href="/sign-in">Sign In</a></li>
+            <% end %>
           </ul>
         </div>
       </div>

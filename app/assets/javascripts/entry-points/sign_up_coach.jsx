@@ -193,7 +193,7 @@ class CoachSignUp extends React.Component {
                             <div>{this.state.signUpStatus.errors.join(', ')}</div>
                         </If>
                         <span onClick={ () => this.submit()} className="submit-button purple-text">Sign Up</span>
-                        <a href="" className="help-text bold-link">Have an account? Login here.</a>
+                        <a href="/sign-in" className="help-text bold-link">Have an account? Login here.</a>
                     </div>
                 </div>
                 <div className="row">

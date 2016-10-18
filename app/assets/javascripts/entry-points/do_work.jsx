@@ -59,6 +59,7 @@ class App extends React.Component {
             calendar: {},
             routine: { comments: [], weight: undefined},
             user: {},
+            loggedInUser: {},
             loading: true,
             date: today,
             exercises: {},
@@ -172,7 +173,12 @@ class App extends React.Component {
     }
 
     load() {
-        UserActions.getUser(gon.current_user_id);
+        if (gon.current_user_id != gon.user_id) {
+            UserActions.getUser(gon.user_id, true);
+            UserActions.getUser(gon.current_user_id);
+        } else {
+            UserActions.getUser(gon.current_user_id, true);
+        }
         if (gon.viewing == 'team') {
             TeamActions.getTeam(gon.team_id);
         }
@@ -217,6 +223,7 @@ class App extends React.Component {
                 next_calendar: data.next_calendar,
                 routine: data.routine,
                 loading: data.loading,
+                loggedInUser: user.loggedInUser,
                 user: user.user,
                 exercises: exercises,
                 feed: qpData.feed,
@@ -282,7 +289,7 @@ class App extends React.Component {
         );
 
         return <div>
-            <Header user={this.state.user} showWorkoutNav={true} active={active} />
+            <Header user={this.state.loggedInUser} showWorkoutNav={true} active={active} />
             <If condition={this.state.showBanner} >
                 <div className="row banner-row">
                     <div className="container">
