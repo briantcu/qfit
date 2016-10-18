@@ -25,7 +25,9 @@ class Athlete extends React.Component {
 
     render () {
         return <div className="athlete row">
-            <div className="col-xs-4 first">{this.props.athlete.first_name} {this.props.athlete.last_name}</div>
+            <div className="col-xs-4 first">
+                <img title="No Alerts for this Athlete" className="user-alert hover" src="https://s3.amazonaws.com/quadfit/Alert-Inactive.png" /> {this.props.athlete.first_name} {this.props.athlete.last_name}
+            </div>
             <div className="col-xs-8 text-right last">
                 <select className="form-control" defaultValue={this.props.team_id} onChange={this.changeTeam}>
                     <option value='0'>No Team</option>
