@@ -30,7 +30,7 @@
       height: 49px;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 530px) {
       .cal-text {
         font-size: 24px;
         padding-top: 5px;
@@ -113,10 +113,11 @@
   &:after {
     content: '';
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
+    right: 15px;
     background: transparent;
-    top: 60px;
+    top: 50px;
     border: 3px solid $gray2;
     border-top: none;
     border-right: none;
@@ -134,14 +135,14 @@
   text-align: left;
   display: inline-block;
   float: right;
-  &:before {
+  &:after {
     cursor: pointer;
     content: '';
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
     background: transparent;
-    top: 60px;
+    top: 50px;
     border: 3px solid $gray2;
     border-top: none;
     border-right: none;

@@ -67,7 +67,7 @@ class Calendar extends React.Component {
             leftArrowEnabled: true,
             rightArrowEnabled: true
         };
-        this.rowSize = 5;
+        this.rowSize = 4;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -129,22 +129,20 @@ class Calendar extends React.Component {
     }
 
     render() {
-        var leftArrowClasses = this.state.leftArrowEnabled ? "left hidden-xs hidden-sm" : "hidden-xs hidden-sm left disabled";
-        var rightArrowClasses = this.state.rightArrowEnabled ? "right hidden-xs hidden-sm" : "hidden-xs hidden-sm right disabled";
+        var leftArrowClasses = this.state.leftArrowEnabled ? "left hidden-xs hidden-sm col-xs-1" : "left col-xs-1 hidden-xs hidden-sm disabled";
+        var rightArrowClasses = this.state.rightArrowEnabled ? "right hidden-xs hidden-sm col-xs-1" : "right col-xs-1 hidden-xs hidden-sm disabled";
         return <div className="row calendar">
-                <span className={leftArrowClasses} onClick={ () => this.flowLeft() } > L </span>
             <div className="cal-container">
                 <div className="row cal-days">
-
+                    <span className={leftArrowClasses} onClick={ () => this.flowLeft() } />
                     {
                         this.state.daysToShow.map(function(e, index) {
                             return <CalendarCell {...this.props} dayObj={e} dayMonth={e.month} key={e.day_of_month + '' + e.month} border={index != 0} hiddenSm={index > 3} />
                         }.bind(this))
                     }
-
+                    <span className={rightArrowClasses} onClick={ () => this.flowRight() } />
                  </div>
             </div>
-            <span className={rightArrowClasses} onClick={ () => this.flowRight() } > R </span>
         </div>
     }
 }
