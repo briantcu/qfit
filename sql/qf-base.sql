@@ -274,7 +274,7 @@ INSERT INTO exercises VALUES (102, 15, '176550353', NULL, NULL, 4, 1, false, '4 
 INSERT INTO exercises VALUES (103, 15, '176550352', NULL, NULL, 4, 1, false, '3 Point Supine Bridge', false, NULL, '2016-10-04 19:40:17.184873', 1, true, 'http://i.vimeocdn.com/video/583824775_200x150.jpg');
 INSERT INTO exercises VALUES (98, 15, '176552956', NULL, NULL, 4, 1, false, '4 Point Plank', false, NULL, '2016-10-04 19:40:16.447772', 2, true, 'http://i.vimeocdn.com/video/583829851_200x150.jpg');
 INSERT INTO exercises VALUES (65, 9, '176557770', 2, 0.349999999999999978, 1, 3, false, 'Push Jerk', false, NULL, '2016-10-04 19:40:11.030658', 2, false, 'http://i.vimeocdn.com/video/583834725_200x150.jpg');
-INSERT INTO exercises VALUES (163, 16, '185334000', NULL, NULL, 8, 1, false, 'Little Bigs', false, NULL, '2016-10-04 19:40:26.365733', 1, false, 'http://i.vimeocdn.com/video/595059329_200x150.jpg');
+INSERT INTO exercises VALUES (163, 16, '185334000', 2, 0.17, 8, 1, false, 'Little Bigs', false, NULL, '2016-10-04 19:40:26.365733', 1, false, 'http://i.vimeocdn.com/video/595059329_200x150.jpg');
 INSERT INTO exercises VALUES (115, 16, '176557671', NULL, NULL, 3, 1, false, 'Crunch', false, NULL, '2016-10-04 19:40:19.0001', 2, false, 'http://i.vimeocdn.com/video/583835396_200x150.jpg');
 INSERT INTO exercises VALUES (170, 6, '176557761', NULL, NULL, 3, 2, false, 'Plyo Pushup with Med Ball', false, NULL, '2016-10-04 19:40:27.3278', 1, false, 'http://i.vimeocdn.com/video/583835234_200x150.jpg');
 INSERT INTO exercises VALUES (189, 16, '176550350', NULL, NULL, 3, 2, false, '2 to 1 V Up', false, NULL, '2016-10-04 19:40:21.94096', 2, false, 'http://i.vimeocdn.com/video/583824783_200x150.jpg');
