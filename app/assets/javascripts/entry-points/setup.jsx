@@ -184,8 +184,8 @@ class App extends React.Component {
 
     getNumDays(schedule, suggested_schedule) {
         var numDays = {};
-        numDays.num_weights_days = (suggested_schedule.num_weights_days >= 0) ?
-            suggested_schedule.num_weights_days : schedule.weightsCount;
+        numDays.num_weights_days = (suggested_schedule.num_weight_days >= 0) ?
+            suggested_schedule.num_weight_days : schedule.weightsCount;
         numDays.num_plyos_days = (suggested_schedule.num_plyo_days >= 0) ?
             suggested_schedule.num_plyo_days : schedule.plyosCount;
         numDays.num_sprint_days = (suggested_schedule.num_sprint_days >= 0) ?
