@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe WorkoutManagementController, type: :controller do
 
+  before(:each) do
+    allow_any_instance_of(User).to receive(:has_premium_access?).and_return(true)
+  end
+
   context 'schedule' do
     it 'should redirect to goal if the user does not have a schedule' do
       user = FactoryGirl.create(:user)

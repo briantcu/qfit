@@ -10,7 +10,7 @@ FactoryGirl.define do
     sequence(:email){|n| "user#{n}@factory.com" }
     encrypted_password "ToFactory: RubyParser exception parsing this attribute"
     password 'password'
-    experience_level nil
+    experience_level 3
     first_name "Brian"
     hor_pull_max 150.0
     hor_push_max 250.0
