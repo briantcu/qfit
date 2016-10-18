@@ -23,7 +23,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       rescue => e
         # Maybe an error if we don't get an email from FB
         Rollbar.error(e)
-          #@TODO process the error for the user
+        Qfit::Application.logger.error(e)
+        Qfit::Application.logger.error(@user)
       else
 
         if is_coach

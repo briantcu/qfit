@@ -43,7 +43,6 @@ class DailyRoutinesController < ApplicationController
     @daily_routines = current_user.daily_routines.order(created_at: :desc).limit(5)
   end
 
-  #@TODO assume you have to own a workout to see it. Need to work out sharing later
   def show
   end
 

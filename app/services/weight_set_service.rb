@@ -12,7 +12,6 @@ class WeightSetService
   @rough_loads_array
   @refined_loads_array
 
-  #@TODO should be based on user experience
   STANDARD_ATROPHY = 0.95
 
   def initialize(entity, routine, exercise)
@@ -23,6 +22,16 @@ class WeightSetService
     @rough_loads_array = Array.new
     @refined_loads_array = Array.new
     @sets = Array.new
+  end
+
+  def get_atrophy
+    if @entity.experience_level == 3
+      0.95
+    elsif @entity.experience_level == 2
+      0.93
+    else
+      0.91
+    end
   end
 
   def create_sets
@@ -57,7 +66,7 @@ class WeightSetService
     end
 
     @user_max = calculate_user_max * 1.015
-    @rec_max_array = create_rec_max_array(STANDARD_ATROPHY)
+    @rec_max_array = create_rec_max_array(get_atrophy)
     normalize_loads_for_reps
     validate_loads
     create_weight_sets
@@ -70,7 +79,6 @@ class WeightSetService
   end
 
   def normalize_loads_for_reps
-    #@TODO will change for variable reps within set
     for i in 1..(@num_sets) do
       @rough_loads_array.push(OneRepMax.get_weight(@num_reps, @rec_max_array.at(i-1)))
     end
@@ -181,7 +189,6 @@ class WeightSetService
       @rec_max_array.push(@rec_max_array.at(i-1) * atrophy)
     end
 
-    #@TODO make sure that atrophy is right
     @rec_max_array.reverse
   end
 

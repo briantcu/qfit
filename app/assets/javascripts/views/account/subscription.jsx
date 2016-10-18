@@ -18,7 +18,7 @@ class Subscription extends React.Component {
             } else if (this.props.user.num_accts > 100) {
                 return 'You have a Gold Subscription.';
             } else {
-                return 'You have free Trial Subscription.';
+                return 'You have a free Trial Subscription.';
             }
         }
 

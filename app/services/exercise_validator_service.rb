@@ -21,11 +21,6 @@ class ExerciseValidatorService
 
   def is_valid_exercise(entity, routine, exercise)
 
-    #@TODO
-    #equipment
-    #experience
-    #strength level
-
     if matches_user_strength_level?(entity, exercise)
       return true
     else
