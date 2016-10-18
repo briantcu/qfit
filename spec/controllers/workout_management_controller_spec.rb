@@ -36,7 +36,7 @@ RSpec.describe WorkoutManagementController, type: :controller do
         coach = FactoryGirl.create(:user, level: 5)
         sign_in coach
         get :schedule
-        expect(response).to redirect_to('/coach')
+        expect(response).to redirect_to('/coach?choose=')
       end
 
       it 'is successful' do
@@ -57,7 +57,7 @@ RSpec.describe WorkoutManagementController, type: :controller do
       coach = FactoryGirl.create(:user, level: 5)
       sign_in coach
       get :setup_goal
-      expect(response).to redirect_to('/coach')
+      expect(response).to redirect_to('/coach?choose=')
     end
 
     it 'is successful' do
@@ -73,7 +73,7 @@ RSpec.describe WorkoutManagementController, type: :controller do
       coach = FactoryGirl.create(:user, level: 5)
       sign_in coach
       get :do_work
-      expect(response).to redirect_to('/coach')
+      expect(response).to redirect_to('/coach?choose=')
     end
 
     it 'redirects if the entity has not completed setup' do
