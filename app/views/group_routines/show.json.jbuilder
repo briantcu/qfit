@@ -5,4 +5,4 @@ json.performed_warm_ups @group_routine.group_performed_warmups, :id, :status, :w
 json.performed_exercises @group_routine.group_performed_exercises, :id, :status, :exercise_type, :exercise
 json.performed_plyometrics @group_routine.group_performed_plyos, :id, :status, :plyometric
 json.performed_sprints @group_routine.group_performed_sprints, :id, :sprint_id, :status, :sprint, :sprint_details
-json.custom_exercises @group_routine.group_custom_exercises, :id, :ex_type, :name, :details
+json.custom_exercises @group_routine.group_custom_exercises, :id, :ex_type, :name, :details, :status

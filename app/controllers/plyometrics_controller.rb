@@ -17,7 +17,7 @@ class PlyometricsController < ApplicationController
   # GET /plyometrics
   # GET /plyometrics.json
   def index
-    @plyometrics = Plyometric.all
+    @plyometrics = Plyometric.all.order(paid_tier: :asc)
   end
 
 end

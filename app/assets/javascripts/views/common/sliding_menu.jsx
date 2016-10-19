@@ -98,15 +98,15 @@ class SlidingMenu extends React.Component {
                                     }
                                 </ul>
                             </li>
-                            <li>
+                            <li className="no-border">
                                 <a href="javascript:void(0)">Custom Exercise</a>
                                 <ul className="dl-submenu">
-                                    <li>
+                                    <li className="no-border">
                                         <span className={`purple-bot-container ${this.state.customErrors.length > 0 ? 'error' : null}`}>
                                             <FancyInput ref="customWarmup" name="customWarmup" placeholder="Exercise Name" type="text" errors={this.state.customErrors} />
                                         </span>
 
-                                        <span className="pull-right add-wu"><Button onClick={this.addCustom} buttonText={"Add Exercise"} /></span>
+                                        <span className="pull-right cust-btn add-wu"><Button onClick={this.addCustom} buttonText={"Add Exercise"} /></span>
                                     </li>
                                 </ul>
                             </li>
@@ -126,15 +126,15 @@ class SlidingMenu extends React.Component {
                                     </li>
                                 }.bind(this))
                             }
-                            <li>
+                            <li className="no-border">
                                 <a href="javascript:void(0)">Custom Exercise</a>
                                 <ul className="dl-submenu">
-                                    <li>
+                                    <li className="no-border">
                                         <span className={`purple-bot-container ${this.state.customErrors.length > 0 ? 'error' : null}`}>
                                             <FancyInput ref="customWeights" name="customWeights" placeholder="Exercise Name" type="text" errors={this.state.customErrors} />
                                         </span>
 
-                                        <span className="pull-right add-wt"><Button onClick={this.addCustom} buttonText={"Add Exercise"} /></span>
+                                        <span className="pull-right cust-btn add-wt"><Button onClick={this.addCustom} buttonText={"Add Exercise"} /></span>
                                     </li>
                                 </ul>
                             </li>
@@ -145,15 +145,15 @@ class SlidingMenu extends React.Component {
                                     return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
                                 }.bind(this))
                             }
-                            <li>
+                            <li className="no-border">
                                 <a href="javascript:void(0)">Custom Exercise</a>
                                 <ul className="dl-submenu">
-                                    <li>
+                                    <li className="no-border">
                                         <span className={`purple-bot-container ${this.state.customErrors.length > 0 ? 'error' : null}`}>
                                             <FancyInput ref="customPlyos" name="customPlyos" placeholder="Exercise Name" type="text" errors={this.state.customErrors} />
                                         </span>
 
-                                        <span className="pull-right add-pl"><Button onClick={this.addCustom} buttonText={"Add Exercise"} /></span>
+                                        <span className="pull-right cust-btn add-pl"><Button onClick={this.addCustom} buttonText={"Add Exercise"} /></span>
                                     </li>
                                 </ul>
                             </li>
@@ -191,15 +191,15 @@ class SlidingMenu extends React.Component {
                                     }
                                 </ul>
                             </li>
-                            <li>
+                            <li className="no-border">
                                 <a href="javascript:void(0)">Custom Exercise</a>
                                 <ul className="dl-submenu">
-                                    <li>
+                                    <li className="no-border">
                                         <span className={`purple-bot-container ${this.state.customErrors.length > 0 ? 'error' : null}`}>
                                             <FancyInput ref="customSprints" name="customSprints" placeholder="Exercise Name" type="text" errors={this.state.customErrors} />
                                         </span>
 
-                                        <span className="pull-right add-sp"><Button onClick={this.addCustom} buttonText={"Add Exercise"} /></span>
+                                        <span className="pull-right cust-btn add-sp"><Button onClick={this.addCustom} buttonText={"Add Exercise"} /></span>
                                     </li>
                                 </ul>
                             </li>

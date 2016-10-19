@@ -21,7 +21,8 @@ class CustomExercisesController < ApplicationController
   # DELETE /custom_exercises/1.json
   def destroy
     @custom_exercise.destroy
-    render json: {success: true}
+    @daily_routine = @custom_exercise.daily_routine
+    render 'daily_routines/show'
   end
 
   private
@@ -30,6 +31,6 @@ class CustomExercisesController < ApplicationController
   end
 
   def verify_owns_group
-    unauthorized unless (current_user.owns_group?(@custom_exercise.routine_id))
+    unauthorized unless (current_user.owns_workout?(@custom_exercise.routine_id))
   end
 end

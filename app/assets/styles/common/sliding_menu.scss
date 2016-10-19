@@ -11,6 +11,24 @@
 }
 
 .sliding-menu {
+  .purple-bot-container {
+    @include border-bottom;
+    height: 50px;
+    display: block;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .no-border {
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  .cust-btn{
+    margin-right: 10%;
+    margin-top: 20px;
+  }
 
   min-height: 400px;
 

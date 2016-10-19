@@ -171,11 +171,19 @@ var RoutineActions = {
     deleteExercise: function(type, peid) {
         if (gon.viewing == 'user') {
             var url = '/performed_' + type + '/' + peid + '.json';
+
+            if (type == 'custom') {
+                url = '/custom_exercises/' + peid + '.json';
+            }
         } else {
             if (type == "warm_ups") {
                 type = "warmups";
             }
             var url = '/group_performed_' + type + '/' + peid + '.json';
+
+            if (type == 'custom') {
+                url = '/group_custom_exercises/' + peid + '.json';
+            }
         }
 
         $.ajax({
