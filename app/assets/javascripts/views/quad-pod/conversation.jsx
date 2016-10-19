@@ -80,7 +80,7 @@ class Conversation extends React.Component {
                             }
                         </When>
                         <Otherwise >
-                            <div>
+                            <div className="nothing">
                                 Nothing here yet! Send a message below to get things started.
                             </div>
                         </Otherwise>

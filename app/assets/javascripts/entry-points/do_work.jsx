@@ -59,7 +59,7 @@ class App extends React.Component {
             month: month,
             day: day,
             calendar: {},
-            routine: { comments: [], weight: undefined},
+            routine: { comments: [], weight: undefined, messages: []},
             user: {},
             loggedInUser: {},
             loading: true,
@@ -80,6 +80,7 @@ class App extends React.Component {
         this.evalBanner = this.evalBanner.bind(this);
         this.viewingTeamBanner = this.viewingTeamBanner.bind(this);
         this.viewingUserBanner = this.viewingUserBanner.bind(this);
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -310,18 +311,31 @@ class DoWork extends React.Component {
         this.state = {
             showAddEx: false,
             sendTo: undefined,
-            sendToErrors: []
+            sendToErrors: [],
+            showMessagesModal: true,
+            closingWorkout: false,
+            titles: ['Awesome!', 'Nice!', 'Sweet!', 'Dope!', 'Tight!', 'Mint!', 'Fresh!', 'Epic!']
         };
         this.addEx = this.addEx.bind(this);
         this.closeAddEx = this.closeAddEx.bind(this);
         this.weightChanged = this.weightChanged.bind(this);
         this.saveSendTo = this.saveSendTo.bind(this);
         this.finishOnboarding = this.finishOnboarding.bind(this);
+        this.closeMessages = this.closeMessages.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.state.closingWorkout && nextProps.routine && nextProps.routine.messages.length > 0) {
+            this.setState({showMessagesModal: true, closingWorkout: false});
+        }
+    }
+
+    closeMessages() {
+        this.setState({showMessagesModal: false});
     }
 
     weightChanged() {
-        //@TODO set weight on the model, not directly. Use actions.
-        this.state.routine.weight = this.refs.userWeight.value;
+        RoutineActions.userWeightChanged(this.refs.userWeight.value);
     }
 
     saveSendTo(value) {
@@ -353,10 +367,9 @@ class DoWork extends React.Component {
     submit() {
         var userWeight = this.refs.userWeight.value;
         if ((!userWeight) || isNaN(userWeight)) {
-            alert('enter a valid weight!');
+            this.setState({errors: 'Please enter your weight!'});
         } else {
-            //@TODO disable submit button, handle user weight
-            this.state.routine.weight = userWeight;
+            this.setState({errors: undefined, closingWorkout: true});
             RoutineActions.completeWorkout(this.props.routine);
         }
     }
@@ -414,6 +427,14 @@ class DoWork extends React.Component {
                     <div className={this.props.loading ? 'loading row' : 'row'}>
 
                         <div className="stretching sec container">
+                            <If condition={this.state.errors} >
+                                <div className="row">
+                                    <div className="col-xs-12 text-center errors">
+                                        {this.state.errors}
+                                    </div>
+                                </div>
+                            </If>
+
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Stretching/Warmup
                                     <span className="add-ex" onClick={ () => this.showAddEx('warmups')}>Add Exercise</span></div>
@@ -578,10 +599,17 @@ class DoWork extends React.Component {
                                     </When>
                                 </Choose>
                             </div>
+                            <If condition={this.state.errors} >
+                                <div className="row">
+                                    <div className="col-xs-12 text-center errors">
+                                        {this.state.errors}
+                                    </div>
+                                </div>
+                            </If>
                             <div className="row last-row">
                                 <div className="col-xs-3">
                                     <If condition={this.props.routine.id && gon.viewing == 'user'} >
-                                        <input ref="userWeight" type="text" className="user-weight" value={this.formatValue(this.props.routine.weight)} onChange={this.weightChanged}/>
+                                        <input ref="userWeight" type="text" className="user-weight" defaultValue={this.formatValue(this.props.routine.weight)} onChange={this.weightChanged}/>
                                         <span className="standard-text white ">Your Weight (lbs)</span>
                                     </If>
                                 </div>
@@ -615,7 +643,7 @@ class DoWork extends React.Component {
                                     <div className="row comment-row">
                                         <div className="col-xs-6 text-right">
                                             <textarea ref="commentBox" className="leave-comment" rows="10" cols="76"></textarea>
-                                            <Button ref="leaveComment" buttonText="Submit" onClick={ () => this.leaveComment() }
+                                            <Button ref="leaveComment" buttonText="Post" onClick={ () => this.leaveComment() }
                                                     disabled={false} />
                                         </div>
                                     </div>
@@ -651,6 +679,23 @@ class DoWork extends React.Component {
                 <Modal.Footer>
                     <Button buttonText="Submit" onClick={this.finishOnboarding}>Submit</Button>
                 </Modal.Footer>
+            </Modal>
+            <Modal show={this.state.showMessagesModal && this.props.routine.messages.length > 0} onHide={this.closeMessages} className="messages-modal">
+                <Modal.Header closeButton>
+                    <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                   <div className="messages-title">
+                       {this.state.titles[Math.ceil(Math.random() * (this.state.titles.length)) - 1]}
+                   </div>
+                   <div className="messages-text">
+                       {
+                           this.props.routine.messages.map(function(e) {
+                               return <div className="workout-message" key={e.id}>{e.message}</div>
+                           }.bind(this))
+                       }
+                   </div>
+                </Modal.Body>
             </Modal>
         </div>;
     }

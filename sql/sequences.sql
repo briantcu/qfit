@@ -42,7 +42,7 @@ SELECT setval('sprint_details_id_seq', (SELECT MAX(id) FROM sprint_details));
 SELECT setval('sprints_id_seq', (SELECT MAX(id) FROM sprints));
 SELECT setval('tips_id_seq', (SELECT MAX(id) FROM tips));
 SELECT setval('user_goals_id_seq', (SELECT MAX(id) FROM user_goals));
-SELECT setval('user_maxes_id_seq', (SELECT MAX(id) FROM coach_accounts));
+SELECT setval('user_maxes_id_seq', (SELECT MAX(id) FROM user_maxes));
 SELECT setval('user_points_id_seq', (SELECT MAX(id) FROM user_points));
 SELECT setval('user_schedules_id_seq', (SELECT MAX(id) FROM user_schedules));
 SELECT setval('users_id_seq', (SELECT MAX(id) FROM users));

@@ -21,6 +21,10 @@ var RoutineStore = new Store({
 
     },
 
+    setUserWeight: function(weight) {
+        this.routine.weight = weight;
+    },
+
     setRoutine: function(data) {
         this.routine = data;
         this.loading = false;
@@ -83,6 +87,11 @@ dispatcher.register(C.LOADING, function(data) {
 
 dispatcher.register(C.INPUT_CHANGED, function(data) {
     RoutineStore.inputChanged(data);
+    RoutineStore.change();
+});
+
+dispatcher.register(C.USER_WEIGHT_CHANGED, function(data) {
+    RoutineStore.setUserWeight(data);
     RoutineStore.change();
 });
 

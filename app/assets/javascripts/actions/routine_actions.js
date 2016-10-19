@@ -325,6 +325,10 @@ var RoutineActions = {
                 alert(response.errors);
             }
         });
+    },
+
+    userWeightChanged: function(userWeight) {
+        dispatcher.dispatch(C.USER_WEIGHT_CHANGED, userWeight)
     }
 
 };

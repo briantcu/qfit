@@ -34,6 +34,52 @@
   }
 }
 
+.messages-modal {
+  .messages-title {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: -0.8px;
+    text-align: center;
+    color: $purple;
+    padding-bottom: 20px;
+  }
+
+  .messages-text {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.8px;
+    text-align: left;
+    color: $dark-purple;
+  }
+  .modal-content {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  .close {
+    color: white;
+    opacity: 1;
+    border: white 1px solid;
+    border-radius: 15px;
+    width: 25px;
+  }
+
+  .workout-message{
+    padding-bottom: 10px;
+  }
+
+  .modal-header {
+    border: none;
+  }
+  .modal-body {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+  }
+}
+
+
+
 .do-work {
 
   .no-exercises{
@@ -47,6 +93,15 @@
       text-decoration: none;
       color: $purple;
     }
+  }
+
+  .errors {
+    background-color: $red;
+    height: 34px;
+    color: white;
+    font-size: 18px;
+    letter-spacing: -0.4px;
+    padding-top: 3px;
   }
 
   .last-row {

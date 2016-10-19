@@ -91,8 +91,7 @@ class CloseRoutineService
 
     next_open_workout = DailyRoutine.get_open_workouts_start_today(@routine.user).first
     if next_open_workout.present?
-      #@TODO fix message
-      @routine.routine_messages.create(message: "Your next workout is #{next_open_workout.day_performed}")
+      @routine.routine_messages.create(message: "Your next workout is #{next_open_workout.day_performed.strftime('%A %B %-d')}.")
     end
 
   end

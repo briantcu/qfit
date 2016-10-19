@@ -1,6 +1,9 @@
 @import "../../common/common";
 
 .quad-pod {
+  .nothing {
+    padding-top: 15px;
+  }
 
   .gray-border {
     border-bottom: solid 1px $gray2;
