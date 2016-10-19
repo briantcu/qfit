@@ -1,15 +1,23 @@
 @import "common";
 
+.modal-dialog {
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+}
+
+.modal-body {
+  overflow-y: scroll;
+}
+
 .sliding-menu {
 
   min-height: 400px;
-  /* Common styles of menus */
 
   .dl-menuwrapper {
-    width: 70%;
+    width: 100%;
     float: left;
     margin-right: 15%;
-    margin-left: 15%;
     position: relative;
     -webkit-perspective: 1000px;
     perspective: 1000px;
@@ -19,37 +27,6 @@
 
   .dl-menuwrapper:first-child {
     margin-right: 100px;
-  }
-
-  .dl-menuwrapper button {
-    background: #ccc;
-    border: none;
-    width: 48px;
-    height: 45px;
-    text-indent: -900em;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    outline: none;
-  }
-
-  .dl-menuwrapper button:hover,
-  .dl-menuwrapper button.dl-active,
-  .dl-menuwrapper ul {
-    background: #fff;
-  }
-
-  .dl-menuwrapper button:after {
-    content: '';
-    position: absolute;
-    width: 68%;
-    height: 5px;
-    background: #fff;
-    top: 10px;
-    left: 16%;
-    box-shadow:
-            0 10px 0 #fff,
-            0 20px 0 #fff;
   }
 
   .dl-menuwrapper ul {

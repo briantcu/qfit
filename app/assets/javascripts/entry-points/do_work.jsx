@@ -81,26 +81,26 @@ class App extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        //@TODO need to handle this so that if you're on a particular workout, go to progress, and come back, you
-        //see the same workout
-        var year, month, day;
-        year = nextProps.params.year;
-        if (year) {
-            month = nextProps.params.month;
-            day = nextProps.params.day;
-        } else {
-            var today = new Date();
-            year = today.getFullYear();
-            month = today.getMonth() + 1;
-            day = today.getDate();
+        if (this.state.routine.id) {
+            var year, month, day;
+            year = nextProps.params.year;
+            if (year) {
+                month = nextProps.params.month;
+                day = nextProps.params.day;
+            } else {
+                var today = new Date();
+                year = today.getFullYear();
+                month = today.getMonth() + 1;
+                day = today.getDate();
+            }
+            this.setState({year: year, month: month, day: day});
+            if (gon.viewing == 'user') {
+                var id = gon.current_user_id;
+            } else {
+                var id = gon.team_id;
+            }
+            RoutineActions.getRoutine(year, month, day, id);
         }
-        this.setState({year: year, month: month, day: day});
-        if (gon.viewing == 'user') {
-            var id = gon.current_user_id;
-        } else {
-            var id = gon.team_id;
-        }
-        RoutineActions.getRoutine(year, month, day, id);
     }
 
     componentDidMount () {
@@ -334,8 +334,12 @@ class DoWork extends React.Component {
 
     }
 
-    addEx(e) {
-        RoutineActions.addExercise(this.props.routine.id, this.state.exercise_type, e);
+    addEx(e, is_custom) {
+        if (is_custom) {
+            RoutineActions.addCustomExercise(this.props.routine.id, this.state.exercise_type, e);
+        } else {
+            RoutineActions.addExercise(this.props.routine.id, this.state.exercise_type, e);
+        }
         this.setState({showAddEx: false});
     }
 
@@ -391,7 +395,7 @@ class DoWork extends React.Component {
             <div className="row subnav">
                 <div className="container">
                     <div className="row">
-                        <div className="col-xs-12 col-sm-offset-1 col-sm-11 text-center">
+                        <div className="col-xs-12 text-center">
                             <If condition={gon.viewing != 'team' && this.props.routine.id } >
                                 <span onClick={ () => this.submit()} >
                                     <img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Complete.png" /> Complete this Workout

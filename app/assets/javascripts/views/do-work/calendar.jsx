@@ -131,8 +131,8 @@ class Calendar extends React.Component {
     }
 
     render() {
-        var leftArrowClasses = this.state.leftArrowEnabled ? "left col-xs-1" : "left col-xs-1 disabled";
-        var rightArrowClasses = this.state.rightArrowEnabled ? "right col-xs-1" : "right col-xs-1 disabled";
+        var leftArrowClasses = this.state.leftArrowEnabled ? "left-arr col-xs-1" : "left-arr col-xs-1 disabled";
+        var rightArrowClasses = this.state.rightArrowEnabled ? "right-arr col-xs-1" : "right-arr col-xs-1 disabled";
         return <div className="row calendar">
             <div className="cal-container">
                 <div className="row cal-days">

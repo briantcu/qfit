@@ -22,7 +22,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.CALENDAR, {key: whichMonth, data: data})
             },
             error: function(response) {
-                alert(response.responseJSON.errors);
+                alert(response.errors);
             }
         });
     },
@@ -45,7 +45,7 @@ var RoutineActions = {
                 if (response.status == 404) {
                     dispatcher.dispatch(C.ROUTINE_LOADED, {});
                 } else {
-                    alert(response.responseJSON.errors);
+                    alert(response.errors);
                 }
             }
         });
@@ -69,7 +69,7 @@ var RoutineActions = {
                 if (response.status == 404) {
                     dispatcher.dispatch(C.ROUTINE_LOADED, {});
                 } else {
-                    alert(response.responseJSON.errors);
+                    alert(response.errors);
                 }
             }
         });
@@ -93,7 +93,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(response.responseJSON.errors);
+                alert(response.errors);
             }
         });
     },
@@ -116,7 +116,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(response.responseJSON.errors);
+                alert(response.errors);
             }
         });
     },
@@ -139,7 +139,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(response.responseJSON.errors);
+                alert(response.errors);
             }
         });
     },
@@ -163,7 +163,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(response.responseJSON.errors);
+                alert(response.errors);
             }
         });
     },
@@ -187,7 +187,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(response.responseJSON.errors);
+                alert(response.errors);
             }
         });
     },
@@ -211,7 +211,43 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(response.responseJSON.errors);
+                alert(response.errors);
+            }
+        });
+    },
+
+    addCustomExercise: function(routineId, type, name) {
+        var type_id = 4;
+        if (type == 'weights') {
+            type_id = 1;
+        }
+
+        if (type == 'plyos') {
+            type_id = 2;
+        }
+
+        if (type == 'sprinting') {
+            type_id = 3;
+        }
+        if (gon.viewing == 'user') {
+            var url = '/daily_routines/'+ routineId + '/custom/'+ type_id + '/' +name+'.json';
+        } else {
+            if (type == "warm_ups") {
+                type = "warmups";
+            }
+            var url = '/group_routines/'+ routineId + '/custom/'+ type_id + '/' +name+'.json';
+        }
+
+        $.ajax({
+            type: 'post',
+            url: url,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                dispatcher.dispatch(C.ROUTINE_LOADED, data)
+            },
+            error: function(response) {
+                alert(response.errors);
             }
         });
     },
@@ -231,7 +267,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function (response) {
-                alert(response.responseJSON.errors);
+                alert(response.errors);
             }
         });
     },
@@ -248,7 +284,7 @@ var RoutineActions = {
                 //dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function(response) {
-                alert(response.responseJSON.errors);
+                alert(response.errors);
             }
         });
     },
@@ -278,7 +314,7 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
             error: function (response) {
-                alert(response.responseJSON.errors);
+                alert(response.errors);
             }
         });
     }

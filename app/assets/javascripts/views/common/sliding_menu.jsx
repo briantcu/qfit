@@ -1,11 +1,20 @@
 import {render} from 'react-dom';
+import FancyInput from 'views/common/fancy_input';
+import Button from 'views/common/button';
 
 require('common/sliding_menu.scss');
 
 class SlidingMenu extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            customErrors: []
+        };
         this.click = this.click.bind(this);
+        this.addWarmup = this.addWarmup.bind(this);
+        this.addWeights = this.addWeights.bind(this);
+        this.addPlyos = this.addPlyos.bind(this);
+        this.addSprints = this.addSprints.bind(this);
     }
 
     componentDidMount() {
@@ -13,10 +22,42 @@ class SlidingMenu extends React.Component {
             animationClasses : { classin : 'dl-animate-in-2', classout : 'dl-animate-out-2' }
         });
         $('.dl-link').on('click', this.click);
+        $('.add-wu').on('click', this.addWarmup);
+        $('.add-wt').on('click', this.addWeights);
+        $('.add-sp').on('click', this.addSprints);
+        $('.add-pl').on('click', this.addPlyos);
     }
 
     click(e) {
         this.props.click($(e.target).data('id'));
+    }
+
+    addWarmup() {
+        var name = this.refs['customWarmup'].getValue();
+        if (name.length > 0) {
+            this.props.click(name, true);
+        }
+    }
+
+    addWeights() {
+        var name = this.refs['customWeights'].getValue();
+        if (name.length > 0) {
+            this.props.click(name, true);
+        }
+    }
+
+    addSprints() {
+        var name = this.refs['customSprints'].getValue();
+        if (name.length > 0) {
+            this.props.click(name, true);
+        }
+    }
+
+    addPlyos() {
+        var name = this.refs['customPlyos'].getValue();
+        if (name.length > 0) {
+            this.props.click(name, true);
+        }
     }
 
     render () {
@@ -57,6 +98,18 @@ class SlidingMenu extends React.Component {
                                     }
                                 </ul>
                             </li>
+                            <li>
+                                <a href="javascript:void(0)">Custom Exercise</a>
+                                <ul className="dl-submenu">
+                                    <li>
+                                        <span className={`purple-bot-container ${this.state.customErrors.length > 0 ? 'error' : null}`}>
+                                            <FancyInput ref="customWarmup" name="customWarmup" placeholder="Exercise Name" type="text" errors={this.state.customErrors} />
+                                        </span>
+
+                                        <span className="pull-right add-wu"><Button onClick={this.addCustom} buttonText={"Add Exercise"} /></span>
+                                    </li>
+                                </ul>
+                            </li>
                         </When>
                         <When condition={this.props.type == 'weights'} >
                             {
@@ -73,6 +126,18 @@ class SlidingMenu extends React.Component {
                                     </li>
                                 }.bind(this))
                             }
+                            <li>
+                                <a href="javascript:void(0)">Custom Exercise</a>
+                                <ul className="dl-submenu">
+                                    <li>
+                                        <span className={`purple-bot-container ${this.state.customErrors.length > 0 ? 'error' : null}`}>
+                                            <FancyInput ref="customWeights" name="customWeights" placeholder="Exercise Name" type="text" errors={this.state.customErrors} />
+                                        </span>
+
+                                        <span className="pull-right add-wt"><Button onClick={this.addCustom} buttonText={"Add Exercise"} /></span>
+                                    </li>
+                                </ul>
+                            </li>
                         </When>
                         <When condition={this.props.type == 'plyos'} >
                             {
@@ -80,6 +145,18 @@ class SlidingMenu extends React.Component {
                                     return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
                                 }.bind(this))
                             }
+                            <li>
+                                <a href="javascript:void(0)">Custom Exercise</a>
+                                <ul className="dl-submenu">
+                                    <li>
+                                        <span className={`purple-bot-container ${this.state.customErrors.length > 0 ? 'error' : null}`}>
+                                            <FancyInput ref="customPlyos" name="customPlyos" placeholder="Exercise Name" type="text" errors={this.state.customErrors} />
+                                        </span>
+
+                                        <span className="pull-right add-pl"><Button onClick={this.addCustom} buttonText={"Add Exercise"} /></span>
+                                    </li>
+                                </ul>
+                            </li>
                         </When>
                         <When condition={this.props.type == 'sprinting'} >
                             <li>
@@ -112,6 +189,18 @@ class SlidingMenu extends React.Component {
                                             return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
                                         }.bind(this))
                                     }
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Custom Exercise</a>
+                                <ul className="dl-submenu">
+                                    <li>
+                                        <span className={`purple-bot-container ${this.state.customErrors.length > 0 ? 'error' : null}`}>
+                                            <FancyInput ref="customSprints" name="customSprints" placeholder="Exercise Name" type="text" errors={this.state.customErrors} />
+                                        </span>
+
+                                        <span className="pull-right add-sp"><Button onClick={this.addCustom} buttonText={"Add Exercise"} /></span>
+                                    </li>
                                 </ul>
                             </li>
                         </When>

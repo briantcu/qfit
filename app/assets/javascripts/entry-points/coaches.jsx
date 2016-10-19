@@ -1,5 +1,4 @@
 import {render} from 'react-dom';
-import validator from 'validator';
 import Header from 'views/common/header';
 import UserStore from 'stores/user_store';
 import CoachStore from 'stores/coach_store';
