@@ -7,6 +7,10 @@
     cursor: auto !important;
   }
 
+  .small-nav {
+    height: 60px;
+  }
+
   .calendar-cell {
     text-align: center;
     padding-top: 35px;
@@ -82,12 +86,6 @@
     margin-left: auto;
   }
 
-  @media (min-width: 480px) {
-    .cal-container {
-      width: 450px;
-    }
-  }
-
   @media (min-width: 768px) {
     .cal-container {
       width: 750px;
@@ -132,6 +130,7 @@
     transform: rotate(45deg);
     cursor: pointer;
   }
+
 }
 
 .right-arr {
@@ -156,9 +155,20 @@
     -ms-transform: rotate(225deg);
     transform: rotate(225deg);
   }
+}
+@media (max-width: 768px) {
+  .left-arr {
+    width: 12.5%;
+    &:after {
+      right: -30px;
+    }
+  }
+  .right-arr {
+    width: 12.5%;
+    &:after {
+      left: -30px;
+    }
 
-
-
-
+  }
 }
 

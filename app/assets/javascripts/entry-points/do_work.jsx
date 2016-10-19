@@ -81,26 +81,24 @@ class App extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.state.routine.id) {
-            var year, month, day;
-            year = nextProps.params.year;
-            if (year) {
-                month = nextProps.params.month;
-                day = nextProps.params.day;
-            } else {
-                var today = new Date();
-                year = today.getFullYear();
-                month = today.getMonth() + 1;
-                day = today.getDate();
-            }
-            this.setState({year: year, month: month, day: day});
-            if (gon.viewing == 'user') {
-                var id = gon.current_user_id;
-            } else {
-                var id = gon.team_id;
-            }
-            RoutineActions.getRoutine(year, month, day, id);
+        var year, month, day;
+        year = nextProps.params.year;
+        if (year) {
+            month = nextProps.params.month;
+            day = nextProps.params.day;
+        } else {
+            var today = new Date();
+            year = today.getFullYear();
+            month = today.getMonth() + 1;
+            day = today.getDate();
         }
+        this.setState({year: year, month: month, day: day});
+        if (gon.viewing == 'user') {
+            var id = gon.current_user_id;
+        } else {
+            var id = gon.team_id;
+        }
+        RoutineActions.getRoutine(year, month, day, id);
     }
 
     componentDidMount () {
@@ -264,7 +262,6 @@ class App extends React.Component {
         if (gon.is_coach) {
             return <div>
                 <span className="col-xs-12 col-sm-offset-3 col-sm-6 text-center bold">Viewing workout for {this.state.user.first_name} {this.state.user.last_name}</span>
-                <span className="col-xs-12 col-sm-3 text-right"><a className="link hidden-xs" href="/coach">Back to Coach</a></span>
             </div>;
         } else {
             return <div>
@@ -277,7 +274,6 @@ class App extends React.Component {
     viewingTeamBanner() {
         return <div>
             <span className="col-xs-12 col-sm-offset-3 col-sm-6 text-center bold">Viewing workout for {this.state.team.name}</span>
-            <span className="col-xs-12 col-sm-3 text-right"><a className="link hidden-xs" href="/coach">Back to Coach</a></span>
         </div>;
     }
 
@@ -429,6 +425,16 @@ class DoWork extends React.Component {
                                                 return <Stretch exercises={this.props.exercises} exercise={e} key={e.id} border={index != 0}
                                                 closed={this.props.routine.closed} />
                                             }.bind(this))
+                                        }
+
+                                        {
+                                            this.props.routine.custom_exercises.map(function(ex, index) {
+                                                if (ex.ex_type != 4) {
+                                                    return;
+                                                }
+
+                                            }.bind(this))
+
                                         }
                                     </When>
                                     <When condition={!this.props.loading} >
