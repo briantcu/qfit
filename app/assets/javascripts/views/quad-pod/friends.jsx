@@ -10,6 +10,12 @@ class Friends extends React.Component {
     }
 
     render () {
+        if (this.props.quad_pod_loading) {
+            return <div className="qp-section friends loading">
+                <div className="sec-header">Loading...</div>
+            </div>;
+        }
+
         return <div className="qp-section friends">
             <div className="sec-header">Your Pod</div>
             <div className="sec-main">

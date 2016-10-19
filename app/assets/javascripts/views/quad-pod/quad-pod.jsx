@@ -32,7 +32,7 @@ class QuadPod extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({transitioning: false});
+        this.setState({transitioning: nextProps.quad_pod_loading});
     }
 
     showConversation (userId) {

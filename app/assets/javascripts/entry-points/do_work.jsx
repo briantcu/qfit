@@ -230,6 +230,7 @@ class App extends React.Component {
                 quad_pod: qpData.pod,
                 invites: qpData.invites,
                 conversation: qpData.conversation,
+                quad_pod_loading: qpData.loading,
                 team: team.team,
                 showActionModal: showActionModal,
                 finishOnboarding: this.finishOnboarding

@@ -7,6 +7,7 @@ var QuadPodStore = new Store({
     pod: [],
     invites: [],
     conversation: {},
+    loading: true,
 
     setPod: function(data){
         this.pod = data;
@@ -14,6 +15,7 @@ var QuadPodStore = new Store({
 
     setFeed: function(data){
         this.feed = data;
+        this.loading = false;
     },
 
     setInvites: function(data) {
@@ -29,7 +31,8 @@ var QuadPodStore = new Store({
             feed: this.feed,
             pod: this.pod,
             invites: this.invites,
-            conversation: this.conversation
+            conversation: this.conversation,
+            loading: this.loading
         };
     }
 });
