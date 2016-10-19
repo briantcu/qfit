@@ -2,9 +2,16 @@
 
 .friends {
   .friend {
-    height: 60px;
+    min-height: 70px;
+    padding-top: 10px;
     .flag {
-      width: 40px;
+      width: 35px;
+      height: 30px;
+      border-radius: 5px;
+      padding-top: 1px;
+      cursor: pointer;
+      background-color: $purple;
+      text-align: center;
       display: inline-block;
     }
     .pi {

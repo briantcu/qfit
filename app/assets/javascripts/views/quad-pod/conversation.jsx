@@ -1,6 +1,7 @@
 import {render} from 'react-dom';
 import UserActions from 'actions/user_actions';
 import Avatar from 'views/common/avatar';
+import Util from 'helpers/util';
 
 require('views/quad-pod/conversation.scss');
 
@@ -50,7 +51,7 @@ class Conversation extends React.Component {
                                                             {e.message}
                                                         </div>
                                                         <div className="message-date">
-                                                            {e.created_at}
+                                                            {Util.formatFullDate(e.created_at)}
                                                         </div>
                                                     </div>
                                                     <div className="avi-wrap">
@@ -68,7 +69,7 @@ class Conversation extends React.Component {
                                                             {e.message}
                                                         </div>
                                                         <div className="message-date">
-                                                            {e.created_at}
+                                                            {Util.formatFullDate(e.created_at)}
                                                         </div>
                                                     </div>
                                                 </div>

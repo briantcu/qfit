@@ -18,10 +18,12 @@ class Friends extends React.Component {
                         {
                             this.props.quad_pod.map(function(e) {
                                 return <div key={e.id} className="friend gray-border">
-                                    <span className="flag" onClick={ () => this.props.showConversation(e.id)}>FLAG</span>
+                                    <span className="flag" onClick={ () => this.props.showConversation(e.id)}>
+                                        <img src="https://s3.amazonaws.com/quadfit/Icon+-+Paper+Airplaine.png" />
+                                    </span>
                                     <span className="avi-wrap"><Avatar user={e}/></span>
                                     <span className="username">{e.user_name}</span>
-                                    <span className="pi">PowerIndex: {e.power_index}</span>
+                                    <span className="pi">PowerIndex: {(e.power_index) ? e.power_index : 0}</span>
                                     <span className="remove">x</span>
                                 </div>
                             }.bind(this))

@@ -17,26 +17,28 @@ class FeedItem extends React.Component {
     }
 
     render () {
-        return <div className="gray-border message-row">
-            <div className="them">
-                <div className="avi-wrap">
-                    <Avatar user={this.props.poster} />
+        return <div className="gray-border feed-item">
+            <div className="row them">
+                <div className="col-xs-12">
+                    <span className="avi-wrap"><Avatar user={this.props.poster} /></span>
+                    <span className="poster-detes">
+                        <div className="poster-name">
+                            {this.props.poster.user_name}
+                        </div>
+                        <div className="message-date">
+                            {Util.formatFullDate(this.props.created_at)}
+                        </div>
+                    </span>
                 </div>
-                <div className="message-wrap">
-                    <div>
-                        {this.props.poster.user_name}
-                    </div>
-                    <div className="message-date">
-                        {Util.formatFullDate(this.props.created_at)}
-                    </div>
-                    <div className="message-text">
-                        <If condition={this.props.stripHtml} >
-                            {this.props.message}
-                        </If>
-                        <If condition={!this.props.stripHtml} >
-                            <div dangerouslySetInnerHTML={this.getMessageHtml()} />
-                        </If>
-                    </div>
+            </div>
+            <div className="row">
+                <div className="message-text col-xs-12">
+                    <If condition={this.props.stripHtml} >
+                        {this.props.message}
+                    </If>
+                    <If condition={!this.props.stripHtml} >
+                        <div dangerouslySetInnerHTML={this.getMessageHtml()} />
+                    </If>
                 </div>
             </div>
         </div>;
