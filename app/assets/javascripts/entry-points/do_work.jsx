@@ -27,6 +27,7 @@ import { Modal } from 'react-bootstrap';
 import CoachActions from 'actions/coach_actions';
 import validator from 'validator';
 import FancyInput from 'views/common/fancy_input';
+import FeedItem from 'views/quad-pod/feed_item.jsx';
 
 require('pages/do_work.scss');
 
@@ -368,6 +369,7 @@ class DoWork extends React.Component {
 
     leaveComment() {
         var commentText = this.refs.commentBox.value;
+        this.refs.commentBox.value = '';
         if (commentText) {
             RoutineActions.postComment(this.props.routine.id, commentText);
         }
@@ -598,22 +600,38 @@ class DoWork extends React.Component {
                                 </div>
                                 {
                                     this.props.routine.comments.map(function(e, index) {
-                                        return <Comment comment={e} key={e.id} />
+                                        return <FeedItem
+                                            item={e}
+                                            key={e.id}
+                                            poster={e.poster}
+                                            created_at={e.created_at}
+                                            message={e.message}
+                                            stripHtml={true}
+                                        />
                                     }.bind(this))
                                 }
-                                <div className="row comment-row">
-                                    <div className="col-xs-6 text-right">
-                                        <textarea ref="commentBox" className="leave-comment" rows="10" cols="80"></textarea>
-                                        <Button ref="leaveComment" buttonText="Submit" onClick={ () => this.leaveComment() }
-                                                disabled={false} />
+                                <If condition={gon.user_id} >
+                                    <div className="row comment-row">
+                                        <div className="col-xs-6 text-right">
+                                            <textarea ref="commentBox" className="leave-comment" rows="10" cols="76"></textarea>
+                                            <Button ref="leaveComment" buttonText="Submit" onClick={ () => this.leaveComment() }
+                                                    disabled={false} />
+                                        </div>
                                     </div>
-                                </div>
+                                </If>
                             </div>
                         </If>
                     </div>
                 </div>
             </div>
-            <MenuModal show={this.state.showAddEx} close={this.closeAddEx} click={this.addEx} exercises={this.props.exercises} type={this.state.exercise_type}/>
+            <MenuModal
+                show={this.state.showAddEx}
+                close={this.closeAddEx}
+                click={this.addEx}
+                exercises={this.props.exercises}
+                type={this.state.exercise_type}
+                premiumAccess={this.props.user.has_premium_access}
+            />
             <Modal show={this.props.showActionModal} >
                 <Modal.Header>
                     <Modal.Title>Last Step! Send this workout to someone!</Modal.Title>

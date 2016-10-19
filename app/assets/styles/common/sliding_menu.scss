@@ -20,6 +20,10 @@
     margin-left: auto;
   }
 
+  .inactive-link {
+    background-color: $gray1;
+  }
+
   .no-border {
     border: none !important;
     border-bottom: none !important;

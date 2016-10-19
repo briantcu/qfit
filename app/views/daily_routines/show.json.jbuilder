@@ -7,4 +7,14 @@ json.performed_sprints @daily_routine.performed_sprints, :id, :sprint_id, :statu
 json.custom_exercises @daily_routine.custom_exercises, :id, :ex_type, :name, :details, :status
 json.messages @daily_routine.routine_messages
 
-json.comments Message.includes(:poster).where(message_type: 5, to_id: @daily_routine.id), :poster, :id, :message, :created_at, :parent_id
+json.comments Message.includes(:poster).where(message_type: 5, to_id: @daily_routine.id) do |message|
+  json.poster do
+    json.id message.poster.id
+    json.user_name message.poster.user_name
+    json.avatar message.poster.avatar_path
+  end
+  json.id message.id
+  json.created_at message.created_at
+  json.parent_id message.parent_id
+  json.message message.message
+end

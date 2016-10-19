@@ -60,6 +60,18 @@ class SlidingMenu extends React.Component {
         }
     }
 
+    renderEx(ex) {
+        if (ex.paid_tier > 1 && !this.props.has_premium_access) {
+            return <span>
+                <a className="inactive-link" href="/account">{ex.name} is Premium Only. Upgrade Now.</a>
+            </span>
+        } else {
+            return <span>
+                <a data-id={ex.id} className="dl-link" href="javascript:void(0)">{ex.name}</a>
+            </span>
+        }
+    }
+
     render () {
         return <div className="row sliding-menu">
             <div ref="menu" className="dl-menuwrapper">
@@ -71,7 +83,9 @@ class SlidingMenu extends React.Component {
                                 <ul className="dl-submenu">
                                     {
                                         this.props.exercises.warmups.warm_up.map(function (e, index) {
-                                            return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
+                                            return <li key={index}>
+                                                {this.renderEx(e)}
+                                            </li>
                                         }.bind(this))
                                     }
                                 </ul>
@@ -82,7 +96,7 @@ class SlidingMenu extends React.Component {
                                 <ul className="dl-submenu">
                                     {
                                         this.props.exercises.warmups.dynamic_stretch.map(function(e, index) {
-                                    return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
+                                    return <li key={index}>{this.renderEx(e)}</li>
                                 }.bind(this))
                                     }
                                 </ul>
@@ -93,7 +107,7 @@ class SlidingMenu extends React.Component {
                                 <ul className="dl-submenu">
                                     {
                                         this.props.exercises.warmups.static_stretch.map(function (e, index) {
-                                            return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
+                                            return <li key={index}>{this.renderEx(e)}</li>
                                         }.bind(this))
                                     }
                                 </ul>
@@ -119,7 +133,7 @@ class SlidingMenu extends React.Component {
                                         <ul className="dl-submenu">
                                             {
                                                 e.exercises.map(function (e, index) {
-                                                    return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
+                                                    return <li key={index}>{this.renderEx(e)}</li>
                                                 }.bind(this))
                                             }
                                         </ul>
@@ -142,7 +156,7 @@ class SlidingMenu extends React.Component {
                         <When condition={this.props.type == 'plyos'} >
                             {
                                 this.props.exercises.plyometrics.map(function (e, index) {
-                                    return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
+                                    return <li key={index}>{this.renderEx(e)}</li>
                                 }.bind(this))
                             }
                             <li className="no-border">
@@ -164,7 +178,7 @@ class SlidingMenu extends React.Component {
                                 <ul className="dl-submenu">
                                     {
                                         this.props.exercises.sprints.basketball_court.map(function (e, index) {
-                                            return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
+                                            return <li key={index}>{this.renderEx(e)}</li>
                                         }.bind(this))
                                     }
                                 </ul>
@@ -175,7 +189,7 @@ class SlidingMenu extends React.Component {
                                 <ul className="dl-submenu">
                                     {
                                         this.props.exercises.sprints.track.map(function(e, index) {
-                                            return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
+                                            return <li key={index}>{this.renderEx(e)}</li>
                                         }.bind(this))
                                     }
                                 </ul>
@@ -186,7 +200,7 @@ class SlidingMenu extends React.Component {
                                 <ul className="dl-submenu">
                                     {
                                         this.props.exercises.sprints.treadmill.map(function (e, index) {
-                                            return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
+                                            return <li key={index}>{this.renderEx(e)}</li>
                                         }.bind(this))
                                     }
                                 </ul>
@@ -207,7 +221,7 @@ class SlidingMenu extends React.Component {
                         <Otherwise>
                             {
                                 this.props.exercise_subset.map(function (e, index) {
-                                    return <li key={index}><a data-id={e.id} className="dl-link" href="javascript:void(0)">{e.name}</a></li>
+                                    return <li key={index}>{this.renderEx(e)}</li>
                                 }.bind(this))
                             }
                         </Otherwise>

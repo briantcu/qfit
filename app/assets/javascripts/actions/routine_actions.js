@@ -289,8 +289,8 @@ var RoutineActions = {
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function(data) {
-                //dispatcher.dispatch(C.ROUTINE_LOADED, data)
-            },
+                this.getById(routineId);
+            }.bind(this),
             error: function(response) {
                 alert(response.errors);
             }
@@ -300,11 +300,11 @@ var RoutineActions = {
     completeWorkout: function(routine) {
         _.each(routine.performed_sprints, function(ps) {
             ps.laps_attributes = ps.laps;
-        })
+        });
         routine.performed_sprints_attributes = routine.performed_sprints;
         _.each(routine.performed_exercises, function(pe) {
             pe.weight_sets_attributes = pe.weight_sets;
-        })
+        });
         routine.performed_exercises_attributes = routine.performed_exercises;
 
         routine.performed_plyometrics_attributes = routine.performed_plyometrics;

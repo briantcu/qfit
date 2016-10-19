@@ -28,7 +28,13 @@ class Feed extends React.Component {
                                 <When condition={this.props.feed && this.props.feed.inbox && this.props.feed.inbox.length > 0}>
                                     {
                                         this.props.feed.inbox.map(function (e) {
-                                            return <FeedItem item={e} key={e.id} />
+                                            return <FeedItem
+                                                item={e}
+                                                key={e.id}
+                                                poster={e.poster}
+                                                created_at={e.created_at}
+                                                message={e.message}
+                                            />
                                         }.bind(this))
                                     }
                                 </When>
