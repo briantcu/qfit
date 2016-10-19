@@ -312,7 +312,7 @@ class DoWork extends React.Component {
             showAddEx: false,
             sendTo: undefined,
             sendToErrors: [],
-            showMessagesModal: true,
+            showMessagesModal: false,
             closingWorkout: false,
             titles: ['Awesome!', 'Nice!', 'Sweet!', 'Dope!', 'Tight!', 'Mint!', 'Fresh!', 'Epic!']
         };

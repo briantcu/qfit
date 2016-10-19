@@ -13,6 +13,9 @@
     font-weight: 600;
   }
 
+  .weight-sets-col {
+    text-align: right;
+  }
 
   .weight-set {
     display: inline-block;
@@ -26,6 +29,13 @@
     input {
       width: 45%;
       font-size: 12px;
+      border-bottom: $purple 1px solid !important;
+      background-color: $gray1;
+      outline: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      text-align: right;
     }
     label {
       font-weight: normal;
@@ -41,6 +51,10 @@
       width: 100%;
       display: inline-block;
       margin-bottom: 10px;
+      .vert-circle-check {
+        float: right;
+        left: -20px;
+      }
     }
   }
 

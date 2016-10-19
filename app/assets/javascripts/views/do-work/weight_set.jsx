@@ -70,8 +70,8 @@ class WeightSet extends React.Component {
                             Max Reps
                     </span><br/>
                     <span className="double">
-                        <input ref="reps" type='text' className="transparent-input standard-text" id={this.props.weightSet.id + 'reps'}
-                               onBlur={this.change} value={this.formatValue(this.props.weightSet.perf_reps)} onChange={this.fakeChange} />
+                        <input ref="reps" type='text' className="standard-text" id={this.props.weightSet.id + 'reps'}
+                               onBlur={this.change} defaultValue={this.formatValue(this.props.weightSet.perf_reps)} onChange={this.fakeChange} />
                         <label htmlFor={this.props.weightSet.id + 'reps'} >reps</label>
                     </span>
                 </When>
@@ -83,13 +83,13 @@ class WeightSet extends React.Component {
                         {this.props.weightSet.rec_reps} reps
                     </span><br/>
                     <span className="col">
-                        <input ref="weight" type='text' className="transparent-input standard-text" id={this.props.weightSet.id + 'weight'}
-                               onBlur={this.change} value={this.formatValue(this.props.weightSet.perf_weight)} onChange={this.fakeChange} />
-                        <label htmlFor="{this.props.weightSet.id + 'weight'}">lbs</label>
+                        <input ref="weight" type='text' className="standard-text" id={this.props.weightSet.id + 'weight'}
+                               onBlur={this.change} defaultValue={this.formatValue(this.props.weightSet.perf_weight)} onChange={this.fakeChange} />
+                        <label htmlFor={this.props.weightSet.id + 'weight'}>lbs</label>
                     </span>
                     <span className="col">
-                        <input ref="reps" type='text' className="transparent-input standard-text" id={this.props.weightSet.id + 'reps'}
-                               onBlur={this.change} value={this.formatValue(this.props.weightSet.perf_reps)} onChange={this.fakeChange} />
+                        <input ref="reps" type='text' className="standard-text" id={this.props.weightSet.id + 'reps'}
+                               onBlur={this.change} defaultValue={this.formatValue(this.props.weightSet.perf_reps)} onChange={this.fakeChange} />
                         <label htmlFor={this.props.weightSet.id + 'reps'} >reps</label>
                     </span>
                 </Otherwise>
