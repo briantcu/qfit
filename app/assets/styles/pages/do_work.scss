@@ -36,6 +36,12 @@
 
 .do-work {
 
+  .no-exercises{
+    font-weight: bold;
+    color: #9FA9BA;
+    width: 100%;
+  }
+
   .no-hover {
     &:hover {
       text-decoration: none;
@@ -124,8 +130,14 @@
     background-color: $gray1;
     border: solid 1px $gray2;
     padding-top: 6px;
-    span {
+
+    span:first-child {
       margin-right: 40px;
+    }
+    span:last-child {
+      margin-left: 40px;
+    }
+    span {
       font-family: 'Open Sans', sans-serif;
       color: $purple;
       font-size: 12px;
@@ -134,8 +146,11 @@
       cursor: pointer;
     }
     @media (max-width: 480px) {
-      span {
+      span:first-child {
         margin-right: 20px;
+      }
+      span:last-child {
+        margin-left: 20px;
       }
     }
   }

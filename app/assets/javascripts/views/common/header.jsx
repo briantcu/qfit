@@ -26,7 +26,7 @@ class Header extends React.Component {
                                         </a>
                                     </If>
                                     <a className={(this.props.active == 'workout') ? 'btn active' : 'btn'}  href="/workout">
-                                        <img src="https://s3.amazonaws.com/quadfit/icon-dumbells.png"/> WORKOUT
+                                        <img src="https://s3.amazonaws.com/quadfit/workout+icon.png"/> WORKOUT
                                     </a>
                                     <a className={(this.props.active == 'progress') ? 'btn active' : 'btn'}  href="/progress">
                                         <img src="https://s3.amazonaws.com/quadfit/Icon+-+Progress.png"/> PROGRESS
@@ -45,7 +45,7 @@ class Header extends React.Component {
                                     </If>
                                     <Link className={(this.props.active == 'workout') ? 'btn active' : 'btn'}
                                           to={`/workout`}>
-                                        <img height="14" width="22" src="https://s3.amazonaws.com/quadfit/icon-dumbells.png"/>  WORKOUT
+                                        <img src="https://s3.amazonaws.com/quadfit/workout+icon.png"/>  WORKOUT
                                     </Link>
                                     <Link className={(this.props.active == 'progress') ? 'btn active' : 'btn'} to={`/progress`}>
                                         <img src="https://s3.amazonaws.com/quadfit/Icon+-+Progress.png"/> PROGRESS
@@ -75,7 +75,7 @@ class Header extends React.Component {
                                         </a>
                                     </If>
                                     <a className={(this.props.active == 'workout') ? 'btn active' : 'btn'}  href="/workout">
-                                        <img src="https://s3.amazonaws.com/quadfit/icon-dumbells.png"/> WORKOUT
+                                        <img src="https://s3.amazonaws.com/quadfit/workout+icon.png"/> WORKOUT
                                     </a>
                                     <a className={(this.props.active == 'progress') ? 'btn active' : 'btn'}  href="/progress">
                                         <img src="https://s3.amazonaws.com/quadfit/Icon+-+Progress.png"/> PROGRESS
@@ -92,9 +92,8 @@ class Header extends React.Component {
                                             <img height="14" width="14" src="https://s3.amazonaws.com/quadfit/iocn-+workout.png"/> COACH
                                         </a>
                                     </If>
-                                    <Link className={(this.props.active == 'workout') ? 'btn active' : 'btn'}
-                                          to={`/workout`}>
-                                        <img height="14" width="22" src="https://s3.amazonaws.com/quadfit/icon-dumbells.png"/>  WORKOUT
+                                    <Link className={(this.props.active == 'workout') ? 'btn active' : 'btn'} to={`/workout`}>
+                                        <img src="https://s3.amazonaws.com/quadfit/workout+icon.png"/>  WORKOUT
                                     </Link>
                                     <Link className={(this.props.active == 'progress') ? 'btn active' : 'btn'} to={`/progress`}>
                                         <img src="https://s3.amazonaws.com/quadfit/Icon+-+Progress.png"/> PROGRESS

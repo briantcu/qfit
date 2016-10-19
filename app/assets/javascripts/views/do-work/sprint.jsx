@@ -73,7 +73,7 @@ class Sprint extends React.Component {
     render() {
         return <div className="sprint exercise row" >
             <div className="col-xs-12">
-                <div className="row">
+                <div className="row sprint-title-row">
                     <span className="ex-info col-xs-12">
                         <div className="ex-name">{this.props.exercise.sprint.name}</div>
                         <div className="ex-subtext">
@@ -85,10 +85,15 @@ class Sprint extends React.Component {
                 </div>
                 {
                     this.props.exercise.sprint_details.map(function(e, index) {
-                        return <div className="row detail-row" key={this.props.exercise.id + '' + (index + 1)}>
-                                <div className="col-xs-4 detail">{e.detail}</div>
-                                <If condition={gon.viewing == 'user'}>
+                        return <div className="row top-border exercise" key={this.props.exercise.id + '' + (index + 1)}>
                                 <div className="col-xs-8">
+                                    <span className="thumb">
+                                        <img width="120" height="90" src="https://s3.amazonaws.com/quadfit/sprint-icon.png" />
+                                    </span>
+                                    <span className="ex-info">{e.detail}</span>
+                                </div>
+                                <If condition={gon.viewing == 'user'}>
+                                <div className="col-xs-1 col-xs-offset-3 text-right">
                                     <VertCircleCheck
                                         lapNum={index + 1}
                                         ref={this.props.exercise.laps[index].id}

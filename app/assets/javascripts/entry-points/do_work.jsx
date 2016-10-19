@@ -10,6 +10,7 @@ import ExerciseActions from 'actions/exercise_actions';
 import Header from 'views/common/header';
 import Calendar from 'views/do-work/calendar';
 import Stretch from 'views/do-work/stretch';
+import Custom from 'views/do-work/custom';
 import Strength from 'views/do-work/strength';
 import Plyo from 'views/do-work/plyo';
 import Sprint from 'views/do-work/sprint';
@@ -391,7 +392,7 @@ class DoWork extends React.Component {
             <div className="row subnav">
                 <div className="container">
                     <div className="row">
-                        <div className="col-xs-12 text-center">
+                        <div className="col-xs-12 text-center subnav-cluster">
                             <If condition={gon.viewing != 'team' && this.props.routine.id } >
                                 <span onClick={ () => this.submit()} >
                                     <img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Complete.png" /> Complete this Workout
@@ -432,13 +433,19 @@ class DoWork extends React.Component {
                                                 if (ex.ex_type != 4) {
                                                     return;
                                                 }
+                                                return <Custom exercise={ex} />
 
                                             }.bind(this))
 
                                         }
                                     </When>
                                     <When condition={!this.props.loading} >
-                                        <span>No Stretching</span>
+                                        <div className="row">
+                                            <div className="col-xs-12 text-center">
+                                                <span className="no-exercises">Quadfit hasn't scheduled any Stretching/Warmup exercises for you.
+                                                    You can <span className="norm-link" onClick={ () => this.showAddEx('warmups')}>add some</span> if you want!</span>
+                                            </div>
+                                        </div>
                                     </When>
                                 </Choose>
                             </div>
@@ -462,9 +469,25 @@ class DoWork extends React.Component {
                                                                  closed={this.props.routine.closed} />
                                             }.bind(this))
                                         }
+
+                                        {
+                                            this.props.routine.custom_exercises.map(function(ex, index) {
+                                                if (ex.ex_type != 1) {
+                                                    return;
+                                                }
+                                                return <Custom exercise={ex} />
+
+                                            }.bind(this))
+
+                                        }
                                     </When>
                                     <When condition={!this.props.loading} >
-                                        <span>No Strength</span>
+                                        <div className="row">
+                                            <div className="col-xs-12 text-center">
+                                                <span className="no-exercises">Quadfit hasn't scheduled any Strength Training exercises for you.
+                                                    You can <span className="norm-link" onClick={ () => this.showAddEx('weights')}>add some</span> if you want!</span>
+                                            </div>
+                                        </div>
                                     </When>
                                 </Choose>
                             </div>
@@ -488,9 +511,25 @@ class DoWork extends React.Component {
                                                              closed={this.props.routine.closed} />
                                             }.bind(this))
                                         }
+
+                                        {
+                                            this.props.routine.custom_exercises.map(function(ex, index) {
+                                                if (ex.ex_type != 2) {
+                                                    return;
+                                                }
+                                                return <Custom exercise={ex} />
+
+                                            }.bind(this))
+
+                                        }
                                     </When>
                                     <When condition={!this.props.loading} >
-                                        <span>No Plyos</span>
+                                        <div className="row">
+                                            <div className="col-xs-12 text-center">
+                                                <span className="no-exercises">Quadfit hasn't scheduled any Plyometric exercises for you.
+                                                    You can <span className="norm-link" onClick={ () => this.showAddEx('plyos')}>add some</span> if you want!</span>
+                                            </div>
+                                        </div>
                                     </When>
                                 </Choose>
                             </div>
@@ -514,9 +553,25 @@ class DoWork extends React.Component {
                                                                closed={this.props.routine.closed} />
                                             }.bind(this))
                                         }
+
+                                        {
+                                            this.props.routine.custom_exercises.map(function(ex, index) {
+                                                if (ex.ex_type != 3) {
+                                                    return;
+                                                }
+                                                return <Custom exercise={ex} />
+
+                                            }.bind(this))
+
+                                        }
                                     </When>
                                     <When condition={!this.props.loading} >
-                                        <span>No sprinting</span>
+                                        <div className="row">
+                                            <div className="col-xs-12 text-center">
+                                                <span className="no-exercises">Quadfit hasn't scheduled any Sprinting for you.
+                                                    You can <span className="norm-link" onClick={ () => this.showAddEx('plyos')}>add some</span> if you want!</span>
+                                            </div>
+                                        </div>
                                     </When>
                                 </Choose>
                             </div>
