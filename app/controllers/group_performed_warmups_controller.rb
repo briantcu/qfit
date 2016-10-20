@@ -47,7 +47,7 @@ class GroupPerformedWarmupsController < ApplicationController
   end
 
   def verify_owns_group
-    unauthorized unless (current_user.owns_group?(@group_performed_warmup.routine_id))
+    unauthorized unless (current_user.owns_group?(@group_performed_warmup.group_routine.group_id))
   end
 
 end
