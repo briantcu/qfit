@@ -688,23 +688,25 @@ class DoWork extends React.Component {
                     <Button buttonText="Submit" onClick={this.finishOnboarding}>Submit</Button>
                 </Modal.Footer>
             </Modal>
-            <Modal show={this.state.showMessagesModal && this.props.routine.messages.length > 0} onHide={this.closeMessages} className="messages-modal">
-                <Modal.Header closeButton>
-                    <Modal.Title></Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                   <div className="messages-title">
-                       {this.state.titles[Math.ceil(Math.random() * (this.state.titles.length)) - 1]}
-                   </div>
-                   <div className="messages-text">
-                       {
-                           this.props.routine.messages.map(function(e) {
-                               return <div className="workout-message" key={e.id}>{e.message}</div>
-                           }.bind(this))
-                       }
-                   </div>
-                </Modal.Body>
-            </Modal>
+            <If condition={this.props.routine && this.props.routine.messages && this.props.routine.messages.length > 0}>
+                <Modal show={this.state.showMessagesModal && this.props.routine.messages.length > 0} onHide={this.closeMessages} className="messages-modal">
+                    <Modal.Header closeButton>
+                        <Modal.Title></Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                       <div className="messages-title">
+                           {this.state.titles[Math.ceil(Math.random() * (this.state.titles.length)) - 1]}
+                       </div>
+                       <div className="messages-text">
+                           {
+                               this.props.routine.messages.map(function(e) {
+                                   return <div className="workout-message" key={e.id}>{e.message}</div>
+                               }.bind(this))
+                           }
+                       </div>
+                    </Modal.Body>
+                </Modal>
+            </If>
         </div>;
     }
 }

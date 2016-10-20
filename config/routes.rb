@@ -134,6 +134,7 @@ Qfit::Application.routes.draw do
   post '/group_routines/:id/plyos/:plyometric_id', to: 'group_routines#add_plyo'
   post '/group_routines/:id/custom/:type/:name', to: 'group_routines#add_custom'
   get '/group_routines/:id/reset', to: 'group_routines#reset'
+  post '/group_routines', to: 'group_routines#create'
 
   delete '/group_performed_warmups/:id', to: 'group_performed_warmups#destroy'
   put '/group_performed_warmups/:id', to: 'group_performed_warmups#update'

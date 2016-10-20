@@ -129,7 +129,7 @@ class DailyRoutine < ActiveRecord::Base
 
   def get_workout_status
     if self.closed
-      return 'closed'
+      return 'completed'
     end
 
     'active'

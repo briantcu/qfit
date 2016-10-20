@@ -29,6 +29,12 @@ class GroupRoutinesController < ApplicationController
   def show
   end
 
+  def create
+    date = Date.new(params[:group_routine][:year].to_i, params[:group_routine][:month].to_i, params[:group_routine][:day].to_i)
+    @group_routine = GroupRoutine.create_routine(params[:group_routine][:group_id], date)
+    render action: :show, status: :created
+  end
+
   #GET /groups/:group_id/group_routines/year/:year/month/:month/day/:day
   def routine_by_date
     @group_routine = GroupRoutine.get_routine_by_date(params[:month], params[:year], params[:day], params[:group_id])

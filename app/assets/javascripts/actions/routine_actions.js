@@ -201,6 +201,10 @@ var RoutineActions = {
     },
 
     addExercise: function(routineId, type, exId) {
+        if (!routineId) {
+            this.createRoutine(type, exId);
+            return
+        }
         if (gon.viewing == 'user') {
             var url = '/daily_routines/'+ routineId + '/'+ type + '/' +exId+'.json';
         } else {
@@ -222,6 +226,32 @@ var RoutineActions = {
                 alert(response.errors);
             }
         });
+    },
+
+    createRoutine(type, exId) {
+        var date = this.getDateForRoutine();
+        if (gon.viewing == 'user') {
+            var payload = JSON.stringify({daily_routine: { day: date.day, month: date.month, year: date.year, user_id: gon.current_user_id}});
+            var url = '/daily_routines.json';
+        } else {
+            var payload = JSON.stringify({group_routine: { day: date.day, month: date.month, year: date.year, group_id: gon.team_id}});
+            var url = '/group_routines.json';
+        }
+
+        $.ajax({
+            type: 'post',
+            url: url,
+            data: payload,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                this.addExercise(data.id, type, exId);
+            }.bind(this),
+            error: function(response) {
+                alert(response.errors);
+            }
+        });
+
     },
 
     addCustomExercise: function(routineId, type, name) {
@@ -349,6 +379,21 @@ var RoutineActions = {
                 alert(response.errors);
             }
         });
+    },
+
+    getDateForRoutine() {
+        var year, month, day;
+        var urlArray = location.pathname.split('/');
+        var today;
+        if (urlArray.length > 3) {
+            today = new Date(urlArray[2], urlArray[3] - 1, urlArray[4]);
+        } else {
+            today = new Date();
+        }
+        year = today.getFullYear();
+        month = today.getMonth() + 1;
+        day = today.getDate();
+        return {year: year, month: month, day: day};
     },
 
     userWeightChanged: function(userWeight) {
