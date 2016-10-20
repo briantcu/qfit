@@ -7,7 +7,6 @@ class WeightSet extends React.Component {
     constructor(props) {
         super(props);
         this.change = this.change.bind(this);
-        this.showErrorState = this.showErrorState.bind(this);
         this.formatValue = this.formatValue.bind(this);
     }
 
@@ -20,8 +19,9 @@ class WeightSet extends React.Component {
             var reps = this.refs.value;
             var weight = 0;
             if (isNaN(reps) && reps && reps.length > 0) {
-                this.showErrorState();
+                $(this.refs.wrap).addClass('error');
             } else {
+                $(this.refs.wrap).removeClass('error');
                 RoutineActions.storeResults(RoutineConstants.WEIGHTS, this.props.exercise.id, this.props.setNum, reps, 0);
             }
 
@@ -29,19 +29,12 @@ class WeightSet extends React.Component {
             var reps = this.refs.reps.value;
             var weight = this.refs.weight.value;
             if ((isNaN(reps) && reps && reps.length > 0) || (isNaN(weight) && weight && weight.length > 0)) {
-                this.showErrorState();
+                $(this.refs.wrap).addClass('error');
             } else {
+                $(this.refs.wrap).removeClass('error');
                 RoutineActions.storeResults(RoutineConstants.WEIGHTS, this.props.exercise.id, this.props.setNum, reps, weight);
             }
         }
-    }
-
-    fakeChange(){
-        return;
-    }
-
-    showErrorState() {
-        alert('not valid!')
     }
 
     formatValue(value) {
@@ -54,15 +47,15 @@ class WeightSet extends React.Component {
 
     render() {
         var classes = this.props.gray ? 'weight-set gray' : 'weight-set';
-        return <div className={classes} >
+        return <div className={classes} ref="wrap">
             <Choose>
                 <When condition={this.props.exercise.for_time} >
                     <span className="double">
                        30 seconds
                     </span><br/>
                     <span className="double">
-                        <VertCircleCheck ref="reps" id={this.props.weightSet.id + 'reps'} onChange={this.fakeChange}
-                                         checked={this.props.exercise.perf_reps && this.props.exercise.perf_reps > 0} label={'Complete'} onBlur={ this.change } />
+                        <VertCircleCheck ref="reps" id={this.props.weightSet.id + 'reps'} change={this.change}
+                                         checked={this.props.weightSet.perf_reps && this.props.weightSet.perf_reps > 0} label={'Complete'}  />
                     </span>
                 </When>
                 <When condition={(this.props.exercise.category == 7 && (this.props.weightSet.rec_weight == 0)) || this.props.exercise.category == 3} >
@@ -71,7 +64,7 @@ class WeightSet extends React.Component {
                     </span><br/>
                     <span className="double">
                         <input ref="reps" type='text' className="standard-text" id={this.props.weightSet.id + 'reps'}
-                               onBlur={this.change} defaultValue={this.formatValue(this.props.weightSet.perf_reps)} onChange={this.fakeChange} />
+                               defaultValue={this.formatValue(this.props.weightSet.perf_reps)} onChange={this.change} />
                         <label htmlFor={this.props.weightSet.id + 'reps'} >reps</label>
                     </span>
                 </When>
@@ -84,12 +77,12 @@ class WeightSet extends React.Component {
                     </span><br/>
                     <span className="col">
                         <input ref="weight" type='text' className="standard-text" id={this.props.weightSet.id + 'weight'}
-                               onBlur={this.change} defaultValue={this.formatValue(this.props.weightSet.perf_weight)} onChange={this.fakeChange} />
+                               defaultValue={this.formatValue(this.props.weightSet.perf_weight)} onChange={this.change} />
                         <label htmlFor={this.props.weightSet.id + 'weight'}>lbs</label>
                     </span>
                     <span className="col">
                         <input ref="reps" type='text' className="standard-text" id={this.props.weightSet.id + 'reps'}
-                               onBlur={this.change} defaultValue={this.formatValue(this.props.weightSet.perf_reps)} onChange={this.fakeChange} />
+                               defaultValue={this.formatValue(this.props.weightSet.perf_reps)} onChange={this.change} />
                         <label htmlFor={this.props.weightSet.id + 'reps'} >reps</label>
                     </span>
                 </Otherwise>

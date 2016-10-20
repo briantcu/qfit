@@ -9,6 +9,7 @@ class Custom extends React.Component {
     constructor(props) {
         super(props);
         this.delete = this.delete.bind(this);
+        this.changed = this.changed.bind(this);
     }
 
     delete() {
@@ -16,6 +17,10 @@ class Custom extends React.Component {
         if (r==true) {
             RoutineActions.deleteExercise('custom', this.props.exercise.id);
         }
+    }
+
+    changed(details) {
+        RoutineActions.storeResults(RoutineConstants.CUSTOM, this.props.exercise.id, null, null, details);
     }
 
     render() {
@@ -31,8 +36,9 @@ class Custom extends React.Component {
                     </div>
                 </span>
             </div>
-            <div className="col-xs-6">
-                <FancyInput ref="details" name="details" placeholder="Enter Details" type="text"  />
+            <div className="col-xs-6 custom-input">
+                <FancyInput ref="details" name="details" placeholder="Enter Details" type="text" value={this.props.exercise.details}
+                changedCallback={this.changed} />
             </div>
         </div>
     }

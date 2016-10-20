@@ -10,6 +10,7 @@ module.exports = keyMirror({
     SPRINTS: null,
     WARMUP: null,
     PLYOS: null,
+    CUSTOM: null,
     INPUT_CHANGED: null,
     USER_WEIGHT_CHANGED: null
 });

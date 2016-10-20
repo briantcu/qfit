@@ -441,7 +441,9 @@ class DoWork extends React.Component {
                             </div>
                             <div className="exercise-section">
                                 <Choose>
-                                    <When condition={this.props.routine && this.props.routine.performed_warm_ups && this.props.routine.performed_warm_ups.length > 0}>
+                                    <When condition={this.props.routine &&
+                                        (this.props.routine.performed_warm_ups && this.props.routine.performed_warm_ups.length > 0) ||
+                                        _.where(this.props.routine.custom_exercises, {ex_type: 4}).length > 0 }>
                                         {
                                             this.props.routine.performed_warm_ups.map(function(e, index) {
                                                 if (e.status == 2) {
@@ -483,7 +485,9 @@ class DoWork extends React.Component {
                             </div>
                             <div className="exercise-section">
                                 <Choose>
-                                    <When condition={this.props.routine && this.props.routine.performed_exercises && this.props.routine.performed_exercises.length > 0}>
+                                    <When condition={this.props.routine &&
+                                    (this.props.routine.performed_exercises && this.props.routine.performed_exercises.length > 0) ||
+                                    _.where(this.props.routine.custom_exercises, {ex_type: 1}).length > 0}>
                                         {
                                             this.props.routine.performed_exercises.map(function(e, index) {
                                                 if (e.status == 2) {
@@ -525,7 +529,9 @@ class DoWork extends React.Component {
                             </div>
                             <div className="exercise-section">
                                 <Choose>
-                                    <When condition={this.props.routine && this.props.routine.performed_plyometrics && this.props.routine.performed_plyometrics.length > 0}>
+                                    <When condition={this.props.routine &&
+                                    (this.props.routine.performed_plyometrics && this.props.routine.performed_plyometrics.length > 0) ||
+                                    _.where(this.props.routine.custom_exercises, {ex_type: 2}).length > 0 }>
                                         {
                                             this.props.routine.performed_plyometrics.map(function(e, index) {
                                                 if (e.status == 2) {
@@ -567,7 +573,9 @@ class DoWork extends React.Component {
                             </div>
                             <div className="exercise-section">
                                 <Choose>
-                                    <When condition={this.props.routine && this.props.routine.performed_sprints && this.props.routine.performed_sprints.length > 0}>
+                                    <When condition={this.props.routine &&
+                                    (this.props.routine.performed_sprints && this.props.routine.performed_sprints.length > 0) ||
+                                    _.where(this.props.routine.custom_exercises, {ex_type: 4}).length > 3} >
                                         {
                                             this.props.routine.performed_sprints.map(function(e, index) {
                                                 if (e.status == 2) {

@@ -54,7 +54,18 @@
       .vert-circle-check {
         float: right;
         left: -20px;
+        margin-top: 0px;
       }
+    }
+
+  }
+  .error {
+    input[type=text] {
+      border: #d62020 1px solid;
+      background-color: #fdcdcd;
+    }
+    label {
+      color: #d62020;
     }
   }
 

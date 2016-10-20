@@ -66,6 +66,9 @@ var RoutineStore = new Store({
         } else if (data.type == C.WARMUP) {
             var performedExercise = _.find(this.routine.performed_warm_ups, function(ex){ return ex.id == data.exId;});
             performedExercise.completed = data.reps;
+        } else if (data.type == C.CUSTOM) {
+            var customExercise = _.find(this.routine.custom_exercises, function(ex){ return ex.id == data.exId;});
+            customExercise.details = data.details;
         }
     }
 });
