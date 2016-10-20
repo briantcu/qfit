@@ -22,8 +22,9 @@
 
 class GroupRoutinesController < ApplicationController
   before_filter :verify_logged_in
-  before_action :set_group_routine, except: [:routine_by_date]
-  before_filter :verify_owns_group, except: [:show, :routine_by_date]
+  before_action :set_group_routine, except: [:routine_by_date, :create]
+  before_filter :verify_owns_group, except: [:show, :routine_by_date, :create]
+  before_filter :verify_owns_new_group, only: [:create]
 
   # GET /group_routines/1
   def show
@@ -97,6 +98,10 @@ class GroupRoutinesController < ApplicationController
 
   def verify_owns_group
     unauthorized unless (current_user.owns_group?(@group_routine.group_id))
+  end
+
+  def verify_owns_new_group
+    unauthorized unless (current_user.owns_group?(params[:group_routine][:group_id]))
   end
 
 end
