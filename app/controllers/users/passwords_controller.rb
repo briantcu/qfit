@@ -9,6 +9,7 @@ class Users::PasswordsController < Devise::PasswordsController
         password_confirmation: params[:user][:password_confirmation]
     )
     if user.errors.empty?
+      user.update!(needs_pw_reset: false)
       sign_in user, bypass: true
       render status: 201, json: {location: determine_redirect(user)}
     else

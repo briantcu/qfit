@@ -251,7 +251,7 @@ class App extends React.Component {
     }
 
     shouldShowTeamBanner() {
-        return (gon.is_coach && gon.viewing == 'team' && this.state.team && this.state.team.name && !gon.setup_context);
+        return (gon.is_coach && gon.viewing == 'team' && this.state.team && this.state.team.name && !gon.onboarding);
     }
 
     shouldShowUserBanner() {
