@@ -35,21 +35,14 @@ class CloseRoutineService
       points = @routine.count_ex_completed / @routine.count_ex_provided * 100 rescue 0
       @routine.user.points += points
 
-      already_closed = @routine.closed
-      note_as_closed unless already_closed
+      note_as_closed
 
       on_a_run = is_on_a_run?
       is_first_workout = is_first_workout?
       @routine.save!
       @routine.user.save!
 
-      unless already_closed
-        #post message to feed saying workout was completed
-        # #@TODO fix message and reinstate once you do workout sharing
-        #message = "I just completed my workout: <a class='underlined' target='_blank' href='/share.html?r=rid'> Check it out and let me know what you think</a>."
-        #Message.create(poster_id: @routine.user.id, message_type: 3, message: message)
-        @routine.routine_messages.destroy_all
-      end
+      @routine.routine_messages.destroy_all
 
       get_messages(true, on_a_run, is_first_workout)
     end
@@ -76,6 +69,12 @@ class CloseRoutineService
       return
     end
 
+    if is_completed
+      # #@TODO fix message and reinstate once you do workout sharing
+      #message = "I just completed my workout: <a class='underlined' target='_blank' href='/share.html?r=rid'> Check it out and let me know what you think</a>."
+      #Message.create(poster_id: @routine.user.id, message_type: 3, message: message)
+    end
+
     if @pbs.count > 0
       personal_bests = @pbs.take(3)
       personal_bests.each do |pb|
@@ -91,7 +90,7 @@ class CloseRoutineService
 
     next_open_workout = DailyRoutine.get_open_workouts_start_today(@routine.user).first
     if next_open_workout.present?
-      @routine.routine_messages.create(message: "Your next workout is #{next_open_workout.day_performed.strftime('%A %B %-d')}.")
+      @routine.routine_messages.create(message: "Your next workout is #{next_open_workout.day_performed.strftime('%A, %B %-d')}.")
     end
 
   end

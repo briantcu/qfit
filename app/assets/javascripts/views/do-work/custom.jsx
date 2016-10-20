@@ -20,7 +20,7 @@ class Custom extends React.Component {
     }
 
     changed(details) {
-        RoutineActions.storeResults(RoutineConstants.CUSTOM, this.props.exercise.id, null, null, details);
+        RoutineActions.storeResults(RoutineConstants.CUSTOM, this.props.exercise.id, null, null, null, details);
     }
 
     render() {
