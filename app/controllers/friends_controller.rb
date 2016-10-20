@@ -19,6 +19,15 @@ class FriendsController < ApplicationController
     @friends = current_user.friends
   end
 
+  def destroy
+    record = FriendService.instance.get_friends_record(current_user.id, params[:id])
+    if record.present?
+      record.destroy!
+    end
+    @friends = current_user.friends
+    render action: :index, status: :ok
+  end
+
   # GET /friends/1
   # GET /friends/1.json
   #@TODO this endpoint can return profile detes for this user you're friends with. Need to verify you're friends

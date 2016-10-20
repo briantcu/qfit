@@ -205,6 +205,21 @@ var UserActions = {
         req.end(function(user) {
             dispatcher.dispatch(C.LOADED, user);
         });
+    },
+
+    unfriend: function(id) {
+        $.ajax({
+            type: 'delete',
+            url: '/friends/'+ id +'.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(pod) {
+                dispatcher.dispatch(C.POD_LOADED, pod);
+            },
+            error: function(results) {
+                alert('Something went wrong!');
+            }
+        });
     }
 
 };

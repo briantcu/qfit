@@ -150,7 +150,7 @@ Qfit::Application.routes.draw do
   delete '/group_custom_exercises/:id', to: 'group_custom_exercises#destroy'
 
   get '/friends', to: 'friends#index'
-  get '/friends/:id', to: 'friends#show'
+  delete '/friends/:id', to: 'friends#destroy'
 
   get '/faqs', to: 'faqs#index'
 

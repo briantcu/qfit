@@ -1,5 +1,6 @@
 import {render} from 'react-dom';
 import Avatar from 'views/common/avatar';
+import UserActions from 'actions/user_actions';
 
 require('views/quad-pod/friends.scss');
 
@@ -7,6 +8,13 @@ class Friends extends React.Component {
 
     constructor(props) {
         super(props);
+    }
+
+    removeFriend(id) {
+        var r=confirm("Are you sure you want to remove this person from your Quad Pod?");
+        if (r==true) {
+            UserActions.unfriend(id);
+        }
     }
 
     render () {
@@ -30,7 +38,7 @@ class Friends extends React.Component {
                                     <span className="avi-wrap"><Avatar user={e}/></span>
                                     <span className="username">{e.user_name}</span>
                                     <span className="pi">PowerIndex: {(e.power_index) ? e.power_index : 0}</span>
-                                    <span className="remove">x</span>
+                                    <span className="remove" onClick={() => this.removeFriend(e.id)}><img src="https://s3.amazonaws.com/quadfit/X.png"/></span>
                                 </div>
                             }.bind(this))
                         }

@@ -16,4 +16,9 @@ class FriendService
     ids = [user_id_one.to_i, user_id_two.to_i].sort
     Friend.where(id_one: ids[0], id_two: ids[1]).first.present?
   end
+
+  def get_friends_record(user_id_one, user_id_two)
+    ids = [user_id_one.to_i, user_id_two.to_i].sort
+    Friend.where(id_one: ids[0], id_two: ids[1]).first
+  end
 end

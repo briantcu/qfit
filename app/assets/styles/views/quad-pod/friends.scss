@@ -4,6 +4,9 @@
   .friend {
     min-height: 70px;
     padding-top: 10px;
+    width: 100%;
+    display: block;
+    float: left;
     .flag {
       width: 35px;
       height: 30px;
@@ -23,6 +26,9 @@
       width: 20px;
       display: inline-block;
       text-align: right;
+      float: right;
+      padding-top: 10px;
+      cursor: pointer;
     }
     .username {
       width: 180px;
