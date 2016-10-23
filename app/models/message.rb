@@ -29,6 +29,6 @@ class Message < ActiveRecord::Base
   scope :dms, -> {where(message_type: 2)}
 
   def self.conversation(id_one, id_two)
-    Message.dms.where('poster_id IN (?, ?) OR to_id IN (?, ?)', id_one, id_two, id_one, id_two).order(created_at: :desc).limit(20).to_a
+    Message.dms.where('poster_id IN (?, ?) AND to_id IN (?, ?)', id_one, id_two, id_one, id_two).order(created_at: :desc).limit(20).to_a
   end
 end
