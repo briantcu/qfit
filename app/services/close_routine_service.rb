@@ -64,7 +64,14 @@ class CloseRoutineService
   private
 
   def get_messages(is_completed, is_on_run, is_first_workout)
-    unless is_completed
+    next_open_workout = DailyRoutine.get_open_workouts_start_today(@routine.user).first
+    if next_open_workout.present?
+      @routine.routine_messages.create(message: "Your next workout is #{next_open_workout.day_performed.strftime('%A, %B %-d')}.")
+    else
+      @routine.routine_messages.create(message: "Looks like you don't have any active workouts. We'll create the workouts 2 days before you're scheduled to workout.")
+    end
+
+    if @routine.count_ex_completed == 0
       @routine.routine_messages.create(message: "That's ok, everyone skips a workout every once in a while. Let's get it done next time!")
       return
     end
@@ -87,12 +94,6 @@ class CloseRoutineService
     @routine.routine_messages.create(message: "CONGRATULATIONS!!! You finished your first Quadfit workout! Keep it going!!") if is_first_workout && is_completed
 
     @routine.routine_messages.create(message: "You've completed 4+ workouts in a row! Keep up the momentum!!") if is_on_run && is_completed
-
-    next_open_workout = DailyRoutine.get_open_workouts_start_today(@routine.user).first
-    if next_open_workout.present?
-      @routine.routine_messages.create(message: "Your next workout is #{next_open_workout.day_performed.strftime('%A, %B %-d')}.")
-    end
-
   end
 
   def is_first_workout?

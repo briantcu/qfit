@@ -699,6 +699,7 @@ class DoWork extends React.Component {
                     <Button buttonText="Submit" onClick={this.finishOnboarding}>Submit</Button>
                 </Modal.Footer>
             </Modal>
+
             <Modal show={this.state.showSaveChanges} onHide={this.closeSaveChanges}>
                 <Modal.Header closeButton>
                     <Modal.Title>Save changes?</Modal.Title>
@@ -711,15 +712,23 @@ class DoWork extends React.Component {
                     <Button buttonText="Yep" onClick={() => this.saveChanges(true)}>Yep</Button>
                 </Modal.Footer>
             </Modal>
+
             <If condition={this.props.routine && this.props.routine.messages && this.props.routine.messages.length > 0}>
                 <Modal show={this.state.showMessagesModal && this.props.routine.messages.length > 0} onHide={this.closeMessages} className="messages-modal">
                     <Modal.Header closeButton>
                         <Modal.Title></Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                       <div className="messages-title">
-                           {this.state.titles[Math.ceil(Math.random() * (this.state.titles.length)) - 1]}
-                       </div>
+                        <If condition={this.props.routine.count_ex_completed > 0} >
+                           <div className="messages-title">
+                               {this.state.titles[Math.ceil(Math.random() * (this.state.titles.length)) - 1]}
+                           </div>
+                        </If>
+                        <If condition={this.props.routine.count_ex_completed == 0} >
+                            <div className="messages-title">
+                                Ok!
+                            </div>
+                        </If>
                        <div className="messages-text">
                            {
                                this.props.routine.messages.map(function(e) {
