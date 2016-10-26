@@ -22,6 +22,7 @@ class UserMax < ActiveRecord::Base
 
   def self.set_max(user_id, exercise_id, max)
     is_pb = false
+    return is_pb if max == 0
     user_max = get_max(user_id, exercise_id)
     if user_max.nil?
       is_pb = true

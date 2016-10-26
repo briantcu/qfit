@@ -146,7 +146,7 @@ class CloseRoutineService
         end
         if max != 0
           perf_ex.one_rep_max = max
-          perf_ex.save
+          perf_ex.save!
         end
         is_pb = UserMax.set_max(@routine.user.id, perf_ex.exercise.id, max)
         @pbs << [perf_ex.exercise, max] if is_pb

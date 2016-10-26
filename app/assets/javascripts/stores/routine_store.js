@@ -36,7 +36,6 @@ var RoutineStore = new Store({
 
     setSaveChanges: function() {
         this.routine.save_changes = true;
-        console.log('saving changes');
     },
 
     getData: function(){

@@ -324,6 +324,7 @@ class DoWork extends React.Component {
         this.finishOnboarding = this.finishOnboarding.bind(this);
         this.closeMessages = this.closeMessages.bind(this);
         this.saveChanges = this.saveChanges.bind(this);
+        this.closeSaveChanges = this.closeSaveChanges.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -367,12 +368,12 @@ class DoWork extends React.Component {
     }
 
     saveChanges(saveChanges) {
+        this.setState({showSaveChanges: false});
         if (saveChanges) {
             RoutineActions.saveChanges();
             this.props.routine.changes_saved = true;
         }
-        console.log('submitting');
-        //this.submit();
+        this.submit();
     }
 
     submit() {
@@ -390,6 +391,10 @@ class DoWork extends React.Component {
                 RoutineActions.completeWorkout(this.props.routine);
             }
         }
+    }
+
+    closeSaveChanges() {
+        this.setState({showSaveChanges: false});
     }
 
     reset() {
@@ -413,7 +418,7 @@ class DoWork extends React.Component {
 
     formatValue(value) {
         if (value == null) {
-            return undefined;
+            return '';
         } else {
             return value;
         }
@@ -623,7 +628,7 @@ class DoWork extends React.Component {
                             <div className="row last-row">
                                 <div className="col-xs-3">
                                     <If condition={this.props.routine.id && gon.viewing == 'user'} >
-                                        <input ref="userWeight" type="text" className="user-weight" defaultValue={this.formatValue(this.props.routine.weight)} onChange={this.weightChanged}/>
+                                        <input ref="userWeight" type="text" className="user-weight" value={this.formatValue(this.props.routine.weight)} onChange={this.weightChanged}/>
                                         <span className="standard-text white ">Your Weight (lbs)</span>
                                     </If>
                                 </div>
@@ -694,16 +699,16 @@ class DoWork extends React.Component {
                     <Button buttonText="Submit" onClick={this.finishOnboarding}>Submit</Button>
                 </Modal.Footer>
             </Modal>
-            <Modal show={this.state.showSaveChanges} >
-                <Modal.Header>
+            <Modal show={this.state.showSaveChanges} onHide={this.closeSaveChanges}>
+                <Modal.Header closeButton>
                     <Modal.Title>Save changes?</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     Yo! Looks like you've modified this workout. Do you want to save these changes for future workouts?
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button buttonText="Submit" onClick={() => this.saveChanges(false)}>Nope</Button>
-                    <Button buttonText="Submit" onClick={() => this.saveChanges(true)}>Yep</Button>
+                    <Button buttonText="Nope" onClick={() => this.saveChanges(false)}>Nope</Button>
+                    <Button buttonText="Yep" onClick={() => this.saveChanges(true)}>Yep</Button>
                 </Modal.Footer>
             </Modal>
             <If condition={this.props.routine && this.props.routine.messages && this.props.routine.messages.length > 0}>
