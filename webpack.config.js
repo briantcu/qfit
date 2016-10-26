@@ -13,7 +13,7 @@ var config = {
         sign_up_coach: 'entry-points/sign_up_coach.jsx',
         setup: 'entry-points/setup.jsx',
         coaches: 'entry-points/coaches.jsx',
-        do_work: 'entry-points/do_work.jsx',
+        workout: 'entry-points/workout.jsx',
         more_info: 'entry-points/more_info.jsx',
         home: 'entry-points/home.jsx',
         account: 'entry-points/account.jsx',
