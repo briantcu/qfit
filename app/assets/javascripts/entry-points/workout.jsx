@@ -23,6 +23,8 @@ import CoachActions from 'actions/coach_actions';
 import validator from 'validator';
 import DoWork from 'views/do-work/do-work';
 
+require('pages/workout.scss');
+
 class App extends React.Component {
     constructor(props) {
         super(props);

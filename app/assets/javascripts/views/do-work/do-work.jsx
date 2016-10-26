@@ -29,8 +29,6 @@ import validator from 'validator';
 import FancyInput from 'views/common/fancy_input';
 import FeedItem from 'views/quad-pod/feed_item.jsx';
 
-require('pages/do_work.scss');
-
 class DoWork extends React.Component {
     constructor(props) {
         super(props);

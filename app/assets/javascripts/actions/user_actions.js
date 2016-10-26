@@ -238,6 +238,21 @@ var UserActions = {
                 alert('Something went wrong!');
             }
         });
+    },
+
+    signOut: function() {
+        $.ajax({
+            type: 'get',
+            url: '/sign_out.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(results, status, xhr) {
+                location.href = '/';
+            },
+            error: function(results) {
+                alert(results);
+            }
+        });
     }
 
 };

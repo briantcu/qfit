@@ -1,12 +1,17 @@
 import {render} from 'react-dom';
 import { Router, Route, Link, browserHistory } from 'react-router'
 import Avatar from 'views/common/avatar';
+import UserActions from 'actions/user_actions';
 
 require('common/header.scss');
 
 class Header extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    signOut() {
+        UserActions.signOut();
     }
 
     render () {
@@ -62,6 +67,11 @@ class Header extends React.Component {
                     </If>
                     <div className={(this.props.showWorkoutNav) ? "col-sm-1 col-sm-offset-1 avi col-xs-6 col-xs-offset-2 text-right" : "col-xs-6 col-xs-offset-2 col-sm-1 col-sm-offset-9 avi text-right"}>
                         <Avatar user={this.props.user} />
+                        <div className="user-menu">
+                            <div className="user-menu-item">My Profile</div>
+                            <div className="user-menu-item">My Account</div>
+                            <div className="user-menu-item" onClick={this.signOut}>Sign Out</div>
+                        </div>
                     </div>
                 </div>
                 <div className="row hidden-sm hidden-md hidden-lg">
@@ -104,7 +114,6 @@ class Header extends React.Component {
                                         </Link>
                                     </If>
                                 </If>
-
                             </div>
                         </div>
                     </If>

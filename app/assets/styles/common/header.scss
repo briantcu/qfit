@@ -5,7 +5,37 @@
   background-color: $dark-purple;
   border: solid 1px $dark-gray;
 
-
+  .user-menu {
+    width: 154px;
+    background-color: $dark-purple;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: -0.4px;
+    color: white;
+    display: block;
+    z-index: 100;
+    float: left;
+    -webkit-border-bottom-right-radius: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    -moz-border-radius-bottomleft: 6px;
+    -ms-border-bottom-right-radius: 6px;
+    -ms-border-bottom-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    position: absolute;
+    .user-menu-item {
+      height: 43px;
+      display: block;
+      float: right;
+      padding-right: 10px;
+      width: 100%;
+      padding-top: 8px;
+      cursor: pointer;
+      &:not(:last-child) {
+        border-bottom: solid 1px $purp4;
+      }
+    }
+  }
   .avi {
     padding-top: 25px;
   }
@@ -52,5 +82,8 @@
 @media (max-width: 780px) {
   .header {
     height: 160px;
+  }
+  .user-menu {
+    left: 50px !important;
   }
 }
