@@ -14,7 +14,6 @@ class Conversation extends React.Component {
         this.fillPlaceholder = this.fillPlaceholder.bind(this);
     }
 
-
     sendDM (receiverId) {
         var message = this.refs.messageBox.value.trim();
         if (message) {

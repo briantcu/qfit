@@ -71,8 +71,7 @@ class Strength extends React.Component {
     }
 
     render() {
-        var classes = (this.props.border) ? 'strength exercise row top-border' : 'strength exercise row';
-        return <div className={classes} >
+        return <div className='strength exercise row' >
             <div className="col-xs-5">
                 <Thumbnail exercise={this.props.exercise.exercise} click={this.showVideo} />
                 <span className="ex-info">

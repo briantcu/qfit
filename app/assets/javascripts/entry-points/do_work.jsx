@@ -314,6 +314,7 @@ class DoWork extends React.Component {
             sendToErrors: [],
             showMessagesModal: false,
             closingWorkout: false,
+            showSaveChanges: false,
             titles: ['Awesome!', 'Nice!', 'Sweet!', 'Dope!', 'Tight!', 'Mint!', 'Fresh!', 'Epic!']
         };
         this.addEx = this.addEx.bind(this);
@@ -322,6 +323,7 @@ class DoWork extends React.Component {
         this.saveSendTo = this.saveSendTo.bind(this);
         this.finishOnboarding = this.finishOnboarding.bind(this);
         this.closeMessages = this.closeMessages.bind(this);
+        this.saveChanges = this.saveChanges.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -364,13 +366,29 @@ class DoWork extends React.Component {
         this.setState({showAddEx: true, exercise_type: type});
     }
 
+    saveChanges(saveChanges) {
+        if (saveChanges) {
+            RoutineActions.saveChanges();
+            this.props.routine.changes_saved = true;
+        }
+        console.log('submitting');
+        //this.submit();
+    }
+
     submit() {
         var userWeight = this.refs.userWeight.value;
         if ((!userWeight) || isNaN(userWeight)) {
+            $(this.refs.userWeight).addClass('error');
             this.setState({errors: 'Please enter your weight!'});
         } else {
-            this.setState({errors: undefined, closingWorkout: true});
-            RoutineActions.completeWorkout(this.props.routine);
+            if (this.props.routine.modified && !this.props.routine.changes_saved) {
+                $(this.refs.userWeight).removeClass('error');
+                this.setState({errors: undefined, showSaveChanges: true});
+            } else {
+                $(this.refs.userWeight).removeClass('error');
+                this.setState({errors: undefined, closingWorkout: true});
+                RoutineActions.completeWorkout(this.props.routine);
+            }
         }
     }
 
@@ -449,16 +467,13 @@ class DoWork extends React.Component {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Stretch exercises={this.props.exercises} exercise={e} key={e.id} border={index != 0}
+                                                return <Stretch exercises={this.props.exercises} exercise={e} key={e.id}
                                                 closed={this.props.routine.closed} />
                                             }.bind(this))
                                         }
 
                                         {
-                                            this.props.routine.custom_exercises.map(function(ex, index) {
-                                                if (ex.ex_type != 4) {
-                                                    return;
-                                                }
+                                            _.where(this.props.routine.custom_exercises, {ex_type: 4}).map(function(ex, index) {
                                                 return <Custom exercise={ex} />
 
                                             }.bind(this))
@@ -493,16 +508,13 @@ class DoWork extends React.Component {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Strength exercises={this.props.exercises} exercise={e} key={e.id} border={index != 0}
+                                                return <Strength exercises={this.props.exercises} exercise={e} key={e.id}
                                                                  closed={this.props.routine.closed} />
                                             }.bind(this))
                                         }
 
                                         {
-                                            this.props.routine.custom_exercises.map(function(ex, index) {
-                                                if (ex.ex_type != 1) {
-                                                    return;
-                                                }
+                                            _.where(this.props.routine.custom_exercises, {ex_type: 1}).map(function(ex, index) {
                                                 return <Custom exercise={ex} />
 
                                             }.bind(this))
@@ -537,16 +549,13 @@ class DoWork extends React.Component {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Plyo exercises={this.props.exercises} exercise={e} key={e.id} border={index != 0}
+                                                return <Plyo exercises={this.props.exercises} exercise={e} key={e.id}
                                                              closed={this.props.routine.closed} />
                                             }.bind(this))
                                         }
 
                                         {
-                                            this.props.routine.custom_exercises.map(function(ex, index) {
-                                                if (ex.ex_type != 2) {
-                                                    return;
-                                                }
+                                            _.where(this.props.routine.custom_exercises, {ex_type: 2}).map(function(ex, index) {
                                                 return <Custom exercise={ex} />
 
                                             }.bind(this))
@@ -581,16 +590,13 @@ class DoWork extends React.Component {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Sprint exercises={this.props.exercises} exercise={e} key={e.id} border={index != 0}
+                                                return <Sprint exercises={this.props.exercises} exercise={e} key={e.id}
                                                                closed={this.props.routine.closed} />
                                             }.bind(this))
                                         }
 
                                         {
-                                            this.props.routine.custom_exercises.map(function(ex, index) {
-                                                if (ex.ex_type != 3) {
-                                                    return;
-                                                }
+                                            _.where(this.props.routine.custom_exercises, {ex_type: 4}).map(function(ex, index) {
                                                 return <Custom exercise={ex} />
 
                                             }.bind(this))
@@ -686,6 +692,18 @@ class DoWork extends React.Component {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button buttonText="Submit" onClick={this.finishOnboarding}>Submit</Button>
+                </Modal.Footer>
+            </Modal>
+            <Modal show={this.state.showSaveChanges} >
+                <Modal.Header>
+                    <Modal.Title>Save changes?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Yo! Looks like you've modified this workout. Do you want to save these changes for future workouts?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button buttonText="Submit" onClick={() => this.saveChanges(false)}>Nope</Button>
+                    <Button buttonText="Submit" onClick={() => this.saveChanges(true)}>Yep</Button>
                 </Modal.Footer>
             </Modal>
             <If condition={this.props.routine && this.props.routine.messages && this.props.routine.messages.length > 0}>

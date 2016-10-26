@@ -24,7 +24,7 @@ class Custom extends React.Component {
     }
 
     render() {
-        return <div className="custom exercise row top-border" >
+        return <div className="custom exercise row" >
             <div className="col-xs-6">
                 <span className="thumb">
                     <img width="120" height="90" src="https://s3.amazonaws.com/quadfit/custom-icon.png" />

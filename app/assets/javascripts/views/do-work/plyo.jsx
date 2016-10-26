@@ -63,8 +63,7 @@ class Plyo extends React.Component {
     }
 
     render() {
-        var classes = (this.props.border) ? 'plyo exercise row top-border' : 'plyo exercise row';
-        return <div className={classes} >
+        return <div className='plyo exercise row' >
             <div className="col-xs-5">
                 <Thumbnail exercise={this.props.exercise.plyometric} click={this.showVideo} />
                 <span className="ex-info">

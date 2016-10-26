@@ -86,8 +86,7 @@ class Stretch extends React.Component {
     }
 
     render() {
-        var classes = (this.props.border) ? 'stretch exercise row top-border' : 'stretch exercise row';
-        return <div className={classes}>
+        return <div className='stretch exercise row'>
             <div className="col-xs-7">
                 <Thumbnail exercise={this.props.exercise.warmup} click={this.showVideo}/>
                 <span className="ex-info">

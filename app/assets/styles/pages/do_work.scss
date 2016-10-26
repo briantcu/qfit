@@ -119,6 +119,11 @@
       color: black;
     }
 
+    .error {
+      border: #d62020 1px solid;
+      background-color: #fdcdcd;
+    }
+
     .reset-link {
       font-size: 18px;
       letter-spacing: -0.4px;
@@ -247,6 +252,15 @@
 
   .exercise {
     padding-bottom: 5px;
+    &:not(:first-child):before {
+      content: '';
+      display: block;
+      position: relative;
+      width: 85%;
+      top: 2px;
+      left: 150px;
+      border: 1px solid $gray2;
+    }
   }
 
   .top-border:before {

@@ -397,7 +397,11 @@ var RoutineActions = {
     },
 
     userWeightChanged: function(userWeight) {
-        dispatcher.dispatch(C.USER_WEIGHT_CHANGED, userWeight)
+        dispatcher.dispatch(C.USER_WEIGHT_CHANGED, userWeight);
+    },
+
+    saveChanges: function() {
+        dispatcher.dispatch(C.SAVE_CHANGES);
     }
 
 };

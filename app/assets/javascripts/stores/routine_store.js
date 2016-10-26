@@ -34,6 +34,11 @@ var RoutineStore = new Store({
         this.loading = data;
     },
 
+    setSaveChanges: function() {
+        this.routine.save_changes = true;
+        console.log('saving changes');
+    },
+
     getData: function(){
         return {
             calendar: this.calendar,
@@ -95,6 +100,11 @@ dispatcher.register(C.INPUT_CHANGED, function(data) {
 
 dispatcher.register(C.USER_WEIGHT_CHANGED, function(data) {
     RoutineStore.setUserWeight(data);
+    RoutineStore.change();
+});
+
+dispatcher.register(C.SAVE_CHANGES, function(data) {
+    RoutineStore.setSaveChanges();
     RoutineStore.change();
 });
 

@@ -12,5 +12,6 @@ module.exports = keyMirror({
     PLYOS: null,
     CUSTOM: null,
     INPUT_CHANGED: null,
-    USER_WEIGHT_CHANGED: null
+    USER_WEIGHT_CHANGED: null,
+    SAVE_CHANGES: null
 });
