@@ -165,6 +165,24 @@ var UserActions = {
         });
     },
 
+    postToFeed: function(message) {
+        var payload = {message: {message_type: 1, message: message}};
+        var data = JSON.stringify(payload);
+        $.ajax({
+            type: 'post',
+            data: data,
+            url: '/messages.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (results) {
+                UserActions.getFeed();
+            },
+            error: function (results) {
+                alert(results);
+            }
+        });
+    },
+
     getProgress: function(userId, chartType, period, exerciseId) {
         var url = '/users/'+ userId +'/progress/'+ chartType + '/' +period+'.json';
         if (exerciseId) {

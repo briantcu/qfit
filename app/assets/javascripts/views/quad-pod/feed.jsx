@@ -9,6 +9,28 @@ class Feed extends React.Component {
 
     constructor(props) {
         super(props);
+        this.postToFeed = this.postToFeed.bind(this);
+        this.clearInput = this.clearInput.bind(this);
+        this.fillPlaceholder = this.fillPlaceholder.bind(this);
+    }
+
+    postToFeed () {
+        var message = this.refs.messageBox.value.trim();
+        if (message) {
+            UserActions.postToFeed(message);
+        }
+    }
+
+    fillPlaceholder() {
+        if (this.refs.messageBox.value == '') {
+            this.refs.messageBox.value = 'Type a message';
+        }
+    }
+
+    clearInput() {
+        if (this.refs.messageBox.value == 'Type a message') {
+            this.refs.messageBox.value = '';
+        }
     }
 
     render () {
@@ -24,6 +46,13 @@ class Feed extends React.Component {
                     <span>
                         <div className="sec-header">Your Feed <span>POST</span></div>
                         <div className="sec-main">
+                            <div className="post-row">
+                                <div className="input-wrap">
+                                    <textarea defaultValue="Type a message" ref="messageBox" className="message-box" rows="3"
+                                              cols="60" onBlur={this.fillPlaceholder} onFocus={this.clearInput} />
+                                    <div onClick={() => this.postToFeed()} className="submit">POST</div>
+                                </div>
+                            </div>
                             <Choose>
                                 <When condition={this.props.feed && this.props.feed.inbox && this.props.feed.inbox.length > 0}>
                                     {
