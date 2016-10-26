@@ -1,5 +1,6 @@
 class SignInUpController < ApplicationController
   before_action :save_sign_up_code_in_session, only: [:sign_up]
+  before_action :verify_not_logged_in, only: [:login, :sign_up, :sign_up_coach]
 
   def sign_up
     gon.push(
@@ -42,6 +43,12 @@ class SignInUpController < ApplicationController
     if params[:qfcode]
       session_service = SessionService.new(session)
       session_service.set_sign_up_code(params[:qfcode])
+    end
+  end
+
+  def verify_not_logged_in
+    if current_user.present?
+      redirect_to(determine_redirect(current_user)) and return
     end
   end
 end
