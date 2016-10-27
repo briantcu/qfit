@@ -327,7 +327,7 @@ var RoutineActions = {
         });
     },
 
-    completeWorkout: function(routine) {
+    completeWorkout: function(routine, callback) {
         var routine = JSON.parse(JSON.stringify( routine ));
         routine.performed_sprints_attributes = routine.performed_sprints;
         delete routine['performed_sprints'];
@@ -373,7 +373,8 @@ var RoutineActions = {
             data: payload,
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                dispatcher.dispatch(C.ROUTINE_LOADED, data)
+                dispatcher.dispatch(C.ROUTINE_LOADED, data);
+                callback();
             },
             error: function (response) {
                 alert(response.errors);

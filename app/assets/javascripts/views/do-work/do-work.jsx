@@ -112,7 +112,7 @@ class DoWork extends React.Component {
             } else {
                 $(this.refs.userWeight).removeClass('error');
                 this.setState({errors: undefined, closingWorkout: true});
-                RoutineActions.completeWorkout(this.props.routine);
+                this.props.submitWorkout(this.props.routine);
             }
         }
     }

@@ -74,7 +74,19 @@ class App extends React.Component {
         this.evalBanner = this.evalBanner.bind(this);
         this.viewingTeamBanner = this.viewingTeamBanner.bind(this);
         this.viewingUserBanner = this.viewingUserBanner.bind(this);
+        this.loadCalendar = this.loadCalendar.bind(this);
+        this.submitWorkout = this.submitWorkout.bind(this);
+        this.getEntityId = this.getEntityId.bind(this);
+        this.loadRoutine = this.loadRoutine.bind(this);
+        this.updateCal = this.updateCal.bind(this);
+    }
 
+    submitWorkout(routine) {
+        RoutineActions.completeWorkout(routine, this.updateCal);
+    }
+
+    updateCal() {
+        $('.calendar-cell.selected .cal-day').html('completed');
     }
 
     componentWillReceiveProps(nextProps) {
@@ -167,6 +179,15 @@ class App extends React.Component {
         </div>;
     }
 
+    getEntityId() {
+        if (gon.viewing == 'user') {
+            var id = gon.current_user_id;
+        } else {
+            var id = gon.team_id;
+        }
+        return id;
+    }
+
     load() {
         if (gon.current_user_id != gon.user_id) {
             UserActions.getUser(gon.user_id, true);
@@ -177,14 +198,27 @@ class App extends React.Component {
         if (gon.viewing == 'team') {
             TeamActions.getTeam(gon.team_id);
         }
-        if (gon.viewing == 'user') {
-            var id = gon.current_user_id;
-        } else {
-            var id = gon.team_id;
-        }
 
         ExerciseActions.getExercises();
 
+        this.loadCalendar();
+        this.loadRoutine();
+
+        UserActions.getFeed();
+        UserActions.getPod();
+    }
+
+    loadRoutine() {
+        var id = this.getEntityId();
+        if (gon.routine) {
+            RoutineActions.getById(gon.routine.id);
+        } else {
+            RoutineActions.getRoutine(this.state.year, this.state.month, this.state.day, id);
+        }
+    }
+
+    loadCalendar() {
+        var id = this.getEntityId();
         var lastMonth = new Date(this.state.date.getTime());
         lastMonth.setMonth(lastMonth.getMonth() - 1);
         var nextMonth = new Date(this.state.date.getTime());
@@ -193,14 +227,6 @@ class App extends React.Component {
         RoutineActions.getCalendar(this.state.year, this.state.month, id, C.CALENDAR, (gon.viewing == 'user'));
         RoutineActions.getCalendar(lastMonth.getFullYear(), lastMonth.getMonth() + 1, id, C.PREV_CALENDAR, (gon.viewing == 'user'));
         RoutineActions.getCalendar(nextMonth.getFullYear(), nextMonth.getMonth() + 1, id, C.NEXT_CALENDAR, (gon.viewing == 'user'));
-        if (gon.routine) {
-            RoutineActions.getById(gon.routine.id);
-        } else {
-            RoutineActions.getRoutine(this.state.year, this.state.month, this.state.day, id);
-        }
-
-        UserActions.getFeed();
-        UserActions.getPod();
     }
 
     onChange () {
@@ -228,7 +254,8 @@ class App extends React.Component {
                 quad_pod_loading: qpData.loading,
                 team: team.team,
                 showActionModal: showActionModal,
-                finishOnboarding: this.finishOnboarding
+                finishOnboarding: this.finishOnboarding,
+                submitWorkout: this.submitWorkout
             }
         );
         this.evalBanner();

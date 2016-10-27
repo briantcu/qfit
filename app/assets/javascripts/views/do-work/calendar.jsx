@@ -42,7 +42,7 @@ class CalendarCell extends React.Component {
                 <div className={classes} onClick={ () => this.click() } >
                     <div className="cal-subtext">{days[this.props.dayObj.day_of_week]}</div>
                     <div className="cal-text">{monthNames[this.state.date.getMonth()] + ', ' + this.props.dayObj.day_of_month}</div>
-                    <div className="cal-subtext">{this.props.dayObj.workout_status}</div>
+                    <div className="cal-subtext cal-day">{this.props.dayObj.workout_status}</div>
                 </div>
             }
             </If>
@@ -81,7 +81,7 @@ class Calendar extends React.Component {
         var index = props.day - 1;
         if (props.calendar && props.calendar.attributes &&
             props.prev_calendar && props.prev_calendar.attributes &&
-            props.next_calendar && props.next_calendar.attributes &&!this.state.loaded) {
+            props.next_calendar && props.next_calendar.attributes && !this.state.loaded) {
             var days = _.filter(props.calendar.attributes.calendar_month.days, function(day) {return day.day_of_month != 0; });
             var prevDays = _.filter(props.prev_calendar.attributes.calendar_month.days, function(day) {return day.day_of_month != 0; });
             var nextDays = _.filter(props.next_calendar.attributes.calendar_month.days, function(day) {return day.day_of_month != 0; });
