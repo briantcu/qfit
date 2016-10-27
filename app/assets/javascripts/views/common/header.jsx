@@ -65,19 +65,21 @@ class Header extends React.Component {
                             </div>
                         </div>
                     </If>
-                    <div className={(this.props.showWorkoutNav) ? "col-sm-2 col-sm-offset-0 avi col-xs-6 col-xs-offset-0 text-right" : "col-xs-6 col-xs-offset-0 col-sm-2 col-sm-offset-8 avi text-right"}>
-                        <Avatar user={this.props.user} />
-                        <div className="dropdown">
-                            <span className="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span className="menu-pointer"></span>
-                            </span>
-                            <ul className="dropdown-menu user-menu" aria-labelledby="dropdownMenu1">
-                                <li className="user-menu-item"><a className="white-link" href="/">My Profile</a></li>
-                                <li className="user-menu-item"><a className="white-link" href="/account">My Account</a></li>
-                                <li className="user-menu-item" onClick={this.signOut}><a className="white-link" href="#">Sign Out</a></li>
-                            </ul>
+                    <If condition={this.props.user}>
+                        <div className={(this.props.showWorkoutNav) ? "col-sm-2 col-sm-offset-0 avi col-xs-6 col-xs-offset-0 text-right" : "col-xs-6 col-xs-offset-0 col-sm-2 col-sm-offset-8 avi text-right"}>
+                            <Avatar user={this.props.user} />
+                            <div className="dropdown">
+                                <span className="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span className="menu-pointer"></span>
+                                </span>
+                                <ul className="dropdown-menu user-menu" aria-labelledby="dropdownMenu1">
+                                    <li className="user-menu-item"><a className="white-link" href="/">My Profile</a></li>
+                                    <li className="user-menu-item"><a className="white-link" href="/account">My Account</a></li>
+                                    <li className="user-menu-item" onClick={this.signOut}><a className="white-link" href="#">Sign Out</a></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                    </If>
                 </div>
                 <div className="row hidden-sm hidden-md hidden-lg">
                     <If condition={this.props.showWorkoutNav}>

@@ -38,6 +38,7 @@ Qfit::Application.routes.draw do
   get '/account', to: 'pages#account'
   get '/leaderboards', to: 'pages#leaders'
   get '/terms', to: 'pages#terms'
+  get '/share/:uuid', to: 'pages#shared_workout'
 
   #****************** API *********************
   post '/checkout.json', to: 'subscriptions#create'

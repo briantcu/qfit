@@ -77,9 +77,8 @@ class CloseRoutineService
     end
 
     if is_completed
-      # #@TODO fix message and reinstate once you do workout sharing
-      #message = "I just completed my workout: <a class='underlined' target='_blank' href='/share.html?r=rid'> Check it out and let me know what you think</a>."
-      #Message.create(poster_id: @routine.user.id, message_type: 3, message: message)
+      message = "I just completed my workout: <a class='underlined' target='_blank' href='/shared/#{@routine.share_token}'> Check it out and let me know what you think</a>."
+      Message.create(poster_id: @routine.user.id, message_type: 3, message: message)
     end
 
     if @pbs.count > 0

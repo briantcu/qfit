@@ -28,6 +28,13 @@ class PagesController < ApplicationController
     render template: 'pages/terms'
   end
 
+  def shared_workout
+    uuid = params[:uuid]
+    routine = DailyRoutine.routine_from_token(uuid)
+    gon.push ({routine: routine})
+    render template: 'pages/shared'
+  end
+
   private
 
   def verify_is_coach

@@ -56,6 +56,22 @@ class DailyRoutine < ActiveRecord::Base
   accepts_nested_attributes_for :performed_plyometrics, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
   accepts_nested_attributes_for :performed_sprints, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
 
+  def self.routine_from_token(token)
+    payload = JWT.decode token, Rails.application.config.token_salt, true, { :algorithm => 'HS256' }
+    routine_data = payload[0]
+    id = routine_data['id']
+    DailyRoutine.find(id)
+  end
+
+  def share_token
+    if @share_token.blank?
+      payload = {id: id}
+      @share_token = JWT.encode payload, Rails.application.config.token_salt, 'HS256'
+    else
+      @share_token
+    end
+  end
+
   def completed?
     self.closed && (self.count_ex_completed > 0)
   end
