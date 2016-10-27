@@ -76,6 +76,17 @@ h1 {
   }
 }
 
+.white-link {
+  color: white !important;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    color: white !important;
+    text-decoration: underline !important;
+    background-color: transparent !important;
+  }
+}
+
 .lightning-underline {
   border-bottom: 4px solid $lightning;
 }

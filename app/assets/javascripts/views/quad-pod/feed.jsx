@@ -44,7 +44,7 @@ class Feed extends React.Component {
         return <div className="qp-section feed">
                 { !this.props.viewingConversation ?
                     <span>
-                        <div className="sec-header">Your Feed <span>POST</span></div>
+                        <div className="sec-header">Your Feed</div>
                         <div className="sec-main">
                             <div className="post-row">
                                 <div className="input-wrap">

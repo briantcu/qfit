@@ -37,7 +37,7 @@ class PagesController < ApplicationController
   end
 
   def clear_coach_session
-    if current_user.is_coach?
+    if current_user && current_user.is_coach?
       # Get ouf of a possible weird state if they bail out of onboarding
       session_service = SessionService.new(session)
       session_service.set_setup_context(nil)

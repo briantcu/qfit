@@ -5,15 +5,51 @@
   background-color: $dark-purple;
   border: solid 1px $dark-gray;
 
+  .dropdown {
+    width: 40px;
+    float: right;
+  }
+
+  .menu-pointer {
+    cursor: pointer;
+    text-align: left;
+    display: inline-block;
+    float: right;
+    &:after {
+      cursor: pointer;
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: transparent;
+      top: 15px;
+      left: 15px;
+      border: 3px solid white;
+      border-top: none;
+      border-right: none;
+      -webkit-transform: rotate(315deg);
+      -moz-transform: rotate(315deg);
+      -o-transform: rotate(315deg);
+      -ms-transform: rotate(315deg);
+      transform: rotate(315deg);
+    }
+  }
+  .dropdown-toggle {
+    height: 35px;
+    display: inline-block;
+    width: 40px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+
   .user-menu {
     width: 154px;
+    left: -118px;
     background-color: $dark-purple;
     font-size: 18px;
     font-weight: 300;
     letter-spacing: -0.4px;
     color: white;
-    display: block;
-    z-index: 100;
     float: left;
     -webkit-border-bottom-right-radius: 6px;
     -webkit-border-bottom-left-radius: 6px;
@@ -22,10 +58,8 @@
     -ms-border-bottom-left-radius: 6px;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
-    position: absolute;
     .user-menu-item {
       height: 43px;
-      display: block;
       float: right;
       padding-right: 10px;
       width: 100%;
@@ -33,6 +67,9 @@
       cursor: pointer;
       &:not(:last-child) {
         border-bottom: solid 1px $purp4;
+      }
+      &:hover {
+        background-color: $dark-purple !important;
       }
     }
   }
@@ -43,6 +80,7 @@
   .logo {
     width: 100%;
     padding-top: 20px;
+    max-width: 160px;
   }
   .btn {
     height: 40px;
@@ -83,7 +121,7 @@
   .header {
     height: 160px;
   }
-  .user-menu {
-    left: 50px !important;
+  .nav {
+    margin: 0px auto auto !important;
   }
 }

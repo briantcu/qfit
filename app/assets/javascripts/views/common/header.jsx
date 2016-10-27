@@ -18,7 +18,7 @@ class Header extends React.Component {
         return <div className="row header">
             <div className="container">
                 <div className="row">
-                    <div className="col-sm-2 col-xs-4">
+                    <div className="col-sm-2 col-xs-6">
                         <a href="/"><img className="logo" src="https://s3.amazonaws.com/quadfit/logo%403x.png" /></a>
                     </div>
                     <If condition={this.props.showWorkoutNav}>
@@ -65,12 +65,17 @@ class Header extends React.Component {
                             </div>
                         </div>
                     </If>
-                    <div className={(this.props.showWorkoutNav) ? "col-sm-1 col-sm-offset-1 avi col-xs-6 col-xs-offset-2 text-right" : "col-xs-6 col-xs-offset-2 col-sm-1 col-sm-offset-9 avi text-right"}>
+                    <div className={(this.props.showWorkoutNav) ? "col-sm-2 col-sm-offset-0 avi col-xs-6 col-xs-offset-0 text-right" : "col-xs-6 col-xs-offset-0 col-sm-2 col-sm-offset-8 avi text-right"}>
                         <Avatar user={this.props.user} />
-                        <div className="user-menu">
-                            <div className="user-menu-item">My Profile</div>
-                            <div className="user-menu-item">My Account</div>
-                            <div className="user-menu-item" onClick={this.signOut}>Sign Out</div>
+                        <div className="dropdown">
+                            <span className="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span className="menu-pointer"></span>
+                            </span>
+                            <ul className="dropdown-menu user-menu" aria-labelledby="dropdownMenu1">
+                                <li className="user-menu-item"><a className="white-link" href="/">My Profile</a></li>
+                                <li className="user-menu-item"><a className="white-link" href="/account">My Account</a></li>
+                                <li className="user-menu-item" onClick={this.signOut}><a className="white-link" href="#">Sign Out</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
