@@ -61,7 +61,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
 
   it 'returns 401 if logged out' do
     dr = FactoryGirl.create(:daily_routine, user: @user)
-    get :show, id: dr.id
+    get :show, id: dr.id, format: :json
     expect(response.status).to eq(401)
   end
 
@@ -70,7 +70,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
     sign_in coach
     player = FactoryGirl.create(:user, level: 1)
     dr = FactoryGirl.create(:daily_routine, user: player)
-    get :show, id: dr.id
+    get :show, id: dr.id, format: :json
     expect(response.status).to eq(401)
   end
 

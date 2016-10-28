@@ -55,7 +55,7 @@ class QuadPod extends React.Component {
                                 Quad Pod
                             </div>
                             <div className="qp-sub">
-                                Here you can invite and talk with friends, and see their workouts!
+                                Talk with friends and see their workouts!
                             </div>
                         </div>
                     </div>

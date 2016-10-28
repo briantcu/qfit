@@ -207,13 +207,13 @@ class DailyRoutinesController < ApplicationController
   end
 
   def verify_can_access_workout
-    if current_user
-      true
-    else
+    if request.fullpath.split('/')[1] == 'share'
       uuid = params[:t]
       return unauthorized unless uuid.present?
       routine = DailyRoutine.routine_from_token(uuid)
       return unauthorized unless routine.id == params[:id].to_i
+    else
+      verify_owns_workout
     end
   end
 
