@@ -291,7 +291,7 @@ class App extends React.Component {
         } else {
             return <div>
                 <span className="col-xs-12 col-sm-offset-3 col-sm-6 text-center bold">Viewing workout for {this.state.user.user_name}</span>
-                <span className="col-xs-12 col-sm-3 text-right"><a className="link" href="/coach">View yours</a></span>
+                <span className="col-xs-12 col-sm-3 text-right"><a className="link" href="/workout">View yours</a></span>
             </div>;
         }
     }

@@ -86,6 +86,8 @@ class App extends React.Component {
         } else {
             UserActions.getUser(gon.current_user_id, true);
         }
+
+        RoutineActions.getById(gon.routine.id, true);
     }
 
     onChange () {
@@ -97,7 +99,7 @@ class App extends React.Component {
                 routine: data.routine,
                 loading: data.loading,
                 loggedInUser: user.loggedInUser,
-                user: user.user,
+                user: user.user
             }
         );
         this.evalBanner();
@@ -105,25 +107,15 @@ class App extends React.Component {
 
     evalBanner() {
         if (!this.state.showBanner) {
-            if (this.shouldShowTeamBanner()) {
-                this.setState({showBanner: true, bannerContent: this.viewingTeamBanner});
-            } else if (this.shouldShowUserBanner()) {
-                this.setState({showBanner: true, bannerContent: this.viewingUserBanner});
-            }
+            this.setState({showBanner: true, bannerContent: this.viewingUserBanner});
         }
     }
 
     viewingUserBanner() {
-        if (gon.is_coach) {
-            return <div>
-                <span className="col-xs-12 col-sm-offset-3 col-sm-6 text-center bold">Viewing workout for {this.state.user.first_name} {this.state.user.last_name}</span>
-            </div>;
-        } else {
-            return <div>
-                <span className="col-xs-12 col-sm-offset-3 col-sm-6 text-center bold">Viewing workout for {this.state.user.user_name}</span>
-                <span className="col-xs-12 col-sm-3 text-right"><a className="link" href="/coach">View yours</a></span>
-            </div>;
-        }
+        return <div>
+            <span className="col-xs-12 col-sm-offset-3 col-sm-6 text-center bold">Viewing workout for {this.state.user.user_name}</span>
+            <span className="col-xs-12 col-sm-3 text-right"><a className="link" href="/coach">View yours</a></span>
+        </div>;
     }
 
     render () {
@@ -144,7 +136,7 @@ class App extends React.Component {
                     </div>
                 </div>
             </If>
-            <DoWork />
+            <DoWork {...this.state} shared={true}/>
             <Footer />
         </div>
     }

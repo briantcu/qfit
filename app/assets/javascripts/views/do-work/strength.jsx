@@ -85,7 +85,7 @@ class Strength extends React.Component {
                     </div>
                 </span>
             </div>
-            <If condition={gon.viewing == 'user'}>
+            <If condition={gon.viewing == 'user' || this.props.shared}>
                 <div className="col-xs-7 weight-sets-col">
                     {
                         this.props.exercise.weight_sets.map(function(e, index) {

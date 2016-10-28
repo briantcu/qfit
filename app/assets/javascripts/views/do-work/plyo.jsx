@@ -76,7 +76,7 @@ class Plyo extends React.Component {
                     </div>
                 </span>
             </div>
-            <If condition={gon.viewing == 'user'}>
+            <If condition={gon.viewing == 'user' || this.props.shared}>
                 <div className="col-xs-1 col-xs-offset-4">
                     <VertCircleCheck ref={this.props.exercise.id + '1'} id={this.props.exercise.id + '1'}
                                      setNum={1} checked={this.props.exercise.peformed_one} label={'Complete'} change={ this.change } />

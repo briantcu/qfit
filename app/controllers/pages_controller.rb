@@ -31,7 +31,11 @@ class PagesController < ApplicationController
   def shared_workout
     uuid = params[:t]
     routine = DailyRoutine.routine_from_token(uuid)
-    gon.push ({routine: routine})
+    gon.push ({
+        routine: routine,
+        current_user_id: routine.user_id,
+        user_id: current_user.try(:id)
+    })
     render template: 'pages/shared'
   end
 
@@ -58,8 +62,8 @@ class PagesController < ApplicationController
   def set_gon_info
     gon.push(
         {
-            current_user_id: current_user.id,
-            user_id: current_user.id,
+            current_user_id: current_user.try(:id),
+            user_id: current_user.try(:id),
             is_coach: current_user.is_coach?,
             is_sub_user: current_user.is_sub_user?,
             is_individual: current_user.is_individual?,

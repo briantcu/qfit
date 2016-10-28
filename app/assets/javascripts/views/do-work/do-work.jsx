@@ -167,28 +167,29 @@ class DoWork extends React.Component {
 
     render () {
         return <div className="do-work">
-            <Calendar {...this.props} />
+            <If condition={!this.props.shared}>
+                <Calendar {...this.props} />
 
-            <div className="row subnav">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xs-12 text-center subnav-cluster">
-                            <If condition={gon.viewing != 'team' && this.props.routine.id } >
-                                <span onClick={ () => this.submit()} >
-                                    <img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Complete.png" /> Complete this Workout
-                                </span>
-                            </If>
-                            <span><a className="no-hover" href="/schedule"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Schedule.png" /> Change Schedule</a></span>
-                            <span><a className="no-hover" href="/program"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Program.png" /> Change Program</a></span>
-                            <If condition={gon.viewing != 'team' && this.props.routine.id } >
-                                <span onClick={this.showShareWorkout}><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Share+Workout.png" />Share Workout</span>
-                            </If>
+                <div className="row subnav">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xs-12 text-center subnav-cluster">
+                                <If condition={gon.viewing != 'team' && this.props.routine.id } >
+                                    <span onClick={ () => this.submit()} >
+                                        <img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Complete.png" /> Complete this Workout
+                                    </span>
+                                </If>
+                                <span><a className="no-hover" href="/schedule"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Schedule.png" /> Change Schedule</a></span>
+                                <span><a className="no-hover" href="/program"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Program.png" /> Change Program</a></span>
+                                <If condition={gon.viewing != 'team' && this.props.routine.id } >
+                                    <span onClick={this.showShareWorkout}><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Share+Workout.png" />Share Workout</span>
+                                </If>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-
-            </div>
-
+            </If>
             <div className="row main">
                 <div className="container">
                     <div className={this.props.loading ? 'loading row' : 'row'}>
@@ -217,7 +218,7 @@ class DoWork extends React.Component {
                                                     return;
                                                 }
                                                 return <Stretch exercises={this.props.exercises} exercise={e} key={e.id}
-                                                                closed={this.props.routine.closed} />
+                                                                closed={this.props.routine.closed} shared={this.props.shared} />
                                             }.bind(this))
                                         }
 
@@ -258,7 +259,7 @@ class DoWork extends React.Component {
                                                     return;
                                                 }
                                                 return <Strength exercises={this.props.exercises} exercise={e} key={e.id}
-                                                                 closed={this.props.routine.closed} />
+                                                                 closed={this.props.routine.closed} shared={this.props.shared} />
                                             }.bind(this))
                                         }
 
@@ -299,7 +300,7 @@ class DoWork extends React.Component {
                                                     return;
                                                 }
                                                 return <Plyo exercises={this.props.exercises} exercise={e} key={e.id}
-                                                             closed={this.props.routine.closed} />
+                                                             closed={this.props.routine.closed} shared={this.props.shared} />
                                             }.bind(this))
                                         }
 
@@ -340,7 +341,7 @@ class DoWork extends React.Component {
                                                     return;
                                                 }
                                                 return <Sprint exercises={this.props.exercises} exercise={e} key={e.id}
-                                                               closed={this.props.routine.closed} />
+                                                               closed={this.props.routine.closed} shared={this.props.shared} />
                                             }.bind(this))
                                         }
 

@@ -51,9 +51,9 @@ var RoutineActions = {
         });
     },
 
-    getById: function(id) {
+    getById: function(id, viewingUser) {
         dispatcher.dispatch(C.LOADING, true);
-        if (gon.viewing == 'user') {
+        if (gon.viewing == 'user' || viewingUser) {
             var url = '/daily_routines/'+id+'.json';
         } else {
             var url = '/group_routines/'+id+'.json';
