@@ -33,8 +33,9 @@ class PagesController < ApplicationController
     routine = DailyRoutine.routine_from_token(uuid)
     gon.push ({
         routine: routine,
-        current_user_id: routine.user_id,
-        user_id: current_user.try(:id)
+        user_name: routine.user.user_name,
+        user_id: current_user.try(:id),
+        token: params[:t]
     })
     render template: 'pages/shared'
   end

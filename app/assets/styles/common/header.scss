@@ -10,6 +10,17 @@
     float: right;
   }
 
+  .links-wrapper {
+    padding-top: 30px;
+    a {
+      margin-right: 0px;
+      padding-right: 0px !important;
+      margin-left: 30px;
+      font-size: 16px;
+      color: white;
+    }
+  }
+
   .menu-pointer {
     cursor: pointer;
     text-align: left;
@@ -120,8 +131,17 @@
 @media (max-width: 780px) {
   .header {
     height: 160px;
+    .links-wrapper {
+      a {
+        margin-right: 30px;
+        padding-right: 0px !important;
+        margin-left: 30px;
+        font-size: 16px;
+      }
+    }
   }
   .nav {
     margin: 0px auto auto !important;
   }
+
 }

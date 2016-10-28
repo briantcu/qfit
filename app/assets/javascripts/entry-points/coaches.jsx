@@ -105,8 +105,8 @@ class Coaches extends React.Component {
                 <div className="row banner-row">
                     <div className="container">
                         <div className="row">
-                            <div className="col-xs-12">
-                                To view workouts for teams, click "Manage Workout" for a particular team below.
+                            <div className="col-xs-12 text-center">
+                                To view workouts for teams, click "Manage Workout" for a particular team below.<br/>
                                 To view workouts and progress for athletes, click "View Workout/Progress".
                             </div>
                         </div>

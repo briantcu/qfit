@@ -65,7 +65,7 @@ class Header extends React.Component {
                             </div>
                         </div>
                     </If>
-                    <If condition={this.props.user}>
+                    <If condition={this.props.user.id}>
                         <div className={(this.props.showWorkoutNav) ? "col-sm-2 col-sm-offset-0 avi col-xs-6 col-xs-offset-0 text-right" : "col-xs-6 col-xs-offset-0 col-sm-2 col-sm-offset-8 avi text-right"}>
                             <Avatar user={this.props.user} />
                             <div className="dropdown">
@@ -78,6 +78,13 @@ class Header extends React.Component {
                                     <li className="user-menu-item" onClick={this.signOut}><a className="white-link" href="#">Sign Out</a></li>
                                 </ul>
                             </div>
+                        </div>
+                    </If>
+                    <If condition={!this.props.user.id}>
+                        <div className="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-4 text-right links-wrapper">
+                            <a href="/sign-up">For Athletes</a>
+                            <a href="/sign-up-coach">For Coaches</a>
+                            <a href="/sign-in">Sign In</a>
                         </div>
                     </If>
                 </div>

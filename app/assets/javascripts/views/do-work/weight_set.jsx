@@ -54,7 +54,7 @@ class WeightSet extends React.Component {
                        30 seconds
                     </span><br/>
                     <span className="double">
-                        <VertCircleCheck ref="reps" id={this.props.weightSet.id + 'reps'} change={this.change}
+                        <VertCircleCheck ref="reps" id={this.props.weightSet.id + 'reps'} change={this.change} disabled={this.props.disabled}
                                          checked={this.props.weightSet.perf_reps && this.props.weightSet.perf_reps > 0} label={'Complete'}  />
                     </span>
                 </When>
@@ -63,7 +63,7 @@ class WeightSet extends React.Component {
                             Max Reps
                     </span><br/>
                     <span className="double">
-                        <input ref="reps" type='text' className="standard-text" id={this.props.weightSet.id + 'reps'}
+                        <input ref="reps" type='text' className="standard-text" id={this.props.weightSet.id + 'reps'} disabled={this.props.disabled}
                                defaultValue={this.formatValue(this.props.weightSet.perf_reps)} onChange={this.change} />
                         <label htmlFor={this.props.weightSet.id + 'reps'} >reps</label>
                     </span>
@@ -76,12 +76,12 @@ class WeightSet extends React.Component {
                         {this.props.weightSet.rec_reps} reps
                     </span><br/>
                     <span className="col">
-                        <input ref="weight" type='text' className="standard-text" id={this.props.weightSet.id + 'weight'}
+                        <input ref="weight" type='text' className="standard-text" id={this.props.weightSet.id + 'weight'} disabled={this.props.disabled}
                                defaultValue={this.formatValue(this.props.weightSet.perf_weight)} onChange={this.change} />
                         <label htmlFor={this.props.weightSet.id + 'weight'}>lbs</label>
                     </span>
                     <span className="col">
-                        <input ref="reps" type='text' className="standard-text" id={this.props.weightSet.id + 'reps'}
+                        <input ref="reps" type='text' className="standard-text" id={this.props.weightSet.id + 'reps'} disabled={this.props.disabled}
                                defaultValue={this.formatValue(this.props.weightSet.perf_reps)} onChange={this.change} />
                         <label htmlFor={this.props.weightSet.id + 'reps'} >reps</label>
                     </span>

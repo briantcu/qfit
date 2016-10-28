@@ -29,7 +29,7 @@ class Sprint extends React.Component {
 
     getSimilar(props) {
         var exercises = [];
-        if (props.exercises.sprints) {
+        if (props.exercises && props.exercises.sprints) {
             if (props.exercise.sprint.sprint_type == 3) {
                 exercises = props.exercises.sprints.treadmill;
             } else if (props.exercise.sprint.sprint_type == 2) {
@@ -77,9 +77,11 @@ class Sprint extends React.Component {
                     <span className="ex-info col-xs-12">
                         <div className="ex-name">{this.props.exercise.sprint.name}</div>
                         <div className="ex-subtext">
-                            <u className="link" onClick={ () => this.showTips()}>Read Tips</u> |
-                            <u className="link" onClick={ () => this.showSwap()} >Swap</u> |
-                            <u className="link" onClick={ () => this.delete()} >Delete</u>
+                            <u className="link" onClick={ () => this.showTips()}>Read Tips</u>&nbsp;
+                            <If condition={!this.props.shared} >
+                                | <u className="link" onClick={ () => this.showSwap()} >Swap</u> |&nbsp;
+                                <u className="link" onClick={ () => this.delete()} >Delete</u>
+                            </If>
                         </div>
                     </span>
                 </div>
@@ -101,6 +103,7 @@ class Sprint extends React.Component {
                                         checked={this.props.exercise.laps[index].completed}
                                         key={this.props.exercise.id + '' + (index + 1)}
                                         label={'Complete'} change={ this.change }
+                                        disabled={this.props.shared}
                                          />
                                 </div>
                                 </If>

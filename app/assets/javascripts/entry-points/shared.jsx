@@ -2,46 +2,31 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 import {render} from 'react-dom';
 import RoutineStore from 'stores/routine_store';
 import UserStore from 'stores/user_store';
-import ExerciseStore from 'stores/exercise_store';
 import QuadPodStore from 'stores/quad_pod_store';
 import RoutineActions from 'actions/routine_actions';
 import UserActions from 'actions/user_actions';
-import ExerciseActions from 'actions/exercise_actions';
 import Header from 'views/common/header';
-import Calendar from 'views/do-work/calendar';
 import C from 'constants/routine_constants';
 import MenuModal from 'views/do-work/menu_modal';
 import Button from 'views/common/button';
-import Comment from 'views/do-work/comment';
 import Footer from 'views/common/footer';
 import { Modal } from 'react-bootstrap';
 import validator from 'validator';
 import DoWork from 'views/do-work/do-work';
+import Util from 'helpers/util';
 
 require('pages/workout.scss');
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        var year, month, day;
-        var today;
-        var dateArray = gon.routine.day_performed.split('-');
-        today = new Date(dateArray[0], dateArray[1] - 1, dateArray[2]);
-        year = today.getFullYear();
-        month = today.getMonth() + 1;
-        day = today.getDate();
 
         this.state = {
-            year: year,
-            month: month,
-            day: day,
-            calendar: {},
-            routine: gon.routine,
+            routine: {comments: []},
             user: {},
             loggedInUser: {},
             loading: true,
-            date: today,
-            exercises: {},
+            user_name: gon.user_name,
             showAddEx: false,
             exercise_type: undefined,
             invites: {},
@@ -67,27 +52,19 @@ class App extends React.Component {
         window.addEventListener('scroll', debounced);
         RoutineStore.addChangeListener(this.onChange.bind(this));
         UserStore.addChangeListener(this.onChange);
-        ExerciseStore.addChangeListener(this.onChange);
-        QuadPodStore.addChangeListener(this.onChange);
         this.load();
     }
 
     componentWillUnmount () {
         UserStore.removeChangeListener(this.onChange);
-        ExerciseStore.removeChangeListener(this.onChange);
         RoutineStore.removeChangeListener(this.onChange.bind(this));
-        QuadPodStore.removeChangeListener(this.onChange.bind(this));
     }
 
     load() {
-        if (gon.current_user_id != gon.user_id) {
+        if (gon.user_id) {
             UserActions.getUser(gon.user_id, true);
-            UserActions.getUser(gon.current_user_id);
-        } else {
-            UserActions.getUser(gon.current_user_id, true);
         }
-
-        RoutineActions.getById(gon.routine.id, true);
+        RoutineActions.getById(gon.routine.id, gon.token);
     }
 
     onChange () {
@@ -98,8 +75,7 @@ class App extends React.Component {
             {
                 routine: data.routine,
                 loading: data.loading,
-                loggedInUser: user.loggedInUser,
-                user: user.user
+                loggedInUser: user.loggedInUser
             }
         );
         this.evalBanner();
@@ -113,8 +89,7 @@ class App extends React.Component {
 
     viewingUserBanner() {
         return <div>
-            <span className="col-xs-12 col-sm-offset-3 col-sm-6 text-center bold">Viewing workout for {this.state.user.user_name}</span>
-            <span className="col-xs-12 col-sm-3 text-right"><a className="link" href="/coach">View yours</a></span>
+            <span className="col-xs-12 col-sm-offset-2 col-sm-8 text-center bold">Viewing {Util.formatDate(this.state.routine.day_performed)} workout for {this.state.user_name}</span>
         </div>;
     }
 

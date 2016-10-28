@@ -32,7 +32,7 @@ class Stretch extends React.Component {
 
     getSimilar(props) {
         var exercises = [];
-        if (props.exercises.warmups) {
+        if (props.exercises && props.exercises.warmups) {
             if (props.exercise.warmup.ex_type == 3) {
                 exercises = props.exercises.warmups.warm_up;
             } else if (props.exercise.warmup.ex_type == 2) {
@@ -96,14 +96,16 @@ class Stretch extends React.Component {
                         {this.props.exercise.warmup.ex_type != 1 ? '(Perform before the rest of your workout)' : '(Perform after your workout)'}
                     </div>
                     <div className="ex-subtext">
-                        <u className="link" onClick={ () => this.showTips()} >Read Tips</u> |
-                        <u className="link" onClick={ () => this.showSwap()} >Swap</u> |
-                        <u className="link" onClick={ () => this.delete()}>Delete</u>
+                        <u className="link" onClick={ () => this.showTips()} >Read Tips</u>&nbsp;
+                        <If condition={!this.props.shared} >
+                           | <u className="link" onClick={ () => this.showSwap()} >Swap</u> |&nbsp;
+                            <u className="link" onClick={ () => this.delete()}>Delete</u>
+                        </If>
                     </div>
                 </span>
             </div>
             <If condition={gon.viewing == 'user' || this.props.shared}>
-                <div className="col-xs-1 col-xs-offset-4">
+                <div className="col-sm-1 col-sm-offset-4 col-xs-2 col-xs-offset-3">
                     <VertCircleCheck ref="complete" id={'stretch' + this.props.exercise.id} disabled={this.props.shared}
                                  checked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
                 </div>

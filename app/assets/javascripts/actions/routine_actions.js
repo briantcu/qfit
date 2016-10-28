@@ -51,10 +51,10 @@ var RoutineActions = {
         });
     },
 
-    getById: function(id, viewingUser) {
+    getById: function(id, token) {
         dispatcher.dispatch(C.LOADING, true);
-        if (gon.viewing == 'user' || viewingUser) {
-            var url = '/daily_routines/'+id+'.json';
+        if (gon.viewing == 'user' || token) {
+            var url = '/daily_routines/'+id+'.json?t='+token;
         } else {
             var url = '/group_routines/'+id+'.json';
         }

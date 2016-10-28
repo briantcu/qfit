@@ -70,23 +70,25 @@ class Plyo extends React.Component {
                     <div className="ex-name">{this.props.exercise.plyometric.name}</div>
                     <div className="ex-subtext">Recommended: {this.props.exercise.plyometric.recommended}</div>
                     <div className="ex-subtext">
-                        <u className="link" onClick={ () => this.showTips()}>Read Tips</u> |
-                        <u className="link" onClick={ () => this.showSwap()} >Swap</u> |
-                        <u className="link" onClick={ () => this.delete()}>Delete</u>
+                        <u className="link" onClick={ () => this.showTips()}>Read Tips</u>&nbsp;
+                        <If condition={!this.props.shared} >
+                            | <u className="link" onClick={ () => this.showSwap()} >Swap</u> | &nbsp;
+                            <u className="link" onClick={ () => this.delete()}>Delete</u>
+                        </If>
                     </div>
                 </span>
             </div>
             <If condition={gon.viewing == 'user' || this.props.shared}>
                 <div className="col-xs-1 col-xs-offset-4">
-                    <VertCircleCheck ref={this.props.exercise.id + '1'} id={this.props.exercise.id + '1'}
+                    <VertCircleCheck ref={this.props.exercise.id + '1'} id={this.props.exercise.id + '1'} disabled={this.props.shared}
                                      setNum={1} checked={this.props.exercise.peformed_one} label={'Complete'} change={ this.change } />
                 </div>
                 <div className="col-xs-1">
-                    <VertCircleCheck ref={this.props.exercise.id + '2'} id={this.props.exercise.id + '2'}
+                    <VertCircleCheck ref={this.props.exercise.id + '2'} id={this.props.exercise.id + '2'} disabled={this.props.shared}
                                      setNum={2} checked={this.props.exercise.performed_two} label={'Complete'} change={ this.change } />
                 </div>
                 <div className="col-xs-1">
-                    <VertCircleCheck ref={this.props.exercise.id + '3'} id={this.props.exercise.id + '3'}
+                    <VertCircleCheck ref={this.props.exercise.id + '3'} id={this.props.exercise.id + '3'} disabled={this.props.shared}
                                      setNum={3} checked={this.props.exercise.performed_three} label={'Complete'} change={ this.change } />
                 </div>
             </If>

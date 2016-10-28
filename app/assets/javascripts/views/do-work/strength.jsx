@@ -33,7 +33,7 @@ class Strength extends React.Component {
 
     getSimilar(props) {
         var exercises = [];
-        if (props.exercises.exercises) {
+        if (props.exercises && props.exercises.exercises) {
             exercises = props.exercises.exercises[this.props.exercise.exercise_type.id - 1].exercises;
         }
         return exercises
@@ -79,9 +79,11 @@ class Strength extends React.Component {
                     <div className="ex-name">{this.props.exercise.exercise.name}</div>
                     <div className="ex-subtext">Rest for {this.props.exercise.rest_period} seconds between sets </div>
                     <div className="ex-subtext">
-                        <u className="link" onClick={ () => this.showTips()}>Read Tips</u> |
-                        <u className="link" onClick={ () => this.showSwap()}>Swap</u> |
-                        <u className="link" onClick={ () => this.delete()}>Delete</u>
+                        <u className="link" onClick={ () => this.showTips()}>Read Tips</u>&nbsp;
+                        <If condition={!this.props.shared} >
+                            | <u className="link" onClick={ () => this.showSwap()}>Swap</u> |&nbsp;
+                            <u className="link" onClick={ () => this.delete()}>Delete</u>
+                        </If>
                     </div>
                 </span>
             </div>
@@ -90,7 +92,7 @@ class Strength extends React.Component {
                     {
                         this.props.exercise.weight_sets.map(function(e, index) {
                             return <WeightSet weightSet={e} gray={index % 2 == 0} key={this.props.exercise.id + '' + (index + 1)}
-                                              setNum={index + 1} exercise={this.props.exercise.exercise} disabled={this.props.closed} />;
+                                              setNum={index + 1} exercise={this.props.exercise.exercise} disabled={this.props.shared} />;
                         }.bind(this))
                     }
                 </div>

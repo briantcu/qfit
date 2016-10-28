@@ -31,7 +31,8 @@
 class DailyRoutinesController < ApplicationController
   before_filter :verify_logged_in, only: [:index]
   before_filter :verify_is_logged_in_or_coach, only: [:create, :routine_by_date]
-  before_filter :verify_owns_workout, except: [:index, :create, :routine_by_date, :skip_all]
+  before_filter :verify_owns_workout, except: [:index, :create, :routine_by_date, :skip_all, :show]
+  before_filter :verify_can_access_workout, only: [:show]
   before_action :set_daily_routine, except: [:index, :create, :routine_by_date, :skip_all]
 
   STRETCHING = 4
@@ -203,6 +204,17 @@ class DailyRoutinesController < ApplicationController
   def verify_owns_workout
     return unauthorized if current_user.nil?
     unauthorized unless (current_user.owns_workout?(params[:id]))
+  end
+
+  def verify_can_access_workout
+    if current_user
+      true
+    else
+      uuid = params[:t]
+      return unauthorized unless uuid.present?
+      routine = DailyRoutine.routine_from_token(uuid)
+      return unauthorized unless routine.id == params[:id].to_i
+    end
   end
 
   def verify_is_logged_in_or_coach
