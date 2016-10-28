@@ -6,6 +6,7 @@ json.performed_plyometrics @daily_routine.performed_plyometrics, :id, :status, :
 json.performed_sprints @daily_routine.performed_sprints, :id, :sprint_id, :status, :laps, :sprint, :sprint_details
 json.custom_exercises @daily_routine.custom_exercises, :id, :ex_type, :name, :details, :status
 json.messages @daily_routine.routine_messages
+json.share_link @daily_routine.share_link
 
 json.comments Message.includes(:poster).where(message_type: 5, to_id: @daily_routine.id) do |message|
   json.poster do

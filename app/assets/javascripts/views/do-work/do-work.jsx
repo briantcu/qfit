@@ -28,6 +28,7 @@ import CoachActions from 'actions/coach_actions';
 import validator from 'validator';
 import FancyInput from 'views/common/fancy_input';
 import FeedItem from 'views/quad-pod/feed_item.jsx';
+import Clipboard from 'clipboard';
 
 class DoWork extends React.Component {
     constructor(props) {
@@ -39,6 +40,8 @@ class DoWork extends React.Component {
             showMessagesModal: false,
             closingWorkout: false,
             showSaveChanges: false,
+            showShareWorkout: false,
+            linkCopied: false,
             titles: ['Awesome!', 'Nice!', 'Sweet!', 'Dope!', 'Tight!', 'Mint!', 'Fresh!', 'Epic!']
         };
         this.addEx = this.addEx.bind(this);
@@ -49,9 +52,15 @@ class DoWork extends React.Component {
         this.closeMessages = this.closeMessages.bind(this);
         this.saveChanges = this.saveChanges.bind(this);
         this.closeSaveChanges = this.closeSaveChanges.bind(this);
+        this.showShareWorkout = this.showShareWorkout.bind(this);
+        this.closeShareWorkout = this.closeShareWorkout.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
+        var clipboard = new Clipboard('.copy-link');
+        clipboard.on('success', function(e) {
+            this.setState({linkCopied: true});
+        }.bind(this));
         if (this.state.closingWorkout && nextProps.routine && nextProps.routine.messages.length > 0) {
             this.setState({showMessagesModal: true, closingWorkout: false});
         }
@@ -72,6 +81,14 @@ class DoWork extends React.Component {
             this.setState({sendTo: value, sendToErrors: []});
         }
 
+    }
+    
+    showShareWorkout() {
+        this.setState({showShareWorkout: true, showMessagesModal: false});
+    }
+
+    closeShareWorkout() {
+        this.setState({showShareWorkout: false, linkCopied: false});
     }
 
     addEx(e, is_custom) {
@@ -163,6 +180,9 @@ class DoWork extends React.Component {
                             </If>
                             <span><a className="no-hover" href="/schedule"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Schedule.png" /> Change Schedule</a></span>
                             <span><a className="no-hover" href="/program"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Program.png" /> Change Program</a></span>
+                            <If condition={gon.viewing != 'team' && this.props.routine.id } >
+                                <span onClick={this.showShareWorkout}><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Share+Workout.png" />Share Workout</span>
+                            </If>
                         </div>
                     </div>
                 </div>
@@ -437,6 +457,28 @@ class DoWork extends React.Component {
                 </Modal.Footer>
             </Modal>
 
+            <Modal show={this.state.showShareWorkout} onHide={this.closeShareWorkout} className="shareModal" animation={false}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Share this Workout!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <span className="share-section">
+                        <span>
+                            <input type="text" className="link-input" value={this.props.routine.share_link} readOnly/><button
+                            data-clipboard-target=".link-input" className="qfButton btn btn-default copy-link" >{(this.state.linkCopied) ? 'Copied!' : 'Copy'}</button>
+                        </span>
+
+                        <a href="http://twitter.com/share?text=My Quadfit Workout&url=http://www.quadfit.com/share.html"
+                           title="Share on Twitter" target="_blank" >
+                            <img className="img-circle" src="https://d1xhkvbdeqtvdw.cloudfront.net/twitter-bird-white-on-blue.png" height="32" width="32"/> Twitter</a>
+
+                        <a href="http://www.facebook.com/sharer.php?u=http://www.quadfit.com/share.html?<?echo $share?>"
+                           title="Share on Facebook" target="_blank" >
+                            <img className="img-circle" src="https://d1xhkvbdeqtvdw.cloudfront.net/f_logo.png" height="32" width="32"/> Facebook</a>
+                    </span>
+                </Modal.Body>
+            </Modal>
+
             <If condition={this.props.routine && this.props.routine.messages && this.props.routine.messages.length > 0}>
                 <Modal show={this.state.showMessagesModal && this.props.routine.messages.length > 0} onHide={this.closeMessages} className="messages-modal">
                     <Modal.Header closeButton>
@@ -460,6 +502,21 @@ class DoWork extends React.Component {
                                 }.bind(this))
                             }
                         </div>
+                        <div className="share-cta">Share this workout!</div>
+                        <span className="share-section">
+                            <span>
+                                <input type="text" className="link-input" value={this.props.routine.share_link} readOnly/><button
+                                data-clipboard-target=".link-input" className="qfButton btn btn-default copy-link" >{(this.state.linkCopied) ? 'Copied!' : 'Copy'}</button>
+                            </span>
+
+                            <a href="http://twitter.com/share?text=My Quadfit Workout&url=http://www.quadfit.com/share.html"
+                               title="Share on Twitter" target="_blank" >
+                                <img className="img-circle" src="https://d1xhkvbdeqtvdw.cloudfront.net/twitter-bird-white-on-blue.png" height="32" width="32"/> Twitter</a>
+
+                            <a href="http://www.facebook.com/sharer.php?u=http://www.quadfit.com/share.html?<?echo $share?>"
+                               title="Share on Facebook" target="_blank" >
+                                <img className="img-circle" src="https://d1xhkvbdeqtvdw.cloudfront.net/f_logo.png" height="32" width="32"/> Facebook</a>
+                        </span>
                     </Modal.Body>
                 </Modal>
             </If>

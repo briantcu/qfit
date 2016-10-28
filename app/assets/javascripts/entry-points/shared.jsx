@@ -13,13 +13,8 @@ import C from 'constants/routine_constants';
 import MenuModal from 'views/do-work/menu_modal';
 import Button from 'views/common/button';
 import Comment from 'views/do-work/comment';
-import QuadPod from 'views/quad-pod/quad-pod';
 import Footer from 'views/common/footer';
-import Progress from 'views/do-work/progress';
-import TeamActions from 'actions/team_actions';
-import TeamStore from 'stores/team_store';
 import { Modal } from 'react-bootstrap';
-import CoachActions from 'actions/coach_actions';
 import validator from 'validator';
 import DoWork from 'views/do-work/do-work';
 
@@ -51,8 +46,7 @@ class App extends React.Component {
             exercise_type: undefined,
             invites: {},
             conversation: {},
-            showBanner: false,
-            context: gon.setup_context
+            showBanner: false
         };
         this.onChange = this.onChange.bind(this);
         this.evalBanner = this.evalBanner.bind(this);
@@ -73,7 +67,6 @@ class App extends React.Component {
         window.addEventListener('scroll', debounced);
         RoutineStore.addChangeListener(this.onChange.bind(this));
         UserStore.addChangeListener(this.onChange);
-        TeamStore.addChangeListener(this.onChange);
         ExerciseStore.addChangeListener(this.onChange);
         QuadPodStore.addChangeListener(this.onChange);
         this.load();
@@ -81,7 +74,6 @@ class App extends React.Component {
 
     componentWillUnmount () {
         UserStore.removeChangeListener(this.onChange);
-        TeamStore.removeChangeListener(this.onChange);
         ExerciseStore.removeChangeListener(this.onChange);
         RoutineStore.removeChangeListener(this.onChange.bind(this));
         QuadPodStore.removeChangeListener(this.onChange.bind(this));
@@ -94,40 +86,18 @@ class App extends React.Component {
         } else {
             UserActions.getUser(gon.current_user_id, true);
         }
-        if (gon.viewing == 'team') {
-            TeamActions.getTeam(gon.team_id);
-        }
-
-        ExerciseActions.getExercises();
-
-        UserActions.getFeed();
-        UserActions.getPod();
     }
 
     onChange () {
-        var team = TeamStore.getData();
         var data = RoutineStore.getData();
         data.routine = data.routine || this.state.routine;
         var user = UserStore.getData();
-        var exercises = ExerciseStore.getData();
-        var qpData = QuadPodStore.getData();
         this.setState(
             {
-                calendar: data.calendar,
-                prev_calendar: data.prev_calendar,
-                next_calendar: data.next_calendar,
                 routine: data.routine,
                 loading: data.loading,
                 loggedInUser: user.loggedInUser,
                 user: user.user,
-                exercises: exercises,
-                feed: qpData.feed,
-                quad_pod: qpData.pod,
-                invites: qpData.invites,
-                conversation: qpData.conversation,
-                quad_pod_loading: qpData.loading,
-                team: team.team,
-                finishOnboarding: this.finishOnboarding,
             }
         );
         this.evalBanner();
@@ -174,21 +144,9 @@ class App extends React.Component {
                     </div>
                 </div>
             </If>
-            {childrenWithProps}
+            <DoWork />
             <Footer />
         </div>
     }
 }
-
-render((
-    <Router history={browserHistory}>
-        <Route path="/" component={App}>
-            <Route path="workout" component={DoWork}>
-                <Route path=":year/:month/:day" component={DoWork}/>
-                <Route path=":workout_id" component={DoWork}/>
-            </Route>
-            <Route path="quad-pod" component={QuadPod} />
-            <Route path="progress" component={Progress} />
-        </Route>
-    </Router>
-), document.getElementById('app'));
+render(<App />, document.getElementById('app'));

@@ -64,6 +64,10 @@ class CloseRoutineService
   private
 
   def get_messages(is_completed, is_on_run, is_first_workout)
+    if @routine.count_ex_completed == 0
+      @routine.routine_messages.create(message: "That's ok, everyone skips a workout every once in a while. Let's get it done next time!")
+    end
+
     next_open_workout = DailyRoutine.get_open_workouts_start_today(@routine.user).first
     if next_open_workout.present?
       @routine.routine_messages.create(message: "Your next workout is #{next_open_workout.day_performed.strftime('%A, %B %-d')}.")
@@ -71,13 +75,10 @@ class CloseRoutineService
       @routine.routine_messages.create(message: "Looks like you don't have any active workouts. We'll create the workouts 2 days before you're scheduled to workout.")
     end
 
-    if @routine.count_ex_completed == 0
-      @routine.routine_messages.create(message: "That's ok, everyone skips a workout every once in a while. Let's get it done next time!")
-      return
-    end
+    return if @routine.count_ex_completed == 0
 
     if is_completed
-      message = "I just completed my workout: <a class='underlined' target='_blank' href='/shared/#{@routine.share_token}'> Check it out and let me know what you think</a>."
+      message = "I just completed my workout: <a class='underlined' target='_blank' href='#{@routine.share_link}'>Check it out and let me know what you think</a>."
       Message.create(poster_id: @routine.user.id, message_type: 3, message: message)
     end
 

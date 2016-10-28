@@ -57,7 +57,7 @@ class DailyRoutine < ActiveRecord::Base
   accepts_nested_attributes_for :performed_sprints, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
 
   def self.routine_from_token(token)
-    payload = JWT.decode token, Rails.application.config.token_salt, true, { :algorithm => 'HS256' }
+    payload = JWT.decode token, nil, false
     routine_data = payload[0]
     id = routine_data['id']
     DailyRoutine.find(id)
@@ -66,10 +66,14 @@ class DailyRoutine < ActiveRecord::Base
   def share_token
     if @share_token.blank?
       payload = {id: id}
-      @share_token = JWT.encode payload, Rails.application.config.token_salt, 'HS256'
+      @share_token = JWT.encode payload, nil, 'none'
     else
       @share_token
     end
+  end
+
+  def share_link
+    "https://#{Qfit::Application.config.action_mailer.default_url_options[:host]}/share?t=#{share_token}"
   end
 
   def completed?

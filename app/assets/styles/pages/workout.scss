@@ -34,6 +34,43 @@
   }
 }
 
+.share-section {
+  display: block;
+  margin: auto;
+  width: 95%;
+  padding-bottom: 30px;
+  .copied {
+    background-color: $green;
+    color: white;
+  }
+  .link-input {
+    width: 205px;
+    height: 33px;
+    background-color: $gray1;
+    border: solid 1px $lavender;
+    color: $purple
+  }
+  a {
+    margin-right: 30px;
+  }
+
+  .btn {
+    height: 33px !important;
+    font-size: 14px;
+    padding: 0px 20px;
+    border-radius: 0px;
+    margin-top: -3px;
+    margin-right: 30px;
+  }
+}
+
+.shareModal {
+  .modal-body {
+    min-height: 200px;
+    padding-top: 60px;
+  }
+}
+
 .messages-modal {
   .messages-title {
     font-size: 36px;
@@ -43,13 +80,26 @@
     color: $purple;
     padding-bottom: 20px;
   }
+  .share-section {
+    width: 100% !important;
+  }
+
+  .share-cta {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: -0.8px;
+    text-align: center;
+    color: $purple;
+    padding-bottom: 20px;
+  }
 
   .messages-text {
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 300;
     letter-spacing: -0.8px;
     text-align: left;
     color: $dark-purple;
+    padding-bottom: 20px;
   }
   .modal-content {
     background: transparent;
@@ -70,6 +120,7 @@
 
   .modal-header {
     border: none;
+    border-bottom: none !important;
   }
   .modal-body {
     background: white;
@@ -193,11 +244,8 @@
     border: solid 1px $gray2;
     padding-top: 6px;
 
-    span:first-child {
+    span:not(:last-child) {
       margin-right: 40px;
-    }
-    span:last-child {
-      margin-left: 40px;
     }
     span {
       font-family: 'Open Sans', sans-serif;
@@ -206,6 +254,10 @@
       letter-spacing: -0.3px;
       font-weight: 600;
       cursor: pointer;
+      img {
+        padding-right: 3px;
+        margin-top: -2px;
+      }
     }
     @media (max-width: 480px) {
       span:first-child {

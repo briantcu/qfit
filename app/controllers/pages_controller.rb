@@ -29,7 +29,7 @@ class PagesController < ApplicationController
   end
 
   def shared_workout
-    uuid = params[:uuid]
+    uuid = params[:t]
     routine = DailyRoutine.routine_from_token(uuid)
     gon.push ({routine: routine})
     render template: 'pages/shared'

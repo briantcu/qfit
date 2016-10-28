@@ -16,6 +16,16 @@ h1 {
   cursor: pointer;
 }
 
+.modal-header {
+  border-bottom: solid 2px #7953aa !important;
+  h4 {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: -0.8px;
+    color: $purple;
+  }
+}
+
 .standard-text {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
