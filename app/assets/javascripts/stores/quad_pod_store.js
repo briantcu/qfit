@@ -8,6 +8,7 @@ var QuadPodStore = new Store({
     invites: [],
     conversation: {},
     loading: true,
+    invites_received: [],
 
     setPod: function(data){
         this.pod = data;
@@ -19,7 +20,12 @@ var QuadPodStore = new Store({
     },
 
     setInvites: function(data) {
+        //Invites sent
         this.invites = data;
+    },
+
+    setInvitesReceived: function(data) {
+        this.invites_received = data;
     },
 
     setConversation: function(data) {
@@ -32,7 +38,8 @@ var QuadPodStore = new Store({
             pod: this.pod,
             invites: this.invites,
             conversation: this.conversation,
-            loading: this.loading
+            loading: this.loading,
+            invites_received: this.invites_received
         };
     }
 });
@@ -60,6 +67,13 @@ dispatcher.register(C.INVITES_SENT, function(data) {
 dispatcher.register(C.CONVO_LOADED, function(data) {
     if(data){
         QuadPodStore.setConversation(data);
+        QuadPodStore.change();
+    }
+});
+
+dispatcher.register(C.INVITES_LOADED, function(data) {
+    if(data){
+        QuadPodStore.setInvitesReceived(data);
         QuadPodStore.change();
     }
 });

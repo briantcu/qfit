@@ -17,4 +17,8 @@ class PodInvite < ActiveRecord::Base
 
   belongs_to :inviter, class_name: 'User', foreign_key: :inviter_id
   belongs_to :invitee, class_name: 'User', foreign_key: :invitee_id
+
+  def self.invites_for_user(user)
+    PodInvite.where(invitee: user, status: 0).order(created_at: :desc)
+  end
 end

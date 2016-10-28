@@ -10,6 +10,7 @@
 #  message_type :integer
 #  created_at   :datetime
 #  updated_at   :datetime
+#  seen         :boolean
 #
 
 class MessagesController < ApplicationController

@@ -97,6 +97,51 @@ var UserActions = {
         });
     },
 
+    getInvites: function() {
+        $.ajax({
+            type: 'get',
+            url: '/invites.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(pod) {
+                dispatcher.dispatch(C.INVITES_LOADED, pod);
+            },
+            error: function(results) {
+                alert('Something went wrong!');
+            }
+        });
+    },
+
+    ignoreInvite: function(id) {
+        $.ajax({
+            type: 'put',
+            url: '/pod_invites/'+id +'/deny.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(pod) {
+                dispatcher.dispatch(C.INVITES_LOADED, pod);
+            },
+            error: function(results) {
+                alert(results);
+            }
+        });
+    },
+
+    acceptInvite: function(id) {
+        $.ajax({
+            type: 'put',
+            url: '/pod_invites/'+id +'/accept.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(pod) {
+                dispatcher.dispatch(C.INVITES_LOADED, pod);
+            },
+            error: function(results) {
+                alert(results);
+            }
+        });
+    },
+
     getFeed: function() {
         $.ajax({
             type: 'get',

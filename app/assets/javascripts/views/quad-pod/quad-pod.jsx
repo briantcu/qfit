@@ -3,6 +3,7 @@ import Friends from 'views/quad-pod/friends';
 import Feed from 'views/quad-pod/feed';
 import Button from 'views/common/button';
 import UserActions from 'actions/user_actions';
+import Invites from'views/quad-pod/invites';
 
 require('views/quad-pod/quad-pod.scss');
 
@@ -61,6 +62,7 @@ class QuadPod extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-12 col-sm-5">
+                            <Invites {...this.props} />
                             <Friends {...this.props} showConversation={this.showConversation} />
                             <div className="qp-section">
                                 <div className="sec-header">Invite Friends to Your Pod</div>

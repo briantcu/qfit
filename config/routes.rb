@@ -92,6 +92,7 @@ Qfit::Application.routes.draw do
   post '/pod_invites', to: 'pod_invites#create'
   put '/pod_invites/:id/accept', to: 'pod_invites#accept'
   put '/pod_invites/:id/deny', to: 'pod_invites#deny'
+  get '/invites', to: 'pod_invites#invites'
 
   get '/plyometrics', to: 'plyometrics#index'
 

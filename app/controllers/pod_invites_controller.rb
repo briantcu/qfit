@@ -43,12 +43,18 @@ class PodInvitesController < ApplicationController
 
   def accept
     QuadPodService.instance.accept_invite_existing_user(@pod_invite)
-    render status: 201, json: {}
+    @invites = PodInvite.invites_for_user(current_user)
+    render action: :invites
   end
 
   def deny
     QuadPodService.instance.deny_invite(@pod_invite)
-    render status: 201, json: {}
+    @invites = PodInvite.invites_for_user(current_user)
+    render action: :invites
+  end
+
+  def invites
+    @invites = PodInvite.invites_for_user(current_user)
   end
 
   private
@@ -58,7 +64,7 @@ class PodInvitesController < ApplicationController
   end
 
   def verify_invitee
-    return unauthorized unless @pod_invite.invitee.id == current_user.id
+    return unauthorized unless @pod_invite.invitee_id == current_user.id
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

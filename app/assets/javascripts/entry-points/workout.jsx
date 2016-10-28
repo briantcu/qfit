@@ -206,6 +206,7 @@ class App extends React.Component {
 
         UserActions.getFeed();
         UserActions.getPod();
+        UserActions.getInvites();
     }
 
     loadRoutine() {
@@ -254,6 +255,7 @@ class App extends React.Component {
                 quad_pod_loading: qpData.loading,
                 team: team.team,
                 showActionModal: showActionModal,
+                invites_received: qpData.invites_received,
                 finishOnboarding: this.finishOnboarding,
                 submitWorkout: this.submitWorkout
             }

@@ -44,9 +44,7 @@ class Friends extends React.Component {
                         }
                 </When>
                 <Otherwise >
-                    <div>You don't have anyone in your Quad Pod yet! Invite friends below, or connect
-                        with other Quadfit users through the <a href="/leaderboards">Leaderboards</a>.
-                        You can also meet other Quadfit users in our <a href="">Reddit sub</a>.
+                    <div>You don't have anyone in your Quad Pod yet. Invite friends below!
                     </div>
                 </Otherwise>
                 </Choose>

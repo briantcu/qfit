@@ -9,5 +9,6 @@ module.exports = keyMirror({
     INVITES_SENT: null,
     CONVO_LOADED: null,
     CHART_LOADED: null,
-    MAXES_LOADED: null
+    MAXES_LOADED: null,
+    INVITES_LOADED: null
 });
