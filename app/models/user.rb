@@ -160,7 +160,24 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
+    fb_user = where(provider: auth.provider, uid: auth.uid).first
+    if fb_user.present?
+      # You already have fb details in the system
+      fb_user.image = auth.info.image
+      fb_user.save!
+      return fb_user
+    else
+      existing_user = where(email: auth.info.email).first
+      if existing_user.present?
+        # You don't have fb details in the system, but you do have a user matching the provided email
+        existing_user.update!(provider: auth.provider, uid: auth.uid, image: auth.info.image)
+        return existing_user
+      end
+
+      # New user registration based on fb detes. user not saved until registration
+      user = User.new
+      user.provider = auth.provider
+      user.uid = auth.uid
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       if auth.info.first_name.present? && auth.info.last_name.present?
@@ -174,6 +191,7 @@ class User < ActiveRecord::Base
         end
       end
       user.image = auth.info.image
+      return user
     end
   end
 

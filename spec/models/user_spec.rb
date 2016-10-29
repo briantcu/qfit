@@ -94,4 +94,35 @@ RSpec.describe User, type: :model do
       expect(coaches.first).to eq(active_coach)
     end
   end
+
+  context 'facebook registration' do
+    let(:params) { OpenStruct.new(:provider => 'facebook', :uid => '1k3kkd', :info => OpenStruct.new(email: 'bri.reg@gmail.com', image: 'path', first_name: 'brian', last_name: 'regan'))}
+
+    it 'accepts a new facebook registration' do
+      user = User.from_omniauth(params)
+      expect(user.id).to eq(nil)
+      expect(user.first_name).to eq('brian')
+      expect(user.provider).to eq('facebook')
+      expect(user.uid).to eq('1k3kkd')
+      expect(user.email).to eq('bri.reg@gmail.com')
+      expect(user.image).to eq('path')
+    end
+
+    it 'merges new facebook login with existing user' do
+      existing = FactoryGirl.create(:user, email: 'bri.reg@gmail.com')
+      user = User.from_omniauth(params)
+      expect(user.id).to eq(existing.id)
+      expect(user.provider).to eq('facebook')
+      expect(user.uid).to eq('1k3kkd')
+      expect(user.image).to eq('path')
+    end
+
+    it 'returns a returning facebook user' do
+      existing = FactoryGirl.create(:user, email: 'bri.reg+1@gmail.com', provider: 'facebook', uid: '1k3kkd')
+      user = User.from_omniauth(params)
+      expect(user.id).to eq(existing.id)
+      expect(user.provider).to eq('facebook')
+      expect(user.uid).to eq('1k3kkd')
+    end
+  end
 end
