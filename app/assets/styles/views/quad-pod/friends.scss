@@ -7,15 +7,33 @@
     width: 100%;
     display: block;
     float: left;
+    .unseen-bubble {
+      background-color: #f3c222;;
+      color: white;
+      display: inline-block;
+      height: 15px;
+      width: 15px;
+      font-size: 8px;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      -ms-border-radius: 8px;
+      -o-border-radius: 8px;
+      border-radius: 8px;
+      top: 13px;
+      left: 15px;
+      padding-top: 1px;
+      right: -4px;
+      position: relative;
+    }
     .flag {
       width: 35px;
       height: 30px;
       border-radius: 5px;
-      padding-top: 1px;
       cursor: pointer;
-      background-color: $purple;
+      background: $purple url(https://s3.amazonaws.com/quadfit/Icon+-+Paper+Airplaine.png) no-repeat center;
       text-align: center;
       display: inline-block;
+      vertical-align: middle;
     }
     .pi {
       width: 112px;

@@ -1,5 +1,5 @@
 json.messages @messages do |message|
-  json.extract! message, :id, :poster_id, :message, :to_id, :created_at
+  json.extract! message, :id, :poster_id, :message, :to_id, :created_at, :seen
 end
 json.user do
   json.id @user.id

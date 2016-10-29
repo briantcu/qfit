@@ -135,7 +135,8 @@ var UserActions = {
             contentType: "application/json; charset=utf-8",
             success: function(pod) {
                 dispatcher.dispatch(C.INVITES_LOADED, pod);
-            },
+                this.getPod();
+            }.bind(this),
             error: function(results) {
                 alert(results);
             }

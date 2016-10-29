@@ -33,7 +33,9 @@ class Friends extends React.Component {
                             this.props.quad_pod.map(function(e) {
                                 return <div key={e.id} className="friend gray-border">
                                     <span className="flag" onClick={ () => this.props.showConversation(e.id)}>
-                                        <img src="https://s3.amazonaws.com/quadfit/Icon+-+Paper+Airplaine.png" />
+                                        <If condition={e.unseen_count > 0}>
+                                            <span className="unseen-bubble">{e.unseen_count}</span>
+                                        </If>
                                     </span>
                                     <span className="avi-wrap"><Avatar user={e}/></span>
                                     <span className="username">{e.user_name}</span>

@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :destroy]
   before_filter :verify_owns_message, only: [:show]
   before_filter :are_friends_for_dm, only: [:create]
-  before_filter :are_friends, only: [:conversation]
+  before_filter :are_friends, only: [:conversation, :seen_convo]
 
   # GET /messages.json
   def index
@@ -34,6 +34,7 @@ class MessagesController < ApplicationController
   def conversation
     @messages = Message.conversation(current_user.id, params[:user_id])
     @user = User.find(params[:user_id])
+    Message.conversation_seen(current_user.id, params[:user_id])
   end
 
   # POST /messages.json

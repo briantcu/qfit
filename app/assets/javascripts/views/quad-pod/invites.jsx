@@ -27,7 +27,7 @@ class Invites extends React.Component {
         }
 
         return <div className="qp-section">
-            <div className="sec-header">Received Invites</div>
+            <div className="sec-header">Quad Pod Invites</div>
             <div className="sec-main gray-border">
                 <If condition={this.props.invites_received && this.props.invites_received.length > 0} >
                     {

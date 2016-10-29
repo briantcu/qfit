@@ -28,8 +28,13 @@ class Message < ActiveRecord::Base
   belongs_to :poster, foreign_key: :poster_id, class_name: 'User'
   belongs_to :receiver, foreign_key: :to_id, class_name: 'User'
   scope :dms, -> {where(message_type: 2)}
+  scope :unseen, -> {where(seen: false)}
 
   def self.conversation(id_one, id_two)
-    Message.dms.where('poster_id IN (?, ?) AND to_id IN (?, ?)', id_one, id_two, id_one, id_two).order(created_at: :desc).limit(20).to_a
+    Message.dms.where('poster_id IN (?, ?) AND to_id IN (?, ?)', id_one, id_two, id_one, id_two).order(created_at: :desc).limit(20)
+  end
+
+  def self.conversation_seen(id_one, id_two)
+    Message.dms.where('poster_id = ? AND to_id = ?', id_two, id_one).where(seen: false).update_all(seen: true)
   end
 end
