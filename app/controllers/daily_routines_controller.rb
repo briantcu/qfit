@@ -107,10 +107,11 @@ class DailyRoutinesController < ApplicationController
   def add_weight
     if RoutineService.has_exceeded_ex_count(@daily_routine, WEIGHTS)
       render json: { success: false, errors: 'You have maxed out the number of exercises for this workout' }, :status => 406
-    elsif @daily_routine.closed
-      render json: { success: false, errors: 'Workout closed' }, :status => 406
     else
       exercise = Exercise.find(params[:exercise_id])
+      if exercise.paid_tier > current_user.exercise_tier
+        render json: { success: false, errors: "You don't have access to that exercise. Please upgrade your subscription." }, :status => 401
+      end
       perf_ex = @daily_routine.add_weights(exercise, 1, 0)
       @daily_routine.note_weights_changed
       render action: :show
@@ -121,8 +122,6 @@ class DailyRoutinesController < ApplicationController
   def add_sprint
     if RoutineService.has_exceeded_ex_count(@daily_routine, SPRINTING)
       render json: { success: false, errors: 'You have maxed out the number of exercises for this workout' }, :status => 406
-    elsif @daily_routine.closed
-      render json: { success: false, errors: 'Workout closed' }, :status => 406
     else
       sprint = Sprint.find(params[:sprint_id])
       perf_sprint = @daily_routine.add_sprint(sprint.id, 1, 0)
@@ -135,10 +134,11 @@ class DailyRoutinesController < ApplicationController
   def add_warmup
     if RoutineService.has_exceeded_ex_count(@daily_routine, STRETCHING)
       render json: { success: false, errors: 'You have maxed out the number of exercises for this workout' }, :status => 406
-    elsif @daily_routine.closed
-      render json: { success: false, errors: 'This workout has already been completed' }, :status => 406
     else
       warmup = Warmup.find(params[:warmup_id])
+      if warmup.paid_tier > current_user.exercise_tier
+        render json: { success: false, errors: "You don't have access to that exercise. Please upgrade your subscription." }, :status => 401
+      end
       perf_wu = @daily_routine.add_warmup(warmup.id, 1, 0)
       @daily_routine.note_warmups_changed
       render action: :show
@@ -149,10 +149,11 @@ class DailyRoutinesController < ApplicationController
   def add_plyo
     if RoutineService.has_exceeded_ex_count(@daily_routine, PLYOS)
       render json: { success: false, errors: 'You have maxed out the number of exercises for this workout' }, :status => 406
-    elsif @daily_routine.closed
-      render json: { success: false, errors: 'This workout has already been completed' }, :status => 406
     else
       plyo = Plyometric.find(params[:plyometric_id])
+      if plyo.paid_tier > current_user.exercise_tier
+        render json: { success: false, errors: "You don't have access to that exercise. Please upgrade your subscription." }, :status => 401
+      end
       perf_plyo = @daily_routine.add_plyometric(plyo.id, 1, 0)
       @daily_routine.note_plyos_changed
       render action: :show
@@ -163,8 +164,6 @@ class DailyRoutinesController < ApplicationController
   def add_custom
     if RoutineService.has_exceeded_ex_count(@daily_routine, params[:type])
       render json: { success: false, errors: 'You have maxed out the number of exercises for this workout' }, :status => 406
-    elsif @daily_routine.closed
-      render json: { success: false, errors: 'This workout has already been completed' }, :status => 406
     else
       custom = @daily_routine.add_custom_exercise(params[:name], params[:type], 0)
       render action: :show

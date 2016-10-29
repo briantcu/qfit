@@ -27,6 +27,10 @@ class PerformedPlyometricsController < ApplicationController
 
   # PATCH/PUT /performed_plyometrics/1.json
   def update
+    exercise = Plyometric.find(params[:performed_plyometric][:plyometric_id])
+    if exercise.paid_tier > current_user.exercise_tier
+      render json: { success: false, errors: "You don't have access to that exercise. Please upgrade your subscription." }, :status => 401
+    end
     if @performed_plyometric.update(performed_plyometric_params)
       @daily_routine = @performed_plyometric.daily_routine
       render 'daily_routines/show'

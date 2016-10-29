@@ -27,6 +27,10 @@ class PerformedExercisesController < ApplicationController
 
   # PATCH/PUT /performed_exercises/1
   def update
+    exercise = Exercise.find(params[:performed_exercise][:exercise_id])
+    if exercise.paid_tier > current_user.exercise_tier
+      render json: { success: false, errors: "You don't have access to that exercise. Please upgrade your subscription." }, :status => 401
+    end
     need_to_create_sets = (@performed_exercise.exercise_id != params[:performed_exercise][:exercise_id])
     if @performed_exercise.update_ex(performed_exercise_params, need_to_create_sets)
       @daily_routine = @performed_exercise.daily_routine
