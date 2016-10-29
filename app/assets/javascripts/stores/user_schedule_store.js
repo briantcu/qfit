@@ -17,23 +17,28 @@ var UserScheduleStore = new Store({
     weights: false,
     plyos: false,
     sprinting: false,
+    week_days: [false, false, false, false, false, false, false],
 
     setSchedule: function(data){
         var weightsCount = 0;
         var plyosCount = 0;
         var sprintsCount = 0;
+
         data.weekly_schedule_days.forEach(function(day, i) {
             if (day.weights) {
                 this.weights = true;
                 weightsCount++;
+                this.week_days[i] = true;
             }
             if (day.plyometrics) {
                 this.plyos = true;
                 plyosCount++;
+                this.week_days[i] = true;
             }
             if (day.sprinting) {
                 this.sprinting = true;
                 sprintsCount++;
+                this.week_days[i] = true;
             }
 
         }.bind(this));
@@ -49,7 +54,8 @@ var UserScheduleStore = new Store({
             schedule: this.schedule,
             weights: this.weights,
             plyos: this.plyos,
-            sprinting: this.sprinting
+            sprinting: this.sprinting,
+            week_days: this.week_days
         };
     }
 });

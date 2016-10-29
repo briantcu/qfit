@@ -202,7 +202,13 @@ class DoWork extends React.Component {
                                     </div>
                                 </div>
                             </If>
-
+                            <If condition={!this.props.loading && !this.props.routine.id && (this.props.week_days[this.props.day_index])} >
+                                <div className="row">
+                                    <div className="col-xs-12 text-center future">
+                                        You're scheduled to workout this day, but the workout hasn't been created yet.<br/> Quadfit creates your workouts 2 days in advance.
+                                    </div>
+                                </div>
+                            </If>
                             <div className="row">
                                 <div className="col-xs-12 sec-header">Stretching/Warmup
                                     <If condition={!this.props.shared} >

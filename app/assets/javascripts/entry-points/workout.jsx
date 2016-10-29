@@ -2,6 +2,7 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 import {render} from 'react-dom';
 import RoutineStore from 'stores/routine_store';
 import UserStore from 'stores/user_store';
+import UserScheduleStore from 'stores/user_schedule_store';
 import ExerciseStore from 'stores/exercise_store';
 import QuadPodStore from 'stores/quad_pod_store';
 import RoutineActions from 'actions/routine_actions';
@@ -52,6 +53,7 @@ class App extends React.Component {
             year: year,
             month: month,
             day: day,
+            day_index: today.getDay(),
             calendar: {},
             routine: { comments: [], weight: undefined, messages: []},
             user: {},
@@ -124,6 +126,7 @@ class App extends React.Component {
         window.addEventListener('scroll', debounced);
         RoutineStore.addChangeListener(this.onChange.bind(this));
         UserStore.addChangeListener(this.onChange);
+        UserScheduleStore.addChangeListener(this.onChange);
         TeamStore.addChangeListener(this.onChange);
         ExerciseStore.addChangeListener(this.onChange);
         QuadPodStore.addChangeListener(this.onChange);
@@ -132,6 +135,7 @@ class App extends React.Component {
 
     componentWillUnmount () {
         UserStore.removeChangeListener(this.onChange);
+        UserScheduleStore.removeChangeListener(this.onChange);
         TeamStore.removeChangeListener(this.onChange);
         ExerciseStore.removeChangeListener(this.onChange);
         RoutineStore.removeChangeListener(this.onChange.bind(this));
@@ -238,6 +242,7 @@ class App extends React.Component {
         var user = UserStore.getData();
         var exercises = ExerciseStore.getData();
         var qpData = QuadPodStore.getData();
+        var schedule = UserScheduleStore.getData();
         this.setState(
             {
                 calendar: data.calendar,
@@ -257,7 +262,8 @@ class App extends React.Component {
                 showActionModal: showActionModal,
                 invites_received: qpData.invites_received,
                 finishOnboarding: this.finishOnboarding,
-                submitWorkout: this.submitWorkout
+                submitWorkout: this.submitWorkout,
+                week_days: schedule.week_days
             }
         );
         this.evalBanner();
