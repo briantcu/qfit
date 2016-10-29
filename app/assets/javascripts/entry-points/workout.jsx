@@ -23,6 +23,7 @@ import { Modal } from 'react-bootstrap';
 import CoachActions from 'actions/coach_actions';
 import validator from 'validator';
 import DoWork from 'views/do-work/do-work';
+import moment from 'moment';
 
 require('pages/workout.scss');
 
@@ -34,21 +35,16 @@ class App extends React.Component {
         var today;
         if (urlArray.length > 3) {
             today = new Date(this.props.params.year, this.props.params.month - 1, this.props.params.day);
-            year = this.props.params.year;
-            month = this.props.params.month;
-            day = this.props.params.day;
         } else if (gon.routine) {
             var dateArray = gon.routine.day_performed.split('-');
             today = new Date(dateArray[0], dateArray[1] - 1, dateArray[2]);
-            year = today.getFullYear();
-            month = today.getMonth() + 1;
-            day = today.getDate();
+
         } else {
             today = new Date();
-            year = today.getFullYear();
-            month = today.getMonth() + 1;
-            day = today.getDate();
         }
+        year = today.getFullYear();
+        month = today.getMonth() + 1;
+        day = today.getDate();
         this.state = {
             year: year,
             month: month,
@@ -224,14 +220,15 @@ class App extends React.Component {
 
     loadCalendar() {
         var id = this.getEntityId();
-        var lastMonth = new Date(this.state.date.getTime());
-        lastMonth.setMonth(lastMonth.getMonth() - 1);
-        var nextMonth = new Date(this.state.date.getTime());
-        nextMonth.setMonth(nextMonth.getMonth() + 1);
+
+        var lastMonth = new moment(this.state.date);
+        lastMonth.subtract(1, 'month');
+        var nextMonth = new moment(this.state.date);
+        nextMonth.add(1, 'month');
 
         RoutineActions.getCalendar(this.state.year, this.state.month, id, C.CALENDAR, (gon.viewing == 'user'));
-        RoutineActions.getCalendar(lastMonth.getFullYear(), lastMonth.getMonth() + 1, id, C.PREV_CALENDAR, (gon.viewing == 'user'));
-        RoutineActions.getCalendar(nextMonth.getFullYear(), nextMonth.getMonth() + 1, id, C.NEXT_CALENDAR, (gon.viewing == 'user'));
+        RoutineActions.getCalendar(lastMonth.year(), lastMonth.month() + 1, id, C.PREV_CALENDAR, (gon.viewing == 'user'));
+        RoutineActions.getCalendar(nextMonth.year(), nextMonth.month() + 1, id, C.NEXT_CALENDAR, (gon.viewing == 'user'));
     }
 
     onChange () {
