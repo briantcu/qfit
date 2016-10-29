@@ -141,6 +141,9 @@ class Group < ActiveRecord::Base
   end
 
   def add_member(member)
+    self.members.each do |teammate|
+      FriendService.instance.make_friends(teammate.id, member.id)
+    end
     self.members << member
     self.save!
   end

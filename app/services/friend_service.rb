@@ -6,7 +6,7 @@ class FriendService
   def make_friends(user_id_one, user_id_two)
     ids = [user_id_one, user_id_two].sort
     begin
-      Friend.create!(id_one: ids[0], id_two: ids[1])
+      Friend.create!(id_one: ids[0], id_two: ids[1]) unless are_friends?(user_id_one, user_id_two)
     rescue Exception => ex
       nil #already friends
     end
