@@ -9,6 +9,7 @@ var RoutineStore = new Store({
     prev_calendar: undefined,
     routine: undefined,
     loading: true,
+    dirty: false,
 
     setCalendar: function(data) {
         if (data.key == C.CALENDAR) {
@@ -28,6 +29,7 @@ var RoutineStore = new Store({
     setRoutine: function(data) {
         this.routine = data;
         this.loading = false;
+        this.dirty = false;
     },
 
     setLoading: function(data) {
@@ -44,11 +46,13 @@ var RoutineStore = new Store({
             prev_calendar: this.prev_calendar,
             next_calendar: this.next_calendar,
             routine: this.routine,
-            loading: this.loading
+            loading: this.loading,
+            dirty: this.dirty
         };
     },
 
     inputChanged: function(data) {
+        this.dirty = true;
         if (data.type == C.WEIGHTS) {
             var performedExercise = _.find(this.routine.performed_exercises, function(ex){ return ex.exercise.id == data.exId;});
             var perf_reps = isNaN(parseFloat(data.reps)) ? 0 : parseFloat(data.reps);

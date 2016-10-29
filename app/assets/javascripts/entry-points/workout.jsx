@@ -118,7 +118,6 @@ class App extends React.Component {
             }
         };
         var debounced = _.debounce(scrollFn, 5);
-
         window.addEventListener('scroll', debounced);
         RoutineStore.addChangeListener(this.onChange.bind(this));
         UserStore.addChangeListener(this.onChange);
@@ -246,6 +245,7 @@ class App extends React.Component {
                 prev_calendar: data.prev_calendar,
                 next_calendar: data.next_calendar,
                 routine: data.routine,
+                dirty: data.dirty,
                 loading: data.loading,
                 loggedInUser: user.loggedInUser,
                 user: user.user,

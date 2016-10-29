@@ -382,6 +382,54 @@ var RoutineActions = {
         });
     },
 
+    saveWorkout: function(routine) {
+        var routine = JSON.parse(JSON.stringify( routine ));
+        routine.performed_sprints_attributes = routine.performed_sprints;
+        delete routine['performed_sprints'];
+        _.each(routine.performed_sprints_attributes, function(ps) {
+            ps.laps_attributes = ps.laps;
+            delete ps['laps'];
+            delete ps['sprint'];
+            delete ps['sprint_details'];
+        });
+
+        routine.performed_exercises_attributes = routine.performed_exercises;
+        delete routine['performed_exercises'];
+        _.each(routine.performed_exercises_attributes, function(pe) {
+            pe.weight_sets_attributes = pe.weight_sets;
+            delete pe['weight_sets'];
+            delete pe['exercise'];
+            delete pe['exercise_type'];
+        });
+
+        routine.performed_plyometrics_attributes = routine.performed_plyometrics;
+        delete routine['performed_plyometrics'];
+        _.each(routine.performed_plyometrics_attributes, function(pe) {
+            delete pe['plyometric'];
+        });
+
+        routine.performed_warm_ups_attributes = routine.performed_warm_ups;
+        delete routine['performed_warm_ups'];
+        _.each(routine.performed_warm_ups_attributes, function(pe) {
+            delete pe['warmup'];
+        });
+
+        delete routine['comments'];
+        delete routine['messages'];
+        routine.custom_exercises_attributes = routine.custom_exercises;
+        delete routine.custom_exercises;
+
+        var payload = JSON.stringify({daily_routine: routine});
+        $.ajax({
+            type: 'put',
+            url: '/daily_routines/' + routine.id + '.json',
+            dataType: 'json',
+            data: payload,
+            async:false,
+            contentType: "application/json; charset=utf-8"
+        });
+    },
+
     getDateForRoutine() {
         var year, month, day;
         var urlArray = location.pathname.split('/');

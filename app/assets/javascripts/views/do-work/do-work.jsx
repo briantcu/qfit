@@ -54,6 +54,22 @@ class DoWork extends React.Component {
         this.closeSaveChanges = this.closeSaveChanges.bind(this);
         this.showShareWorkout = this.showShareWorkout.bind(this);
         this.closeShareWorkout = this.closeShareWorkout.bind(this);
+        this.exitingPage = this.exitingPage.bind(this);
+    }
+
+    componentDidMount() {
+        $(window).unload(this.exitingPage);
+    }
+
+    componentWillUnmount () {
+        $(window).off('unload', this.exitingPage);
+    }
+
+    exitingPage() {
+        if (gon.viewing == 'user' && this.props.dirty) {
+            console.log('executing');
+            RoutineActions.saveWorkout(this.props.routine);
+        }
     }
 
     componentWillReceiveProps(nextProps) {

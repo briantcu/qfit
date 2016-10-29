@@ -25,7 +25,7 @@ class Athlete extends React.Component {
 
     render () {
         return <div className="athlete row">
-            <div className="col-xs-3 col-xs-offset-1 first">
+            <div className={(!this.props.onTeam) ? "col-xs-4 first" : "col-xs-3 col-xs-offset-1 first"}>
                 {this.props.athlete.first_name} {this.props.athlete.last_name}
             </div>
             <div className="col-xs-8 text-right last">
