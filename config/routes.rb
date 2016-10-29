@@ -39,6 +39,7 @@ Qfit::Application.routes.draw do
   get '/leaderboards', to: 'pages#leaders'
   get '/terms', to: 'pages#terms'
   get '/share', to: 'pages#shared_workout'
+  get '/p/:user_name', to: 'pages#profile'
 
   #****************** API *********************
   post '/checkout.json', to: 'subscriptions#create'
@@ -154,6 +155,7 @@ Qfit::Application.routes.draw do
 
   get '/friends', to: 'friends#index'
   delete '/friends/:id', to: 'friends#destroy'
+  get '/profile/:id', to: 'friends#show'
 
   get '/faqs', to: 'faqs#index'
 

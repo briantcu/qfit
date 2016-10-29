@@ -20,7 +20,8 @@ var config = {
         login: 'entry-points/login.jsx',
         forgot: 'entry-points/forgot.jsx',
         leaders: 'entry-points/leaders.jsx',
-        shared: 'entry-points/shared.jsx'
+        shared: 'entry-points/shared.jsx',
+        profile: 'entry-points/profile.jsx'
     },
     output: {
         filename: '[name].bundle.js',

@@ -30,7 +30,6 @@ class FriendsController < ApplicationController
 
   # GET /friends/1
   # GET /friends/1.json
-  #@TODO this endpoint can return profile detes for this user you're friends with. Need to verify you're friends
   def show
   end
 

@@ -16,6 +16,16 @@ class PagesController < ApplicationController
     render template: 'pages/account'
   end
 
+  def profile
+    user = User.find_by(user_name: params[:user_name])
+    if user.blank?
+      render :file => 'public/404.html', :status => :not_found, :layout => false
+      return
+    end
+    gon.push ({user_id: current_user.try(:id), current_user_id: user.id})
+    render template: 'pages/profile'
+  end
+
   def coaches
     render template: 'pages/coaches'
   end

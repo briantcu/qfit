@@ -195,7 +195,7 @@ class Account extends React.Component {
 
         return <div>
             <Header user={this.state.user} showWorkoutNav={true} active={''} trueLinks={true} />
-            <div className="profile">
+            <div className="account">
                 <div className="row main">
                     <div className="container">
                         <div className="row">
