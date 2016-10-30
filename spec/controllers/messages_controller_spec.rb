@@ -10,7 +10,7 @@
 #  message_type :integer
 #  created_at   :datetime
 #  updated_at   :datetime
-#  seen         :boolean
+#  seen         :boolean          default(FALSE)
 #
 
 require 'rails_helper'

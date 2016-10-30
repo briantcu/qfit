@@ -62,6 +62,16 @@ var util = {
         };
 
         return date.toLocaleTimeString("en-us", options);
+    },
+
+    formatFullDateNoTime: function(fullDateString) {
+        var date = new Date(fullDateString);
+        var options = {
+            weekday: "long", year: "numeric", month: "short",
+            day: "numeric"
+        };
+
+        return date.toLocaleDateString("en-us", options);
     }
 };
 

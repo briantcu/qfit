@@ -8,6 +8,7 @@ import Footer from 'views/common/footer';
 import Button from 'views/common/button';
 import Avatar from 'views/common/avatar';
 import QuadPodStore from 'stores/quad_pod_store';
+import Util from 'helpers/util';
 
 require('pages/profile.scss');
 
@@ -82,7 +83,12 @@ class Profile extends React.Component {
                                             </div>
                                             <div className="col-xs-12 col-sm-6 text-right">
                                                 <div className="button-wrapper">
-                                                    <Button buttonText="Invite to Quad Pod" onClick={this.sendInvite} />
+                                                    <If condition={!this.state.user.is_friend && gon.current_user_id != gon.user_id} >
+                                                        <Button buttonText="Invite to Quad Pod" onClick={this.sendInvite} />
+                                                    </If>
+                                                    <If condition={this.state.user.is_friend && gon.current_user_id != gon.user_id} >
+                                                        <span className="in-pod">In Your Quad Pod</span>
+                                                    </If>
                                                 </div>
                                             </div>
                                         </div>
@@ -100,7 +106,7 @@ class Profile extends React.Component {
                                             this.state.user.recent_workouts.map(function(workout, i) {
                                                 return <div key={i} className="workout-row row">
                                                     <div className="col-xs-8">
-                                                        {workout.day_performed}
+                                                        {Util.formatFullDateNoTime(workout.day_performed)}
                                                     </div>
                                                     <div className="col-xs-4 text-right">
                                                         <a className="norm-link" href={workout.share_link}>View</a>
@@ -123,7 +129,7 @@ class Profile extends React.Component {
                                                         <span className="block-wrapper friend-text">{friend.user_name}</span>
                                                     </div>
                                                     <div className="col-xs-4 text-right friend-text">
-                                                        <a className="norm-link" href={"/p/" + friend.user_name}>View</a>
+                                                        <a className="norm-link" href={"/p/" + encodeURIComponent(friend.user_name)}>View</a>
                                                     </div>
                                                 </div>
                                             })

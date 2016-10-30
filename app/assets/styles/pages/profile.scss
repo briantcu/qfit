@@ -35,6 +35,10 @@
   .profile-row {
     margin-top: 50px;
 
+    .in-pod {
+      color: $purple;
+    }
+
     .block-wrapper {
       display: inline-block;
       float: left;

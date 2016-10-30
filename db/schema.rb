@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028215959) do
+ActiveRecord::Schema.define(version: 20161030031934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,10 @@ ActiveRecord::Schema.define(version: 20161028215959) do
     t.datetime "updated_at"
     t.integer  "group_routine_id"
     t.boolean  "shared",             default: false
+    t.string   "token"
   end
+
+  add_index "daily_routines", ["token"], name: "index_daily_routines_on_token", using: :btree
 
   create_table "day_exercises", force: :cascade do |t|
     t.integer  "program_day_id"

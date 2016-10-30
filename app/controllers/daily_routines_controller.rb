@@ -26,6 +26,7 @@
 #  updated_at         :datetime
 #  group_routine_id   :integer
 #  shared             :boolean          default(FALSE)
+#  token              :string
 #
 
 class DailyRoutinesController < ApplicationController
@@ -206,9 +207,7 @@ class DailyRoutinesController < ApplicationController
   end
 
   def verify_can_access_workout
-    if request.fullpath.split('/')[1] == 'share'
-      uuid = params[:t]
-      return unauthorized unless uuid.present?
+    if uuid = params[:t]
       routine = DailyRoutine.routine_from_token(uuid)
       return unauthorized unless routine.id == params[:id].to_i
     else

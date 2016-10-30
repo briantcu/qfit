@@ -26,6 +26,7 @@
 #  updated_at         :datetime
 #  group_routine_id   :integer
 #  shared             :boolean          default(FALSE)
+#  token              :string
 #
 
 require 'rails_helper'

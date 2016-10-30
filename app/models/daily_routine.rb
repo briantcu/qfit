@@ -26,9 +26,12 @@
 #  updated_at         :datetime
 #  group_routine_id   :integer
 #  shared             :boolean          default(FALSE)
+#  token              :string
 #
 
 class DailyRoutine < ActiveRecord::Base
+
+  has_secure_token
 
   STRETCHING = 4
   WEIGHTS = 1
@@ -57,18 +60,15 @@ class DailyRoutine < ActiveRecord::Base
   accepts_nested_attributes_for :performed_sprints, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
 
   def self.routine_from_token(token)
-    payload = JWT.decode token, nil, false
-    routine_data = payload[0]
-    id = routine_data['id']
-    DailyRoutine.find(id)
+    DailyRoutine.find_by(token: token)
   end
 
   def share_token
-    if @share_token.blank?
-      payload = {id: id}
-      @share_token = JWT.encode payload, nil, 'none'
+    if token.blank?
+      self.regenerate_token
+      token
     else
-      @share_token
+      token
     end
   end
 
