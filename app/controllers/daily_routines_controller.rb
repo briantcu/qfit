@@ -27,7 +27,6 @@
 #  group_routine_id   :integer
 #  shared             :boolean          default(FALSE)
 #  token              :string
-#
 
 class DailyRoutinesController < ApplicationController
   before_filter :verify_logged_in, only: [:index]
