@@ -4,7 +4,7 @@ var C = require('constants/user_constants.js');
 var PC = require('constants/profile_constants.js');
 
 var UserStore = new Store({
-    user: {},
+    user: { recent_workouts: []},
     loggedInUser: {},
     chart: {},
     maxes: [],

@@ -1,8 +1,74 @@
 @import '../common/common';
 
 .profile {
+  .workout-row {
+    font-size: 18px;
+    letter-spacing: -0.4px;
+    color: $dark-purple;
+    height: 70px;
+    padding-top: 20px;
+    border-bottom: solid 1px $gray2;
+  }
+
+  .friend-row {
+    font-size: 18px;
+    letter-spacing: -0.4px;
+    color: $dark-purple;
+    height: 70px;
+    padding-top: 10px;
+    border-bottom: solid 1px $gray2;
+    .friend-text {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+  }
+
+  .last-row {
+    margin-bottom: 50px;
+  }
+
+  .workout-section {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
+
   .profile-row {
     margin-top: 50px;
+
+    .block-wrapper {
+      display: inline-block;
+      float: left;
+    }
+    .button-wrapper {
+      display: inline-block;
+      float: right;
+      margin-top: 30px;
+      margin-right: 10px;
+    }
+
+    .details {
+      font-size: 16px;
+      letter-spacing: -0.4px;
+      color: $dark-purple;
+      display: inline-block;
+      float: left;
+      margin-top: 30px;
+      margin-left: 30px;
+      .user-name {
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: -0.6px;
+        color: $purple;
+      }
+      .power-index {
+        font-weight: 600;
+      }
+
+      .user-info {
+        margin-right: 30px;
+      }
+
+    }
   }
 
   .main {
@@ -38,10 +104,7 @@
         height: 50px;
       }
       .sec-main {
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding: 30px 25px;
         font-weight: 300;
         letter-spacing: -0.6px;
         float: left;

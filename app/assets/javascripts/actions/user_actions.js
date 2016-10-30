@@ -4,7 +4,7 @@ import request from 'superagent';
 
 var UserActions = {
 
-    getUser: function(user_id, is_logged_in_user) {
+    getUser: function(user_id, is_logged_in_user, suppress_current_user_load) {
         $.ajax({
             type: 'get',
             url: '/users/'+user_id+'.json',
@@ -14,7 +14,7 @@ var UserActions = {
                 //holy hack batman
                 if (is_logged_in_user) {
                     dispatcher.dispatch(C.LOADED_LOGGED_IN, user);
-                    if (gon.current_user_id == gon.user_id) {
+                    if (gon.current_user_id == gon.user_id && !suppress_current_user_load) {
                         dispatcher.dispatch(C.LOADED, user);
                     }
                 } else {

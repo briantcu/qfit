@@ -1,5 +1,6 @@
 var dispatcher = require('global_dispatcher');
 var C = require('constants/profile_constants');
+var UC = require('constants/user_constants.js');
 
 var ProfileActions = {
 
@@ -100,6 +101,36 @@ var ProfileActions = {
                 var payload = results;
                 payload.success = false;
                 dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
+            }
+        });
+    },
+
+    getPodForUser: function(id) {
+        $.ajax({
+            type: 'get',
+            url: '/friends/'+id+'.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(pod) {
+                dispatcher.dispatch(UC.POD_LOADED, pod);
+            },
+            error: function(results) {
+                alert('Something went wrong!');
+            }
+        });
+    },
+
+    getProfile: function(user_id) {
+        $.ajax({
+            type: 'get',
+            url: '/profile/'+user_id+'.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(user) {
+                dispatcher.dispatch(UC.LOADED, user);
+            }.bind(this),
+            error: function(results) {
+                alert('Something went wrong!');
             }
         });
     }

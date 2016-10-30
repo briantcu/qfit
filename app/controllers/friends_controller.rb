@@ -10,13 +10,17 @@
 #
 
 class FriendsController < ApplicationController
-  before_filter :verify_logged_in
-  before_action :set_friend, only: [:show]
+  before_filter :verify_logged_in, except: [:friends_for_user, :show]
 
   # GET /friends
   # GET /friends.json
   def index
     @friends = current_user.friends
+  end
+
+  def friends_for_user
+    user = User.find(params[:id])
+    @friends = user.friends.limit(10)
   end
 
   def destroy
@@ -31,11 +35,8 @@ class FriendsController < ApplicationController
   # GET /friends/1
   # GET /friends/1.json
   def show
-  end
-
-  private
-
-  def set_friend
-    @friend = Friend.find(params[:id])
+    # Used to populate the profile page
+    @user = User.find(params[:id])
+    @recent_workouts = @user.recent_workouts
   end
 end

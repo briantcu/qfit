@@ -2,18 +2,12 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 import {render} from 'react-dom';
 import UserStore from 'stores/user_store';
 import UserActions from 'actions/user_actions';
+import ProfileActions from 'actions/profile_actions';
 import Header from 'views/common/header';
 import Footer from 'views/common/footer';
 import Button from 'views/common/button';
-import FancyInput from 'views/common/fancy_input';
-import Slider from 'views/common/slider';
-import C from 'constants/profile_constants';
-import validator from 'validator';
-import SignUpActions from 'actions/sign_up_actions';
-import ProfileActions from 'actions/profile_actions';
-import ProfileStore from 'stores/profile_store';
-import SignUpStore from 'stores/sign_up_store';
-import Dropzone from 'react-dropzone';
+import Avatar from 'views/common/avatar';
+import QuadPodStore from 'stores/quad_pod_store';
 
 require('pages/profile.scss');
 
@@ -22,41 +16,53 @@ class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {}
+            user: {recent_workouts: []},
+            loggedInUser: {},
+            quad_pod: []
         };
         this.onChange = this.onChange.bind(this);
+        this.sendInvite = this.sendInvite.bind(this);
     }
 
     componentDidMount () {
         UserStore.addChangeListener(this.onChange);
-        ProfileStore.addChangeListener(this.onChange);
+        QuadPodStore.addChangeListener(this.onChange);
         this.load();
     }
 
     componentWillUnmount () {
-        ProfileStore.removeChangeListener(this.onChange);
         UserStore.removeChangeListener(this.onChange);
+        QuadPodStore.removeChangeListener(this.onChange.bind(this));
     }
 
     load() {
-        UserActions.getUser(gon.user_id);
+        if (gon.user_id) {
+            UserActions.getUser(gon.user_id, true, true);
+        }
+        ProfileActions.getProfile(gon.current_user_id);
+        ProfileActions.getPodForUser(gon.current_user_id);
     }
 
     onChange () {
         var user = UserStore.getData();
-        var data = ProfileStore.getData();
+        var qpData = QuadPodStore.getData();
         this.setState(
             {
-                user: user.user
+                loggedInUser: user.loggedInUser,
+                user: user.user,
+                quad_pod: qpData.pod
             }
         );
+    }
+
+    sendInvite() {
 
     }
 
     render () {
 
         return <div>
-            <Header user={this.state.user} showWorkoutNav={true} active={''} trueLinks={true} />
+            <Header user={this.state.loggedInUser} showWorkoutNav={true} active={''} trueLinks={true} />
             <div className="profile">
                 <div className="row main">
                     <div className="container">
@@ -66,28 +72,62 @@ class Profile extends React.Component {
                                     <div className="sec-header">Profile</div>
                                     <div className="sec-main">
                                         <div className="row">
+                                            <div className="col-xs-12 col-sm-6">
+                                                <div className="block-wrapper"><Avatar user={this.state.user} big={true} noLink={true} /></div>
+                                                <div className="details">
+                                                    <div className="user-name">{this.state.user.user_name}</div>
+                                                    <span className="user-info"><span className="power-index">Power</span>Index: {this.state.user.power_index}</span>
+                                                    <span className="user-info"><span className="power-index">Rep</span>utation: {this.state.user.points}</span>
+                                                </div>
+                                            </div>
+                                            <div className="col-xs-12 col-sm-6 text-right">
+                                                <div className="button-wrapper">
+                                                    <Button buttonText="Invite to Quad Pod" onClick={this.sendInvite} />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="row profile-row">
+                        <div className="row profile-row last-row">
                             <div className="col-xs-6">
                                 <div className="p-section">
                                     <div className="sec-header">Recent Workouts</div>
-                                    <div className="sec-main">
-                                        <div className="row">
-                                        </div>
+                                    <div className="sec-main workout-section">
+                                        {
+                                            this.state.user.recent_workouts.map(function(workout, i) {
+                                                return <div key={i} className="workout-row row">
+                                                    <div className="col-xs-8">
+                                                        {workout.day_performed}
+                                                    </div>
+                                                    <div className="col-xs-4 text-right">
+                                                        <a className="norm-link" href={workout.share_link}>View</a>
+                                                    </div>
+                                                </div>
+                                            })
+                                        }
                                     </div>
                                 </div>
                             </div>
                             <div className="col-xs-6">
                                 <div className="p-section">
                                     <div className="sec-header">Quad Pod</div>
-                                    <div className="sec-main">
-                                        <div className="row">
-                                        </div>
+                                    <div className="sec-main workout-section">
+                                        {
+                                            this.state.quad_pod.map(function(friend) {
+                                                return <div key={friend.id} className="row friend-row">
+                                                    <div className="col-xs-8">
+                                                        <span className="block-wrapper"><Avatar user={friend} /></span>
+                                                        <span className="block-wrapper friend-text">{friend.user_name}</span>
+                                                    </div>
+                                                    <div className="col-xs-4 text-right friend-text">
+                                                        <a className="norm-link" href={"/p/" + friend.user_name}>View</a>
+                                                    </div>
+                                                </div>
+                                            })
+                                        }
                                     </div>
                                 </div>
                             </div>

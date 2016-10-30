@@ -5,6 +5,17 @@ class Avatar extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            width: "48",
+            height: "48"
+        }
+    }
+
+    componentWillReceiveProps(nextProps){
+        if (nextProps.big) {
+            this.setState({width: "130", height: "130"});
+        }
     }
 
     imagePath() {
@@ -16,7 +27,14 @@ class Avatar extends React.Component {
     }
 
     render () {
-        return <a href="/account"><img src={this.imagePath()} alt={this.props.user.user_name} className="img-circle" width="48" height="48"/></a>;
+        if (this.props.noLink) {
+            return <img src={this.imagePath()} alt={this.props.user.user_name} className="img-circle"
+                        width={this.state.width} height={this.state.height}/>;
+        } else {
+            return <a href={"/p/" +this.props.user.user_name}>
+                <img src={this.imagePath()} alt={this.props.user.user_name}
+                     className="img-circle" width={this.state.width} height={this.state.height}/></a>;
+        }
     }
 }
 export default Avatar;

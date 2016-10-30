@@ -155,6 +155,7 @@ Qfit::Application.routes.draw do
 
   get '/friends', to: 'friends#index'
   delete '/friends/:id', to: 'friends#destroy'
+  get '/friends/:id', to: 'friends#friends_for_user'
   get '/profile/:id', to: 'friends#show'
 
   get '/faqs', to: 'faqs#index'

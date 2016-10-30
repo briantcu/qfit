@@ -93,6 +93,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :daily_routines, dependent: :destroy
+  has_many :recent_workouts, -> { order(day_performed: :desc).limit(10) }, class_name: DailyRoutine
   has_many :user_maxes, dependent: :destroy
   has_many :coach_groups, foreign_key: :coach_user_id, class_name: Group
   has_many :custom_exercises, through: :daily_routines
@@ -272,7 +273,7 @@ class User < ActiveRecord::Base
 
   def friends
     User.where('users.id IN (SELECT CASE WHEN id_one=? THEN id_two ELSE id_one END FROM friends WHERE ? IN (id_one, id_two))',
-               self.id, self.id).preload(:daily_routines).to_a
+               self.id, self.id)
   end
 
   def ensure_authentication_token
