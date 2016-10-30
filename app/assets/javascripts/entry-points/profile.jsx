@@ -126,7 +126,7 @@ class Profile extends React.Component {
                                                 return <div key={friend.id} className="row friend-row">
                                                     <div className="col-xs-8">
                                                         <span className="block-wrapper"><Avatar user={friend} /></span>
-                                                        <span className="block-wrapper friend-text">{friend.user_name}</span>
+                                                        <span className="block-wrapper friend-text user-name">{friend.user_name}</span>
                                                     </div>
                                                     <div className="col-xs-4 text-right friend-text">
                                                         <a className="norm-link" href={"/p/" + encodeURIComponent(friend.user_name)}>View</a>

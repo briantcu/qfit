@@ -11,6 +11,7 @@ import Button from 'views/common/button';
 import AddAthleteModal from 'views/coaches/add_athlete_modal';
 import Util from 'helpers/util';
 import URLSearchParams from 'url-search-params';
+import Footer from 'views/common/footer';
 
 require('pages/coaches.scss');
 
@@ -226,6 +227,7 @@ class Coaches extends React.Component {
             </Modal>
             <AddAthleteModal show={this.state.showAddUserModal} showTeamOption={this.state.coach_account.teams.length > 0}
                 cancel={this.cancelAddUser}  coachAccount={this.state.coach_account} />
+            <Footer />
         </div>;
     }
 }
