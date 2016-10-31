@@ -2,6 +2,12 @@
 
 .coach-sign-up {
 
+  .sign-up-error {
+    color: red;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+
   .buffer {
     height: 80px;
     padding-top: 30px;
@@ -30,6 +36,7 @@
     @include border-bottom;
     height: 50px;
     display: block;
+    overflow: hidden;
   }
 
   h1 {

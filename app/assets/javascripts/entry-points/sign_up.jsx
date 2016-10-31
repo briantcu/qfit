@@ -21,6 +21,10 @@ class AthleteSignUp extends React.Component {
             passwordErrors: [],
             signUpCode: gon.sign_up_code
         };
+        this.evalFirstName = this.evalFirstName.bind(this);
+        this.evalLastName = this.evalLastName.bind(this);
+        this.evalEmail = this.evalEmail.bind(this);
+        this.evalPassword = this.evalPassword.bind(this);
     }
 
     componentDidMount () {
@@ -89,6 +93,31 @@ class AthleteSignUp extends React.Component {
         }
     }
 
+    evalFirstName(firstName) {
+        if (validator.isLength(firstName, {min: 2})) {
+            this.setState({firstNameErrors: []});
+        }
+    }
+
+    evalLastName(lastName) {
+        if (validator.isLength(lastName, {min: 2})) {
+            this.setState({lastNameErrors: []});
+        }
+    }
+
+    evalEmail(email) {
+        if (validator.isEmail(email)) {
+            this.setState({emailErrors: []});
+        }
+    }
+
+    evalPassword(password) {
+        var strength = this.refs.password.getStrength();
+        if (strength >= 2) {
+            this.setState({passwordErrors: []});
+        }
+    }
+
     hasErrors () {
         var hasErrors = false;
         var username = this.refs.username.getValue();
@@ -105,7 +134,7 @@ class AthleteSignUp extends React.Component {
 
         var lastName = this.refs.lastName.getValue();
         if (!validator.isLength(lastName, {min: 2})) {
-            this.setState({lastNameErrors: ['Please enter a valid first name']});
+            this.setState({lastNameErrors: ['Please enter a valid last name']});
             hasErrors = true;
         }
 
@@ -162,7 +191,7 @@ class AthleteSignUp extends React.Component {
                         <div className="col-md-12">
                             <span className={`purple-bot-container ${this.state.firstNameErrors.length > 0 ? 'error' : null}`}>
                                 <FancyInput ref="firstName" name="first_name" placeholder="First Name" type="text"
-                                            errors={this.state.firstNameErrors} />
+                                            changedCallback={this.evalFirstName} errors={this.state.firstNameErrors} />
                             </span>
                         </div>
                     </div>
@@ -170,7 +199,7 @@ class AthleteSignUp extends React.Component {
                         <div className="col-md-12">
                             <span className={`purple-bot-container ${this.state.lastNameErrors.length > 0 ? 'error' : null}`}>
                                 <FancyInput ref="lastName" name="last_name" placeholder="Last Name" type="text"
-                                            errors={this.state.lastNameErrors} />
+                                            changedCallback={this.evalLastName} errors={this.state.lastNameErrors} />
                             </span>
                         </div>
                     </div>
@@ -178,7 +207,7 @@ class AthleteSignUp extends React.Component {
                         <div className="col-md-12">
                             <span className={`purple-bot-container ${this.state.emailErrors.length > 0 ? 'error' : null}`}>
                                 <FancyInput ref="email" name="email" placeholder="Email Address" type="text"
-                                            errors={this.state.emailErrors} />
+                                           changedCallback={this.evalEmail} errors={this.state.emailErrors} />
                             </span>
                         </div>
                     </div>
@@ -186,7 +215,7 @@ class AthleteSignUp extends React.Component {
                         <div className="col-md-12">
                             <span className={`purple-bot-container ${this.state.passwordErrors.length > 0 ? 'error' : null}`}>
                                 <FancyInput ref="password" name="password" placeholder="Password" type="password"
-                                            errors={this.state.passwordErrors} />
+                                            changedCallback={this.evalPassword} errors={this.state.passwordErrors} />
                             </span>
                         </div>
                     </div>
@@ -208,7 +237,7 @@ class AthleteSignUp extends React.Component {
                     <div className="row submit-row">
                         <div className="col-md-12">
                             <If condition={this.state.signUpStatus.status == C.FAILURE}>
-                                <div>{this.state.signUpStatus.errors.join(', ')}</div>
+                                <div className="sign-up-error">{this.state.signUpStatus.errors.join(', ')}</div>
                             </If>
                             <span onClick={ () => this.submit()} className="submit-button purple-text">Sign Up</span>
                             <a href="/sign-in" className="help-text bold-link">Have an account? Login here.</a>

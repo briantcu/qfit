@@ -71,7 +71,7 @@ class AthleteSignUp extends React.Component {
         if (!this.state.formSubmitted) {
             this.state.formSubmitted = true;
             if (!this.hasErrors()) {
-                SignUpActions.signUp(this.packageData());
+                SignUpActions.signUp(this.packageData(), true);
             } else {
                 this.state.formSubmitted = false;
             }

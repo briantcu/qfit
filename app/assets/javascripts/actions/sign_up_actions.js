@@ -3,12 +3,17 @@ var C = require('constants/sign_up_constants.js');
 
 var SignUpActions = {
 
-    signUp: function(payload) {
+    signUp: function(payload, more_info) {
+        var url = '/users.json';
+        if (more_info) {
+            url = url + '?more=true';
+        }
+
         var data = JSON.stringify(payload);
         $.ajax({
             type: 'post',
             data: data,
-            url: '/users.json?more=true',
+            url: url,
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function(results) {

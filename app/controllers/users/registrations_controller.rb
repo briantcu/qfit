@@ -30,7 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     rescue Exception => e
       Rollbar.error(e)
       warden.custom_failure!
-      render json: @user.errors.full_messages, status: 422
+      render json: @user.errors.full_messages.uniq, status: 422
     end
   end
 
