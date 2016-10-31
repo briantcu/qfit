@@ -55,6 +55,8 @@ class DoWork extends React.Component {
         this.showShareWorkout = this.showShareWorkout.bind(this);
         this.closeShareWorkout = this.closeShareWorkout.bind(this);
         this.exitingPage = this.exitingPage.bind(this);
+        this.saveSendTo = this.saveSendTo.bind(this);
+        this.evalTeamName = this.evalTeamName.bind(this);
     }
 
     componentDidMount() {

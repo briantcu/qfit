@@ -23,7 +23,7 @@ class GroupSchedule < ActiveRecord::Base
   after_save :create_weekly_schedule_days, on: :create
   belongs_to :group
   has_many :group_schedule_days, -> { order('day ASC') }
-  accepts_nested_attributes_for :group_schedule_days, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? }
+  accepts_nested_attributes_for :group_schedule_days, allow_destroy: true
   validates_presence_of :group_id, :program_id, :phase_one_start, :phase_two_start, :phase_three_start, :phase_four_start
 
   def invalid?
