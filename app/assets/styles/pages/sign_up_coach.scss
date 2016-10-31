@@ -96,6 +96,21 @@ body {
   padding-left: 25px;
 }
 
+@media (max-width: 1000px) and (min-width: 481px) {
+  body {
+    background: url(https://s3.amazonaws.com/quadfit/backgrounds-coach.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+@media all and (max-width: 1000px) {
+  .form {
+    float: none !important;
+    margin: auto !important;
+  }
+}
+
 @media all and (max-width: 480px)  {
   body {
     background: url(https://s3.amazonaws.com/quadfit/backgrounds-coach.jpg);
@@ -104,10 +119,3 @@ body {
   }
 }
 
-@media (max-width: 979px) and (min-width: 481px) {
-  body {
-    background: url(https://s3.amazonaws.com/quadfit/backgrounds-coach.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-}

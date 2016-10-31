@@ -119,7 +119,14 @@ body {
   }
 }
 
-@media (max-width: 979px) and (min-width: 481px) {
+@media all and (max-width: 1000px) {
+  .form {
+    float: none !important;
+    margin: auto !important;
+  }
+}
+
+@media (max-width: 1000px) and (min-width: 481px) {
   body {
     background: url(https://s3.amazonaws.com/quadfit/backgrounds-runner-tablet.jpg);
     background-size: cover;

@@ -126,7 +126,7 @@ class CoachSignUp extends React.Component {
 
     render () {
         return <div className="coach-sign-up row">
-            <div className="col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form">
+            <div className="col-lg-5 col-lg-offset-6 col-md-6 col-md-offset-5 col-xs-12 col-xs-offset-0 form">
                 <div className="row">
                     <div className="col-md-12">
                         <h1>Sign up as a Coach</h1>
