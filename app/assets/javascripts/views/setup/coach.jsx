@@ -1,5 +1,4 @@
 import {render} from 'react-dom';
-import VCircleCheck from 'views/common/vert_circle_check';
 import Button from 'views/common/button';
 import CoachActions from 'actions/coach_actions';
 
@@ -19,34 +18,34 @@ class Coach extends React.Component {
 
             <div className="row">
                 <div className="container">
-                    <div className="row">
+                    <div className="row title-row">
                         <div className="col-xs-12 text-center">
                             <h1 className="purple">Let's Create a Workout Plan</h1>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-6 col-xs-offset-3 header-text text-center">
+                        <div className="col-xs-6 col-xs-offset-3  text-center">
                             Make a Selection
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-6 col-xs-offset-3 header-text text-center">
+                        <div className="col-xs-6 col-xs-offset-3 text-center desc">
                             If you'd like to create a workout plan for a team, like a Varsity Basketball team, choose this option.
                             Later you'll be able to invite players to join this team on Quadfit, and they'll automatically get the workout we're about to create.
                             <Button buttonText="Create a Team Plan" onClick={ () => this.buttonClicked('team') } />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-6 col-xs-offset-3 header-text text-center">
+                        <div className="col-xs-6 col-xs-offset-3 text-center">
                             <hr className="hr-left" />
                             <span className="text-uppercase info-text">or</span>
                             <hr className="hr-right" />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-6 col-xs-offset-3 header-text text-center">
+                        <div className="col-xs-6 col-xs-offset-3 text-center desc">
                             If you'd like to create a plan for an individual, choose this option. Later we'll send them an email or text, which they'll use
-                            to sign up for Quadfit, and they'll automatically get the workout we're about to create.
+                            to sign up for Quadfit. They will automatically get the workout we're about to create.
                             <Button buttonText="Create a Plan for an Individual" onClick={ () => this.buttonClicked('individual') } />
                         </div>
                     </div>

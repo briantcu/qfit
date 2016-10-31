@@ -96,17 +96,17 @@ class AddAthleteModal extends React.Component {
             Select a goal for this athlete:
             <div className="row">
                 <div className="col-xs-4 text-center">
-                    <VCircleCheck id={2} ref={C.MASS}
+                    <VCircleCheck id={2} ref={C.MASS} uncontrolled={true}
                                   label={'Add Muscle'} change={ this.goalChanged } />
                 </div>
 
                 <div className="col-xs-4 text-center">
-                    <VCircleCheck id={3} ref={C.RIP}
+                    <VCircleCheck id={3} ref={C.RIP} uncontrolled={true}
                                   label={'Moderate muscle gains, while lowering body fat percentage'}  change={ this.goalChanged }/>
                 </div>
 
                 <div className="col-xs-4 text-center">
-                    <VCircleCheck ref={C.LEAN} id={1}
+                    <VCircleCheck ref={C.LEAN} id={1} uncontrolled={true}
                                   label={'Lose Weight, Build Endurance'} change={ this.goalChanged } />
                 </div>
             </div>

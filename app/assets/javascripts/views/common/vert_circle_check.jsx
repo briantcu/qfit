@@ -14,8 +14,13 @@ class VertCircleCheck extends React.Component {
     }
 
     render () {
+        // This is a controlled component
         return <span className="vert-circle-check">
-                <If condition={!this.props.disabled}>
+                <If condition={!this.props.disabled && !this.props.uncontrolled}>
+                    <input ref="check" type="checkbox" className="check" id={`${this.props.id}`}
+                           checked={this.props.checked} onChange={ this.props.change}/>
+                </If>
+                <If condition={!this.props.disabled && this.props.uncontrolled}>
                     <input ref="check" type="checkbox" className="check" id={`${this.props.id}`}
                            defaultChecked={this.props.checked} onChange={ this.props.change}/>
                 </If>

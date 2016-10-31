@@ -155,18 +155,18 @@ class Schedule extends React.Component {
             <div className="row">
                 <div className="container">
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4 text-center">
+                        <div className="col-xs-4 col-xs-offset-4 text-center title">
                             Weekly Planner
                         </div>
                     </div>
                     <If condition={this.props.quads.strength || this.state.weights}>
-                        <div className="row">
+                        <div className="row details">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
-                                Which days will you lift?<br/>
-                                The program you chose has {this.props.num_weights_days} lifting days.
+                                <span className="question">Which days will you lift?</span><br/>
+                                <span className="context">The program you chose has {this.props.num_weights_days} lifting days.</span>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row days">
                             <div className="col-xs-2 col-xs-offset-1">
                                 <SquareCheck ref="w0" checked={this.state.schedule.schedule_days[0].weights}
                                              id="w0" change={ this.changed } label="Sunday" />
@@ -198,13 +198,13 @@ class Schedule extends React.Component {
                         </div>
                     </If>
                     <If condition={this.props.quads.plyos || this.state.plyos}>
-                        <div className="row">
+                        <div className="row details">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
-                                Which days will you do plyometric exercises?<br/>
-                                To meet your goals, we recommend at least {this.props.num_plyos_days} plyometric days.
+                                <span className="question">Which days will you do plyometric exercises?</span><br/>
+                                <span className="context">To meet your goals, we recommend at least {this.props.num_plyos_days} plyometric days.</span>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row days">
                             <div className="col-xs-2 col-xs-offset-1">
                                 <SquareCheck ref="p0" checked={this.state.schedule.schedule_days[0].plyometrics}
                                              id="p0" change={ this.changed } label="Sunday" />
@@ -236,13 +236,13 @@ class Schedule extends React.Component {
                         </div>
                     </If>
                     <If condition={this.props.quads.sprinting || this.state.sprinting}>
-                        <div className="row">
+                        <div className="row details">
                             <div className="col-xs-4 col-xs-offset-4 text-center">
-                                Which days will you sprint?<br/>
-                                To meet your goals, we recommend at least {this.props.num_sprint_days} sprinting days.
+                                <span className="question">Which days will you sprint?</span><br/>
+                                <span className="context">To meet your goals, we recommend at least {this.props.num_sprint_days} sprinting days.</span>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row days">
                             <div className="col-xs-2 col-xs-offset-1">
                                 <SquareCheck ref="s0" checked={this.state.schedule.schedule_days[0].sprinting}
                                              id="s0" change={ this.changed } label="Sunday" />

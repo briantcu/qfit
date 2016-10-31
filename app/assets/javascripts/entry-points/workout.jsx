@@ -61,6 +61,7 @@ class App extends React.Component {
             exercise_type: undefined,
             invites: {},
             conversation: {},
+            showActionModal: false,
             showBanner: false,
             context: gon.setup_context
         };

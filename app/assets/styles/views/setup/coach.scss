@@ -2,6 +2,10 @@
 
 .coach {
 
+  .title-row {
+    padding-bottom: 50px;
+  }
+
   hr.hr-left {
     display: inline-block;
     margin-top: 0.8em;
@@ -24,5 +28,12 @@
     width: 250px;
   }
 
+  .desc {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    button {
+      margin-top: 20px;
+    }
+  }
 
 }

@@ -98,6 +98,14 @@ class DoWork extends React.Component {
         }
 
     }
+
+    evalTeamName(name) {
+        if (validator.isLength(name, {min: 2})) {
+            this.setState({newTeamErrors: [], sendTo: name});
+        } else {
+            this.setState({newTeamErrors: ['Team names must be at least 2 characters']});
+        }
+    }
     
     showShareWorkout() {
         this.setState({showShareWorkout: true, showMessagesModal: false});
@@ -477,8 +485,8 @@ class DoWork extends React.Component {
                         <span>{this.props.finishErrors}</span>
                     </If>
                     <If condition={this.props.context == 'coach_team'} >
-                        <FancyInput placeholder="Team Name" type="text" changedCallback={this.saveSendTo}
-                                    errors={this.state.sendToErrors} />
+                        <FancyInput placeholder="Team Name" type="text" changedCallback={this.evalTeamName}
+                                    errors={this.state.newTeamErrors} />
                     </If>
                 </Modal.Body>
                 <Modal.Footer>
