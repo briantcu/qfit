@@ -54,7 +54,11 @@ var RoutineActions = {
     getById: function(id, token) {
         dispatcher.dispatch(C.LOADING, true);
         if (gon.viewing == 'user' || token) {
-            var url = '/daily_routines/'+id+'.json?t='+token;
+            if (token) {
+                var url = '/daily_routines/' + id + '.json?t=' + token;
+            } else {
+                var url = '/daily_routines/' + id + '.json'
+            }
         } else {
             var url = '/group_routines/'+id+'.json';
         }

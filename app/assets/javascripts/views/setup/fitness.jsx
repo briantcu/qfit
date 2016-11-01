@@ -34,6 +34,7 @@ class Fitness extends React.Component {
 
     experienceLevelSubmitted() {
         FitnessAssessmentActions.setExperienceLevel(Number(this.refs.experienceLevel.value));
+        this.changeStep(1);
     }
 
     userWeightChanged() {
@@ -123,9 +124,9 @@ class Fitness extends React.Component {
                         <div className="col-xs-6 col-xs-offset-3 text-center">
                             <div className="question">What's your level of experience?</div>
                             <select ref="experienceLevel" className="form-control">
-                                <option value="0">Beginner</option>
-                                <option value="1">Intermediate</option>
-                                <option value="2">Advanced</option>
+                                <option value="1">Beginner</option>
+                                <option value="2">Intermediate</option>
+                                <option value="3">Advanced</option>
                             </select>
                         </div>
                     </div>

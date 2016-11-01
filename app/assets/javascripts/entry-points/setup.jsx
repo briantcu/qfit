@@ -175,7 +175,8 @@ class App extends React.Component {
             team: team.team,
             num_weights_days: numDays.num_weights_days,
             num_plyos_days: numDays.num_plyos_days,
-            num_sprint_days: numDays.num_sprint_days
+            num_sprint_days: numDays.num_sprint_days,
+            experienceLevel: fitness.experienceLevel
         });
         if (fitness.complete) {
             FitnessAssessmentActions.submit(this.state, this.fitnessSubmitted);
