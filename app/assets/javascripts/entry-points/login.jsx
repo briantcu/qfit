@@ -86,7 +86,7 @@ class Login extends React.Component {
 
     render () {
         return <div className="login row">
-            <div className="col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form">
+            <div className="col-md-6 col-md-offset-5 col-lg-5 col-lg-offset-6  col-xs-8 col-xs-offset-4 form">
                 <div className="row">
                     <div className="col-md-12">
                         <h1>Sign in to your account</h1>

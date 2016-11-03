@@ -71,11 +71,11 @@ class Forgot extends React.Component {
 
     render () {
         return <div className="forgot row">
-            <div className="col-md-5 col-md-offset-6 col-xs-12 col-xs-offset-0 form">
+            <div className="col-md-6 col-md-offset-5 col-lg-5 col-lg-offset-6  col-xs-8 col-xs-offset-4 form">
                 <div className="row">
                     <div className="col-md-12">
                         <h1>Forgot password?</h1>
-                        <span className="subtext">Or register is a <a href="/sign-up-coach" className="info-text subtle-link">Coach</a> or an <a href="/sign-up" className="info-text subtle-link">Athlete</a></span>
+                        <span className="subtext">Or register as a <a href="/sign-up-coach" className="info-text subtle-link">Coach</a> or an <a href="/sign-up" className="info-text subtle-link">Athlete</a></span>
                     </div>
                 </div>
                 <div className="row">

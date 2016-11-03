@@ -85,15 +85,32 @@ body {
   padding-left: 25px;
 }
 
-@media all and (max-width: 480px)  {
+@media all and (max-width: 768px)  {
   body {
+    background: none;
+  }
+  body::after {
+    content: "";
     background: url(https://s3.amazonaws.com/quadfit/backgrounds-runner-mobile.jpg);
+    opacity: 0.1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
     background-size: cover;
     background-repeat: no-repeat;
   }
+
+  .form {
+    float: none !important;
+    margin: auto !important;
+    width: 100% !important;
+  }
 }
 
-@media (max-width: 979px) and (min-width: 481px) {
+@media (max-width: 1200px) and (min-width: 769px) {
   body {
     background: url(https://s3.amazonaws.com/quadfit/backgrounds-runner-tablet.jpg);
     background-size: cover;
