@@ -21,7 +21,7 @@ class Goal extends React.Component {
     }
 
     render () {
-        return <div className="goal">
+        return <div className="goal metal-bg">
 
             <div className="row">
                 <div className="container">

@@ -150,6 +150,13 @@ h1 {
   cursor: pointer;
 }
 
+.metal-bg {
+  height: 100vh;
+  background: url(https://s3.amazonaws.com/quadfit/Signup+Background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .navbar-default {
   background: none !important;
   border: none !important;

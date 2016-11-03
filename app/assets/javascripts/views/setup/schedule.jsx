@@ -151,7 +151,7 @@ class Schedule extends React.Component {
                 <div>{error}</div>
             );
         });
-        return <div className="schedule">
+        return <div className="schedule metal-bg">
             <div className="row">
                 <div className="container">
                     <div className="row">

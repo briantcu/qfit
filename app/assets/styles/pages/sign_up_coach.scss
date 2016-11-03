@@ -103,22 +103,32 @@ body {
   padding-left: 25px;
 }
 
-@media (max-width: 1000px) and (min-width: 481px) {
+@media all and (max-width: 768px)  {
   body {
-    background: url(https://s3.amazonaws.com/quadfit/backgrounds-coach.jpg);
+    background: none;
+  }
+  body::after {
+    content: "";
+    background: url(https://s3.amazonaws.com/quadfit/coaches-smalldevice.png);
+    opacity: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
     background-size: cover;
     background-repeat: no-repeat;
   }
-}
 
-@media all and (max-width: 1000px) {
   .form {
     float: none !important;
     margin: auto !important;
+    width: 100% !important;
   }
 }
 
-@media all and (max-width: 480px)  {
+@media (max-width: 1200px) and (min-width: 769px) {
   body {
     background: url(https://s3.amazonaws.com/quadfit/backgrounds-coach.jpg);
     background-size: cover;

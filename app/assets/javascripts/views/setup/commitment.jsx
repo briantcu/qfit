@@ -65,7 +65,7 @@ class Commitment extends React.Component {
     }
 
     render () {
-        return <div className="row commitment">
+        return <div className="row commitment metal-bg">
             <div className="container">
                 <div className="row">
                     <div className="col-xs-6 col-xs-offset-3 text-center">

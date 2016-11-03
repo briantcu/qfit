@@ -238,7 +238,7 @@ class App extends React.Component {
         );
 
         return <div>
-            <Header user={this.state.loggedInUser} />
+            <Header user={this.state.loggedInUser} hideAvatar={true}/>
             <Subnav elements={this.state.navElements} />
             {childrenWithProps}
         </div>

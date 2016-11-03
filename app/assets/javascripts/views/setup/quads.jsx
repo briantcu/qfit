@@ -46,7 +46,7 @@ class Quads extends React.Component {
     }
 
     render () {
-        return <div className="quads">
+        return <div className="quads metal-bg">
             <div className="row">
                 <div className="container">
                     <div className="row">

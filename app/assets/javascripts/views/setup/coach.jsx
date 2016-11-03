@@ -14,13 +14,13 @@ class Coach extends React.Component {
     }
 
     render () {
-        return <div className="coach">
+        return <div className="coach metal-bg">
 
             <div className="row">
                 <div className="container">
                     <div className="row title-row">
                         <div className="col-xs-12 text-center">
-                            <h1 className="purple">Let's Create a Workout Plan</h1>
+                            <h1>Let's Create a Workout Plan</h1>
                         </div>
                     </div>
                     <div className="row">
