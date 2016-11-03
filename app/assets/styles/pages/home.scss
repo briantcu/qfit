@@ -149,7 +149,7 @@
     color: $purple;
     font-size: 44px;
     line-height: 1.1;
-    padding-top: 100px;
+    padding-top: 75px;
     padding-bottom: 50px;
     margin: auto;
     max-width: 700px;
@@ -437,9 +437,14 @@
   }
 
   #six {
-    height: 600px;
+    height: 1200px;
+    background: #f4f4f4 url(https://s3.amazonaws.com/quadfit/image-quadpod.png) no-repeat 50% 600px;
     .title {
       padding-top: 50px;
+    }
+
+    .first {
+      padding-top: 0px;
     }
   }
 
@@ -487,7 +492,8 @@
     }
   }
   #six {
-    height: 60px;
+    height: 1200px;
+    background: #f4f4f4 url(https://s3.amazonaws.com/quadfit/image-quadpod.png) no-repeat 50% 700px;
   }
 
 }

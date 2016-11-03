@@ -127,7 +127,7 @@ Qfit::Application.routes.draw do
 
   get '/group_schedules/:id', to: 'group_schedules#show'
   post '/group_schedules', to: 'group_schedules#create'
-  put '/group_schedules', to: 'group_schedules#update'
+  put '/group_schedules/:id', to: 'group_schedules#update'
 
   get '/group_routines/:id', to: 'group_routines#show'
   get '/groups/:group_id/group_routines/year/:year/month/:month/day/:day', to: 'group_routines#routine_by_date'

@@ -77,7 +77,7 @@ class Header extends React.Component {
                                         <li className="user-menu-item"><a className="white-link" href="/">My Profile</a></li>
                                     </If>
                                     <li className="user-menu-item"><a className="white-link" href="/account">My Account</a></li>
-                                    <li className="user-menu-item" onClick={this.signOut}><a className="white-link" href="#">Sign Out</a></li>
+                                    <li className="user-menu-item" onClick={this.signOut}><a className="white-link" href="javascript:void(0);">Sign Out</a></li>
                                 </ul>
                             </div>
                         </div>

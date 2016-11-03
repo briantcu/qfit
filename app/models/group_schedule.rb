@@ -159,7 +159,8 @@ class GroupSchedule < ActiveRecord::Base
   def rollback_weights(count)
     if count > 0
       last_day = self.group.get_last_day_created(WEIGHTS)
-      1..count do
+      rollback = 0
+      count.times do
         if last_day == 1
           rollback = ProgramDaySequence.get_total_days(self.program_id)
         else
@@ -179,7 +180,8 @@ class GroupSchedule < ActiveRecord::Base
     if count > 0
       last_day = self.group.get_last_day_created(type)
 
-      1..count do
+      rollback = 0
+      count.times do
         if last_day == 1
           rollback = self.get_total_days_of_pillar(type)
         else

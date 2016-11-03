@@ -130,13 +130,13 @@ class Group < ActiveRecord::Base
   def get_last_day_created(type)
     case type
       when STRETCHING
-        self.last_warmup_day_created
+        self.last_wu_day_created
       when WEIGHTS
         self.last_weight_day_created
       when PLYOS
-        self.last_plyometric_day_created
+        self.last_pl_day_created
       when SPRINTING
-        self.last_sprint_day_created
+        self.last_sp_day_created
     end
   end
 
