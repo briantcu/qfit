@@ -11,7 +11,7 @@ Qfit::Application.routes.draw do
   get '/sign-up', to: 'sign_in_up#sign_up'
   get '/sign-up-coach', to: 'sign_in_up#sign_up_coach'
   get '/sign-in', to: 'sign_in_up#login'
-  get '/forgot', to: 'sign_in_up#forgot'
+  get '/i-dunno', to: 'sign_in_up#forgot'
   get '/more-info', to: 'sign_in_up#more_info'
 
   get '/setup/goal', to: 'workout_management#setup_goal'
