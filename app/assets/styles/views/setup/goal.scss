@@ -2,6 +2,40 @@
 
 .goal {
 
+  h1 {
+    margin-top: 70px;
+  }
+
+  .img-container {
+    height: 343px;
+    display: block;
+    float: left;
+    margin-top: 30px;
+    position: relative;
+    img {
+      bottom: 0;
+      position: absolute;
+      left: 0;
+    }
+
+    .first-img {
+      margin-left: -10px
+    }
+    .second-img {
+      margin-left: 85px;
+    }
+    .last-img {
+      margin-left: 30px;
+    }
+
+  }
+
+  .check-container {
+    float: left;
+    display: block;
+    width: 100%;
+  }
+
   .header-text {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -13,7 +47,41 @@
 
   .button-row {
     margin-top: 50px;
+    text-align: center;
   }
 
+  @media (min-width: 1200px) {
+    .first-img {
+      margin-left: 20px !important;
+    }
+    .second-img {
+      margin-left: 120px !important;
+    }
+    .last-img {
+      margin-left: 60px !important;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .img-container {
+      width: 320px;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    .img-container {
+      width: 250px;
+    }
+
+    .first-img {
+      margin-left: -45px !important;
+    }
+    .second-img {
+      margin-left: 50px !important;
+    }
+    .last-img {
+      margin-left: 0px !important;
+    }
+  }
 
 }

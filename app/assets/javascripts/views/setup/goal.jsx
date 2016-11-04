@@ -26,35 +26,38 @@ class Goal extends React.Component {
             <div className="row">
                 <div className="container">
                     <div className="row">
-                        <div className="col-xs-6 col-xs-offset-3 text-center">
-                            <h1 className="purple">What's Your Main Goal?</h1>
+                        <div className="col-xs-8 col-xs-offset-2 text-center">
+                            <h1>What's Your Main Goal?</h1>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-6 col-xs-offset-3 header-text text-center">
+                        <div className="col-xs-8 col-xs-offset-2 header-text text-center">
                             This will help us build your customized workout program.
                         </div>
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-4 text-center">
-                            <VCircleCheck checked={this.props.goal == C.MASS} id={C.MASS} ref={C.MASS}
-                                         label={'Add Muscle'} change={ this.change } />
+                        <div className="col-sm-4 col-xs-10 col-xs-offset-1 col-sm-offset-0 text-center">
+                            <div className="img-container hidden-xs"><img className="first-img" src="https://s3.amazonaws.com/quadfit/add+muscle.png" /></div>
+                            <div className="check-container"><VCircleCheck checked={this.props.goal == C.MASS} id={C.MASS} ref={C.MASS}
+                                         label={'Add Muscle'} change={ this.change } /></div>
                         </div>
 
-                        <div className="col-xs-4 text-center">
-                            <VCircleCheck checked={this.props.goal == C.RIP} id={C.RIP} ref={C.RIP}
-                                         label={'Moderate muscle gains, while lowering body fat percentage'}  change={ this.change }/>
+                        <div className="col-sm-4 col-xs-10 col-xs-offset-1 col-sm-offset-0 text-center">
+                            <div className="img-container hidden-xs"><img className="second-img" src="https://s3.amazonaws.com/quadfit/moderate+gains.png" /></div>
+                            <div className="check-container"><VCircleCheck checked={this.props.goal == C.RIP} id={C.RIP} ref={C.RIP}
+                                         label={'Moderate Muscle Gains, Reduce Fat'}  change={ this.change }/></div>
                         </div>
 
-                        <div className="col-xs-4 text-center">
-                            <VCircleCheck checked={this.props.goal == C.LEAN} id={C.LEAN} ref={C.LEAN}
-                                         label={'Lose Weight, Build Endurance'} change={ this.change } />
+                        <div className="col-sm-4 col-xs-10 col-xs-offset-1 col-sm-offset-0 text-center">
+                            <div className="img-container hidden-xs"><img className="last-img" src="https://s3.amazonaws.com/quadfit/loose+weight.png" /></div>
+                            <div className="check-container"><VCircleCheck checked={this.props.goal == C.LEAN} id={C.LEAN} ref={C.LEAN}
+                                         label={'Lose Weight, Build Endurance'} change={ this.change } /></div>
                         </div>
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-2 col-xs-offset-5 button-row">
+                        <div className="col-xs-6 col-xs-offset-3 button-row">
                             <Button ref="next" buttonText="Continue" onClick={ () => this.props.next('Goal') }
                                     disabled={false} />
                         </div>
