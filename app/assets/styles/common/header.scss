@@ -1,7 +1,8 @@
 @import "common";
 
 .header {
-  height: 100px;
+  flex: 0 1 100px;
+  //height: 100px;
   background-color: $dark-purple;
   border: solid 1px $dark-gray;
 

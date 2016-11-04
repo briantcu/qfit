@@ -237,7 +237,7 @@ class App extends React.Component {
             }))
         );
 
-        return <div>
+        return <div className="hundo-height">
             <Header user={this.state.loggedInUser} hideAvatar={true}/>
             <Subnav elements={this.state.navElements} />
             {childrenWithProps}

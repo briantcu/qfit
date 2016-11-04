@@ -46,12 +46,11 @@ class Quads extends React.Component {
     }
 
     render () {
-        return <div className="quads metal-bg">
-            <div className="row">
+        return <div className="row quads">
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-6 col-xs-offset-4">
-                            <h1 className="purple">Let's Get Started</h1>
+                            <h1>Let's Get Started</h1>
                         </div>
                     </div>
                     <div className="row">
@@ -99,7 +98,6 @@ class Quads extends React.Component {
                     </div>
                 </div>
             </div>
-        </div>
     }
 
 }

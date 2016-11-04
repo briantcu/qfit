@@ -2,6 +2,21 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
+  height: 100vh;
+}
+
+html {
+  height: 100%;
+}
+
+.hundo-height {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+#app {
+  height: 100%;
 }
 
 h1 {

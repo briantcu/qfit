@@ -2,7 +2,8 @@
 
 .subnav {
 
-  height: 52px;
+  //height: 52px;
+  flex: 0 1 52px;
   background-color: $gray1;
   border: solid 1px $gray2;
   font-size: 18px;
