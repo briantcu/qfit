@@ -1,0 +1,38 @@
+@import "../../common/common";
+
+.program {
+  h1 {
+    margin-top: 70px;
+  }
+
+  .back-link {
+    margin-top: 20px;
+  }
+
+  .purple-bot-container {
+    @include border-bottom;
+    min-height: 70px;
+    display: block;
+  }
+
+  .purple-top-container {
+    border-top: 1px solid #7953aa;
+    margin-top: 30px;
+  }
+
+  .button-row {
+    margin-top: 30px;
+  }
+
+  .label-text {
+    font-size: 14px !important;
+    line-height: 4.9 !important;
+  }
+
+  @media (max-width: 560px)  {
+    .full {
+      width: 100% !important;
+      margin-left: 0 !important;
+    }
+  }
+}

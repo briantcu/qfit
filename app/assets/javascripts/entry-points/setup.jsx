@@ -58,6 +58,9 @@ class App extends React.Component {
                 if (nextRoute.name == 'Program' && skipProgram) {
                     nextRoute = this.state.routes[index + 2];
                 }
+                if (nextRoute.name == 'Commitment' && !FitnessAssessmentStore.getData().quads.strength) {
+                    nextRoute = this.state.routes[index + 3]; //skip commitment/program if you're not doing strength
+                }
                 if (nextRoute.name == 'Schedule') {
                     this.fetchSuggestedSchedule();
                 }
