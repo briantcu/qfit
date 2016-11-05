@@ -155,43 +155,31 @@ class Schedule extends React.Component {
             <div className="row">
                 <div className="container">
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4 text-center title">
+                        <div className="col-xs-10 col-xs-offset-1 text-center title">
                             Weekly Planner
                         </div>
                     </div>
                     <If condition={this.props.quads.strength || this.state.weights}>
                         <div className="row details">
-                            <div className="col-xs-4 col-xs-offset-4 text-center">
+                            <div className="col-xs-10 col-xs-offset-1 text-center">
                                 <span className="question">Which days will you lift?</span><br/>
                                 <span className="context">The program you chose has {this.props.num_weights_days} lifting days.</span>
                             </div>
                         </div>
                         <div className="row days">
-                            <div className="col-xs-2 col-xs-offset-1">
+                            <div className="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-12 col-lg-offset-0  text-center">
                                 <SquareCheck ref="w0" checked={this.state.schedule.schedule_days[0].weights}
                                              id="w0" change={ this.changed } label="Sunday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="w1" checked={this.state.schedule.schedule_days[1].weights}
                                              id="w1" change={ this.changed } label="Monday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="w2" checked={this.state.schedule.schedule_days[2].weights}
                                              id="w2" change={ this.changed } label="Tuesday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="w3" checked={this.state.schedule.schedule_days[3].weights}
                                              id="w3" change={ this.changed } label="Wednesday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="w4" checked={this.state.schedule.schedule_days[4].weights}
                                              id="w4" change={ this.changed } label="Thursday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="w5" checked={this.state.schedule.schedule_days[5].weights}
                                              id="w5" change={ this.changed } label="Friday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="w6" checked={this.state.schedule.schedule_days[6].weights}
                                              id="w6" change={ this.changed } label="Saturday" />
                             </div>
@@ -199,37 +187,25 @@ class Schedule extends React.Component {
                     </If>
                     <If condition={this.props.quads.plyos || this.state.plyos}>
                         <div className="row details">
-                            <div className="col-xs-4 col-xs-offset-4 text-center">
+                            <div className="col-xs-10 col-xs-offset-1 text-center">
                                 <span className="question">Which days will you do plyometric exercises?</span><br/>
                                 <span className="context">To meet your goals, we recommend at least {this.props.num_plyos_days} plyometric days.</span>
                             </div>
                         </div>
                         <div className="row days">
-                            <div className="col-xs-2 col-xs-offset-1">
+                            <div className="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-12 col-lg-offset-0 text-center">
                                 <SquareCheck ref="p0" checked={this.state.schedule.schedule_days[0].plyometrics}
                                              id="p0" change={ this.changed } label="Sunday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="p1" checked={this.state.schedule.schedule_days[1].plyometrics}
                                              id="p1" change={ this.changed } label="Monday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="p2" checked={this.state.schedule.schedule_days[2].plyometrics}
                                              id="p2" change={ this.changed } label="Tuesday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="p3" checked={this.state.schedule.schedule_days[3].plyometrics}
                                              id="p3" change={ this.changed } label="Wednesday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="p4" checked={this.state.schedule.schedule_days[4].plyometrics}
                                              id="p4" change={ this.changed } label="Thursday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="p5" checked={this.state.schedule.schedule_days[5].plyometrics}
                                              id="p5" change={ this.changed } label="Friday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="p6" checked={this.state.schedule.schedule_days[6].plyometrics}
                                              id="p6" change={ this.changed } label="Saturday" />
                             </div>
@@ -237,37 +213,25 @@ class Schedule extends React.Component {
                     </If>
                     <If condition={this.props.quads.sprinting || this.state.sprinting}>
                         <div className="row details">
-                            <div className="col-xs-4 col-xs-offset-4 text-center">
+                            <div className="col-xs-10 col-xs-offset-1 text-center">
                                 <span className="question">Which days will you sprint?</span><br/>
                                 <span className="context">To meet your goals, we recommend at least {this.props.num_sprint_days} sprinting days.</span>
                             </div>
                         </div>
                         <div className="row days">
-                            <div className="col-xs-2 col-xs-offset-1">
+                            <div className="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-12 col-lg-offset-0 text-center">
                                 <SquareCheck ref="s0" checked={this.state.schedule.schedule_days[0].sprinting}
                                              id="s0" change={ this.changed } label="Sunday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="s1" checked={this.state.schedule.schedule_days[1].sprinting}
                                              id="s1" change={ this.changed } label="Monday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="s2" checked={this.state.schedule.schedule_days[2].sprinting}
                                              id="s2" change={ this.changed } label="Tuesday" />
-                            </div>
-                            <div className="col-xs-2">
                                 <SquareCheck ref="s3" checked={this.state.schedule.schedule_days[3].sprinting}
                                              id="s3" change={ this.changed } label="Wednesday" />
-                            </div>
-                            <div className="col-xs-2 ">
                                 <SquareCheck ref="s4" checked={this.state.schedule.schedule_days[4].sprinting}
                                              id="s4" change={ this.changed } label="Thursday" />
-                            </div>
-                            <div className="col-xs-2 ">
                                 <SquareCheck ref="s5" checked={this.state.schedule.schedule_days[5].sprinting}
                                              id="s5" change={ this.changed } label="Friday" />
-                            </div>
-                            <div className="col-xs-2 ">
                                 <SquareCheck ref="s6" checked={this.state.schedule.schedule_days[6].sprinting}
                                              id="s6" change={ this.changed } label="Saturday" />
                             </div>
@@ -275,19 +239,19 @@ class Schedule extends React.Component {
                     </If>
                     <If condition={this.state.errors.length > 0}>
                         <div className="row">
-                            <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
+                            <div className="col-xs-10 col-xs-offset-1 text-center buttonRow">
                                 {errors}
                             </div>
                         </div>
                     </If>
                     <div className="row">
-                        <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
+                        <div className="col-xs-10 col-xs-offset-1 text-center buttonRow">
                             <Button ref="next" buttonText="Continue" onClick={ this.submit }
                                     disabled={false} />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-2 col-xs-offset-5 back-link text-center">
+                        <div className="col-xs-6 col-xs-offset-3 back-link text-center">
                             <span onClick={ () => this.props.previousPage('SCHEDULE') } className="small-link">Back</span>
                         </div>
                     </div>

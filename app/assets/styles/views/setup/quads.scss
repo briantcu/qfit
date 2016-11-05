@@ -7,8 +7,8 @@ body {
 }
 
 .quads {
-  background: url(https://s3.amazonaws.com/quadfit/lifting.png) no-repeat left bottom;
-  //height: 100%;
+  background: url(https://s3.amazonaws.com/quadfit/lifting.png) no-repeat;
+  background-position: 10% 100%;
   flex: 1 1 auto;
 
   h1 {
@@ -44,8 +44,12 @@ body {
   }
 
   .back-link {
-    margin-top: 10px;
-    padding-left: 63px;
+    margin-top: 20px;
+  }
+
+  @media all and (max-width: 768px) {
+    background: none;
   }
 
 }
+

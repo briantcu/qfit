@@ -49,41 +49,41 @@ class Quads extends React.Component {
         return <div className="row quads">
                 <div className="container">
                     <div className="row">
-                        <div className="col-xs-6 col-xs-offset-4">
+                        <div className="col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-4 col-xs-10 col-xs-offset-1">
                             <h1>Let's Get Started</h1>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-6 col-xs-offset-4 header-text">
-                            Which of the Quads of the Quadfit program would you like to add to<br/> your program?
+                        <div className="col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-4 col-xs-10 col-xs-offset-1 header-text">
+                            Which of the Quads of the Quadfit program would you like to add to your program?
                             (Stretching will be added automatically)
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4 purple-bot-container purple-top-container">
+                        <div className="col-sm-6 col-sm-offset-4 col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-1 purple-bot-container purple-top-container">
                             <CircleCheck ref="strength" defaultChecked={this.props.quads.strength} id={'strength'}
                                          label={'Strength Training'} change={ this.change } />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4 purple-bot-container">
+                        <div className="col-sm-6 col-sm-offset-4 col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-1 purple-bot-container">
                             <CircleCheck ref="plyos" id={'plyos'} defaultChecked={this.props.quads.plyos} label={'Plyometrics'}
                                          change={ this.change } />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4 purple-bot-container">
+                        <div className="col-sm-6 col-sm-offset-4 col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-1 purple-bot-container">
                             <CircleCheck ref="sprinting" defaultChecked={this.props.quads.sprinting} id={'sprinting'} label={'Sprinting'}
                                          change={ this.change } />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4 purple-bot-container">
+                        <div className="col-sm-6 col-sm-offset-4 col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-1 purple-bot-container">
                             <CircleCheck id={'stretching'} label={'Stretching (Default)'} disabled={true} checked={true}/>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-4 col-xs-offset-4 continue-row">
+                        <div className="col-sm-6 col-sm-offset-4 col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-1 continue-row">
                             <If condition={this.state.valid == false}>
                                 <span>You must choose at least one Quad.</span>
                             </If>
@@ -92,7 +92,7 @@ class Quads extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-2 col-xs-offset-4 back-link">
+                        <div className="col-sm-6 col-sm-offset-4 col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-1 back-link">
                            <span onClick={ () => this.props.previousPage('QUADS') } className="small-link">Back</span>
                         </div>
                     </div>

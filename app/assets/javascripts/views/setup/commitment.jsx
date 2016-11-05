@@ -68,35 +68,33 @@ class Commitment extends React.Component {
         return <div className="row commitment metal-bg">
             <div className="container">
                 <div className="row">
-                    <div className="col-xs-6 col-xs-offset-3 text-center">
+                    <div className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 text-center">
                         <span className="question">How many days per week can you strength train?</span>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-xs-2 col-xs-offset-3 text-center">
+                    <div className="col-xs-12 text-center">
                         <SquareCheck ref="2" checked={this.state.frequency == 2} id="2" change={ this.frequencyChanged }
                                      label="2" />
-                    </div>
-                    <div className="col-xs-2 text-center">
                         <SquareCheck ref="3" checked={this.state.frequency == 3} id="3" change={ this.frequencyChanged }
                                      label="3"  />
-                    </div>
-                    <div className="col-xs-2 text-center">
                         <SquareCheck ref="4" checked={this.state.frequency == 4} id="4" change={ this.frequencyChanged }
                                      label="4" />
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-xs-6 col-xs-offset-3 text-center">
+                    <div className="col-xs-6 col-xs-offset-3 purple-border-bottom">
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 text-center">
                         <div className="question">How much time do you have for strength training?</div>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-xs-2 col-xs-offset-4 text-center">
+                    <div className="col-xs-12 text-center">
                         <SquareCheck ref="30" change={ this.timeChanged } checked={this.state.time == 30} id="30"
                                      label="30 minutes" />
-                    </div>
-                    <div className="col-xs-2 text-center">
                         <SquareCheck ref="45" change={ this.timeChanged } checked={this.state.time == 45} id="45"
                                      label="45 minutes" />
                     </div>

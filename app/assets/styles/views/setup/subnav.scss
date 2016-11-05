@@ -11,7 +11,17 @@
   letter-spacing: -0.4px;
   color: $light-gray;
   span {
-    margin-left: 50px;
+    &:not(:first-child) {
+      margin-left: 50px;
+    }
+  }
+
+  @media all and (max-width: 768px) {
+    span {
+      &:not(:first-child) {
+        margin-left: 20px;
+      }
+    }
   }
 
 }
