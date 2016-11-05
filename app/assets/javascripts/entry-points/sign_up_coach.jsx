@@ -142,7 +142,7 @@ class CoachSignUp extends React.Component {
         }
 
         var strength = this.refs.password.getStrength();
-        if (strength < 2) {
+        if (strength < 2 || !validator.isLength(this.refs.password.getValue(), {min: 8})) {
             this.setState({passwordErrors: ['Your password is too weak']});
             hasErrors = true;
         }

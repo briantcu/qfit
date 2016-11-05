@@ -95,10 +95,14 @@ class AthleteSignUp extends React.Component {
     }
 
     hasErrors () {
+        var username_regex = /^[a-zA-Z0-9-_]+$/;
         var hasErrors = false;
         var username = this.refs.username.getValue();
         if (!validator.isLength(username, {min: 5})) {
             this.setState({usernameErrors: ['Username must be at least 5 characters']});
+            hasErrors = true;
+        } else if (username.search(username_regex ) == -1) {
+            this.setState({usernameErrors: ['Only letters, numbers, dashes and underscores']});
             hasErrors = true;
         }
 

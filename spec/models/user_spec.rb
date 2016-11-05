@@ -125,4 +125,31 @@ RSpec.describe User, type: :model do
       expect(user.uid).to eq('1k3kkd')
     end
   end
+
+  context 'validation' do
+    it 'does not allow invalid usernames' do
+      user = User.new(user_name: 'thisismy&', email: 'test@test.com', password: 'pwdkflskdkf')
+      expect(user.valid?).to be false
+
+      user = User.new(user_name: 'thisismy*', email: 'test@test.com', password: 'pwdkflskdkf')
+      expect(user.valid?).to be false
+
+      user = User.new(user_name: 'thisi smy', email: 'test@test.com', password: 'pwdkflskdkf')
+      expect(user.valid?).to be false
+
+      user = User.new(user_name: 'thi.smy', email: 'test@test.com', password: 'pwdkflskdkf')
+      expect(user.valid?).to be false
+    end
+
+    it 'allows valid usernames' do
+      user = User.new(user_name: 'thisismy', email: 'test@test.com', password: 'pwdkflskdkf')
+      expect(user.valid?).to be true
+
+      user = User.new(user_name: 'thi889_sismy', email: 'test@test.com', password: 'pwdkflskdkf')
+      expect(user.valid?).to be true
+
+      user = User.new(user_name: 'thisi---__my', email: 'test@test.com', password: 'pwdkflskdkf')
+      expect(user.valid?).to be true
+    end
+  end
 end

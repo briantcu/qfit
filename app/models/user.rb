@@ -75,18 +75,19 @@
 
 class User < ActiveRecord::Base
 
-  mount_uploader :avatar, AvatarUploader
-
-  before_save :ensure_authentication_token
-
   STRETCHING = 4
   WEIGHTS = 1
   PLYOS = 2
   SPRINTING = 3
 
+  mount_uploader :avatar, AvatarUploader
+
+  before_save :ensure_authentication_token
+  before_save :downcase_fields
+
   after_commit :check_user_name
 
-  validates :user_name, uniqueness: true, allow_blank: true, allow_nil: true
+  validates :user_name, uniqueness: true, allow_blank: true, allow_nil: true, format: {with: /\A[\w\-]+\z/, message: 'Usernames can only have letters, numbers, dashes, and underscores.'}
   validates :email, presence: true, uniqueness: true
   validates_inclusion_of :sex, in: %w( male female ), :allow_blank => true
 
@@ -150,6 +151,10 @@ class User < ActiveRecord::Base
                                             .where('weight_sets.perf_reps > 0')
                                             .where('weight_sets.created_at > ?', date)
                                             .order('value DESC').limit(5)}
+  def downcase_fields
+    self.email.downcase!
+  end
+
   def self.active_coaches
     coaches = includes(:coach_account).where(level: [5,7], status: [1, 4])
     coaches = coaches.select { |coach| coach.eligible_for_workouts? }

@@ -36,7 +36,7 @@ var util = {
     getPasswordStrength: function (pwd) {
         var score   = 0;
 
-        if (pwd.length > 6) score++;
+        if (pwd.length > 7) score++;
 
         if ( ( pwd.match(/[a-z]/) ) && ( pwd.match(/[A-Z]/) ) ) score++;
 
