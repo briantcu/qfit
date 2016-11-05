@@ -23,11 +23,11 @@ class SquareCheck extends React.Component {
             <span className="square-check">
                 <If condition={!this.props.disabled}>
                     <input ref="check" type="checkbox" className="check"
-                           checked={this.props.checked} />
+                           defaultChecked={this.props.checked} />
                 </If>
                 <If condition={this.props.disabled}>
                     <input ref="check" type="checkbox" className="check"
-                           defaultChecked={this.props.checked} readOnly={true}/>
+                           checked={this.props.checked} readOnly={true}/>
                 </If>
                 <label htmlFor={`${this.props.id}`} />
                 <span className="label-text">{this.props.label}</span>

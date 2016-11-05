@@ -101,7 +101,7 @@ class Schedule extends React.Component {
 
         if (this.props.quads.plyos || this.state.plyos) {
             if (countPlyoDays < this.props.num_plyos_days) {
-                errors.push(`Please choose at least ${this.props.num_plyo_days} plyometric days`);
+                errors.push(`Please choose at least ${this.props.num_plyos_days} plyometric days`);
             }
         }
 
@@ -239,7 +239,7 @@ class Schedule extends React.Component {
                     </If>
                     <If condition={this.state.errors.length > 0}>
                         <div className="row">
-                            <div className="col-xs-10 col-xs-offset-1 text-center buttonRow">
+                            <div className="col-xs-10 col-xs-offset-1 text-center errors">
                                 {errors}
                             </div>
                         </div>
