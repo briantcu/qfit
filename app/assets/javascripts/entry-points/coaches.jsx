@@ -100,7 +100,7 @@ class Coaches extends React.Component {
     }
 
     render () {
-        return <div className="coaches">
+        return <div className="coaches hundo-height">
             <Header user={this.state.user} showWorkoutNav={true} active={'coach'} trueLinks={true}/>
             <If condition={this.state.showBanner} >
                 <div className="row banner-row">

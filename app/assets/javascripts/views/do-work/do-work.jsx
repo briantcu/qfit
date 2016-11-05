@@ -478,7 +478,7 @@ class DoWork extends React.Component {
             />
             <Modal show={this.props.showActionModal} >
                 <Modal.Header>
-                    <Modal.Title>Last Step! Send this workout to someone!</Modal.Title>
+                    <Modal.Title>Last Step - {(this.props.context == 'coach_sub') ? 'Send this workout to someone!' : 'Give this team a name!'}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <If condition={this.props.context == 'coach_sub'} >
