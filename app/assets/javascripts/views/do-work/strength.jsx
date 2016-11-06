@@ -91,7 +91,7 @@ class Strength extends React.Component {
             </div>
             <If condition={gon.viewing == 'user' || this.props.shared}>
                 <div className="col-xs-12 col-md-7 weight-sets-col">
-                    <div className="weight-set visible-xs">
+                    <div className="weight-set visible-xs recommended">
                         Recommended:<br/>
                         Completed:
                     </div>

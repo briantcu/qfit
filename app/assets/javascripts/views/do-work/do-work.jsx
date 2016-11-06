@@ -429,13 +429,13 @@ class DoWork extends React.Component {
                             </If>
                             <If condition={!this.props.shared} >
                             <div className="row last-row">
-                                <div className="col-xs-3">
+                                <div className="col-sm-3 col-xs-12">
                                     <If condition={this.props.routine.id && gon.viewing == 'user'} >
                                         <input ref="userWeight" type="text" className="user-weight" value={this.formatValue(this.props.routine.weight)} onChange={this.weightChanged}/>
                                         <span className="standard-text white ">Your Weight (lbs)</span>
                                     </If>
                                 </div>
-                                <div className="col-xs-6 col-xs-offset-3 text-right">
+                                <div className="col-xs-12 col-sm-6 col-sm-offset-3 text-right action-row">
                                         <span className="reset-link" onClick={() => this.reset()}>Reset Workout</span>
                                         <If condition={this.props.routine.id && gon.viewing == 'user'} >
                                             <Button ref="completeWorkout" buttonText="Complete Workout" onClick={ () => this.submit() }
@@ -462,10 +462,10 @@ class DoWork extends React.Component {
                                         />
                                     }.bind(this))
                                 }
-                                <div className="row comment-row">
-                                    <div className="col-xs-6 text-right">
+                                <div className="row comment-row text-right">
+                                    <div className="col-sm-6 col-xs-12">
                                         <If condition={gon.user_id} >
-                                        <textarea ref="commentBox" className="leave-comment" rows="10" cols="76"></textarea>
+                                        <textarea ref="commentBox" className="leave-comment" rows="10"></textarea>
                                         <Button ref="leaveComment" buttonText="Post" onClick={ () => this.leaveComment() }
                                                 disabled={false} />
                                         </If>

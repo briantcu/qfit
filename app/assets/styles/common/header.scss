@@ -129,7 +129,7 @@
 
 }
 
-@media (max-width: 780px) {
+@media (max-width: 768px) {
   .header {
     height: 160px;
     .links-wrapper {
@@ -140,6 +140,11 @@
         font-size: 16px;
       }
     }
+    .logo {
+      padding-left: 20px !important;
+      padding-top: 30px !important;
+    }
+
   }
   .nav {
     margin: 0px auto auto !important;
