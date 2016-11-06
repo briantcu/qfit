@@ -76,7 +76,7 @@
     }
 
     .title-row {
-      padding-left: 0px !important;
+      //padding-left: 0px !important;
     }
 
     .form-control {
@@ -123,6 +123,27 @@
       span {
         margin-right: 20px;
       }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .chart-area {
+      margin-bottom: 0px !important;
+      height: 480px !important;
+    }
+
+    .pr-header {
+      font-size: 36px !important;
+    }
+
+    .pr-sub {
+      padding-bottom: 10px !important;
+      min-height: 85px !important;
+    }
+
+    .xs-padding {
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 

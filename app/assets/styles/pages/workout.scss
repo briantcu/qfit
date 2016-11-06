@@ -397,6 +397,10 @@
   }
 
   @media (max-width: 768px) {
+    .cal-container {
+      overflow: hidden;
+    }
+
     .exercise-section {
       padding-top: 0 !important;
       padding-bottom: 0 !important;
@@ -428,6 +432,10 @@
 
     .comments {
       margin-bottom: 0px !important;
+      .feed-item {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
     }
 
     .leave-comment {

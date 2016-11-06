@@ -11,10 +11,10 @@ class Footer extends React.Component {
     render () {
 
         return <div className="row footer">
-                <div className="col-sm-5 col-xs-3 logo">
+                <div className="col-sm-5 col-xs-6 logo">
                     <img src="https://s3.amazonaws.com/quadfit/logo.png" />
                 </div>
-                <div className="col-sm-7 col-xs-9 text-right links">
+                <div className="col-sm-7 col-xs-6 text-right links">
                     <span>Made with grit in San Francisco</span>
                 </div>
             </div>;

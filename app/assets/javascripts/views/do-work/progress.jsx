@@ -259,7 +259,7 @@ class Progress extends React.Component {
         return <div className="progress-tab">
             <div className="row main">
                 <div className="container">
-                    <div className="row">
+                    <div className="row xs-padding">
                         <div className="col-xs-12 title-row">
                             <div className="pr-header text-left">
                                 Your Progress
@@ -288,17 +288,17 @@ class Progress extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row xs-padding">
                         <div className="col-xs-12 info-bar">
                            <div className="row">
-                               <div className="col-xs-10">
+                               <div className="col-xs-8 col-sm-10">
                                    {this.state.title}
                                </div>
-                               <div className="col-xs-1 text-center">
+                               <div className="col-xs-2 col-sm-1 text-center">
                                    <div>{this.state.max}</div>
                                    <div className="val-label">HIGHEST</div>
                                </div>
-                               <div className="col-xs-1 text-center">
+                               <div className="col-xs-2 col-sm-1 text-center">
                                    {this.state.min}
                                    <div className="val-label">LOWEST</div>
                                </div>
@@ -307,10 +307,10 @@ class Progress extends React.Component {
 
                         <div className="col-xs-12 chart-header">
                             <div className="row">
-                                <div className="col-xs-7 small-title">
+                                <div className="col-xs-12 col-sm-7 small-title">
                                     {this.state.title}
                                 </div>
-                                <div className="col-xs-5 text-right">
+                                <div className="col-xs-12 col-sm-5 text-right">
                                     <span onClick={() => this.periodChanged(this.periods.one_month) }
                                           className={(this.state.period ==  this.periods.one_month) ? 'selected-period' : 'period'}>Last 30 Days</span>
                                     <span onClick={() => this.periodChanged(this.periods.two_month) }

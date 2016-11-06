@@ -1,6 +1,6 @@
 require 'net/http'
 
-Plyometric.all.each do |p|
+Plyometric.all.order(created_at: :desc).each do |p|
   begin
     url = URI("https://api.vimeo.com/videos/" + p.video_link + "/pictures")
     request = Net::HTTP::Get.new(url.request_uri)
@@ -20,7 +20,7 @@ Plyometric.all.each do |p|
 
 end
 
-Exercise.all.each do |p|
+Exercise.all.order(created_at: :asc).each do |p|
   begin
     url = URI("https://api.vimeo.com/videos/" + p.video_link + "/pictures")
     request = Net::HTTP::Get.new(url.request_uri)
