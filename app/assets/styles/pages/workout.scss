@@ -137,10 +137,25 @@
 
 .do-work {
 
+  .third {
+    width: 25%;
+    display: inline-block;
+    float: left;
+    min-height: 1px;
+  }
+
+  .main-third {
+    width: 50%;
+    display: inline-block;
+    float: left;
+    min-height: 1px;
+  }
+
   .no-exercises{
     font-weight: bold;
     color: #9FA9BA;
     width: 100%;
+    display: inline-block;
   }
 
   .no-hover {
@@ -222,7 +237,8 @@
     color: $light-gray;
     padding-top: 12px;
     float: right;
-    margin-right: 20px;
+    text-align: right;
+    padding-right: 20px;
   }
 
   .vert-circle-check {
@@ -383,6 +399,10 @@
 
     .sec {
       margin-top: 0px !important;
+    }
+
+    .no-exercises {
+      padding-top: 20px;
     }
   }
 }

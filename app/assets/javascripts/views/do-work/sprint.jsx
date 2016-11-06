@@ -87,7 +87,7 @@ class Sprint extends React.Component {
                 </div>
                 {
                     this.props.exercise.sprint_details.map(function(e, index) {
-                        return <div className="row top-border exercise" key={this.props.exercise.id + '' + (index + 1)}>
+                        return <div className="row exercise" key={this.props.exercise.id + '' + (index + 1)}>
                                 <div className="col-xs-8">
                                     <span className="thumb">
                                         <img width="120" height="90" src="https://s3.amazonaws.com/quadfit/sprint-icon.png" />
@@ -95,7 +95,7 @@ class Sprint extends React.Component {
                                     <span className="ex-info">{e.detail}</span>
                                 </div>
                                 <If condition={gon.viewing == 'user' || this.props.shared}>
-                                <div className="col-xs-1 col-xs-offset-3 text-right">
+                                <div className="col-xs-2 col-xs-offset-1 text-right">
                                     <VertCircleCheck
                                         lapNum={index + 1}
                                         ref={this.props.exercise.laps[index].id}

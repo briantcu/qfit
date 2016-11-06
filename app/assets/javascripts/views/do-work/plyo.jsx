@@ -64,8 +64,10 @@ class Plyo extends React.Component {
 
     render() {
         return <div className='plyo exercise row' >
-            <div className="col-xs-5">
+            <div className="col-sm-3 col-md-2 col-xs-12 thumb-col">
                 <Thumbnail exercise={this.props.exercise.plyometric} click={this.showVideo} />
+            </div>
+            <div className="col-xs-12 col-sm-8 col-md-9 info-col">
                 <span className="ex-info">
                     <div className="ex-name">{this.props.exercise.plyometric.name}</div>
                     <div className="ex-subtext">Recommended: {this.props.exercise.plyometric.recommended}</div>
@@ -79,15 +81,15 @@ class Plyo extends React.Component {
                 </span>
             </div>
             <If condition={gon.viewing == 'user' || this.props.shared}>
-                <div className="col-xs-1 col-xs-offset-4">
+                <div className="col-xs-2 col-xs-offset-3 col-sm-1 col-sm-offset-0">
                     <VertCircleCheck ref={this.props.exercise.id + '1'} id={this.props.exercise.id + '1'} disabled={this.props.shared}
                                      setNum={1} checked={this.props.exercise.peformed_one} label={'Complete'} change={ this.change } />
                 </div>
-                <div className="col-xs-1">
+                <div className="col-xs-2 col-sm-1">
                     <VertCircleCheck ref={this.props.exercise.id + '2'} id={this.props.exercise.id + '2'} disabled={this.props.shared}
                                      setNum={2} checked={this.props.exercise.performed_two} label={'Complete'} change={ this.change } />
                 </div>
-                <div className="col-xs-1">
+                <div className="col-xs-2 col-sm-1">
                     <VertCircleCheck ref={this.props.exercise.id + '3'} id={this.props.exercise.id + '3'} disabled={this.props.shared}
                                      setNum={3} checked={this.props.exercise.performed_three} label={'Complete'} change={ this.change } />
                 </div>

@@ -72,8 +72,10 @@ class Strength extends React.Component {
 
     render() {
         return <div className='strength exercise row' >
-            <div className="col-xs-5">
+            <div className="col-xs-3 col-md-2 thumb-col">
                 <Thumbnail exercise={this.props.exercise.exercise} click={this.showVideo} />
+            </div>
+            <div className="col-xs-9 col-md-3 info-col">
                 <span className="ex-info">
                     <div className="type-name">{this.props.exercise.exercise_type.type_name}</div>
                     <div className="ex-name">{this.props.exercise.exercise.name}</div>
@@ -88,7 +90,11 @@ class Strength extends React.Component {
                 </span>
             </div>
             <If condition={gon.viewing == 'user' || this.props.shared}>
-                <div className="col-xs-7 weight-sets-col">
+                <div className="col-xs-12 col-md-7 weight-sets-col">
+                    <div className="weight-set visible-xs">
+                        Recommended:<br/>
+                        Completed:
+                    </div>
                     {
                         this.props.exercise.weight_sets.map(function(e, index) {
                             return <WeightSet weightSet={e} gray={index % 2 == 0} key={this.props.exercise.id + '' + (index + 1)}

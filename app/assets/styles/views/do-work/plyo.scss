@@ -2,4 +2,38 @@
 
 .plyo {
 
+  @media (max-width: 768px) {
+    border-bottom: solid 2px #e6e6e6;
+    padding-top: 20px;
+    padding-bottom: 20px !important;
+
+    .ex-info {
+      float: none !important;
+    }
+
+    .thumb-col {
+      text-align: center;
+      .thumb {
+        width: 320px;
+        height: 180px;
+        float: none;
+        margin: auto;
+        img {
+          width: 320px;
+          height: 180px;
+        }
+      }
+    }
+
+    .input-col {
+      text-align: center;
+
+    }
+
+    .info-col {
+      text-align: center;
+
+    }
+  }
+
 }

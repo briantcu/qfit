@@ -18,8 +18,9 @@
   }
 
   .weight-set {
-    display: inline-block;
+    display: inline-block !important;
     width: 20%;
+    min-width: 150px;
     font-size: 12px;
     color: $dark-purple;
     padding: 5px;
@@ -69,4 +70,20 @@
     }
   }
 
+  @media (max-width: 768px) {
+    border-bottom: solid 2px #e6e6e6;
+    padding-top: 20px;
+    padding-bottom: 20px !important;
+  }
+
+  @media (max-width: 620px) {
+    .thumb-col {
+      width: 33% !important;
+    }
+
+    .info-col {
+      width: 66% !important;
+    }
+
+  }
 }

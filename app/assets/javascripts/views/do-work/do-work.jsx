@@ -236,9 +236,11 @@ class DoWork extends React.Component {
                                 </div>
                             </If>
                             <div className="row">
-                                <div className="col-xs-12 sec-header">Preparation
+                                <div className="col-xs-12 sec-header">
+                                    <span className="third visible-xs" />
+                                    <span className="main-third">Preparation</span>
                                     <If condition={!this.props.shared} >
-                                        <span className="add-ex" onClick={ () => this.showAddEx('warmups')}>Add Exercise</span>
+                                        <span className="add-ex third" onClick={ () => this.showAddEx('warmups')}>Add Exercise</span>
                                     </If>
                                 </div>
                             </div>
@@ -279,11 +281,13 @@ class DoWork extends React.Component {
                             </div>
                         </div>
 
-                        <div className="strength sec container">
+                        <div className="strength-sec sec container">
                             <div className="row">
-                                <div className="col-xs-12 sec-header">Strength Training
+                                <div className="col-xs-12 sec-header">
+                                    <span className="third visible-xs" />
+                                    <span className="main-third visible-xs">Strength Training</span>
                                     <If condition={!this.props.shared} >
-                                        <span className="add-ex" onClick={ () => this.showAddEx('weights')}>Add Exercise</span>
+                                        <span className="add-ex third" onClick={ () => this.showAddEx('weights')}>Add Exercise</span>
                                     </If>
                                 </div>
                             </div>
@@ -326,9 +330,11 @@ class DoWork extends React.Component {
 
                         <div className="plyos sec container">
                             <div className="row">
-                                <div className="col-xs-12 sec-header">Plyometrics
+                                <div className="col-xs-12 sec-header">
+                                    <span className="third visible-xs" />
+                                    <span className="main-third visible-xs">Plyometrics</span>
                                     <If condition={!this.props.shared} >
-                                        <span className="add-ex" onClick={ () => this.showAddEx('plyos')}>Add Exercise</span>
+                                        <span className="add-ex third" onClick={ () => this.showAddEx('plyos')}>Add Exercise</span>
                                     </If>
                                 </div>
                             </div>
@@ -371,9 +377,11 @@ class DoWork extends React.Component {
 
                         <div className="sprinting sec container">
                             <div className="row">
-                                <div className="col-xs-12 sec-header">Sprinting
+                                <div className="col-xs-12 sec-header">
+                                    <span className="third visible-xs" />
+                                    <span className="main-third visible-xs">Sprinting</span>
                                     <If condition={!this.props.shared} >
-                                        <span className="add-ex" onClick={ () => this.showAddEx('sprinting')}>Add Exercise</span>
+                                        <span className="add-ex third" onClick={ () => this.showAddEx('sprinting')}>Add Exercise</span>
                                     </If>
                                 </div>
                             </div>
