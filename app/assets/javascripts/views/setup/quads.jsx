@@ -79,7 +79,7 @@ class Quads extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-sm-6 col-sm-offset-4 col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-1 purple-bot-container">
-                            <CircleCheck id={'stretching'} label={'Stretching (Default)'} disabled={true} checked={true}/>
+                            <CircleCheck id={'stretching'} label={'Preparation (Automatic)'} disabled={true} checked={true}/>
                         </div>
                     </div>
                     <div className="row">

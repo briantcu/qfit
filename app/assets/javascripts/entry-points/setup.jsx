@@ -228,6 +228,7 @@ class App extends React.Component {
         if (FitnessAssessmentStore.getData().quads.strength) {
             browserHistory.push('/commitment');
         } else {
+            this.fetchSuggestedSchedule();
             browserHistory.push('/schedule');
         }
     }

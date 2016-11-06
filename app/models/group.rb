@@ -25,6 +25,8 @@ class Group < ActiveRecord::Base
   PLYOS = 2
   SPRINTING = 3
 
+  validates_length_of :name, maximum: 80
+
   belongs_to :coach, class_name: 'User', foreign_key: :coach_user_id
   has_many :group_joins, dependent: :destroy
   has_many :members, class_name: 'User', through: :group_joins

@@ -29,6 +29,10 @@ class Fitness extends React.Component {
         if (nextProps.userWeight) {
             this.setState({userWeightNextDisabled: false});
         }
+
+        if (nextProps.assistedPushups) {
+            this.setState({assistedNextDisabled: false});
+        }
     }
 
     changeStep(step) {
@@ -56,8 +60,9 @@ class Fitness extends React.Component {
     }
 
     userWeightChanged() {
+        var user_weight = this.refs.userWeight.getValue();
         this.setState({
-            userWeightNextDisabled: this.refs.userWeight.getValue().length <= 1
+            userWeightNextDisabled: (user_weight.length <= 1 || isNaN(user_weight))
         });
     }
     userWeightSubmitted() {
@@ -67,7 +72,7 @@ class Fitness extends React.Component {
 
     benchChanged() {
         this.setState({
-            benchNextDisabled: (this.refs.benchWeight.getValue().length == 0) || (this.refs.benchReps.getValue().length == 0)
+            benchNextDisabled: (this.refs.benchWeight.getValue().length == 0) || (this.refs.benchReps.getValue().length == 0) || isNaN(this.refs.benchWeight.getValue()) || isNaN(this.refs.benchReps.getValue())
         });
     }
     benchSubmitted() {
@@ -83,7 +88,7 @@ class Fitness extends React.Component {
 
     squatChanged() {
         this.setState({
-            squatNextDisabled: (this.refs.squatWeight.getValue().length == 0) || (this.refs.squatReps.getValue().length == 0)
+            squatNextDisabled: (this.refs.squatWeight.getValue().length == 0) || (this.refs.squatReps.getValue().length == 0) || isNaN(this.refs.squatWeight.getValue()) || isNaN(this.refs.squatReps.getValue())
         });
     }
     squatSubmitted() {
@@ -106,7 +111,7 @@ class Fitness extends React.Component {
 
     assistedChanged() {
         this.setState({
-            assistedNextDisabled: this.refs.assisted.getValue().length == 0
+            assistedNextDisabled: (this.refs.assisted.getValue().length == 0 || isNaN(this.refs.assisted.getValue()))
         });
     }
     assistedSubmitted() {
@@ -241,7 +246,7 @@ class Fitness extends React.Component {
                 <If condition={this.state.step == 4}>
                     <div className="row">
                         <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 text-center">
-                            <div className="question">How many assisted push ups can you do? <span onClick={ () => this.showVideo() } className="small-link">See it</span></div>
+                            <div className="question">How many assisted push ups<br/> can you do? <span onClick={ () => this.showVideo() } className="small-link">See it</span></div>
                             <div className="input-wrapper">
                                 <SimpleInput ref="assisted" onChange={ () => this.assistedChanged() } label="" value={this.props.assistedPushups} />
                             </div>

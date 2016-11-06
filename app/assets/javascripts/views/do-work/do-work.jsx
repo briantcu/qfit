@@ -236,7 +236,7 @@ class DoWork extends React.Component {
                                 </div>
                             </If>
                             <div className="row">
-                                <div className="col-xs-12 sec-header">Stretching/Warmup
+                                <div className="col-xs-12 sec-header">Preparation
                                     <If condition={!this.props.shared} >
                                         <span className="add-ex" onClick={ () => this.showAddEx('warmups')}>Add Exercise</span>
                                     </If>

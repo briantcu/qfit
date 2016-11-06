@@ -90,6 +90,10 @@ class User < ActiveRecord::Base
   validates :user_name, uniqueness: true, allow_blank: true, allow_nil: true, format: {with: /\A[\w\-]+\z/, message: 'Usernames can only have letters, numbers, dashes, and underscores.'}
   validates :email, presence: true, uniqueness: true
   validates_inclusion_of :sex, in: %w( male female ), :allow_blank => true
+  validates_length_of :first_name, maximum: 50
+  validates_length_of :last_name, maximum: 50
+  validates_length_of :email, maximum: 50
+  validates_length_of :user_name, maximum: 30
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 

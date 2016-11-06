@@ -2,6 +2,48 @@
 
 .stretch {
 
+  @media (max-width: 768px) {
+    border-bottom: solid 2px #e6e6e6;
+    padding-top: 20px;
+    padding-bottom: 20px !important;
 
+    .ex-info {
+      float: none !important;
+    }
+
+    .vert-circle-check {
+      float: none !important;
+      label {
+        left: 0 !important;
+      }
+      .label-text {
+        margin-left: -5px !important;
+      }
+    }
+
+    .thumb-col {
+      text-align: center;
+      .thumb {
+        width: 320px;
+        height: 180px;
+        float: none;
+        margin: auto;
+        img {
+          width: 320px;
+          height: 180px;
+        }
+      }
+    }
+
+    .input-col {
+      text-align: center;
+
+    }
+
+    .info-col {
+      text-align: center;
+
+    }
+  }
 
 }

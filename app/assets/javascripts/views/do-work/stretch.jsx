@@ -87,8 +87,10 @@ class Stretch extends React.Component {
 
     render() {
         return <div className='stretch exercise row'>
-            <div className="col-xs-7">
+            <div className="col-sm-3 col-md-2 col-xs-12 thumb-col">
                 <Thumbnail exercise={this.props.exercise.warmup} click={this.showVideo}/>
+            </div>
+            <div className="col-xs-12 col-sm-8 col-md-9 info-col">
                 <span className="ex-info">
                     <div className="ex-name">{this.props.exercise.warmup.name}</div>
                     <div className="ex-subtext">
@@ -105,7 +107,7 @@ class Stretch extends React.Component {
                 </span>
             </div>
             <If condition={gon.viewing == 'user' || this.props.shared}>
-                <div className="col-sm-1 col-sm-offset-4 col-xs-2 col-xs-offset-3">
+                <div className="col-sm-1 col-xs-12 input-col">
                     <VertCircleCheck ref="complete" id={'stretch' + this.props.exercise.id} disabled={this.props.shared}
                                  checked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
                 </div>

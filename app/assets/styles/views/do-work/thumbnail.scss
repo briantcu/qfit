@@ -3,6 +3,11 @@
 .thumb {
   float: left;
   display: inline-block;
-  width: 135px;
+  width: 160px;
+  height: 90px;
   cursor: pointer;
+  img {
+    width: 160px;
+    height: 90px;
+  }
 }
