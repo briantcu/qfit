@@ -13,7 +13,7 @@ var SignUpStore = new Store({
             this.signUpStatus.status = C.SUCCESS;
         } else {
             this.signUpStatus.status = C.FAILURE;
-            this.signUpStatus.errors = params;
+            this.signUpStatus.errors = params.errors;
         }
     },
 

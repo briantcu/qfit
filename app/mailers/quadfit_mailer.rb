@@ -3,7 +3,7 @@ class QuadfitMailer < ApplicationMailer
 
   def send_new_user_email(user)
     @user = user
-    mail(to: @user.email, subject: "Welcome to Quadfit!")
+    mail(to: @user.email, subject: "Welcome to Quadfit", from: "\"Brian from Quadfit\" <bri@quadfit.com>")
   end
 
   def notify_coach_sub_signed_up(coach, user)
@@ -14,12 +14,12 @@ class QuadfitMailer < ApplicationMailer
 
   def send_new_sub_user_email_from_self_sign_up(user)
     @user = user
-    mail(to: @user.email, subject: "Welcome to Quadfit!")
+    mail(to: @user.email, subject: "Welcome to Quadfit", from: "\"Brian from Quadfit\" <bri@quadfit.com>")
   end
 
   def send_new_coach_email(user)
     @user = user
-    mail(to: @user.email, subject: "Welcome to Quadfit!")
+    mail(to: @user.email, subject: "Welcome to Quadfit", from: "\"Brian from Quadfit\" <bri@quadfit.com>")
   end
 
   def coach_deleted_you(email)

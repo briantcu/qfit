@@ -19,6 +19,7 @@ class AthleteSignUp extends React.Component {
             lastNameErrors: [],
             emailErrors: [],
             passwordErrors: [],
+            formSubmitted: false,
             signUpCode: gon.sign_up_code
         };
         this.evalFirstName = this.evalFirstName.bind(this);
@@ -56,19 +57,18 @@ class AthleteSignUp extends React.Component {
         }
 
         this.setState({
-            signUpStatus: data.signUpStatus
+            signUpStatus: data.signUpStatus,
+            formSubmitted: false
         });
-
-        this.state.formSubmitted = false;
     }
 
     submit () {
         if (!this.state.formSubmitted) {
-            this.state.formSubmitted = true;
+            this.setState({formSubmitted: true});
             if (!this.hasErrors()) {
                 SignUpActions.signUp(this.packageData());
             } else {
-                this.state.formSubmitted = false;
+                this.setState({formSubmitted: false});
             }
         }
     }
@@ -243,7 +243,13 @@ class AthleteSignUp extends React.Component {
                             <If condition={this.state.signUpStatus.status == C.FAILURE}>
                                 <div className="sign-up-error">{this.state.signUpStatus.errors.join(', ')}</div>
                             </If>
-                            <span onClick={ () => this.submit()} className="submit-button purple-text">Sign Up</span>
+                        </div>
+                    </div>
+                    <div className="row submit-row">
+                        <div className="col-md-12">
+                            <span onClick={ () => this.submit()} className={this.state.formSubmitted ? "submitting submit-button purple-text" : "submit-button purple-text" }>
+                                {this.state.formSubmitted ? "..." : "Sign Up" }
+                            </span>
                             <a href="/sign-in" className="help-text bold-link">Have an account? Login here.</a>
                         </div>
                     </div>

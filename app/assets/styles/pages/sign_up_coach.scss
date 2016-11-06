@@ -8,6 +8,11 @@
     margin-bottom: 10px;
   }
 
+  .submitting {
+    border: solid 3px rgba(121, 83, 170, 0.5) !important;
+    color: rgba(121, 83, 170, 0.5) !important;
+  }
+
   .buffer {
     height: 80px;
     padding-top: 30px;

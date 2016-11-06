@@ -55,10 +55,9 @@ class CoachSignUp extends React.Component {
         }
 
         this.setState({
-            signUpStatus: data.signUpStatus
+            signUpStatus: data.signUpStatus,
+            formSubmitted: false
         });
-
-        this.state.formSubmitted = false;
     }
 
     submit () {
@@ -221,7 +220,9 @@ class CoachSignUp extends React.Component {
                         <If condition={this.state.signUpStatus.status == C.FAILURE}>
                             <div className="sign-up-error">{this.state.signUpStatus.errors.join(', ')}</div>
                         </If>
-                        <span onClick={ () => this.submit()} className="submit-button purple-text">Sign Up</span>
+                        <span onClick={ () => this.submit()} className={this.state.formSubmitted ? "submitting submit-button purple-text" : "submit-button purple-text" }>
+                            {this.state.formSubmitted ? "..." : "Sign Up" }
+                        </span>
                         <a href="/sign-in" className="help-text bold-link">Have an account? Login here.</a>
                     </div>
                 </div>

@@ -1,2 +1,14 @@
-<div>body</div>
-Hit me up at b@quadfit.com
+Hey <%= @user.first_name %>,
+<br/><br/>
+My name is Brian, and I created Quadfit. Thank you for signing up and giving us a shot! Our mission is to make sure
+that you reach your fitness goals, so I wanted to let you know that I'll happily respond to any questions you have.
+Shoot me an email and I'll respond within 24 hours.<br/>
+<br/>
+I've also been automatically added to your <a href="https://<%= Qfit::Application.config.action_mailer.default_url_options[:host] %>/quad-pod">Quad Pod</a> so that you can see how Quad Pods work.
+Once you invite some friends to join your Quad Pod, you'll see that it's a great way to share workout results and compete against your friends.
+Feel free to reach out to me there too.<br/>
+<br/>
+We hope you enjoy using Quadfit. We LOVE feedback, positive or negative, so don't hesitate to reach out.
+<br/><br/>
+Thanks!<br/>
+Brian

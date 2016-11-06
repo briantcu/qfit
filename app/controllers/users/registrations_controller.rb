@@ -4,16 +4,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   skip_before_filter :require_no_authentication
 
   def create
+    user = User.where(email: params[:user][:email]).first
+    if user.present?
+      render status: 422, json: { :errors => ['That email has already been taken']} and return
+    end
+
     sign_up_code_record = nil
     sign_up_code = try_sign_up_code
     if sign_up_code.present?
       sign_up_code_record = SignUpCode.where(code: sign_up_code, used: false).first
       if sign_up_code_record.nil?
-        render status: 470, json: { :errors => 'Invalid sign up code'} and return
+        render status: 470, json: { :errors => ['That sign up code is invalid']} and return
       else
         if sign_up_code_record.user.coach_account.is_maxed_out?
           EmailService.perform_async(:coach_maxed, {user_id: sign_up_code_record.user.id})
-          render status: 471, json: { :errors => 'Uh oh! Your coach has already used all of their accounts.'} and return
+          render status: 471, json: { :errors => ['Uh oh! Your coach has already used all of their accounts.']} and return
         end
       end
     end
@@ -30,7 +35,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     rescue Exception => e
       Rollbar.error(e)
       warden.custom_failure!
-      render json: @user.errors.full_messages.uniq, status: 422
+      render json: {errors: @user.errors.full_messages.uniq}, status: 422
     end
   end
 

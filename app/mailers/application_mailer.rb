@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "web@quadfit.com"
+  default from: "\"Quadfit\" <web@quadfit.com>"
   layout 'mailer'
 end
