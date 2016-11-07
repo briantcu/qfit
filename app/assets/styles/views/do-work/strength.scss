@@ -2,6 +2,26 @@
 
 .strength {
 
+  .sets-wrapper {
+    float: right;
+    margin: 0;
+  }
+
+  .vert-circle-check {
+    float: none !important;
+    left: 0 !important;
+    label {
+      left: 0 !important;
+    }
+    .label-text {
+      margin-left: -5px !important;
+    }
+  }
+
+  .ex-info {
+    padding-top: 5px !important;
+  }
+
   .gray {
     background-color: $gray4;
   }
@@ -24,15 +44,14 @@
   }
 
   .weight-set {
-    display: inline-block !important;
-    width: 20%;
-    min-width: 150px;
+    display: inline-block;
+    width: 150px;
     font-size: 12px;
     color: $dark-purple;
     padding: 5px;
     min-height: 80px;
-    margin-top: 10px;
     padding-top: 10px;
+    float: left;
     input {
       width: 45%;
       font-size: 12px;
@@ -57,7 +76,7 @@
     .double {
       width: 100%;
       display: inline-block;
-      margin-bottom: 10px;
+      text-align: center;
       .vert-circle-check {
         float: right;
         left: -20px;
@@ -73,6 +92,13 @@
     }
     label {
       color: #d62020;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .sets-wrapper {
+      margin-bottom: 20px;
+      margin-top: 20px;
     }
   }
 
@@ -100,5 +126,11 @@
       width: 66% !important;
     }
 
+  }
+
+  @media (max-width: 768px) {
+    .sets-wrapper {
+      margin-bottom: 0px;
+    }
   }
 }

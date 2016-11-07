@@ -33,10 +33,11 @@ h1 {
 }
 
 .modal-header {
-  border-bottom: solid 2px #7953aa !important;
+  border-bottom: none !important;
+  text-align: center;
   h4 {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: normal;
     letter-spacing: -0.8px;
     color: $purple;
   }
@@ -171,6 +172,7 @@ h1 {
   background: url(https://s3.amazonaws.com/quadfit/Signup+Background.png);
   background-size: cover;
   background-repeat: no-repeat;
+  padding-bottom: 30px;
 }
 
 .navbar-default {

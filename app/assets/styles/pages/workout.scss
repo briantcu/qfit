@@ -235,8 +235,10 @@
     border: solid 1px #d8d8d8;
     margin-bottom: 10px;
     margin-top: 20px;
-    width: 600px;
+    min-width: 600px;
+    width: 100%;
     display: block;
+    height: 100px;
   }
 
   .comment-row {
@@ -375,7 +377,7 @@
   .ex-info {
     float: left;
     display: inline-block;
-    padding-top: 15px;
+    padding-top: 10px;
     .link {
       cursor: pointer;
     }
@@ -396,7 +398,14 @@
     color: $light-gray;
   }
 
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .ex-info {
+      margin-left: 20px !important;
+    }
+  }
+
   @media (max-width: 768px) {
+
     .cal-container {
       overflow: hidden;
     }

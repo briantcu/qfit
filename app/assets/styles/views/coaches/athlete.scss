@@ -26,4 +26,11 @@
     margin-right: 10px;
   }
 
+  @media (max-width: 768px) {
+    height: 110px !important;
+    .last {
+      padding-top: 20px !important;
+    }
+  }
+
 }

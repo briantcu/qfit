@@ -116,11 +116,13 @@ class Coaches extends React.Component {
             </If>
             <div className="row main">
                 <div className="container">
-                    <div className='row'>
-                        <h1>Coaches' Corner</h1>
-
+                    <div className='row xs-padding'>
+                        <div className="col-xs-12">
+                            <h1>Coaches' Corner</h1>
+                        </div>
                     </div>
-                    <div className='row standard-text purple'>
+                    <div className='row standard-text purple xs-padding'>
+                        <div className="col-xs-12">
                         Create Teams and add Athletes, and we'll handle the workouts.<br/>
                         You have a maximum of {this.state.coach_account.num_accts} athlete accounts.
                         You can upgrade/downgrade your account <a className="norm-link" href="/account">HERE</a>. <br />
@@ -133,14 +135,15 @@ class Coaches extends React.Component {
                             You have exceeded your athlete account limit. Workouts will no longer be created for your athletes until you
                             <a className="norm-link" href="/account">upgrade your account</a>, or delete some existing athlete accounts.
                         </If>
+                        </div>
                     </div>
                     <div className='row'>
                         <div className="container sec first-sec">
                             <div className="row head">
-                                <div className="col-xs-2 sec-header">
+                                <div className="col-sm-2 col-xs-6 sec-header">
                                     Teams
                                 </div>
-                                <div className="col-xs-3 col-xs-offset-7 action">
+                                <div className="col-sm-3 col-xs-6 col-sm-offset-7 action">
                                     <span className="hover" onClick={this.createTeam}>Add a New Team</span>
                                 </div>
                             </div>
@@ -159,11 +162,11 @@ class Coaches extends React.Component {
                     <div className='row'>
                         <div className="container sec">
                             <div className="row head">
-                                <div className="col-xs-2 sec-header">
+                                <div className="col-sm-2 col-xs-6 sec-header">
                                     Athletes
                                 </div>
                                 <If condition={this.state.coach_account.can_send_codes} >
-                                    <div className="col-xs-3 col-xs-offset-7 action">
+                                    <div className="col-sm-3 col-xs-6 col-sm-offset-7 action">
                                         <span className="hover" onClick={this.addUser}>Add a New Athlete Account</span>
                                     </div>
                                 </If>
@@ -190,8 +193,8 @@ class Coaches extends React.Component {
                             <div className="row main">
                                 <div className="container">
                                     {
-                                        this.state.coach_account.sign_up_codes.map(function(e) {
-                                            return <div className="row sign-up-code">
+                                        this.state.coach_account.sign_up_codes.map(function(e, i) {
+                                            return <div className="row sign-up-code" key={i}>
                                                     <div className="col-xs-4">
                                                         Sent to <span className="purple">{e.sent_to}</span> on {Util.formatDate(e.created_at)}
                                                     </div>

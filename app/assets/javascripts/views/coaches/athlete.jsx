@@ -25,10 +25,10 @@ class Athlete extends React.Component {
 
     render () {
         return <div className="athlete row">
-            <div className={(!this.props.onTeam) ? "col-xs-4 first" : "col-xs-3 col-xs-offset-1 first"}>
+            <div className={(!this.props.onTeam) ? "col-sm-3 col-xs-12 first" : "col-sm-3 col-xs-12 first"}>
                 {this.props.athlete.first_name} {this.props.athlete.last_name}
             </div>
-            <div className="col-xs-8 text-right last">
+            <div className="col-sm-9 col-xs-12 text-right last">
                 <select className="form-control" defaultValue={this.props.team_id} onChange={this.changeTeam}>
                     <option value='0'>No Team</option>
                     {

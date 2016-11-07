@@ -91,7 +91,8 @@ class Strength extends React.Component {
             </div>
             <If condition={gon.viewing == 'user' || this.props.shared}>
                 <div className="col-xs-12 col-md-7 weight-sets-col">
-                    <div className="weight-set visible-xs recommended">
+                    <div className="sets-wrapper">
+                    <div className="weight-set visible-xs hidden-sm hidden-md hidden-lg recommended">
                         Recommended:<br/>
                         Completed:
                     </div>
@@ -101,6 +102,7 @@ class Strength extends React.Component {
                                               setNum={index + 1} exercise={this.props.exercise.exercise} disabled={this.props.shared} />;
                         }.bind(this))
                     }
+                    </div>
                 </div>
             </If>
             <TipsModal show={this.state.showTips} tips={this.props.exercise.exercise.tips} close={this.close} />

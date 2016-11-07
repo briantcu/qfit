@@ -285,7 +285,7 @@ class DoWork extends React.Component {
                             <div className="row">
                                 <div className="col-xs-12 sec-header">
                                     <span className="third visible-xs" />
-                                    <span className="main-third visible-xs">Strength Training</span>
+                                    <span className="main-third">Strength Training</span>
                                     <If condition={!this.props.shared} >
                                         <span className="add-ex third" onClick={ () => this.showAddEx('weights')}>Add Exercise</span>
                                     </If>
@@ -332,7 +332,7 @@ class DoWork extends React.Component {
                             <div className="row">
                                 <div className="col-xs-12 sec-header">
                                     <span className="third visible-xs" />
-                                    <span className="main-third visible-xs">Plyometrics</span>
+                                    <span className="main-third">Plyometrics</span>
                                     <If condition={!this.props.shared} >
                                         <span className="add-ex third" onClick={ () => this.showAddEx('plyos')}>Add Exercise</span>
                                     </If>
@@ -379,7 +379,7 @@ class DoWork extends React.Component {
                             <div className="row">
                                 <div className="col-xs-12 sec-header">
                                     <span className="third visible-xs" />
-                                    <span className="main-third visible-xs">Sprinting</span>
+                                    <span className="main-third">Sprinting</span>
                                     <If condition={!this.props.shared} >
                                         <span className="add-ex third" onClick={ () => this.showAddEx('sprinting')}>Add Exercise</span>
                                     </If>
@@ -413,7 +413,7 @@ class DoWork extends React.Component {
                                             <div className="col-xs-12 text-center">
                                                 <If condition={!this.props.shared} >
                                                     <span className="no-exercises">Quadfit hasn't scheduled any Sprinting for you.
-                                                        You can <span className="norm-link" onClick={ () => this.showAddEx('plyos')}>add some</span> if you want!</span>
+                                                        You can <span className="norm-link" onClick={ () => this.showAddEx('sprinting')}>add some</span> if you want!</span>
                                                 </If>
                                             </div>
                                         </div>
@@ -463,7 +463,7 @@ class DoWork extends React.Component {
                                     }.bind(this))
                                 }
                                 <div className="row comment-row text-right">
-                                    <div className="col-sm-6 col-xs-12">
+                                    <div className="col-sm-12 col-md-8 col-xs-12">
                                         <If condition={gon.user_id} >
                                         <textarea ref="commentBox" className="leave-comment" rows="10"></textarea>
                                         <Button ref="leaveComment" buttonText="Post" onClick={ () => this.leaveComment() }

@@ -67,7 +67,7 @@ class Plyo extends React.Component {
             <div className="col-sm-3 col-md-2 col-xs-12 thumb-col">
                 <Thumbnail exercise={this.props.exercise.plyometric} click={this.showVideo} />
             </div>
-            <div className="col-xs-12 col-sm-8 col-md-7 info-col">
+            <div className="col-xs-12 col-sm-6 col-md-7 info-col">
                 <span className="ex-info">
                     <div className="ex-name">{this.props.exercise.plyometric.name}</div>
                     <div className="ex-subtext">Recommended: {this.props.exercise.plyometric.recommended}</div>

@@ -102,7 +102,7 @@ class AddAthleteModal extends React.Component {
 
                 <div className="col-xs-4 text-center">
                     <VCircleCheck id={3} ref={C.RIP} uncontrolled={true}
-                                  label={'Moderate muscle gains, while lowering body fat percentage'}  change={ this.goalChanged }/>
+                                  label={'Moderate muscle gains, lower body fat'}  change={ this.goalChanged }/>
                 </div>
 
                 <div className="col-xs-4 text-center">
@@ -146,10 +146,9 @@ class AddAthleteModal extends React.Component {
     }
 
     render () {
-        return <div className="add-athlete">
-            <Modal show={this.props.show} >
+        return <Modal show={this.props.show} className="add-athlete">
                 <Modal.Header closeButton onHide={this.props.cancel}>
-                    <Modal.Title>Let's get started!</Modal.Title>
+                    <Modal.Title>Add an Athlete</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -180,8 +179,7 @@ class AddAthleteModal extends React.Component {
                         </When>
                     </Choose>
                 </Modal.Footer>
-            </Modal>
-        </div>;
+            </Modal>;
     }
 }
 

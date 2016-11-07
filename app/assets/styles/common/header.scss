@@ -131,7 +131,7 @@
 
 @media (max-width: 768px) {
   .header {
-    height: 160px;
+    min-height: 160px;
     .links-wrapper {
       a {
         margin-right: 30px;
