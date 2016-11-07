@@ -119,7 +119,17 @@ body {
 
 .add-athlete {
   select {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+  }
+
+  .mid-option {
+    border-left: solid 1px $purple;
+    border-right: solid 1px $purple;
+  }
+
+  .pick-goal {
+    margin-top: 20px;
+    margin-bottom: 80px;
   }
 
   .label-text {

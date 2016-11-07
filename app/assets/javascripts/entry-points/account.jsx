@@ -209,7 +209,7 @@ class Account extends React.Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-xs-12 col-sm-6">
+                            <div className="col-xs-12 col-sm-8 col-md-6">
                                 <div className="p-section">
                                     <div className="sec-header">Your Personal Settings</div>
                                     <div className="sec-main">

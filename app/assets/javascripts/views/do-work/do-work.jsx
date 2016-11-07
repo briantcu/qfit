@@ -93,7 +93,7 @@ class DoWork extends React.Component {
     }
 
     saveSendTo(value) {
-        if (!validator.isEmail(value) && !validator.isMobilePhone(value) && value.length > 5) {
+        if (!validator.isEmail(value) && !validator.isMobilePhone(value, 'en-US') && value.length > 5) {
             this.setState({sendToErrors: ['Please enter a valid email or mobile number']});
         } else {
             this.setState({sendTo: value, sendToErrors: []});

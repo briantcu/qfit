@@ -32,6 +32,7 @@ class AddAthleteModal extends React.Component {
         this.inviteSent = this.inviteSent.bind(this);
         this.sentBody = this.sentBody.bind(this);
         this.sentFooter = this.sentFooter.bind(this);
+        this.cancel = this.cancel.bind(this);
     }
 
     changeState(newState) {
@@ -94,13 +95,13 @@ class AddAthleteModal extends React.Component {
                 }
             </select>
             Select a goal for this athlete:
-            <div className="row">
+            <div className="row pick-goal">
                 <div className="col-xs-4 text-center">
                     <VCircleCheck id={2} ref={C.MASS} uncontrolled={true}
                                   label={'Add Muscle'} change={ this.goalChanged } />
                 </div>
 
-                <div className="col-xs-4 text-center">
+                <div className="col-xs-4 text-center mid-option">
                     <VCircleCheck id={3} ref={C.RIP} uncontrolled={true}
                                   label={'Moderate muscle gains, lower body fat'}  change={ this.goalChanged }/>
                 </div>
@@ -124,7 +125,7 @@ class AddAthleteModal extends React.Component {
     sendTeamInvite() {
         if (this.state.goal) {
             var contactInfo = this.refs.contactInfo.getValue();
-            if (!validator.isEmail(contactInfo) && !validator.isMobilePhone(contactInfo)) {
+            if (!validator.isEmail(contactInfo) && !validator.isMobilePhone(contactInfo, 'en-US') && contactInfo.length > 5) {
                 this.setState({contactError: ['Please enter a valid email or mobile number']});
             } else {
                 this.setState({contactError: []});
@@ -134,6 +135,11 @@ class AddAthleteModal extends React.Component {
         } else {
             this.setState({error: 'Please choose a goal for this athlete'});
         }
+    }
+
+    cancel() {
+        this.setState({step: 'choose-option'});
+        this.props.cancel();
     }
 
     inviteSent(response) {
@@ -147,7 +153,7 @@ class AddAthleteModal extends React.Component {
 
     render () {
         return <Modal show={this.props.show} className="add-athlete">
-                <Modal.Header closeButton onHide={this.props.cancel}>
+                <Modal.Header closeButton onHide={this.cancel}>
                     <Modal.Title>Add an Athlete</Modal.Title>
                 </Modal.Header>
 

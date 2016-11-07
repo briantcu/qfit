@@ -73,7 +73,7 @@ class Profile extends React.Component {
                                     <div className="sec-header">Profile</div>
                                     <div className="sec-main">
                                         <div className="row">
-                                            <div className="col-xs-12 col-sm-6">
+                                            <div className="col-xs-12 col-sm-8">
                                                 <div className="block-wrapper"><Avatar user={this.state.user} big={true} noLink={true} /></div>
                                                 <div className="details">
                                                     <div className="user-name">{this.state.user.user_name}</div>
@@ -81,7 +81,7 @@ class Profile extends React.Component {
                                                     <span className="user-info"><span className="power-index">Rep</span>utation: {this.state.user.points}</span>
                                                 </div>
                                             </div>
-                                            <div className="col-xs-12 col-sm-6 text-right">
+                                            <div className="col-xs-12 col-sm-4 text-right">
                                                 <div className="button-wrapper">
                                                     <If condition={!this.state.user.is_friend && gon.current_user_id != gon.user_id} >
                                                         <Button buttonText="Invite to Quad Pod" onClick={this.sendInvite} />
@@ -98,7 +98,7 @@ class Profile extends React.Component {
                         </div>
 
                         <div className="row profile-row last-row">
-                            <div className="col-xs-6">
+                            <div className="col-xs-12 col-sm-6">
                                 <div className="p-section">
                                     <div className="sec-header">Recent Workouts</div>
                                     <div className="sec-main workout-section">
@@ -117,18 +117,18 @@ class Profile extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-xs-6">
+                            <div className="col-xs-12 col-sm-6">
                                 <div className="p-section">
                                     <div className="sec-header">Quad Pod</div>
                                     <div className="sec-main workout-section">
                                         {
                                             this.state.quad_pod.map(function(friend) {
                                                 return <div key={friend.id} className="row friend-row">
-                                                    <div className="col-xs-8">
+                                                    <div className="col-xs-9">
                                                         <span className="block-wrapper"><Avatar user={friend} /></span>
                                                         <span className="block-wrapper friend-text user-name">{friend.user_name}</span>
                                                     </div>
-                                                    <div className="col-xs-4 text-right friend-text">
+                                                    <div className="col-xs-3 text-right friend-text">
                                                         <a className="norm-link" href={"/p/" + encodeURIComponent(friend.user_name)}>View</a>
                                                     </div>
                                                 </div>
