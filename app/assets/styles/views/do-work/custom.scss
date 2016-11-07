@@ -6,4 +6,10 @@
     padding-top: 20px;
   }
 
+  @media (max-width: 768px) {
+    .ex-info {
+      padding-left: 20px !important;
+    }
+  }
+
 }

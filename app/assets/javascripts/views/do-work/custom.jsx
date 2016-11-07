@@ -25,10 +25,12 @@ class Custom extends React.Component {
 
     render() {
         return <div className="custom exercise row" >
-            <div className="col-xs-6">
+            <div className="col-sm-3 col-md-2 col-xs-12 hidden-xs">
                 <span className="thumb">
                     <img width="120" height="90" src="https://s3.amazonaws.com/quadfit/custom-icon.png" />
                 </span>
+            </div>
+            <div className="col-xs-6 col-sm-4 col-md-5 info-col">
                 <span className="ex-info">
                     <div className="ex-name">{this.props.exercise.name}</div>
                     <div className="ex-subtext">
@@ -36,7 +38,7 @@ class Custom extends React.Component {
                     </div>
                 </span>
             </div>
-            <div className="col-xs-6 custom-input">
+            <div className="col-xs-6 col-sm-5 custom-input">
                 <FancyInput ref="details" name="details" placeholder="Enter Details" type="text" value={this.props.exercise.details}
                 changedCallback={this.changed} />
             </div>

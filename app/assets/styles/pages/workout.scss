@@ -348,15 +348,35 @@
 
   .exercise {
     padding-bottom: 5px;
-    //&:not(:first-child):before {
-    //  content: '';
-    //  display: block;
-    //  position: relative;
-    //  width: 85%;
-    //  top: 2px;
-    //  left: 150px;
-    //  border: 1px solid $gray2;
-    //}
+    &:not(:first-child):before {
+      content: '';
+      display: block;
+      position: relative;
+      width: 79%;
+      top: 2px;
+      left: 18%;
+      border: 1px solid $gray2;
+    }
+
+    @media (max-width: 1200px) {
+      &:not(:first-child):before {
+        width: 77%;
+        left: 20.5%;
+      }
+    }
+
+    @media (max-width: 992px) {
+      &:not(:first-child):before {
+        width: 72%;
+        left: 27%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      &:not(:first-child):before {
+        width: 0%;
+      }
+    }
   }
 
   .top-border:before {

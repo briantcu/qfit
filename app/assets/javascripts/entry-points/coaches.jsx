@@ -166,7 +166,7 @@ class Coaches extends React.Component {
                                     Athletes
                                 </div>
                                 <If condition={this.state.coach_account.can_send_codes} >
-                                    <div className="col-sm-3 col-xs-6 col-sm-offset-7 action">
+                                    <div className="col-sm-5 col-xs-6 col-sm-offset-5 action">
                                         <span className="hover" onClick={this.addUser}>Add a New Athlete Account</span>
                                     </div>
                                 </If>
@@ -194,7 +194,8 @@ class Coaches extends React.Component {
                                 <div className="container">
                                     {
                                         this.state.coach_account.sign_up_codes.map(function(e, i) {
-                                            return <div className="row sign-up-code" key={i}>
+                                            return <div className="sign-up-code" key={i}>
+                                                <div className="row">
                                                     <div className="col-xs-4">
                                                         Sent to <span className="purple">{e.sent_to}</span> on {Util.formatDate(e.created_at)}
                                                     </div>
@@ -206,6 +207,7 @@ class Coaches extends React.Component {
                                                             <span onClick={() => this.deleteCode(e.id)} className="norm-link">Delete Code</span>
                                                         </div>
                                                     </If>
+                                                </div>
                                             </div>
                                         }.bind(this))
                                     }
