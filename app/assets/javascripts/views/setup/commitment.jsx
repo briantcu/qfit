@@ -75,11 +75,11 @@ class Commitment extends React.Component {
                 <div className="row">
                     <div className="col-xs-12 text-center">
                         <SquareCheck ref="2" checked={this.state.frequency == 2} id="2" change={ this.frequencyChanged }
-                                     label="2" />
+                                     label="2" disabled={true} />
                         <SquareCheck ref="3" checked={this.state.frequency == 3} id="3" change={ this.frequencyChanged }
-                                     label="3"  />
+                                     label="3"  disabled={true} />
                         <SquareCheck ref="4" checked={this.state.frequency == 4} id="4" change={ this.frequencyChanged }
-                                     label="4" />
+                                     label="4" disabled={true} />
                     </div>
                 </div>
                 <div className="row">
@@ -94,9 +94,9 @@ class Commitment extends React.Component {
                 <div className="row">
                     <div className="col-xs-12 text-center">
                         <SquareCheck ref="30" change={ this.timeChanged } checked={this.state.time == 30} id="30"
-                                     label="30 minutes" />
+                                     label="30 minutes" disabled={true} />
                         <SquareCheck ref="45" change={ this.timeChanged } checked={this.state.time == 45} id="45"
-                                     label="45 minutes" />
+                                     label="45 minutes" disabled={true} />
                     </div>
                 </div>
                 <div className="row">

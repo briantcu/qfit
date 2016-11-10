@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
   validates_length_of :email, maximum: 50
   validates_length_of :user_name, maximum: 30
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :lockable, :omniauth_providers => [:facebook]
 
   has_many :daily_routines, dependent: :destroy
   has_many :recent_workouts, -> { order(day_performed: :desc).limit(10) }, class_name: DailyRoutine

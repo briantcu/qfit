@@ -106,7 +106,7 @@ class Strength extends React.Component {
                 </div>
             </If>
             <TipsModal show={this.state.showTips} tips={this.props.exercise.exercise.tips} close={this.close} />
-            <VideoModal show={this.state.showVideo} link={this.props.exercise.exercise.video_link} close={this.closeVideo} />
+            <VideoModal show={this.state.showVideo} tips={this.props.exercise.exercise.tips} link={this.props.exercise.exercise.video_link} close={this.closeVideo} />
             <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props}
                        exercise_subset={this.state.similar} />
         </div>

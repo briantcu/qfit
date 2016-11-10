@@ -154,21 +154,21 @@ Devise.setup do |config|
   # Defines which strategy will be used to lock an account.
   # :failed_attempts = Locks an account after a number of failed attempts to sign in.
   # :none            = No lock strategy. You should handle locking by yourself.
-  # config.lock_strategy = :failed_attempts
+  config.lock_strategy = :failed_attempts
 
   # Defines which key will be used when locking and unlocking an account
-  # config.unlock_keys = [ :email ]
+  config.unlock_keys = [ :email ]
 
   # Defines which strategy will be used to unlock an account.
   # :email = Sends an unlock link to the user email
   # :time  = Re-enables login after a certain amount of time (see :unlock_in below)
   # :both  = Enables both strategies
   # :none  = No unlock strategy. You should handle unlocking by yourself.
-  # config.unlock_strategy = :both
+  config.unlock_strategy = :email
 
   # Number of authentication tries before locking an account if lock_strategy
   # is failed attempts.
-  # config.maximum_attempts = 20
+  config.maximum_attempts = 20
 
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
   # config.unlock_in = 1.hour
@@ -227,8 +227,14 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, '258604121161750', 'dded227d8951aa3ea7431708d7dbb428', :scope => 'email,public_profile',
+  if Rails.env.development?
+    config.omniauth :facebook, '258604121161750', 'dded227d8951aa3ea7431708d7dbb428', :scope => 'email,public_profile',
                   callback_url: "http://localhost:3000/users/auth/facebook/callback"
+  else
+    config.omniauth :facebook, '330840547271440', '1719ea1c78cd47cd9337ae21352e82b5', :scope => 'email,public_profile',
+                    callback_url: "http://quadfitdev-env.us-east-1.elasticbeanstalk.com//users/auth/facebook/callback"
+  end
+
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

@@ -32,4 +32,10 @@
       padding-right: 0px !important;
     }
   }
+
+  @media (max-width: 480px) {
+    .logo {
+      padding-left: 0px !important;
+    }
+  }
 }

@@ -43,6 +43,18 @@ class VideoModal extends React.Component {
                     </Modal.Header>
                     <Modal.Body>
                         <div dangerouslySetInnerHTML={this.getVideoHtml()} />
+                        <div className="tips-wrapper">
+                            <If condition={this.props.tips && this.props.tips.length > 0} >
+                            <div className="tips-header">Tips</div>
+                            <ul>
+                                {
+                                    this.props.tips.map(function (e, index) {
+                                        return <li key={index}>{e.tip}</li>;
+                                    })
+                                }
+                            </ul>
+                            </If>
+                        </div>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button buttonText="Close" onClick={this.props.close}>Close</Button>
