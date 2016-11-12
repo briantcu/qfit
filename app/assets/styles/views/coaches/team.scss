@@ -1,11 +1,23 @@
 @import "../../common/common";
 
 .team {
+  &:not(:first-child) {
+     &:before {
+       content: '';
+       left: 0px;
+       display: block;
+       width: 120%;
+       margin-left: -15px;
+       border-top: solid 5px #e6e6e6;
+     }
+  }
+
   margin-bottom: 0px;
 
   .team-name {
     font-size: 18px;
     font-weight: 700;
+    color: $purple;
   }
 
   .team-actions {
@@ -20,10 +32,18 @@
 
   .row {
     height: 70px;
-    border-bottom: solid 1px #c9c9c9;
     margin-left: 0px !important;
     margin-right: 0px !important;
     padding-top: 14px;
+    &:not(:last-child) {
+      border-bottom: solid 1px #c9c9c9;
+    }
+  }
+
+  .athlete {
+    &:last-child {
+      border-bottom: none !important;
+    }
   }
 
   .first {

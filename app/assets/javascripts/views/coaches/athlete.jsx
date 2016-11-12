@@ -25,7 +25,7 @@ class Athlete extends React.Component {
 
     render () {
         return <div className="athlete row">
-            <div className={(!this.props.onTeam) ? "col-sm-3 col-xs-12 first" : "col-sm-3 col-xs-12 first"}>
+            <div className={(!this.props.onTeam) ? "col-sm-3 col-xs-12 first" : "col-sm-3 col-xs-12"}>
                 {this.props.athlete.first_name} {this.props.athlete.last_name}
             </div>
             <div className="col-sm-9 col-xs-12 text-right last">
