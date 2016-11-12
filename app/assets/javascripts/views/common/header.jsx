@@ -76,7 +76,7 @@ class Header extends React.Component {
                                     <If condition={!gon.is_coach} >
                                         <li className="user-menu-item"><a className="white-link" href="/">My Profile</a></li>
                                     </If>
-                                    <li className="user-menu-item"><a className="white-link" href="/account">My Account</a></li>
+                                    <li className="user-menu-item"><a className="white-link" href="/settings">Settings</a></li>
                                     <li className="user-menu-item" onClick={this.signOut}><a className="white-link" href="javascript:void(0);">Sign Out</a></li>
                                 </ul>
                             </div>

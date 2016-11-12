@@ -125,15 +125,15 @@ class Coaches extends React.Component {
                         <div className="col-xs-12">
                         Create Teams and add Athletes, and we'll handle the workouts.<br/>
                         You have a maximum of {this.state.coach_account.num_accts} athlete accounts.
-                        You can upgrade/downgrade your account <a className="norm-link" href="/account">HERE</a>. <br />
+                        You can upgrade/downgrade your account <a className="norm-link" href="/settings">HERE</a>. <br />
                         <If condition={!this.state.coach_account.can_send_codes}>
                             You have a limit of {this.state.coach_account.num_accts} athlete accounts, but you have sent {this.state.coach_account.num_sent_codes} sign up codes
                             and have {this.state.coach_account.num_used_accounts} existing athlete accounts. You'll need to
-                            <a className="norm-link" href="/account">upgrade your account</a> to send more sign up codes.<br/>
+                            <a className="norm-link" href="/settings">upgrade your account</a> to send more sign up codes.<br/>
                         </If>
                         <If condition={this.state.coach_account.num_used_accounts > this.state.coach_account.num_accts} >
                             You have exceeded your athlete account limit. Workouts will no longer be created for your athletes until you
-                            <a className="norm-link" href="/account">upgrade your account</a>, or delete some existing athlete accounts.
+                            <a className="norm-link" href="/settings">upgrade your account</a>, or delete some existing athlete accounts.
                         </If>
                         </div>
                     </div>

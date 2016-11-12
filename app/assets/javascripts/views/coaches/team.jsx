@@ -25,9 +25,9 @@ class Team extends React.Component {
                 <div className="col-xs-4 first team-name">{this.props.team.name}</div>
                 <div className="col-xs-8 text-right last">
                     <span className="actions">
-                        <span className="norm-link" onClick={() => this.props.viewTeam(this.props.team.id)}>Manage Workout</span>
+                        <span className="norm-link" onClick={() => this.props.viewTeam(this.props.team.id)}>View Workout</span>
                         <span className="separator">|</span>
-                        <span className="norm-link" onClick={() => this.delete(this.props.team.id)}>Delete Group</span>
+                        <span className="norm-link" onClick={() => this.delete(this.props.team.id)}>Delete Team</span>
                     </span>
                 </div>
             </div>

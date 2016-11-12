@@ -35,7 +35,7 @@ Qfit::Application.routes.draw do
 
   get '/', to: 'pages#home'
   get '', to: 'pages#home'
-  get '/account', to: 'pages#account'
+  get '/settings', to: 'pages#account'
   get '/leaderboards', to: 'pages#leaders'
   get '/terms', to: 'pages#terms'
   get '/share', to: 'pages#shared_workout'

@@ -38,7 +38,7 @@ class Athlete extends React.Component {
                     }
                 </select>
                 <span className="actions">
-                    <span className="norm-link" onClick={() => this.props.viewAthlete(this.props.athlete.id)}>View Workout/Progress</span>
+                    <span className="norm-link" onClick={() => this.props.viewAthlete(this.props.athlete.id)}>View Workout</span>
                     <span className="separator">|</span>
                     <span className="norm-link" onClick={this.delete}>Delete Individual</span>
                 </span>

@@ -325,7 +325,7 @@ class Progress extends React.Component {
                                                   className={(this.state.period ==  this.periods.all_time) ? 'selected-period' : 'period'}>All Time</span>
                                         </When>
                                         <Otherwise>
-                                            <a className="upgrade-link" href="/account">Upgrade for more</a>
+                                            <a className="upgrade-link" href="/settings">Upgrade for more</a>
                                         </Otherwise>
                                     </Choose>
 
