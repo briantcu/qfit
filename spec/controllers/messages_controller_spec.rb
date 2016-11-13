@@ -24,7 +24,7 @@ RSpec.describe MessagesController, type: :controller do
     sign_in user_one
     post :create, message: { message: "sup", to_id: user_two.id, message_type: 2 }, format: :json
     expect(user_one.outbox.count).to eq(1)
-    expect(user_two.inbox.count).to eq(1)
+    expect(Message.conversation(user_one.id, user_two.id).unseen_by(user_two.id).count).to eq(1)
   end
 
   it 'should not send a dm if not friends' do

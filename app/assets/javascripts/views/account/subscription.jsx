@@ -26,9 +26,11 @@ class Subscription extends React.Component {
             return 'Your coach pays for membership, which is pretty cool.';
         } else {
             if (this.props.user.paid_tier == 1) {
-                return "You have a basic Quadfit membership, which is free. " +
-                    "<br/><br/>Get access to even more exercises and unlimited reporting on workout progress for only " +
-                    "<span className='purple'>$9.99</span> a month!";
+                return <span>
+                    You have a basic Quadfit membership, which is free.
+                    <br/><br/>
+                    Get access to even more exercises and unlimited reporting on workout progress for only <span className='purple'>$9.99</span> a month!
+                </span>
             } else {
                 return 'You have a Premium Quadfit membership, which is $9.99/mo.';
             }
