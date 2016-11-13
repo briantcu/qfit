@@ -2,6 +2,25 @@
 
 .account {
 
+
+  .bio-section {
+    height: 160px !important;
+    .bio-box {
+      background-color: $gray1;
+      border: solid 1px #d8d8d8;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      width: 100%;
+      float: left;
+      display: block;
+      height: 100px;
+      font-size: 18px;
+      line-height: 1.3;
+      letter-spacing: -0.4px;
+      color: #271b37;
+    }
+  }
+
   .floatl--active .floatl__label {
     top: -5px !important;
   }
@@ -121,7 +140,7 @@
       padding: 6px 12px;
       font-size: 14px;
       line-height: 1.42857143 !important;
-      border-radius: 4px !important;
+      border-radius: 0px !important;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;

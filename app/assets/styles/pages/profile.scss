@@ -9,7 +9,9 @@
     color: $dark-purple;
     height: 70px;
     padding-top: 20px;
-    border-bottom: solid 1px $gray2;
+    &:not(:last-child) {
+      border-bottom: solid 1px $gray2;
+    }
   }
 
   .friend-row {
@@ -18,7 +20,9 @@
     color: $dark-purple;
     height: 70px;
     padding-top: 10px;
-    border-bottom: solid 1px $gray2;
+    &:not(:last-child) {
+      border-bottom: solid 1px $gray2;
+    }
     .friend-text {
       margin-top: 10px;
       padding-left: 20px;
@@ -66,7 +70,7 @@
       color: $dark-purple;
       display: inline-block;
       float: left;
-      margin-top: 30px;
+      margin-top: 5px;
       margin-left: 30px;
       .user-name {
         font-size: 24px;
@@ -81,7 +85,9 @@
       .user-info {
         margin-right: 30px;
       }
-
+      .user-bio {
+        max-width: 420px;
+      }
     }
   }
 

@@ -82,15 +82,16 @@ class Profile extends React.Component {
                                     </div>
                                     <div className="sec-main">
                                         <div className="row">
-                                            <div className="col-xs-12 col-sm-8">
+                                            <div className="col-sm-12 col-md-8">
                                                 <div className="block-wrapper"><Avatar user={this.state.user} big={true} noLink={true} /></div>
                                                 <div className="details">
                                                     <div className="user-name">{this.state.user.user_name}</div>
                                                     <span className="user-info"><span className="power-index">Power</span>Index: {this.state.user.power_index}</span>
                                                     <span className="user-info"><span className="power-index">Rep</span>utation: {this.state.user.points}</span>
+                                                    <div className="user-bio">{this.state.user.bio}</div>
                                                 </div>
                                             </div>
-                                            <div className="col-xs-12 col-sm-4 text-right">
+                                            <div className="col-sm-12 col-md-4 text-right">
                                                 <div className="button-wrapper">
                                                     <If condition={!this.state.user.is_friend && gon.current_user_id != gon.user_id} >
                                                         <Button buttonText="Invite to Quad Pod" onClick={this.sendInvite} />

@@ -1,4 +1,4 @@
-json.extract! @user, :id, :power_index, :user_name, :points
+json.extract! @user, :id, :power_index, :user_name, :points, :bio
 json.avatar @user.avatar_path
 json.recent_workouts @recent_workouts do |workout|
   json.day_performed workout.day_performed

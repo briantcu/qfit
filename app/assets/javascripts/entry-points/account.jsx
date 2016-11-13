@@ -129,6 +129,7 @@ class Account extends React.Component {
         user['email'] = this.refs.email.getValue();
         user['first_name'] = this.refs.firstName.getValue();
         user['last_name'] = this.refs.lastName.getValue();
+        user['bio'] = this.refs.bioBox.value.trim();
         if (this.refs.password.getValue()) {
             user['password'] = this.refs.password.getValue();
             user['password_confirmation'] = this.refs.password.getValue();
@@ -264,6 +265,16 @@ class Account extends React.Component {
                                                     <FancyInput ref="password" name="password" placeholder="New Password" type="password"
                                                                 errors={this.state.passwordErrors} />
                                                 </span>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-12">
+                                            <span className='purple-bot-container bio-section'>
+                                                About Me
+                                                <textarea ref="bioBox" className="bio-box" maxLength="150" rows="10">
+                                                    {this.state.user.bio}
+                                                </textarea>
+                                            </span>
                                             </div>
                                         </div>
                                         <div className="row submit-row">

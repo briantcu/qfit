@@ -74,7 +74,7 @@ class Header extends React.Component {
                                 </span>
                                 <ul className="dropdown-menu user-menu" aria-labelledby="dropdownMenu1">
                                     <If condition={!gon.is_coach} >
-                                        <li className="user-menu-item"><a className="white-link" href="/">My Profile</a></li>
+                                        <li className="user-menu-item"><a className="white-link" href={'/p/'+ this.props.user.user_name}>My Profile</a></li>
                                     </If>
                                     <li className="user-menu-item"><a className="white-link" href="/settings">Settings</a></li>
                                     <li className="user-menu-item" onClick={this.signOut}><a className="white-link" href="javascript:void(0);">Sign Out</a></li>
