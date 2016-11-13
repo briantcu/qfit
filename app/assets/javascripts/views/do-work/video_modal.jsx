@@ -39,7 +39,7 @@ class VideoModal extends React.Component {
         return <div className="video-modal">
                 <Modal show={this.props.show} onHide={this.props.close} className="video-modal">
                     <Modal.Header closeButton>
-                        <Modal.Title>Video</Modal.Title>
+                        <Modal.Title>{this.props.name}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div dangerouslySetInnerHTML={this.getVideoHtml()} />

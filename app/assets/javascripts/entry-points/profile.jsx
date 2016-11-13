@@ -70,7 +70,16 @@ class Profile extends React.Component {
                         <div className="row profile-row">
                             <div className="col-xs-12">
                                 <div className="p-section">
-                                    <div className="sec-header">Profile</div>
+                                    <div className="sec-header">Profile
+                                        {  (this.state.user.id == this.state.loggedInUser.id)
+
+                                            ?
+                                                <span className="edit-link"><a className="norm-link" href="/settings">Edit</a></span>
+                                            :
+                                            ''
+                                        }
+
+                                    </div>
                                     <div className="sec-main">
                                         <div className="row">
                                             <div className="col-xs-12 col-sm-8">
@@ -119,7 +128,17 @@ class Profile extends React.Component {
                             </div>
                             <div className="col-xs-12 col-sm-6">
                                 <div className="p-section">
-                                    <div className="sec-header">Quad Pod</div>
+                                    <div className="sec-header">
+                                        {  (this.state.user.id == this.state.loggedInUser.id)
+
+                                            ?
+                                            <a className="norm-link" href="/quad-pod">Quad Pod</a>
+                                            :
+
+                                            'Quad Pod'
+                                        }
+
+                                    </div>
                                     <div className="sec-main workout-section">
                                         {
                                             this.state.quad_pod.map(function(friend) {

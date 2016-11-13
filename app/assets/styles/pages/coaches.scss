@@ -19,7 +19,7 @@ body {
 
   .banner-row {
     background-color: $lightning;
-    min-height: 48px;
+    flex: 0 1 48px;
     font-size: 18px;
     line-height: 1.3;
     padding-top: 10px;

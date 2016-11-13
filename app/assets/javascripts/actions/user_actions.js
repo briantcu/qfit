@@ -46,6 +46,7 @@ var UserActions = {
     },
 
     setSchedule: function(schedule) {
+        var schedule = JSON.parse(JSON.stringify( schedule ));
         schedule.weekly_schedule_days_attributes = schedule.schedule_days;
         delete schedule.schedule_days;
 

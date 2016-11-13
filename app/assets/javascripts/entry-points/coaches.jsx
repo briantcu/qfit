@@ -217,8 +217,8 @@ class Coaches extends React.Component {
                     </div>
                 </div>
             </div>
-            <Modal show={this.state.showTeamModal} >
-                <Modal.Header closeButton onHide={this.cancelTeamCreation}>
+            <Modal show={this.state.showTeamModal} onHide={this.cancelTeamCreation} >
+                <Modal.Header closeButton>
                     <Modal.Title>Let's get started!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

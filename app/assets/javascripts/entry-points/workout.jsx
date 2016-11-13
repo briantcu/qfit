@@ -173,9 +173,8 @@ class App extends React.Component {
         return <div className="col-xs-12">
             Team created!
             You can modify this workout, or head over
-            to <a href="/coach">Coach</a> to invite people to join your team on Quadfit. They'll get a version of this workout
-            customized to their fitness level and the goals you set for them. They won't be able to modify this workout, so
-            you'll be in complete control.
+            to <a href="/coach">Coach</a> to invite people to join your team on Quadfit.
+            They'll get a personalized version of this workout, and you'll be able to monitor their progress.
         </div>;
     }
 
@@ -233,7 +232,7 @@ class App extends React.Component {
 
     onChange () {
         var team = TeamStore.getData();
-        var showActionModal = (team.team.is_template && this.state.context);
+        var showActionModal = (team.team.is_template && this.state.context) && true;
         var data = RoutineStore.getData();
         data.routine = data.routine || this.state.routine;
         var user = UserStore.getData();

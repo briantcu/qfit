@@ -152,8 +152,8 @@ class AddAthleteModal extends React.Component {
     }
 
     render () {
-        return <Modal show={this.props.show} className="add-athlete">
-                <Modal.Header closeButton onHide={this.cancel}>
+        return <Modal show={this.props.show} className="add-athlete" onHide={this.cancel}>
+                <Modal.Header closeButton>
                     <Modal.Title>Add an Athlete</Modal.Title>
                 </Modal.Header>
 

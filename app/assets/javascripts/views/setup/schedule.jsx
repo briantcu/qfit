@@ -12,6 +12,7 @@ class Schedule extends React.Component {
         super(props);
         this.state = {
             errors: [],
+            loading: false,
             schedule: this.props.user_schedule.schedule,
             weights: this.props.user_schedule.weights,
             plyos: this.props.user_schedule.plyos,
@@ -34,6 +35,7 @@ class Schedule extends React.Component {
 
     submit (button) {
         $('.qfButton').button('loading');
+        this.setState({loading: true});
         var countWeightDays = 0;
         var countPlyoDays = 0;
         var countSprintDays = 0;
@@ -112,7 +114,7 @@ class Schedule extends React.Component {
         }
 
         if (errors.length > 0) {
-            this.setState({errors: errors});
+            this.setState({errors: errors, loading: false});
             $('.qfButton').button('reset');
         } else {
             this.state.schedule.schedule_days = days;
@@ -146,9 +148,9 @@ class Schedule extends React.Component {
     }
 
     render () {
-        var errors = this.state.errors.map(function(error) {
+        var errors = this.state.errors.map(function(error, i) {
             return (
-                <div>{error}</div>
+                <div key={i}>{error}</div>
             );
         });
         return <div className="schedule metal-bg">
@@ -257,6 +259,9 @@ class Schedule extends React.Component {
                     </div>
                 </div>
             </div>
+            <If condition={this.state.loading} >
+                <div className="loading-overlay"><img src="https://s3.amazonaws.com/quadfit/loading-ring-164.gif" /></div>
+            </If>
         </div>
     }
 

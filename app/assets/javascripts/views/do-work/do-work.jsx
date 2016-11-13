@@ -429,18 +429,27 @@ class DoWork extends React.Component {
                             </If>
                             <If condition={!this.props.shared} >
                             <div className="row last-row">
-                                <div className="col-sm-3 col-xs-12">
+                                <div className="col-sm-4 col-xs-12">
                                     <If condition={this.props.routine.id && gon.viewing == 'user'} >
                                         <input ref="userWeight" type="text" className="user-weight" value={this.formatValue(this.props.routine.weight)} onChange={this.weightChanged}/>
                                         <span className="standard-text white ">Your Weight (lbs)</span>
                                     </If>
                                 </div>
-                                <div className="col-xs-12 col-sm-6 col-sm-offset-3 text-right action-row">
+                                <div className="hidden-xs col-sm-8 text-right action-row">
                                         <span className="reset-link" onClick={() => this.reset()}>Reset Workout</span>
                                         <If condition={this.props.routine.id && gon.viewing == 'user'} >
                                             <Button ref="completeWorkout" buttonText="Complete Workout" onClick={ () => this.submit() }
-                                                    disabled={false} inverse={true}/>
+                                                    disabled={this.state.closingWorkout} inverse={true}/>
                                         </If>
+                                </div>
+                                <div className="col-xs-12 visible-xs text-center action-row">
+                                    <If condition={this.props.routine.id && gon.viewing == 'user'} >
+                                        <Button ref="completeWorkout" buttonText="Complete Workout" onClick={ () => this.submit() }
+                                                disabled={this.state.closingWorkout} inverse={true}/>
+                                    </If>
+                                </div>
+                                <div className="col-xs-12 visible-xs text-center reset-row">
+                                    <span className="reset-link" onClick={() => this.reset()}>Reset Workout</span>
                                 </div>
                             </div>
                             </If>
@@ -488,19 +497,21 @@ class DoWork extends React.Component {
                 <Modal.Header>
                     <Modal.Title>Last Step - {(this.props.context == 'coach_sub') ? 'Send this workout to someone!' : 'Give this team a name!'}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body className="coach-invite-modal">
                     <If condition={this.props.context == 'coach_sub'} >
+                        <div className="more-info">They'll be notified that you created this workout for them, and we'll notify you once they sign up.</div>
                         <FancyInput placeholder="Email or Mobile #" type="text" changedCallback={this.saveSendTo}
                                     errors={this.state.sendToErrors} />
                         <span>{this.props.finishErrors}</span>
                     </If>
                     <If condition={this.props.context == 'coach_team'} >
+                        <div className="more-info">Give this team a name. In a moment you'll be able to invite athletes to join this team.</div>
                         <FancyInput placeholder="Team Name" type="text" changedCallback={this.evalTeamName}
                                     errors={this.state.newTeamErrors} />
                     </If>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button buttonText="Submit" onClick={this.finishOnboarding}>Submit</Button>
+                    <Button buttonText="Submit" onClick={this.finishOnboarding}>{(this.props.context == 'coach_sub') ? 'Send' : 'Save'}</Button>
                 </Modal.Footer>
             </Modal>
 
@@ -579,6 +590,9 @@ class DoWork extends React.Component {
                         </span>
                     </Modal.Body>
                 </Modal>
+            </If>
+            <If condition={this.props.loading || this.state.closingWorkout} >
+                <div className="loading-overlay"><img src="https://s3.amazonaws.com/quadfit/loading-ring-164.gif" /></div>
             </If>
         </div>;
     }

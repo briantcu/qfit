@@ -3,8 +3,11 @@
 .strength {
 
   .sets-wrapper {
-    float: right;
     margin: 0;
+    width: auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
   }
 
   .vert-circle-check {
@@ -48,7 +51,7 @@
     padding: 5px;
     min-height: 80px;
     padding-top: 10px;
-    float: left;
+    vertical-align: top;
     input {
       width: 45%;
       font-size: 12px;
@@ -72,6 +75,7 @@
     }
     .double {
       width: 100%;
+      float: left;
       display: inline-block;
       text-align: center;
       .vert-circle-check {
@@ -127,6 +131,9 @@
   @media (max-width: 768px) {
     .sets-wrapper {
       margin-bottom: 0px;
+      .visible-xs{
+        display: inline-block !important;
+      }
     }
   }
 }

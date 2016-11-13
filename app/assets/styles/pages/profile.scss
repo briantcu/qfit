@@ -1,6 +1,8 @@
 @import '../common/common';
 
 .profile {
+  flex: 1 1 auto;
+
   .workout-row {
     font-size: 18px;
     letter-spacing: -0.4px;
@@ -114,6 +116,12 @@
         padding-left: 15px;
         border-bottom: solid 2px $purple;
         height: 50px;
+
+        .edit-link {
+          float: right;
+          font-size: 18px;
+          margin-right: 15px;
+        }
       }
       .sec-main {
         padding: 30px 25px;

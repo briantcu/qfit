@@ -315,7 +315,7 @@ class RoutineService
 
   def cleanup
     @entity.current_phase = @phase_number
-    @entity.save!
+    @entity.save
 
     #0 is a custom day, 99 is a Quadfit generated day with no weights
     if @routine.program_day_id == 0

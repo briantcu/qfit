@@ -97,6 +97,16 @@
   }
 }
 
+.coach-invite-modal {
+  .more-info {
+    margin-bottom: 20px;
+  }
+  input {
+    border-bottom: solid 1px $purple !important;
+    margin-bottom: 40px;
+  }
+}
+
 .shareModal {
   .modal-body {
     min-height: 200px;
@@ -470,8 +480,14 @@
     }
 
     .last-row {
+      text-align: center;
       .action-row {
         padding-top: 30px !important;
+        padding-bottom: 30px !important;
+      }
+
+      .reset-row {
+        margin-bottom: 30px;
       }
     }
 
