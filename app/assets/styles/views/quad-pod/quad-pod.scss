@@ -1,8 +1,18 @@
 @import "../../common/common";
 
 .quad-pod {
+  flex: 1 1 auto;
+  background-color: $gray2;
   .nothing {
     padding-top: 15px;
+  }
+
+  .invite-link {
+    font-size: 18px;
+    float: right;
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 5px;
   }
 
   .actions-row {
@@ -43,9 +53,7 @@
     border-bottom: solid 1px $gray2;
   }
   .main {
-    background-color: $gray2;
     color: $dark-purple;
-    min-height: 900px;
     .qp-header {
       font-size: 48px;
       font-weight: 300;
@@ -84,34 +92,66 @@
         float: left;
         display: block;
         width: 100%;
-        max-height: 800px;
-        overflow: scroll;
       }
-    }
-    input {
-      background-color: $gray1;
-      border: solid 1px $lavender;
-      width: 211px;
-      height: 35px;
-      margin-left: 10px;
-      padding-left: 5px;
     }
     textarea {
       resize: none;
     }
-    .input-row {
-      margin-top: 10px;
-      float: left;
-      display: block;
-    }
-    .submit-row {
-      float: left;
-      display: block;
-      margin-top: 15px;
-      margin-left: 10px;
-      padding-bottom: 20px;
+  }
+}
+
+.qp-fixed {
+  position: fixed;
+  top: 50px;
+  z-index: 100;
+  margin: 0;
+}
+
+.pod-invite-modal {
+
+  .qp-section {
+    display: block;
+    float: left;
+  }
+  input {
+    background-color: $gray1;
+    border: solid 1px $lavender;
+    width: 48%;
+    height: 35px;
+    padding-left: 5px;
+    &:first-child {
+      margin-right: 4%;
     }
   }
-
-
+  textarea {
+    resize: none;
+  }
+  .input-row {
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    &:nth-child(2) {
+      margin-top: 20px;
+    }
+  }
+  .submit-row {
+    float: right;
+    display: block;
+    margin-top: 15px;
+    margin-right: 10px;
+    padding-bottom: 20px;
+  }
+  .sec-main {
+    padding: 10px;
+    padding-bottom: 20px;
+    font-size: 15.6px;
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+    float: left;
+    display: block;
+    width: 100%;
+  }
 }

@@ -37,6 +37,13 @@ class Conversation extends React.Component {
         return  <div className="conversation">
                 <div className="sec-header">{this.props.conversation.user.user_name}</div>
                 <div className="sec-main">
+                    <div className="post-row">
+                        <div className="input-wrap">
+                            <textarea defaultValue="Type a message" ref="messageBox" className="message-box" rows="3"
+                                      cols="60" onBlur={this.fillPlaceholder} onFocus={this.clearInput} />
+                            <div onClick={() => this.sendDM(this.props.conversation.user.id)} className="submit">SEND</div>
+                        </div>
+                    </div>
                     <Choose>
                         <When condition={this.props.conversation && this.props.conversation.messages.length > 0}>
                             {
@@ -84,13 +91,6 @@ class Conversation extends React.Component {
                             </div>
                         </Otherwise>
                     </Choose>
-                    <div className="post-row">
-                        <div className="input-wrap">
-                            <textarea defaultValue="Type a message" ref="messageBox" className="message-box" rows="3"
-                                      cols="60" onBlur={this.fillPlaceholder} onFocus={this.clearInput} />
-                            <div onClick={() => this.sendDM(this.props.conversation.user.id)} className="submit">SEND</div>
-                        </div>
-                    </div>
                 </div>
             </div>;
     }

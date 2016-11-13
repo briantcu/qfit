@@ -119,7 +119,10 @@ class App extends React.Component {
             }
         };
         var debounced = _.debounce(scrollFn, 5);
-        window.addEventListener('scroll', debounced);
+        document.documentElement.addEventListener('scroll', debounced);
+        $('body').on('scroll', function() {
+            console.log('scrolling');
+        });
         RoutineStore.addChangeListener(this.onChange.bind(this));
         UserStore.addChangeListener(this.onChange);
         UserScheduleStore.addChangeListener(this.onChange);
@@ -314,7 +317,7 @@ class App extends React.Component {
             (child) => React.cloneElement(child, Object.assign({}, this.state))
         );
 
-        return <div>
+        return <div className="hundo-height">
             <Header user={this.state.loggedInUser} showWorkoutNav={true} active={active} />
             <If condition={this.state.showBanner} >
                 <div className="row banner-row">
