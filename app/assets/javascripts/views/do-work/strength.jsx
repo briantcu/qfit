@@ -92,17 +92,18 @@ class Strength extends React.Component {
             <If condition={gon.viewing == 'user' || this.props.shared}>
                 <div className="col-xs-12 col-md-7 weight-sets-col">
                     <div className="sets-wrapper">
-                    <div className="weight-set visible-xs hidden-sm hidden-md hidden-lg recommended">
-                        Recommended:<br/>
-                        Completed:
+                        <div className="weight-set  recommended">
+                            Recommended:<br/>
+                            Completed:
+                        </div>
+                        {
+                            this.props.exercise.weight_sets.map(function(e, index) {
+                                return <WeightSet weightSet={e} gray={index % 2 == 0} key={this.props.exercise.id + '' + (index + 1)}
+                                                  setNum={index + 1} exercise={this.props.exercise.exercise} disabled={this.props.shared} />;
+                            }.bind(this))
+                        }
                     </div>
-                    {
-                        this.props.exercise.weight_sets.map(function(e, index) {
-                            return <WeightSet weightSet={e} gray={index % 2 == 0} key={this.props.exercise.id + '' + (index + 1)}
-                                              setNum={index + 1} exercise={this.props.exercise.exercise} disabled={this.props.shared} />;
-                        }.bind(this))
-                    }
-                    </div>
+                    <div className="scroll-indicator"></div>
                 </div>
             </If>
             <TipsModal show={this.state.showTips} tips={this.props.exercise.exercise.tips} close={this.close} />
