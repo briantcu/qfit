@@ -25,7 +25,7 @@ class PerformedWarmUpsController < ApplicationController
 
   # PATCH/PUT /performed_warm_ups/1.json
   def update
-    exercise = Warmup.find(params[:performed_warm_up_params][:warmup_id])
+    exercise = Warmup.find(params[:performed_warm_up][:warmup_id])
     if exercise.paid_tier > current_user.exercise_tier
       render json: { success: false, errors: "You don't have access to that exercise. Please upgrade your subscription." }, :status => 401
     end
