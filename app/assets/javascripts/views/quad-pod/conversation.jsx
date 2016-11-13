@@ -35,7 +35,10 @@ class Conversation extends React.Component {
 
     render () {
         return  <div className="conversation">
-                <div className="sec-header">{this.props.conversation.user.user_name}</div>
+                <div className="sec-header">
+                    {this.props.conversation.user.user_name}
+                    <span className="header-link norm-link" onClick={() => this.props.showFeed() }>Back to Feed</span>
+                </div>
                 <div className="sec-main">
                     <div className="post-row">
                         <div className="input-wrap">

@@ -27,7 +27,7 @@ class Invites extends React.Component {
         }
 
         return <div className="qp-section">
-            <div className="sec-header">Quad Pod Invites<span onClick={this.props.showInviteModal} className="invite-link norm-link">Invite Friends</span></div>
+            <div className="sec-header">Quad Pod Invites<span onClick={this.props.showInviteModal} className="header-link norm-link">Invite Friends</span></div>
             <div className="sec-main gray-border">
                 <If condition={this.props.invites_received && this.props.invites_received.length > 0} >
                     {

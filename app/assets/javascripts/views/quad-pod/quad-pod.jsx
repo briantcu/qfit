@@ -17,30 +17,11 @@ class QuadPod extends React.Component {
         this.showFeed = this.showFeed.bind(this);
         this.hideInvite = this.hideInvite.bind(this);
         this.showInvite = this.showInvite.bind(this);
-        this.pegQp = this.pegQp.bind(this);
-        //this.pegQp = _.debounce(this.pegQp, 5);
         this.state = {
             viewingConversation: false,
             transitioning: false,
             showInvite: false
         };
-    }
-
-    pegQp() {
-        var wrapper = $(".fixed-wrapper");
-        if ($(window).scrollTop() > 100) {
-            wrapper.addClass("qp-fixed");
-        } else {
-            wrapper.removeClass("qp-fixed");
-        }
-    }
-
-    componentDidMount() {
-        //window.addEventListener('scroll', this.pegQp);
-    }
-
-    componentWillUnmount() {
-        //window.removeEventListener('scroll', this.pegQp);
     }
 
     invite(e) {
@@ -97,13 +78,8 @@ class QuadPod extends React.Component {
                             <Friends {...this.props} showConversation={this.showConversation} />
                         </div>
                         <div className="col-xs-12 col-sm-7">
-                            <Feed {...this.props} viewingConversation={this.state.viewingConversation} transitioning={this.state.transitioning} />
+                            <Feed {...this.props} showFeed={this.showFeed} viewingConversation={this.state.viewingConversation} transitioning={this.state.transitioning} />
                         </div>
-                        <If condition={this.state.viewingConversation} >
-                            <div className="col-xs-12 col-sm-7">
-                                <span className="small-link" onClick={() => this.showFeed() }>Back to Feed</span>
-                            </div>
-                        </If>
                     </div>
                 </div>
             </div>

@@ -5,9 +5,11 @@
   background-color: $gray2;
   .nothing {
     padding-top: 15px;
+    display: block;
+    float: left;
   }
 
-  .invite-link {
+  .header-link {
     font-size: 18px;
     float: right;
     text-align: right;

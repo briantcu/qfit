@@ -258,7 +258,7 @@ class User < ActiveRecord::Base
   end
 
   def inbox
-    Message.where(poster_id: friends.map(&:id).push(id)).where(message_type: [1,2,3]).order(created_at: :desc).limit(20)
+    Message.where(poster_id: friends.map(&:id).push(id)).where(message_type: [1,3]).order(created_at: :desc).limit(20)
   end
 
   def check_user_name

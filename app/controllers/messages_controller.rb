@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :destroy]
   before_filter :verify_owns_message, only: [:show]
   before_filter :are_friends_for_dm, only: [:create]
-  before_filter :are_friends, only: [:conversation, :seen_convo]
+  before_filter :are_friends, only: [:conversation]
 
   # GET /messages.json
   def index

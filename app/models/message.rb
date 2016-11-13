@@ -29,6 +29,7 @@ class Message < ActiveRecord::Base
   belongs_to :receiver, foreign_key: :to_id, class_name: 'User'
   scope :dms, -> {where(message_type: 2)}
   scope :unseen, -> {where(seen: false)}
+  scope :unseen_by, -> (id) {where(seen: false).where.not(poster_id: id)}
 
   def self.conversation(id_one, id_two)
     Message.dms.where('poster_id IN (?, ?) AND to_id IN (?, ?)', id_one, id_two, id_one, id_two).order(created_at: :desc).limit(20)

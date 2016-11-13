@@ -119,10 +119,7 @@ class App extends React.Component {
             }
         };
         var debounced = _.debounce(scrollFn, 5);
-        document.documentElement.addEventListener('scroll', debounced);
-        $('body').on('scroll', function() {
-            console.log('scrolling');
-        });
+        window.addEventListener('scroll', debounced);
         RoutineStore.addChangeListener(this.onChange.bind(this));
         UserStore.addChangeListener(this.onChange);
         UserScheduleStore.addChangeListener(this.onChange);

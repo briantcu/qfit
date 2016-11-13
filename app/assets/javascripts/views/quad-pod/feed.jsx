@@ -19,6 +19,7 @@ class Feed extends React.Component {
         if (message) {
             UserActions.postToFeed(message);
         }
+        this.clearInput();
     }
 
     fillPlaceholder() {
