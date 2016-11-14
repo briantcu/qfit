@@ -112,6 +112,9 @@
   .tracking-img {
     padding-top: 150px;
     margin-left: -250px;
+    img {
+      width: 100%;
+    }
   }
   .details {
     color: white;
@@ -155,7 +158,7 @@
     max-width: 700px;
   }
   .first {
-    padding-top: 200px;
+    padding-top: 100px;
   }
   .share-title {
     font-family: 'Open Sans', sans-serif;
@@ -213,7 +216,7 @@
   }
   .table-wrapper {
     margin: auto;
-    width: 820px;
+    overflow-x: scroll;
   }
   table td:nth-child(odd) {
     background-color: $gray1;
@@ -354,24 +357,11 @@
 }
 
 
-@media (min-width: 980px) {
-  #five {
-    min-height: 800px;
-  }
-
-  #one {
-    min-height: 770px;
-    width: 100%;
-    background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center;
-    background-size: cover;
-  }
-
-  #six {
-    height: 950px;
-  }
+.less-pad {
+  padding-top: 70px !important;
 }
 
-@media all and (max-width: 979px) {
+@media (max-width: 979px) {
   .main-row {
     margin-top: 0px;
   }
@@ -391,13 +381,30 @@
   }
 }
 
+@media (min-width: 980px) {
+  #five {
+    min-height: 800px;
+  }
+
+  #one {
+    min-height: 770px;
+    width: 100%;
+    background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center;
+    background-size: cover;
+  }
+
+  #six {
+    height: 850px;
+  }
+}
+
 @media (max-width: 979px) and (min-width: 768px) {
   #five {
     min-height: 800px;
   }
 
   #six {
-    height: 950px;
+    height: 850px;
   }
   #one {
     min-height: 500px;
@@ -408,27 +415,23 @@
 
 }
 
-@media all and (max-width: 767px)  {
+@media (max-width: 767px)  {
   #one {
     min-height: 500px;
     width: 100%;
     background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center;
     background-size: cover;
-    .subline {
-      font-size: 20px;
-    }
-    .headline {
-      font-size: 36px;
-    }
-    .main-links {
-      margin-left: 20px;
-      margin-right: 20px;
-    }
   }
 
   #two {
     .about {
       font-size: 36px;
+    }
+  }
+
+  #five {
+    .tracking-img {
+      margin-left: 0px;
     }
   }
 
@@ -491,18 +494,99 @@
 
 }
 
-@media all and (max-width: 480px)  {
+@media (max-width: 767px) and (min-width: 415px)  {
+  .headline {
+    font-size: 36px;
+  }
+
+  .subline {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px)  {
   #one {
     width: 100%;
     background: url(https://s3.amazonaws.com/quadfit/home-background1.png) no-repeat center center;
     background-size: cover;
     .subline {
-      font-size: 18px;
+      font-size: 16px;
     }
+    .main-links {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+  .get-started {
+    height: 220px;
+  }
+  .coach-img {
+    margin-bottom: 0px !important;
   }
   #six {
     height: 1200px;
     background: #f4f4f4 url(https://s3.amazonaws.com/quadfit/image-quadpod.png) no-repeat 50% 700px;
   }
 
+  #two {
+    .content {
+      line-height: 1.4;
+      font-size: 18px;
+    }
+  }
+
+  #three {
+    .brick {
+      padding-top: 80px;
+    }
+    .title {
+      padding-top: 120px !important;
+    }
+  }
+
+  .cta {
+    font-size: 26px !important;
+  }
+
+  #five {
+    .tracking-img {
+      padding-top: 50px;
+    }
+    .details {
+      padding-top: 15px;
+    }
+  }
+  
+  #seven {
+    .sub {
+      text-align: left;
+    }
+  }
+
+}
+
+@media (max-width: 414px)  {
+  .headline {
+    font-size: 26px;
+  }
+  .main-links {
+    &:first-child {
+      margin-bottom: 30px;
+    }
+  }
+  #six {
+    .share {
+      padding-bottom: 30px;
+      line-height: 1.4;
+    }
+  }
+}
+
+@media (max-width: 320px)  {
+  .headline {
+    font-size: 22px;
+  }
+  .cta {
+    font-size: 24px !important;
+  }
 }

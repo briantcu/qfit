@@ -28,6 +28,12 @@ h1 {
   color: $dark-purple;
 }
 
+@media (max-width: 768px) {
+  h1 {
+    font-size: 36px;
+  }
+}
+
 .loading-overlay {
   width: 100%;
   height: 100%;
@@ -223,8 +229,15 @@ h1 {
   .navbar-collapse {
     background-color: transparent;
   }
+
   .navbar-nav {
     width: 40%;
+  }
+
+  .in {
+    .navbar-nav {
+      width: 80%;
+    }
   }
   .navbar-right {
     width: auto !important;

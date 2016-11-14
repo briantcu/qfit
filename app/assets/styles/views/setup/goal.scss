@@ -84,4 +84,24 @@
     }
   }
 
+  @media (max-width: 768px) {
+    .check-container {
+      margin-bottom: 40px;
+    }
+
+    .first-check {
+      margin-top: 40px;
+    }
+    h1 {
+      font-size: 36px;
+      margin-top: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header-text {
+      font-size: 14px;
+    }
+  }
+
 }

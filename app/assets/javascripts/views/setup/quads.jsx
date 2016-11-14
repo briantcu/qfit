@@ -46,7 +46,7 @@ class Quads extends React.Component {
     }
 
     render () {
-        return <div className="row quads">
+        return <div className="row quads metal-bg">
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-4 col-xs-10 col-xs-offset-1">
@@ -56,7 +56,7 @@ class Quads extends React.Component {
                     <div className="row">
                         <div className="col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-4 col-xs-10 col-xs-offset-1 header-text">
                             Which of the Quads of the Quadfit program would you like to add to your program?
-                            (Stretching will be added automatically)
+                            (Preparation will be added automatically)
                         </div>
                     </div>
                     <div className="row">
@@ -79,7 +79,7 @@ class Quads extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-sm-6 col-sm-offset-4 col-md-5 col-md-offset-4 col-xs-8 col-xs-offset-1 purple-bot-container">
-                            <CircleCheck id={'stretching'} label={'Preparation (Automatic)'} disabled={true} checked={true}/>
+                            <CircleCheck id={'stretching'} label={'Preparation'} disabled={true} checked={true}/>
                         </div>
                     </div>
                     <div className="row">

@@ -41,4 +41,14 @@
     }
   }
 
+  @media (max-width: 480px) {
+    .question {
+      margin-top: 40px;
+      font-size: 24px;
+    }
+    .square-check-wrapper {
+      margin-bottom: 20px;
+    }
+  }
+
 }

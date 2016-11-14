@@ -108,6 +108,54 @@ body {
   padding-left: 25px;
 }
 
+@media (max-width: 375px) {
+  .submit-button {
+    margin-right: 5px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  hr.hr-left {
+    width: 30px !important;
+  }
+
+  hr.hr-right {
+    width: 30px !important;
+  }
+}
+
+@media (max-width: 375px) and (min-width: 321px) {
+  hr.hr-left {
+    width: 60px !important;
+  }
+
+  hr.hr-right {
+    width: 60px !important;
+  }
+}
+
+@media (max-width: 450px) and (min-width: 376px){
+  hr.hr-left {
+    width: 80px !important;
+  }
+
+  hr.hr-right {
+    width: 80px !important;
+  }
+}
+
+@media (max-width: 480px) and (min-width: 415px) {
+  h1 {
+    font-size: 40px !important;
+  }
+}
+
+@media (max-width: 414px) {
+  h1 {
+    font-size: 36px !important;
+  }
+}
+
 @media all and (max-width: 768px)  {
   body {
     background: none;

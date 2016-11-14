@@ -32,14 +32,14 @@ class Goal extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-10 col-xs-offset-1 header-text text-center">
-                            This will help us build your customized workout program.
+                            This will help us build your customized program.
                         </div>
                     </div>
 
                     <div className="row">
                         <div className="col-sm-4 col-xs-10 col-xs-offset-1 col-sm-offset-0 text-center">
                             <div className="img-container hidden-xs"><img className="first-img" src="https://s3.amazonaws.com/quadfit/add+muscle.png" /></div>
-                            <div className="check-container"><VCircleCheck checked={this.props.goal == C.MASS} id={C.MASS} ref={C.MASS}
+                            <div className="check-container first-check"><VCircleCheck checked={this.props.goal == C.MASS} id={C.MASS} ref={C.MASS}
                                          label={'Add Muscle'} change={ this.change } /></div>
                         </div>
 

@@ -130,7 +130,7 @@ class Fitness extends React.Component {
     }
 
     render () {
-        return <div className="row fitness">
+        return <div className="row fitness metal-bg">
             <div className="container">
                 <div className="row">
                     <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 text-center">
