@@ -67,6 +67,9 @@ class App extends React.Component {
                 browserHistory.push(nextRoute.route);
             }
         }.bind(this));
+        $('html, body').animate({
+            scrollTop: $(".subnav").offset().top
+        }, 200);
     }
 
     previousPage() {

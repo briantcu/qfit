@@ -38,6 +38,9 @@ class Fitness extends React.Component {
     changeStep(step) {
         this.stepStack.push(step);
         this.setState({step: step});
+        $('html, body').animate({
+            scrollTop: $(".subnav").offset().top
+        }, 200);
     }
 
     showVideo() {

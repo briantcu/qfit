@@ -18,6 +18,7 @@ class Strength extends React.Component {
         this.showSwap = this.showSwap.bind(this);
         this.closeSwap = this.closeSwap.bind(this);
         this.swap = this.swap.bind(this);
+        this.scrollRight = this.scrollRight.bind(this);
         this.state = {
             showTips: false,
             showVideo: false,
@@ -70,6 +71,12 @@ class Strength extends React.Component {
         }
     }
 
+    scrollRight() {
+        $(this.refs.sets).animate({
+            scrollLeft: "+=200px"
+        }, "slow");
+    }
+
     render() {
         return <div className='strength exercise row' >
             <div className="col-xs-3 col-md-2 thumb-col">
@@ -91,7 +98,7 @@ class Strength extends React.Component {
             </div>
             <If condition={gon.viewing == 'user' || this.props.shared}>
                 <div className="col-xs-12 col-md-7 weight-sets-col">
-                    <div className="sets-wrapper">
+                    <div className="sets-wrapper" ref="sets">
                         <div className="weight-set  recommended">
                             Recommended:<br/>
                             Completed:
@@ -103,7 +110,7 @@ class Strength extends React.Component {
                             }.bind(this))
                         }
                     </div>
-                    <div className="scroll-indicator"></div>
+                    <div onClick={this.scrollRight} className="scroll-indicator"></div>
                 </div>
             </If>
             <TipsModal show={this.state.showTips} tips={this.props.exercise.exercise.tips} close={this.close} />
