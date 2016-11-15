@@ -26,12 +26,12 @@ class Goal extends React.Component {
             <div className="row no-margin">
                 <div className="container">
                     <div className="row">
-                        <div className="col-xs-10 col-xs-offset-1 text-center">
+                        <div className="col-xs-12 text-center">
                             <h1>What's Your Main Goal?</h1>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-10 col-xs-offset-1 header-text text-center">
+                        <div className="col-xs-12 header-text text-center">
                             This will help us build your customized program.
                         </div>
                     </div>
@@ -57,7 +57,7 @@ class Goal extends React.Component {
                     </div>
 
                     <div className="row">
-                        <div className="col-xs-6 col-xs-offset-3 button-row">
+                        <div className="col-xs-12 text-center button-row">
                             <Button ref="next" buttonText="Continue" onClick={ () => this.props.next('Goal') }
                                     disabled={false} />
                         </div>

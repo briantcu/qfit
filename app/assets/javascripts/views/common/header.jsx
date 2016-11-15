@@ -15,15 +15,14 @@ class Header extends React.Component {
     }
 
     render () {
-        return <div className="row header no-margin">
-            <div className="col-xs-12">
+        return <div className={this.props.showWorkoutNav ? "row header no-margin" : "row header no-margin shorter"}>
             <div className="container">
                 <div className="row">
                     <div className="col-sm-2 col-xs-6">
                         <a href="/"><img className="logo" src="https://s3.amazonaws.com/quadfit/logo%403x.png" /></a>
                     </div>
                     <If condition={this.props.showWorkoutNav}>
-                        <div className="col-sm-8 hidden-xs text-center">     \
+                        <div className="col-sm-8 hidden-xs text-center">
                             <div className="nav">
                                 <If condition={this.props.trueLinks}>
                                     <If condition={gon.is_coach} >
@@ -137,7 +136,6 @@ class Header extends React.Component {
                 </div>
             </div>
             </div>
-        </div>
     }
 
 }

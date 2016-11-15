@@ -9,9 +9,6 @@ class Subnav extends React.Component {
 
     render () {
         return <div className="row subnav no-margin">
-            <div className="col-xs-12">
-            <div className="container">
-                <div className="row">
                     <div className="col-xs-16 text-center">
                         {
                             this.props.elements.map(function (e, index) {
@@ -20,9 +17,6 @@ class Subnav extends React.Component {
                         }
                     </div>
                 </div>
-            </div>
-            </div>
-        </div>
     }
 
 }

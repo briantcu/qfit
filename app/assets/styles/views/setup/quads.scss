@@ -4,7 +4,6 @@ body {
   background: url(https://s3.amazonaws.com/quadfit/Signup+Background.png);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100% !important;
 }
 
 .app {
@@ -14,7 +13,12 @@ body {
 .quads {
   background: url(https://s3.amazonaws.com/quadfit/lifting.png) no-repeat;
   background-position: 10% 100%;
-  flex: 1 1 auto;
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+  padding-bottom: 50px;
 
   h1 {
     margin-top: 70px;
@@ -65,7 +69,6 @@ body {
       margin-top: 40px;
     }
     h1 {
-      font-size: 36px;
       margin-top: 40px;
     }
   }
@@ -74,14 +77,10 @@ body {
     .header-text {
       font-size: 14px;
     }
-  }
-
-  @media (max-width: 414px) {
     .label-text {
       font-size: 16px;
-      line-height: 3.9;
+      line-height: 4.4;
     }
   }
-
 }
 
