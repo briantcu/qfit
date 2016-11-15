@@ -64,7 +64,7 @@
   }
 
   .submit-row {
-    margin-top: 28px;
+    margin-top: 20px;
   }
 
   .error {
@@ -118,18 +118,6 @@ body {
 
   hr.hr-right {
     width: 80px !important;
-  }
-}
-
-@media (max-width: 480px) and (min-width: 415px) {
-  h1 {
-    font-size: 40px !important;
-  }
-}
-
-@media (max-width: 414px) {
-  h1 {
-    font-size: 36px !important;
   }
 }
 

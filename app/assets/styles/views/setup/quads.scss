@@ -1,9 +1,14 @@
 @import "../../common/common";
 
 body {
-    background: url(https://s3.amazonaws.com/quadfit/Signup+Background.png);
-    background-size: cover;
-    background-repeat: no-repeat;
+  background: url(https://s3.amazonaws.com/quadfit/Signup+Background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100% !important;
+}
+
+.app {
+  height: auto !important;
 }
 
 .quads {

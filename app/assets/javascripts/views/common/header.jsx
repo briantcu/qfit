@@ -15,7 +15,8 @@ class Header extends React.Component {
     }
 
     render () {
-        return <div className="row header">
+        return <div className="row header no-margin">
+            <div className="col-xs-12">
             <div className="container">
                 <div className="row">
                     <div className="col-sm-2 col-xs-6">
@@ -134,6 +135,7 @@ class Header extends React.Component {
                         </div>
                     </If>
                 </div>
+            </div>
             </div>
         </div>
     }

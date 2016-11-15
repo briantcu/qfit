@@ -95,6 +95,7 @@ class Forgot extends React.Component {
                             <div>We just sent you an email with a password reset link!</div>
                         </If>
                         <span onClick={ () => this.submit()} className="submit-button purple-text">Reset Password</span>
+                        <div className="visible-xs"><br/></div>
                         <a href="/sign-in" className="help-text bold-link">Or sign in to your account</a>
                     </div>
                 </div>

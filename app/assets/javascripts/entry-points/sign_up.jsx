@@ -250,11 +250,12 @@ class AthleteSignUp extends React.Component {
                             <span onClick={ () => this.submit()} className={this.state.formSubmitted ? "submitting submit-button purple-text" : "submit-button purple-text" }>
                                 {this.state.formSubmitted ? "..." : "Sign Up" }
                             </span>
+                            <div className="visible-xs"><br/></div>
                             <a href="/sign-in" className="help-text bold-link">Have an account? Login here.</a>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-12 help-text">
                             By clicking Sign Up you agree to the <a href="/terms" target="_blank" className="help-text bold-link">user agreement.</a>
                         </div>
                     </div>

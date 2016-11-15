@@ -27,7 +27,7 @@ class Program extends React.Component {
     }
 
     render () {
-        return <div className="program">
+        return <div className="program metal-bg">
             <div className="row">
                 <div className="container">
                     <div className="row">

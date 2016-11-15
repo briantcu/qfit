@@ -1,4 +1,7 @@
 @import 'colors';
+@import 'navbar';
+@import 'text';
+@import 'modal';
 
 body {
   font-family: 'Open Sans', sans-serif;
@@ -17,21 +20,11 @@ html {
 
 #app {
   height: 100%;
-  //overflow-x: hidden; This messed up window scroll events
 }
 
-h1 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 48px;
-  font-weight: 300;
-  letter-spacing: -1.1px;
-  color: $dark-purple;
-}
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 36px;
-  }
+.no-margin {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 .loading-overlay {
@@ -54,81 +47,6 @@ h1 {
 
 .hover {
   cursor: pointer;
-}
-
-.modal-header {
-  border-bottom: none !important;
-  text-align: center;
-  h4 {
-    font-size: 24px;
-    font-weight: normal;
-    letter-spacing: -0.8px;
-    color: $purple;
-  }
-}
-
-.modal-content {
-  border: none !important;
-  -webkit-border-radius:0px !important;
-  -moz-border-radius:0px !important;
-  border-radius: 0px !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
-
-  h4 {
-    color: $dark-purple !important;
-  }
-  .close {
-    color: $dark-purple;
-    opacity: 1;
-    border: $dark-purple 1px solid;
-    border-radius: 15px;
-    width: 25px;
-  }
-}
-
-.standard-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.3;
-  letter-spacing: -0.4px;
-  color: $dark-purple;
-}
-
-.info-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: -0.3px;
-  color: $light-gray;
-}
-
-.help-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 3.4;
-  letter-spacing: -0.3px;
-  color: $dark-purple;
-}
-
-.purple-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: -0.4px;
-  color: $purple;
-}
-
-.bold-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 2.9;
-  letter-spacing: -0.4px;
-  color: $purple;
 }
 
 @mixin border-bottom {
@@ -213,70 +131,10 @@ h1 {
 }
 
 .metal-bg {
-  height: 100vh;
+  flex: 1 1 auto;
   background: url(https://s3.amazonaws.com/quadfit/Signup+Background.png);
   background-size: cover;
   background-repeat: no-repeat;
   padding-bottom: 30px;
-}
-
-.navbar-default {
-  background: none !important;
-  border: none !important;
-  .navbar-header {
-    height: 100px;
-  }
-  .navbar-collapse {
-    background-color: transparent;
-  }
-
-  .navbar-nav {
-    width: 40%;
-  }
-
-  .in {
-    .navbar-nav {
-      width: 80%;
-    }
-  }
-  .navbar-right {
-    width: auto !important;
-  }
-  .logo {
-    width: 20%;
-    display: inline-block;
-  }
-  a {
-    color: white !important;
-    margin-right: 40px;
-  }
-  a:hover {
-    text-decoration: underline !important;
-  }
-  .navbar-toggle {
-    border-color: #cccbcc !important;
-    background-color: transparent !important;
-    margin-top: 32px !important;
-  }
-  .icon-bar {
-    background-color: #cccbcc !important;
-  }
-  @media (max-width: 768px) {
-    .navbar-collapse {
-      background-color: #271b37;
-    }
-    #header-row {
-      padding-top: 0px;
-    }
-    .main {
-      padding-top: 100px !important;
-    }
-  }
-  @media (min-width: 768px) and (max-width: 991px) {
-    a {
-      padding-left: 0px !important;
-      font-size: 12px !important;
-    }
-  }
 }
 

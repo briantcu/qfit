@@ -1,8 +1,6 @@
 @import "../../common/common";
 
 .subnav {
-
-  //height: 52px;
   flex: 0 1 52px;
   background-color: $gray1;
   border: solid 1px $gray2;
@@ -16,11 +14,17 @@
     }
   }
 
-  @media all and (max-width: 768px) {
+  @media (max-width: 768px) {
     span {
       &:not(:first-child) {
         margin-left: 20px;
       }
+    }
+  }
+
+  @media (max-width: 375px) {
+    span {
+      font-size: 14px !important;
     }
   }
 
