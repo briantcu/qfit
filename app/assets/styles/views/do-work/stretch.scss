@@ -23,16 +23,6 @@
 
     .thumb-col {
       text-align: center;
-      .thumb {
-        width: 320px;
-        height: 180px;
-        float: none;
-        margin: auto;
-        img {
-          width: 320px;
-          height: 180px;
-        }
-      }
     }
 
     .input-col {
@@ -44,8 +34,29 @@
       text-align: center;
 
     }
+  }
 
-
+  @media (max-width: 768px) and (min-width: 481px) {
+    .thumb {
+      width: 320px;
+      height: 180px;
+      float: none;
+      margin: auto;
+      img {
+        width: 320px;
+        height: 180px;
+      }
+    }
+  }
+  @media (max-width: 480px) {
+    .thumb {
+      width: 100%;
+      height: auto;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
 
 }

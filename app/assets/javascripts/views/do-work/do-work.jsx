@@ -196,7 +196,7 @@ class DoWork extends React.Component {
             <If condition={!this.props.shared}>
                 <Calendar {...this.props} />
 
-                <div className="row subnav">
+                <div className="row subnav no-margin">
                     <div className="container">
                         <div className="row">
                             <div className="col-xs-12 text-center subnav-cluster">
@@ -216,7 +216,7 @@ class DoWork extends React.Component {
 
                 </div>
             </If>
-            <div className="row main">
+            <div className="row main no-margin">
                 <div className="container">
                     <div className={this.props.loading ? 'loading row' : 'row'}>
 

@@ -148,4 +148,29 @@
       }
     }
   }
+
+  @media (max-width: 480px) {
+    .thumb-col {
+      padding-left: 0px;
+    }
+    .info-col {
+      padding-right: 0px;
+    }
+    .thumb {
+      width: 125px;
+      height: 70px;
+      img {
+        width: 125px;
+        height: 70px;
+      }
+    }
+    .ex-info {
+      padding-top: 0px !important;
+    }
+
+    .ex-subtext {
+      font-size: 10px !important;
+    }
+
+  }
 }

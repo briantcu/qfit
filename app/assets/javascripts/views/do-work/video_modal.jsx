@@ -13,7 +13,11 @@ class VideoModal extends React.Component {
         if (this.props.link.split('.').length < 2) {
             var width = $(window).width();
             var vWidth, vHeight;
-            if (width < 480) {
+            if (width <= 350) {
+                vWidth = 270;
+                vHeight = 150
+            }
+            if (width > 350) {
                 vWidth = 320;
                 vHeight = 180
             }

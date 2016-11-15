@@ -34,10 +34,16 @@
       height: 49px;
     }
 
-    @media (max-width: 991px) {
+    @media (max-width: 991px) and (min-width: 481px) {
       .cal-text {
         font-size: 24px;
         padding-top: 5px;
+      }
+    }
+    @media (max-width: 480px) {
+      .cal-text {
+        font-size: 18px;
+        padding-top: 15px;
       }
     }
   }

@@ -52,6 +52,12 @@
       width: 768px;
     }
   }
+
+  @media (max-width: 480px) {
+    .tips-wrapper {
+      padding-left: 0px;
+    }
+  }
 }
 
 .share-section {
@@ -261,7 +267,6 @@
     border: solid 1px #d8d8d8;
     margin-bottom: 10px;
     margin-top: 20px;
-    min-width: 600px;
     width: 100%;
     display: block;
     height: 100px;
@@ -513,6 +518,12 @@
     .sprinting {
       margin-bottom: 0px;
       border-bottom: solid 2px white;
+    }
+  }
+  @media (max-width: 480px) {
+    .exercise-section {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
   }
 }

@@ -22,7 +22,7 @@ class Header extends React.Component {
                         <a href="/"><img className="logo" src="https://s3.amazonaws.com/quadfit/logo%403x.png" /></a>
                     </div>
                     <If condition={this.props.showWorkoutNav}>
-                        <div className="col-sm-8 hidden-xs text-center">
+                        <div className="col-sm-8 hidden-xs text-center nav-wrapper">
                             <div className="nav">
                                 <If condition={this.props.trueLinks}>
                                     <If condition={gon.is_coach} >
@@ -92,7 +92,7 @@ class Header extends React.Component {
                 </div>
                 <div className="row hidden-sm hidden-md hidden-lg">
                     <If condition={this.props.showWorkoutNav}>
-                        <div className="col-xs-12 text-center">     \
+                        <div className="col-xs-12 text-center nav-wrapper">     \
                             <div className="nav">
                                 <If condition={this.props.trueLinks}>
                                     <If condition={gon.is_coach} >
