@@ -74,6 +74,17 @@ class App extends React.Component {
     }
 
     componentDidMount () {
+        var userAgent = navigator.userAgent.toLowerCase();
+        if (userAgent .indexOf('safari')!=-1){
+            if(userAgent .indexOf('chrome')  > -1){
+                //browser is chrome
+            }else if((userAgent .indexOf('opera')  > -1)||(userAgent .indexOf('opr')  > -1)){
+                //browser is opera
+            }else{
+                $('html').css('height', 'auto');
+            }
+        }
+
         UserStore.addChangeListener(this.onChange);
         if (gon.viewing == 'user') {
             if (gon.current_user_id != gon.user_id) {
