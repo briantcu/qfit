@@ -228,7 +228,7 @@ class CoachSignUp extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-md-12 help-text">
                         By clicking Sign Up you agree to the <a href="/terms" target="_blank" className="help-text bold-link">user agreement.</a>
                     </div>
                 </div>

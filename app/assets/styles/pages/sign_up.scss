@@ -103,7 +103,7 @@ body {
   background: url(https://s3.amazonaws.com/quadfit/backgrounds-runner.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: auto !important;
 }
 
 .full-logo {
