@@ -130,15 +130,15 @@ class Fitness extends React.Component {
     }
 
     render () {
-        return <div className="row fitness metal-bg">
+        return <div className="row fitness metal-bg no-margin">
             <div className="container">
                 <div className="row">
-                    <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 text-center">
+                    <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-xs-12 text-center">
                         <h1>Fitness Assessment</h1>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 text-center standard-text">
+                    <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-xs-12 text-center standard-text">
                         Answer these questions as well as you can.<br/>Feel free to skip a question if you don't know the answer.
                     </div>
                 </div>
@@ -167,7 +167,7 @@ class Fitness extends React.Component {
 
                 <If condition={this.state.step == 1}>
                     <div className="row">
-                        <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 text-center">
+                        <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-12 text-center">
                             <div className="question">How much do you weigh?</div>
                             <div className="input-wrapper">
                                 <SimpleInput ref="userWeight" onChange={ () => this.userWeightChanged() } label="lbs" value={this.props.userWeight} />
@@ -189,7 +189,7 @@ class Fitness extends React.Component {
 
                 <If condition={this.state.step == 2}>
                     <div className="row">
-                        <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 text-center">
+                        <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-12 text-center">
                             <div className="question">How much can you bench press?</div>
                             <div className="input-wrapper">
                                 <SimpleInput ref="benchWeight" onChange={ () => this.benchChanged() } label="lbs" value={this.props.benchWeight} />
@@ -218,7 +218,7 @@ class Fitness extends React.Component {
 
                 <If condition={this.state.step == 3}>
                     <div className="row">
-                        <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 text-center">
+                        <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-12 text-center">
                             <div className="question">How many push ups can you do?</div>
                             <div className="input-wrapper">
                                 <SimpleInput ref="pushups" onChange={ () => this.pushupsChanged() } label="" value={this.props.pushups} />
@@ -245,7 +245,7 @@ class Fitness extends React.Component {
 
                 <If condition={this.state.step == 4}>
                     <div className="row">
-                        <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 text-center">
+                        <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-12 text-center">
                             <div className="question">How many assisted push ups<br/> can you do? <span onClick={ () => this.showVideo() } className="small-link">See it</span></div>
                             <div className="input-wrapper">
                                 <SimpleInput ref="assisted" onChange={ () => this.assistedChanged() } label="" value={this.props.assistedPushups} />
@@ -267,7 +267,7 @@ class Fitness extends React.Component {
 
                 <If condition={this.state.step == 5}>
                     <div className="row">
-                        <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 text-center">
+                        <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-12 text-center">
                             <div className="question">How many pull ups can you do?</div>
                             <div className="input-wrapper">
                                 <SimpleInput ref="pullups" onChange={ () => this.pullupsChanged() } label="" value={this.props.pullups} />
@@ -294,7 +294,7 @@ class Fitness extends React.Component {
 
                 <If condition={this.state.step == 6}>
                     <div className="row">
-                        <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 text-center">
+                        <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-xs-12 text-center">
                             <div className="question">How much can you squat?</div>
                             <div className="input-wrapper">
                                 <SimpleInput ref="squatWeight" onChange={ () => this.squatChanged() } label="lbs" value={this.props.squatWeight} />
