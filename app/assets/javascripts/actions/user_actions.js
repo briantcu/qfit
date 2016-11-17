@@ -63,7 +63,7 @@ var UserActions = {
                     location.href = xhr.getResponseHeader('Location');
                 },
                 error: function(results) {
-                    alert(results);
+                    alert(results.responseJSON.errors);
                 }
             });
         } else {
@@ -77,7 +77,7 @@ var UserActions = {
                     location.href = xhr.getResponseHeader('Location');
                 },
                 error: function(results) {
-                    alert(results);
+                    alert(results.responseJSON.errors);
                 }
             });
         }
@@ -123,7 +123,7 @@ var UserActions = {
                 dispatcher.dispatch(C.INVITES_LOADED, pod);
             },
             error: function(results) {
-                alert(results);
+                alert(results.responseJSON.errors);
             }
         });
     },
@@ -139,7 +139,7 @@ var UserActions = {
                 this.getPod();
             }.bind(this),
             error: function(results) {
-                alert(results);
+                alert(results.responseJSON.errors);
             }
         });
     },
@@ -188,7 +188,7 @@ var UserActions = {
                     dispatcher.dispatch(C.INVITES_SENT, results);
                 },
                 error: function (results) {
-                    alert(results);
+                    alert(results.responseJSON.errors);
                 }
             });
         }
@@ -204,7 +204,7 @@ var UserActions = {
                 dispatcher.dispatch(C.INVITES_SENT, results);
             },
             error: function (results) {
-                alert(results);
+                alert(results.responseJSON.errors);
             }
         });
     },
@@ -222,7 +222,7 @@ var UserActions = {
                 UserActions.getConversation(receiver);
             },
             error: function (results) {
-                alert(results);
+                alert(results.responseJSON.errors);
             }
         });
     },
@@ -240,7 +240,7 @@ var UserActions = {
                 UserActions.getFeed();
             },
             error: function (results) {
-                alert(results);
+                alert(results.responseJSON.errors);
             }
         });
     },
@@ -312,7 +312,7 @@ var UserActions = {
                 location.href = '/';
             },
             error: function(results) {
-                alert(results);
+                alert(results.responseJSON.errors);
             }
         });
     }

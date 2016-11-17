@@ -11,7 +11,7 @@ class QuadPodService
 
     pod_invite = PodInvite.where(inviter_id: invite.inviter_id, sent_to: invite.sent_to).first
     if pod_invite.present?
-      return { status: 'exists', message: 'A request has already been sent', pod_invite: pod_invite}
+      return { status: 'exists', message: 'A Quad Pod invite request has already been sent', pod_invite: pod_invite}
     end
 
     if VALID_EMAIL_REGEX.match(invite.sent_to)
