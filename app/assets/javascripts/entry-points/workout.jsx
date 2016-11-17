@@ -317,7 +317,7 @@ class App extends React.Component {
         return <div className="hundo-height">
             <Header user={this.state.loggedInUser} showWorkoutNav={true} active={active} />
             <If condition={this.state.showBanner} >
-                <div className="row banner-row">
+                <div className="row banner-row no-margin">
                     <div className="container">
                         <div className="row">
                             {this.state.bannerContent()}

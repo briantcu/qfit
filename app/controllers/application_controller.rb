@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user_from_token!
     authenticate_with_http_basic do |username,password|
       if password.present?
-        resource = User.find_by_email(username)
+        resource = User.where('lower(email) = ?', username.downcase).first
         if resource && resource.valid_password?(password)
           sign_in resource, store: false
         end

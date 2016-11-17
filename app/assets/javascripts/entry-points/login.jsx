@@ -129,6 +129,7 @@ class Login extends React.Component {
                             <div>{this.state.loginStatus.errors}</div>
                         </If>
                         <span onClick={ () => this.submit()} className="submit-button purple-text">Sign In</span>
+                        <div className="visible-xs"><br/></div>
                         <a href="/i-dunno" className="help-text bold-link">Forgot your password?</a>
                     </div>
                 </div>

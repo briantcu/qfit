@@ -541,11 +541,11 @@ class DoWork extends React.Component {
 
                         <a href="http://twitter.com/share?text=My Quadfit Workout&url=http://www.quadfit.com/share.html"
                            title="Share on Twitter" target="_blank" >
-                            <img className="img-circle" src="https://d1xhkvbdeqtvdw.cloudfront.net/twitter-bird-white-on-blue.png" height="32" width="32"/> Twitter</a>
+                            <img className="img-circle" src="https://s3.amazonaws.com/quadfit/social-twitter.png" height="32" width="32"/> Twitter</a>
 
                         <a href="http://www.facebook.com/sharer.php?u=http://www.quadfit.com/share.html?<?echo $share?>"
                            title="Share on Facebook" target="_blank" >
-                            <img className="img-circle" src="https://d1xhkvbdeqtvdw.cloudfront.net/f_logo.png" height="32" width="32"/> Facebook</a>
+                            <img className="img-circle" src="https://s3.amazonaws.com/quadfit/social-facebook.png" height="32" width="32"/> Facebook</a>
                     </span>
                 </Modal.Body>
             </Modal>

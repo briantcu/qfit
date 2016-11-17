@@ -110,7 +110,9 @@ class Strength extends React.Component {
                             }.bind(this))
                         }
                     </div>
-                    <div onClick={this.scrollRight} className="scroll-indicator"></div>
+                    <div onClick={this.scrollRight} className="scroll-indicator">
+                        <img src="https://s3.amazonaws.com/quadfit/more-arrow.png" />
+                    </div>
                 </div>
             </If>
             <TipsModal show={this.state.showTips} tips={this.props.exercise.exercise.tips} close={this.close} />

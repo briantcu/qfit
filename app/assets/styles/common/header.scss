@@ -120,13 +120,13 @@
 
   .nav {
     width: 390px;
-    margin: 10px auto auto;
+    margin: 25px auto auto;
     color: white !important;
     img {
       margin-top: -3px;
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: 768px) and (min-width: 481px) {
     min-height: 160px;
     .links-wrapper {
       a {
@@ -151,11 +151,16 @@
   }
 
   @media (max-width: 480px) {
+    min-height: 150px;
     .nav {
+      margin: 10px auto auto;
       width: 100%;
       .btn {
         width: 33.333%;
       }
+    }
+    .shorter {
+      min-height: 100px;
     }
     .nav-wrapper {
       padding-left: 0px;

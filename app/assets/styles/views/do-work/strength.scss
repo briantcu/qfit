@@ -28,7 +28,16 @@
     position: absolute;
     right: 0px;
     top: 0px;
-    background-color: $gray6;
+    background-color: #EDEDED;
+    padding-top: 25px;
+    cursor: pointer;
+    img {
+      float: none;
+      margin: auto;
+      height: 24px;
+      width: 11px;
+      display: block;
+    }
   }
 
   .gray {

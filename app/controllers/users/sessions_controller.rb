@@ -28,7 +28,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def process_api_sign_in(email, password)
-    user = User.find_by_email(email)
+    user = User.where('lower(email) = ?', email.downcase).first
     return failure unless user.present?
 
     if user.needs_pw_reset

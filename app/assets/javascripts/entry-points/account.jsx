@@ -269,7 +269,7 @@ class Account extends React.Component {
                                         </div>
                                         <div className="row">
                                             <div className="col-md-12">
-                                            <span className='purple-bot-container bio-section'>
+                                            <span className='purple-bot-container bio-section standard-text'>
                                                 About Me
                                                 <textarea ref="bioBox" className="bio-box" maxLength="150" rows="10">
                                                     {this.state.user.bio}
@@ -282,10 +282,8 @@ class Account extends React.Component {
                                                 <If condition={this.state.saveStatus.status == C.PROFILE_FAILURE}>
                                                     <div>{this.state.saveStatus.errors.join(', ')}</div>
                                                 </If>
-                                                <If condition={this.state.saveStatus.status == C.PROFILE_SUCCESS}>
-                                                    <div>SUCCESS!</div>
-                                                </If>
-                                                <Button onClick={ () => this.submit()} buttonText={"Save"} />
+                                                <Button onClick={ () => this.submit()}
+                                                        buttonText={this.state.saveStatus.status == C.PROFILE_SUCCESS ? 'SAVED!' : 'Save'} />
                                             </div>
                                         </div>
                                         </If>

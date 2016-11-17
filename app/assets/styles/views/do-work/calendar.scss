@@ -162,7 +162,7 @@
     transform: rotate(225deg);
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 768px) and (min-width: 351px) {
   .left-arr {
     width: 12.5%;
     &:after {
@@ -175,6 +175,37 @@
       left: -30px;
     }
 
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar {
+    height: 125px;
+    .calendar-cell {
+      padding-top: 20px;
+      height: 125px;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .left-arr {
+    width: 12.5%;
+    &:after {
+      right: -10px;
+      width: 30px;
+      height: 30px;
+      top: 50px;
+    }
+  }
+  .right-arr {
+    width: 12.5%;
+    &:after {
+      width: 30px;
+      height: 30px;
+      top: 50px;
+      left: -10px;
+    }
   }
 }
 
