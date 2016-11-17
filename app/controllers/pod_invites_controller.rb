@@ -41,6 +41,17 @@ class PodInvitesController < ApplicationController
     end
   end
 
+  def invite_existing_user
+    invitee = User.find(params[:id])
+    pod_invite = PodInvite.new(invitee_id: invitee.id, inviter: current_user, sent_to: invitee.email)
+    response = QuadPodService.instance.send_invite(pod_invite)
+    if response[:status] == 'success'
+      render json: {}, status: 201
+    else
+      render json: {errors: response[:message]}, status: 422
+    end
+  end
+
   def accept
     QuadPodService.instance.accept_invite_existing_user(@pod_invite)
     @invites = PodInvite.invites_for_user(current_user)

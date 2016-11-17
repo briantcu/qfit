@@ -194,6 +194,21 @@ var UserActions = {
         }
     },
 
+    inviteUser: function(user_id) {
+        $.ajax({
+            type: 'post',
+            url: '/pod_invites/user/'+user_id+'.json',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (results) {
+                dispatcher.dispatch(C.INVITES_SENT, results);
+            },
+            error: function (results) {
+                alert(results);
+            }
+        });
+    },
+
     sendDM: function(receiver, message) {
         var payload = {message: {to_id: receiver, message_type: 2, message: message}};
         var data = JSON.stringify(payload);

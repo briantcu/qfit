@@ -91,6 +91,7 @@ Qfit::Application.routes.draw do
   get '/pod_invites', to: 'pod_invites#index'
   get '/pod_invites/:id', to: 'pod_invites#show'
   post '/pod_invites', to: 'pod_invites#create'
+  post '/pod_invites/user/:id', to: 'pod_invites#invite_existing_user'
   put '/pod_invites/:id/accept', to: 'pod_invites#accept'
   put '/pod_invites/:id/deny', to: 'pod_invites#deny'
   get '/invites', to: 'pod_invites#invites'

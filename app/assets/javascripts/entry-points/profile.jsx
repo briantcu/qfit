@@ -19,7 +19,8 @@ class Profile extends React.Component {
         this.state = {
             user: {recent_workouts: []},
             loggedInUser: {},
-            quad_pod: []
+            quad_pod: [],
+            inviteButtonDisabled: false,
         };
         this.onChange = this.onChange.bind(this);
         this.sendInvite = this.sendInvite.bind(this);
@@ -57,7 +58,8 @@ class Profile extends React.Component {
     }
 
     sendInvite() {
-
+        this.setState({inviteButtonDisabled: true});
+        UserActions.inviteUser(this.state.user.id);
     }
 
     render () {
@@ -94,7 +96,8 @@ class Profile extends React.Component {
                                             <div className="col-sm-12 col-md-4 text-right">
                                                 <div className="button-wrapper">
                                                     <If condition={!this.state.user.is_friend && gon.current_user_id != gon.user_id} >
-                                                        <Button buttonText="Invite to Quad Pod" onClick={this.sendInvite} />
+                                                        <Button buttonText={this.state.inviteButtonDisabled ? "Invite Sent!" : "Invite to Quad Pod"}
+                                                                onClick={this.sendInvite} disabled={this.state.inviteButtonDisabled}/>
                                                     </If>
                                                     <If condition={this.state.user.is_friend && gon.current_user_id != gon.user_id} >
                                                         <span className="in-pod">In Your Quad Pod</span>
@@ -114,7 +117,8 @@ class Profile extends React.Component {
                                     <div className="sec-main workout-section">
                                         <If condition={!this.state.user.is_friend && gon.current_user_id != gon.user_id} >
                                             <div className="standard-text nope">Not so fast! You can only see workouts for people in your Quad Pod.</div>
-                                            <Button buttonText="Invite to Quad Pod" onClick={this.sendInvite} />
+                                            <Button buttonText={this.state.inviteButtonDisabled ? "Invite Sent!" : "Invite to Quad Pod"}
+                                                    onClick={this.sendInvite} disabled={this.state.inviteButtonDisabled}/>
                                         </If>
                                         <If condition={this.state.user.is_friend || gon.current_user_id == gon.user_id} >
                                             {
