@@ -51,6 +51,16 @@ body {
   }
 }
 
+.visible-micro {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .visible-micro {
+    display: block;
+  }
+}
+
 .hover {
   cursor: pointer;
 }

@@ -321,11 +321,16 @@
     background-color: $gray1;
     border: solid 1px $gray2;
     padding-top: 6px;
+    .subnav-cluster {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
 
     span:not(:last-child) {
       margin-right: 40px;
     }
     span {
+      display: inline-block;
       font-family: 'Open Sans', sans-serif;
       color: $purple;
       font-size: 12px;
@@ -340,6 +345,11 @@
     @media (max-width: 520px) {
       span:not(:last-child) {
         margin-right: 20px;
+      }
+    }
+    @media (max-width: 479px) {
+      span {
+        padding-top: 10px;
       }
     }
   }
@@ -455,6 +465,36 @@
     }
   }
 
+  @media (max-width: 480px) {
+    .sec-header {
+      color: white !important;
+      background-color: $purple !important;
+      text-align: center;
+      height: 80px !important;
+    }
+
+    .add-ex {
+      color: white !important;
+      padding-top: 5px;
+      margin-top: 0px;
+    }
+  }
+
+  @media (max-width: 768px) and (min-width: 481px) {
+    .sec-header {
+      color: white !important;
+      background-color: $purple !important;
+      text-align: center;
+      height: 70px;
+    }
+
+    .add-ex {
+      color: white !important;
+      padding-top: 0px;
+      margin-top: -15px;
+    }
+  }
+
   @media (max-width: 768px) {
 
     .cal-container {
@@ -464,16 +504,6 @@
     .exercise-section {
       padding-top: 0 !important;
       padding-bottom: 0 !important;
-    }
-
-    .sec-header {
-      color: white !important;
-      background-color: $purple !important;
-      text-align: center;
-    }
-
-    .add-ex {
-      color: white !important;
     }
 
     .sec {
@@ -524,6 +554,9 @@
     .exercise-section {
       padding-left: 0 !important;
       padding-right: 0 !important;
+    }
+    .subnav {
+      height: 80px;
     }
   }
 }

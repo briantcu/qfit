@@ -197,21 +197,20 @@ class DoWork extends React.Component {
                 <Calendar {...this.props} />
 
                 <div className="row subnav no-margin">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-xs-12 text-center subnav-cluster">
-                                <If condition={gon.viewing != 'team' && this.props.routine.id } >
-                                    <span onClick={ () => this.submit()} >
-                                        <img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Complete.png" /> Complete this Workout
-                                    </span>
-                                </If>
-                                <span><a className="no-hover" href="/schedule"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Schedule.png" /> Change Schedule</a></span>
-                                <span><a className="no-hover" href="/program"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Program.png" /> Change Program</a></span>
-                                <If condition={gon.viewing != 'team' && this.props.routine.id } >
-                                    <span onClick={this.showShareWorkout}><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Share+Workout.png" />Share Workout</span>
-                                </If>
-                            </div>
-                        </div>
+                    <div className="col-xs-12 text-center subnav-cluster">
+                        <If condition={gon.viewing != 'team' && this.props.routine.id } >
+                            <span onClick={ () => this.submit()} >
+                                <img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Complete.png" /> Complete this Workout
+                            </span>
+                        </If>
+                        <span><a className="no-hover" href="/schedule"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Schedule.png" /> Change Schedule</a></span>
+                        <If condition={gon.viewing != 'team' && this.props.routine.id } >
+                            <div className="visible-micro"></div>
+                        </If>
+                        <span><a className="no-hover" href="/program"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Program.png" /> Change Program</a></span>
+                        <If condition={gon.viewing != 'team' && this.props.routine.id } >
+                            <span onClick={this.showShareWorkout}><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Share+Workout.png" />Share Workout</span>
+                        </If>
                     </div>
 
                 </div>
@@ -235,14 +234,13 @@ class DoWork extends React.Component {
                                     </div>
                                 </div>
                             </If>
-                            <div className="row">
-                                <div className="col-xs-12 sec-header">
-                                    <span className="third visible-xs" />
-                                    <span className="main-third">Preparation</span>
-                                    <If condition={!this.props.shared} >
-                                        <span className="add-ex third" onClick={ () => this.showAddEx('warmups')}>Add Exercise</span>
-                                    </If>
+                            <div className="row sec-header">
+                                <div className="col-sm-4 col-sm-offset-4 text-center col-xs-12">
+                                    <span>Preparation</span>
                                 </div>
+                                <If condition={!this.props.shared} >
+                                    <div className="add-ex col-sm-4 text-right col-xs-12" onClick={ () => this.showAddEx('warmups')}>Add Exercise</div>
+                                </If>
                             </div>
                             <div className="exercise-section">
                                 <Choose>
@@ -282,14 +280,13 @@ class DoWork extends React.Component {
                         </div>
 
                         <div className="strength-sec sec container">
-                            <div className="row">
-                                <div className="col-xs-12 sec-header">
-                                    <span className="third visible-xs" />
-                                    <span className="main-third">Strength Training</span>
-                                    <If condition={!this.props.shared} >
-                                        <span className="add-ex third" onClick={ () => this.showAddEx('weights')}>Add Exercise</span>
-                                    </If>
+                            <div className="row sec-header">
+                                <div className="col-sm-4 col-sm-offset-4 text-center col-xs-12">
+                                    <span>Strength Training</span>
                                 </div>
+                                <If condition={!this.props.shared} >
+                                    <div className="add-ex col-sm-4 text-right col-xs-12" onClick={ () => this.showAddEx('weights')}>Add Exercise</div>
+                                </If>
                             </div>
                             <div className="exercise-section">
                                 <Choose>
@@ -329,14 +326,13 @@ class DoWork extends React.Component {
                         </div>
 
                         <div className="plyos sec container">
-                            <div className="row">
-                                <div className="col-xs-12 sec-header">
-                                    <span className="third visible-xs" />
-                                    <span className="main-third">Plyometrics</span>
-                                    <If condition={!this.props.shared} >
-                                        <span className="add-ex third" onClick={ () => this.showAddEx('plyos')}>Add Exercise</span>
-                                    </If>
+                            <div className="row sec-header">
+                                <div className="col-sm-4 col-sm-offset-4 text-center col-xs-12">
+                                    <span>Plyometrics</span>
                                 </div>
+                                    <If condition={!this.props.shared} >
+                                        <div className="add-ex col-sm-4 text-right col-xs-12" onClick={ () => this.showAddEx('plyos')}>Add Exercise</div>
+                                    </If>
                             </div>
                             <div className="exercise-section">
                                 <Choose>
@@ -376,14 +372,13 @@ class DoWork extends React.Component {
                         </div>
 
                         <div className="sprinting sec container">
-                            <div className="row">
-                                <div className="col-xs-12 sec-header">
-                                    <span className="third visible-xs" />
-                                    <span className="main-third">Sprinting</span>
-                                    <If condition={!this.props.shared} >
-                                        <span className="add-ex third" onClick={ () => this.showAddEx('sprinting')}>Add Exercise</span>
-                                    </If>
+                            <div className="row sec-header">
+                                <div className="col-sm-4 col-sm-offset-4 text-center col-xs-12">
+                                    <span>Sprinting</span>
                                 </div>
+                                    <If condition={!this.props.shared} >
+                                        <div className="add-ex col-sm-4 text-right col-xs-12" onClick={ () => this.showAddEx('sprinting')}>Add Exercise</div>
+                                    </If>
                             </div>
                             <div className="exercise-section">
                                 <Choose>
