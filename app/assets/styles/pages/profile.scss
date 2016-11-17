@@ -44,6 +44,12 @@
   .workout-section {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
+    min-height: 300px;
+
+    .nope {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
   }
 
   .profile-row {

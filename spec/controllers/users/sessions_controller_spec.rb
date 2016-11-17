@@ -8,13 +8,13 @@ RSpec.describe Users::SessionsController, type: :controller do
 
   context 'sign in' do
     it 'throws 401 if the user cant be found' do
-      post :create, { user: { email: 'brian@quadfit.com', password: 'password'} }
+      post :create, { email: 'brian@quadfit.com', password: 'password'}
       expect(response.status).to eq(401)
     end
 
     it 'throws 401 if login is invalid' do
       user = FactoryGirl.create(:user, email: 'brian@quadfit.com', password: 'password')
-      post :create, { user: { email: 'brian@quadfit.com', password: 'nope'} }
+      post :create, { email: 'brian@quadfit.com', password: 'nope'}
       expect(response.status).to eq(401)
     end
 

@@ -37,10 +37,16 @@ class FriendsController < ApplicationController
   def show
     # Used to populate the profile page
     @user = User.find(params[:id])
-    @recent_workouts = @user.recent_workouts
+
     @is_friend = false
     if current_user.present?
       @is_friend = FriendService.instance.are_friends?(@user.id, current_user.id)
+    end
+
+    if @is_friend
+      @recent_workouts = @user.recent_workouts
+    else
+      @recent_workouts = []
     end
   end
 end

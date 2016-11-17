@@ -112,18 +112,24 @@ class Profile extends React.Component {
                                 <div className="p-section">
                                     <div className="sec-header">Recent Workouts</div>
                                     <div className="sec-main workout-section">
-                                        {
-                                            this.state.user.recent_workouts.map(function(workout, i) {
-                                                return <div key={i} className="workout-row row">
-                                                    <div className="col-xs-8">
-                                                        {Util.formatFullDateNoTime(workout.day_performed)}
+                                        <If condition={!this.state.user.is_friend && gon.current_user_id != gon.user_id} >
+                                            <div className="standard-text nope">Not so fast! You can only see workouts for people in your Quad Pod.</div>
+                                            <Button buttonText="Invite to Quad Pod" onClick={this.sendInvite} />
+                                        </If>
+                                        <If condition={this.state.user.is_friend || gon.current_user_id == gon.user_id} >
+                                            {
+                                                this.state.user.recent_workouts.map(function(workout, i) {
+                                                    return <div key={i} className="workout-row row">
+                                                        <div className="col-xs-8">
+                                                            {Util.formatFullDateNoTime(workout.day_performed)}
+                                                        </div>
+                                                        <div className="col-xs-4 text-right">
+                                                            <a className="norm-link" href={workout.share_link}>View</a>
+                                                        </div>
                                                     </div>
-                                                    <div className="col-xs-4 text-right">
-                                                        <a className="norm-link" href={workout.share_link}>View</a>
-                                                    </div>
-                                                </div>
-                                            })
-                                        }
+                                                })
+                                            }
+                                        </If>
                                     </div>
                                 </div>
                             </div>
