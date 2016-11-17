@@ -230,7 +230,7 @@ class DoWork extends React.Component {
                             <If condition={!this.props.loading && !this.props.routine.id && (this.props.week_days[this.props.day_index])} >
                                 <div className="row">
                                     <div className="col-xs-12 text-center future">
-                                        You're scheduled to workout this day, but the workout hasn't been created yet.<br/> Quadfit creates your workouts 2 days in advance.
+                                        You're scheduled to workout this day, but the workout hasn't been created yet.
                                     </div>
                                 </div>
                             </If>
@@ -422,7 +422,7 @@ class DoWork extends React.Component {
                                     </div>
                                 </div>
                             </If>
-                            <If condition={!this.props.shared} >
+                            <If condition={!this.props.shared && this.props.routine.id} >
                             <div className="row last-row">
                                 <div className="col-sm-4 col-xs-12">
                                     <If condition={this.props.routine.id && gon.viewing == 'user'} >

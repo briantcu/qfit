@@ -221,12 +221,16 @@
 
   .future {
     background-color: $lightning;
-    height: 58px;
+    height: auto;
     color: $dark-purple;
     font-weight: 700;
     font-size: 18px;
     letter-spacing: -0.4px;
-    padding-top: 3px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    @media (max-width: 768px) {
+      font-size: 14px !important;
+    }
   }
 
   .last-row {
@@ -556,7 +560,8 @@
       padding-right: 0 !important;
     }
     .subnav {
-      height: 80px;
+      height: auto;
+      padding-bottom: 20px;
     }
   }
 }
