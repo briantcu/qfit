@@ -257,9 +257,9 @@ class Progress extends React.Component {
 
     render() {
         return <div className="progress-tab">
-            <div className="row main">
+            <div className="row main no-margin">
                 <div className="container">
-                    <div className="row xs-padding">
+                    <div className="row">
                         <div className="col-xs-12 title-row">
                             <div className="pr-header text-left">
                                 Your Progress
@@ -288,17 +288,17 @@ class Progress extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="row xs-padding">
+                    <div className="row">
                         <div className="col-xs-12 info-bar">
-                           <div className="row">
-                               <div className="col-xs-8 col-sm-10">
+                           <div className="row no-margin">
+                               <div className="col-xs-6 col-sm-10">
                                    {this.state.title}
                                </div>
-                               <div className="col-xs-2 col-sm-1 text-center">
+                               <div className="col-xs-3 col-sm-1 text-center">
                                    <div>{this.state.max}</div>
                                    <div className="val-label">HIGHEST</div>
                                </div>
-                               <div className="col-xs-2 col-sm-1 text-center">
+                               <div className="col-xs-3 col-sm-1 text-center">
                                    {this.state.min}
                                    <div className="val-label">LOWEST</div>
                                </div>
