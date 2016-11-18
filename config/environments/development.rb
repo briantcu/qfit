@@ -45,3 +45,6 @@ Qfit::Application.configure do
   config.assets.debug = true
   config.token_salt = 'lajdfl;jasdkkkfjfjalsjeinvidk'
 end
+
+Sidekiq::Logging.logger.level = Logger::DEBUG
+Sidekiq::Logging.logger = Logger.new(STDOUT)

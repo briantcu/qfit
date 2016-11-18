@@ -95,3 +95,6 @@ Qfit::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   config.token_salt = 'lajdfl;aldjfihlaj73739a98shdh98eio'
 end
+
+Sidekiq::Logging.logger.level = Logger::WARN
+Sidekiq::Logging.logger = Le.new('5df2352c-a7fa-4901-aba4-b13c7aa49882', :debug => true, :local => true)
