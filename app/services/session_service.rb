@@ -42,4 +42,8 @@ class SessionService
   def set_team_id(id)
     session[:team_id] = id
   end
+
+  def set_invite_token(invite_token)
+    session[:invite_token] = invite_token
+  end
 end

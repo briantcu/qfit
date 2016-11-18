@@ -42,8 +42,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def check_tokens
-    if params[:invite_token].present?
-      QuadPodService.instance.accept_invite_new_user(params[:invite_token], @user)
+    if session[:invite_token].present?
+      QuadPodService.instance.accept_invite_new_user(session[:invite_token], @user)
     end
   end
 

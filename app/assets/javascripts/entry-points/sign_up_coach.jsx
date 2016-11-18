@@ -80,7 +80,7 @@ class CoachSignUp extends React.Component {
         user['password_confirmation'] = this.refs.password.getValue();
         user['account_type'] = 'coach';
         user['user_name'] = this.refs.username.getValue();
-        return {user: user, invite_token: ''};
+        return {user: user};
     }
 
     evalUsername(username) {

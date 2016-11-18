@@ -29,6 +29,7 @@ class AthleteSignUp extends React.Component {
     }
 
     componentDidMount () {
+
         SignUpStore.addChangeListener(this.onChange.bind(this));
         var that = this;
         $(document).keypress(function(e) {
@@ -84,7 +85,7 @@ class AthleteSignUp extends React.Component {
         user['account_type'] = 'user';
         user['user_name'] = this.refs.username.getValue();
         user['sign_up_code'] = this.refs.signUpCode.getValue();
-        return {user: user, invite_token: ''};
+        return {user: user};
     }
 
     evalUsername(username) {

@@ -71,7 +71,7 @@ end
 
 gem 'sidekiq'
 
-gem 'clockworksms'
+gem 'twilio-ruby'
 
 gem "mocha", :require => false
 

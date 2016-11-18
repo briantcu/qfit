@@ -8,10 +8,14 @@ class SignInUpController < ApplicationController
             sign_up_code: session[:sign_up_code]
         }
     )
+    session_service = SessionService.new(session)
+    session_service.set_invite_token(params[:pod_t])
     render layout: 'full_page'
   end
 
   def sign_up_coach
+    session_service = SessionService.new(session)
+    session_service.set_invite_token(params[:pod_t])
     render layout: 'full_page'
   end
 
