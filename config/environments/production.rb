@@ -55,7 +55,7 @@ Qfit::Application.configure do
   # config.log_tags = [ :subdomain, :uuid ]
 
   # Use a different logger for distributed setups.
-  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
+  config.logger = Le.new('5df2352c-a7fa-4901-aba4-b13c7aa49882', :debug => true, :local => true)
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store

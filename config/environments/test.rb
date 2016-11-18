@@ -43,6 +43,7 @@ Qfit::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  config.logger = Logger.new(STDOUT)
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
   config.token_salt = 'lajdfl;euueu9387983hfah8lsjeinvidk'
