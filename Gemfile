@@ -10,6 +10,8 @@ gem 'omniauth-facebook'
 
 gem 'sinatra'
 
+gem 'le'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 

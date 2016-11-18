@@ -45,7 +45,7 @@ class SubscriptionsController < ApplicationController
 
   def stripe_event
     event_json = JSON.parse(request.body.read)
-    Qfit::Application.config.logger.info(event_json)
+    Rails.logger.info(event_json)
     SubscriptionService.instance.handle_stripe_event(event_json['id'])
     head status: 200
   end

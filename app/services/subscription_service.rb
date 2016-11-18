@@ -36,15 +36,15 @@ class SubscriptionService
             plan: plan
         )
       rescue Stripe::CardError => e
-        Qfit::Application.config.logger.info('error checking out for user ' + user.id.to_s)
-        Qfit::Application.config.logger.info(e)
+        Rails.logger.info('error checking out for user ' + user.id.to_s)
+        Rails.logger.info(e)
         body = e.json_body
         err  = body[:error]
         response[:status] = 'failed'
         response[:message] = err[:message]
       rescue => e
-        Qfit::Application.config.logger.info('sending to rollbar - error checking out for user ' + user.id.to_s)
-        Qfit::Application.config.logger.info(e)
+        Rails.logger.info('sending to rollbar - error checking out for user ' + user.id.to_s)
+        Rails.logger.info(e)
         Rollbar.error(e)
         response[:status] = 'failed'
         response[:message] = "Sorry! We can't process your request right now, but we're looking into it."
@@ -116,12 +116,12 @@ class SubscriptionService
     end
 
     begin
-      Qfit::Application.config.logger.info(event)
+      Rails.logger.info(event)
 
       stripe_user_id = event.data['object']['customer']
       user = User.find_by(stripe_id: stripe_user_id)
 
-      Qfit::Application.config.logger.info('Processing event for user id ' + user.id.to_s)
+      Rails.logger.info('Processing event for user id ' + user.id.to_s)
 
       EmailService.perform_async(:notify_payment_failed, {user_id: user.id}) if event.type == 'invoice.payment_failed'
 
@@ -143,7 +143,7 @@ class SubscriptionService
       sync_subscription(user, subscription) if subscription.present?
 
     rescue => e
-      Qfit::Application.config.logger.info(e)
+      Rails.logger.info(e)
       Rollbar.error(e)
     end
   end
