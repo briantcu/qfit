@@ -26,7 +26,7 @@ class RoutineService
 
   def self.nightly_workout_creation
     begin
-    Rails.logger('staring nightly workout creation')
+      Rails.logger.info('staring nightly workout creation')
       total_time = Benchmark.realtime do
         coaches = User.active_coaches
         coaches.each do |coach|
@@ -48,10 +48,10 @@ class RoutineService
 
       end
       QuadfitMailer.nightly_job(total_time, users.count, coaches.count)
-      Rails.logger('finished nightly workout creation')
+      Rails.logger.info('finished nightly workout creation')
     rescue => e
       Rollbar.error(e)
-      Rails.logger('finished nightly workout creation with error')
+      Rails.logger.error('finished nightly workout creation with error')
     end
 
   end
