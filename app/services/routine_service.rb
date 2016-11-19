@@ -25,26 +25,33 @@ class RoutineService
   end
 
   def self.nightly_workout_creation
-    total_time = Benchmark.realtime do
-      coaches = User.active_coaches
-      coaches.each do |coach|
-        groups = coach.coach_groups.not_template
-        groups.each do |group|
-          RoutineService.new(group, 'CRON', nil, false).create_routines
+    begin
+    Rails.logger('staring nightly workout creation')
+      total_time = Benchmark.realtime do
+        coaches = User.active_coaches
+        coaches.each do |coach|
+          groups = coach.coach_groups.not_template
+          groups.each do |group|
+            RoutineService.new(group, 'CRON', nil, false).create_routines
+          end
+
+          sub_users = coach.players.without_group
+          sub_users.each do |user|
+            RoutineService.new(user, 'CRON', nil, false).create_routines
+          end
         end
 
-        sub_users = coach.players.without_group
-        sub_users.each do |user|
+        users = User.regular_users.logged_in_recently
+        users.each do |user|
           RoutineService.new(user, 'CRON', nil, false).create_routines
         end
-      end
 
-      users = User.regular_users.logged_in_recently
-      users.each do |user|
-        RoutineService.new(user, 'CRON', nil, false).create_routines
       end
-
       QuadfitMailer.nightly_job(total_time, users.count, coaches.count)
+      Rails.logger('finished nightly workout creation')
+    rescue => e
+      Rollbar.error(e)
+      Rails.logger('finished nightly workout creation with error')
     end
 
   end

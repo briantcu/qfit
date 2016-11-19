@@ -124,7 +124,7 @@ class User < ActiveRecord::Base
   belongs_to :coach, foreign_key: :master_user_id, class_name: User
 
   scope :sub_users, -> {where(sub_user: true)}
-  scope :regular_users, -> {where(sub_user: false, administrator: false, level: 2)}
+  scope :regular_users, -> {where(sub_user: false, administrator: false, level: [2,7])}
   scope :without_group ,-> {}
   scope :logged_in_recently, -> {where('last_sign_in_at > ?', Time.now - 3.weeks)}
   scope :males, -> {where(sex: 'male')}
