@@ -27,9 +27,10 @@ RSpec.describe Users::RegistrationsController, type: :controller do
     invite = PodInvite.create!(inviter: User.last, sent_to: '8172913409')
     payload = {sent_to: invite.sent_to, id: invite.id}
     token = JWT.encode payload, Rails.application.config.token_salt, 'HS256'
+    session[:invite_token] = token
     post(:create, user: {
         email: 'a@b.com', password: 'password', password_confirmation: 'password', first_name: 'brian',
-        last_name: 'regan', account_type: 'user', sign_up_code: 'MyString'}, invite_token: token)
+        last_name: 'regan', account_type: 'user', sign_up_code: 'MyString'})
     expect(response.status).to eq(201)
     expect(@controller.instance_variable_get(:@user).friends.count == 1).to be true
     expect(@controller.instance_variable_get(:@user).phone == '8172913409').to be true
