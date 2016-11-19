@@ -47,7 +47,7 @@ class RoutineService
         end
 
       end
-      QuadfitMailer.nightly_job(total_time, users.count, coaches.count)
+      QuadfitMailer.nightly_job(total_time, User.regular_users.logged_in_recently.count, User.active_coaches.count)
       Rails.logger.info('finished nightly workout creation')
     rescue => e
       Rollbar.error(e)
