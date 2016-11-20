@@ -1,5 +1,6 @@
 test:
   override:
+    - webpack --optimize-minimize --optimize-dedupe --progress --colors
     - bundle exec rake test
     - bundle exec rspec --color --require spec_helper spec --format documentation
 
