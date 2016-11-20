@@ -8,7 +8,7 @@
 #  last_name                   :string(255)
 #  email                       :string(255)
 #  sex                         :string(255)
-#  administrator               :boolean
+#  administrator               :boolean          default(FALSE)
 #  sub_user                    :boolean
 #  knee_dom_max                :float
 #  hor_push_max                :float
@@ -66,6 +66,10 @@
 #  dummyfourteen               :string
 #  needs_pw_reset              :boolean
 #  avatar                      :string
+#  failed_attempts             :integer          default(0), not null
+#  unlock_token                :string
+#  locked_at                   :datetime
+#  bio                         :text
 #
 
 require 'rails_helper'

@@ -8,7 +8,7 @@
 #  last_name                   :string(255)
 #  email                       :string(255)
 #  sex                         :string(255)
-#  administrator               :boolean
+#  administrator               :boolean          default(FALSE)
 #  sub_user                    :boolean
 #  knee_dom_max                :float
 #  hor_push_max                :float
@@ -66,6 +66,10 @@
 #  dummyfourteen               :string
 #  needs_pw_reset              :boolean
 #  avatar                      :string
+#  failed_attempts             :integer          default(0), not null
+#  unlock_token                :string
+#  locked_at                   :datetime
+#  bio                         :text
 #
 
 # Status: 1 = active, 2 = disabled, 3 = active with failed payment, 4 = active but cancelling
@@ -124,7 +128,7 @@ class User < ActiveRecord::Base
   belongs_to :coach, foreign_key: :master_user_id, class_name: User
 
   scope :sub_users, -> {where(sub_user: true)}
-  scope :regular_users, -> {where(sub_user: false, administrator: false, level: [2,7])}
+  scope :regular_users, -> {where(sub_user: false, level: [2,7])}
   scope :without_group ,-> {}
   scope :logged_in_recently, -> {where('last_sign_in_at > ?', Time.now - 3.weeks)}
   scope :males, -> {where(sex: 'male')}

@@ -2,3 +2,13 @@ test:
   override:
     - bundle exec rake test
     - bundle exec rspec --color --require spec_helper spec --format documentation
+
+deployment:
+  prod:
+    branch: master
+    commands:
+      - eb deploy --profile default
+
+dependencies:
+  pre:
+    - pip install awscli

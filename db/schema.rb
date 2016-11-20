@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113202302) do
+ActiveRecord::Schema.define(version: 20161119234401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -505,7 +505,7 @@ ActiveRecord::Schema.define(version: 20161113202302) do
     t.string   "last_name",                   limit: 255
     t.string   "email",                       limit: 255
     t.string   "sex",                         limit: 255
-    t.boolean  "administrator"
+    t.boolean  "administrator",                           default: false
     t.boolean  "sub_user"
     t.float    "knee_dom_max"
     t.float    "hor_push_max"
@@ -525,11 +525,11 @@ ActiveRecord::Schema.define(version: 20161113202302) do
     t.date     "subscription_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",          limit: 255, default: "", null: false
+    t.string   "encrypted_password",          limit: 255, default: "",    null: false
     t.string   "reset_password_token",        limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                           default: 0,  null: false
+    t.integer  "sign_in_count",                           default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",          limit: 255
@@ -563,7 +563,7 @@ ActiveRecord::Schema.define(version: 20161113202302) do
     t.string   "dummyfourteen"
     t.boolean  "needs_pw_reset"
     t.string   "avatar"
-    t.integer  "failed_attempts",                         default: 0,  null: false
+    t.integer  "failed_attempts",                         default: 0,     null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.text     "bio"
