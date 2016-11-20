@@ -41,17 +41,7 @@ var config = {
             { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel' },
             { test: /\.scss$/, loaders: ['style', 'css', 'sass']},
             { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass')}
-            //{ test: /\.js$/, exclude: /node_modules/, loader: "eslint-loader"},
         ]
-        //preLoaders: [
-        //    {
-        //        test: /\.jsx?$/,
-        //        loaders: ['eslint'],
-        //        include: [
-        //            path.resolve(__dirname, 'app/assets/javascripts')
-        //        ]
-        //    }
-        //]
     },
     eslint: {
         failOnError: false,
