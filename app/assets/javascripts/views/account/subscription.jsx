@@ -57,7 +57,7 @@ class Subscription extends React.Component {
                     stripeKey={gon.stripe_key}
                     amount={999}
                     name="Quadfit, LLC"
-                    image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
+                    image="https://dwx350bwdtt59.cloudfront.net/logo-1.jpg"
                     description="Premium Subscription"
                     panelLabel="Get Premium"
                     label="Get Premium"
@@ -88,7 +88,7 @@ class Subscription extends React.Component {
                                     token={this.props.updateBilling}
                                     stripeKey={gon.stripe_key}
                                     name="Quadfit, LLC"
-                                    image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
+                                    image="https://dwx350bwdtt59.cloudfront.net/logo-1.jpg"
                                     description="Update Billing"
                                     panelLabel="Update Billing"
                                     label="Update Billing"

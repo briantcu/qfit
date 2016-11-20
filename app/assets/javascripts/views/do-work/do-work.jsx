@@ -200,16 +200,16 @@ class DoWork extends React.Component {
                     <div className="col-xs-12 text-center subnav-cluster">
                         <If condition={gon.viewing != 'team' && this.props.routine.id } >
                             <span onClick={ () => this.submit()} >
-                                <img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Complete.png" /> Complete this Workout
+                                <img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/Icon+-+Complete.png" /> Complete this Workout
                             </span>
                         </If>
-                        <span><a className="no-hover" href="/schedule"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Schedule.png" /> Change Schedule</a></span>
+                        <span><a className="no-hover" href="/schedule"><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/Icon+-+Change+Schedule.png" /> Change Schedule</a></span>
                         <If condition={gon.viewing != 'team' && this.props.routine.id } >
                             <div className="visible-micro"></div>
                         </If>
-                        <span><a className="no-hover" href="/program"><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Change+Program.png" /> Change Program</a></span>
+                        <span><a className="no-hover" href="/program"><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/Icon+-+Change+Program.png" /> Change Program</a></span>
                         <If condition={gon.viewing != 'team' && this.props.routine.id } >
-                            <span onClick={this.showShareWorkout}><img className="hidden-xs" src="https://s3.amazonaws.com/quadfit/Icon+-+Share+Workout.png" />Share Workout</span>
+                            <span onClick={this.showShareWorkout}><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/Icon+-+Share+Workout.png" />Share Workout</span>
                         </If>
                     </div>
 
@@ -536,11 +536,11 @@ class DoWork extends React.Component {
 
                         <a href="http://twitter.com/share?text=My Quadfit Workout&url=http://www.quadfit.com/share.html"
                            title="Share on Twitter" target="_blank" >
-                            <img className="img-circle" src="https://s3.amazonaws.com/quadfit/social-twitter.png" height="32" width="32"/> Twitter</a>
+                            <img className="img-circle" src="https://dwx350bwdtt59.cloudfront.net/social-twitter.png" height="32" width="32"/> Twitter</a>
 
                         <a href="http://www.facebook.com/sharer.php?u=http://www.quadfit.com/share.html?<?echo $share?>"
                            title="Share on Facebook" target="_blank" >
-                            <img className="img-circle" src="https://s3.amazonaws.com/quadfit/social-facebook.png" height="32" width="32"/> Facebook</a>
+                            <img className="img-circle" src="https://dwx350bwdtt59.cloudfront.net/social-facebook.png" height="32" width="32"/> Facebook</a>
                     </span>
                 </Modal.Body>
             </Modal>
@@ -587,7 +587,7 @@ class DoWork extends React.Component {
                 </Modal>
             </If>
             <If condition={this.props.loading || this.state.closingWorkout} >
-                <div className="loading-overlay"><img src="https://s3.amazonaws.com/quadfit/loading-ring-164.gif" /></div>
+                <div className="loading-overlay"><img src="https://dwx350bwdtt59.cloudfront.net/loading-ring-164.gif" /></div>
             </If>
         </div>;
     }

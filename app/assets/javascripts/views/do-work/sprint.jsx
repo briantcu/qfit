@@ -90,7 +90,7 @@ class Sprint extends React.Component {
                         return <div className="row exercise" key={this.props.exercise.id + '' + (index + 1)}>
                                 <div className="col-sm-3 col-md-2 col-xs-12">
                                     <span className="thumb hidden-xs">
-                                        <img width="120" height="90" src="https://s3.amazonaws.com/quadfit/sprint-icon.png" />
+                                        <img width="120" height="90" src="https://dwx350bwdtt59.cloudfront.net/sprint-icon.png" />
                                     </span>
                                 </div>
                                 <div className="col-xs-8 col-sm-5 col-md-7">

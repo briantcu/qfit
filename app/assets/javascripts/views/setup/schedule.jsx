@@ -260,7 +260,7 @@ class Schedule extends React.Component {
                 </div>
             </div>
             <If condition={this.state.loading} >
-                <div className="loading-overlay"><img src="https://s3.amazonaws.com/quadfit/loading-ring-164.gif" /></div>
+                <div className="loading-overlay"><img src="https://dwx350bwdtt59.cloudfront.net/loading-ring-164.gif" /></div>
             </If>
         </div>
     }

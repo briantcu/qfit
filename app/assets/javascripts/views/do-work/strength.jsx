@@ -111,7 +111,7 @@ class Strength extends React.Component {
                         }
                     </div>
                     <div onClick={this.scrollRight} className="scroll-indicator">
-                        <img src="https://s3.amazonaws.com/quadfit/more-arrow.png" />
+                        <img src="https://dwx350bwdtt59.cloudfront.net/more-arrow.png" />
                     </div>
                 </div>
             </If>

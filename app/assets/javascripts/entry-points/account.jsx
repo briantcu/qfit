@@ -181,7 +181,7 @@ class Account extends React.Component {
     }
 
     imagePath() {
-        var path = "https://s3.amazonaws.com/quadfit/blank-avi.png";
+        var path = "https://dwx350bwdtt59.cloudfront.net/blank-avi.png";
         if (this.state.user && this.state.user.avatar) {
             path = this.state.user.avatar;
         }

@@ -97,7 +97,7 @@
 }
 
 body {
-  background: url(https://s3.amazonaws.com/quadfit/backgrounds-coach.jpg);
+  background: url(https://dwx350bwdtt59.cloudfront.net/backgrounds-coach.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -150,7 +150,7 @@ body {
   }
   body::after {
     content: "";
-    background: url(https://s3.amazonaws.com/quadfit/coaches-smalldevice.png);
+    background: url(https://dwx350bwdtt59.cloudfront.net/coaches-smalldevice.png);
     opacity: 1;
     top: 0;
     left: 0;
@@ -171,7 +171,7 @@ body {
 
 @media (max-width: 1200px) and (min-width: 769px) {
   body {
-    background: url(https://s3.amazonaws.com/quadfit/backgrounds-coach-tablet.jpg);
+    background: url(https://dwx350bwdtt59.cloudfront.net/backgrounds-coach-tablet.jpg);
     background-size: cover;
     background-repeat: no-repeat;
   }

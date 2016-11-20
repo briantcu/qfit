@@ -115,7 +115,7 @@
 }
 
 body {
-  background: url(https://s3.amazonaws.com/quadfit/backgrounds-runner.jpg);
+  background: url(https://dwx350bwdtt59.cloudfront.net/backgrounds-runner.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -132,7 +132,7 @@ body {
   }
   body::after {
     content: "";
-    background: url(https://s3.amazonaws.com/quadfit/backgrounds-runner-mobile.jpg);
+    background: url(https://dwx350bwdtt59.cloudfront.net/backgrounds-runner-mobile.jpg);
     opacity: 0.1;
     top: 0;
     left: 0;
@@ -153,7 +153,7 @@ body {
 
 @media (max-width: 1200px) and (min-width: 769px) {
   body {
-    background: url(https://s3.amazonaws.com/quadfit/backgrounds-runner-tablet.jpg);
+    background: url(https://dwx350bwdtt59.cloudfront.net/backgrounds-runner-tablet.jpg);
     background-size: cover;
     background-repeat: no-repeat;
   }

@@ -12,7 +12,7 @@ class Footer extends React.Component {
 
         return <div className="row footer no-margin">
                 <div className="col-sm-5 col-xs-12 logo">
-                    <img src="https://s3.amazonaws.com/quadfit/logo.png" />
+                    <img src="https://dwx350bwdtt59.cloudfront.net/logo.png" />
                 </div>
                 <div className="col-sm-7 text-right col-xs-12 links">
                     <span>Made with grit in San Francisco</span>

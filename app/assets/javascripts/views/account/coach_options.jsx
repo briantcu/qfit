@@ -68,7 +68,7 @@ class CoachOptions extends React.Component {
                                             stripeKey={gon.stripe_key}
                                             amount={2999}
                                             name="Quadfit, LLC"
-                                            image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
+                                            image="https://dwx350bwdtt59.cloudfront.net/logo-1.jpg"
                                             description="Bronze Subscription"
                                             panelLabel="Get Bronze"
                                             label="Bronze"
@@ -98,7 +98,7 @@ class CoachOptions extends React.Component {
                                             stripeKey={gon.stripe_key}
                                             amount={7999}
                                             name="Quadfit, LLC"
-                                            image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
+                                            image="https://dwx350bwdtt59.cloudfront.net/logo-1.jpg"
                                             description="Silver Subscription"
                                             panelLabel="Get Silver"
                                             label="Silver"
@@ -128,7 +128,7 @@ class CoachOptions extends React.Component {
                                             stripeKey={gon.stripe_key}
                                             amount={27999}
                                             name="Quadfit, LLC"
-                                            image="https://s3.amazonaws.com/quadfit/logo-1.jpg"
+                                            image="https://dwx350bwdtt59.cloudfront.net/logo-1.jpg"
                                             description="Gold Subscription"
                                             panelLabel="Get Gold"
                                             label="Gold"

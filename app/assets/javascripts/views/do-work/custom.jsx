@@ -27,7 +27,7 @@ class Custom extends React.Component {
         return <div className="custom exercise row" >
             <div className="col-sm-3 col-md-2 col-xs-12 hidden-xs">
                 <span className="thumb">
-                    <img width="120" height="90" src="https://s3.amazonaws.com/quadfit/custom-icon.png" />
+                    <img width="120" height="90" src="https://dwx350bwdtt59.cloudfront.net/custom-icon.png" />
                 </span>
             </div>
             <div className="col-xs-6 col-sm-4 col-md-5 info-col">
