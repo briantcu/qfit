@@ -8,9 +8,11 @@ deployment:
   prod:
     branch: master
     commands:
+      - bash -x ./build/upload_assets.sh
       - eb deploy --profile default
 
 dependencies:
   pre:
     - sudo apt-get install python-dev
+    - sudo pip install awscli
     - sudo pip install awsebcli
