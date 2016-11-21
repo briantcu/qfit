@@ -1,6 +1,6 @@
 test:
   override:
-    - webpack -p --progress --colors
+    - webpack --config webpack.prod.config.js -p
     - bundle exec rake test
     - bundle exec rspec --color --require spec_helper spec --format documentation
 
