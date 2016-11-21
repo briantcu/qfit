@@ -10,7 +10,8 @@ deployment:
     commands:
       - sed -i -e 's/<VERSION>/'"$CIRCLE_BUILD_NUM"'/g' config/production.rb
       - bash -x ./build/upload_assets.sh $CIRCLE_BUILD_NUM
-      - eb deploy --profile default
+      - git add .
+      - eb deploy --staged
 
 dependencies:
   pre:
