@@ -235,7 +235,7 @@ class DoWork extends React.Component {
                                 </div>
                             </If>
                             <div className="row sec-header">
-                                <div className="col-sm-4 col-sm-offset-4 text-center col-xs-12">
+                                <div className="col-sm-8 col-sm-offset-0 col-xs-12">
                                     <span>Preparation</span>
                                 </div>
                                 <If condition={!this.props.shared} >
@@ -281,7 +281,7 @@ class DoWork extends React.Component {
 
                         <div className="strength-sec sec container">
                             <div className="row sec-header">
-                                <div className="col-sm-4 col-sm-offset-4 text-center col-xs-12">
+                                <div className="col-sm-8 col-sm-offset-0 col-xs-12">
                                     <span>Strength Training</span>
                                 </div>
                                 <If condition={!this.props.shared} >
@@ -327,7 +327,7 @@ class DoWork extends React.Component {
 
                         <div className="plyos sec container">
                             <div className="row sec-header">
-                                <div className="col-sm-4 col-sm-offset-4 text-center col-xs-12">
+                                <div className="col-sm-8 col-sm-offset-0 col-xs-12">
                                     <span>Plyometrics</span>
                                 </div>
                                     <If condition={!this.props.shared} >
@@ -373,7 +373,7 @@ class DoWork extends React.Component {
 
                         <div className="sprinting sec container">
                             <div className="row sec-header">
-                                <div className="col-sm-4 col-sm-offset-4 text-center col-xs-12">
+                                <div className="col-sm-8 col-sm-offset-0 col-xs-12">
                                     <span>Sprinting</span>
                                 </div>
                                     <If condition={!this.props.shared} >
