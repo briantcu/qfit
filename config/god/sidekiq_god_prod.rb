@@ -1,15 +1,5 @@
 God.pid_file_directory = '/home/ec2-user/pids'
 
-God::Contacts::Email.defaults do |d|
-  d.from_email = 'web@quadfit.com'
-  d.from_name = 'God'
-  d.delivery_method = :sendmail
-end
-God.contact(:email) do |c|
-  c.name = 'brian'
-  c.to_email = 'brian@quadfit.com'
-end
-
 rails_env = 'production'
 app_root = "/var/app/current"
 

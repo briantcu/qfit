@@ -1,15 +1,5 @@
 God.pid_file_directory = '/Users/brianregan/Projects/qfit/tmp/pids'
 
-God::Contacts::Email.defaults do |d|
-  d.from_email = 'web@quadfit.com'
-  d.from_name = 'God'
-  d.delivery_method = :sendmail
-end
-God.contact(:email) do |c|
-  c.name = 'brian'
-  c.to_email = 'brian@quadfit.com'
-end
-
 rails_env = 'development'
 app_root = "/Users/brianregan/Projects/qfit"
 
@@ -34,11 +24,5 @@ num_workers.times do |num|
 
     w.keepalive
     w.behavior(:clean_pid_file)
-
-    w.transition(:up, :start) do |on|
-      on.condition(:process_exits) do |c|
-        c.notify = 'brian'
-      end
-    end
   end
 end
