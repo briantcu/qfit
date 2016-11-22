@@ -34,11 +34,5 @@ num_workers.times do |num|
 
     w.keepalive
     w.behavior(:clean_pid_file)
-
-    w.transition(:up, :start) do |on|
-      on.condition(:process_exits) do |c|
-        c.notify = 'brian'
-      end
-    end
   end
 end
