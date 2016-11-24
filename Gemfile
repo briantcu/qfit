@@ -12,6 +12,8 @@ gem 'sinatra'
 
 gem 'le'
 
+gem 'lograge'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 

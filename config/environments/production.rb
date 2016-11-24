@@ -48,14 +48,21 @@ Qfit::Application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
-  # Set to :debug to see everything in the log.
-  config.log_level = :debug
+
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
   # Use a different logger for distributed setups.
   config.logger = Le.new('5df2352c-a7fa-4901-aba4-b13c7aa49882', :debug => true, :local => true)
+  # Set to :debug to see everything in the log.
+  config.log_level = :debug
+  config.lograge.custom_options = lambda do |event|
+    params = event.payload[:params].reject { |k| %w(controller action).include?(k) }
+    { "params" => params }
+  end
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Json.new
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -92,9 +99,9 @@ Qfit::Application.configure do
   # config.autoflush_log = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
+  #config.log_formatter = ::Logger::Formatter.new
   config.token_salt = 'lajdfl;aldjfihlaj73739a98shdh98eio'
 end
 
-Sidekiq::Logging.logger.level = Logger::WARN
-Sidekiq::Logging.logger = Le.new('5df2352c-a7fa-4901-aba4-b13c7aa49882', :debug => true, :local => true)
+Sidekiq::Logging.logger.level = Logger::INFO
+Sidekiq::Logging.logger = Le.new('0062247f-32a1-429f-989d-72c998222cf7', :debug => true, :local => true)
