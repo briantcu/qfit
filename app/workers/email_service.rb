@@ -3,6 +3,7 @@ class EmailService
   include Sidekiq::Worker
 
   def perform(type, options = {})
+    logger.info("EmailService with type #{type} and options #{options}")
     case type
       when 'new_user'
         send_new_user_email(options)

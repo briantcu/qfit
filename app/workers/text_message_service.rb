@@ -6,6 +6,7 @@ class TextMessageService
   TWILIO_KEY = "6a36ac1ff1e0cb33529df395ad7f62c6"
 
   def perform(type, options = {})
+    logger.info("TextService with type #{type} and options #{options}")
     case type
       when 'existing_user_pod_invite'
         send_existing_user_pod_invite(options)
