@@ -37,6 +37,7 @@ class Athlete extends React.Component {
                         }.bind(this))
                     }
                 </select>
+                <div className="visible-micro"><br/></div>
                 <span className="actions">
                     <span className="norm-link" onClick={() => this.props.viewAthlete(this.props.athlete.id)}>View Workout</span>
                     <span className="separator">|</span>

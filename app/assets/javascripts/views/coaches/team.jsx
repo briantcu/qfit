@@ -13,7 +13,7 @@ class Team extends React.Component {
     }
 
     delete(id) {
-        var r = confirm("Are you sure? All members will transition to your Athletes section.");
+        var r = confirm("Are you sure? All members of this team will transition to your Athletes section.");
         if (r == true) {
             CoachActions.deleteTeam(id);
         }
@@ -22,8 +22,8 @@ class Team extends React.Component {
     render () {
         return <div className="team">
             <div className="row">
-                <div className="col-xs-4 first team-name">{this.props.team.name}</div>
-                <div className="col-xs-8 text-right last">
+                <div className="col-sm-4 col-xs-12 first team-name">{this.props.team.name}</div>
+                <div className="col-sm-8 col-xs-12 text-right last">
                     <span className="actions">
                         <span className="norm-link" onClick={() => this.props.viewTeam(this.props.team.id)}>View Workout</span>
                         <span className="separator">|</span>

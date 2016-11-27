@@ -14,6 +14,14 @@ body {
       height: 70px;
       padding-top: 20px;
     }
+    @media (max-width: 780px) {
+      .row {
+        height: 100px !important;
+      }
+      .next-row-micro {
+        margin-top: 10px;
+      }
+    }
 
   }
 
@@ -96,8 +104,8 @@ body {
 
   @media (max-width: 768px) {
     .sec {
-      padding-left: 30px !important;
-      padding-right: 30px !important;
+      //padding-left: 30px !important;
+      //padding-right: 30px !important;
     }
     .actions {
       font-size: 12px !important;
@@ -113,6 +121,13 @@ body {
     }
     .standard-text {
       font-size: 14px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .action {
+      font-size: 14px !important;
+      margin-top: -35px;
     }
   }
 }

@@ -114,7 +114,7 @@ class Coaches extends React.Component {
                     </div>
                 </div>
             </If>
-            <div className="row main">
+            <div className="row main no-margin">
                 <div className="container">
                     <div className='row xs-padding'>
                         <div className="col-xs-12">
@@ -140,10 +140,10 @@ class Coaches extends React.Component {
                     <div className='row'>
                         <div className="container sec first-sec">
                             <div className="row head">
-                                <div className="col-sm-2 col-xs-6 sec-header">
+                                <div className="col-sm-2 col-xs-12 sec-header">
                                     Teams
                                 </div>
-                                <div className="col-sm-3 col-xs-6 col-sm-offset-7 action">
+                                <div className="col-sm-3 col-xs-12 col-sm-offset-7 action">
                                     <span className="hover" onClick={this.createTeam}>Add a New Team</span>
                                 </div>
                             </div>
@@ -162,11 +162,11 @@ class Coaches extends React.Component {
                     <div className='row'>
                         <div className="container sec">
                             <div className="row head">
-                                <div className="col-sm-2 col-xs-6 sec-header">
+                                <div className="col-sm-2 col-xs-12 sec-header">
                                     Athletes
                                 </div>
                                 <If condition={this.state.coach_account.can_send_codes} >
-                                    <div className="col-sm-5 col-xs-6 col-sm-offset-5 action">
+                                    <div className="col-sm-5 col-xs-12 col-sm-offset-5 action">
                                         <span className="hover" onClick={this.addUser}>Add a New Athlete Account</span>
                                     </div>
                                 </If>
@@ -196,14 +196,14 @@ class Coaches extends React.Component {
                                         this.state.coach_account.sign_up_codes.map(function(e, i) {
                                             return <div className="sign-up-code" key={i}>
                                                 <div className="row">
-                                                    <div className="col-xs-4">
+                                                    <div className="col-sm-4 col-xs-12">
                                                         Sent to <span className="purple">{e.sent_to}</span> on {Util.formatDate(e.created_at)}
                                                     </div>
-                                                    <div className="col-xs-4">
+                                                    <div className="col-sm-4 col-xs-6 next-row-micro">
                                                         Status: {e.used ? 'Used: ' + Util.formatDate(e.redeemed_at) : 'Unused'}
                                                     </div>
                                                     <If condition={!e.used}>
-                                                        <div className="col-xs-4 text-right">
+                                                        <div className="col-sm-4 col-xs-6 text-right next-row-micro">
                                                             <span onClick={() => this.deleteCode(e.id)} className="norm-link">Delete Code</span>
                                                         </div>
                                                     </If>
