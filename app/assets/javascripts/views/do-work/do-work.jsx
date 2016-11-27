@@ -528,17 +528,17 @@ class DoWork extends React.Component {
                     <Modal.Title>Share this Workout!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <span className="share-section">
-                        <span>
+                    <span className="share-section row">
+                        <span className="col-sm-6 col-xs-12 text-center">
                             <input type="text" className="link-input" value={this.props.routine.share_link} readOnly/><button
                             data-clipboard-target=".link-input" className="qfButton btn btn-default copy-link" >{(this.state.linkCopied) ? 'Copied!' : 'Copy'}</button>
                         </span>
 
-                        <a href="http://twitter.com/share?text=My Quadfit Workout&url=http://www.quadfit.com/share.html"
+                        <a className="col-sm-3 col-xs-6" href="http://twitter.com/share?text=My Quadfit Workout&url=http://www.quadfit.com/share.html"
                            title="Share on Twitter" target="_blank" >
                             <img className="img-circle" src="https://dwx350bwdtt59.cloudfront.net/social-twitter.png" height="32" width="32"/> Twitter</a>
 
-                        <a href="http://www.facebook.com/sharer.php?u=http://www.quadfit.com/share.html?<?echo $share?>"
+                        <a className="col-sm-3 col-xs-6" href="http://www.facebook.com/sharer.php?u=http://www.quadfit.com/share.html?<?echo $share?>"
                            title="Share on Facebook" target="_blank" >
                             <img className="img-circle" src="https://dwx350bwdtt59.cloudfront.net/social-facebook.png" height="32" width="32"/> Facebook</a>
                     </span>
@@ -569,19 +569,18 @@ class DoWork extends React.Component {
                             }
                         </div>
                         <div className="share-cta">Share this workout!</div>
-                        <span className="share-section">
-                            <span>
+                        <span className="share-section row">
+                            <span className="col-sm-6 col-xs-12">
                                 <input type="text" className="link-input" value={this.props.routine.share_link} readOnly/><button
                                 data-clipboard-target=".link-input" className="qfButton btn btn-default copy-link" >{(this.state.linkCopied) ? 'Copied!' : 'Copy'}</button>
                             </span>
-
-                            <a href="http://twitter.com/share?text=My Quadfit Workout&url=http://www.quadfit.com/share.html"
+                            <a className="col-sm-3 col-xs-6" href="http://twitter.com/share?text=My Quadfit Workout&url=http://www.quadfit.com/share.html"
                                title="Share on Twitter" target="_blank" >
-                                <img className="img-circle" src="https://d1xhkvbdeqtvdw.cloudfront.net/twitter-bird-white-on-blue.png" height="32" width="32"/> Twitter</a>
+                                <img className="img-circle" src="https://dwx350bwdtt59.cloudfront.net/social-twitter.png" height="32" width="32"/> Twitter</a>
 
-                            <a href="http://www.facebook.com/sharer.php?u=http://www.quadfit.com/share.html?<?echo $share?>"
+                            <a className="col-sm-3 col-xs-6" href="http://www.facebook.com/sharer.php?u=http://www.quadfit.com/share.html?<?echo $share?>"
                                title="Share on Facebook" target="_blank" >
-                                <img className="img-circle" src="https://d1xhkvbdeqtvdw.cloudfront.net/f_logo.png" height="32" width="32"/> Facebook</a>
+                                <img className="img-circle" src="https://dwx350bwdtt59.cloudfront.net/social-facebook.png" height="32" width="32"/> Facebook</a>
                         </span>
                     </Modal.Body>
                 </Modal>

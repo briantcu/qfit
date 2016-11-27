@@ -90,16 +90,28 @@
   }
 
   @media (max-width: 768px) {
-    .link-input {
-      width: 95px !important;
-    }
-    a {
+    img {
       margin-right: 10px !important;
     }
-
+    a {
+      margin-top: 20px;
+      margin-right: 0px;
+    }
     .btn {
       margin-right: 10px !important;
     }
+  }
+  @media (max-width: 375px) {
+    .link-input {
+      width: 135px;
+    }
+    img {
+      margin-right: 5px !important;
+    }
+    a {
+      padding-right: 0px !important;
+    }
+
   }
 }
 
@@ -173,7 +185,6 @@
   }
   .modal-body {
     background: white;
-    border-radius: 10px;
     padding: 30px;
   }
 }
