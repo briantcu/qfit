@@ -7,6 +7,7 @@ class WorkoutManagementController < ApplicationController
   before_action :set_gon_info
 
   def setup_goal
+    # This is needed if they're redirected after login via FB
     if @user.needs_setup? && session[:setup_context].blank?
       session_service = SessionService.new(session)
       if @user.is_sub_user?
@@ -14,6 +15,7 @@ class WorkoutManagementController < ApplicationController
       else
         session_service.set_setup_context('user')
       end
+      gon.push({setup_context: session[:setup_context]})
     end
     render template: 'pages/setup'
   end
