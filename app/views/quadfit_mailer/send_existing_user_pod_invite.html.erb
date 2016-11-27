@@ -1,0 +1,5 @@
+Hey <%= @invitee.first_name %>,<br/><br/>
+<%= @inviter.first_name + ' (' + @inviter.user_name + ')' %> has invited you to join their Quad Pod.<br/>
+You can accept or ignore their request on your <a href="https://<%= Qfit::Application.config.action_mailer.default_url_options[:host] %>/quad-pod">Quad Pod page</a>.<br/>
+<br/>
+- The Quadfit Team
