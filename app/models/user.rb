@@ -184,7 +184,7 @@ class User < ActiveRecord::Base
       existing_user = where(email: auth.info.email).first
       if existing_user.present?
         # You don't have fb details in the system, but you do have a user matching the provided email
-        existing_user.update!(provider: auth.provider, uid: auth.uid, image: auth.info.image)
+        existing_user.update!(provider: auth.provider, uid: auth.uid, image: auth.info.image + '?type=large')
         return existing_user
       end
 
