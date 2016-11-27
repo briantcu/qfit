@@ -232,7 +232,7 @@ Devise.setup do |config|
                   callback_url: "http://localhost:3000/users/auth/facebook/callback"
   else
     config.omniauth :facebook, '330840547271440', '1719ea1c78cd47cd9337ae21352e82b5', :scope => 'email,public_profile',
-                    callback_url: "http://quadfitdev-env.us-east-1.elasticbeanstalk.com//users/auth/facebook/callback"
+                    callback_url: "http://quadfit-env.us-west-1.elasticbeanstalk.com/users/auth/facebook/callback"
   end
 
 
