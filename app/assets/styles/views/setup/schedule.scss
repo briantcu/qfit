@@ -41,10 +41,12 @@
   .days {
     margin-bottom: 50px;
   }
+  .no-padding {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
 
   .title {
-    font-size: 48px;
-    font-weight: 300;
     letter-spacing: -1.1px;
     text-align: center;
     color: $dark-purple;
@@ -56,9 +58,32 @@
     padding-top: 20px;
   }
 
-  @media (max-width: 540px)  {
+  @media (max-width: 413px)  {
+    .square-check-wrapper {
+      width: 100px;
+      padding-top: 5px;
+      margin-left: 5px !important;
+      .label-text {
+        font-size: 11px;
+      }
+    }
+  }
+  @media (min-width: 414px) and (max-width: 479px)  {
+    .square-check-wrapper {
+      width: 110px;
+      padding-top: 5px;
+      margin-left: 5px !important;
+      .label-text {
+        font-size: 12px;
+      }
+    }
+  }
+  @media (max-width: 580px) {
     .square-check-wrapper {
       &:nth-child(4) {
+        margin-left: 0 !important;
+      }
+      &:nth-child(1) {
         margin-left: 0 !important;
       }
       &:nth-child(7) {

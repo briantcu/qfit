@@ -100,7 +100,7 @@ class Commitment extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-xs-6 col-xs-offset-3 text-center buttonRow">
+                    <div className="col-xs-12 text-center buttonRow">
                         <Button ref="commitmentNext" buttonText="Continue" onClick={ this.commitmentSubmitted }
                                 disabled={this.state.commitmentNextDisabled} />
                     </div>

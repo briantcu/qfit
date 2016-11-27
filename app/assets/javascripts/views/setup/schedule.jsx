@@ -154,11 +154,11 @@ class Schedule extends React.Component {
             );
         });
         return <div className="schedule metal-bg no-margin">
-            <div className="row">
+            <div className="row no-margin">
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-10 col-xs-offset-1 text-center title">
-                            Weekly Planner
+                            <h1>Weekly Planner</h1>
                         </div>
                     </div>
                     <If condition={this.props.quads.strength || this.state.weights}>
@@ -169,7 +169,7 @@ class Schedule extends React.Component {
                             </div>
                         </div>
                         <div className="row days">
-                            <div className="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-12 col-lg-offset-0  text-center">
+                            <div className="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-12 col-lg-offset-0 no-padding text-center">
                                 <SquareCheck ref="w0" checked={this.state.schedule.schedule_days[0].weights}
                                              id="w0" change={ this.changed } label="Sunday" />
                                 <SquareCheck ref="w1" checked={this.state.schedule.schedule_days[1].weights}
@@ -195,7 +195,7 @@ class Schedule extends React.Component {
                             </div>
                         </div>
                         <div className="row days">
-                            <div className="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-12 col-lg-offset-0 text-center">
+                            <div className="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-12 col-lg-offset-0 text-center no-padding">
                                 <SquareCheck ref="p0" checked={this.state.schedule.schedule_days[0].plyometrics}
                                              id="p0" change={ this.changed } label="Sunday" />
                                 <SquareCheck ref="p1" checked={this.state.schedule.schedule_days[1].plyometrics}
@@ -221,7 +221,7 @@ class Schedule extends React.Component {
                             </div>
                         </div>
                         <div className="row days">
-                            <div className="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-12 col-lg-offset-0 text-center">
+                            <div className="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-12 col-lg-offset-0 text-center no-padding">
                                 <SquareCheck ref="s0" checked={this.state.schedule.schedule_days[0].sprinting}
                                              id="s0" change={ this.changed } label="Sunday" />
                                 <SquareCheck ref="s1" checked={this.state.schedule.schedule_days[1].sprinting}

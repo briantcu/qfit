@@ -84,7 +84,9 @@ class App extends React.Component {
             }else if((userAgent .indexOf('opera')  > -1)||(userAgent .indexOf('opr')  > -1)){
                 //browser is opera
             }else{
-                $('html').css('height', 'auto');
+                if (window.innerHeight <= document.body.clientHeight) {
+                    $('html').css('height', 'auto');
+                }
             }
         }
 

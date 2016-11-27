@@ -27,10 +27,10 @@ class Program extends React.Component {
     }
 
     render () {
-        return <div className="program metal-bg no-margin">
-            <div className="row">
-                <div className="container">
-                    <div className="row">
+        return <div className="program metal-bg">
+            <div className="row no-margin">
+                <div className="container program-container">
+                    <div className="row no-margin">
                         <div className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
                             <h1>Pick a Strength Training Schedule</h1>
                         </div>
@@ -67,7 +67,7 @@ class Program extends React.Component {
                     </If>
                     <If condition={this.props.program.days == 3 && this.props.program.long}>
                         <div className="row">
-                            <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-xs-12 purple-bot-container full">
+                            <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-xs-12 purple-bot-container full wide-row">
                                 <CircleCheck ref="pro4" checked={this.props.program.strengthProgram == 4} id={'pro4'}
                                              label={'Two 30 minute days per week, and one 45 minute day per week'} change={ this.change } />
                             </div>
@@ -91,7 +91,7 @@ class Program extends React.Component {
                     </If>
                     <If condition={this.props.program.days == 4 && this.props.program.long }>
                         <div className="row">
-                            <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-xs-12 purple-bot-container full">
+                            <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-xs-12 purple-bot-container full wide-row">
                                 <CircleCheck ref="pro7" checked={this.props.program.strengthProgram == 7} id={'pro7'}
                                              label={'Two 30 minute days per week, and two 45 minute days per week'} change={ this.change } />
                             </div>
