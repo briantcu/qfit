@@ -177,7 +177,7 @@ class User < ActiveRecord::Base
     fb_user = where(provider: auth.provider, uid: auth.uid).first
     if fb_user.present?
       # You already have fb details in the system
-      fb_user.image = auth.info.image
+      fb_user.image = auth.info.image + '?type=large'
       fb_user.save!
       return fb_user
     else
@@ -204,7 +204,7 @@ class User < ActiveRecord::Base
           user.last_name = name_arr[1]
         end
       end
-      user.image = auth.info.image
+      user.image = auth.info.image + '?type=large'
       return user
     end
   end
