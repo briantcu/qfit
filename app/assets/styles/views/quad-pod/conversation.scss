@@ -93,4 +93,24 @@
     float: left;
     height: 60px;
   }
+
+  @media (max-width: 960px) {
+    .message-wrap {
+      width: 85%;
+    }
+
+    .avi-wrap {
+      width: 15%;
+    }
+  }
+
+  @media (max-width: 375px) {
+    .message-wrap {
+      width: 80%;
+    }
+
+    .avi-wrap {
+      width: 20%;
+    }
+  }
 }

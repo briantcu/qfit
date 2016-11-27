@@ -39,6 +39,7 @@ class Friends extends React.Component {
                                     </span>
                                     <span className="avi-wrap"><Avatar user={e}/></span>
                                     <span className="username">{e.user_name}</span>
+                                    <div className="visible-micro"><br/></div>
                                     <span className="pi">PowerIndex: {(e.power_index) ? e.power_index : 0}</span>
                                     <span className="remove" onClick={() => this.removeFriend(e.id)}><img src="https://dwx350bwdtt59.cloudfront.net/X.png"/></span>
                                 </div>

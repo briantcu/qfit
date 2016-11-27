@@ -18,7 +18,7 @@ class FeedItem extends React.Component {
 
     render () {
         return <div className="gray-border feed-item">
-            <div className="row them">
+            <div className="row them no-margin">
                 <div className="col-xs-12">
                     <span className="avi-wrap"><Avatar user={this.props.poster} /></span>
                     <span className="poster-detes">
@@ -31,7 +31,7 @@ class FeedItem extends React.Component {
                     </span>
                 </div>
             </div>
-            <div className="row">
+            <div className="row no-margin">
                 <div className="message-text col-xs-12">
                     <If condition={this.props.stripHtml} >
                         {this.props.message}

@@ -18,8 +18,8 @@ class Feed extends React.Component {
         var message = this.refs.messageBox.value.trim();
         if (message) {
             UserActions.postToFeed(message);
+            this.refs.messageBox.value = 'Type a message';
         }
-        this.clearInput();
     }
 
     fillPlaceholder() {

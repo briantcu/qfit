@@ -43,6 +43,9 @@ class QuadPod extends React.Component {
     showConversation (userId) {
         UserActions.getConversation(userId);
         this.setState({viewingConversation: true, transitioning: true});
+        $('html, body').animate({
+            scrollTop: $(".feed").offset().top - 50
+        }, 600);
     }
 
     showFeed () {
@@ -60,25 +63,29 @@ class QuadPod extends React.Component {
 
     render () {
         return <div className="quad-pod">
-            <div className="row main">
+            <div className="row main no-margin">
                 <div className="container">
                     <div className="row">
-                        <div className="col-xs-12">
-                            <div className="qp-header">
+                        <div className="col-xs-12 xs-padding">
+                            <h1>
                                 Quad Pod
-                            </div>
-                            <div className="qp-sub">
+                            </h1>
+                            <div className="standard-text purple-text qp-sub">
                                 Talk with friends and see their workouts!
                             </div>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12 col-sm-5 fixed-wrapper">
-                            <Invites {...this.props} showInviteModal={this.showInvite}/>
-                            <Friends {...this.props} showConversation={this.showConversation} />
-                        </div>
-                        <div className="col-xs-12 col-sm-7">
-                            <Feed {...this.props} showFeed={this.showFeed} viewingConversation={this.state.viewingConversation} transitioning={this.state.transitioning} />
+                        <div className="container no-padding">
+                            <div className="row no-margin content">
+                                <div className="col-xs-12 col-sm-5 fixed-wrapper">
+                                    <Invites {...this.props} showInviteModal={this.showInvite}/>
+                                    <Friends {...this.props} showConversation={this.showConversation} />
+                                </div>
+                                <div className="col-xs-12 col-sm-7">
+                                    <Feed {...this.props} showFeed={this.showFeed} viewingConversation={this.state.viewingConversation} transitioning={this.state.transitioning} />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

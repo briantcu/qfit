@@ -56,17 +56,10 @@
   }
   .main {
     color: $dark-purple;
-    .qp-header {
-      font-size: 48px;
-      font-weight: 300;
-      letter-spacing: -1.1px;
+    .h1 {
       padding-top: 30px;
     }
     .qp-sub {
-      color: $purple;
-      font-size: 18px;
-      font-weight: 600;
-      line-height: 1.1;
       padding-left: 5px;
       padding-bottom: 30px;
     }
@@ -98,6 +91,19 @@
     }
     textarea {
       resize: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .xs-padding {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+    .content {
+      .col-xs-12 {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+      }
     }
   }
 }

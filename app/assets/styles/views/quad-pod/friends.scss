@@ -53,6 +53,15 @@
       width: 180px;
       display: inline-block;
     }
+
+    @media (max-width: 480px) {
+      .pi {
+        margin-bottom: 20px;
+      }
+      .remove {
+        margin-top: -10px;
+      }
+    }
   }
   .sec-main {
     padding-bottom: 0px !important;
