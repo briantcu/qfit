@@ -197,20 +197,20 @@ class Account extends React.Component {
         return <div>
             <Header user={this.state.user} showWorkoutNav={true} active={''} trueLinks={true} />
             <div className="account">
-                <div className="row main">
+                <div className="row main no-margin">
                     <div className="container">
                         <div className="row">
                             <div className="col-xs-12">
-                                <div className="p-header">
+                                <h1 className="p-header">
                                     Your Account
-                                </div>
-                                <div className="p-sub">
+                                </h1>
+                                <div className="p-sub standard-text">
                                     Change your personal settings or upgrade your account!
                                 </div>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-xs-12 col-sm-8 col-md-6">
+                            <div className="col-xs-12 col-sm-8 col-md-6 content">
                                 <div className="p-section">
                                     <div className="sec-header">Your Personal Settings</div>
                                     <div className="sec-main">

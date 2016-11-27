@@ -78,7 +78,7 @@ class Subscription extends React.Component {
 
     render() {
         return <div>
-            <div className={this.props.user.is_coach ? "col-xs-12" : "col-xs-12 col-sm-6"}>
+            <div className={this.props.user.is_coach ? "col-xs-12 content" : "col-xs-12 col-sm-6 content"}>
                 <div className="p-section">
                     <div className="sec-header">
                         Subscription
