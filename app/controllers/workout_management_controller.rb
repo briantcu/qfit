@@ -7,6 +7,14 @@ class WorkoutManagementController < ApplicationController
   before_action :set_gon_info
 
   def setup_goal
+    if @user.needs_setup? && session[:setup_context].blank?
+      session_service = SessionService.new(session)
+      if @user.is_sub_user?
+        session_service.set_setup_context('sub_user')
+      else
+        session_service.set_setup_context('user')
+      end
+    end
     render template: 'pages/setup'
   end
 

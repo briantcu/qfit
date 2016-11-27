@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
       '/more-info'
     elsif user.is_coach?
       '/coach'
-    elsif (user.program_type.blank?) || (user.user_schedule.blank?) ||  user.user_schedule.invalid? || user.hor_push_max.blank?
+    elsif user.needs_setup?
       '/setup/goal'
     else
       '/workout'

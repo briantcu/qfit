@@ -266,5 +266,6 @@ class Schedule extends React.Component {
     }
 
 }
+Schedule.displayName = 'Schedule';
 
 export default Schedule;

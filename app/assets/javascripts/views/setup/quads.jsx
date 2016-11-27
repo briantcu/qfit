@@ -103,5 +103,6 @@ class Quads extends React.Component {
     }
 
 }
+Quads.displayName = 'Quads';
 
 export default Quads;

@@ -125,5 +125,6 @@ class Program extends React.Component {
     }
 
 }
+Program.displayName = 'Program';
 
 export default Program;

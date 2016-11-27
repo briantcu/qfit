@@ -116,4 +116,6 @@ class Commitment extends React.Component {
 
 }
 
+Commitment.displayName = 'Commitment';
+
 export default Commitment;

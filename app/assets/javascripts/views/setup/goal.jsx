@@ -68,5 +68,6 @@ class Goal extends React.Component {
     }
 
 }
+Goal.displayName = 'Goal';
 
 export default Goal;

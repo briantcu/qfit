@@ -128,7 +128,7 @@ class App extends React.Component {
         var navElements = [];
         var routes = [];
 
-        if (this.props.children.type.name != 'Coach') {
+        if (this.props.children.type.displayName != 'Coach') {
             if (gon.setup_context == 'user' || gon.setup_context == 'coach_sub') {
                 navElements.push({class: this.getNavClass(['Goal'], currentView), label: 'Goal'});
                 routes.push({route: '/setup/goal', name: 'Goal'});

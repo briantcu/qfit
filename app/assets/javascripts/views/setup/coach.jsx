@@ -55,5 +55,6 @@ class Coach extends React.Component {
     }
 
 }
+Coach.displayName = 'Coach';
 
 export default Coach;

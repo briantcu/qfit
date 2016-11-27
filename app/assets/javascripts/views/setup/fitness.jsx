@@ -329,5 +329,6 @@ class Fitness extends React.Component {
     }
 
 }
+Fitness.displayName = 'Fitness';
 
 export default Fitness;

@@ -209,6 +209,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def needs_setup?
+    (self.program_type.blank?) || (self.user_schedule.blank?) ||  self.user_schedule.invalid? || self.hor_push_max.blank?
+  end
+
   def exercise_tier
     @exercise_tier ||=
       if has_premium_access?
