@@ -142,7 +142,7 @@ class UsersController < ApplicationController
 
   def username_exists
     username = params[:username]
-    user = User.where('lower(user_name) = ?', username).first
+    user = User.where('lower(user_name) = ?', username.downcase).first
     if user.present?
       head :no_content
     else
