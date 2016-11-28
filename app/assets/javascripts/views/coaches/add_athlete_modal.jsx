@@ -35,6 +35,12 @@ class AddAthleteModal extends React.Component {
         this.cancel = this.cancel.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if ((!this.props.show) && (nextProps.show)) {
+            this.setState({step: 'choose-option'});
+        }
+    }
+
     changeState(newState) {
         this.setState({step: newState});
     }
