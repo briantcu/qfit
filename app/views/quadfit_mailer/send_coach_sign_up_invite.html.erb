@@ -1,7 +1,7 @@
 Hey!<br/>
 Your coach has invited you to join Quadfit. Sign up using this link: <a href="https://<%= Qfit::Application.config.action_mailer.default_url_options[:host] %>/sign-up?qfcode=<%= @code.code %>">Quadfit Sign Up</a>
 <br/>
-Your sign up code is: <%= @code.code %>
+Your sign up code is: <%= @code['code'] %>
 <br/><br/>
 Let us know if you have any questions!<br/>
 - The Quadfit Team
