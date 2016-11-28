@@ -7,9 +7,11 @@ var SignUpStore = new Store({
     isUsernameUnique: true,
     loginStatus: {status: '', errors: []},
     pwResetStatus: {status: '', errors: []},
+    sub_user: false,
 
     setSignUpStatus: function(params){
         if (params.success) {
+            this.sub_user = params.sub_user
             this.signUpStatus.status = C.SUCCESS;
         } else {
             this.signUpStatus.status = C.FAILURE;
@@ -44,7 +46,8 @@ var SignUpStore = new Store({
             signUpStatus: this.signUpStatus,
             isUsernameUnique: this.isUsernameUnique,
             loginStatus: this.loginStatus,
-            pwResetStatus: this.pwResetStatus
+            pwResetStatus: this.pwResetStatus,
+            sub_user: this.sub_user
         };
     }
 });

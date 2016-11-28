@@ -1,1 +1,3 @@
 webpack --watch -d
+
+sidekiq -e development -L ./log/sidekiq.log -C ./config/sidekiq.yml

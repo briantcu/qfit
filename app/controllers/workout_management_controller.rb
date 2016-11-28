@@ -20,6 +20,14 @@ class WorkoutManagementController < ApplicationController
     render template: 'pages/setup'
   end
 
+  def fitness
+    # only sub users can navigate directly to here
+    unless @user.sub_user
+      setup_redirect
+    end
+    render template: 'pages/setup'
+  end
+
   def schedule
     if session[:viewing] == 'team'
       team = Group.find(session[:team_id])
@@ -49,7 +57,7 @@ class WorkoutManagementController < ApplicationController
     render template: 'pages/do_work'
   end
 
-  # /fitness /commitment /program
+  #/commitment /program
   def setup_redirect
     if session[:setup_context] == 'user' || session[:setup_context] == 'coach_sub' || (session[:setup_context].blank? && session[:viewing] != 'team')
       redirect_to '/setup/goal'
