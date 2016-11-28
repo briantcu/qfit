@@ -164,8 +164,8 @@ class Schedule extends React.Component {
                     <If condition={this.props.quads.strength || this.state.weights}>
                         <div className="row details">
                             <div className="col-xs-10 col-xs-offset-1 text-center">
-                                <span className="question">Which days will you lift?</span><br/>
-                                <span className="context">The program you chose has {this.props.num_weights_days} lifting days.</span>
+                                <span className="question">Which days will you strength train?</span><br/>
+                                <span className="context">The program you chose has {this.props.num_weights_days} strength training days.</span>
                             </div>
                         </div>
                         <div className="row days">

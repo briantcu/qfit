@@ -236,7 +236,7 @@ class GroupRoutine < ActiveRecord::Base
   def add_weights(exercise, status, not_used)
     perf_exercise = GroupPerformedExercise.add_exercise(exercise.id, status, self.id, exercise.exercise_type.id)
     self.group_performed_exercises << perf_exercise
-    add_for_users(WEIGHTS, perf_exercise, exercise)
+    add_for_users(WEIGHTS, perf_exercise, exercise.id)
     perf_exercise
   end
 
@@ -387,8 +387,8 @@ class GroupRoutine < ActiveRecord::Base
         when SPRINTING
           user_routine.add_sprint(exercise_id, exercise.status, exercise.id)
         else
-          # Exercise_id here is actually an exercise. Hack
-          user_routine.add_weights(exercise_id, exercise.status, exercise.id)
+          local_exercise = Exercise.find(exercise_id)
+          user_routine.add_weights(local_exercise, exercise.status, exercise.id)
       end
     end
   end
