@@ -55,7 +55,7 @@ class WeightSet extends React.Component {
                     </span>
                     <span className="double">
                         <VertCircleCheck ref="reps" id={this.props.weightSet.id + 'reps'} change={this.change} disabled={this.props.disabled}
-                                         checked={this.props.weightSet.perf_reps && this.props.weightSet.perf_reps > 0} label={'Complete'}  />
+                                         checked={this.props.weightSet.perf_reps && this.props.weightSet.perf_reps > 0} label={''}  />
                     </span>
                 </When>
                 <When condition={(this.props.exercise.category == 7 && (this.props.weightSet.rec_weight == 0)) || this.props.exercise.category == 3} >
