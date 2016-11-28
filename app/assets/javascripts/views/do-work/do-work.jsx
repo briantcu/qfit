@@ -534,11 +534,11 @@ class DoWork extends React.Component {
                             data-clipboard-target=".link-input" className="qfButton btn btn-default copy-link" >{(this.state.linkCopied) ? 'Copied!' : 'Copy'}</button>
                         </span>
 
-                        <a className="col-sm-3 col-xs-6" href="http://twitter.com/share?text=My Quadfit Workout&url=http://www.quadfit.com/share.html"
+                        <a className="col-sm-3 col-xs-6" href={"http://twitter.com/share?text=Check out my Quadfit workout&url=" + this.props.routine.share_link}
                            title="Share on Twitter" target="_blank" >
                             <img className="img-circle" src="https://dwx350bwdtt59.cloudfront.net/social-twitter.png" height="32" width="32"/> Twitter</a>
 
-                        <a className="col-sm-3 col-xs-6" href="http://www.facebook.com/sharer.php?u=http://www.quadfit.com/share.html?<?echo $share?>"
+                        <a className="col-sm-3 col-xs-6" href={"http://www.facebook.com/sharer.php?u=" + this.props.routine.share_link}
                            title="Share on Facebook" target="_blank" >
                             <img className="img-circle" src="https://dwx350bwdtt59.cloudfront.net/social-facebook.png" height="32" width="32"/> Facebook</a>
                     </span>
