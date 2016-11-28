@@ -13,6 +13,7 @@ class Athlete extends React.Component {
     }
 
     changeTeam(e) {
+        this.props.setLoading();
         CoachActions.changeTeam(e.target.value, this.props.athlete.id);
     }
 

@@ -24,7 +24,8 @@ class Coaches extends React.Component {
             coach_account: {teams: [], individuals: [], sign_up_codes: [], can_send_codes: true, num_used_accts: 0, num_accts: 5},
             showTeamModal: false,
             showAddUserModal: false,
-            showBanner: params.has('choose')
+            showBanner: params.has('choose'),
+            loading: false
         };
         this.onChange = this.onChange.bind(this);
         this.viewTeam = this.viewTeam.bind(this);
@@ -35,6 +36,7 @@ class Coaches extends React.Component {
         this.addUser = this.addUser.bind(this);
         this.cancelAddUser = this.cancelAddUser.bind(this);
         this.deleteCode = this.deleteCode.bind(this);
+        this.setLoading = this.setLoading.bind(this);
     }
 
     componentDidMount () {
@@ -54,7 +56,8 @@ class Coaches extends React.Component {
         this.setState(
             {
                 user: user.user,
-                coach_account: coach_account.account
+                coach_account: coach_account.account,
+                loading: false
             }
         )
     }
@@ -97,6 +100,10 @@ class Coaches extends React.Component {
         if (r == true) {
             CoachActions.deleteCode(codeId);
         }
+    }
+
+    setLoading() {
+        this.setState({loading: true});
     }
 
     render () {
@@ -152,7 +159,7 @@ class Coaches extends React.Component {
                                     {
                                         this.state.coach_account.teams.map(function(e) {
                                             return <Team team={e} key={e.id} teams={this.state.coach_account.teams} viewTeam={this.viewTeam}
-                                            viewAthlete={this.viewAthlete} />
+                                            viewAthlete={this.viewAthlete} setLoading={this.setLoading}/>
                                         }.bind(this))
                                     }
                                 </div>
@@ -176,7 +183,7 @@ class Coaches extends React.Component {
                                     {
                                         this.state.coach_account.individuals.map(function(e) {
                                             return <Athlete athlete={e} key={e.id} onTeam={false} teams={this.state.coach_account.teams}
-                                                            viewAthlete={this.viewAthlete} />
+                                                            viewAthlete={this.viewAthlete} setLoading={this.setLoading} />
                                         }.bind(this))
                                     }
                                 </div>
@@ -232,6 +239,9 @@ class Coaches extends React.Component {
             </Modal>
             <AddAthleteModal show={this.state.showAddUserModal} showTeamOption={this.state.coach_account.teams.length > 0}
                 cancel={this.cancelAddUser}  coachAccount={this.state.coach_account} />
+            <If condition={this.state.loading} >
+                <div className="loading-overlay"><img src="https://dwx350bwdtt59.cloudfront.net/loading-ring-164.gif" /></div>
+            </If>
             <Footer />
         </div>;
     }
