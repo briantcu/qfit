@@ -26,7 +26,7 @@ class RegistrationService
           user.save!
           EmailService.perform_in(20.seconds, :new_sub_email_from_self, {user_id: user.id})
           EmailService.perform_in(20.seconds, :coach_sub_signed_up, {user_id: user.id, coach_id: sign_up_code_record.user.id})
-          sign_up_code_record.update_columns(used: true, used_by_id: user.id)
+          sign_up_code_record.update_columns(used: true, used_by_id: user.id, redeemed_at: Time.now)
           UserSchedule.create_user_schedule({user_id: user.id, program_type_id: 1, program_id: 1})
           session_service.set_viewing('user')
           session_service.set_setup_context('sub_user')
