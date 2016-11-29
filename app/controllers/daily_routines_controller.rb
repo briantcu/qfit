@@ -31,9 +31,9 @@
 class DailyRoutinesController < ApplicationController
   before_filter :verify_logged_in, only: [:index]
   before_filter :verify_is_logged_in_or_coach, only: [:create, :routine_by_date]
-  before_filter :verify_owns_workout, except: [:index, :create, :routine_by_date, :skip_all, :show]
-  before_filter :verify_can_access_workout, only: [:show]
-  before_action :set_daily_routine, except: [:index, :create, :routine_by_date, :skip_all]
+  before_filter :verify_owns_workout, except: [:index, :create, :routine_by_date, :close, :show] # You can modify it
+  before_filter :verify_can_access_workout, only: [:show, :close] # You can see it or close it
+  before_action :set_daily_routine, except: [:index, :create, :routine_by_date]
 
   STRETCHING = 4
   WEIGHTS = 1
@@ -72,16 +72,16 @@ class DailyRoutinesController < ApplicationController
   end
 
   #PUT /users/:user_id/daily_routines/skip_all
-  def skip_all
-    user_id = params[:user_id]
-    workouts = DailyRoutine.get_old_open_workouts_for_user(user_id)
-    service = CloseRoutineService.new(nil)
-    workouts.each do |workout|
-      service.set_routine(workout)
-      service.skip_routine
-    end
-    render json: {}, status: 201
-  end
+  # def skip_all
+  #   user_id = params[:user_id]
+  #   workouts = DailyRoutine.get_old_open_workouts_for_user(user_id)
+  #   service = CloseRoutineService.new(nil)
+  #   workouts.each do |workout|
+  #     service.set_routine(workout)
+  #     service.skip_routine
+  #   end
+  #   render json: {}, status: 201
+  # end
 
   def update
     if @daily_routine.update(daily_routine_params)
