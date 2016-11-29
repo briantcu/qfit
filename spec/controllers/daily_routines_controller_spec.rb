@@ -103,14 +103,14 @@ RSpec.describe DailyRoutinesController, type: :controller do
     expect(body['id']).to eq(dr.id)
   end
 
-  it 'allows you to skip all workouts up to today' do
-    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
-    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 1.days)
-    expect(@user.daily_routines.select { |dr| !dr.closed}.count).to eq(2)
-    sign_in @user
-    put :skip_all, user_id: @user.id, format: :json
-    expect(@user.daily_routines(true).select { |dr| !dr.closed}.count).to eq(0)
-  end
+  # it 'allows you to skip all workouts up to today' do
+  #   FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+  #   FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 1.days)
+  #   expect(@user.daily_routines.select { |dr| !dr.closed}.count).to eq(2)
+  #   sign_in @user
+  #   put :skip_all, user_id: @user.id, format: :json
+  #   expect(@user.daily_routines(true).select { |dr| !dr.closed}.count).to eq(0)
+  # end
 
   it 'skips a single workout' do
     dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
