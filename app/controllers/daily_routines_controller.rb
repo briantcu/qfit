@@ -210,7 +210,8 @@ class DailyRoutinesController < ApplicationController
       routine = DailyRoutine.routine_from_token(uuid)
       return unauthorized unless routine.id == params[:id].to_i
     else
-      verify_owns_workout
+      return unauthorized if current_user.nil?
+      unauthorized unless current_user.can_access_workout?(params[:id])
     end
   end
 
