@@ -9,6 +9,9 @@
   color: $purple;
   border-radius: 0;
   background-color: transparent;
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 }
 
 .qfInverseButton {
@@ -29,5 +32,9 @@
     color: #fff;
     background-color: $purple;;
     border-color: #fff;;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
   }
 }

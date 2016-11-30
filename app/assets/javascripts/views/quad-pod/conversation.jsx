@@ -53,7 +53,7 @@ class Conversation extends React.Component {
                                 this.props.conversation.messages.map(function (e) {
                                     return <div key={e.id} className="gray-border message-row">
                                         <Choose>
-                                            <When condition={e.poster_id == this.props.user.id}>
+                                            <When condition={e.poster_id == this.props.loggedInUser.id}>
                                                 <div className="you">
                                                     <div className="message-wrap">
                                                         <div className="message-text">
@@ -64,7 +64,7 @@ class Conversation extends React.Component {
                                                         </div>
                                                     </div>
                                                     <div className="avi-wrap">
-                                                        <Avatar user={this.props.user} />
+                                                        <Avatar user={this.props.loggedInUser} />
                                                     </div>
                                                 </div>
                                             </When>

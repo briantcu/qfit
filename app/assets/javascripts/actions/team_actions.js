@@ -37,6 +37,7 @@ var TeamActions = {
     },
 
     setSchedule: function (schedule) {
+        var schedule = JSON.parse(JSON.stringify( schedule ));
         schedule.group_schedule_days_attributes = schedule.schedule_days;
         delete schedule.schedule_days;
 

@@ -40,6 +40,16 @@ class Coaches extends React.Component {
     }
 
     componentDidMount () {
+        var scrollFn = function() {
+            var bannerRow = $(".banner-row");
+            if ($(window).scrollTop() > 100) {
+                bannerRow.addClass("fixed");
+            } else {
+                bannerRow.removeClass("fixed");
+            }
+        };
+        var debounced = _.debounce(scrollFn, 5);
+        window.addEventListener('scroll', debounced);
         UserStore.addChangeListener(this.onChange);
         CoachStore.addChangeListener(this.onChange);
         this.load();
@@ -110,7 +120,7 @@ class Coaches extends React.Component {
         return <div className="coaches hundo-height">
             <Header user={this.state.user} showWorkoutNav={true} active={'coach'} trueLinks={true}/>
             <If condition={this.state.showBanner} >
-                <div className="row banner-row">
+                <div className="row banner-row no-margin">
                     <div className="container">
                         <div className="row">
                             <div className="col-xs-12 text-center">

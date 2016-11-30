@@ -108,7 +108,7 @@ class App extends React.Component {
 
         ProgramStore.addChangeListener(this.onChange);
         FitnessAssessmentStore.addChangeListener(this.onChange);
-        this.defineRoutes(this.props.children.type.name);
+        this.defineRoutes(this.props.children.type.displayName);
     }
 
     componentWillUnmount () {
@@ -121,7 +121,7 @@ class App extends React.Component {
     }
 
     componentWillReceiveProps (nextProps) {
-        this.defineRoutes(nextProps.children.type.name);
+        this.defineRoutes(nextProps.children.type.displayName);
     }
 
     defineRoutes(currentView) {
@@ -259,7 +259,12 @@ class App extends React.Component {
 
         return <div className="hundo-height">
             <Header user={this.state.loggedInUser} hideAvatar={true}/>
-            <Subnav elements={this.state.navElements} />
+            { this.props.children.type.displayName !== 'Coach'
+                ?
+                <Subnav elements={this.state.navElements}/>
+                :
+                null
+            }
             {childrenWithProps}
         </div>
     }

@@ -13,6 +13,14 @@ class CalendarCell extends React.Component {
         };
     }
 
+    componentDidMount() {
+        this.setState({date: new Date(this.props.dayObj.year, this.props.dayObj.month - 1, this.props.dayObj.day_of_month) });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({date: new Date(nextProps.dayObj.year, nextProps.dayObj.month - 1, nextProps.dayObj.day_of_month) });
+    }
+
     click() {
         var url = '/workout/' + this.props.dayObj.year + '/' + this.props.dayObj.month + '/' + this.props.dayObj.day_of_month;
         browserHistory.push(url);
@@ -37,7 +45,7 @@ class CalendarCell extends React.Component {
             classes += ' border'
         }
         return <div>
-            <If condition={this.state.date.getMonth()} >
+            <If condition={this.state.date.getMonth() || this.state.date.getMonth() === 0 }>
             {
                 <div className={classes} onClick={ () => this.click() } >
                     <div className="cal-subtext">{days[this.props.dayObj.day_of_week]}</div>
@@ -46,7 +54,7 @@ class CalendarCell extends React.Component {
                 </div>
             }
             </If>
-            <If condition={!this.state.date.getMonth()} >
+            <If condition={!this.state.date.getMonth() && this.state.date.getMonth() !== 0 } >
                 {
                     <div className={classes} >
                         <div className="cal-subtext"></div>
@@ -69,7 +77,9 @@ class Calendar extends React.Component {
             leftArrowEnabled: true,
             rightArrowEnabled: true
         };
-        this.rowSize = 4;
+        this.rowSize = 5;
+        this.scrollRightAmount = 5;
+        this.scrollLeftAmount = 5;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -88,24 +98,40 @@ class Calendar extends React.Component {
 
             index += prevDays.length;
             var allDays = prevDays.concat(days).concat(nextDays);
-            daysToShow = allDays.slice(index - 1, index + this.rowSize);
+            daysToShow = allDays.slice(index - 1, index + this.rowSize - 1);
             this.setState({loaded: true, daysToShow: daysToShow, current_index: index, allDays: allDays});
         }
     }
 
+    getFlowAmount() {
+        this.scrollRightAmount = 5;
+        this.scrollLeftAmount = 5;
+        if ($(window).width() < 992 ) {
+            this.scrollRightAmount = 4;
+            this.scrollLeftAmount = 4;
+        }
+
+        if ($(window).width() < 769 ) {
+            this.scrollRightAmount = 3;
+            this.scrollLeftAmount = 3;
+        }
+    }
+
+
     flowLeft() {
+        this.getFlowAmount();
         if (this.state.leftArrowEnabled) {
-            var index = this.state.current_index - (this.rowSize + 1);
+            var index = this.state.current_index - (this.scrollLeftAmount);
             var leftArrowEnabled = index > 0;
             if (index <= 0) {
-                var newIndex = index + this.rowSize;
+                var newIndex = index + this.scrollLeftAmount - 1;
                 var daysToShow = this.state.allDays.slice(0, newIndex);
                 var padCount = Math.abs(index) + 1;
                 for (var i = 0; i < padCount; i++) {
                     daysToShow.unshift({day_of_month: "padday" + i, month: "paddmonth" + i});
                 }
             } else {
-                var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
+                var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize - 1);
             }
             this.setState({
                 daysToShow: daysToShow,
@@ -117,10 +143,11 @@ class Calendar extends React.Component {
     }
 
     flowRight() {
+        this.getFlowAmount();
         if (this.state.rightArrowEnabled) {
-            var index = this.state.current_index + (this.rowSize + 1);
-            var rightArrowEnabled = (index + this.rowSize) < this.state.allDays.length;
-            var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize);
+            var index = this.state.current_index + (this.scrollRightAmount);
+            var rightArrowEnabled = ((index + this.scrollRightAmount) < this.state.allDays.length);
+            var daysToShow = this.state.allDays.slice(index - 1, index + this.rowSize - 1);
             this.setState({
                 daysToShow: daysToShow,
                 current_index: index,

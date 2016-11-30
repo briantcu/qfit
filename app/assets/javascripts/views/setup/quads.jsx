@@ -50,7 +50,7 @@ class Quads extends React.Component {
             <div className="col-xs-12">
                 <div className="container">
                     <div className="row">
-                        <div className="col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-4 col-xs-12">
+                        <div className="col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-4 col-xs-12 title">
                             <h1>Let's Get Started</h1>
                         </div>
                     </div>
@@ -61,32 +61,32 @@ class Quads extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-sm-6 col-sm-offset-4 col-md-5 col-md-offset-4 col-xs-10 col-xs-offset-0 purple-bot-container purple-top-container">
+                        <div className="col-sm-6 col-sm-offset-4 col-md-5 col-md-offset-4 col-xs-12 purple-bot-container purple-top-container">
                             <CircleCheck ref="strength" defaultChecked={this.props.quads.strength} id={'strength'}
                                          label={'Strength Training'} change={ this.change } />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-sm-6 col-sm-offset-4 col-md-5 col-md-offset-4 col-xs-10 col-xs-offset-0 purple-bot-container">
+                        <div className="col-sm-6 col-sm-offset-4 col-md-5 col-md-offset-4 col-xs-12 purple-bot-container">
                             <CircleCheck ref="plyos" id={'plyos'} defaultChecked={this.props.quads.plyos} label={'Plyometrics'}
                                          change={ this.change } />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-sm-6 col-sm-offset-4 col-md-5 col-md-offset-4 col-xs-10 col-xs-offset-0 purple-bot-container">
+                        <div className="col-sm-6 col-sm-offset-4 col-md-5 col-md-offset-4 col-xs-12 purple-bot-container">
                             <CircleCheck ref="sprinting" defaultChecked={this.props.quads.sprinting} id={'sprinting'} label={'Sprinting'}
                                          change={ this.change } />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-sm-6 col-sm-offset-4 col-md-5 col-md-offset-4 col-xs-10 col-xs-offset-0 purple-bot-container">
+                        <div className="col-sm-6 col-sm-offset-4 col-md-5 col-md-offset-4 col-xs-12 purple-bot-container">
                             <CircleCheck id={'stretching'} label={'Preparation'} disabled={true} checked={true}/>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-sm-6 col-sm-offset-4 col-md-5 col-md-offset-4 col-xs-10 col-xs-offset-0 continue-row">
+                        <div className="col-sm-6 col-sm-offset-4 col-md-5 col-md-offset-4 col-xs-12 continue-row">
                             <If condition={this.state.valid == false}>
-                                <span>You must choose at least one Quad.</span>
+                                <div className="error-text">You must choose at least one Quad.</div>
                             </If>
                             <Button ref="continue" buttonText="Continue" onClick={ () => this.submit() }
                                     disabled={false} />

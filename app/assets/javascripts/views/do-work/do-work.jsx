@@ -230,7 +230,7 @@ class DoWork extends React.Component {
                             <If condition={!this.props.loading && !this.props.routine.id && (this.props.week_days[this.props.day_index])} >
                                 <div className="row">
                                     <div className="col-xs-12 text-center future">
-                                        You're scheduled to workout this day, but the workout hasn't been created yet.
+                                        A workout is scheduled for this day, but it hasn't been created yet.
                                     </div>
                                 </div>
                             </If>

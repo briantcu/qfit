@@ -40,6 +40,16 @@ body {
       color: $dark-purple;
       text-decoration: underline;
     }
+    @media (max-width: 768px) {
+      font-size: 14px !important;
+    }
+  }
+  .fixed {
+    position: fixed;
+    top: 0px;
+    z-index: 100;
+    width: 100%;
+    margin: 0;
   }
 
   .main {

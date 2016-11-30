@@ -140,10 +140,6 @@
       padding-left: 20px !important;
       padding-top: 30px !important;
     }
-
-    .shorter {
-      min-height: 100px;
-    }
     .nav {
       margin: 0px auto auto !important;
     }
@@ -159,14 +155,15 @@
         width: 33.333%;
       }
     }
-    .shorter {
-      min-height: 100px;
-    }
     .nav-wrapper {
       padding-left: 0px;
       padding-right: 0px;
     }
   }
 
+}
+.shorter {
+  flex: 0 1 85px !important;
+  min-height: 85px !important;
 }
 

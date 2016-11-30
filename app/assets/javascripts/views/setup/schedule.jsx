@@ -34,8 +34,8 @@ class Schedule extends React.Component {
     }
 
     submit (button) {
-        $('.qfButton').button('loading');
         this.setState({loading: true});
+        $('.qfButton').button('loading');
         var countWeightDays = 0;
         var countPlyoDays = 0;
         var countSprintDays = 0;

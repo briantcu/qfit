@@ -70,14 +70,14 @@
     color: white;
   }
   .link-input {
-    width: 205px;
+    width: 155px;
     height: 33px;
     background-color: $gray1;
     border: solid 1px $lavender;
     color: $purple
   }
   a {
-    margin-right: 30px;
+    margin-right: 0px;
   }
 
   .btn {
@@ -86,7 +86,6 @@
     padding: 0px 20px;
     border-radius: 0px;
     margin-top: -3px;
-    margin-right: 30px;
   }
 
   @media (max-width: 768px) {
@@ -100,6 +99,9 @@
     .btn {
       margin-right: 10px !important;
     }
+    .link-input {
+      width: 205px;
+    }
   }
   @media (max-width: 375px) {
     .link-input {
@@ -111,7 +113,6 @@
     a {
       padding-right: 0px !important;
     }
-
   }
 }
 
@@ -493,6 +494,7 @@
       color: white !important;
       padding-top: 5px;
       margin-top: 0px;
+      text-align: center;
     }
   }
 

@@ -23,7 +23,7 @@ class WorkoutManagementController < ApplicationController
   def fitness
     # only sub users can navigate directly to here
     unless @user.sub_user
-      setup_redirect
+      setup_redirect and return
     end
     render template: 'pages/setup'
   end

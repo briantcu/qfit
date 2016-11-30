@@ -31,7 +31,7 @@ class Program extends React.Component {
             <div className="row no-margin">
                 <div className="container program-container">
                     <div className="row no-margin">
-                        <div className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+                        <div className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 title">
                             <h1>Pick a Strength Training Schedule</h1>
                         </div>
                     </div>

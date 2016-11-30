@@ -76,10 +76,14 @@ body {
   @media (max-width: 480px) {
     .header-text {
       font-size: 14px;
+      text-align: center;
     }
     .label-text {
       font-size: 16px;
       line-height: 4.4;
+    }
+    .title {
+      text-align: center;
     }
   }
 }
