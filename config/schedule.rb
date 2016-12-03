@@ -1,7 +1,7 @@
 set :output, 'log/cron.log'
 #server time is central time + 5 hours
 
-every :day, at: '1:05am' do
+every :day, at: '9:05am' do
   runner 'RoutineService.nightly_workout_creation'
 end
 

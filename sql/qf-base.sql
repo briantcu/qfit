@@ -256,7 +256,7 @@ INSERT INTO exercises VALUES (73, 10, '185274393', NULL, NULL, 3, 3, false, 'One
 INSERT INTO exercises VALUES (79, 11, '176556611', 3, 1.04000000000000004, 7, 1, false, 'Standing Cable Row To Chin', false, NULL, '2016-10-04 19:40:13.797148', 2, false, 'http://i.vimeocdn.com/video/583832893_200x150.jpg');
 INSERT INTO exercises VALUES (76, 11, '185274361', NULL, NULL, 3, 2, false, 'Horizontal Pullup', false, NULL, '2016-10-04 19:40:13.269966', 1, false, 'http://i.vimeocdn.com/video/594974328_200x150.jpg');
 INSERT INTO exercises VALUES (74, 11, '176551440', 3, 1, 1, 1, false, 'Bent Over Row', false, NULL, '2016-10-04 19:40:12.600982', 2, false, 'http://i.vimeocdn.com/video/583826103_200x150.jpg');
-INSERT INTO exercises VALUES (82, 13, '185274377', 3, 1.30000000000000004, 7, 1, false, 'Lat Pulldown', false, NULL, '2016-10-04 19:40:14.228675', 2, false, 'http://i.vimeocdn.com/video/594976189_200x150.jpg');
+INSERT INTO exercises VALUES (82, 13, '185274377', 3, 1.30000000000000004, 7, 1, false, 'Lat Pulldown', false, NULL, '2016-10-04 19:40:14.228675', 1, false, 'http://i.vimeocdn.com/video/594976189_200x150.jpg');
 INSERT INTO exercises VALUES (81, 12, '176557646', NULL, NULL, 3, 2, true, 'Side To Side Pullup', false, NULL, '2016-10-04 19:40:14.090905', 1, false, 'http://i.vimeocdn.com/video/583835050_200x150.jpg');
 INSERT INTO exercises VALUES (84, 13, '176557769', NULL, NULL, 3, 2, true, 'Pullup', false, NULL, '2016-10-04 19:40:14.515864', 2, false, 'http://i.vimeocdn.com/video/583835311_200x150.jpg');
 INSERT INTO exercises VALUES (97, 14, '185274389', 2, 1, 6, 1, false, 'Med Ball Over The Shoulder Throw', false, NULL, '2016-10-04 19:40:16.317412', 2, false, 'http://i.vimeocdn.com/video/594973681_200x150.jpg');
