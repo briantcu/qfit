@@ -26,28 +26,37 @@ class RoutineService
 
   def self.nightly_workout_creation
     begin
-      Rails.logger.info('staring nightly workout creation')
-      total_time = Benchmark.realtime do
-        coaches = User.active_coaches
-        coaches.each do |coach|
-          groups = coach.coach_groups.not_template
-          groups.each do |group|
-            RoutineService.new(group, 'CRON', nil, false).create_routines
-          end
+      Rails.logger.info('starting nightly workout creation')
 
-          sub_users = coach.players.without_group
-          sub_users.each do |user|
-            RoutineService.new(user, 'CRON', nil, false).create_routines
-          end
+      start_time = Time.now
+
+      Rails.logger.info('starting nightly workout creation for coaches')
+      coaches = User.active_coaches
+      coaches.each do |coach|
+        groups = coach.coach_groups.not_template
+
+        Rails.logger.info('starting nightly workout creation for groups')
+        groups.each do |group|
+          RoutineService.new(group, 'CRON', nil, false).create_routines
         end
 
-        users = User.regular_users.logged_in_recently
-        users.each do |user|
+        Rails.logger.info('starting nightly workout creation for sub users')
+        sub_users = coach.players.without_group
+        sub_users.each do |user|
           RoutineService.new(user, 'CRON', nil, false).create_routines
         end
-
       end
-      QuadfitMailer.nightly_job(total_time, User.regular_users.logged_in_recently.count, User.active_coaches.count).deliver_now
+
+      Rails.logger.info('starting nightly workout creation for regular users')
+      users = User.regular_users.logged_in_recently
+      users.each do |user|
+        RoutineService.new(user, 'CRON', nil, false).create_routines
+      end
+
+      end_time = Time.now
+      duration = end_time - start_time
+
+      QuadfitMailer.nightly_job(duration, User.regular_users.logged_in_recently.count, User.active_coaches.count).deliver_now
       Rails.logger.info('finished nightly workout creation')
     rescue => e
       Rollbar.error(e)
