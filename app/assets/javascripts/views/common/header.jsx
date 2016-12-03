@@ -27,37 +27,37 @@ class Header extends React.Component {
                                 <If condition={this.props.trueLinks}>
                                     <If condition={gon.is_coach} >
                                         <a className={(this.props.active == 'coach') ? 'btn active' : 'btn'}  href="/coach">
-                                            <img height="14" width="18" src="https://dwx350bwdtt59.cloudfront.net/iocn-+workout.png"/>  COACH
+                                            <img height="14" width="18" src="https://dwx350bwdtt59.cloudfront.net/workout.png"/>  COACH
                                         </a>
                                     </If>
                                     <a className={(this.props.active == 'workout') ? 'btn active' : 'btn'}  href="/workout">
-                                        <img src="https://dwx350bwdtt59.cloudfront.net/workout+icon.png"/> WORKOUT
+                                        <img src="https://dwx350bwdtt59.cloudfront.net/workouticon.png"/> WORKOUT
                                     </a>
                                     <a className={(this.props.active == 'progress') ? 'btn active' : 'btn'}  href="/progress">
-                                        <img src="https://dwx350bwdtt59.cloudfront.net/Icon+-+Progress.png"/> PROGRESS
+                                        <img src="https://dwx350bwdtt59.cloudfront.net/Progress.png"/> PROGRESS
                                     </a>
                                     <If condition={!gon.is_coach} >
                                         <a className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} href="/quad-pod">
-                                            <img src="https://dwx350bwdtt59.cloudfront.net/Icon+-+QuadPod.png"/> QUAD POD
+                                            <img src="https://dwx350bwdtt59.cloudfront.net/QuadPod.png"/> QUAD POD
                                         </a>
                                     </If>
                                 </If>
                                 <If condition={!this.props.trueLinks}>
                                     <If condition={gon.is_coach} >
                                         <a className={(this.props.active == 'coach') ? 'btn active' : 'btn'}  href="/coach">
-                                            <img height="14" width="14" src="https://dwx350bwdtt59.cloudfront.net/iocn-+workout.png"/> COACH
+                                            <img height="14" width="14" src="https://dwx350bwdtt59.cloudfront.net/workout.png"/> COACH
                                         </a>
                                     </If>
                                     <Link className={(this.props.active == 'workout') ? 'btn active' : 'btn'}
                                           to={`/workout`}>
-                                        <img src="https://dwx350bwdtt59.cloudfront.net/workout+icon.png"/>  WORKOUT
+                                        <img src="https://dwx350bwdtt59.cloudfront.net/workouticon.png"/>  WORKOUT
                                     </Link>
                                     <Link className={(this.props.active == 'progress') ? 'btn active' : 'btn'} to={`/progress`}>
-                                        <img src="https://dwx350bwdtt59.cloudfront.net/Icon+-+Progress.png"/> PROGRESS
+                                        <img src="https://dwx350bwdtt59.cloudfront.net/Progress.png"/> PROGRESS
                                     </Link>
                                     <If condition={!gon.is_coach} >
                                         <Link className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} to={`/quad-pod`}>
-                                            <img src="https://dwx350bwdtt59.cloudfront.net/Icon+-+QuadPod.png"/> QUAD POD
+                                            <img src="https://dwx350bwdtt59.cloudfront.net/QuadPod.png"/> QUAD POD
                                         </Link>
                                     </If>
                                 </If>
@@ -97,36 +97,36 @@ class Header extends React.Component {
                                 <If condition={this.props.trueLinks}>
                                     <If condition={gon.is_coach} >
                                         <a className={(this.props.active == 'coach') ? 'btn active' : 'btn'}  href="/coach">
-                                            <img height="14" width="18" src="https://dwx350bwdtt59.cloudfront.net/iocn-+workout.png"/>  COACH
+                                            <img height="14" width="18" src="https://dwx350bwdtt59.cloudfront.net/workout.png"/>  COACH
                                         </a>
                                     </If>
                                     <a className={(this.props.active == 'workout') ? 'btn active' : 'btn'}  href="/workout">
-                                        <img src="https://dwx350bwdtt59.cloudfront.net/workout+icon.png"/> WORKOUT
+                                        <img src="https://dwx350bwdtt59.cloudfront.net/workouticon.png"/> WORKOUT
                                     </a>
                                     <a className={(this.props.active == 'progress') ? 'btn active' : 'btn'}  href="/progress">
-                                        <img src="https://dwx350bwdtt59.cloudfront.net/Icon+-+Progress.png"/> PROGRESS
+                                        <img src="https://dwx350bwdtt59.cloudfront.net/Progress.png"/> PROGRESS
                                     </a>
                                     <If condition={!gon.is_coach} >
                                         <a className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} href="/quad-pod">
-                                            <img src="https://dwx350bwdtt59.cloudfront.net/Icon+-+QuadPod.png"/> QUAD POD
+                                            <img src="https://dwx350bwdtt59.cloudfront.net/QuadPod.png"/> QUAD POD
                                         </a>
                                     </If>
                                 </If>
                                 <If condition={!this.props.trueLinks}>
                                     <If condition={gon.is_coach} >
                                         <a className={(this.props.active == 'coach') ? 'btn active' : 'btn'}  href="/coach">
-                                            <img height="14" width="14" src="https://dwx350bwdtt59.cloudfront.net/iocn-+workout.png"/> COACH
+                                            <img height="14" width="14" src="https://dwx350bwdtt59.cloudfront.net/workout.png"/> COACH
                                         </a>
                                     </If>
                                     <Link className={(this.props.active == 'workout') ? 'btn active' : 'btn'} to={`/workout`}>
-                                        <img src="https://dwx350bwdtt59.cloudfront.net/workout+icon.png"/>  WORKOUT
+                                        <img src="https://dwx350bwdtt59.cloudfront.net/workouticon.png"/>  WORKOUT
                                     </Link>
                                     <Link className={(this.props.active == 'progress') ? 'btn active' : 'btn'} to={`/progress`}>
-                                        <img src="https://dwx350bwdtt59.cloudfront.net/Icon+-+Progress.png"/> PROGRESS
+                                        <img src="https://dwx350bwdtt59.cloudfront.net/Progress.png"/> PROGRESS
                                     </Link>
                                     <If condition={!gon.is_coach} >
                                         <Link className={(this.props.active == 'quad-pod') ? 'btn active' : 'btn'} to={`/quad-pod`}>
-                                            <img src="https://dwx350bwdtt59.cloudfront.net/Icon+-+QuadPod.png"/> QUAD POD
+                                            <img src="https://dwx350bwdtt59.cloudfront.net/QuadPod.png"/> QUAD POD
                                         </Link>
                                     </If>
                                 </If>

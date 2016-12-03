@@ -200,16 +200,16 @@ class DoWork extends React.Component {
                     <div className="col-xs-12 text-center subnav-cluster">
                         <If condition={gon.viewing != 'team' && this.props.routine.id } >
                             <span onClick={ () => this.submit()} >
-                                <img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/Icon+-+Complete.png" /> Complete this Workout
+                                <img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/Complete.png" /> Complete this Workout
                             </span>
                         </If>
-                        <span><a className="no-hover" href="/schedule"><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/Icon+-+Change+Schedule.png" /> Change Schedule</a></span>
+                        <span><a className="no-hover" href="/schedule"><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/ChangeSchedule.png" /> Change Schedule</a></span>
                         <If condition={gon.viewing != 'team' && this.props.routine.id } >
                             <div className="visible-micro"></div>
                         </If>
-                        <span><a className="no-hover" href="/program"><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/Icon+-+Change+Program.png" /> Change Program</a></span>
+                        <span><a className="no-hover" href="/program"><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/ChangeProgram.png" /> Change Program</a></span>
                         <If condition={gon.viewing != 'team' && this.props.routine.id } >
-                            <span onClick={this.showShareWorkout}><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/Icon+-+Share+Workout.png" />Share Workout</span>
+                            <span onClick={this.showShareWorkout}><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/ShareWorkout.png" />Share Workout</span>
                         </If>
                     </div>
 

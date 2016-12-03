@@ -38,19 +38,19 @@ class Goal extends React.Component {
 
                     <div className="row">
                         <div className="col-sm-4 col-xs-10 col-xs-offset-1 col-sm-offset-0 text-center">
-                            <div className="img-container hidden-xs"><img className="first-img" src="https://dwx350bwdtt59.cloudfront.net/add+muscle.png" /></div>
+                            <div className="img-container hidden-xs"><img className="first-img" src="https://dwx350bwdtt59.cloudfront.net/addmuscle.png" /></div>
                             <div className="check-container first-check"><VCircleCheck checked={this.props.goal == C.MASS} id={C.MASS} ref={C.MASS}
                                          label={'Add Muscle'} change={ this.change } /></div>
                         </div>
 
                         <div className="col-sm-4 col-xs-10 col-xs-offset-1 col-sm-offset-0 text-center">
-                            <div className="img-container hidden-xs"><img className="second-img" src="https://dwx350bwdtt59.cloudfront.net/moderate+gains.png" /></div>
+                            <div className="img-container hidden-xs"><img className="second-img" src="https://dwx350bwdtt59.cloudfront.net/moderategains.png" /></div>
                             <div className="check-container"><VCircleCheck checked={this.props.goal == C.RIP} id={C.RIP} ref={C.RIP}
                                          label={'Moderate Muscle Gains, Reduce Fat'}  change={ this.change }/></div>
                         </div>
 
                         <div className="col-sm-4 col-xs-10 col-xs-offset-1 col-sm-offset-0 text-center">
-                            <div className="img-container hidden-xs"><img className="last-img" src="https://dwx350bwdtt59.cloudfront.net/loose+weight.png" /></div>
+                            <div className="img-container hidden-xs"><img className="last-img" src="https://dwx350bwdtt59.cloudfront.net/loseweight.png" /></div>
                             <div className="check-container"><VCircleCheck checked={this.props.goal == C.LEAN} id={C.LEAN} ref={C.LEAN}
                                          label={'Lose Weight, Build Endurance'} change={ this.change } /></div>
                         </div>
