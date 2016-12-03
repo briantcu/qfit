@@ -92,7 +92,7 @@ class Header extends React.Component {
                 </div>
                 <div className="row hidden-sm hidden-md hidden-lg">
                     <If condition={this.props.showWorkoutNav}>
-                        <div className="col-xs-12 text-center nav-wrapper">     \
+                        <div className="col-xs-12 text-center nav-wrapper">
                             <div className="nav">
                                 <If condition={this.props.trueLinks}>
                                     <If condition={gon.is_coach} >
