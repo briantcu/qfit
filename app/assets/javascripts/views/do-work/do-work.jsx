@@ -117,13 +117,15 @@ class DoWork extends React.Component {
         this.setState({showShareWorkout: false, linkCopied: false});
     }
 
-    addEx(e, is_custom) {
+    addEx(e, is_custom, selector) {
         if (is_custom) {
             RoutineActions.addCustomExercise(this.props.routine.id, this.state.exercise_type, e);
         } else {
             RoutineActions.addExercise(this.props.routine.id, this.state.exercise_type, e);
         }
         this.setState({showAddEx: false});
+        var $selector = $('.'+ selector);
+        $('html, body').animate({scrollTop: $selector.offset().top + $selector.height() - 200}, 600);
     }
 
     closeAddEx() {
@@ -279,7 +281,7 @@ class DoWork extends React.Component {
                             </div>
                         </div>
 
-                        <div className="strength-sec sec container">
+                        <div className="strength sec container">
                             <div className="row sec-header">
                                 <div className="col-sm-8 col-sm-offset-0 col-xs-12">
                                     <span>Strength Training</span>

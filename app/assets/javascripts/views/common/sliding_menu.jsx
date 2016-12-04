@@ -29,34 +29,42 @@ class SlidingMenu extends React.Component {
     }
 
     click(e) {
-        this.props.click($(e.target).data('id'));
+        var selector = '';
+        if (this.props.type == 'warmups') {
+            selector = 'stretching';
+        } else if (this.props.type == 'weights') {
+            selector = 'strength';
+        } else {
+            selector = this.props.type;
+        }
+        this.props.click($(e.target).data('id'), false, selector);
     }
 
     addWarmup() {
         var name = this.refs['customWarmup'].getValue();
         if (name.length > 0) {
-            this.props.click(name, true);
+            this.props.click(name, true, 'stretching');
         }
     }
 
     addWeights() {
         var name = this.refs['customWeights'].getValue();
         if (name.length > 0) {
-            this.props.click(name, true);
+            this.props.click(name, true, 'strength');
         }
     }
 
     addSprints() {
         var name = this.refs['customSprints'].getValue();
         if (name.length > 0) {
-            this.props.click(name, true);
+            this.props.click(name, true, 'sprinting');
         }
     }
 
     addPlyos() {
         var name = this.refs['customPlyos'].getValue();
         if (name.length > 0) {
-            this.props.click(name, true);
+            this.props.click(name, true, 'plyos');
         }
     }
 
