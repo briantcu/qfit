@@ -36,20 +36,25 @@ class SubscriptionService
             plan: plan
         )
       rescue Stripe::CardError => e
-        Rails.logger.info('error checking out for user ' + user.id.to_s)
+        Rails.logger.info('Stripe - error checking out for user ' + user.id.to_s)
         Rails.logger.info(e)
         body = e.json_body
         err  = body[:error]
         response[:status] = 'failed'
         response[:message] = err[:message]
       rescue => e
-        Rails.logger.info('sending to rollbar - error checking out for user ' + user.id.to_s)
+        Rails.logger.info('Stripe - error checking out for user ' + user.id.to_s)
         Rails.logger.info(e)
         Rollbar.error(e)
         response[:status] = 'failed'
         response[:message] = "Sorry! We can't process your request right now, but we're looking into it."
       else
         user.update!(active_until: subscription.current_period_end, subscription_id: subscription.id)
+        if user.is_coach?
+          num_accts = get_num_accts_from_plan(plan)
+          user.coach_account.num_accts = num_accts
+          user.coach_account.save!
+        end
       end
     end
     response
@@ -76,6 +81,7 @@ class SubscriptionService
   end
 
   def update_subscription(user, new_type)
+    response = {status: 'success', message: 'none'}
     # Only for coaches, bc only coaches have multiple sub types
     new_plan = get_plan_from_type(new_type)
     begin
@@ -84,6 +90,8 @@ class SubscriptionService
       subscription.save
     rescue => e
       Rollbar.error(e)
+      response[:status] = 'failed'
+      response[:message] = "Sorry! We can't process your request right now, but we're looking into it."
     else
       # active_until is updated with subscription.updated webhook
       if user.is_coach?
@@ -92,6 +100,7 @@ class SubscriptionService
         user.coach_account.save!
       end
     end
+    response
   end
 
   def delete_subscription(user)
@@ -121,7 +130,7 @@ class SubscriptionService
       stripe_user_id = event.data['object']['customer']
       user = User.find_by(stripe_id: stripe_user_id)
 
-      Rails.logger.info('Processing event for user id ' + user.id.to_s)
+      Rails.logger.info('Processing Stripe event for user id ' + user.id.to_s)
 
       EmailService.perform_async(:notify_payment_failed, {user_id: user.id}) if event.type == 'invoice.payment_failed'
 
@@ -157,6 +166,8 @@ class SubscriptionService
           source: stripe_token,
           email: user.email
       )
+      Rails.logger.info('Created Stripe customer for user id ' + user.id.to_s)
+      Rails.logger.info(customer)
       user.update!(stripe_id: customer.id)
       customer.id
     rescue => e

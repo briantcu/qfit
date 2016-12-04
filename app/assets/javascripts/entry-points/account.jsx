@@ -31,7 +31,7 @@ class Account extends React.Component {
             emailErrors: [],
             passwordErrors: [],
             user: {},
-            checkout: {}
+            checkoutStatus: {}
         };
         this.onChange = this.onChange.bind(this);
         this.evalUsername = this.evalUsername.bind(this);
@@ -41,6 +41,7 @@ class Account extends React.Component {
         this.bronzeCheckout = this.bronzeCheckout.bind(this);
         this.silverCheckout = this.silverCheckout.bind(this);
         this.goldCheckout = this.goldCheckout.bind(this);
+        this.profileChanged = this.profileChanged.bind(this);
     }
 
     premiumCheckout (token)  {
@@ -74,20 +75,35 @@ class Account extends React.Component {
     }
 
     componentDidMount () {
+        var scrollFn = function() {
+            var bannerRow = $(".banner-row");
+            if ($(window).scrollTop() > 100) {
+                bannerRow.addClass("fixed");
+            } else {
+                bannerRow.removeClass("fixed");
+            }
+        };
+        var debounced = _.debounce(scrollFn, 5);
+        window.addEventListener('scroll', debounced);
         UserStore.addChangeListener(this.onChange);
-        ProfileStore.addChangeListener(this.onChange);
+        ProfileStore.addChangeListener(this.profileChanged);
         SignUpStore.addChangeListener(this.onChange);
         this.load();
     }
 
     componentWillUnmount () {
-        ProfileStore.removeChangeListener(this.onChange);
+        ProfileStore.removeChangeListener(this.profileChanged);
         UserStore.removeChangeListener(this.onChange);
         SignUpStore.removeChangeListener(this.onChange);
     }
 
     load() {
         UserActions.getUser(gon.user_id);
+    }
+
+    profileChanged() {
+        //this.load();
+        this.onChange();
     }
 
     onChange () {
@@ -196,6 +212,15 @@ class Account extends React.Component {
 
         return <div>
             <Header user={this.state.user} showWorkoutNav={true} active={''} trueLinks={true} />
+            <If condition={this.state.checkoutStatus.status} >
+                <div className="row banner-row no-margin fixed">
+                    <div className="container">
+                        <div className="row">
+                            {this.state.checkoutStatus.message}
+                        </div>
+                    </div>
+                </div>
+            </If>
             <div className="account">
                 <div className="row main no-margin">
                     <div className="container">

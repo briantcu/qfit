@@ -112,12 +112,6 @@ class Subscription extends React.Component {
                         <If condition={this.props.user.status == 4}>
                             <div>Your subscription is set to cancel at the end of this billing period.</div>
                         </If>
-                        <If condition={this.props.checkout.status}>
-                            <div>Updated successfully!</div>
-                        </If>
-                        <If condition={!this.props.checkout.status && this.props.checkout.errors}>
-                            <div>{this.props.checkout.errors}</div>
-                        </If>
                     </div>
                 </div>
             </div>

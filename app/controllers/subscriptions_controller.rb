@@ -8,20 +8,20 @@ class SubscriptionsController < ApplicationController
     stripe_token = params[:token]
 
     result = SubscriptionService.instance.activate_subscription(current_user, checkout_type, stripe_token)
-    if result[:status] == 'succeeded'
-      render status: 201, json: {}
+    if result[:status] == 'success'
+      render status: 201, json: {status: 'success', message: 'Subscription Created!'}
     else
-      render status: 422, json: {errors: result[:message]}
+      render status: 422, json: {message: result[:message], status: 'failed'}
     end
   end
 
   def update
     new_type = params[:type]
-    SubscriptionService.instance.update_subscription(current_user, new_type)
-    if result[:status] == 'succeeded'
-      render status: 201, json: {}
+    result = SubscriptionService.instance.update_subscription(current_user, new_type)
+    if result[:status] == 'success'
+      render status: 201, json: {status: 'success', message: 'Updated Successfully!'}
     else
-      render status: 422, json: {errors: result[:message]}
+      render status: 422, json: {message: result[:message], status: 'failed'}
     end
   end
 
@@ -31,10 +31,10 @@ class SubscriptionsController < ApplicationController
     stripe_token = params[:token]
 
     result = SubscriptionService.instance.update_billing(current_user, stripe_token)
-    if result[:status] == 'succeeded'
-      render status: 201, json: {}
+    if result[:status] == 'success'
+      render status: 201, json: {status: 'success', message: 'Updated Successfully!'}
     else
-      render status: 422, json: {errors: result[:message]}
+      render status: 422, json: {message: result[:message], status: 'failed'}
     end
   end
 

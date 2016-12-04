@@ -1,7 +1,35 @@
 @import '../common/common';
 
+.banner-row {
+  background-color: $lightning;
+  flex: 0 1 48px;
+  font-size: 18px;
+  line-height: 1.3;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: $dark-purple;
+  .bold {
+    font-weight: 700;
+  }
+  @media (max-width: 768px) {
+    font-size: 14px !important;
+  }
+}
+.fixed {
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  width: 100%;
+  margin: 0;
+}
+
 .account {
 
+
+  .update-wrapper {
+    float: right;
+  }
 
   .bio-section {
     height: 160px !important;
@@ -102,6 +130,22 @@
     }
   }
 
+  .update-wrapper {
+    .StripeCheckout {
+      span {
+        border: none !important;
+        background-color: transparent !important;
+        &:focus {
+          background-color: transparent !important;
+          border: none !important;
+        }
+        &:hover {
+          background-color: transparent !important;
+          border: none !important;
+        }
+      }
+    }
+  }
 
 
   .StripeCheckout {
