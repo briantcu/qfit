@@ -27,11 +27,12 @@ class Avatar extends React.Component {
     }
 
     render () {
+        var link = (gon.is_coach) ? '/settings' : "/p/" +encodeURIComponent(this.props.user.user_name);
         if (this.props.noLink) {
             return <img src={this.imagePath()} alt={this.props.user.user_name} className="img-circle"
                         width={this.state.width} height={this.state.height}/>;
         } else {
-            return <a href={"/p/" +encodeURIComponent(this.props.user.user_name)}>
+            return <a href={link}>
                 <img src={this.imagePath()} alt={this.props.user.user_name}
                      className="img-circle" width={this.state.width} height={this.state.height}/></a>;
         }

@@ -67,10 +67,10 @@ class Profile extends React.Component {
         return <div>
             <Header user={this.state.loggedInUser} showWorkoutNav={true} active={''} trueLinks={true} />
             <div className="profile">
-                <div className="row main">
+                <div className="row main no-margin">
                     <div className="container">
                         <div className="row profile-row">
-                            <div className="col-xs-12">
+                            <div className="col-xs-12 no-padding-xs">
                                 <div className="p-section">
                                     <div className="sec-header">Profile
                                         {  (this.state.user.id == this.state.loggedInUser.id)
@@ -111,7 +111,7 @@ class Profile extends React.Component {
                         </div>
 
                         <div className="row profile-row last-row">
-                            <div className="col-xs-12 col-sm-6">
+                            <div className="col-xs-12 col-sm-6 no-padding-xs">
                                 <div className="p-section">
                                     <div className="sec-header">Recent Workouts</div>
                                     <div className="sec-main workout-section">
@@ -137,7 +137,7 @@ class Profile extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-xs-12 col-sm-6">
+                            <div className="col-xs-12 col-sm-6 no-padding-xs">
                                 <div className="p-section">
                                     <div className="sec-header">
                                         {  (this.state.user.id == this.state.loggedInUser.id)

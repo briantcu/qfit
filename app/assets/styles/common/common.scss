@@ -152,6 +152,14 @@ input[type='text'] {
   padding-right: 0px !important;
 }
 
+@media (max-width: 768px) {
+  .no-padding-xs {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+
+
 .small-link {
   opacity: 0.9;
   font-family: 'Open Sans', sans-serif;

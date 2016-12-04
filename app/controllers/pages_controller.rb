@@ -22,6 +22,9 @@ class PagesController < ApplicationController
       render :file => 'public/404.html', :status => :not_found, :layout => false
       return
     end
+    if @user.is_coach?
+      redirect_to '/workout' and return
+    end
     gon.push ({user_id: current_user.try(:id), current_user_id: @user.id})
     render template: 'pages/profile'
   end
