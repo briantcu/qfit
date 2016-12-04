@@ -119,6 +119,8 @@ class UsersController < ApplicationController
       @user = @fitness_assessment_submission.process_submission
       if @user.is_sub_user?
         process_sub_user
+        next_routine = DailyRoutine.get_open_workouts_start_today(@user).first
+        render action: 'show', status: :ok, location: "/workout/#{next_routine.try(:id)}" and return
       end
       render action: 'show', status: :ok
     else

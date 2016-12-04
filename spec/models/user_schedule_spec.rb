@@ -25,7 +25,7 @@ RSpec.describe UserSchedule, type: :model do
     it 'updates the sprint diff if a user needs it' do
       user = FactoryGirl.create(:user, sprint_diff: 1)
       user_schedule = FactoryGirl.create(:user_schedule, user: user)
-      start_date = Date.today - 5.weeks
+      start_date = Time.zone.today - 5.weeks
       user_schedule.update_phases(start_date)
       dr = FactoryGirl.create(:daily_routine, user: user)
       sprint = FactoryGirl.create(:sprint, difficulty: 1)
@@ -34,14 +34,14 @@ RSpec.describe UserSchedule, type: :model do
         FactoryGirl.create(:lap, performed_sprint: ps, completed: true)
       end
 
-      user_schedule.maintain_phases(Date.today)
+      user_schedule.maintain_phases(Time.zone.today)
       expect(user.reload.sprint_diff).to eq(2)
     end
 
     it 'does not update the sprint diff if not needed' do
       user = FactoryGirl.create(:user, sprint_diff: 1)
       user_schedule = FactoryGirl.create(:user_schedule, user: user)
-      start_date = Date.today - 5.weeks
+      start_date = Time.zone.today - 5.weeks
       user_schedule.update_phases(start_date)
       dr = FactoryGirl.create(:daily_routine, user: user)
       sprint = FactoryGirl.create(:sprint, difficulty: 1)
@@ -50,7 +50,7 @@ RSpec.describe UserSchedule, type: :model do
         FactoryGirl.create(:lap, performed_sprint: ps, completed: true)
       end
 
-      user_schedule.maintain_phases(Date.today)
+      user_schedule.maintain_phases(Time.zone.today)
       expect(user.reload.sprint_diff).to eq(1)
     end
   end

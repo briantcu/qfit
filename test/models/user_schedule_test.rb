@@ -22,10 +22,10 @@ class UserScheduleTest < ActiveSupport::TestCase
   test 'should setup phases' do
     user_schedule = UserSchedule.new
     user_schedule.setup_phases
-    assert(user_schedule.phase_one_start == Date.today)
-    assert(user_schedule.phase_two_start == Date.today.advance(:weeks => 3))
-    assert(user_schedule.phase_three_start == Date.today.advance(:weeks => 6))
-    assert(user_schedule.phase_four_start == Date.today.advance(:weeks => 9))
+    assert(user_schedule.phase_one_start == Time.zone.today)
+    assert(user_schedule.phase_two_start == Time.zone.today.advance(:weeks => 3))
+    assert(user_schedule.phase_three_start == Time.zone.today.advance(:weeks => 6))
+    assert(user_schedule.phase_four_start == Time.zone.today.advance(:weeks => 9))
   end
 
   # test 'should create weekly schedule days' do

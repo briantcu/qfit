@@ -6,15 +6,15 @@ class ProgressService
     @exercise = Exercise.find(exercise_id) if exercise_id.present?
     case @period
       when '1'
-        @start_date = (Date.today - 3.months) > @user.daily_routines.oldest.day_performed ? (Date.today - 90.days) : @user.daily_routines.oldest.day_performed
+        @start_date = (Time.zone.today - 3.months) > @user.daily_routines.oldest.day_performed ? (Time.zone.today - 90.days) : @user.daily_routines.oldest.day_performed
       when '2'
-        @start_date = (Date.today - 3.years) > @user.daily_routines.oldest.day_performed ? (Date.today - 3.years) : @user.daily_routines.oldest.day_performed
+        @start_date = (Time.zone.today - 3.years) > @user.daily_routines.oldest.day_performed ? (Time.zone.today - 3.years) : @user.daily_routines.oldest.day_performed
       when '3'
-        @start_date = (Date.today - 1.year) > @user.daily_routines.oldest.day_performed ? (Date.today - 1.year) : @user.daily_routines.oldest.day_performed
+        @start_date = (Time.zone.today - 1.year) > @user.daily_routines.oldest.day_performed ? (Time.zone.today - 1.year) : @user.daily_routines.oldest.day_performed
       when '5'
-        @start_date = (Date.today - 1.month) > @user.daily_routines.oldest.day_performed ? (Date.today - 60.days) : @user.daily_routines.oldest.day_performed
+        @start_date = (Time.zone.today - 1.month) > @user.daily_routines.oldest.day_performed ? (Time.zone.today - 60.days) : @user.daily_routines.oldest.day_performed
       else
-        @start_date = (Date.today - 1.month) > @user.daily_routines.oldest.day_performed ? (Date.today - 30.days) : @user.daily_routines.oldest.day_performed
+        @start_date = (Time.zone.today - 1.month) > @user.daily_routines.oldest.day_performed ? (Time.zone.today - 30.days) : @user.daily_routines.oldest.day_performed
     end
   end
 
@@ -42,7 +42,7 @@ class ProgressService
     end
 
     has_data = false
-    (@start_date..Date.today).each do |date|
+    (@start_date..Time.zone.today).each do |date|
       r = @routines.detect {|r| r.day_performed == date}
       if r.present?
         obj = proc.call(r)
@@ -57,7 +57,7 @@ class ProgressService
       end
     end
 
-    ProgressData.new('', label, chart_data, title, has_data, @start_date, Date.today)
+    ProgressData.new('', label, chart_data, title, has_data, @start_date, Time.zone.today)
   end
 
   private

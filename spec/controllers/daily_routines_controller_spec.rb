@@ -39,12 +39,12 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   it 'returns the last 5 daily routines for a user' do
-    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 1.days)
-    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 2.days)
-    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 3.days)
-    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 4.days)
-    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 5.days)
-    FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 6.days)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 1.days)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 2.days)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 3.days)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 4.days)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 5.days)
+    FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 6.days)
     sign_in @user
     get :index, format: :json
     body = JSON.parse(response.body)
@@ -76,7 +76,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   it 'does not allow create if not logged in' do
-    post :create, daily_routine: { user_id: 1, day_peformed: Date.today}, format: :json
+    post :create, daily_routine: { user_id: 1, day_peformed: Time.zone.today}, format: :json
     expect(response.status).to eq(401)
   end
 
@@ -88,7 +88,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   it 'returns old workout if you try to create one for an existing day' do
-    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
     sign_in @user
     post :create, daily_routine: { user_id: @user.id, year: dr.day_performed.year, month: dr.day_performed.month, day: dr.day_performed.day}, format: :json
     body = JSON.parse(response.body)
@@ -96,7 +96,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   it 'returns a workout for a given date' do
-    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
     sign_in @user
     get :routine_by_date, user_id: @user.id, year: dr.day_performed.year, month: dr.day_performed.month, day: dr.day_performed.day, format: :json
     body = JSON.parse(response.body)
@@ -104,8 +104,8 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   # it 'allows you to skip all workouts up to today' do
-  #   FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
-  #   FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 1.days)
+  #   FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today - 2.days)
+  #   FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today - 1.days)
   #   expect(@user.daily_routines.select { |dr| !dr.closed}.count).to eq(2)
   #   sign_in @user
   #   put :skip_all, user_id: @user.id, format: :json
@@ -113,7 +113,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
   # end
 
   it 'skips a single workout' do
-    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today - 2.days)
     sign_in @user
     put :skip, id: dr.id, format: :json
     expect(dr.reload.closed).to eq(true)
@@ -121,7 +121,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
 
   it 'closes a workout' do
     allow(GoalDefinition).to receive(:find).and_return(FactoryGirl.create(:goal_definition))
-    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today - 2.days)
 
     sign_in @user
     put :close, id: dr.id, format: :json, daily_routine: { weight: 200, changes_saved: true }
@@ -131,7 +131,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   it 'adds a weights exercise' do
-    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today - 2.days)
 
     sign_in @user
     expect_any_instance_of(DailyRoutine).to receive(:note_weights_changed)
@@ -141,7 +141,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   it 'adds a sprint' do
-    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today - 2.days)
 
     sign_in @user
     expect_any_instance_of(DailyRoutine).to receive(:note_sprints_changed)
@@ -151,7 +151,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   it 'adds a warmup' do
-    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today - 2.days)
 
     sign_in @user
     expect_any_instance_of(DailyRoutine).to receive(:note_warmups_changed)
@@ -161,7 +161,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   it 'adds a plyo' do
-    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today - 2.days)
 
     sign_in @user
     expect_any_instance_of(DailyRoutine).to receive(:note_plyos_changed)
@@ -171,7 +171,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   it 'adds a custom exercise' do
-    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today - 2.days)
 
     sign_in @user
     post :add_custom, id: dr.id, name: 'my custom', type: 1, format: :json
@@ -180,7 +180,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   it 'does not add an exercise if maxed out' do
-    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today - 2.days)
     15.times do
       FactoryGirl.create(:performed_exercise, daily_routine: dr)
     end
@@ -191,7 +191,7 @@ RSpec.describe DailyRoutinesController, type: :controller do
   end
 
   it 'assigns user points and notes as shared' do
-    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today - 2.days)
+    dr = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today - 2.days)
     sign_in @user
     put :shared, id: dr.id, format: :json
     body = JSON.parse(response.body)

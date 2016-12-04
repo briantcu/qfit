@@ -31,7 +31,7 @@ class GroupSchedulesController < ApplicationController
       @group_schedule = GroupSchedule.create_group_schedule(group_schedule_params)
       if @group_schedule.save
         update_group_record
-        RoutineService.new(@group_schedule.group, 'NEW', Date.today, false).create_routines
+        RoutineService.new(@group_schedule.group, 'NEW', Time.zone.today, false).create_routines
         next_routine = GroupRoutine.get_open_workouts_start_today(@group_schedule.group).first
         session_service = SessionService.new(session)
         session_service.set_onboarding(false) # onboarding is done

@@ -35,7 +35,7 @@ RSpec.describe Users::SessionsController, type: :controller do
     it 'does not call to create a workout if you need one' do
       expect_any_instance_of(RoutineService).not_to receive(:create_routines)
       user = FactoryGirl.create(:user, email: 'brian@quadfit.com', password: 'password', id: 100)
-      FactoryGirl.create(:daily_routine, user: user, day_performed: Date.today)
+      FactoryGirl.create(:daily_routine, user: user, day_performed: Time.zone.today)
       post :create, { email: 'brian@quadfit.com', password: 'password'}
     end
   end

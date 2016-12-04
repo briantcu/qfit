@@ -30,7 +30,7 @@ class UserCalendar
 
     pad_month(normalize_day(first_of_month.cwday))
 
-    today = Date.today
+    today = Time.zone.today
     for d in 1..end_of_month
       day = Date.new(self.year_id, self.month_id, d)
       routine = find_routine_for_date(routines, day)

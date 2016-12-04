@@ -31,7 +31,7 @@ class GroupSchedule < ActiveRecord::Base
   end
 
   def setup_phases
-    now = Date.today
+    now = Time.zone.today
     set_dates(now)
   end
 
@@ -53,7 +53,7 @@ class GroupSchedule < ActiveRecord::Base
   end
 
   def get_current_phase
-    get_phase_by_date(Date.today)
+    get_phase_by_date(Time.zone.today)
   end
 
   def get_phase_by_date(date)

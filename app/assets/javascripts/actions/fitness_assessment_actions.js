@@ -62,8 +62,9 @@ var FitnessAssessmentActions = {
             dataType: 'json',
             data: payload,
             contentType: "application/json; charset=utf-8",
-            success: function(user) {
+            success: function(user, status, xhr) {
                 if (user.is_sub_user) {
+                    location.href = xhr.getResponseHeader('Location');
                     location.href = '/workout';
                 } else {
                     dispatcher.dispatch(C.RESET);

@@ -26,7 +26,7 @@ RSpec.describe WorkoutManagementController, type: :controller do
 
     it 'is successful' do
       user = FactoryGirl.create(:user)
-      FactoryGirl.create(:user_schedule, user: user, phase_one_start: Time.now)
+      FactoryGirl.create(:user_schedule, user: user, phase_one_start: Time.zone.now)
       sign_in user
       get :schedule
     end
@@ -42,7 +42,7 @@ RSpec.describe WorkoutManagementController, type: :controller do
       it 'is successful' do
         coach = FactoryGirl.create(:user, level: 5)
         team = FactoryGirl.create(:group)
-        FactoryGirl.create(:group_schedule, group: team, phase_one_start: Time.now)
+        FactoryGirl.create(:group_schedule, group: team, phase_one_start: Time.zone.now)
         sign_in coach
         session[:viewing] = 'team'
         session[:team_id] = team.id
@@ -89,7 +89,7 @@ RSpec.describe WorkoutManagementController, type: :controller do
     it 'is successful' do
       coach = FactoryGirl.create(:user, level: 5)
       team = FactoryGirl.create(:group)
-      FactoryGirl.create(:group_schedule, group: team, phase_one_start: Time.now)
+      FactoryGirl.create(:group_schedule, group: team, phase_one_start: Time.zone.now)
       sign_in coach
       session[:viewing] = 'team'
       session[:team_id] = team.id

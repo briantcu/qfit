@@ -28,22 +28,22 @@ class LeaderService
   end
 
   def insert_most_laps_sprinted
-    leaders = User.logged_in_recently.most_sprinted(Date.today - 3.weeks)
+    leaders = User.logged_in_recently.most_sprinted(Time.zone.today - 3.weeks)
     create_leaders(leaders, Leader::SPRINTS_PERFORMED)
   end
 
   def insert_most_plyos_performed
-    leaders = User.logged_in_recently.most_plyos(Date.today - 3.weeks)
+    leaders = User.logged_in_recently.most_plyos(Time.zone.today - 3.weeks)
     create_leaders(leaders, Leader::PLYOS_PERFORMED)
   end
 
   def insert_most_sets_performed
-    leaders = User.logged_in_recently.most_sets_performed(Date.today - 3.weeks)
+    leaders = User.logged_in_recently.most_sets_performed(Time.zone.today - 3.weeks)
     create_leaders(leaders, Leader::SETS_PERFORMED)
   end
 
   def insert_most_reps_performed
-    leaders = User.logged_in_recently.most_reps_performed(Date.today - 3.weeks)
+    leaders = User.logged_in_recently.most_reps_performed(Time.zone.today - 3.weeks)
     create_leaders(leaders, Leader::REPS_PERFORMED)
   end
 

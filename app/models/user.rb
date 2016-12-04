@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
   scope :sub_users, -> {where(sub_user: true)}
   scope :regular_users, -> {where(sub_user: false, level: [2,7])}
   scope :without_group ,-> {}
-  scope :logged_in_recently, -> {where('last_sign_in_at > ?', Time.now - 3.weeks)}
+  scope :logged_in_recently, -> {where('last_sign_in_at > ?', Time.zone.now - 3.weeks)}
   scope :males, -> {where(sex: 'male')}
   scope :females, -> {where(sex: 'female')}
   scope :most_sprinted, -> (date){select('users.*, count(laps.lap_number) AS value')
@@ -235,7 +235,7 @@ class User < ActiveRecord::Base
     @eligible_for_workouts ||=
       if is_coach?
         if coach_account.num_accts > 5 # They're a paid subscriber
-          players.count <= coach_account.num_accts && active_until >= Time.now && (status == 1 || status == 4)
+          players.count <= coach_account.num_accts && active_until >= Time.zone.now && (status == 1 || status == 4)
         else
           players.count <= coach_account.num_accts && (status == 1 || status == 4)
         end
@@ -252,7 +252,7 @@ class User < ActiveRecord::Base
     @has_premium_access ||=
       if is_coach?
         if coach_account.num_accts > 5 # They're a paid subscriber
-          players.count <= coach_account.num_accts && active_until >= Time.now && (status == 1 || status == 4)
+          players.count <= coach_account.num_accts && active_until >= Time.zone.now && (status == 1 || status == 4)
         else
           false
         end
@@ -260,7 +260,7 @@ class User < ActiveRecord::Base
         if is_sub_user?
           coach.has_premium_access?
         else
-          paid_tier == 2 && (status == 1 || status == 4) && active_until >= Time.now
+          paid_tier == 2 && (status == 1 || status == 4) && active_until >= Time.zone.now
         end
       end
   end
@@ -424,7 +424,7 @@ class User < ActiveRecord::Base
       return "You haven't set up this member's workouts yet."
     end
 
-    open_workouts = self.daily_routines.open.where('created_at < ?', Time.now - 3.days)
+    open_workouts = self.daily_routines.open.where('created_at < ?', Time.zone.now - 3.days)
     if open_workouts.present?
       return 'This member has an open workout that is at least 2 days old.  The results from the performed workout
               should be entered, or the workout should be skipped.'

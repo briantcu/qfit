@@ -77,12 +77,12 @@ class GroupRoutine < ActiveRecord::Base
   end
 
   def self.get_open_workouts_start_today(entity)
-    now = Date.today
+    now = Time.zone.today
     GroupRoutine.where(:group_id => entity.id).where('day_performed >= ?', now)
   end
 
   def self.get_open_workouts(entity)
-    now = Date.today
+    now = Time.zone.today
     GroupRoutine.where(:group_id => entity.id).where('day_performed > ?', now)
   end
 
@@ -308,7 +308,7 @@ class GroupRoutine < ActiveRecord::Base
   end
 
   def self.has_open_workout_today?(entity)
-    now = Date.today
+    now = Time.zone.today
     workouts = GroupRoutine.where(:group_id => entity.id, :day_performed => now)
     workouts.count > 0
   end

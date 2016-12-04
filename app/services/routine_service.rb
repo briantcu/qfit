@@ -28,7 +28,7 @@ class RoutineService
     begin
       Rails.logger.info('starting nightly workout creation')
 
-      start_time = Time.now
+      start_time = Time.zone.now
 
       Rails.logger.info('starting nightly workout creation for coaches')
       coaches = User.active_coaches
@@ -53,7 +53,7 @@ class RoutineService
         RoutineService.new(user, 'CRON', nil, false).create_routines
       end
 
-      end_time = Time.now
+      end_time = Time.zone.now
       duration = end_time - start_time
 
       QuadfitMailer.nightly_job(duration, User.regular_users.logged_in_recently.count, User.active_coaches.count).deliver_now
@@ -66,7 +66,7 @@ class RoutineService
   end
 
   def self.sched_change_happened(entity)
-    today = Date.today
+    today = Time.zone.today
     delete_old_workouts(entity)
     routine_service = RoutineService.new(entity, 'SCHED', today, true)
     routine_service.create_routines
@@ -79,7 +79,7 @@ class RoutineService
       user.group.copy_schedule_to_user(user)
       user.group.copy_workouts_to_user(user)
     else
-      today = Date.today
+      today = Time.zone.today
       routine_service = RoutineService.new(user, 'REMOVED', today, true)
       routine_service.create_routines
     end
@@ -253,7 +253,7 @@ class RoutineService
 
   def create_date_array
     dates = []
-    date = Date.today
+    date = Time.zone.today
     3.times do
       unless RoutineService.has_closed_workout?(@entity, date)
         dates.push(date)

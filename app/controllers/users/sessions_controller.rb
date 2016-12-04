@@ -41,7 +41,7 @@ class Users::SessionsController < Devise::SessionsController
       user.ensure_authentication_token
       # Make sure some routines get created if the user hasn't logged in in a while
       if RoutineService.get_open_workouts_start_today(user).count == 0 && !user.is_coach?
-        RoutineService.new(user, 'CRON', Date.today, false).create_routines
+        RoutineService.new(user, 'CRON', Time.zone.today, false).create_routines
       end
       session_service = SessionService.new(session)
       session_service.set_current_user_id(user.id)

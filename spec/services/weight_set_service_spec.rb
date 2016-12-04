@@ -9,7 +9,7 @@ RSpec.describe WeightSetService do
         @user_schedule = UserSchedule.create_user_schedule({user_id: @user.id, program_type_id: 1, program_id: 1})
         @user_schedule.setup_phases
         @user_schedule.save!
-        @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+        @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       end
 
       it 'returns med ball sets' do
@@ -48,7 +48,7 @@ RSpec.describe WeightSetService do
 
       it 'returns assisted body weight sets' do
         # Assisted pull up
-        UserMax.create(user: @user, exercise_id: 54, max: 225, created_at: Time.now - 3.days)
+        UserMax.create(user: @user, exercise_id: 54, max: 225, created_at: Time.zone.now - 3.days)
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(54), exercise_type: Exercise.find(54).exercise_type)
         wss = WeightSetService.new(@user, @routine, performed_exercise)
         sets = wss.create_sets
@@ -66,7 +66,7 @@ RSpec.describe WeightSetService do
 
       it 'returns power exercise sets' do
         # Clean pull
-        UserMax.create(user: @user, exercise_id: 1, max: 265, created_at: Time.now - 3.days)
+        UserMax.create(user: @user, exercise_id: 1, max: 265, created_at: Time.zone.now - 3.days)
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
         wss = WeightSetService.new(@user, @routine, performed_exercise)
         sets = wss.create_sets
@@ -84,7 +84,7 @@ RSpec.describe WeightSetService do
 
       it 'returns barbell sets' do
         # Bench
-        UserMax.create(user: @user, exercise_id: 47, max: 225, created_at: Time.now - 3.days)
+        UserMax.create(user: @user, exercise_id: 47, max: 225, created_at: Time.zone.now - 3.days)
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(47), exercise_type: Exercise.find(47).exercise_type)
         wss = WeightSetService.new(@user, @routine, performed_exercise)
         sets = wss.create_sets
@@ -102,7 +102,7 @@ RSpec.describe WeightSetService do
 
       it 'returns dumbbell sets' do
         # DB Press
-        UserMax.create(user: @user, exercise_id: 61, max: 100, created_at: Time.now - 3.days)
+        UserMax.create(user: @user, exercise_id: 61, max: 100, created_at: Time.zone.now - 3.days)
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(61), exercise_type: Exercise.find(61).exercise_type)
         wss = WeightSetService.new(@user, @routine, performed_exercise)
         sets = wss.create_sets
@@ -120,7 +120,7 @@ RSpec.describe WeightSetService do
 
       it 'returns plate sets' do
         # Corkscrew
-        UserMax.create(user: @user, exercise_id: 87, max: 65, created_at: Time.now - 3.days)
+        UserMax.create(user: @user, exercise_id: 87, max: 65, created_at: Time.zone.now - 3.days)
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(87), exercise_type: Exercise.find(87).exercise_type)
         wss = WeightSetService.new(@user, @routine, performed_exercise)
         sets = wss.create_sets
@@ -138,7 +138,7 @@ RSpec.describe WeightSetService do
 
       it 'returns cable sets' do
         # Cable wood chop
-        UserMax.create(user: @user, exercise_id: 91, max: 150, created_at: Time.now - 3.days)
+        UserMax.create(user: @user, exercise_id: 91, max: 150, created_at: Time.zone.now - 3.days)
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(91), exercise_type: Exercise.find(91).exercise_type)
         wss = WeightSetService.new(@user, @routine, performed_exercise)
         sets = wss.create_sets
@@ -156,7 +156,7 @@ RSpec.describe WeightSetService do
 
       it 'gets body weight with weight belt sets' do
         # Dip with dip belt
-        UserMax.create(user: @user, exercise_id: 59, max: 350, created_at: Time.now - 3.days)
+        UserMax.create(user: @user, exercise_id: 59, max: 350, created_at: Time.zone.now - 3.days)
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(59), exercise_type: Exercise.find(59).exercise_type)
         wss = WeightSetService.new(@user, @routine, performed_exercise)
         sets = wss.create_sets
@@ -179,7 +179,7 @@ RSpec.describe WeightSetService do
         @user_schedule = UserSchedule.create_user_schedule({user_id: @user.id, program_type_id: 1, program_id: 1})
         @user_schedule.setup_phases
         @user_schedule.save!
-        @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+        @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       end
       it 'returns med ball sets' do
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(96), exercise_type: Exercise.find(96).exercise_type)
@@ -215,7 +215,7 @@ RSpec.describe WeightSetService do
 
       it 'returns assisted body weight sets' do
         # Assisted pull up
-        UserMax.create(user: @user, exercise_id: 54, max: 100, created_at: Time.now - 3.days)
+        UserMax.create(user: @user, exercise_id: 54, max: 100, created_at: Time.zone.now - 3.days)
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(54), exercise_type: Exercise.find(54).exercise_type)
         wss = WeightSetService.new(@user, @routine, performed_exercise)
         sets = wss.create_sets
@@ -233,7 +233,7 @@ RSpec.describe WeightSetService do
 
       it 'returns power exercise sets' do
         # Clean pull
-        UserMax.create(user: @user, exercise_id: 1, max: 130, created_at: Time.now - 3.days)
+        UserMax.create(user: @user, exercise_id: 1, max: 130, created_at: Time.zone.now - 3.days)
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
         wss = WeightSetService.new(@user, @routine, performed_exercise)
         sets = wss.create_sets
@@ -251,7 +251,7 @@ RSpec.describe WeightSetService do
 
       it 'returns barbell sets' do
         # Bench
-        UserMax.create(user: @user, exercise_id: 47, max: 115, created_at: Time.now - 3.days)
+        UserMax.create(user: @user, exercise_id: 47, max: 115, created_at: Time.zone.now - 3.days)
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(47), exercise_type: Exercise.find(47).exercise_type)
         wss = WeightSetService.new(@user, @routine, performed_exercise)
         sets = wss.create_sets
@@ -269,7 +269,7 @@ RSpec.describe WeightSetService do
 
       it 'returns dumbbell sets' do
         # DB Press
-        UserMax.create(user: @user, exercise_id: 61, max: 40, created_at: Time.now - 3.days)
+        UserMax.create(user: @user, exercise_id: 61, max: 40, created_at: Time.zone.now - 3.days)
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(61), exercise_type: Exercise.find(61).exercise_type)
         wss = WeightSetService.new(@user, @routine, performed_exercise)
         sets = wss.create_sets
@@ -287,7 +287,7 @@ RSpec.describe WeightSetService do
 
       it 'gets body weight with weight belt sets' do
         # Dip with dip belt
-        UserMax.create(user: @user, exercise_id: 59, max: 250, created_at: Time.now - 3.days)
+        UserMax.create(user: @user, exercise_id: 59, max: 250, created_at: Time.zone.now - 3.days)
         performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(59), exercise_type: Exercise.find(59).exercise_type)
         wss = WeightSetService.new(@user, @routine, performed_exercise)
         sets = wss.create_sets
@@ -313,7 +313,7 @@ RSpec.describe WeightSetService do
         @user_schedule = UserSchedule.create_user_schedule({user_id: @user.id, program_type_id: 1, program_id: 1})
         @user_schedule.setup_phases
         @user_schedule.save!
-        @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+        @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       end
 
       it 'returns assisted body weight sets' do
@@ -446,28 +446,28 @@ RSpec.describe WeightSetService do
       @user_schedule.setup_phases
       @user_schedule.save!
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(6)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 22.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 22.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(6)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 43.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 43.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(6)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 69.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 69.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
@@ -481,28 +481,28 @@ RSpec.describe WeightSetService do
       @user_schedule.setup_phases
       @user_schedule.save!
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(15)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 22.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 22.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(10)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 43.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 43.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(15)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 69.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 69.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
@@ -516,28 +516,28 @@ RSpec.describe WeightSetService do
       @user_schedule.setup_phases
       @user_schedule.save!
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(6)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 22.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 22.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(6)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 43.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 43.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(6)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 69.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 69.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
@@ -551,28 +551,28 @@ RSpec.describe WeightSetService do
       @user_schedule.setup_phases
       @user_schedule.save!
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(15)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 22.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 22.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(10)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 43.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 43.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(18)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 69.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 69.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
@@ -589,28 +589,28 @@ RSpec.describe WeightSetService do
       @user_schedule.setup_phases
       @user_schedule.save!
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(5)
       expect(sets[0].rec_reps).to eq(3)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 22.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 22.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(5)
       expect(sets[0].rec_reps).to eq(4)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 43.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 43.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(5)
       expect(sets[0].rec_reps).to eq(3)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 69.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 69.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
@@ -624,28 +624,28 @@ RSpec.describe WeightSetService do
       @user_schedule.setup_phases
       @user_schedule.save!
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(8)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 22.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 22.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(6)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 43.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 43.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(8)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 69.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 69.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
@@ -659,28 +659,28 @@ RSpec.describe WeightSetService do
       @user_schedule.setup_phases
       @user_schedule.save!
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(5)
       expect(sets[0].rec_reps).to eq(4)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 22.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 22.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(5)
       expect(sets[0].rec_reps).to eq(4)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 43.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 43.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(5)
       expect(sets[0].rec_reps).to eq(4)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 69.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 69.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
@@ -694,28 +694,28 @@ RSpec.describe WeightSetService do
       @user_schedule.setup_phases
       @user_schedule.save!
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(8)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 22.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 22.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(10)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 43.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 43.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(6)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 69.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 69.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
@@ -732,28 +732,28 @@ RSpec.describe WeightSetService do
       @user_schedule.setup_phases
       @user_schedule.save!
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(5)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 22.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 22.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(5)
       expect(sets[0].rec_reps).to eq(3)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 43.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 43.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(5)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 69.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 69.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
@@ -767,28 +767,28 @@ RSpec.describe WeightSetService do
       @user_schedule.setup_phases
       @user_schedule.save!
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(10)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 22.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 22.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(6)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 43.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 43.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(8)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 69.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 69.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
@@ -802,28 +802,28 @@ RSpec.describe WeightSetService do
       @user_schedule.setup_phases
       @user_schedule.save!
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(6)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 22.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 22.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(5)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 43.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 43.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(6)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 69.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 69.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(1), exercise_type: Exercise.find(1).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
@@ -837,28 +837,28 @@ RSpec.describe WeightSetService do
       @user_schedule.setup_phases
       @user_schedule.save!
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(10)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 22.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 22.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(15)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 43.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 43.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets
       expect(sets.count).to eq(4)
       expect(sets[0].rec_reps).to eq(8)
 
-      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Date.today + 69.days)
+      @routine = FactoryGirl.create(:daily_routine, user: @user, day_performed: Time.zone.today + 69.days)
       performed_exercise = PerformedExercise.new(daily_routine: @routine, exercise: Exercise.find(82), exercise_type: Exercise.find(82).exercise_type)
       wss = WeightSetService.new(@user, @routine, performed_exercise)
       sets = wss.create_sets

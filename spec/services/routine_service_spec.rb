@@ -8,7 +8,7 @@ RSpec.describe RoutineService do
       @user_schedule = UserSchedule.create_user_schedule({user_id: @user.id, program_type_id: 1, program_id: 1})
       @user_schedule.setup_phases
       @user_schedule.save!
-      day_index = Date.today.wday
+      day_index = Time.zone.today.wday
       3.times do
         wsd = @user_schedule.weekly_schedule_days.at(day_index)
         wsd.stretching = true
@@ -22,7 +22,7 @@ RSpec.describe RoutineService do
     end
 
     it 'creates workouts for all eligible users' do
-      @user.last_sign_in_at = Time.now - 20.days
+      @user.last_sign_in_at = Time.zone.now - 20.days
       @user.save!
 
       RoutineService.nightly_workout_creation
@@ -30,11 +30,11 @@ RSpec.describe RoutineService do
     end
 
     it 'creates workouts for sub users without a group, regardless of last logged in' do
-      coach = FactoryGirl.create(:user, level: 5, active_until: Time.now + 7.days, status: 1)
+      coach = FactoryGirl.create(:user, level: 5, active_until: Time.zone.now + 7.days, status: 1)
       FactoryGirl.create(:coach_account, user: coach)
       @user.master_user_id = coach.id
       @user.sub_user = true
-      @user.last_sign_in_at = Time.now - 22.days
+      @user.last_sign_in_at = Time.zone.now - 22.days
       @user.save!
 
       RoutineService.nightly_workout_creation
@@ -42,14 +42,14 @@ RSpec.describe RoutineService do
     end
 
     it 'creates workouts for groups and members get the workout' do
-      coach = FactoryGirl.create(:user, level: 5, active_until: Time.now + 7.days, status: 1)
+      coach = FactoryGirl.create(:user, level: 5, active_until: Time.zone.now + 7.days, status: 1)
       FactoryGirl.create(:coach_account, user: coach)
       group = FactoryGirl.create(:group, coach: coach)
       group_schedule = FactoryGirl.create(:group_schedule, group: group)
       group_schedule.setup_phases
       group_schedule.save!
 
-      day_index = Date.today.wday
+      day_index = Time.zone.today.wday
       3.times do
         wsd = group_schedule.group_schedule_days.at(day_index)
         wsd.stretching = true
@@ -71,7 +71,7 @@ RSpec.describe RoutineService do
 
     it 'does not create workouts for users that have not logged in recently' do
       allow(@user_schedule).to receive(:is_valid_workout_day?).and_return(true)
-      @user.last_sign_in_at = Time.now - 22.days
+      @user.last_sign_in_at = Time.zone.now - 22.days
       @user.save!
       RoutineService.nightly_workout_creation
       expect(@user.reload.daily_routines.count).to eq(0)
@@ -80,12 +80,12 @@ RSpec.describe RoutineService do
 
   context 'previous matching routine' do
     before(:each) do
-      @user = FactoryGirl.create(:user, last_sign_in_at: Time.now - 3.days)
+      @user = FactoryGirl.create(:user, last_sign_in_at: Time.zone.now - 3.days)
       @user_schedule = UserSchedule.create_user_schedule({user_id: @user.id, program_type_id: 1, program_id: 1})
       @user_schedule.setup_phases
       @user_schedule.program_id = 1
       @user_schedule.save!
-      day_index = Date.today.wday
+      day_index = Time.zone.today.wday
       2.times do
         wsd = @user_schedule.weekly_schedule_days.at(day_index)
         wsd.stretching = true
@@ -124,7 +124,7 @@ RSpec.describe RoutineService do
         routine.save!
 
         # Create workout of same type
-        date = Date.today + 7.days
+        date = Time.zone.today + 7.days
         copied_routine = RoutineService.new(@user, 'CRON', date, false).create_routine
 
         # Expectations
@@ -180,7 +180,7 @@ RSpec.describe RoutineService do
         routine.save!
 
         # Create workout of same type
-        date = Date.today + 7.days
+        date = Time.zone.today + 7.days
         copied_routine = RoutineService.new(@user, 'CRON', date, false).create_routine
 
         expect(copied_routine.changes_saved).to eq(false)
@@ -211,7 +211,7 @@ RSpec.describe RoutineService do
       end
 
       it 'copies over a completely custom day with changes saved and has the right program day id' do
-        routine = DailyRoutine.create_routine(@user.id, Date.today + 3.days, 0, 0) # When this user has nothing scheduled
+        routine = DailyRoutine.create_routine(@user.id, Time.zone.today + 3.days, 0, 0) # When this user has nothing scheduled
         routine.add_custom_exercise('my sprint', 3, 0)
         routine.add_custom_exercise('my warmup', 4, 0)
         routine.add_custom_exercise('my plyo', 2, 0)
@@ -224,7 +224,7 @@ RSpec.describe RoutineService do
         routine.closed = true
         routine.save!
 
-        date = Date.today + 10.days
+        date = Time.zone.today + 10.days
         copied_routine = RoutineService.new(@user, 'CRON', date, false).create_routine
         expect(copied_routine.custom_exercises.count).to eq(4)
         expect(copied_routine.changes_saved).to eq(false)
@@ -233,7 +233,7 @@ RSpec.describe RoutineService do
 
     context 'for group' do
       before(:each) do
-        coach = FactoryGirl.create(:user, level: 5, active_until: Time.now + 7.days, status: 1)
+        coach = FactoryGirl.create(:user, level: 5, active_until: Time.zone.now + 7.days, status: 1)
         FactoryGirl.create(:coach_account, user: coach)
         @group = FactoryGirl.create(:group, coach: coach)
         @group_schedule = FactoryGirl.create(:group_schedule, group: @group)
@@ -244,7 +244,7 @@ RSpec.describe RoutineService do
         @sub_user = FactoryGirl.create(:user, sub_user: true)
         UserSchedule.create_user_schedule({user_id: @sub_user.id, program_type_id: 1, program_id: 1})
         @group.add_member(@sub_user)
-        day_index = Date.today.wday
+        day_index = Time.zone.today.wday
         2.times do
           wsd = @group_schedule.group_schedule_days.at(day_index)
           wsd.stretching = true
@@ -279,7 +279,7 @@ RSpec.describe RoutineService do
         routine.save!
 
         # Create workout of same type
-        date = Date.today + 7.days
+        date = Time.zone.today + 7.days
         RoutineService.new(@group, 'CRON', date, false).create_routine
 
         routine = @sub_user.daily_routines.first
@@ -333,7 +333,7 @@ RSpec.describe RoutineService do
         routine.save!
 
         # Create workout of same type
-        date = Date.today + 7.days
+        date = Time.zone.today + 7.days
         RoutineService.new(@group, 'CRON', date, false).create_routine
 
         routine = @sub_user.daily_routines.first
@@ -366,7 +366,7 @@ RSpec.describe RoutineService do
       end
 
       it 'copies over a completely custom day with changes saved and has the right program day id' do
-        routine = GroupRoutine.create_routine(@group.id, Date.today + 3.days) # When this user has nothing scheduled
+        routine = GroupRoutine.create_routine(@group.id, Time.zone.today + 3.days) # When this user has nothing scheduled
         routine.add_custom_exercise('my sprint', 3, 0)
         routine.add_custom_exercise('my warmup', 4, 0)
         routine.add_custom_exercise('my plyo', 2, 0)
@@ -378,7 +378,7 @@ RSpec.describe RoutineService do
         routine.changes_saved = true
         routine.save!
 
-        date = Date.today + 10.days
+        date = Time.zone.today + 10.days
         RoutineService.new(@group, 'CRON', date, false).create_routine
         copied_routine = @sub_user.daily_routines.last
         expect(copied_routine.custom_exercises.count).to eq(4)
@@ -389,7 +389,7 @@ RSpec.describe RoutineService do
 
   context 'for group' do
     before(:each) do
-      coach = FactoryGirl.create(:user, level: 5, active_until: Time.now + 7.days, status: 1)
+      coach = FactoryGirl.create(:user, level: 5, active_until: Time.zone.now + 7.days, status: 1)
       FactoryGirl.create(:coach_account, user: coach)
       @group = FactoryGirl.create(:group, coach: coach)
       @group_schedule = FactoryGirl.create(:group_schedule, group: @group)
@@ -400,7 +400,7 @@ RSpec.describe RoutineService do
       @sub_user = FactoryGirl.create(:user, sub_user: true)
       UserSchedule.create_user_schedule({user_id: @sub_user.id, program_type_id: 1, program_id: 1})
       @group.add_member(@sub_user)
-      day_index = Date.today.wday
+      day_index = Time.zone.today.wday
       2.times do
         wsd = @group_schedule.group_schedule_days.at(day_index)
         wsd.stretching = true
@@ -450,13 +450,13 @@ RSpec.describe RoutineService do
 
   context 'for user' do
     before(:each) do
-      @user = FactoryGirl.create(:user, last_sign_in_at: Time.now - 3.days)
+      @user = FactoryGirl.create(:user, last_sign_in_at: Time.zone.now - 3.days)
       @user_schedule = UserSchedule.create_user_schedule({user_id: @user.id, program_type_id: 1, program_id: 1})
       @user_schedule.create_weekly_schedule_days
       @user_schedule.setup_phases
       @user_schedule.program_id = 1
       @user_schedule.save!
-      day_index = Date.today.wday
+      day_index = Time.zone.today.wday
       2.times do
         wsd = @user_schedule.weekly_schedule_days.at(day_index)
         wsd.stretching = true
