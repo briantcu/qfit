@@ -272,6 +272,11 @@
       cursor: pointer;
       margin-right: 10px;
     }
+    .workout-completed {
+      font-size: 18px;
+      letter-spacing: -0.4px;
+      margin-right: 10px;
+    }
   }
 
   .sprinting {
@@ -541,6 +546,12 @@
 
       .reset-row {
         margin-bottom: 30px;
+        .reset-link {
+          margin-right: 0px !important;
+        }
+        .workout-completed {
+          margin-right: 0px !important;
+        }
       }
     }
 

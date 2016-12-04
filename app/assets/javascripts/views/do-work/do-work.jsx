@@ -202,7 +202,7 @@ class DoWork extends React.Component {
                     <div className="col-xs-12 text-center subnav-cluster">
                         <If condition={gon.viewing != 'team' && this.props.routine.id } >
                             <span onClick={ () => this.submit()} >
-                                <img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/Complete.png" /> Complete this Workout
+                                <img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/Complete.png" /> {this.props.routine.closed ? 'Update this Workout' : 'Complete this Workout'}
                             </span>
                         </If>
                         <If condition={!gon.is_sub_user} >
@@ -449,23 +449,33 @@ class DoWork extends React.Component {
                                     </If>
                                 </div>
                                 <div className="hidden-xs col-sm-8 text-right action-row">
-                                        <If condition={!gon.is_sub_user}>
+                                        <If condition={!gon.is_sub_user && !this.props.routine.closed}>
                                             <span className="reset-link" onClick={() => this.reset()}>Reset Workout</span>
                                         </If>
+                                        <If condition={this.props.routine.closed}>
+                                            <span className="workout-completed">Workout Completed!</span>
+                                        </If>
                                         <If condition={this.props.routine.id && gon.viewing == 'user'} >
-                                            <Button ref="completeWorkout" buttonText="Complete Workout" onClick={ () => this.submit() }
+                                            <Button ref="completeWorkout" buttonText={this.props.routine.closed ? 'Update Workout' : 'Complete Workout'} onClick={ () => this.submit() }
                                                     disabled={this.state.closingWorkout} inverse={true}/>
                                         </If>
                                 </div>
                                 <div className="col-xs-12 visible-xs text-center action-row">
                                     <If condition={this.props.routine.id && gon.viewing == 'user'} >
-                                        <Button ref="completeWorkout" buttonText="Complete Workout" onClick={ () => this.submit() }
+                                        <Button ref="completeWorkout" buttonText={this.props.routine.closed ? 'Update Workout' : 'Complete Workout'} onClick={ () => this.submit() }
                                                 disabled={this.state.closingWorkout} inverse={true}/>
                                     </If>
                                 </div>
-                                <div className="col-xs-12 visible-xs text-center reset-row">
-                                    <span className="reset-link" onClick={() => this.reset()}>Reset Workout</span>
-                                </div>
+                                <If condition={!gon.is_sub_user && !this.props.routine.closed}>
+                                    <div className="col-xs-12 visible-xs text-center reset-row">
+                                        <span className="reset-link" onClick={() => this.reset()}>Reset Workout</span>
+                                    </div>
+                                </If>
+                                <If condition={this.props.routine.closed}>
+                                    <div className="col-xs-12 visible-xs text-center reset-row">
+                                        <span className="workout-completed">Workout Completed!</span>
+                                    </div>
+                                </If>
                             </div>
                             </If>
                         </div>
