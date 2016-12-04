@@ -1,21 +1,24 @@
 class SignInUpController < ApplicationController
-  before_action :save_sign_up_code_in_session, only: [:sign_up]
-  before_action :verify_not_logged_in, only: [:login, :sign_up, :sign_up_coach]
+  before_action :save_codes_in_session, only: [:sign_up]
+  before_action :verify_not_logged_in, only: [:login]
 
   def sign_up
+    if current_user
+      sign_out current_user
+    end
+
     gon.push(
         {
             sign_up_code: session[:sign_up_code]
         }
     )
-    session_service = SessionService.new(session)
-    session_service.set_invite_token(params[:pod_t])
     render layout: 'full_page'
   end
 
   def sign_up_coach
-    session_service = SessionService.new(session)
-    session_service.set_invite_token(params[:pod_t])
+    if current_user
+      sign_out current_user
+    end
     render layout: 'full_page'
   end
 
@@ -43,10 +46,13 @@ class SignInUpController < ApplicationController
 
   private
 
-  def save_sign_up_code_in_session
+  def save_codes_in_session
+    session_service = SessionService.new(session)
     if params[:qfcode]
-      session_service = SessionService.new(session)
-      session_service.set_sign_up_code(params[:qfcode])
+      session_service.set_sign_up_code(params[:qfcode]) # coach invite for sub user
+    end
+    if params[:pod_t]
+      session_service.set_invite_token(params[:pod_t]) # Invitation to quad pod
     end
   end
 

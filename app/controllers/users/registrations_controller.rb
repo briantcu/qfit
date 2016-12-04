@@ -48,6 +48,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def try_sign_up_code
+    # Coach sign up code
     sign_up_code = params[:user][:sign_up_code]
     if sign_up_code.blank?
       sign_up_code = session[:sign_up_code]

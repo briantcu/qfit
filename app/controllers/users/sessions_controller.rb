@@ -43,6 +43,7 @@ class Users::SessionsController < Devise::SessionsController
       if RoutineService.get_open_workouts_start_today(user).count == 0 && !user.is_coach?
         RoutineService.new(user, 'CRON', Time.zone.today, false).create_routines
       end
+      check_tokens(user) # This is for if a user invites someone to the quad pod, but they're an existing user...could happen with an invite via text message
       session_service = SessionService.new(session)
       session_service.set_current_user_id(user.id)
       session_service.set_viewing('user') unless user.is_coach?
@@ -61,6 +62,12 @@ class Users::SessionsController < Devise::SessionsController
       '/setup/goal'
     else
       '/workout'
+    end
+  end
+
+  def check_tokens(user)
+    if session[:invite_token].present?
+      QuadPodService.instance.accept_invite_new_user(session[:invite_token], user)
     end
   end
 end
