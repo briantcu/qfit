@@ -137,7 +137,7 @@ class SubscriptionService
           user_id: user.id,
           subscription_id: user.subscription_id,
           event: event.type,
-          stripe_event: event.id,
+          stripe_event_id: event.id,
           subscription_status: subscription.try(:status)
       )
       sync_subscription(user, subscription) if subscription.present?
