@@ -29,10 +29,11 @@ class SignInUpController < ApplicationController
   def more_info
     Rails.logger.info(session[:onboarding_user])
     onboarding_user_light = {}
-    onboarding_user_light[:first_name] = session[:onboarding_user]['first_name']
-    onboarding_user_light[:last_name] = session[:onboarding_user]['last_name']
-    onboarding_user_light[:email] = session[:onboarding_user]['email']
-    onboarding_user_light[:administrator] = session[:onboarding_user]['administrator']
+    if session[:onboarding_user].present?
+      onboarding_user_light[:first_name] = session[:onboarding_user]['first_name']
+      onboarding_user_light[:last_name] = session[:onboarding_user]['last_name']
+      onboarding_user_light[:email] = session[:onboarding_user]['email']
+    end
     gon.push(
         {
             onboarding_user: onboarding_user_light,

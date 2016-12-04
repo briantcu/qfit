@@ -31,7 +31,6 @@ class ApplicationController < ActionController::Base
   end
 
   def verify_logged_in_html
-
     store_location_for(:user, request.fullpath)
     redirect_to('/sign-in') unless current_user.present?
   end
