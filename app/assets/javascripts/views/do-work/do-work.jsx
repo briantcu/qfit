@@ -205,11 +205,15 @@ class DoWork extends React.Component {
                                 <img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/Complete.png" /> Complete this Workout
                             </span>
                         </If>
-                        <span><a className="no-hover" href="/schedule"><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/ChangeSchedule.png" /> Change Schedule</a></span>
+                        <If condition={!gon.is_sub_user} >
+                            <span><a className="no-hover" href="/schedule"><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/ChangeSchedule.png" /> Change Schedule</a></span>
+                        </If>
                         <If condition={gon.viewing != 'team' && this.props.routine.id } >
                             <div className="visible-micro"></div>
                         </If>
-                        <span><a className="no-hover" href="/program"><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/ChangeProgram.png" /> Change Program</a></span>
+                        <If condition={!gon.is_sub_user} >
+                            <span><a className="no-hover" href="/program"><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/ChangeProgram.png" /> Change Program</a></span>
+                        </If>
                         <If condition={gon.viewing != 'team' && this.props.routine.id } >
                             <span onClick={this.showShareWorkout}><img className="hidden-xs" src="https://dwx350bwdtt59.cloudfront.net/ShareWorkout.png" />Share Workout</span>
                         </If>
@@ -240,7 +244,7 @@ class DoWork extends React.Component {
                                 <div className="col-sm-8 col-sm-offset-0 col-xs-12">
                                     <span>Preparation</span>
                                 </div>
-                                <If condition={!this.props.shared} >
+                                <If condition={!this.props.shared && !gon.is_sub_user} >
                                     <div className="add-ex col-sm-4 text-right col-xs-12" onClick={ () => this.showAddEx('warmups')}>Add Exercise</div>
                                 </If>
                             </div>
@@ -272,7 +276,10 @@ class DoWork extends React.Component {
                                             <div className="col-xs-12 text-center">
                                                 <If condition={!this.props.shared} >
                                                     <span className="no-exercises">Quadfit hasn't scheduled any Stretching/Warmup exercises for you.
-                                                        You can <span className="norm-link" onClick={ () => this.showAddEx('warmups')}>add some</span> if you want!</span>
+                                                        <If condition={!gon.is_sub_user} >
+                                                            You can <span className="norm-link" onClick={ () => this.showAddEx('warmups')}>add some</span> if you want!
+                                                        </If>
+                                                    </span>
                                                 </If>
                                             </div>
                                         </div>
@@ -286,7 +293,7 @@ class DoWork extends React.Component {
                                 <div className="col-sm-8 col-sm-offset-0 col-xs-12">
                                     <span>Strength Training</span>
                                 </div>
-                                <If condition={!this.props.shared} >
+                                <If condition={!this.props.shared && !gon.is_sub_user} >
                                     <div className="add-ex col-sm-4 text-right col-xs-12" onClick={ () => this.showAddEx('weights')}>Add Exercise</div>
                                 </If>
                             </div>
@@ -318,7 +325,10 @@ class DoWork extends React.Component {
                                             <div className="col-xs-12 text-center">
                                                 <If condition={!this.props.shared} >
                                                     <span className="no-exercises">Quadfit hasn't scheduled any Strength Training exercises for you.
-                                                        You can <span className="norm-link" onClick={ () => this.showAddEx('weights')}>add some</span> if you want!</span>
+                                                        <If condition={!gon.is_sub_user} >
+                                                            You can <span className="norm-link" onClick={ () => this.showAddEx('weights')}>add some</span> if you want!
+                                                        </If>
+                                                    </span>
                                                 </If>
                                             </div>
                                         </div>
@@ -332,7 +342,7 @@ class DoWork extends React.Component {
                                 <div className="col-sm-8 col-sm-offset-0 col-xs-12">
                                     <span>Plyometrics</span>
                                 </div>
-                                    <If condition={!this.props.shared} >
+                                    <If condition={!this.props.shared && !gon.is_sub_user} >
                                         <div className="add-ex col-sm-4 text-right col-xs-12" onClick={ () => this.showAddEx('plyos')}>Add Exercise</div>
                                     </If>
                             </div>
@@ -364,7 +374,10 @@ class DoWork extends React.Component {
                                             <div className="col-xs-12 text-center">
                                                 <If condition={!this.props.shared} >
                                                     <span className="no-exercises">Quadfit hasn't scheduled any Plyometric exercises for you.
-                                                        You can <span className="norm-link" onClick={ () => this.showAddEx('plyos')}>add some</span> if you want!</span>
+                                                        <If condition={!gon.is_sub_user} >
+                                                        You can <span className="norm-link" onClick={ () => this.showAddEx('plyos')}>add some</span> if you want!
+                                                        </If>
+                                                    </span>
                                                 </If>
                                             </div>
                                         </div>
@@ -378,7 +391,7 @@ class DoWork extends React.Component {
                                 <div className="col-sm-8 col-sm-offset-0 col-xs-12">
                                     <span>Sprinting</span>
                                 </div>
-                                    <If condition={!this.props.shared} >
+                                    <If condition={!this.props.shared && !gon.is_sub_user} >
                                         <div className="add-ex col-sm-4 text-right col-xs-12" onClick={ () => this.showAddEx('sprinting')}>Add Exercise</div>
                                     </If>
                             </div>
@@ -410,7 +423,10 @@ class DoWork extends React.Component {
                                             <div className="col-xs-12 text-center">
                                                 <If condition={!this.props.shared} >
                                                     <span className="no-exercises">Quadfit hasn't scheduled any Sprinting for you.
-                                                        You can <span className="norm-link" onClick={ () => this.showAddEx('sprinting')}>add some</span> if you want!</span>
+                                                        <If condition={!gon.is_sub_user} >
+                                                            You can <span className="norm-link" onClick={ () => this.showAddEx('sprinting')}>add some</span> if you want!
+                                                        </If>
+                                                    </span>
                                                 </If>
                                             </div>
                                         </div>
@@ -433,7 +449,9 @@ class DoWork extends React.Component {
                                     </If>
                                 </div>
                                 <div className="hidden-xs col-sm-8 text-right action-row">
-                                        <span className="reset-link" onClick={() => this.reset()}>Reset Workout</span>
+                                        <If condition={!gon.is_sub_user}>
+                                            <span className="reset-link" onClick={() => this.reset()}>Reset Workout</span>
+                                        </If>
                                         <If condition={this.props.routine.id && gon.viewing == 'user'} >
                                             <Button ref="completeWorkout" buttonText="Complete Workout" onClick={ () => this.submit() }
                                                     disabled={this.state.closingWorkout} inverse={true}/>

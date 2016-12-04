@@ -3,6 +3,7 @@ class WorkoutManagementController < ApplicationController
   before_action :set_current_user
   before_action :can_access_user
   before_action :verify_coach_session_present, except: [:setup_coach]
+  before_action :verify_not_sub_user, only: [:setup_goal, :setup_quads, :schedule]
   before_action :has_min_info, only: [:do_work]
   before_action :set_gon_info
 
@@ -129,6 +130,12 @@ class WorkoutManagementController < ApplicationController
 
     if session[:viewing] == 'team' and session[:team_id].blank?
       redirect_to '/coach?choose='
+    end
+  end
+
+  def verify_not_sub_user
+    if @user.is_sub_user?
+      redirect_to '/workout'
     end
   end
 

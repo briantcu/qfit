@@ -99,7 +99,7 @@ class Stretch extends React.Component {
                     </div>
                     <div className="ex-subtext">
                         <u className="link" onClick={ () => this.showTips()} >Read Tips</u>&nbsp;
-                        <If condition={!this.props.shared} >
+                        <If condition={!this.props.shared && !gon.is_sub_user} >
                            | <u className="link" onClick={ () => this.showSwap()} >Swap</u> |&nbsp;
                             <u className="link" onClick={ () => this.delete()}>Delete</u>
                         </If>

@@ -126,7 +126,7 @@ class Login extends React.Component {
                 <div className="row submit-row">
                     <div className="col-md-12">
                         <If condition={this.state.loginStatus.status == C.FAILURE}>
-                            <div className"error-text">{this.state.loginStatus.errors}</div>
+                            <div className="error-text">{this.state.loginStatus.errors}</div>
                         </If>
                         <span onClick={ () => this.submit()} className="submit-button purple-text">Sign In</span>
                         <div className="visible-xs"><br/></div>
