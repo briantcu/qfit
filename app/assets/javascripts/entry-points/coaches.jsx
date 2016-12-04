@@ -216,11 +216,11 @@ class Coaches extends React.Component {
                                                     <div className="col-sm-4 col-xs-12">
                                                         Sent to <span className="purple">{e.sent_to}</span> on {Util.formatDate(e.created_at)}
                                                     </div>
-                                                    <div className="col-sm-4 col-xs-6 next-row-micro">
+                                                    <div className="col-sm-4 col-xs-8 next-row-micro">
                                                         Status: {e.used ? 'Used: ' + Util.formatDate(e.redeemed_at) : 'Unused'}
                                                     </div>
                                                     <If condition={!e.used}>
-                                                        <div className="col-sm-4 col-xs-6 text-right next-row-micro">
+                                                        <div className="col-sm-4 col-xs-4 text-right next-row-micro">
                                                             <span onClick={() => this.deleteCode(e.id)} className="norm-link">Delete Code</span>
                                                         </div>
                                                     </If>

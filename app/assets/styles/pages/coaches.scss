@@ -16,7 +16,7 @@ body {
     }
     @media (max-width: 780px) {
       .row {
-        height: 100px !important;
+        height: 125px !important;
       }
       .next-row-micro {
         margin-top: 10px;
@@ -135,9 +135,35 @@ body {
   }
 
   @media (max-width: 480px) {
+    .head {
+      background-color: $purple !important;
+      text-align: center;
+      height: 80px !important;
+      .sec-header {
+        color: white !important;
+      }
+    }
     .action {
+      color: white !important;
       font-size: 14px !important;
-      margin-top: -35px;
+      text-align: center !important;
+      padding-top: 10px !important;
+    }
+  }
+
+  @media (max-width: 768px) and (min-width: 481px) {
+    .head {
+      background-color: $purple !important;
+      text-align: center !important;
+      height: 70px;
+      .sec-header {
+        color: white !important;
+      }
+    }
+    .action {
+      color: white !important;
+      text-align: center !important;
+      padding-top: 10px !important;
     }
   }
 }
