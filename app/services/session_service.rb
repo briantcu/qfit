@@ -46,4 +46,15 @@ class SessionService
   def set_invite_token(invite_token)
     session[:invite_token] = invite_token
   end
+
+  def clear
+    session[:current_user_id] = nil
+    session[:sign_up_code] = nil
+    session[:onboarding_user] = nil
+    session[:onboarding] = nil
+    session[:viewing] = nil
+    session[:setup_context] = nil
+    session[:team_id] = nil
+    session[:invite_token] = nil
+  end
 end

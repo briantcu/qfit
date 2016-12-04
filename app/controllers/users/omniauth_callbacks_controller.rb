@@ -2,14 +2,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     @user = User.from_omniauth(request.env['omniauth.auth'])
 
-    Qfit::Application.logger.info('Facebook sign in/up for user uid: ' + @user.uid)
-    Qfit::Application.logger.info(request.env['omniauth.params'])
+    Rails.logger.info('Facebook sign in/up for user uid: ' + @user.uid)
+    Rails.logger.info(request.env['omniauth.params'])
     if @user.persisted?
       # User exists and is logging in
       sign_in_and_redirect @user, :event => :authentication # this will throw if @user is not activated
     else
 
-      Qfit::Application.logger.info(@user.attributes)
+      Rails.logger.info(@user.attributes)
       # User is signing up
       begin
         session_service = SessionService.new(session)
@@ -33,8 +33,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       rescue => e
         # Maybe an error if we don't get an email from FB
         Rollbar.error(e)
-        Qfit::Application.logger.error(e)
-        Qfit::Application.logger.error(@user)
+        Rails.logger.error(e)
+        Rails.logger.error(@user)
       else
 
         if is_coach && @user.email.present?

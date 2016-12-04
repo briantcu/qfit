@@ -11,6 +11,8 @@ class Users::SessionsController < Devise::SessionsController
   def destroy
     current_user.reset_authentication_token
     sign_out
+    session_service = SessionService.new(session)
+    session_service.clear
     render status: 200, json: {}
   end
 

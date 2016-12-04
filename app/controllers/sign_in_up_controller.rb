@@ -1,11 +1,10 @@
 class SignInUpController < ApplicationController
-  before_action :save_codes_in_session, only: [:sign_up]
-  before_action :verify_not_logged_in, only: [:login]
+  before_action :verify_not_logged_in, only: [:login, :sign_up_coach]
 
   def sign_up
-    if current_user
-      sign_out current_user
-    end
+    sign_out current_user if current_user.present?
+
+    save_codes_in_session
 
     gon.push(
         {
@@ -16,9 +15,6 @@ class SignInUpController < ApplicationController
   end
 
   def sign_up_coach
-    if current_user
-      sign_out current_user
-    end
     render layout: 'full_page'
   end
 
@@ -31,7 +27,7 @@ class SignInUpController < ApplicationController
   end
 
   def more_info
-    Qfit::Application.logger.info(session[:onboarding_user])
+    Rails.logger.info(session[:onboarding_user])
     onboarding_user_light = {}
     onboarding_user_light[:first_name] = session[:onboarding_user]['first_name']
     onboarding_user_light[:last_name] = session[:onboarding_user]['last_name']

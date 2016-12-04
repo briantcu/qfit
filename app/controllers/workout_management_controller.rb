@@ -1,7 +1,7 @@
 class WorkoutManagementController < ApplicationController
   before_action :verify_logged_in_html
   before_action :set_current_user
-  before_action :can_access_user
+  before_action :can_access_user, except: [:setup_coach]
   before_action :verify_coach_session_present, except: [:setup_coach]
   before_action :verify_not_sub_user, only: [:setup_goal, :setup_quads, :schedule]
   before_action :has_min_info, only: [:do_work]
