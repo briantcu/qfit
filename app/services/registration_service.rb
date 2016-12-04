@@ -8,7 +8,7 @@ class RegistrationService
       #If not creating from admin, send welcome email and log them in
       if account_type == 'coach'
         #Coach
-        user.assign_attributes(level: 5, sub_user: false)
+        user.assign_attributes(level: 5, sub_user: false, administrator: true)
         user.build_coach_account(billing_email: user.email, num_accts: 5)
         user.save!
         EmailService.perform_in(20.seconds, :new_coach, {user_id: user.id})

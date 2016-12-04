@@ -228,7 +228,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   if Rails.env.development?
-    config.omniauth :facebook, '258604121161750', 'dded227d8951aa3ea7431708d7dbb428', :scope => 'email,public_profile',
+    config.omniauth :facebook, '340339376321557', '99ac91d1334c3b5f74706c3826b36882', :scope => 'email,public_profile',
                   callback_url: "http://localhost:3000/users/auth/facebook/callback"
   else
     config.omniauth :facebook, '330840547271440', '1719ea1c78cd47cd9337ae21352e82b5', :scope => 'email,public_profile',

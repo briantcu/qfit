@@ -59,7 +59,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create_user
     # If they're coming in from more-info, because they signed up via FB
     if params[:more]
+      Qfit::Application.logger.info('About to register Facebook user coming from more-info')
       user_params = session[:onboarding_user].merge(sign_up_params)
+      Qfit::Application.logger.info(user_params)
       user_params['password'] = Devise.friendly_token[0,20]
     else
       user_params = sign_up_params
