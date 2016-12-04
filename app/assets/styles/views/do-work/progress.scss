@@ -1,6 +1,8 @@
 @import "../../common/common";
 
 .progress-tab {
+  flex: 1 1 auto;
+
   .main {
     background-color: $gray2;
     color: $dark-purple;
@@ -114,6 +116,7 @@
       padding-bottom: 50px;
       padding-left: 30px;
       padding-right: 30px;
+      overflow-y: hidden;
     }
     .chart-header {
       font-size: 12px;

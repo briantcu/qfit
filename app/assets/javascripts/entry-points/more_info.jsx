@@ -182,7 +182,7 @@ class AthleteSignUp extends React.Component {
                     <div className="row submit-row">
                         <div className="col-md-12">
                             <If condition={this.state.signUpStatus.status == C.FAILURE}>
-                                <div>{this.state.signUpStatus.errors.join(', ')}</div>
+                                <div className="error-text">{this.state.signUpStatus.errors.join(', ')}</div>
                             </If>
                             <span onClick={ () => this.submit()} className="submit-button purple-text get-started">Get Started</span>
                         </div>

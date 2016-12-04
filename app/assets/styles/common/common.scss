@@ -15,6 +15,16 @@ body {
   width: 100%
 }
 
+.form-control {
+  font-size: 16px !important;
+}
+
+input[type='text'] {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
 .hundo-height {
   display: flex;
   flex-flow: column;

@@ -72,7 +72,10 @@ class AddAthleteModal extends React.Component {
     chooseOptionFooter() {
         return <div>
             <If condition={this.props.showTeamOption}>
-                <Button buttonText="Add to Team" onClick={() => this.changeState('chose-team')} /> OR
+                <Button buttonText="Add to Team" onClick={() => this.changeState('chose-team')} />
+                <div className="visible-micro"><br/></div>
+                    <span className="or">OR</span>
+                <div className="visible-micro"><br/></div>
             </If>
             <Button buttonText={this.props.showTeamOption ? 'Create Individual Plan' : 'Create Workout Plan'} onClick={() => this.choseIndividual()} />
         </div>
