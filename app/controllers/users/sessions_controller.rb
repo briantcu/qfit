@@ -56,9 +56,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def determine_redirect(user)
-    if (user.user_name.blank? || user.sex.blank?) && (!user.is_coach?) # || user.email.blank?
-      '/more-info'
-    elsif user.is_coach?
+    if user.is_coach?
       '/coach'
     elsif (user.program_type.blank?) || (user.user_schedule.blank?) ||  user.user_schedule.invalid? || user.hor_push_max.blank?
       '/setup/goal'
