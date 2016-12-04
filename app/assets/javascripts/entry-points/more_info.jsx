@@ -122,7 +122,7 @@ class AthleteSignUp extends React.Component {
     }
 
     render () {
-        return <div className="athlete-sign-up row">
+        return <div className="athlete-sign-up row more-info">
             <div className="col-md-6 col-md-offset-5 col-lg-5 col-lg-offset-6  col-xs-8 col-xs-offset-4 form">
                 <div className="row">
                     <div className="col-md-12">

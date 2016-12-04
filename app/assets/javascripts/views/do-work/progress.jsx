@@ -343,7 +343,7 @@ class Progress extends React.Component {
                                 <Otherwise>
                                     <If condition={gon.viewing == 'team'}>
                                         <span className="no-progress">Progress tracking isn't available for teams, only people.
-                                        Head back to the <a href="/coach">Coach</a> page and click "View Workout/Progress" for an individual.</span>
+                                        Head back to the <a href="/coach">Coach</a> page and click "View Workout" for an individual.</span>
                                     </If>
                                     <If condition={gon.viewing == 'user'}>
                                         <span className="no-progress">This athlete doesn't have any data yet. Either have them input their workout results, or you can do it for them.</span>

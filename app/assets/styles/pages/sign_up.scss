@@ -148,6 +148,42 @@ body {
   }
 }
 
+@media (max-width: 375px) {
+  .more-info {
+    hr.hr-left {
+      width: 10px !important;
+    }
+
+    hr.hr-right {
+      width: 10px !important;
+    }
+  }
+}
+
+@media (max-width: 420px) and (min-width: 3760px){
+  .more-info {
+    hr.hr-left {
+      width: 30px !important;
+    }
+
+    hr.hr-right {
+      width: 30px !important;
+    }
+  }
+}
+
+@media (max-width: 500px) and (min-width: 419px){
+  .more-info {
+    hr.hr-left {
+      width: 60px !important;
+    }
+
+    hr.hr-right {
+      width: 60px !important;
+    }
+  }
+}
+
 @media (max-width: 768px)  {
   body {
     background: none;
