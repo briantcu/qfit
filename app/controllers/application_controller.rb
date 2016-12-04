@@ -22,10 +22,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def after_sign_in_path_for(resource)
-    stored_location_for(resource) || determine_redirect(resource)
-  end
-
   def unauthorized
     render json: { success: false, errors: 'Unauthorized' }, status: :unauthorized
   end
@@ -35,6 +31,8 @@ class ApplicationController < ActionController::Base
   end
 
   def verify_logged_in_html
+
+    store_location_for(:user, request.fullpath)
     redirect_to('/sign-in') unless current_user.present?
   end
 

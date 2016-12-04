@@ -18,6 +18,7 @@ class Conversation extends React.Component {
         var message = this.refs.messageBox.value.trim();
         if (message) {
             UserActions.sendDM(receiverId, message);
+            this.refs.messageBox.value = 'Type a message';
         }
     }
 
