@@ -10,6 +10,11 @@ class Users::PasswordsController < Devise::PasswordsController
     )
     if user.errors.empty?
       user.update!(needs_pw_reset: false)
+
+      if RoutineService.get_open_workouts_start_today(user).count == 0 && !user.is_coach?
+        RoutineService.new(user, 'CRON', Time.zone.today, false).create_routines
+      end
+
       sign_in user, bypass: true
       render status: 201, json: {location: determine_redirect(user)}
     else
