@@ -35,7 +35,7 @@ class Users::SessionsController < Devise::SessionsController
 
     if user.needs_pw_reset
       user.send_reset_password_instructions
-      render json: {success: false, errors: 'Looks like you need a password reset! We just emailed you instructions.'} and return
+      render status: 401, json: {success: false, errors: 'Looks like you need a password reset! We just emailed you instructions.'} and return
     end
 
     if user.valid_password?(password)
