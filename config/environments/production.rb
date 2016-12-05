@@ -11,13 +11,13 @@ Qfit::Application.configure do
   config.eager_load = true
 
   # prod
-  #config.stripe_key = 'pk_live_aTQOaVmiDUWnxxMMxBkHwQRB'
-  #config.stripe_secret_key = 'sk_live_hSa1uaH3oZvHXE7jrsQmCGZL'
+  config.stripe_key = 'pk_live_aTQOaVmiDUWnxxMMxBkHwQRB'
+  config.stripe_secret_key = 'sk_live_hSa1uaH3oZvHXE7jrsQmCGZL'
 
 
   # development
-  config.stripe_key = 'pk_test_Qn7vO7ACSbGqKp7tBXget5Du'
-  config.stripe_secret_key = "sk_test_UMmjXKClIIsWlkkIC2MwFe1b"
+  #config.stripe_key = 'pk_test_Qn7vO7ACSbGqKp7tBXget5Du'
+  #config.stripe_secret_key = "sk_test_UMmjXKClIIsWlkkIC2MwFe1b"
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false

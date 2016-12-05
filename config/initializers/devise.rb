@@ -231,8 +231,8 @@ Devise.setup do |config|
     config.omniauth :facebook, '340339376321557', '99ac91d1334c3b5f74706c3826b36882', :scope => 'email,public_profile',
                   callback_url: "http://localhost:3000/users/auth/facebook/callback"
   else
-    config.omniauth :facebook, '330840547271440', '1719ea1c78cd47cd9337ae21352e82b5', :scope => 'email,public_profile',
-                    callback_url: "http://quadfit-env.us-west-1.elasticbeanstalk.com/users/auth/facebook/callback"
+    config.omniauth :facebook, '258604121161750', 'dded227d8951aa3ea7431708d7dbb428', :scope => 'email,public_profile',
+                    callback_url: "https://www.quadfit.com/users/auth/facebook/callback"
   end
 
 
