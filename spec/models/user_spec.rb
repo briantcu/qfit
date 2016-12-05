@@ -109,7 +109,7 @@ RSpec.describe User, type: :model do
       expect(user.provider).to eq('facebook')
       expect(user.uid).to eq('1k3kkd')
       expect(user.email).to eq('bri.reg@gmail.com')
-      expect(user.image).to eq('path?type=large')
+      expect(user.image).to eq('https?type=large')
     end
 
     it 'merges new facebook login with existing user' do
@@ -118,7 +118,7 @@ RSpec.describe User, type: :model do
       expect(user.id).to eq(existing.id)
       expect(user.provider).to eq('facebook')
       expect(user.uid).to eq('1k3kkd')
-      expect(user.image).to eq('path?type=large')
+      expect(user.image).to eq('https?type=large')
     end
 
     it 'returns a returning facebook user' do
