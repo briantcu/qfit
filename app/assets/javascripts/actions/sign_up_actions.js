@@ -61,7 +61,7 @@ var SignUpActions = {
                 dispatcher.dispatch(C.LOGIN_ATTEMPT, payload);
             },
             error: function(results) {
-                var payload = results;
+                var payload = results.responseJSON;
                 payload.success = false;
                 dispatcher.dispatch(C.LOGIN_ATTEMPT, payload);
             }
@@ -83,7 +83,7 @@ var SignUpActions = {
                 dispatcher.dispatch(C.PW_RESET, payload);
             },
             error: function(results) {
-                var payload = results;
+                var payload = results.responseJSON;
                 payload.success = false;
                 dispatcher.dispatch(C.PW_RESET, payload);
             }
