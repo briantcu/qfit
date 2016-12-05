@@ -177,14 +177,14 @@ class User < ActiveRecord::Base
     fb_user = where(provider: auth.provider, uid: auth.uid).first
     if fb_user.present?
       # You already have fb details in the system
-      fb_user.image = auth.info.image + '?type=large'
+      fb_user.image = format_fb_image(auth.info.image)
       fb_user.save!
       return fb_user
     else
       existing_user = where(email: auth.info.email).first
       if existing_user.present?
         # You don't have fb details in the system, but you do have a user matching the provided email
-        existing_user.update!(provider: auth.provider, uid: auth.uid, image: auth.info.image + '?type=large')
+        existing_user.update!(provider: auth.provider, uid: auth.uid, image: format_fb_image(auth.info.image))
         return existing_user
       end
 
@@ -204,9 +204,14 @@ class User < ActiveRecord::Base
           user.last_name = name_arr[1]
         end
       end
-      user.image = auth.info.image + '?type=large'
+      user.image = format_fb_image(auth.info.image)
       return user
     end
+  end
+
+  def format_fb_image(image)
+    local_img = image[4..-1]
+    'https' + local_img + '?type=large'
   end
 
   def needs_setup?
