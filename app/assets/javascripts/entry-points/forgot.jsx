@@ -92,7 +92,7 @@ class Forgot extends React.Component {
                             <div className="error-text">{this.state.pwResetStatus.errors}</div>
                         </If>
                         <If condition={this.state.pwResetStatus.status == C.SUCCESS}>
-                            <div>We just sent you an email with a password reset link!</div>
+                            <div className="success-text">We just sent you an email with a password reset link!</div>
                         </If>
                         <span onClick={ () => this.submit()} className="submit-button purple-text">Reset Password</span>
                         <div className="visible-xs"><br/></div>

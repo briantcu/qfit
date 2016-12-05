@@ -31,10 +31,7 @@ class SubscriptionService
       response[:message] = "Sorry! We can't process your request right now, but we're looking into it."
     else
       begin
-        subscription = Stripe::Subscription.create(
-            customer: stripe_customer_id,
-            plan: plan
-        )
+        subscription = update_or_create_subscription(stripe_customer_id, plan, user)
       rescue Stripe::CardError => e
         Rails.logger.info('Stripe - error checking out for user ' + user.id.to_s)
         Rails.logger.info(e)
@@ -49,7 +46,7 @@ class SubscriptionService
         response[:status] = 'failed'
         response[:message] = "Sorry! We can't process your request right now, but we're looking into it."
       else
-        user.update!(active_until: Time.at(subscription.current_period_end).to_datetime, subscription_id: subscription.id, paid_tier: 2, status: 1)
+        user.update!(active_until: Time.zone.at(subscription.current_period_end).to_datetime, subscription_id: subscription.id, paid_tier: 2, status: 1)
         if user.is_coach?
           num_accts = get_num_accts_from_plan(plan)
           user.coach_account.num_accts = num_accts
@@ -159,6 +156,20 @@ class SubscriptionService
     end
   end
 
+  def update_or_create_subscription(stripe_customer_id, plan, user)
+    begin
+      subscription = Stripe::Subscription.retrieve(user.subscription_id)
+      subscription.plan = plan
+      subscription.save
+    rescue => e
+        subscription = Stripe::Subscription.create(
+          customer: stripe_customer_id,
+          plan: plan
+        )
+    end
+    subscription
+  end
+
   private
 
   def retrieve_or_create_stripe_customer_id(user, stripe_token)
@@ -188,12 +199,12 @@ class SubscriptionService
         user.coach_account.save!
 
         user.status = 1 # active
-        user.active_until = Time.at(subscription.current_period_end).to_datetime
+        user.active_until = Time.zone.at(subscription.current_period_end).to_datetime
         user.save!
       else
         user.paid_tier = 2
         user.status = 1 # active
-        user.active_until = Time.at(subscription.current_period_end).to_datetime
+        user.active_until = Time.zone.at(subscription.current_period_end).to_datetime
         user.save!
       end
     else

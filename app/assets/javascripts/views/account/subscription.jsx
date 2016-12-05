@@ -1,6 +1,7 @@
 import {render} from 'react-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import CoachOptions from 'views/account/coach_options';
+import Button from 'views/common/button';
 
 class Subscription extends React.Component {
     constructor(props) {
@@ -71,7 +72,9 @@ class Subscription extends React.Component {
                 <If condition={this.props.user.status == 3}>
                     <div>Whoa! Looks like we weren't able to bill you this month. Please update your billing info.</div>
                 </If>
-                    <Button onClick={this.props.changeAccount} buttonText={"Downgrade"}/>
+                <If condition={this.props.user.status != 4}>
+                    <Button onClick={this.props.deleteSubscription} buttonText={"Downgrade"}/>
+                </If>
                 </div>
         }
     }
