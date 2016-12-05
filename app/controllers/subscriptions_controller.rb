@@ -39,7 +39,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def delete
-    active_until = SubscriptionService.instance.delete_subscription(current_user)
+    SubscriptionService.instance.delete_subscription(current_user)
     render status: 201, json: {message: 'Your subscription will not renew, but you can continue to enjoy your subscription until the billing period ends.'}
   end
 

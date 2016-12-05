@@ -49,7 +49,7 @@ class SubscriptionService
         response[:status] = 'failed'
         response[:message] = "Sorry! We can't process your request right now, but we're looking into it."
       else
-        user.update!(active_until: subscription.current_period_end, subscription_id: subscription.id)
+        user.update!(active_until: Time.at(subscription.current_period_end).to_datetime, subscription_id: subscription.id, paid_tier: 2, status: 1)
         if user.is_coach?
           num_accts = get_num_accts_from_plan(plan)
           user.coach_account.num_accts = num_accts
@@ -114,8 +114,8 @@ class SubscriptionService
     ensure
       user.status = 4
       user.save!
-      sub.try(:current_period_end)
     end
+    EmailService.perform_async(:billing_happened)
   end
 
   def handle_stripe_event(id)
@@ -188,12 +188,12 @@ class SubscriptionService
         user.coach_account.save!
 
         user.status = 1 # active
-        user.active_until = subscription.current_period_end
+        user.active_until = Time.at(subscription.current_period_end).to_datetime
         user.save!
       else
         user.paid_tier = 2
         user.status = 1 # active
-        user.active_until = subscription.current_period_end
+        user.active_until = Time.at(subscription.current_period_end).to_datetime
         user.save!
       end
     else
