@@ -25,6 +25,8 @@ class EmailService
         notify_coach_is_maxed(options)
       when 'payment_failed'
         notify_payment_failed(options)
+      when 'billing_happened'
+        notify_someone_used_stripe
     end
   end
 
@@ -80,5 +82,9 @@ class EmailService
   def notify_payment_failed(options)
     user = User.find(options['user_id'])
     QuadfitMailer.notify_payment_failed(user).deliver_now
+  end
+
+  def notify_someone_used_stripe
+    QuadfitMailer.notify_someone_used_stripe
   end
 end

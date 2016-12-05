@@ -1,6 +1,7 @@
 var dispatcher = require('global_dispatcher');
 var C = require('constants/profile_constants');
 var UC = require('constants/user_constants.js');
+var UserActions = require('actions/user_actions');
 
 var ProfileActions = {
 
@@ -38,6 +39,7 @@ var ProfileActions = {
                 var payload = results;
                 payload.success = true;
                 dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
+                UserActions.default.getUser(gon.user_id);
             },
             error: function(results) {
                 var payload = results;
@@ -60,6 +62,7 @@ var ProfileActions = {
                 var payload = results;
                 payload.success = true;
                 dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
+                UserActions.default.getUser(gon.user_id);
             },
             error: function(results) {
                 var payload = results;
@@ -79,6 +82,7 @@ var ProfileActions = {
                 var payload = results;
                 payload.success = true;
                 dispatcher.dispatch(C.CHECKOUT_COMPLETED, payload);
+                UserActions.default.getUser(gon.user_id);
             }
         });
     },

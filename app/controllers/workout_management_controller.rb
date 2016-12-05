@@ -134,7 +134,7 @@ class WorkoutManagementController < ApplicationController
   end
 
   def verify_not_sub_user
-    if @user.is_sub_user?
+    if current_user.is_sub_user?
       redirect_to '/workout'
     end
   end

@@ -102,7 +102,6 @@ class Account extends React.Component {
     }
 
     profileChanged() {
-        //this.load();
         this.onChange();
     }
 

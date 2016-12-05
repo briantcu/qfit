@@ -57,6 +57,7 @@ class SubscriptionService
         end
       end
     end
+    EmailService.perform_async(:billing_happened)
     response
   end
 
@@ -100,6 +101,7 @@ class SubscriptionService
         user.coach_account.save!
       end
     end
+    EmailService.perform_async(:billing_happened)
     response
   end
 

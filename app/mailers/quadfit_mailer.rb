@@ -62,4 +62,8 @@ class QuadfitMailer < ApplicationMailer
     @user = user
     mail(to:@user.email, subject: 'Quadfit payment failed')
   end
+
+  def notify_someone_used_stripe
+    mail(to: 'brian@quadfit.com', subject: 'Stripe checkout')
+  end
 end
