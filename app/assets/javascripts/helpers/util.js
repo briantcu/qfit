@@ -65,7 +65,7 @@ var util = {
     },
 
     formatFullDateNoTime: function(fullDateString) {
-        var date = new Date(fullDateString);
+        var date = new Date(fullDateString + ' 00:00:00 PST');
         var options = {
             weekday: "long", year: "numeric", month: "short",
             day: "numeric"
