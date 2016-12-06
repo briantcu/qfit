@@ -120,7 +120,7 @@ class Strength extends React.Component {
                         name={this.props.exercise.exercise.name}
                         link={this.props.exercise.exercise.video_link} close={this.closeVideo} />
             <MenuModal show={this.state.showSwap} close={this.closeSwap} click={this.swap} {...this.props}
-                       exercise_subset={this.state.similar} />
+                       exercise_subset={this.state.similar} premiumAccess={this.props.premiumAccess}/>
         </div>
     }
 }

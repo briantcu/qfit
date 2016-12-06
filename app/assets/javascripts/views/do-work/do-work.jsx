@@ -307,7 +307,7 @@ class DoWork extends React.Component {
                                                 if (e.status == 2) {
                                                     return;
                                                 }
-                                                return <Strength exercises={this.props.exercises} exercise={e} key={e.id}
+                                                return <Strength exercises={this.props.exercises} exercise={e} key={e.id} premiumAccess={this.props.user.has_premium_access}
                                                                  closed={this.props.routine.closed} shared={this.props.shared} />
                                             }.bind(this))
                                         }
