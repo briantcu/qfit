@@ -45,7 +45,7 @@ class AthleteSignUp extends React.Component {
     }
 
     onChange () {
-        var data = SignUpStore.getData().isUsernameUnique;
+        var data = SignUpStore.getData();
         var isUsernameUnique = data.isUsernameUnique;
         var signUpStatus = data.signUpStatus;
 
