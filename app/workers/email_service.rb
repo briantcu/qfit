@@ -85,6 +85,6 @@ class EmailService
   end
 
   def notify_someone_used_stripe
-    QuadfitMailer.notify_someone_used_stripe
+    QuadfitMailer.notify_someone_used_stripe.deliver_now
   end
 end

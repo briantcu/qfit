@@ -131,6 +131,7 @@
   }
 
   .update-wrapper {
+    margin-top: -5px;
     .StripeCheckout {
       span {
         border: none !important;
@@ -142,6 +143,23 @@
         &:hover {
           background-color: transparent !important;
           border: none !important;
+        }
+      }
+    }
+  }
+  @media (max-width: 414px) {
+    .update-wrapper {
+      .StripeCheckout {
+        overflow: hidden;
+        display: inline-block;
+        border: 0px;
+        padding: 0px !important;
+        text-decoration: none;
+        border-radius: 0px !important;
+        box-shadow: none !important;
+        background: none !important;
+        span {
+          padding: 12px 20px !important;
         }
       }
     }

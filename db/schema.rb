@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119234401) do
+ActiveRecord::Schema.define(version: 20161206034349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -547,20 +547,6 @@ ActiveRecord::Schema.define(version: 20161119234401) do
     t.datetime "active_until"
     t.string   "subscription_id"
     t.integer  "level"
-    t.string   "dummyone"
-    t.string   "dummytwo"
-    t.string   "dummythree"
-    t.string   "dummyfour"
-    t.string   "dummyfive"
-    t.string   "dummysix"
-    t.string   "dummyseven"
-    t.string   "dummyeight"
-    t.string   "dummynine"
-    t.string   "dummyten"
-    t.string   "dummyeleven"
-    t.string   "dummytwelve"
-    t.string   "dummythirteen"
-    t.string   "dummyfourteen"
     t.boolean  "needs_pw_reset"
     t.string   "avatar"
     t.integer  "failed_attempts",                         default: 0,     null: false

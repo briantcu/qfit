@@ -70,7 +70,7 @@
     color: white;
   }
   .link-input {
-    width: 155px;
+    width: 145px;
     height: 33px;
     background-color: $gray1;
     border: solid 1px $lavender;
@@ -105,7 +105,7 @@
   }
   @media (max-width: 375px) {
     .link-input {
-      width: 145px;
+      width: 115px;
     }
     img {
       margin-right: 5px !important;
@@ -159,7 +159,7 @@
     font-size: 20px;
     font-weight: 300;
     letter-spacing: -0.8px;
-    text-align: left;
+    text-align: center;
     color: $dark-purple;
     padding-bottom: 20px;
   }

@@ -36,10 +36,13 @@
   @media (max-width: 480px) {
     .logo {
       padding-left: 0px !important;
+      padding-right: 0px !important;
       text-align: center;
     }
     .links {
       text-align: center;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
     }
   }
 }

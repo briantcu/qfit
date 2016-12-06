@@ -69,7 +69,7 @@ class SlidingMenu extends React.Component {
     }
 
     renderEx(ex) {
-        if (ex.paid_tier > 1 && !this.props.has_premium_access) {
+        if (ex.paid_tier > 1 && !this.props.premiumAccess) {
             return <span>
                 <a className="inactive-link" href="/settings">{ex.name} is Premium Only. Upgrade Now.</a>
             </span>

@@ -50,20 +50,6 @@
 #  active_until                :datetime
 #  subscription_id             :string
 #  level                       :integer
-#  dummyone                    :string
-#  dummytwo                    :string
-#  dummythree                  :string
-#  dummyfour                   :string
-#  dummyfive                   :string
-#  dummysix                    :string
-#  dummyseven                  :string
-#  dummyeight                  :string
-#  dummynine                   :string
-#  dummyten                    :string
-#  dummyeleven                 :string
-#  dummytwelve                 :string
-#  dummythirteen               :string
-#  dummyfourteen               :string
 #  needs_pw_reset              :boolean
 #  avatar                      :string
 #  failed_attempts             :integer          default(0), not null

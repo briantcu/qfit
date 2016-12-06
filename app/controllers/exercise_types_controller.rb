@@ -15,7 +15,7 @@ class ExerciseTypesController < ApplicationController
   # GET /exercise_types
   # GET /exercise_types.json
   def index
-    @exercise_types = ExerciseType.all
+    @exercise_types = ExerciseType.all.order(id: :asc)
   end
 
   # GET /exercise_types/1

@@ -43,7 +43,7 @@ class FriendsController < ApplicationController
       @is_friend = FriendService.instance.are_friends?(@user.id, current_user.id)
     end
 
-    if @is_friend
+    if @is_friend || (current_user.id == @user.id)
       @recent_workouts = @user.recent_workouts
     else
       @recent_workouts = []
