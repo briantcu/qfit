@@ -49,8 +49,16 @@ var util = {
         return score;
     },
 
-    formatDate: function(fullDateString) {
-        var date = new Date(fullDateString);
+    formatDate: function(fullDateString, simpleDate) {
+        if (!fullDateString) {
+            return;
+        }
+        if (simpleDate) {
+            var dateStringArray = fullDateString.split('-');
+            var date = new Date(dateStringArray[0] + '/' + dateStringArray[1] + '/' + dateStringArray[2]);
+        } else {
+            var date = new Date(fullDateString);
+        }
         return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear().toString().substr(2,2);
     },
 
@@ -65,7 +73,11 @@ var util = {
     },
 
     formatFullDateNoTime: function(fullDateString) {
-        var date = new Date(fullDateString + ' 00:00:00 PST');
+        if (!fullDateString) {
+            return;
+        }
+        var dateStringArray = fullDateString.split('-');
+        var date = new Date(dateStringArray[0] + '/' + dateStringArray[1] + '/' + dateStringArray[2]);
         var options = {
             weekday: "long", year: "numeric", month: "short",
             day: "numeric"

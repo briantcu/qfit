@@ -42,6 +42,7 @@ class CloseRoutineService
       @routine.save!
       @routine.user.save!
 
+      Message.where(poster_id: @routine.user.id, message_type: 3, routine_id: @routine.id).destroy_all
       @routine.routine_messages.destroy_all
 
       get_messages(true, on_a_run, is_first_workout)
@@ -79,13 +80,13 @@ class CloseRoutineService
 
     if is_completed
       message = "I just completed my workout: <a class='underlined' target='_blank' href='#{@routine.share_link}'>Check it out and let me know what you think</a>."
-      Message.create(poster_id: @routine.user.id, message_type: 3, message: message)
+      Message.create(poster_id: @routine.user.id, message_type: 3, message: message, routine_id: @routine.id)
     end
 
     if @pbs.count > 0
       personal_bests = @pbs.take(3)
       personal_bests.each do |pb|
-        Message.create!(poster_id: @routine.user.id, message_type: 3, message: "New personal best! #{pb[0].name}, #{pb[1]} estimated 1 rep max!")
+        Message.create!(poster_id: @routine.user.id, message_type: 3, message: "New personal best! #{pb[0].name}, #{pb[1]} estimated 1 rep max!", routine_id: @routine.id)
 
       end
       @routine.routine_messages.create(message: "Nice! You recorded personal bests for #{@pbs.map{|pb| pb[0].name}.join(', ')}")

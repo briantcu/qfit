@@ -230,6 +230,9 @@ class Progress extends React.Component {
     }
 
     changeChart() {
+        if (gon.viewing == 'team') {
+            return;
+        }
         this.setState({chartType: this.refs.chartType.value});
         var exerciseId = 0;
         if (this.refs.exercises) {
@@ -245,6 +248,9 @@ class Progress extends React.Component {
 
     periodChanged(period) {
         this.setState({period: period});
+        if (gon.viewing == 'team') {
+            return;
+        }
         var exerciseId = 0;
         if (this.refs.exercises) {
             exerciseId = this.refs.exercises.value;
@@ -346,7 +352,7 @@ class Progress extends React.Component {
                                         Head back to the <a href="/coach">Coach</a> page and click "View Workout" for an individual.</span>
                                     </If>
                                     <If condition={gon.viewing == 'user'}>
-                                        <span className="no-progress">This athlete doesn't have any data yet. Either have them input their workout results, or you can do it for them.</span>
+                                        <span className="no-progress">Womp womp...no data for this chart!</span>
                                     </If>
                                 </Otherwise>
                             </Choose>

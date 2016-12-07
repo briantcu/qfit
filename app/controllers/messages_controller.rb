@@ -11,6 +11,7 @@
 #  created_at   :datetime
 #  updated_at   :datetime
 #  seen         :boolean          default(FALSE)
+#  routine_id   :integer
 #
 
 class MessagesController < ApplicationController
