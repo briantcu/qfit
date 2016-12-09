@@ -16,7 +16,7 @@ class WeightSet extends React.Component {
             var reps = completed ? 1 : 0;
             RoutineActions.storeResults(RoutineConstants.WEIGHTS, this.props.exercise.id, this.props.setNum, reps, 0);
         } else if ((this.props.exercise.category == 7 && (this.props.weightSet.rec_weight == 0)) || this.props.exercise.category == 3) {
-            var reps = this.refs.value;
+            var reps = this.refs.reps.value;
             var weight = 0;
             if (isNaN(reps) && reps && reps.length > 0) {
                 $(this.refs.wrap).addClass('error');

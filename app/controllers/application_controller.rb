@@ -4,7 +4,16 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user_from_token!
 
+  def append_info_to_payload(payload)
+    super
+    payload[:ip] = remote_ip(request)
+  end
+
   private
+
+  def remote_ip(request)
+    request.headers['HTTP_X_REAL_IP'] || request.remote_ip
+  end
 
   def authenticate_user_from_token!
     authenticate_with_http_basic do |username,password|

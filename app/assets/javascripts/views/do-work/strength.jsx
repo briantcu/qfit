@@ -34,7 +34,7 @@ class Strength extends React.Component {
 
     getSimilar(props) {
         var exercises = [];
-        if (props.exercises && props.exercises.exercises) {
+        if (props.exercises && props.exercises.exercises && props.exercises.exercises.length > 0) {
             exercises = props.exercises.exercises[this.props.exercise.exercise_type.id - 1].exercises;
         }
         return exercises

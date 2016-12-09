@@ -108,8 +108,12 @@ class Stretch extends React.Component {
             </div>
             <If condition={gon.viewing == 'user' || this.props.shared}>
                 <div className="col-sm-1 col-xs-12 input-col">
-                    <VertCircleCheck ref="complete" id={'stretch' + this.props.exercise.id} disabled={this.props.shared}
-                                 checked={this.props.exercise.completed} label={'Complete'} change={ this.change } />
+                    <VertCircleCheck ref="complete"
+                                     id={'stretch' + this.props.exercise.id}
+                                     disabled={this.props.shared}
+                                     checked={this.props.exercise.completed}
+                                     label={'Complete'}
+                                     change={ this.change }/>
                 </div>
             </If>
             <TipsModal show={this.state.showTips} tips={this.props.exercise.warmup.tips} close={this.close} />

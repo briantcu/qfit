@@ -3,6 +3,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(request.env['omniauth.auth'])
 
     Rails.logger.info('Facebook sign in/up for user uid: ' + @user.uid)
+    Rails.logger.info(request.env['omniauth.auth'])
     Rails.logger.info(request.env['omniauth.params'])
     if @user.persisted?
       # User exists and is logging in

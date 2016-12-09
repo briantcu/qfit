@@ -65,7 +65,7 @@ Qfit::Application.configure do
   config.log_level = :debug
   config.lograge.custom_options = lambda do |event|
     params = event.payload[:params].reject { |k| %w(controller action).include?(k) }
-    { "params" => params }
+    { "params" => params, "ip" => event.payload[:ip] }
   end
   config.lograge.enabled = true
   config.lograge.formatter = Lograge::Formatters::Json.new
