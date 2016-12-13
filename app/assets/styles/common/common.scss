@@ -40,6 +40,12 @@ input[type='text'] {
   height: 100%;
 }
 
+.avi-wrapper {
+  background-position: center;
+  background-size: cover;
+  display: inline-block;
+}
+
 .no-margin {
   margin-left: 0px !important;
   margin-right: 0px !important;

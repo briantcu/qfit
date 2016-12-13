@@ -142,16 +142,19 @@ class DoWork extends React.Component {
             RoutineActions.saveChanges();
             this.props.routine.changes_saved = true;
         }
-        this.submit();
+        this.submit(true);
     }
 
-    submit() {
+    submit(overrideSaveChangesCheck) {
         var userWeight = this.refs.userWeight.value;
         if ((!userWeight) || isNaN(userWeight)) {
             $(this.refs.userWeight).addClass('error');
             this.setState({errors: 'Please enter your weight!'});
+            $('html, body').animate({
+                scrollTop: $(".user-weight").offset().top - 50
+            }, 600);
         } else {
-            if (this.props.routine.modified && !this.props.routine.changes_saved) {
+            if (this.props.routine.modified && !this.props.routine.changes_saved && !overrideSaveChangesCheck) {
                 $(this.refs.userWeight).removeClass('error');
                 this.setState({errors: undefined, showSaveChanges: true});
             } else {

@@ -93,7 +93,7 @@ class Profile extends React.Component {
                                                     <div className="user-bio">{this.state.user.bio}</div>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-12 col-md-4 text-right">
+                                            <div className="col-sm-12 col-xs-12 col-md-4 text-right invite-button-row">
                                                 <div className="button-wrapper">
                                                     <If condition={!this.state.user.is_friend && gon.current_user_id != gon.user_id} >
                                                         <Button buttonText={this.state.inviteButtonDisabled ? "Invite Sent!" : "Invite to Quad Pod"}
@@ -124,10 +124,10 @@ class Profile extends React.Component {
                                             {
                                                 this.state.user.recent_workouts.map(function(workout, i) {
                                                     return <div key={i} className="workout-row row">
-                                                        <div className="col-xs-8">
+                                                        <div className="col-xs-10">
                                                             {Util.formatFullDateNoTime(workout.day_performed)}
                                                         </div>
-                                                        <div className="col-xs-4 text-right">
+                                                        <div className="col-xs-2 text-right">
                                                             <a className="norm-link" href={workout.share_link}>View</a>
                                                         </div>
                                                     </div>

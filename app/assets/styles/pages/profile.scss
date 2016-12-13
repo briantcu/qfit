@@ -147,4 +147,21 @@
     }
   }
 
+  @media(max-width: 480px) {
+    .details {
+      margin-left: 0px !important;
+    }
+
+    .button-wrapper {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      margin-top: 30px !important;
+      float: none !important;
+    }
+
+    .invite-button-row {
+      text-align: center !important;
+    }
+  }
+
 }

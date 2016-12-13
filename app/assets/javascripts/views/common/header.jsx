@@ -21,7 +21,7 @@ class Header extends React.Component {
                     <div className="col-sm-2 col-xs-6">
                         <a href="/"><img className="logo" src="https://dwx350bwdtt59.cloudfront.net/logo%403x.png" /></a>
                     </div>
-                    <If condition={this.props.showWorkoutNav}>
+                    <If condition={this.props.showWorkoutNav && this.props.user.id}>
                         <div className="col-sm-8 hidden-xs text-center nav-wrapper">
                             <div className="nav">
                                 <If condition={this.props.trueLinks}>
