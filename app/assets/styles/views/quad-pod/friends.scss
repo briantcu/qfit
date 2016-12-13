@@ -33,12 +33,14 @@
       background: $purple url(https://dwx350bwdtt59.cloudfront.net/airplane.png) no-repeat center;
       text-align: center;
       display: inline-block;
-      vertical-align: middle;
+      margin-bottom: 10px;
     }
     .pi {
       width: 112px;
       display: inline-block;
       text-align: right;
+      vertical-align: top;
+      margin-top: 12px;
     }
     .remove {
       width: 20px;
@@ -52,11 +54,15 @@
     .username {
       width: 180px;
       display: inline-block;
+      vertical-align: top;
+      margin-top: 12px;
+      padding-top: 0px;
     }
 
     @media (max-width: 480px) {
       .pi {
         margin-bottom: 20px;
+        margin-top: 0px !important;
       }
       .remove {
         margin-top: -10px;
