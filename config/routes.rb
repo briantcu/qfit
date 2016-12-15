@@ -123,7 +123,7 @@ Qfit::Application.routes.draw do
   post '/likes', to: 'likes#create'
   delete '/likes/:id', to: 'likes#destroy'
 
-  get '/leaders', to: 'leaders#index'
+  #get '/leaders', to: 'leaders#index'
 
   get '/group_schedules/:id', to: 'group_schedules#show'
   post '/group_schedules', to: 'group_schedules#create'
