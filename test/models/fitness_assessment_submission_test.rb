@@ -14,9 +14,9 @@ class FitnessAssessmentSubmissionTest < ActiveSupport::TestCase
 
     user = fitness_assessment_submission.process_submission
 
-    assert(user.hor_push_max == 90)
-    assert(user.hor_pull_max == 180)
-    assert(user.knee_dom_max == 270)
+    assert(user.hor_push_max == 92)
+    assert(user.hor_pull_max == 184)
+    assert(user.knee_dom_max == 276)
     assert(user.weight == 150)
     assert(user.sex == 'male')
   end
@@ -32,9 +32,9 @@ class FitnessAssessmentSubmissionTest < ActiveSupport::TestCase
 
     user = fitness_assessment_submission.process_submission
 
-    assert(user.hor_push_max == 75)
-    assert(user.hor_pull_max == 45)
-    assert(user.knee_dom_max == 90)
+    assert(user.hor_push_max == 78)
+    assert(user.hor_pull_max == 46)
+    assert(user.knee_dom_max == 93)
     assert(user.weight == 150)
     assert(user.sex == 'male')
   end
