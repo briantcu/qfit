@@ -41,12 +41,12 @@ class FitnessAssessmentSubmission
   end
 
   def adjust_for_experience
-    multiplier = 0.75
+    multiplier = 0.78
     if self.experience_level == 2
-      multiplier = 0.82
+      multiplier = 0.85
     end
     if self.experience_level == 3
-      multiplier = 0.9
+      multiplier = 0.92
     end
     @hor_push_max = (@hor_push_max * multiplier).to_i
     @hor_pull_max = (@hor_pull_max * multiplier).to_i

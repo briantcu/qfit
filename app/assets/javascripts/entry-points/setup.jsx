@@ -198,7 +198,7 @@ class App extends React.Component {
             experienceLevel: fitness.experienceLevel
         });
         if (fitness.complete) {
-            FitnessAssessmentActions.submit(this.state, this.fitnessSubmitted);
+            FitnessAssessmentActions.submit(fitness, data.user, this.fitnessSubmitted);
         }
     }
 

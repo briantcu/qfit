@@ -40,25 +40,25 @@ var FitnessAssessmentActions = {
         dispatcher.dispatch(C.EX_LEVEL, level);
     },
 
-    submit: function(data, callback) {
+    submit: function(fitness, user, callback) {
         var local_data = {};
         local_data.fitness_assessment_submission = {};
-        local_data.fitness_assessment_submission.user_id = data.user.id;
-        local_data.fitness_assessment_submission.weight = data.userWeight;
-        local_data.fitness_assessment_submission.bench_reps = data.userWeight;
-        local_data.fitness_assessment_submission.bench_weight = data.userWeight;
-        local_data.fitness_assessment_submission.squat_weight = data.squatWeight;
-        local_data.fitness_assessment_submission.squat_reps = data.squatReps;
-        local_data.fitness_assessment_submission.push_ups = data.pushups;
-        local_data.fitness_assessment_submission.pull_ups = data.pullups;
-        local_data.fitness_assessment_submission.assisted_push_ups = data.assistedPushups;
-        local_data.fitness_assessment_submission.experience_level = data.experienceLevel;
-        local_data.fitness_assessment_submission.sex = data.user.sex;
+        local_data.fitness_assessment_submission.user_id = user.id;
+        local_data.fitness_assessment_submission.weight = fitness.userWeight;
+        local_data.fitness_assessment_submission.bench_reps = fitness.benchReps;
+        local_data.fitness_assessment_submission.bench_weight = fitness.benchWeight;
+        local_data.fitness_assessment_submission.squat_weight = fitness.squatWeight;
+        local_data.fitness_assessment_submission.squat_reps = fitness.squatReps;
+        local_data.fitness_assessment_submission.push_ups = fitness.pushups;
+        local_data.fitness_assessment_submission.pull_ups = fitness.pullups;
+        local_data.fitness_assessment_submission.assisted_push_ups = fitness.assistedPushups;
+        local_data.fitness_assessment_submission.experience_level = fitness.experienceLevel;
+        local_data.fitness_assessment_submission.sex = user.sex;
         var payload = JSON.stringify(local_data);
 
         $.ajax({
             type: 'post',
-            url: '/users/'+data.user.id+'/fitness.json',
+            url: '/users/'+user.id+'/fitness.json',
             dataType: 'json',
             data: payload,
             contentType: "application/json; charset=utf-8",

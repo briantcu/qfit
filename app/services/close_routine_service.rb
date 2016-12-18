@@ -27,7 +27,7 @@ class CloseRoutineService
     DailyRoutine.transaction do
       update_user_weight
       process_user_maxes
-      process_power_index
+      process_power_index if @routine.performed_exercises.count > 0
       process_completed
       process_provided
 
