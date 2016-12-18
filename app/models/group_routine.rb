@@ -163,6 +163,7 @@ class GroupRoutine < ActiveRecord::Base
   def note_warmups_changed(note_for_users)
     self.wu_modified = true
     self.modified = true
+    self.changes_saved = true
     self.save
     if note_for_users
       note_changes_for_users(STRETCHING)
@@ -172,6 +173,7 @@ class GroupRoutine < ActiveRecord::Base
   def note_plyos_changed(note_for_users)
     self.pl_modified = true
     self.modified = true
+    self.changes_saved = true
     self.save
     if note_for_users
       note_changes_for_users(PLYOS)
@@ -181,6 +183,7 @@ class GroupRoutine < ActiveRecord::Base
   def note_sprints_changed(note_for_users)
     self.sp_modified = true
     self.modified = true
+    self.changes_saved = true
     self.save
     if note_for_users
       note_changes_for_users(SPRINTING)
@@ -190,6 +193,7 @@ class GroupRoutine < ActiveRecord::Base
   def note_weights_changed(note_for_users)
     self.modified = true
     self.wt_modified = true
+    self.changes_saved = true
     self.save
     if note_for_users
       note_changes_for_users(WEIGHTS)
