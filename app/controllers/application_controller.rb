@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   #protect_from_forgery with: :null_session
-
+  before_filter :force_www
   before_filter :authenticate_user_from_token!
 
   def append_info_to_payload(payload)
@@ -10,6 +10,13 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def force_www
+    # @TODO another way
+    if request.subdomain.empty? && request.domain != 'localhost'
+      redirect_to request.url.sub('quadfit.', 'www.quadfit.')
+    end
+  end
 
   def remote_ip(request)
     request.headers['HTTP_X_REAL_IP'] || request.remote_ip
