@@ -54,6 +54,7 @@ class Sprint extends React.Component {
     }
     showSwap() {
         this.setState({showSwap: true});
+        this.props.maybeSaveRoutine();
     }
     closeSwap() {
         this.setState({showSwap: false});

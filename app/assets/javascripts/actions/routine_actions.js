@@ -386,7 +386,7 @@ var RoutineActions = {
         });
     },
 
-    saveWorkout: function(routine) {
+    saveWorkout: function(routine, exitingPage) {
         var routine = JSON.parse(JSON.stringify( routine ));
         routine.performed_sprints_attributes = routine.performed_sprints;
         delete routine['performed_sprints'];
@@ -429,7 +429,7 @@ var RoutineActions = {
             url: '/daily_routines/' + routine.id + '.json',
             dataType: 'json',
             data: payload,
-            async:false,
+            async: !exitingPage,
             contentType: "application/json; charset=utf-8"
         });
     },

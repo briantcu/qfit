@@ -54,9 +54,10 @@ class DoWork extends React.Component {
         this.closeSaveChanges = this.closeSaveChanges.bind(this);
         this.showShareWorkout = this.showShareWorkout.bind(this);
         this.closeShareWorkout = this.closeShareWorkout.bind(this);
-        this.exitingPage = this.exitingPage.bind(this);
+        this.maybeSaveRoutine = this.maybeSaveRoutine.bind(this);
         this.saveSendTo = this.saveSendTo.bind(this);
         this.evalTeamName = this.evalTeamName.bind(this);
+        this.exitingPage = this.exitingPage.bind(this);
     }
 
     componentDidMount() {
@@ -69,7 +70,12 @@ class DoWork extends React.Component {
 
     exitingPage() {
         if (gon.viewing == 'user' && this.props.dirty) {
-            console.log('executing');
+            RoutineActions.saveWorkout(this.props.routine, true);
+        }
+    }
+
+    maybeSaveRoutine() {
+        if (gon.viewing == 'user' && this.props.dirty) {
             RoutineActions.saveWorkout(this.props.routine);
         }
     }
@@ -134,6 +140,7 @@ class DoWork extends React.Component {
 
     showAddEx(type) {
         this.setState({showAddEx: true, exercise_type: type});
+        this.maybeSaveRoutine();
     }
 
     saveChanges(saveChanges) {
@@ -262,7 +269,8 @@ class DoWork extends React.Component {
                                                     return;
                                                 }
                                                 return <Stretch exercises={this.props.exercises} exercise={e} key={e.id}
-                                                                closed={this.props.routine.closed} shared={this.props.shared} />
+                                                                closed={this.props.routine.closed} shared={this.props.shared}
+                                                                maybeSaveRoutine={this.maybeSaveRoutine} />
                                             }.bind(this))
                                         }
 
@@ -311,7 +319,8 @@ class DoWork extends React.Component {
                                                     return;
                                                 }
                                                 return <Strength exercises={this.props.exercises} exercise={e} key={e.id} premiumAccess={this.props.user.has_premium_access}
-                                                                 closed={this.props.routine.closed} shared={this.props.shared} />
+                                                                 closed={this.props.routine.closed} shared={this.props.shared}
+                                                                 maybeSaveRoutine={this.maybeSaveRoutine} />
                                             }.bind(this))
                                         }
 
@@ -360,7 +369,8 @@ class DoWork extends React.Component {
                                                     return;
                                                 }
                                                 return <Plyo exercises={this.props.exercises} exercise={e} key={e.id}
-                                                             closed={this.props.routine.closed} shared={this.props.shared} />
+                                                             closed={this.props.routine.closed} shared={this.props.shared}
+                                                             maybeSaveRoutine={this.maybeSaveRoutine} />
                                             }.bind(this))
                                         }
 
@@ -409,7 +419,8 @@ class DoWork extends React.Component {
                                                     return;
                                                 }
                                                 return <Sprint exercises={this.props.exercises} exercise={e} key={e.id}
-                                                               closed={this.props.routine.closed} shared={this.props.shared} />
+                                                               closed={this.props.routine.closed} shared={this.props.shared}
+                                                               maybeSaveRoutine={this.maybeSaveRoutine} />
                                             }.bind(this))
                                         }
 
