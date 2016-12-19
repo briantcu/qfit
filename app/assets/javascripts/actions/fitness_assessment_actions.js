@@ -73,7 +73,11 @@ var FitnessAssessmentActions = {
                 }
             },
             error: function(results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     }

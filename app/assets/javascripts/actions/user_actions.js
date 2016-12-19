@@ -11,7 +11,7 @@ var UserActions = {
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function(user) {
-                //holy hack batman
+                // @TODO holy hack batman
                 if (is_logged_in_user) {
                     dispatcher.dispatch(C.LOADED_LOGGED_IN, user);
                     if (gon.current_user_id == gon.user_id && !suppress_current_user_load) {
@@ -25,7 +25,11 @@ var UserActions = {
                 }
             }.bind(this),
             error: function(results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -40,7 +44,11 @@ var UserActions = {
                 dispatcher.dispatch(C.SCHEDULE_LOADED, schedule);
             },
             error: function(results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -63,7 +71,11 @@ var UserActions = {
                     location.href = xhr.getResponseHeader('Location');
                 },
                 error: function(results) {
-                    alert(results.responseJSON.errors);
+                    if(results.status==401) {
+                        location.reload();
+                    } else {
+                        console.log(results);
+                    }
                 }
             });
         } else {
@@ -77,7 +89,11 @@ var UserActions = {
                     location.href = xhr.getResponseHeader('Location');
                 },
                 error: function(results) {
-                    alert(results.responseJSON.errors);
+                    if(results.status==401) {
+                        location.reload();
+                    } else {
+                        console.log(results);
+                    }
                 }
             });
         }
@@ -93,7 +109,11 @@ var UserActions = {
                 dispatcher.dispatch(C.POD_LOADED, pod);
             },
             error: function(results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -108,7 +128,11 @@ var UserActions = {
                 dispatcher.dispatch(C.INVITES_LOADED, pod);
             },
             error: function(results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -123,7 +147,11 @@ var UserActions = {
                 dispatcher.dispatch(C.INVITES_LOADED, pod);
             },
             error: function(results) {
-                alert(results.responseJSON.errors);
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -139,7 +167,11 @@ var UserActions = {
                 this.getPod();
             }.bind(this),
             error: function(results) {
-                alert(results.responseJSON.errors);
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -154,7 +186,11 @@ var UserActions = {
                 dispatcher.dispatch(C.FEED_LOADED, feed);
             },
             error: function(results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -169,7 +205,11 @@ var UserActions = {
                 dispatcher.dispatch(C.CONVO_LOADED, feed);
             },
             error: function(results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -188,7 +228,11 @@ var UserActions = {
                     dispatcher.dispatch(C.INVITES_SENT, results);
                 },
                 error: function (results) {
-                    alert(results.responseJSON.errors);
+                    if(results.status==401) {
+                        location.reload();
+                    } else {
+                        console.log(results);
+                    }
                 }
             });
         }
@@ -204,7 +248,11 @@ var UserActions = {
                 dispatcher.dispatch(C.INVITES_SENT, results);
             },
             error: function (results) {
-                alert(results.responseJSON.errors);
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -222,7 +270,11 @@ var UserActions = {
                 UserActions.getConversation(receiver);
             },
             error: function (results) {
-                alert(results.responseJSON.errors);
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -240,7 +292,11 @@ var UserActions = {
                 UserActions.getFeed();
             },
             error: function (results) {
-                alert(results.responseJSON.errors);
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -259,7 +315,11 @@ var UserActions = {
                 dispatcher.dispatch(C.CHART_LOADED, data);
             },
             error: function(results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -274,7 +334,11 @@ var UserActions = {
                 dispatcher.dispatch(C.MAXES_LOADED, data);
             },
             error: function(results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -297,7 +361,11 @@ var UserActions = {
                 dispatcher.dispatch(C.POD_LOADED, pod);
             },
             error: function(results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -312,7 +380,11 @@ var UserActions = {
                 location.href = '/';
             },
             error: function(results) {
-                alert(results.responseJSON.errors);
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     }

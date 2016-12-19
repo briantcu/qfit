@@ -22,7 +22,11 @@ var RoutineActions = {
                 dispatcher.dispatch(C.CALENDAR, {key: whichMonth, data: data})
             },
             error: function(response) {
-                alert(response.errors);
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -41,11 +45,13 @@ var RoutineActions = {
             success: function(data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
-            error: function(response) {
-                if (response.status == 404) {
+            error: function(results) {
+                if (results.status == 404) {
                     dispatcher.dispatch(C.ROUTINE_LOADED, {});
+                } else if(results.status==401) {
+                    location.reload();
                 } else {
-                    alert(response.errors);
+                    console.log(results);
                 }
             }
         });
@@ -69,11 +75,13 @@ var RoutineActions = {
             success: function(data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
-            error: function(response) {
-                if (response.status == 404) {
+            error: function(results) {
+                if (results.status == 404) {
                     dispatcher.dispatch(C.ROUTINE_LOADED, {});
+                } else if (results.status==401) {
+                    location.reload();
                 } else {
-                    alert(response.errors);
+                    console.log(results);
                 }
             }
         });
@@ -96,8 +104,12 @@ var RoutineActions = {
             success: function(data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
-            error: function(response) {
-                alert(response.errors);
+            error: function(results) {
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -119,8 +131,12 @@ var RoutineActions = {
             success: function(data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
-            error: function(response) {
-                alert(response.errors);
+            error: function(results) {
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -142,8 +158,12 @@ var RoutineActions = {
             success: function(data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
-            error: function(response) {
-                alert(response.errors);
+            error: function(results) {
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -166,8 +186,12 @@ var RoutineActions = {
             success: function(data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
-            error: function(response) {
-                alert(response.errors);
+            error: function(results) {
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -198,8 +222,12 @@ var RoutineActions = {
             success: function(data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
-            error: function(response) {
-                alert(response.errors);
+            error: function(results) {
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -226,8 +254,12 @@ var RoutineActions = {
             success: function(data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
-            error: function(response) {
-                alert(response.errors);
+            error: function(results) {
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -251,8 +283,12 @@ var RoutineActions = {
             success: function(data) {
                 this.addExercise(data.id, type, exId);
             }.bind(this),
-            error: function(response) {
-                alert(response.errors);
+            error: function(results) {
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
 
@@ -288,8 +324,12 @@ var RoutineActions = {
             success: function(data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
-            error: function(response) {
-                alert(response.errors);
+            error: function(results) {
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -308,8 +348,12 @@ var RoutineActions = {
             success: function (data) {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data)
             },
-            error: function (response) {
-                alert(response.errors);
+            error: function (results) {
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -325,8 +369,12 @@ var RoutineActions = {
             success: function(data) {
                 this.getById(routineId);
             }.bind(this),
-            error: function(response) {
-                alert(response.errors);
+            error: function(results) {
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -380,8 +428,12 @@ var RoutineActions = {
                 dispatcher.dispatch(C.ROUTINE_LOADED, data);
                 callback();
             },
-            error: function (response) {
-                alert(response.errors);
+            error: function (results) {
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },

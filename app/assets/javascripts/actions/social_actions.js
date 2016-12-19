@@ -12,8 +12,12 @@ var SocialActions = {
             success: function (leaders) {
                 dispatcher.dispatch(C.LEADERS_LOADED, leaders);
             }.bind(this),
-            error: function () {
-                alert('Something went wrong!');
+            error: function (results) {
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     }

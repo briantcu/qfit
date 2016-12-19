@@ -37,11 +37,13 @@ var SignUpActions = {
             success: function(results) {
                 dispatcher.dispatch(C.UNIQUE_USERNAME, {isUnique: false})
             },
-            error: function(response) {
-                if (response.status == 404) {
+            error: function(results) {
+                if (results.status == 404) {
                     dispatcher.dispatch(C.UNIQUE_USERNAME, {isUnique: true})
+                } else if(results.status==401) {
+                    location.reload();
                 } else {
-                    alert(JSON.parse(response.responseJSON));
+                    console.log(results);
                 }
             }
         });

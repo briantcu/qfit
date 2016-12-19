@@ -30,7 +30,11 @@ var ProgramActions = {
                 dispatcher.dispatch(C.SUGGESTED_LOADED, data)
             },
             error: function(response) {
-                alert(JSON.parse(response.responseJSON));
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     }

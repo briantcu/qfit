@@ -16,7 +16,11 @@ var TeamActions = {
                 }
             }.bind(this),
             error: function (results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -31,7 +35,11 @@ var TeamActions = {
                 dispatcher.dispatch(C.TEAM_SCHEDULE_LOADED, schedule);
             },
             error: function (results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -54,7 +62,11 @@ var TeamActions = {
                     location.href = xhr.getResponseHeader('Location');
                 },
                 error: function (results) {
-                    alert(results);
+                    if(results.status==401) {
+                        location.reload();
+                    } else {
+                        console.log(results);
+                    }
                 }
             });
         } else {
@@ -68,7 +80,11 @@ var TeamActions = {
                     location.href = xhr.getResponseHeader('Location');
                 },
                 error: function (results) {
-                    alert(results);
+                    if(results.status==401) {
+                        location.reload();
+                    } else {
+                        console.log(results);
+                    }
                 }
             });
         }

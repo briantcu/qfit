@@ -119,7 +119,11 @@ var ProfileActions = {
                 dispatcher.dispatch(UC.POD_LOADED, pod);
             },
             error: function(results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     },
@@ -134,7 +138,11 @@ var ProfileActions = {
                 dispatcher.dispatch(UC.LOADED, user);
             }.bind(this),
             error: function(results) {
-                alert('Something went wrong!');
+                if(results.status==401) {
+                    location.reload();
+                } else {
+                    console.log(results);
+                }
             }
         });
     }
