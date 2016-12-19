@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def force_www
     # @TODO another way
-    if request.subdomain.empty? && request.domain != 'localhost'
+    if request.subdomain.empty? && request.domain != 'localhost' && request.domain != 'test.host'
       redirect_to request.url.sub('quadfit.', 'www.quadfit.')
     end
   end
