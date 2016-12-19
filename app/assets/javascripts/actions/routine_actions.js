@@ -430,7 +430,12 @@ var RoutineActions = {
             dataType: 'json',
             data: payload,
             async: !exitingPage,
-            contentType: "application/json; charset=utf-8"
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                if (!exitingPage) {
+                    dispatcher.dispatch(C.ROUTINE_LOADED, data);
+                }
+            },
         });
     },
 
