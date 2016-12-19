@@ -21,7 +21,7 @@ var RoutineActions = {
             success: function(data) {
                 dispatcher.dispatch(C.CALENDAR, {key: whichMonth, data: data})
             },
-            error: function(response) {
+            error: function(results) {
                 if(results.status==401) {
                     location.reload();
                 } else {
