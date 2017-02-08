@@ -140,7 +140,7 @@ class WorkoutManagementController < ApplicationController
   end
 
   def evaluate_context
-    if @user.needs_setup? && session[:setup_context].blank?
+    if session[:setup_context].blank?
       session_service = SessionService.new(session)
       if @user.is_sub_user?
         session_service.set_setup_context('sub_user')
