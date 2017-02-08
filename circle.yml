@@ -17,5 +17,5 @@ dependencies:
   pre:
     - sudo apt-get update
     - sudo apt-get install python-dev
-    - sudo pip install awscli
-    - sudo pip install awsebcli --upgrade --user
+    - sudo python -m pip install -U pip
+    - sudo pip install awsebcli
