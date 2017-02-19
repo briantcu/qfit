@@ -24,11 +24,11 @@ class ProgressService
     chart_data = []
     case @chart_type
       when 'user_weight'
-        proc = Proc.new {|r| {r.day_performed => r.weight} if r.weight.present? }
+        proc = Proc.new {|r| {r.day_performed => r.weight} if r.weight.present? && r.weight > 0}
         title = 'Weight'
         label = 'Pounds'
       when 'power_index'
-        proc = Proc.new {|r| {r.day_performed => r.power_index } if r.power_index.present? }
+        proc = Proc.new {|r| {r.day_performed => r.power_index } if r.power_index.present? && r.power_index > 0 }
         title = 'PowerIndex'
         label = 'PowerIndex'
       when 'completed_workouts'

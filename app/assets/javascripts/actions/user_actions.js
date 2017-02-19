@@ -346,8 +346,8 @@ var UserActions = {
     uploadAvatar: function(files) {
         var req = request.post('/avatar.json');
         req.attach('file', files[0]);
-        req.end(function(user) {
-            dispatcher.dispatch(C.LOADED, user);
+        req.end(function(err, resp) {
+            dispatcher.dispatch(C.LOADED, resp.body);
         });
     },
 

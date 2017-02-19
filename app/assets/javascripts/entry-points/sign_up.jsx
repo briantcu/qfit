@@ -154,10 +154,16 @@ class AthleteSignUp extends React.Component {
         }
 
         var strength = this.refs.password.getStrength();
+        var passwordErrors = [];
         if (strength < 2 || !validator.isLength(this.refs.password.getValue(), {min: 8})) {
-            this.setState({passwordErrors: ['Your password is too weak']});
+            passwordErrors.push('Your password is too weak');
             hasErrors = true;
         }
+        if (this.refs.password.getValue().indexOf('%') > 0) {
+            passwordErrors.push("Passwords can't contain '%' signs");
+            hasErrors = true;
+        }
+        this.setState({passwordErrors: passwordErrors});
         return hasErrors;
     }
 
