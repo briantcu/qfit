@@ -13,6 +13,7 @@ class Custom extends React.Component {
     }
 
     delete() {
+        this.props.maybeSaveRoutine();
         var r=confirm("Are you sure you want to remove this exercise?");
         if (r==true) {
             RoutineActions.deleteExercise('custom', this.props.exercise.id);

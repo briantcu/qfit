@@ -276,7 +276,7 @@ class DoWork extends React.Component {
 
                                         {
                                             _.where(this.props.routine.custom_exercises, {ex_type: 4}).map(function(ex, index) {
-                                                return <Custom exercise={ex} />
+                                                return <Custom exercise={ex}  maybeSaveRoutine={this.maybeSaveRoutine} />
 
                                             }.bind(this))
 
@@ -326,7 +326,7 @@ class DoWork extends React.Component {
 
                                         {
                                             _.where(this.props.routine.custom_exercises, {ex_type: 1}).map(function(ex, index) {
-                                                return <Custom exercise={ex} />
+                                                return <Custom exercise={ex}  maybeSaveRoutine={this.maybeSaveRoutine} />
 
                                             }.bind(this))
 
@@ -376,7 +376,7 @@ class DoWork extends React.Component {
 
                                         {
                                             _.where(this.props.routine.custom_exercises, {ex_type: 2}).map(function(ex, index) {
-                                                return <Custom exercise={ex} />
+                                                return <Custom exercise={ex}  maybeSaveRoutine={this.maybeSaveRoutine} />
 
                                             }.bind(this))
 
@@ -426,7 +426,7 @@ class DoWork extends React.Component {
 
                                         {
                                             _.where(this.props.routine.custom_exercises, {ex_type: 4}).map(function(ex, index) {
-                                                return <Custom exercise={ex} />
+                                                return <Custom exercise={ex}  maybeSaveRoutine={this.maybeSaveRoutine}/>
 
                                             }.bind(this))
 
