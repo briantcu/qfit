@@ -172,8 +172,9 @@ class RoutineService
   def create_routines
     dates = create_date_array
     dates.each do |date|
-      self.set_date(date)
-      create_routine
+      set_date(date)
+      routine = create_routine
+      @sched_update = false if routine.present? #only use that for the first routine that's created
     end
     # Make sure a new user sees at least 1 workout
     if @entity.is_group?

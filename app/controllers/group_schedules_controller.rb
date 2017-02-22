@@ -47,7 +47,7 @@ class GroupSchedulesController < ApplicationController
 
   # PATCH/PUT /group_schedules/1.json
   def update
-    if @group_schedule.update(group_schedule_params)
+    if @group_schedule.update!(group_schedule_params)
       @group_schedule.setup_phases
       @group_schedule.rollback_days_created
       @group_schedule.save!

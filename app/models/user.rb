@@ -323,7 +323,7 @@ class User < ActiveRecord::Base
   def update_program_info
     self.program_type = self.user_schedule.program_type
     self.current_phase = self.user_schedule.get_current_phase
-    self.save
+    self.save!
   end
 
   def update_status(status)
