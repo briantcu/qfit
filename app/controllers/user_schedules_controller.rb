@@ -32,7 +32,7 @@ class UserSchedulesController < ApplicationController
     if existing_user_schedule.nil?
       if @user_schedule = UserSchedule.create_user_schedule(user_schedule_params)
         update_user_record
-        RoutineService.new(@user_schedule.user, 'NEW', Time.zone.today, false).create_routines
+        RoutineService.new(@user_schedule.user, 'NEW', Time.zone.today).create_routines
         next_routine = DailyRoutine.get_open_workouts_start_today(@user_schedule.user).first
         session_service = SessionService.new(session)
         session_service.set_onboarding(false) # onboarding is done

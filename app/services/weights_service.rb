@@ -7,14 +7,12 @@ class WeightsService
 
   @entity
   @routine
-  @sched_update
   @phase_number
   @routine_service
 
-  def initialize(entity, routine, phase_number, sched_update, routine_service)
+  def initialize(entity, routine, phase_number, routine_service)
     @entity = entity
     @routine = routine
-    @sched_update = sched_update
     @phase_number = phase_number
     @routine_service = routine_service
   end

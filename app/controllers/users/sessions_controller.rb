@@ -43,7 +43,7 @@ class Users::SessionsController < Devise::SessionsController
       user.ensure_authentication_token
       # Make sure some routines get created if the user hasn't logged in in a while
       if RoutineService.get_open_workouts_start_today(user).count == 0 && !user.is_coach?
-        RoutineService.new(user, 'CRON', Time.zone.today, false).create_routines
+        RoutineService.new(user, 'CRON', Time.zone.today).create_routines
       end
       check_tokens(user) # This is for if a user invites someone to the quad pod, but they're an existing user...could happen with an invite via text message
       session_service = SessionService.new(session)

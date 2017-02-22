@@ -5,7 +5,6 @@ class RoutineService
   attr_accessor :routine
   attr_accessor :entity  #Either a user or group
   attr_accessor :phase_number # 1-4
-  attr_accessor :sched_update
 
   WEIGHTS = 1
   PLYOS = 2
@@ -17,11 +16,10 @@ class RoutineService
   @cause_of_new_routine #Cron job to create new workouts, or schedule/goals change, or new member/group creation,
                         # or member removed from group. CRON, SCHED, NEW, REMOVED
 
-  def initialize(entity, cause_of_new_routine, date, sched_update)
+  def initialize(entity, cause_of_new_routine, date)
     @entity = entity
     @cause_of_new_routine = cause_of_new_routine
     @date = date
-    @sched_update = sched_update
   end
 
   def self.nightly_workout_creation
@@ -37,20 +35,20 @@ class RoutineService
 
         Rails.logger.info('starting nightly workout creation for groups')
         groups.each do |group|
-          RoutineService.new(group, 'CRON', nil, false).create_routines
+          RoutineService.new(group, 'CRON', nil).create_routines
         end
 
         Rails.logger.info('starting nightly workout creation for sub users')
         sub_users = coach.players.without_group
         sub_users.each do |user|
-          RoutineService.new(user, 'CRON', nil, false).create_routines
+          RoutineService.new(user, 'CRON', nil).create_routines
         end
       end
 
       Rails.logger.info('starting nightly workout creation for regular users')
       users = User.regular_users.logged_in_recently
       users.each do |user|
-        RoutineService.new(user, 'CRON', nil, false).create_routines
+        RoutineService.new(user, 'CRON', nil).create_routines
       end
 
       end_time = Time.zone.now
@@ -68,7 +66,7 @@ class RoutineService
   def self.sched_change_happened(entity)
     today = Time.zone.today
     delete_old_workouts(entity)
-    routine_service = RoutineService.new(entity, 'SCHED', today, true)
+    routine_service = RoutineService.new(entity, 'SCHED', today)
     routine_service.create_routines
   end
 
@@ -80,7 +78,7 @@ class RoutineService
       user.group.copy_workouts_to_user(user)
     else
       today = Time.zone.today
-      routine_service = RoutineService.new(user, 'REMOVED', today, true)
+      routine_service = RoutineService.new(user, 'REMOVED', today)
       routine_service.create_routines
     end
   end
@@ -146,7 +144,7 @@ class RoutineService
         weekly_schedule_day = @entity.get_schedule.get_schedule_day(@date)
 
         add_exercises(WarmupService.instance, STRETCHING) if weekly_schedule_day.stretching
-        WeightsService.new(@entity, @routine, @phase_number, @sched_update, self).add_weights if weekly_schedule_day.weights
+        WeightsService.new(@entity, @routine, @phase_number, self).add_weights if weekly_schedule_day.weights
         add_exercises(PlyometricsService.instance, PLYOS) if weekly_schedule_day.plyometrics
         add_exercises(SprintingService.instance, SPRINTING) if weekly_schedule_day.sprinting
 
@@ -174,7 +172,6 @@ class RoutineService
     dates.each do |date|
       set_date(date)
       routine = create_routine
-      @sched_update = false if routine.present? #only use that for the first routine that's created
     end
     # Make sure a new user sees at least 1 workout
     if @entity.is_group?

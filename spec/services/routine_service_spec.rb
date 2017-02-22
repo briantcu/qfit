@@ -125,7 +125,7 @@ RSpec.describe RoutineService do
 
         # Create workout of same type
         date = Time.zone.today + 7.days
-        copied_routine = RoutineService.new(@user, 'CRON', date, false).create_routine
+        copied_routine = RoutineService.new(@user, 'CRON', date).create_routine
 
         # Expectations
         expect(copied_routine.changes_saved).to eq(true)
@@ -181,7 +181,7 @@ RSpec.describe RoutineService do
 
         # Create workout of same type
         date = Time.zone.today + 7.days
-        copied_routine = RoutineService.new(@user, 'CRON', date, false).create_routine
+        copied_routine = RoutineService.new(@user, 'CRON', date).create_routine
 
         expect(copied_routine.changes_saved).to eq(false)
         expect(routine.performed_exercises.where(status: 3).count).to eq(copied_routine.performed_exercises.where(status: 3).count)
@@ -225,7 +225,7 @@ RSpec.describe RoutineService do
         routine.save!
 
         date = Time.zone.today + 10.days
-        copied_routine = RoutineService.new(@user, 'CRON', date, false).create_routine
+        copied_routine = RoutineService.new(@user, 'CRON', date).create_routine
         expect(copied_routine.custom_exercises.count).to eq(4)
         expect(copied_routine.changes_saved).to eq(false)
       end
@@ -280,7 +280,7 @@ RSpec.describe RoutineService do
 
         # Create workout of same type
         date = Time.zone.today + 7.days
-        RoutineService.new(@group, 'CRON', date, false).create_routine
+        RoutineService.new(@group, 'CRON', date).create_routine
 
         routine = @sub_user.daily_routines.first
         copied_routine = @sub_user.daily_routines.last
@@ -334,7 +334,7 @@ RSpec.describe RoutineService do
 
         # Create workout of same type
         date = Time.zone.today + 7.days
-        RoutineService.new(@group, 'CRON', date, false).create_routine
+        RoutineService.new(@group, 'CRON', date).create_routine
 
         routine = @sub_user.daily_routines.first
         copied_routine = @sub_user.daily_routines.last
@@ -379,7 +379,7 @@ RSpec.describe RoutineService do
         routine.save!
 
         date = Time.zone.today + 10.days
-        RoutineService.new(@group, 'CRON', date, false).create_routine
+        RoutineService.new(@group, 'CRON', date).create_routine
         copied_routine = @sub_user.daily_routines.last
         expect(copied_routine.custom_exercises.count).to eq(4)
         expect(copied_routine.changes_saved).to eq(false)

@@ -105,7 +105,7 @@ class CustomExerciseService
       if old_weights.count > 0
         weight_service = WeightsService.new(@routine_service.entity, @routine,
                                             @routine_service.phase_number,
-                                            @routine_service.sched_update, @routine_service)
+                                            @routine_service)
         weight_service.copy_weights(@previous_workout)
       end
     end
