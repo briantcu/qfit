@@ -219,12 +219,11 @@ class RoutineService
         end
     end
 
-    if next_day == 0
-      total_days = @entity.get_schedule.get_total_days_of_pillar(type)
-      next_day = next_day + 1
-      if next_day > total_days
-        next_day = 1
-      end
+
+    total_days = @entity.get_schedule.get_total_days_of_pillar(type)
+    next_day = next_day + 1
+    if next_day > total_days
+      next_day = 1
     end
     next_day
 
