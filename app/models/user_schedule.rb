@@ -153,16 +153,16 @@ class UserSchedule < ActiveRecord::Base
     sprints = 0
     open_workouts = RoutineService.get_open_workouts_start_today(self.user)
     open_workouts.each do |workout|
-      if workout.wt_day_id != 0
+      if workout.wt_day_id.present? &&  workout.wt_day_id > 0
         weights = weights + 1
       end
-      if workout.pl_day_id != 0
+      if workout.pl_day_id.present? && workout.pl_day_id > 0
         plyos = plyos + 1
       end
-      if workout.wu_day_id != 0
+      if workout.wu_day_id.present? && workout.wu_day_id > 0
         warmup = warmup + 1
       end
-      if workout.sp_day_id != 0
+      if workout.sp_day_id.present? && workout.sp_day_id > 0
         sprints = sprints + 1
       end
     end

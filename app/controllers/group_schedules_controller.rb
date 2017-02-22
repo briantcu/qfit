@@ -48,9 +48,6 @@ class GroupSchedulesController < ApplicationController
   # PATCH/PUT /group_schedules/1.json
   def update
     if @group_schedule.update_self!(group_schedule_params)
-      @group_schedule.setup_phases
-      @group_schedule.rollback_days_created
-      @group_schedule.save!
       update_group_record
       @group_schedule.group.members.each { |member| @group_schedule.group.copy_schedule_to_user(member)}
       RoutineService.sched_change_happened(@group_schedule.group)
