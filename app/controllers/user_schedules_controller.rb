@@ -49,7 +49,7 @@ class UserSchedulesController < ApplicationController
 
   # PATCH/PUT /user_schedules/1.json
   def update
-    if @user_schedule.update!(user_schedule_params)
+    if @user_schedule.update_self!(user_schedule_params)
       update_user_record
       RoutineService.sched_change_happened(@user_schedule.user)
       next_routine = DailyRoutine.get_open_workouts_start_today(@user_schedule.user).first

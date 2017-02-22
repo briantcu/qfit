@@ -37,7 +37,7 @@ class UserSchedule < ActiveRecord::Base
   end
 
   def update_self!(params)
-    self.update(params)
+    self.update!(params)
     setup_phases
     rollback_days_created
     self.save!
@@ -179,12 +179,12 @@ class UserSchedule < ActiveRecord::Base
   def rollback_weights(day_count)
     if day_count > 0
       last_day = self.user.get_last_day_created(WEIGHTS)
-      rollback = 0
+      rollback = last_day
       day_count.times do
-        if last_day == 1
+        if rollback == 1
           rollback = ProgramDaySequence.get_total_days(self.program_id)
         else
-          rollback = last_day - 1
+          rollback = rollback - 1
         end
       end
 
@@ -199,12 +199,12 @@ class UserSchedule < ActiveRecord::Base
   def rollback_pillar(day_count, type)
     if day_count > 0
       last_day = self.user.get_last_day_created(type)
-      rollback = 0
+      rollback = last_day
       day_count.times do
-        if last_day == 1
+        if rollback == 1
           rollback = self.get_total_days_of_pillar(type)
         else
-          rollback = last_day - 1
+          rollback = rollback - 1
         end
       end
 

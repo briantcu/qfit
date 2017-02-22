@@ -32,10 +32,8 @@ class WeightsService
     @routine.program_day_id = program_day_id
     @routine.wt_day_id = weight_day_index
     @routine.save!
-    unless @sched_update
-      @entity.last_weight_day_created = weight_day_index
-      @entity.save!
-    end
+    @entity.last_weight_day_created = weight_day_index
+    @entity.save!
   end
 
   def copy_weights(previous_routine)
@@ -93,18 +91,15 @@ class WeightsService
   def get_weight_day_index
     last_day = @entity.last_weight_day_created
     last_day ||= 0
-    if @sched_update
-      current_day_index = (last_day == 0) ? 1 : last_day
+
+    if last_day == 0
+      current_day_index = 1
     else
-      if last_day == 0
+      total_days = ProgramDaySequence.get_total_days(@entity.get_schedule.program_id)
+      if last_day == total_days
         current_day_index = 1
       else
-        total_days = ProgramDaySequence.get_total_days(@entity.get_schedule.program_id)
-        if last_day == total_days
-          current_day_index = 1
-        else
-          current_day_index = last_day + 1
-        end
+        current_day_index = last_day + 1
       end
     end
 

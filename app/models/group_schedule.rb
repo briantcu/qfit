@@ -30,6 +30,13 @@ class GroupSchedule < ActiveRecord::Base
     phase_one_start.blank?
   end
 
+  def update_self!(params)
+    self.update(params)
+    setup_phases
+    rollback_days_created
+    self.save!
+  end
+
   def setup_phases
     now = Time.zone.today
     set_dates(now)
@@ -159,12 +166,12 @@ class GroupSchedule < ActiveRecord::Base
   def rollback_weights(count)
     if count > 0
       last_day = self.group.get_last_day_created(WEIGHTS)
-      rollback = 0
+      rollback = last_day
       count.times do
-        if last_day == 1
+        if rollback == 1
           rollback = ProgramDaySequence.get_total_days(self.program_id)
         else
-          rollback = last_day - 1
+          rollback = rollback - 1
         end
       end
 
@@ -180,12 +187,12 @@ class GroupSchedule < ActiveRecord::Base
     if count > 0
       last_day = self.group.get_last_day_created(type)
 
-      rollback = 0
+      rollback = last_day
       count.times do
-        if last_day == 1
+        if rollback == 1
           rollback = self.get_total_days_of_pillar(type)
         else
-          rollback = last_day - 1
+          rollback = rollback - 1
         end
       end
 
