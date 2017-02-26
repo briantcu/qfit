@@ -84,8 +84,6 @@ Qfit::Application.routes.draw do
   get '/username_exists/:username', to: 'users#username_exists'
   post '/avatar', to: 'users#avatar'
 
-  post '/users/fb_sign_in', to: 'mobile_fb_sign_in#sign_in_up'
-
   get '/sprints', to: 'sprints#index'
   get '/sprints/:id', to: 'sprints#show'
 
