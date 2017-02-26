@@ -180,6 +180,8 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
+      user.sex = auth.info.sex if auth.info.sex.present?
+      user.user_name = auth.info.user_name if auth.info.user_name.present?
       if auth.info.first_name.present? && auth.info.last_name.present?
         user.first_name = auth.info.first_name
         user.last_name = auth.info.last_name
