@@ -1,0 +1,2 @@
+class MobileFbSignInController < ApplicationController
+end
