@@ -62,6 +62,7 @@ Qfit::Application.routes.draw do
 
     put 'change_password', to: 'users/passwords#update'
     post 'forgot_password', to: 'users/passwords#forgot'
+    post '/users/fb_sign_in', to: 'mobile_fb_sign_in#sign_in_up'
   end
 
   get '/warmups', to: 'warmups#index'

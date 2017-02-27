@@ -7,6 +7,7 @@ gem 'rails', '4.2.6'
 gem 'has_secure_token'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'fb_graph2'
 
 gem 'sinatra'
 

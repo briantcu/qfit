@@ -1,4 +1,6 @@
 class MobileFbSignInController < Devise::OmniauthCallbacksController
+  before_filter :check_token
+
   def sign_in_up
     params = OpenStruct.new
     params.provider = 'facebook'
@@ -44,7 +46,23 @@ class MobileFbSignInController < Devise::OmniauthCallbacksController
 
   private
 
+  def check_token
+    fb_token = params[:fb_token]
+    return unauthorized unless fb_token.present?
+    begin
+      user = FbGraph2::User.new(params['uid']).authenticate(fb_token)
+      user.fetch
+    rescue => e
+      Rails.logger.error(e)
+      return unauthorized
+    end
+  end
+
+  def unauthorized
+    render json: { success: false, errors: 'Unauthorized' }, status: :unauthorized
+  end
+
   def user_params
-    params.permit(:email, :first_name, :last_name, :gender, :user_name, :uid, :image)
+    params.permit(:email, :first_name, :last_name, :gender, :user_name, :uid, :image, :fb_token)
   end
 end
