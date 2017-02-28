@@ -22,6 +22,15 @@ class MobileFbSignInController < Devise::OmniauthCallbacksController
     if @user.persisted?
       # User exists and is logging in
       sign_in @user, :event => :authentication # this will throw if @user is not activated
+      # Make sure some routines get created if the user hasn't logged in in a while
+      if RoutineService.get_open_workouts_start_today(@user).count == 0 && !@user.is_coach?
+        RoutineService.new(@user, 'CRON', Time.zone.today).create_routines
+      end
+      Analytics.track(
+          user_id: "#{@user.id}",
+          event: 'Logged In',
+          properties: { facebook: true }
+      )
       render json: {success: true, token: @user.authentication_token, user_id: @user.id, user_name: @user.user_name} and return
     else
 

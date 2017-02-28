@@ -47,6 +47,10 @@ class CloseRoutineService
 
       get_messages(true, on_a_run, is_first_workout)
     end
+    Analytics.track(
+        user_id: "#{@routine.user.id}",
+        event: 'Workout Completed'
+    )
     @routine
 
   end

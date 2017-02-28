@@ -16,6 +16,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           event: 'Logged In',
           properties: { facebook: true }
       )
+      # Make sure some routines get created if the user hasn't logged in in a while
+      if RoutineService.get_open_workouts_start_today(@user).count == 0 && !@user.is_coach?
+        RoutineService.new(@user, 'CRON', Time.zone.today).create_routines
+      end
       sign_in_and_redirect @user, :event => :authentication # this will throw if @user is not activated
     else
 
