@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :lockable, :omniauth_providers => [:facebook]
 
   has_many :daily_routines, dependent: :destroy
-  has_many :recent_workouts, -> { order(day_performed: :desc).limit(10) }, class_name: DailyRoutine
+  has_many :recent_workouts, -> { where(closed: true).order(day_performed: :desc).limit(10) }, class_name: DailyRoutine
   has_many :user_maxes, dependent: :destroy
   has_many :coach_groups, foreign_key: :coach_user_id, class_name: Group
   has_many :custom_exercises, through: :daily_routines

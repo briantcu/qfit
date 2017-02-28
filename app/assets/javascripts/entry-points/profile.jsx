@@ -113,7 +113,7 @@ class Profile extends React.Component {
                         <div className="row profile-row last-row">
                             <div className="col-xs-12 col-sm-6 no-padding-xs">
                                 <div className="p-section">
-                                    <div className="sec-header">Recent Workouts</div>
+                                    <div className="sec-header">Recent Completed Workouts</div>
                                     <div className="sec-main workout-section">
                                         <If condition={!this.state.user.is_friend && gon.current_user_id != gon.user_id} >
                                             <div className="standard-text nope">Not so fast! You can only see workouts for people in your Quad Pod.</div>

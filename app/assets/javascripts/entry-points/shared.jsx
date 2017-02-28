@@ -89,7 +89,9 @@ class App extends React.Component {
 
     viewingUserBanner() {
         return <div>
-            <span className="col-xs-12 col-sm-offset-2 col-sm-8 text-center bold">Viewing {Util.formatDate(this.state.routine.day_performed, true)} workout for {this.state.user_name}</span>
+            <span className="col-xs-12 col-sm-offset-2 col-sm-8 text-center bold">
+                Viewing {Util.formatDate(this.state.routine.day_performed, true)} workout for <a href={'/p/'+ this.state.user_name}>{this.state.user_name}</a>
+            </span>
         </div>;
     }
 
