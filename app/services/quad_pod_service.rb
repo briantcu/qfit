@@ -21,6 +21,11 @@ class QuadPodService
     else
       return { status: 'invalid', message: 'Please provide a valid email or phone number', pod_invite: invite}
     end
+    Analytics.track(
+        user_id: "#{invite.inviter_id}",
+        event: 'Quad Pod Invite Sent',
+        properties: { sent_to: "#{invite.sent_to}"}
+    )
 
     { status: 'success', message: 'Success', pod_invite: pod_invite}
   end
@@ -35,6 +40,10 @@ class QuadPodService
       user.update_attributes!(phone: invite_data['sent_to'])
     end
     FriendService.instance.make_friends(pod_invite.inviter.id, pod_invite.invitee.id)
+    Analytics.track(
+        user_id: "#{pod_invite.invitee.id}",
+        event: 'Quad Pod Invite Accepted'
+    )
   end
 
   def accept_invite_existing_user(invite)
@@ -42,6 +51,10 @@ class QuadPodService
     invite.status = 1
     invite.save!
     FriendService.instance.make_friends(invite.inviter.id, invite.invitee.id)
+    Analytics.track(
+        user_id: "#{invite.invitee.id}",
+        event: 'Quad Pod Invite Accepted'
+    )
   end
 
   def deny_invite(invite)

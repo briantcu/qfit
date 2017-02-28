@@ -41,6 +41,8 @@ class Fitness extends React.Component {
         $('html, body').animate({
             scrollTop: $(".subnav").offset().top
         }, 200);
+        let pageName = 'fitness - ' + step;
+        analytics.page(pageName);
     }
 
     showVideo() {

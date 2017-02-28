@@ -25,7 +25,13 @@ class PagesController < ApplicationController
     if @user.is_coach?
       redirect_to '/workout' and return
     end
-    gon.push ({user_id: current_user.try(:id), current_user_id: @user.id})
+    gon.push ({
+        user_id: current_user.try(:id),
+        current_user_id: @user.id,
+        email: current_user.try(:email),
+        first_name: current_user.try(:first_name),
+        last_name: current_user.try(:last_name)
+    })
     render template: 'pages/profile'
   end
 
@@ -48,7 +54,10 @@ class PagesController < ApplicationController
         routine: routine,
         user_name: routine.user.user_name,
         user_id: current_user.try(:id),
-        token: params[:t]
+        token: params[:t],
+        email: current_user.try(:email),
+        first_name: current_user.try(:first_name),
+        last_name: current_user.try(:last_name)
     })
     render template: 'pages/shared'
   end
@@ -81,7 +90,10 @@ class PagesController < ApplicationController
             is_coach: current_user.is_coach?,
             is_sub_user: current_user.is_sub_user?,
             is_individual: current_user.is_individual?,
-            coach_account_id: current_user.coach_account.try(:id)
+            coach_account_id: current_user.coach_account.try(:id),
+            email: current_user.try(:email),
+            first_name: current_user.try(:first_name),
+            last_name: current_user.try(:last_name)
         }
     )
   end

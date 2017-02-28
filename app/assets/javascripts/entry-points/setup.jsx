@@ -270,8 +270,12 @@ class App extends React.Component {
     }
 }
 
+const trackPage = () => {
+    analytics.page(location.pathname);
+};
+
 render((
-    <Router history={browserHistory}>
+    <Router history={browserHistory} onUpdate={trackPage}>
         <Route path="/" component={App}>
             <Route path="setup" >
                 <Route path="coach" component={Coach} />

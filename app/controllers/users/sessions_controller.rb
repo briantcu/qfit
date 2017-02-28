@@ -50,6 +50,15 @@ class Users::SessionsController < Devise::SessionsController
       session_service.set_current_user_id(user.id)
       session_service.set_viewing('user') unless user.is_coach?
       location = stored_location_for(user) || determine_redirect(user)
+      Analytics.identify(
+          user_id: "#{user.id}",
+          traits: { email: "#{ user.email }", level: user.level, first_name: "#{user.first_name}", last_name: "#{user.last_name}" },
+      )
+      Analytics.track(
+          user_id: "#{user.id}",
+          event: 'Logged In',
+          properties: { facebook: false }
+      )
       render json: {success: true, token: user.authentication_token, user_id: user.id, user_name: user.user_name, location: location} and return
     end
     failure

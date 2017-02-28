@@ -171,7 +171,10 @@ class WorkoutManagementController < ApplicationController
             viewing: viewing,
             setup_context: session[:setup_context],
             onboarding: session[:onboarding],
-            has_premium_access: @user.has_premium_access?
+            has_premium_access: @user.has_premium_access?,
+            email: current_user.try(:email),
+            first_name: current_user.try(:first_name),
+            last_name: current_user.try(:last_name)
         }
     )
   end

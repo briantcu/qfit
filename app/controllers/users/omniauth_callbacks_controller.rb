@@ -7,6 +7,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     Rails.logger.info(request.env['omniauth.params'])
     if @user.persisted?
       # User exists and is logging in
+      Analytics.identify(
+          user_id: "#{@user.id}",
+          traits: { email: "#{ @user.email }", level: @user.level, first_name: "#{@user.first_name}", last_name: "#{@user.last_name}" },
+      )
+      Analytics.track(
+          user_id: "#{@user.id}",
+          event: 'Logged In',
+          properties: { facebook: true }
+      )
       sign_in_and_redirect @user, :event => :authentication # this will throw if @user is not activated
     else
 

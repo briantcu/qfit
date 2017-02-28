@@ -8,6 +8,7 @@ gem 'has_secure_token'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'fb_graph2'
+gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 
 gem 'sinatra'
 
