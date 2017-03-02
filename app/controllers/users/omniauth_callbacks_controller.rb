@@ -20,6 +20,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if RoutineService.get_open_workouts_start_today(@user).count == 0 && !@user.is_coach?
         RoutineService.new(@user, 'CRON', Time.zone.today).create_routines
       end
+      session_service = SessionService.new(session)
+      session_service.set_current_user_id(@user.id)
+      session_service.set_viewing('user') unless @user.is_coach?
       sign_in_and_redirect @user, :event => :authentication # this will throw if @user is not activated
     else
 

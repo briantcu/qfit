@@ -220,6 +220,7 @@ class RoutineService
     end
 
 
+    next_day = next_day.present? ? next_day : 0
     total_days = @entity.get_schedule.get_total_days_of_pillar(type)
     next_day = next_day + 1
     if next_day > total_days

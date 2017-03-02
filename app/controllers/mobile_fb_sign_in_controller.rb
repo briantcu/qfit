@@ -23,6 +23,9 @@ class MobileFbSignInController < Devise::OmniauthCallbacksController
       # User exists and is logging in
       sign_in @user, :event => :authentication # this will throw if @user is not activated
       # Make sure some routines get created if the user hasn't logged in in a while
+      session_service = SessionService.new(session)
+      session_service.set_current_user_id(@user.id)
+      session_service.set_viewing('user') unless @user.is_coach?
       if RoutineService.get_open_workouts_start_today(@user).count == 0 && !@user.is_coach?
         RoutineService.new(@user, 'CRON', Time.zone.today).create_routines
       end
