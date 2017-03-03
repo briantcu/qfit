@@ -49,31 +49,33 @@ class ExerciseValidatorService
             valid = (pi_to_weight > 0.038)
           when 57 #Dips
             valid = (pi_to_weight > 0.053)
-          when 64 #Side to side jacknife push up
+          when 63 #Side to side jacknife push up
             valid = (pi_to_weight > 0.048)
-          when 69 #Jacknife push up
+          when 68 #Jacknife push up
             valid = (pi_to_weight > 0.038)
-          when 82 #Side to side pullup
+          when 81 #Side to side pullup
             valid = (pi_to_weight > 0.14)
-          when 84 #chinup
+          when 83 #chinup
             valid = (pi_to_weight > 0.11)
-          when 86 #Wide grip pullup
+          when 84 #pullup
+            valid = (pi_to_weight > 0.11)
+          when 85 #Wide grip pullup
             valid = (pi_to_weight > 0.124)
-          when 119 #power pushups
+          when 118 #power pushups
             valid = (pi_to_weight > 0.11)
-          when 120 #Assisted pushup
+          when 119 #Assisted pushup
             valid = (pi_to_weight < 0.041)
           when 54 #assisted pullup
             valid = (pi_to_weight < 0.11)
-          when 132 #assisted chinup
+          when 131 #assisted chinup
             valid = (pi_to_weight < 0.11)
-          when 133 #assisted wide grip pullup
+          when 132 #assisted wide grip pullup
             valid = (pi_to_weight < 0.13)
-          when 134 #pullups with weight belt
+          when 133 #pullups with weight belt
             valid = (pi_to_weight > 0.25)
-          when 135 #chinups with weight belt
+          when 134 #chinups with weight belt
             valid = (pi_to_weight > 0.25)
-          when 136 #wide grip pullups with weight belt
+          when 135 #wide grip pullups with weight belt
             valid = (pi_to_weight > 0.30)
           when 58 # assisted dips
             valid = (pi_to_weight < 0.053)
