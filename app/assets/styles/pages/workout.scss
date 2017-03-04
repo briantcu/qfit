@@ -1,5 +1,54 @@
 @import "../common/common";
 
+.tour-tour {
+  max-width: 460px;
+  padding: 0px;
+  @media (max-width: 480px) {
+    width: 360px;
+  }
+  .popover-title {
+    background-color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    letter-spacing: -0.6px;
+    color: #7b7b7b;
+    border-bottom: none;
+    padding-top: 15px;
+  }
+
+  .popover-content {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.4px;
+    color: #9fa9ba;
+    padding-bottom: 30px;
+    padding-top: 15px;
+  }
+
+  .popover-navigation {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #7953aa;
+    font-size: 24px;
+    height: 65px;
+    color: white;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    span {
+      cursor: pointer;
+    }
+    .disabled {
+      cursor: auto !important;
+      color: #9fa9ba;
+    }
+    .right {
+      float: right;
+    }
+  }
+
+}
+
 .banner-row {
   background-color: $lightning;
   flex: 0 1 48px;

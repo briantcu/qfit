@@ -24,6 +24,7 @@ import CoachActions from 'actions/coach_actions';
 import validator from 'validator';
 import DoWork from 'views/do-work/do-work';
 import moment from 'moment';
+import Tour from 'bootstrap-tour';
 
 require('pages/workout.scss');
 
@@ -126,7 +127,64 @@ class App extends React.Component {
         TeamStore.addChangeListener(this.onChange);
         ExerciseStore.addChangeListener(this.onChange);
         QuadPodStore.addChangeListener(this.onChange);
+        var tour = new Tour({
+            template: `<div class='popover tour'>
+                            <div class='arrow'></div>
+                            <h3 class='popover-title'></h3>
+                            <div class='popover-content'></div>
+                            <div class='popover-navigation'>
+                                <span data-role='prev'>Prev</span>
+                                <span data-role='separator'>|</span>
+                                <span  data-role='next'>Next</span>
+                                <span class="right" data-role='end'>End</span>
+                            </div>
+                    </div>`,
+            steps: [
+                {
+                    element: ".calendar",
+                    title: "Your Schedule",
+                    content: "Here's how you'll navigate between Quadfit workouts. Workouts are created 2 days in advance, so seeing 'Future' here means that you're scheduled to exercise on this day, but Quadfit hasn't created the workout yet. Workouts will show as 'Active' until you have completed them.",
+                    placement: 'bottom',
+                    prev: -1,
+                    backdrop: true,
+                    backdropContainer: '.app'
+                },
+                {
+                    element: ".subnav",
+                    title: "Workout Options",
+                    content: "You can use these options to complete this workout, share this workout, or change your Quadfit program. Be sure to enter your workout results and hit 'Complete this Workout', because Quadfit will use this information to make your future workouts better.",
+                    placement: 'bottom',
+                },
+                {
+                    element: ".exercise-0 .thumb-col",
+                    title: "Exercise Details",
+                    content: "Here you can watch a video, read tips, swap out the exercise, or remove this exercise from the workout.",
+                    placement: 'bottom',
+                },
+                {
+                    element: ".exercise-0 .vert-circle-check",
+                    title: "Record Keeping",
+                    content: "Be sure to enter workout results, because Quadfit uses this to track your progress and make future workouts better. If you don't complete the exercise, simply leave it blank.",
+                    placement: 'bottom',
+                },
+                {
+                    element: ".last-row",
+                    title: "Workout Actions",
+                    content: "If you've made some changes to a workout by adding or deleting exercises, you can use the Reset Workout link to reset the workout to the original workout that Quadfit provided. Use the Complete Workout button to save all your results!",
+                    placement: 'bottom',
+                },
+                {
+                    element: ".header",
+                    title: "That's it!",
+                    content: "We hope you enjoy Quadfit! Don't forget to add people to your Quad Pod to share workouts and compete against friends. If you have any questions, shoot us an email at web@quadfit.com.",
+                    placement: 'bottom',
+                    next: -1,
+                }
+            ]});
+        tour.init();
+        tour.start();
         this.load();
+
     }
 
     componentWillUnmount () {

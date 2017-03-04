@@ -3,6 +3,7 @@
     "JSON": "^1.0.0",
     "babel-runtime": "^6.9.2",
     "bootstrap": "3.3.6",
+    "bootstrap-tour": "0.11.0",
     "chart.js": "^2.2.2",
     "chartkick": "^2.0.1",
     "clipboard": "^1.5.15",
