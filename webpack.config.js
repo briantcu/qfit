@@ -57,6 +57,7 @@ var config = {
             React: 'react',
             _: 'underscore'
         }),
+        new webpack.optimize.DedupePlugin(),
         new webpack.SourceMapDevToolPlugin({
             filename: '[file].map'
         })

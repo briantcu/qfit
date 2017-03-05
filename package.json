@@ -58,7 +58,7 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/karma start karma.conf.js",
-    "dev": "webpack -d --watch",
-    "build": "webpack -p"
+    "dev": "webpack -d --watch --optimize-dedupe",
+    "build": "webpack -p --optimize-dedupe"
   }
 }

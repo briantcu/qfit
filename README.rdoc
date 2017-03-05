@@ -1,3 +1,3 @@
-webpack --watch -d
+webpack --watch -d --optimize-dedupe
 
 sidekiq -e development -L ./log/sidekiq.log -C ./config/sidekiq.yml

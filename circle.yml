@@ -1,6 +1,6 @@
 test:
   override:
-    - webpack --config webpack.prod.config.js -p
+    - webpack --config webpack.prod.config.js -p --optimize-dedupe
     - bundle exec rake test
     - bundle exec rspec --color --require spec_helper spec --format documentation
 
