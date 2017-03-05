@@ -150,6 +150,8 @@ class Account extends React.Component {
             user['password_confirmation'] = this.refs.password.getValue();
         }
         user['user_name'] = this.refs.username.getValue();
+        user['experience_level'] = this.refs.experienceLevel.value;
+        console.log(this.refs.experienceLevel.value);
         return {user: user};
     }
 
@@ -252,7 +254,7 @@ class Account extends React.Component {
                                         <If condition={this.state.user.first_name}>
                                             <div className="row">
                                                 <div className="col-md-12">
-                                                    <span className={`purple-bot-container border-top ${this.state.usernameErrors.length > 0 ? 'error' : null}`}>
+                                                    <span className={`purple-bot-container border-top ${this.state.usernameErrors.length > 0 ? 'error' : ''}`}>
                                                         <FancyInput ref="username" name="user_name" placeholder="Username" type="text"
                                                                     changedCallback={this.evalUsername} errors={this.state.usernameErrors}
                                                                     value={this.state.user.user_name} />
@@ -261,7 +263,7 @@ class Account extends React.Component {
                                             </div>
                                         <div className="row">
                                             <div className="col-md-12">
-                                                <span className={`purple-bot-container ${this.state.firstNameErrors.length > 0 ? 'error' : null}`}>
+                                                <span className={`purple-bot-container ${this.state.firstNameErrors.length > 0 ? 'error' : ''}`}>
                                                     <FancyInput ref="firstName" name="first_name" placeholder="First Name" type="text"
                                                                 errors={this.state.firstNameErrors} value={this.state.user.first_name} />
                                                 </span>
@@ -269,7 +271,7 @@ class Account extends React.Component {
                                         </div>
                                         <div className="row">
                                             <div className="col-md-12">
-                                                <span className={`purple-bot-container ${this.state.lastNameErrors.length > 0 ? 'error' : null}`}>
+                                                <span className={`purple-bot-container ${this.state.lastNameErrors.length > 0 ? 'error' : ''}`}>
                                                     <FancyInput ref="lastName" name="last_name" placeholder="Last Name" type="text"
                                                                 errors={this.state.lastNameErrors} value={this.state.user.last_name} />
                                                 </span>
@@ -277,15 +279,15 @@ class Account extends React.Component {
                                         </div>
                                         <div className="row">
                                             <div className="col-md-12">
-                                                <span className={`purple-bot-container ${this.state.emailErrors.length > 0 ? 'error' : null}`}>
+                                                <span className={`purple-bot-container ${this.state.emailErrors.length > 0 ? 'error' : ''}`}>
                                                     <FancyInput ref="email" name="email" placeholder="Email Address" type="text"
                                                                 errors={this.state.emailErrors} value={this.state.user.email} />
                                                 </span>
                                             </div>
                                         </div>
-                                        <div className="row">
-                                            <div className="col-md-12">
-                                                <span className={`purple-bot-container ${this.state.passwordErrors.length > 0 ? 'error' : null}`}>
+                                        <div className="row input-row">
+                                            <div className="col-md-12 input-row">
+                                                <span className={`purple-bot-container ${this.state.passwordErrors.length > 0 ? 'error' : ''}`}>
                                                     <FancyInput ref="password" name="password" placeholder="New Password" type="password"
                                                                 errors={this.state.passwordErrors} />
                                                 </span>
@@ -293,11 +295,21 @@ class Account extends React.Component {
                                         </div>
                                         <div className="row">
                                             <div className="col-md-12">
+                                                <span className="purple-bot-container standard-text experience-row">
+                                                    Experience level
+                                                    <select ref="experienceLevel" defaultValue={this.state.user.experience_level} className="form-control select">
+                                                        <option value="1">Beginner</option>
+                                                        <option value="2">Intermediate</option>
+                                                        <option value="3">Advanced</option>
+                                                    </select>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-12">
                                             <span className='purple-bot-container bio-section standard-text'>
                                                 About Me
-                                                <textarea ref="bioBox" className="bio-box" maxLength="150" rows="10">
-                                                    {this.state.user.bio}
-                                                </textarea>
+                                                <textarea ref="bioBox" className="bio-box" maxLength="150" rows="10" defaultValue={this.state.user.bio} />
                                             </span>
                                             </div>
                                         </div>

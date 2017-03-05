@@ -154,7 +154,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :sex, :phone, :user_name, :weight, :birth_year, :password, :password_confirmation, :bio)
+    params.require(:user).permit(:first_name, :last_name, :email, :sex, :phone, :user_name, :weight, :birth_year, :password, :password_confirmation, :bio, :experience_level)
   end
 
   def fitness_assessment_params
