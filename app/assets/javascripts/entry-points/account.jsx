@@ -151,7 +151,6 @@ class Account extends React.Component {
         }
         user['user_name'] = this.refs.username.getValue();
         user['experience_level'] = this.refs.experienceLevel.value;
-        console.log(this.refs.experienceLevel.value);
         return {user: user};
     }
 

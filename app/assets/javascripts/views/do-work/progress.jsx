@@ -17,7 +17,6 @@ class Progress extends React.Component {
         this.formatChartData = this.formatChartData.bind(this);
         this.afterScaleUpdate = this.afterScaleUpdate.bind(this);
         this.drawMonthBar = this.drawMonthBar.bind(this);
-        this.chartHover = this.chartHover.bind(this);
         this.chartTypes = ['user_weight', 'power_index', 'completed_workouts', 'exercise'];
         this.periods = {
             three_months: 1,
@@ -36,10 +35,6 @@ class Progress extends React.Component {
             maxes: []
         };
 
-    }
-
-    chartHover () {
-        console.log(arguments);
     }
 
     componentDidMount () {
@@ -162,7 +157,7 @@ class Progress extends React.Component {
             for (var property in this.monthBarData) {
                 if (this.monthBarData.hasOwnProperty(property)) { //{august: 22}, {september: 8}
                     var bar = $("<span class='timeline-bar'></span>");
-                    var barWidth = ((this.monthBarData[property] / totalTicks) * (this.scaleWidth)); //3 is a hack, but works
+                    var barWidth = ((this.monthBarData[property] / totalTicks) * (this.scaleWidth));
                     bar.css('width', barWidth);
                     bar.css('background-color', colorArray[index]);
                     index ++;
