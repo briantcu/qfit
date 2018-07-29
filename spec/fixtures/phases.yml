@@ -1,0 +1,138 @@
+# == Schema Information
+#
+# Table name: phases
+#
+#  id              :integer          not null, primary key
+#  male_power_sets :integer
+#  male_power_reps :integer
+#  male_other_sets :integer
+#  male_other_reps :integer
+#  fem_power_sets  :integer
+#  fem_power_reps  :integer
+#  fem_other_sets  :integer
+#  fem_other_reps  :integer
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
+---
+Phase_1:
+  id: 1
+  male_power_sets: 4
+  male_power_reps: 6
+  male_other_sets: 4
+  male_other_reps: 15
+  fem_power_sets: 4
+  fem_power_reps: 6
+  fem_other_sets: 4
+  fem_other_reps: 15
+Phase_2:
+  id: 2
+  male_power_sets: 4
+  male_power_reps: 6
+  male_other_sets: 4
+  male_other_reps: 10
+  fem_power_sets: 4
+  fem_power_reps: 6
+  fem_other_sets: 4
+  fem_other_reps: 10
+Phase_3:
+  id: 3
+  male_power_sets: 4
+  male_power_reps: 6
+  male_other_sets: 4
+  male_other_reps: 15
+  fem_power_sets: 4
+  fem_power_reps: 6
+  fem_other_sets: 4
+  fem_other_reps: 18
+Phase_4:
+  id: 4
+  male_power_sets: 4
+  male_power_reps: 6
+  male_other_sets: 4
+  male_other_reps: 12
+  fem_power_sets: 4
+  fem_power_reps: 6
+  fem_other_sets: 4
+  fem_other_reps: 12
+Phase_5:
+  id: 5
+  male_power_sets: 5
+  male_power_reps: 3
+  male_other_sets: 4
+  male_other_reps: 8
+  fem_power_sets: 5
+  fem_power_reps: 4
+  fem_other_sets: 4
+  fem_other_reps: 8
+Phase_6:
+  id: 6
+  male_power_sets: 5
+  male_power_reps: 4
+  male_other_sets: 4
+  male_other_reps: 6
+  fem_power_sets: 5
+  fem_power_reps: 4
+  fem_other_sets: 4
+  fem_other_reps: 10
+Phase_7:
+  id: 7
+  male_power_sets: 5
+  male_power_reps: 3
+  male_other_sets: 4
+  male_other_reps: 8
+  fem_power_sets: 5
+  fem_power_reps: 4
+  fem_other_sets: 4
+  fem_other_reps: 6
+Phase_8:
+  id: 8
+  male_power_sets: 5
+  male_power_reps: 4
+  male_other_sets: 4
+  male_other_reps: 4
+  fem_power_sets: 5
+  fem_power_reps: 4
+  fem_other_sets: 4
+  fem_other_reps: 8
+Phase_9:
+  id: 9
+  male_power_sets: 4
+  male_power_reps: 5
+  male_other_sets: 4
+  male_other_reps: 10
+  fem_power_sets: 4
+  fem_power_reps: 6
+  fem_other_sets: 4
+  fem_other_reps: 10
+Phase_10:
+  id: 10
+  male_power_sets: 5
+  male_power_reps: 3
+  male_other_sets: 4
+  male_other_reps: 6
+  fem_power_sets: 4
+  fem_power_reps: 5
+  fem_other_sets: 4
+  fem_other_reps: 15
+Phase_11:
+  id: 11
+  male_power_sets: 4
+  male_power_reps: 5
+  male_other_sets: 4
+  male_other_reps: 8
+  fem_power_sets: 4
+  fem_power_reps: 6
+  fem_other_sets: 4
+  fem_other_reps: 8
+Phase_12:
+  id: 12
+  male_power_sets: 5
+  male_power_reps: 3
+  male_other_sets: 4
+  male_other_reps: 6
+  fem_power_sets: 4
+  fem_power_reps: 5
+  fem_other_sets: 4
+  fem_other_reps: 12

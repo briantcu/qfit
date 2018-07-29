@@ -1,0 +1,40 @@
+@import "../common/common";
+
+.qfButton {
+  padding: 12px 40px;
+  border: solid 3px $purple;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: $purple;
+  border-radius: 0;
+  background-color: transparent;
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
+}
+
+.qfInverseButton {
+  padding: 12px 40px;
+  border-radius: 0;
+  border: solid 3px #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  color: #fff;
+  background-color: $purple;
+  &:hover {
+    color: #fff;
+    background-color: $purple;;
+    border-color: #fff;;
+  }
+  &:focus {
+    color: #fff;
+    background-color: $purple;;
+    border-color: #fff;;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
+}

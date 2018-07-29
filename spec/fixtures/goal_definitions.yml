@@ -1,0 +1,148 @@
+# == Schema Information
+#
+# Table name: goal_definitions
+#
+#  id            :integer          not null, primary key
+#  order         :integer
+#  goal_text     :text
+#  achieved_text :text
+#  points        :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#  goal_type     :integer
+#
+
+---
+GoalDefinition_1:
+  id: 1
+  order: 1
+  goal_text: Complete your workout schedule
+  achieved_text: Yes! You've completed your workout schedule!
+  points: 10
+  created_at: 2016-03-13 23:28:57.924612000 Z
+  updated_at: 2016-03-21 02:14:14.740360000 Z
+  goal_type: 1
+GoalDefinition_2:
+  id: 2
+  order: 2
+  goal_text: Complete Quadfit onboarding
+  achieved_text: Yoooo, onboarding complete! You're a Quadfit expert now.
+  points: 30
+  created_at: 2016-03-13 23:30:06.051656000 Z
+  updated_at: 2016-03-21 02:05:11.633625000 Z
+  goal_type: 3
+GoalDefinition_3:
+  id: 3
+  order: 3
+  goal_text: Create a username so that we can display your fine work in the Leaderboards
+  achieved_text: Done and done. Now you're eligible to be shown on the Leaderboards,
+    and you can start communicating with other Quadfit members!
+  points: 10
+  created_at: 2016-03-13 23:33:41.768616000 Z
+  updated_at: 2016-03-21 02:05:27.198934000 Z
+  goal_type: 3
+GoalDefinition_4:
+  id: 4
+  order: 4
+  goal_text: Complete a workout and enter in what you accomplished during the workout.
+    This allows Quadfit to track your progress, and give you better workouts in the
+    future
+  achieved_text: That's what's up! You completed your first workout. Now keep up that
+    momentum!
+  points: 100
+  created_at: 2016-03-13 23:36:12.199688000 Z
+  updated_at: 2016-03-21 02:05:36.280095000 Z
+  goal_type: 3
+GoalDefinition_5:
+  id: 5
+  order: 5
+  goal_text: Don't keep all this workout goodness to yourself! Share your workouts
+    so other people can see your domination!
+  achieved_text: You've leveled up! Sharing really is caring.
+  points: 50
+  created_at: 2016-03-13 23:38:16.946665000 Z
+  updated_at: 2016-03-21 02:05:46.128821000 Z
+  goal_type: 3
+GoalDefinition_6:
+  id: 6
+  order: 6
+  goal_text: Start building your Quad Pod! Invite people to join your QP, and you'll
+    be able to see each other's workouts, compete, and send messages of motivation...or
+    trash talk
+  achieved_text: Swwweeeet, mission accomplished. Now the real fun begins.
+  points: 75
+  created_at: 2016-03-13 23:40:56.299019000 Z
+  updated_at: 2016-03-21 02:05:53.975682000 Z
+  goal_type: 3
+GoalDefinition_7:
+  id: 7
+  order: 1
+  goal_text: Create an account for an athlete, or use your sign up code to invite
+    an athlete to join.
+  achieved_text: Next up, let Quadfit help you create some workouts!
+  points: 150
+  created_at: 2016-03-21 00:20:34.868651000 Z
+  updated_at: 2016-03-21 00:20:34.868651000 Z
+  goal_type: 2
+GoalDefinition_8:
+  id: 8
+  order: 2
+  goal_text: Create a workout for an athlete.
+  achieved_text: Great, now make sure that the workout results get recorded so that
+    Quadfit can track progress and give better future workouts.
+  points: 250
+  created_at: 2016-03-21 00:22:13.022954000 Z
+  updated_at: 2016-03-21 00:22:13.022954000 Z
+  goal_type: 2
+GoalDefinition_9:
+  id: 10
+  order: 2
+  goal_text: Complete Quadfit onboarding
+  achieved_text: Yoooo, onboarding complete! You're a Quadfit expert now.
+  points: 30
+  created_at: 2016-03-21 02:11:53.756169000 Z
+  updated_at: 2016-03-21 02:11:53.756169000 Z
+  goal_type: 2
+GoalDefinition_10:
+  id: 12
+  order: 3
+  goal_text: Create a username so that we can display your fine work in the Leaderboards
+  achieved_text: Done and done. Now you're eligible to be shown on the Leaderboards,
+    and you can start communicating with other Quadfit members!
+  points: 10
+  created_at: 2016-03-21 02:12:23.626656000 Z
+  updated_at: 2016-03-21 02:12:23.626656000 Z
+  goal_type: 2
+GoalDefinition_11:
+  id: 13
+  order: 4
+  goal_text: Complete a workout and enter in what you accomplished during the workout.
+    This allows Quadfit to track your progress, and give you better workouts in the
+    future
+  achieved_text: That's what's up! You completed your first workout. Now keep up that
+    momentum!
+  points: 100
+  created_at: 2016-03-21 02:12:23.635183000 Z
+  updated_at: 2016-03-21 02:12:23.635183000 Z
+  goal_type: 2
+GoalDefinition_12:
+  id: 14
+  order: 5
+  goal_text: Don't keep all this workout goodness to yourself! Share your workouts
+    so other people can see your domination!
+  achieved_text: You've leveled up! Sharing really is caring.
+  points: 50
+  created_at: 2016-03-21 02:12:23.644175000 Z
+  updated_at: 2016-03-21 02:12:23.644175000 Z
+  goal_type: 2
+GoalDefinition_13:
+  id: 15
+  order: 6
+  goal_text: Start building your Quad Pod! Invite people to join your QP, and you'll
+    be able to see each other's workouts, compete, and send messages of motivation...or
+    trash talk
+  achieved_text: Swwweeeet, mission accomplished. Now the real fun begins.
+  points: 75
+  created_at: 2016-03-21 02:12:23.653687000 Z
+  updated_at: 2016-03-21 02:12:23.653687000 Z
+  goal_type: 2

@@ -1,0 +1,99 @@
+@import "../../common/common";
+
+.schedule {
+  .col-xs-2 {
+    width: 12%;
+  }
+
+  .errors {
+    color: red;
+    padding-bottom: 35px;
+    margin-top: -50px;
+  }
+
+  .loading-overlay {
+    position: fixed !important;
+  }
+
+  .question {
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+    text-align: center;
+    color: $dark-purple;
+  }
+
+  .square-check-wrapper {
+    margin-bottom: 20px;
+    &:not(:first-child) {
+      margin-left: 20px;
+    }
+  }
+
+  .context {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: #4a4a4a;
+  }
+
+  .details {
+    margin-bottom: 15px;
+  }
+
+  .days {
+    margin-bottom: 50px;
+  }
+  .no-padding {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .title {
+    letter-spacing: -1.1px;
+    text-align: center;
+    color: $dark-purple;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .back-link {
+    padding-top: 20px;
+  }
+
+  @media (max-width: 413px)  {
+    .square-check-wrapper {
+      width: 100px;
+      padding-top: 5px;
+      margin-left: 5px !important;
+      .label-text {
+        font-size: 11px;
+      }
+    }
+  }
+  @media (min-width: 414px) and (max-width: 479px)  {
+    .square-check-wrapper {
+      width: 110px;
+      padding-top: 5px;
+      margin-left: 5px !important;
+      .label-text {
+        font-size: 12px;
+      }
+    }
+  }
+  @media (max-width: 580px) {
+    .square-check-wrapper {
+      &:nth-child(4) {
+        margin-left: 0 !important;
+      }
+      &:nth-child(1) {
+        margin-left: 0 !important;
+      }
+      &:nth-child(7) {
+        margin-left: 0 !important;
+      }
+    }
+  }
+
+}

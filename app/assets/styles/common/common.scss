@@ -1,0 +1,187 @@
+@import 'font';
+@import 'colors';
+@import 'navbar';
+@import 'text';
+@import 'modal';
+
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  height: 100%;
+  width: 100%
+}
+
+.form-control {
+  font-size: 16px !important;
+}
+
+input[type='text'] {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.hundo-height {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+#app {
+  height: 100%;
+}
+
+.avi-wrapper {
+  background-position: center;
+  background-size: cover;
+  display: inline-block;
+}
+
+.no-margin {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.loading-overlay {
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  left: 0;
+  top: 0;
+  background-color: white;
+  opacity: .8;
+  position: fixed;
+  img {
+    float: none;
+    height: 164px;
+    width: 164px;
+    display: block;
+    margin: 25% auto auto;
+  }
+}
+
+.visible-micro {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .visible-micro {
+    display: block;
+  }
+}
+
+.hover {
+  cursor: pointer;
+}
+
+@mixin border-bottom {
+  border-bottom: 1px solid $purple;
+}
+
+@mixin border-top {
+  border-top: 1px solid $purple;
+}
+
+.subtle-link {
+  color: $light-gray;
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    color: $purple;
+  }
+}
+
+.white-link {
+  color: white !important;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    color: white !important;
+    text-decoration: underline !important;
+    background-color: transparent !important;
+  }
+}
+
+.lightning-underline {
+  border-bottom: 4px solid $lightning;
+}
+
+.bold-link {
+  color: $dark-purple;
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    color: $purple;
+  }
+}
+
+.norm-link {
+  color: $purple;
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    color: $purple;
+  }
+}
+
+.white {
+  color: #fff;
+}
+
+.purple {
+  color: $purple;
+}
+
+.green {
+  color: $green;
+}
+
+.red {
+  color: $red;
+}
+
+.form-control {
+  height: 30px !important;
+}
+
+.no-padding {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+@media (max-width: 768px) {
+  .no-padding-xs {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+
+
+.small-link {
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: $purple;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.metal-bg {
+  flex: 1 1 auto;
+  background: url(https://dwx350bwdtt59.cloudfront.net/SignupBackground.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 30px;
+}
+

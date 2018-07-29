@@ -1,0 +1,122 @@
+# == Schema Information
+#
+# Table name: sprints
+#
+#  id          :integer          not null, primary key
+#  difficulty  :integer
+#  name        :string(255)
+#  sprint_type :integer
+#  num_laps    :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+---
+Sprint_1:
+  id: 1
+  difficulty: 1
+  name: 4 X 100 yards X 1
+  sprint_type: 1
+  num_laps: 4
+Sprint_2:
+  id: 2
+  difficulty: 2
+  name: 4 X 100 yards X 2
+  sprint_type: 1
+  num_laps: 8
+Sprint_3:
+  id: 3
+  difficulty: 3
+  name: 4 X 100 yards X 3
+  sprint_type: 1
+  num_laps: 12
+Sprint_4:
+  id: 4
+  difficulty: 4
+  name: 4 X 100 yards X 4
+  sprint_type: 1
+  num_laps: 16
+Sprint_5:
+  id: 5
+  difficulty: 2
+  name: 4 X 200 yards
+  sprint_type: 1
+  num_laps: 4
+Sprint_6:
+  id: 6
+  difficulty: 4
+  name: 8 X 200 yards
+  sprint_type: 1
+  num_laps: 8
+Sprint_7:
+  id: 7
+  difficulty: 5
+  name: 12 X 200 yards
+  sprint_type: 1
+  num_laps: 12
+Sprint_8:
+  id: 8
+  difficulty: 1
+  name: 4 X 3 Court Lengths X 1
+  sprint_type: 2
+  num_laps: 4
+Sprint_9:
+  id: 9
+  difficulty: 2
+  name: 4 X 3 Court Lengths X 2
+  sprint_type: 2
+  num_laps: 8
+Sprint_10:
+  id: 10
+  difficulty: 3
+  name: 4 X 3 Court Lengths X 3
+  sprint_type: 2
+  num_laps: 12
+Sprint_11:
+  id: 11
+  difficulty: 4
+  name: 4 X 3 Court Lengths X 4
+  sprint_type: 2
+  num_laps: 16
+Sprint_12:
+  id: 12
+  difficulty: 2
+  name: 4 X 6 Court Lengths
+  sprint_type: 2
+  num_laps: 4
+Sprint_13:
+  id: 13
+  difficulty: 4
+  name: 8 X 6 Court Lengths
+  sprint_type: 2
+  num_laps: 8
+Sprint_14:
+  id: 14
+  difficulty: 5
+  name: 12 X 6 Court Lengths
+  sprint_type: 2
+  num_laps: 12
+Sprint_15:
+  id: 15
+  difficulty: 1
+  name: 6 mins treadmill
+  sprint_type: 3
+  num_laps: 4
+Sprint_16:
+  id: 16
+  difficulty: 2
+  name: 9 mins treadmill
+  sprint_type: 3
+  num_laps: 6
+Sprint_17:
+  id: 17
+  difficulty: 3
+  name: 15 mins treadmill
+  sprint_type: 3
+  num_laps: 10
+Sprint_18:
+  id: 18
+  difficulty: 4
+  name: 18 mins treadmill
+  sprint_type: 3
+  num_laps: 12

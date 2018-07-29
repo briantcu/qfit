@@ -1,0 +1,50 @@
+@import "../../common/common";
+
+
+.coach {
+
+  h1 {
+    padding-top: 20px;
+  }
+
+  .title-row {
+    padding-bottom: 50px;
+  }
+
+  hr.hr-left {
+    display: inline-block;
+    margin-top: 0.8em;
+    margin-bottom: 0.5em;
+    margin-right: 15px;
+    border-style: inset;
+    max-width: 250px;
+    width: 33%;
+    border-top: 1px solid $light-gray;
+  }
+
+  hr.hr-right {
+    display: inline-block;
+    margin-top: 0.8em;
+    margin-bottom: 0.5em;
+    margin-left: 15px;
+    border-style: inset;
+    border-top: 1px solid $light-gray;
+    max-width: 250px;
+    width: 33%;
+  }
+
+  .desc {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    button {
+      margin-top: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .title-row {
+      padding-bottom: 20px;
+    }
+  }
+
+}

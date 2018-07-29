@@ -1,0 +1,211 @@
+@import "../../common/common";
+
+.calendar {
+  height: 145px;
+
+  .no-cursor {
+    cursor: auto !important;
+  }
+
+  .small-nav {
+    height: 60px;
+  }
+
+  .calendar-cell {
+    text-align: center;
+    padding-top: 35px;
+    height: 145px;
+    cursor: pointer;
+
+    .cal-subtext {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      letter-spacing: -0.3px;
+      color: $light-gray;
+      margin-bottom: -10px;
+    }
+
+    .cal-text {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 36px;
+      letter-spacing: -0.8px;
+      color: $dark-purple;
+      font-weight: 300;
+      height: 49px;
+    }
+
+    @media (max-width: 991px) and (min-width: 481px) {
+      .cal-text {
+        font-size: 24px;
+        padding-top: 5px;
+      }
+    }
+    @media (max-width: 480px) {
+      .cal-text {
+        font-size: 18px;
+        padding-top: 15px;
+      }
+    }
+  }
+
+  .border {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 35%;
+      bottom: 35%;
+      left: 0px;
+      display: block;
+      border-left: 1px solid #e6e6e6;
+    }
+  }
+
+
+  .selected {
+    border-bottom: 5px solid $purple;
+  }
+
+  .disabled {
+    cursor: auto;
+    &:after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: transparent;
+      top: 60px;
+      border: none !important;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: transparent;
+      top: 60px;
+      border: none !important;
+    }
+  }
+
+  .cal-container {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @media (min-width: 768px) {
+    .cal-container {
+      width: 750px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .cal-container {
+      width: 970px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .cal-container {
+      width: 1170px;
+    }
+  }
+
+
+
+}
+.left-arr {
+  cursor: pointer;
+  text-align: right;
+  display: inline-block;
+  float: left;
+  &:after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 15px;
+    background: transparent;
+    top: 50px;
+    border: 3px solid $gray2;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    cursor: pointer;
+  }
+
+}
+
+.right-arr {
+  cursor: pointer;
+  text-align: left;
+  display: inline-block;
+  float: right;
+  &:after {
+    cursor: pointer;
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    top: 50px;
+    border: 3px solid $gray2;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(225deg);
+    -moz-transform: rotate(225deg);
+    -o-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+    transform: rotate(225deg);
+  }
+}
+@media (max-width: 768px) and (min-width: 351px) {
+  .left-arr {
+    width: 12.5%;
+    &:after {
+      right: -30px;
+    }
+  }
+  .right-arr {
+    width: 12.5%;
+    &:after {
+      left: -30px;
+    }
+
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar {
+    height: 125px;
+    .calendar-cell {
+      padding-top: 20px;
+      height: 125px;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .left-arr {
+    width: 12.5%;
+    &:after {
+      right: -10px;
+      width: 30px;
+      height: 30px;
+      top: 50px;
+    }
+  }
+  .right-arr {
+    width: 12.5%;
+    &:after {
+      width: 30px;
+      height: 30px;
+      top: 50px;
+      left: -10px;
+    }
+  }
+}
+

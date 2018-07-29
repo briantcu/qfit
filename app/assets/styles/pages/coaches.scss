@@ -1,0 +1,202 @@
+@import "../common/common";
+
+body {
+  background-color: $gray2;
+}
+
+.coaches {
+
+  .sign-up-code {
+    .row {
+      border-bottom: solid 1px #c9c9c9;
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+      height: 70px;
+      padding-top: 20px;
+    }
+    @media (max-width: 780px) {
+      .row {
+        height: 125px !important;
+      }
+      .next-row-micro {
+        margin-top: 10px;
+      }
+    }
+
+  }
+
+  .banner-row {
+    background-color: $lightning;
+    flex: 0 1 48px;
+    font-size: 18px;
+    line-height: 1.3;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: $dark-purple;
+    .bold {
+      font-weight: 700;
+    }
+    .link {
+      color: $dark-purple;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      font-size: 14px !important;
+    }
+  }
+  .fixed {
+    position: fixed;
+    top: 0px;
+    z-index: 100;
+    width: 100%;
+    margin: 0;
+  }
+
+  .main {
+    flex: 1 1 auto;
+  }
+
+  .sec {
+    background-color: white;
+    margin-top: 20px;
+    min-height: 150px;
+
+    .container {
+      margin-bottom: 20px;
+    }
+
+    .sec-header {
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: -0.6px;
+      color: $dark-purple;
+      padding-top: 5px;
+    }
+
+    .head {
+      border-bottom: solid 2px $purple;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+
+    .action {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.1;
+      color: $purple;
+      text-align: right;
+      padding-top: 13px;
+    }
+
+    .main {
+      padding-bottom: 20px;
+    }
+
+    .actions {
+      color: $purple;
+      font-size: 16px;
+      line-height: 1.2;
+      margin-left: 20px;
+      .separator {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .last-sec {
+    margin-bottom: 40px;
+  }
+
+  .first-sec {
+    margin-top: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .sec {
+      //padding-left: 30px !important;
+      //padding-right: 30px !important;
+    }
+    .actions {
+      font-size: 12px !important;
+    }
+
+    .xs-padding {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+
+    h1 {
+      font-size: 36px !important;
+    }
+    .standard-text {
+      font-size: 14px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .head {
+      background-color: $purple !important;
+      text-align: center;
+      height: 80px !important;
+      .sec-header {
+        color: white !important;
+      }
+    }
+    .action {
+      color: white !important;
+      font-size: 14px !important;
+      text-align: center !important;
+      padding-top: 10px !important;
+    }
+  }
+
+  @media (max-width: 768px) and (min-width: 481px) {
+    .head {
+      background-color: $purple !important;
+      text-align: center !important;
+      height: 70px;
+      .sec-header {
+        color: white !important;
+      }
+    }
+    .action {
+      color: white !important;
+      text-align: center !important;
+      padding-top: 10px !important;
+    }
+  }
+}
+
+.add-athlete {
+  select {
+    margin-bottom: 50px;
+  }
+
+  .mid-option {
+    border-left: solid 1px $purple;
+    border-right: solid 1px $purple;
+  }
+
+  .modal-footer {
+    text-align: center !important;
+  }
+
+  .or {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .pick-goal {
+    margin-top: 20px;
+    margin-bottom: 80px;
+  }
+
+  .label-text {
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: -0.4px;
+    text-align: center;
+    color: #4a4a4a;
+  }
+}

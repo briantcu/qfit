@@ -1,0 +1,81 @@
+@import '../../common/common';
+
+.friends {
+  .friend {
+    min-height: 70px;
+    padding-top: 10px;
+    width: 100%;
+    display: block;
+    float: left;
+    .unseen-bubble {
+      background-color: #f3c222;;
+      color: white;
+      display: inline-block;
+      height: 15px;
+      width: 15px;
+      font-size: 8px;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      -ms-border-radius: 8px;
+      -o-border-radius: 8px;
+      border-radius: 8px;
+      top: 13px;
+      left: 15px;
+      padding-top: 1px;
+      right: -4px;
+      position: relative;
+    }
+    .flag {
+      width: 35px;
+      height: 30px;
+      border-radius: 5px;
+      cursor: pointer;
+      background: $purple url(https://dwx350bwdtt59.cloudfront.net/airplane.png) no-repeat center;
+      text-align: center;
+      display: inline-block;
+      margin-top: 10px;
+      float: left;
+    }
+    .pi {
+      width: 112px;
+      display: inline-block;
+      text-align: right;
+      vertical-align: top;
+      margin-top: 12px;
+    }
+    .remove {
+      width: 20px;
+      display: inline-block;
+      text-align: right;
+      float: right;
+      padding-top: 10px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .username {
+      width: 180px;
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 12px;
+      padding-top: 0px;
+    }
+
+    @media (max-width: 480px) {
+      .pi {
+        margin-bottom: 20px;
+        margin-top: 0px !important;
+      }
+      .remove {
+        margin-top: -10px;
+      }
+    }
+  }
+  .sec-main {
+    padding-bottom: 0px !important;
+  }
+  .avi-wrap {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+}

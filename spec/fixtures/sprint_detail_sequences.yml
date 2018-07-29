@@ -1,0 +1,813 @@
+# == Schema Information
+#
+# Table name: sprint_detail_sequences
+#
+#  id         :integer          not null, primary key
+#  sprint_id  :integer
+#  detail_num :integer
+#  order_num  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+---
+SprintDetailSequence_1:
+  id: 1
+  sprint_id: 1
+  detail_num: 1
+  order_num: 1
+SprintDetailSequence_2:
+  id: 2
+  sprint_id: 1
+  detail_num: 1
+  order_num: 2
+SprintDetailSequence_3:
+  id: 3
+  sprint_id: 1
+  detail_num: 1
+  order_num: 3
+SprintDetailSequence_4:
+  id: 4
+  sprint_id: 1
+  detail_num: 2
+  order_num: 4
+SprintDetailSequence_5:
+  id: 5
+  sprint_id: 2
+  detail_num: 1
+  order_num: 1
+SprintDetailSequence_6:
+  id: 6
+  sprint_id: 2
+  detail_num: 1
+  order_num: 2
+SprintDetailSequence_7:
+  id: 7
+  sprint_id: 2
+  detail_num: 1
+  order_num: 3
+SprintDetailSequence_8:
+  id: 8
+  sprint_id: 2
+  detail_num: 3
+  order_num: 4
+SprintDetailSequence_9:
+  id: 9
+  sprint_id: 2
+  detail_num: 1
+  order_num: 5
+SprintDetailSequence_10:
+  id: 10
+  sprint_id: 2
+  detail_num: 1
+  order_num: 6
+SprintDetailSequence_11:
+  id: 11
+  sprint_id: 2
+  detail_num: 1
+  order_num: 7
+SprintDetailSequence_12:
+  id: 12
+  sprint_id: 2
+  detail_num: 2
+  order_num: 8
+SprintDetailSequence_13:
+  id: 13
+  sprint_id: 3
+  detail_num: 1
+  order_num: 1
+SprintDetailSequence_14:
+  id: 14
+  sprint_id: 3
+  detail_num: 1
+  order_num: 2
+SprintDetailSequence_15:
+  id: 15
+  sprint_id: 3
+  detail_num: 1
+  order_num: 3
+SprintDetailSequence_16:
+  id: 16
+  sprint_id: 3
+  detail_num: 3
+  order_num: 4
+SprintDetailSequence_17:
+  id: 17
+  sprint_id: 3
+  detail_num: 1
+  order_num: 5
+SprintDetailSequence_18:
+  id: 18
+  sprint_id: 3
+  detail_num: 1
+  order_num: 6
+SprintDetailSequence_19:
+  id: 19
+  sprint_id: 3
+  detail_num: 1
+  order_num: 7
+SprintDetailSequence_20:
+  id: 20
+  sprint_id: 3
+  detail_num: 3
+  order_num: 8
+SprintDetailSequence_21:
+  id: 21
+  sprint_id: 3
+  detail_num: 1
+  order_num: 9
+SprintDetailSequence_22:
+  id: 22
+  sprint_id: 3
+  detail_num: 1
+  order_num: 10
+SprintDetailSequence_23:
+  id: 23
+  sprint_id: 3
+  detail_num: 1
+  order_num: 11
+SprintDetailSequence_24:
+  id: 24
+  sprint_id: 3
+  detail_num: 2
+  order_num: 12
+SprintDetailSequence_25:
+  id: 25
+  sprint_id: 4
+  detail_num: 1
+  order_num: 1
+SprintDetailSequence_26:
+  id: 26
+  sprint_id: 4
+  detail_num: 1
+  order_num: 2
+SprintDetailSequence_27:
+  id: 27
+  sprint_id: 4
+  detail_num: 1
+  order_num: 3
+SprintDetailSequence_28:
+  id: 28
+  sprint_id: 4
+  detail_num: 3
+  order_num: 4
+SprintDetailSequence_29:
+  id: 29
+  sprint_id: 4
+  detail_num: 1
+  order_num: 5
+SprintDetailSequence_30:
+  id: 30
+  sprint_id: 4
+  detail_num: 1
+  order_num: 6
+SprintDetailSequence_31:
+  id: 31
+  sprint_id: 4
+  detail_num: 1
+  order_num: 7
+SprintDetailSequence_32:
+  id: 32
+  sprint_id: 4
+  detail_num: 3
+  order_num: 8
+SprintDetailSequence_33:
+  id: 33
+  sprint_id: 4
+  detail_num: 1
+  order_num: 9
+SprintDetailSequence_34:
+  id: 34
+  sprint_id: 4
+  detail_num: 1
+  order_num: 10
+SprintDetailSequence_35:
+  id: 35
+  sprint_id: 4
+  detail_num: 1
+  order_num: 11
+SprintDetailSequence_36:
+  id: 36
+  sprint_id: 4
+  detail_num: 3
+  order_num: 12
+SprintDetailSequence_37:
+  id: 37
+  sprint_id: 4
+  detail_num: 1
+  order_num: 13
+SprintDetailSequence_38:
+  id: 38
+  sprint_id: 4
+  detail_num: 1
+  order_num: 14
+SprintDetailSequence_39:
+  id: 39
+  sprint_id: 4
+  detail_num: 1
+  order_num: 15
+SprintDetailSequence_40:
+  id: 40
+  sprint_id: 4
+  detail_num: 2
+  order_num: 16
+SprintDetailSequence_41:
+  id: 41
+  sprint_id: 5
+  detail_num: 4
+  order_num: 1
+SprintDetailSequence_42:
+  id: 42
+  sprint_id: 5
+  detail_num: 4
+  order_num: 2
+SprintDetailSequence_43:
+  id: 43
+  sprint_id: 5
+  detail_num: 4
+  order_num: 3
+SprintDetailSequence_44:
+  id: 44
+  sprint_id: 5
+  detail_num: 5
+  order_num: 4
+SprintDetailSequence_45:
+  id: 45
+  sprint_id: 6
+  detail_num: 4
+  order_num: 1
+SprintDetailSequence_46:
+  id: 46
+  sprint_id: 6
+  detail_num: 4
+  order_num: 2
+SprintDetailSequence_47:
+  id: 47
+  sprint_id: 6
+  detail_num: 4
+  order_num: 3
+SprintDetailSequence_48:
+  id: 48
+  sprint_id: 6
+  detail_num: 4
+  order_num: 4
+SprintDetailSequence_49:
+  id: 49
+  sprint_id: 6
+  detail_num: 4
+  order_num: 5
+SprintDetailSequence_50:
+  id: 50
+  sprint_id: 6
+  detail_num: 4
+  order_num: 6
+SprintDetailSequence_51:
+  id: 51
+  sprint_id: 6
+  detail_num: 4
+  order_num: 7
+SprintDetailSequence_52:
+  id: 52
+  sprint_id: 6
+  detail_num: 5
+  order_num: 8
+SprintDetailSequence_53:
+  id: 53
+  sprint_id: 7
+  detail_num: 4
+  order_num: 1
+SprintDetailSequence_54:
+  id: 54
+  sprint_id: 7
+  detail_num: 4
+  order_num: 2
+SprintDetailSequence_55:
+  id: 55
+  sprint_id: 7
+  detail_num: 4
+  order_num: 3
+SprintDetailSequence_56:
+  id: 56
+  sprint_id: 7
+  detail_num: 4
+  order_num: 4
+SprintDetailSequence_57:
+  id: 57
+  sprint_id: 7
+  detail_num: 4
+  order_num: 5
+SprintDetailSequence_58:
+  id: 58
+  sprint_id: 7
+  detail_num: 4
+  order_num: 6
+SprintDetailSequence_59:
+  id: 59
+  sprint_id: 7
+  detail_num: 4
+  order_num: 7
+SprintDetailSequence_60:
+  id: 60
+  sprint_id: 7
+  detail_num: 4
+  order_num: 8
+SprintDetailSequence_61:
+  id: 61
+  sprint_id: 7
+  detail_num: 4
+  order_num: 9
+SprintDetailSequence_62:
+  id: 62
+  sprint_id: 7
+  detail_num: 4
+  order_num: 10
+SprintDetailSequence_63:
+  id: 63
+  sprint_id: 7
+  detail_num: 4
+  order_num: 11
+SprintDetailSequence_64:
+  id: 64
+  sprint_id: 7
+  detail_num: 5
+  order_num: 12
+SprintDetailSequence_65:
+  id: 65
+  sprint_id: 8
+  detail_num: 6
+  order_num: 1
+SprintDetailSequence_66:
+  id: 66
+  sprint_id: 8
+  detail_num: 6
+  order_num: 2
+SprintDetailSequence_67:
+  id: 67
+  sprint_id: 8
+  detail_num: 6
+  order_num: 3
+SprintDetailSequence_68:
+  id: 68
+  sprint_id: 8
+  detail_num: 7
+  order_num: 4
+SprintDetailSequence_69:
+  id: 69
+  sprint_id: 9
+  detail_num: 6
+  order_num: 1
+SprintDetailSequence_70:
+  id: 70
+  sprint_id: 9
+  detail_num: 6
+  order_num: 2
+SprintDetailSequence_71:
+  id: 71
+  sprint_id: 9
+  detail_num: 6
+  order_num: 3
+SprintDetailSequence_72:
+  id: 72
+  sprint_id: 9
+  detail_num: 8
+  order_num: 4
+SprintDetailSequence_73:
+  id: 73
+  sprint_id: 9
+  detail_num: 6
+  order_num: 5
+SprintDetailSequence_74:
+  id: 74
+  sprint_id: 9
+  detail_num: 6
+  order_num: 6
+SprintDetailSequence_75:
+  id: 75
+  sprint_id: 9
+  detail_num: 6
+  order_num: 7
+SprintDetailSequence_76:
+  id: 76
+  sprint_id: 9
+  detail_num: 7
+  order_num: 8
+SprintDetailSequence_77:
+  id: 77
+  sprint_id: 10
+  detail_num: 6
+  order_num: 1
+SprintDetailSequence_78:
+  id: 78
+  sprint_id: 10
+  detail_num: 6
+  order_num: 2
+SprintDetailSequence_79:
+  id: 79
+  sprint_id: 10
+  detail_num: 6
+  order_num: 3
+SprintDetailSequence_80:
+  id: 80
+  sprint_id: 10
+  detail_num: 8
+  order_num: 4
+SprintDetailSequence_81:
+  id: 81
+  sprint_id: 10
+  detail_num: 6
+  order_num: 5
+SprintDetailSequence_82:
+  id: 82
+  sprint_id: 10
+  detail_num: 6
+  order_num: 6
+SprintDetailSequence_83:
+  id: 83
+  sprint_id: 10
+  detail_num: 6
+  order_num: 7
+SprintDetailSequence_84:
+  id: 84
+  sprint_id: 10
+  detail_num: 8
+  order_num: 8
+SprintDetailSequence_85:
+  id: 85
+  sprint_id: 10
+  detail_num: 6
+  order_num: 9
+SprintDetailSequence_86:
+  id: 86
+  sprint_id: 10
+  detail_num: 6
+  order_num: 10
+SprintDetailSequence_87:
+  id: 87
+  sprint_id: 10
+  detail_num: 6
+  order_num: 11
+SprintDetailSequence_88:
+  id: 88
+  sprint_id: 10
+  detail_num: 7
+  order_num: 12
+SprintDetailSequence_89:
+  id: 89
+  sprint_id: 11
+  detail_num: 6
+  order_num: 1
+SprintDetailSequence_90:
+  id: 90
+  sprint_id: 11
+  detail_num: 6
+  order_num: 2
+SprintDetailSequence_91:
+  id: 91
+  sprint_id: 11
+  detail_num: 6
+  order_num: 3
+SprintDetailSequence_92:
+  id: 92
+  sprint_id: 11
+  detail_num: 8
+  order_num: 4
+SprintDetailSequence_93:
+  id: 93
+  sprint_id: 11
+  detail_num: 6
+  order_num: 5
+SprintDetailSequence_94:
+  id: 94
+  sprint_id: 11
+  detail_num: 6
+  order_num: 6
+SprintDetailSequence_95:
+  id: 95
+  sprint_id: 11
+  detail_num: 6
+  order_num: 7
+SprintDetailSequence_96:
+  id: 96
+  sprint_id: 11
+  detail_num: 8
+  order_num: 8
+SprintDetailSequence_97:
+  id: 97
+  sprint_id: 11
+  detail_num: 6
+  order_num: 9
+SprintDetailSequence_98:
+  id: 98
+  sprint_id: 11
+  detail_num: 6
+  order_num: 10
+SprintDetailSequence_99:
+  id: 99
+  sprint_id: 11
+  detail_num: 6
+  order_num: 11
+SprintDetailSequence_100:
+  id: 100
+  sprint_id: 11
+  detail_num: 8
+  order_num: 12
+SprintDetailSequence_101:
+  id: 101
+  sprint_id: 11
+  detail_num: 6
+  order_num: 13
+SprintDetailSequence_102:
+  id: 102
+  sprint_id: 11
+  detail_num: 6
+  order_num: 14
+SprintDetailSequence_103:
+  id: 103
+  sprint_id: 11
+  detail_num: 6
+  order_num: 15
+SprintDetailSequence_104:
+  id: 104
+  sprint_id: 11
+  detail_num: 7
+  order_num: 16
+SprintDetailSequence_105:
+  id: 105
+  sprint_id: 12
+  detail_num: 9
+  order_num: 1
+SprintDetailSequence_106:
+  id: 106
+  sprint_id: 12
+  detail_num: 9
+  order_num: 2
+SprintDetailSequence_107:
+  id: 107
+  sprint_id: 12
+  detail_num: 9
+  order_num: 3
+SprintDetailSequence_108:
+  id: 108
+  sprint_id: 12
+  detail_num: 10
+  order_num: 4
+SprintDetailSequence_109:
+  id: 109
+  sprint_id: 13
+  detail_num: 9
+  order_num: 1
+SprintDetailSequence_110:
+  id: 110
+  sprint_id: 13
+  detail_num: 9
+  order_num: 2
+SprintDetailSequence_111:
+  id: 111
+  sprint_id: 13
+  detail_num: 9
+  order_num: 3
+SprintDetailSequence_112:
+  id: 112
+  sprint_id: 13
+  detail_num: 9
+  order_num: 4
+SprintDetailSequence_113:
+  id: 113
+  sprint_id: 13
+  detail_num: 9
+  order_num: 5
+SprintDetailSequence_114:
+  id: 114
+  sprint_id: 13
+  detail_num: 9
+  order_num: 6
+SprintDetailSequence_115:
+  id: 115
+  sprint_id: 13
+  detail_num: 9
+  order_num: 7
+SprintDetailSequence_116:
+  id: 116
+  sprint_id: 13
+  detail_num: 10
+  order_num: 8
+SprintDetailSequence_117:
+  id: 117
+  sprint_id: 14
+  detail_num: 9
+  order_num: 1
+SprintDetailSequence_118:
+  id: 118
+  sprint_id: 14
+  detail_num: 9
+  order_num: 2
+SprintDetailSequence_119:
+  id: 119
+  sprint_id: 14
+  detail_num: 9
+  order_num: 3
+SprintDetailSequence_120:
+  id: 120
+  sprint_id: 14
+  detail_num: 9
+  order_num: 4
+SprintDetailSequence_121:
+  id: 121
+  sprint_id: 14
+  detail_num: 9
+  order_num: 5
+SprintDetailSequence_122:
+  id: 122
+  sprint_id: 14
+  detail_num: 9
+  order_num: 6
+SprintDetailSequence_123:
+  id: 123
+  sprint_id: 14
+  detail_num: 9
+  order_num: 7
+SprintDetailSequence_124:
+  id: 124
+  sprint_id: 14
+  detail_num: 9
+  order_num: 8
+SprintDetailSequence_125:
+  id: 125
+  sprint_id: 14
+  detail_num: 9
+  order_num: 9
+SprintDetailSequence_126:
+  id: 126
+  sprint_id: 14
+  detail_num: 9
+  order_num: 10
+SprintDetailSequence_127:
+  id: 127
+  sprint_id: 14
+  detail_num: 9
+  order_num: 11
+SprintDetailSequence_128:
+  id: 128
+  sprint_id: 14
+  detail_num: 10
+  order_num: 12
+SprintDetailSequence_129:
+  id: 129
+  sprint_id: 15
+  detail_num: 11
+  order_num: 1
+SprintDetailSequence_130:
+  id: 130
+  sprint_id: 15
+  detail_num: 11
+  order_num: 2
+SprintDetailSequence_131:
+  id: 131
+  sprint_id: 15
+  detail_num: 11
+  order_num: 3
+SprintDetailSequence_132:
+  id: 132
+  sprint_id: 15
+  detail_num: 11
+  order_num: 4
+SprintDetailSequence_133:
+  id: 133
+  sprint_id: 16
+  detail_num: 11
+  order_num: 1
+SprintDetailSequence_134:
+  id: 134
+  sprint_id: 16
+  detail_num: 11
+  order_num: 2
+SprintDetailSequence_135:
+  id: 135
+  sprint_id: 16
+  detail_num: 11
+  order_num: 3
+SprintDetailSequence_136:
+  id: 136
+  sprint_id: 16
+  detail_num: 11
+  order_num: 4
+SprintDetailSequence_137:
+  id: 137
+  sprint_id: 16
+  detail_num: 11
+  order_num: 5
+SprintDetailSequence_138:
+  id: 138
+  sprint_id: 16
+  detail_num: 11
+  order_num: 6
+SprintDetailSequence_139:
+  id: 139
+  sprint_id: 17
+  detail_num: 11
+  order_num: 1
+SprintDetailSequence_140:
+  id: 140
+  sprint_id: 17
+  detail_num: 11
+  order_num: 2
+SprintDetailSequence_141:
+  id: 141
+  sprint_id: 17
+  detail_num: 11
+  order_num: 3
+SprintDetailSequence_142:
+  id: 142
+  sprint_id: 17
+  detail_num: 11
+  order_num: 4
+SprintDetailSequence_143:
+  id: 143
+  sprint_id: 17
+  detail_num: 11
+  order_num: 5
+SprintDetailSequence_144:
+  id: 144
+  sprint_id: 17
+  detail_num: 11
+  order_num: 6
+SprintDetailSequence_145:
+  id: 145
+  sprint_id: 17
+  detail_num: 11
+  order_num: 7
+SprintDetailSequence_146:
+  id: 146
+  sprint_id: 17
+  detail_num: 11
+  order_num: 8
+SprintDetailSequence_147:
+  id: 147
+  sprint_id: 17
+  detail_num: 11
+  order_num: 9
+SprintDetailSequence_148:
+  id: 148
+  sprint_id: 17
+  detail_num: 11
+  order_num: 10
+SprintDetailSequence_149:
+  id: 149
+  sprint_id: 18
+  detail_num: 11
+  order_num: 1
+SprintDetailSequence_150:
+  id: 150
+  sprint_id: 18
+  detail_num: 11
+  order_num: 2
+SprintDetailSequence_151:
+  id: 151
+  sprint_id: 18
+  detail_num: 11
+  order_num: 3
+SprintDetailSequence_152:
+  id: 152
+  sprint_id: 18
+  detail_num: 11
+  order_num: 4
+SprintDetailSequence_153:
+  id: 153
+  sprint_id: 18
+  detail_num: 11
+  order_num: 5
+SprintDetailSequence_154:
+  id: 154
+  sprint_id: 18
+  detail_num: 11
+  order_num: 6
+SprintDetailSequence_155:
+  id: 155
+  sprint_id: 18
+  detail_num: 11
+  order_num: 7
+SprintDetailSequence_156:
+  id: 156
+  sprint_id: 18
+  detail_num: 11
+  order_num: 8
+SprintDetailSequence_157:
+  id: 157
+  sprint_id: 18
+  detail_num: 11
+  order_num: 9
+SprintDetailSequence_158:
+  id: 158
+  sprint_id: 18
+  detail_num: 11
+  order_num: 10
+SprintDetailSequence_159:
+  id: 159
+  sprint_id: 18
+  detail_num: 11
+  order_num: 11
+SprintDetailSequence_160:
+  id: 160
+  sprint_id: 18
+  detail_num: 11
+  order_num: 12

@@ -1,0 +1,327 @@
+<% content_for :head do %>
+    <title>Quadfit - Free Online Personal Trainer</title>
+    <link rel='stylesheet' type='text/css' href='<%= Qfit::Application.config.assets_prefix %>/css/home.css' />
+<% end %>
+
+<div class="container-fluid" id="one">
+  <div class="row" id="header-row">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand visible-xs-inline" href="/"><img height="48" width="175" src="https://dwx350bwdtt59.cloudfront.net/logo%403x.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/sign-up">For Athletes</a></li>
+            <li><a href="/sign-up-coach">For Coaches</a></li>
+          </ul>
+          <span class="text-center hidden-xs logo">
+            <a href="/"><img height="48" width="175" src="https://dwx350bwdtt59.cloudfront.net/logo%403x.png" /></a>
+          </span>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#pricing">Pricing</a></li>
+            <% if current_user && current_user.is_coach? %>
+              <li><a href="/coach">Coach</a></li>
+            <% elsif current_user %>
+              <li><a href="/workout">Workout</a></li>
+            <% else %>
+              <li><a href="/sign-in">Sign In</a></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="row main-row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
+      <div class="headline">TRAIN LIKE AN ATHLETE</div>
+      <div class="subline">
+        Quadfit is the free online personal trainer that helps you train like a collegiate or pro athlete.
+        Sports specific power training made simple.
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <a href="/sign-up" class="sign-up main-links">SIGN UP AS AN ATHLETE</a>
+      <a href="/sign-up-coach" class="sign-up main-links">SIGN UP AS A COACH</a>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" id="two">
+  <div class="row">
+    <div class="col-xs-12 text-center about">
+      <span class="lightning-underline">About Quadfit</span>
+    </div>
+  </div>
+  <div class="row sub">
+    <div class="col-xs-10 col-xs-offset-1 text-center">
+      HOW DO YOU GET THE BEST POSSIBLE WORKOUT?
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 col sm-offset-1 col-xs-10 col-xs-offset-1 content">
+      QUADFIT guides you through an initial assessment, and then creates a program that fits within your schedule.
+      You'll get a mixture of new school and old school exercises – complete with reps, sets, weight loads and rest periods — to create
+      maximum benefit. Quadfit also tracks your progress, and switches up your program
+      every 3 weeks to keep things interesting.
+      <br/><br/>
+      Quadfit workouts consist of Preparation, Strength Training, Sprinting, and Plyometrics exercises. We call them the Quads.
+      You choose the Quads that you want in your program, although we recommend that you choose all 4.
+    </div>
+  </div>
+</div>
+<div class="container-fluid" id="three">
+  <div class="row quad-row">
+    <div class="col-sm-6 col-xs-12 brick white title" id="stretch">
+      Preparation
+    </div>
+    <div class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1 brick details">
+      <div class="right">These exercises are designed to prevent injury and to make sure that your muscles are ready to be worked.</div>
+    </div>
+  </div>
+  <div class="row quad-row">
+    <div class="col-sm-6 col-xs-12 brick details hidden-xs">
+      <div class="left">Quadfit begins by calculating your current strength level and recommending appropriate weight loads. Your loads are
+        then updated after each workout you complete, so your workout will "grow" with your muscle size.</div>
+    </div>
+    <div class="col-sm-6 col-xs-12 brick title white" id="strength">
+      Strength Training
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 brick details visible-xs less-pad">
+      <div class="left">Quadfit begins by calculating your current strength level and recommending appropriate weight loads. Your loads are
+        then updated after each workout you complete, so your workout will "grow" with your muscle size.</div>
+    </div>
+  </div>
+  <div class="row quad-row">
+    <div class="col-sm-6 col-xs-12 brick title white" id="sprinting">
+      Sprinting
+    </div>
+    <div class="col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1 brick details">
+      <div class="right">Sprinting routines will help you build fast twitch muscle, and the intensity means you'll burn calories at an extremely aggressive rate.</div>
+    </div>
+  </div>
+  <div class="row quad-row">
+    <div class="col-sm-6 col-xs-12 brick details hidden-xs">
+      <div class="left">Bridging the gap between strength and speed, plyometric exercises are designed to produce explosive power and increase quickness.</div>
+    </div>
+    <div class="col-sm-6 col-xs-12 brick title white" id="plyos">
+        Plyometrics
+    </div>
+    <div class="brick col-xs-10 col-xs-offset-1 details visible-xs">
+      <div class="left">Bridging the gap between strength and speed, plyometric exercises are designed to produce explosive power and increase quickness.</div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" id="four">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">
+      <div id="view-and-share" class="secondary-headline">Better Workouts</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">
+      <div class="sub">Quadfit adjusts your workouts based on your past performance.<br/>  When you want to show your progress,
+      we’ve built in easy sharing.</div>
+    </div>
+  </div>
+  <div class="row workout">
+    <div class="col-xs-12 text-center">
+      <img class="workout-img" src="https://dwx350bwdtt59.cloudfront.net/image-workout.png" />
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row" id="five">
+    <div class="col-md-5 col-sm-12">
+      <div class="tracking-img img-responsive"><img src="https://dwx350bwdtt59.cloudfront.net/image-tracking.png" /></div>
+    </div>
+    <div class="col-md-6 col-md-offset-1 col-sm-12 col-sm-offset-0 details">
+      <div class="row">
+        <div class="col-sm-12 col-md-10 track text-center secondary-headline">
+          Track Your Progress
+        </div>
+      </div>
+      <div class="row sub-details">
+        <div class="col-sm-12 col-md-10 op">
+          Quadfit provides detailed tracking so you can be sure you're on the right track.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-5 col-xs-offset-1 col-sm-6 col-sm-offset-0">
+          <div class="icon"><img src="https://dwx350bwdtt59.cloudfront.net/icon-powerindex.png" /></div>
+          POWER INDEX
+          <div class="more op">
+            Our score on how you are progressing with overall strength.
+          </div>
+        </div>
+        <div class="col-xs-5 col-sm-6">
+          <div class="icon"><img src="https://dwx350bwdtt59.cloudfront.net/icon-dumbells.png" /></div>
+          BY EXERCISE
+          <div class="more op">
+            Compare your numbers for each exercise you complete.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-5 col-xs-offset-1 col-sm-6 col-sm-offset-0">
+          <div class="icon"><img src="https://dwx350bwdtt59.cloudfront.net/icon-weight.png" /></div>
+          WEIGHT
+          <div class="more op">
+            Track your weight gain or loss through your Quadfit journey.
+          </div>
+        </div>
+        <div class="col-xs-5 col-sm-6">
+          <div class="icon"><img src="https://dwx350bwdtt59.cloudfront.net/icon-completeness.png" /></div>
+          COMPLETENESS
+          <div class="more op">
+            Percentage of the workouts that you have completed.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" id="six">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="title text-center secondary-headline">Share with Quad Pod</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-1 col-xs-10 col-xs-offset-1 first">
+      <div class="share-title">Chat up your friends</div>
+      <div class="share">We’ve added messaging to help you stay in touch, taunt, and support your friends.</div>
+    </div>
+    <div class="col-sm-3 col-xs-10 col-xs-offset-1 col-sm-offset-4  first">
+      <div class="share-title">View workouts</div>
+      <div class="share">Quickly access any of your friends' workouts through the Quad Pod.
+      Check their performance and leave comments.</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+      <div class="share-title">Get updates</div>
+      <div class="share">Get quick updates when friends in your Quad Pod complete a workout or reach a personal best.</div>
+    </div>
+    <div class="col-sm-3 col-sm-offset-4 col-xs-10 col-xs-offset-1">
+      <div class="share-title">Motivate each other</div>
+      <div class="share">Boost your gains with some healthy competition.</div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" id="seven">
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
+      <div class="title secondary-headline">Tools for Coaches</div>
+      <div class="sub">Sign up as a Coach and you'll be able to oversee workouts for your athletes.<br/> Your athletes will
+      get automated and fully customized workout programs.<br/> You get to focus on coaching your sport.
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <img class="coach-img" src="https://dwx350bwdtt59.cloudfront.net/image-coaches.png" />
+    </div>
+  </div>
+</div>
+<div class="container-fluid" id="pricing">
+  <div class="row">
+    <div class="col-sm-8 col-xs-10 col-xs-offset-1 col-sm-offset-2 text-center">
+      <div class="title secondary-headline">A Simple Pricing Plan</div>
+      <div class="sub">We offer simple and affordable pricing without contracts. Get started for free and upgrade later for a fully unlocked experience.</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-sm-12">
+      <div class="table-wrapper">
+      <table class="table">
+        <col width="180">
+        <col width="180">
+        <col width="180">
+        <col width="180">
+        <tbody>
+        <tr>
+          <td class="athletes" colspan="4">Athletes</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>$0</td>
+          <td>$9.99/mo</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="text-right labell">Exercises</td>
+          <td>Limited</td>
+          <td>All Access</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="text-right labell">Progress History</td>
+          <td>2 Months</td>
+          <td>Unlimited</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="coaches" colspan="4">Coaches</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>$0</td>
+          <td>$29.99/mo</td>
+          <td>$79.99/mo</td>
+        </tr>
+        <tr>
+          <td class="text-right labell">Users</td>
+          <td>5 Users</td>
+          <td>30 Users</td>
+          <td>100 Users</td>
+        </tr>
+        <tr>
+          <td class="text-right labell">Exercises</td>
+          <td>Limited</td>
+          <td>All Access</td>
+          <td>All Access</td>
+        </tr>
+        <tr>
+          <td class="text-right labell">Progress History</td>
+          <td>2 Months</td>
+          <td>Unlimited</td>
+          <td>Unlimited</td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row get-started">
+    <div class="col-md-12 col-lg-6 text-center">
+      <span class="cta">Start Your Training Now</span>
+    </div>
+    <div class="col-md-12 col-lg-6 text-center">
+      <a href="/sign-up" class="sign-up">SIGN UP AS AN ATHLETE</a>
+      <a href="/sign-up-coach" class="sign-up">SIGN UP AS A COACH</a>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row footer">
+    <div class="col-sm-5 col-xs-12 logo">
+      <img height="48" width="175" src="https://dwx350bwdtt59.cloudfront.net/logo%403x.png" />
+    </div>
+    <div class="col-sm-7 col-xs-12 text-right links">
+      <span>Made with grit in San Francisco</span>
+    </div>
+  </div>
+</div>
+
+<script src="<%= Qfit::Application.config.assets_prefix %>/js/home.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>

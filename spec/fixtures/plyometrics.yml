@@ -1,0 +1,123 @@
+# == Schema Information
+#
+# Table name: plyometrics
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  video_link  :string(255)
+#  recommended :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#  paid_tier   :integer          default(1)
+#  thumbnail   :string
+#
+
+---
+Plyometric_1:
+  id: 1
+  name: Bound
+  video_link: '83077689'
+  recommended: 3 x 5 Bounds
+  paid_tier: 1
+Plyometric_2:
+  id: 2
+  name: Hurdle One In One Out
+  video_link: '83081874'
+  recommended: 3 x 10 Hurdles
+  paid_tier: 1
+Plyometric_3:
+  id: 3
+  name: Ice Skater
+  video_link: '83081183'
+  recommended: 3 x 15 Seconds
+  paid_tier: 1
+Plyometric_4:
+  id: 4
+  name: Ladder Bunny Hops
+  video_link: '83081677'
+  recommended: 3 x 2 Lengths of the Ladder
+  paid_tier: 1
+Plyometric_5:
+  id: 5
+  name: Ladder Butterfly
+  video_link: '83081678'
+  recommended: 3 x 1 Length of the Ladder
+  paid_tier: 1
+Plyometric_6:
+  id: 6
+  name: Ladder High Knee
+  video_link: '83081679'
+  recommended: 3 x 2 Lengths of the Ladder
+  paid_tier: 1
+Plyometric_7:
+  id: 7
+  name: Ladder In And Out
+  video_link: '83081680'
+  recommended: 3 x 1 Length of the Ladder
+  paid_tier: 1
+Plyometric_8:
+  id: 8
+  name: Ladder One Two
+  video_link: '83081878'
+  recommended: 3 x 1 Length of the Ladder
+  paid_tier: 1
+Plyometric_9:
+  id: 9
+  name: Ladder One
+  video_link: '83081880'
+  recommended: 3 x 2 Lengths of the Ladder
+  paid_tier: 1
+Plyometric_10:
+  id: 10
+  name: Lunge Hop
+  video_link: '83082125'
+  recommended: 3 x 10 Hops
+  paid_tier: 1
+Plyometric_11:
+  id: 11
+  name: Single Leg Bound
+  video_link: '83084857'
+  recommended: 3 x 5 Bounds per leg
+  paid_tier: 1
+Plyometric_12:
+  id: 12
+  name: Single Leg Jump
+  video_link: '83084859'
+  recommended: 3 x 5 Jumps per leg
+  paid_tier: 1
+Plyometric_13:
+  id: 13
+  name: Single Leg Ladder Hops
+  video_link: '83084860'
+  recommended: 3 x 1 Length of the Ladder
+  paid_tier: 1
+Plyometric_14:
+  id: 14
+  name: Squat Jump
+  video_link: '83085526'
+  recommended: 3 x 20 Seconds
+  paid_tier: 1
+Plyometric_15:
+  id: 15
+  name: Tuck Jump
+  video_link: '83085970'
+  recommended: 3 x 15 Seconds
+  paid_tier: 1
+Plyometric_16:
+  id: 16
+  name: Box Jumps
+  video_link: '83077690'
+  recommended: 3 x 10 Jumps
+  paid_tier: 1
+Plyometric_17:
+  id: 17
+  name: Lateral Box Jumps
+  video_link: '83082120'
+  recommended: 3 x 10 Jumps
+  paid_tier: 1
+Plyometric_18:
+  id: 18
+  name: Box Over And Back
+  video_link: '83077694'
+  recommended: 3 x 20 Seconds
+  paid_tier: 1

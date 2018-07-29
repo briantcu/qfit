@@ -1,0 +1,661 @@
+@import "../common/common";
+
+.tour-tour {
+  max-width: 460px;
+  padding: 0px;
+  @media (max-width: 480px) {
+    width: 360px;
+  }
+  .popover-title {
+    background-color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    letter-spacing: -0.6px;
+    color: #7b7b7b;
+    border-bottom: none;
+    padding-top: 15px;
+  }
+
+  .popover-content {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.4px;
+    color: #9fa9ba;
+    padding-bottom: 30px;
+    padding-top: 15px;
+  }
+
+  .popover-navigation {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #7953aa;
+    font-size: 24px;
+    height: 65px;
+    color: white;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    span {
+      cursor: pointer;
+    }
+    .disabled {
+      cursor: auto !important;
+      color: #9fa9ba;
+    }
+    .right {
+      float: right;
+    }
+  }
+
+}
+
+.banner-row {
+  background-color: $lightning;
+  flex: 0 1 48px;
+  font-size: 18px;
+  line-height: 1.3;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: $dark-purple;
+  .bold {
+    font-weight: 700;
+  }
+  .link {
+    color: $dark-purple;
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    font-size: 14px !important;
+  }
+}
+.fixed {
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  width: 100%;
+  margin: 0;
+}
+
+.video-modal {
+  .modal-body {
+    text-align: center;
+  }
+
+  .tips-wrapper {
+    text-align: left;
+    float: left;
+    display: block;
+    padding-top: 20px;
+    padding-left: 10px;
+  }
+
+  .tips-header {
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: #000000;
+    padding-bottom: 20px;
+  }
+  @media (min-width: 768px) {
+    .modal-dialog {
+      width: 768px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tips-wrapper {
+      padding-left: 0px;
+    }
+  }
+}
+
+.share-section {
+  display: block;
+  margin: auto;
+  width: 95%;
+  padding-bottom: 30px;
+  .copied {
+    background-color: $green;
+    color: white;
+  }
+  .link-input {
+    width: 145px;
+    height: 33px;
+    background-color: $gray1;
+    border: solid 1px $lavender;
+    color: $purple
+  }
+  a {
+    margin-right: 0px;
+  }
+
+  .btn {
+    height: 33px !important;
+    font-size: 14px;
+    padding: 0px 20px;
+    border-radius: 0px;
+    margin-top: -3px;
+  }
+
+  @media (max-width: 768px) {
+    img {
+      margin-right: 10px !important;
+    }
+    a {
+      margin-top: 20px;
+      margin-right: 0px;
+    }
+    .btn {
+      margin-right: 10px !important;
+    }
+    .link-input {
+      width: 205px;
+    }
+  }
+  @media (max-width: 375px) {
+    .link-input {
+      width: 115px;
+    }
+    img {
+      margin-right: 5px !important;
+    }
+    a {
+      padding-right: 0px !important;
+    }
+  }
+}
+
+.coach-invite-modal {
+  .more-info {
+    margin-bottom: 20px;
+  }
+  input {
+    border-bottom: solid 1px $purple !important;
+    margin-bottom: 40px;
+  }
+}
+
+.shareModal {
+  .modal-body {
+    min-height: 200px;
+    padding-top: 60px;
+  }
+}
+
+.messages-modal {
+  .messages-title {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: -0.8px;
+    text-align: center;
+    color: $purple;
+    padding-bottom: 20px;
+  }
+  .share-section {
+    width: 100% !important;
+  }
+
+  .share-cta {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: -0.8px;
+    text-align: center;
+    color: $purple;
+    padding-bottom: 20px;
+  }
+
+  .messages-text {
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: -0.8px;
+    text-align: center;
+    color: $dark-purple;
+    padding-bottom: 20px;
+  }
+  .modal-content {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  .close {
+    color: white;
+    opacity: 1;
+    border: white 1px solid;
+    border-radius: 15px;
+    width: 25px;
+  }
+
+  .workout-message{
+    padding-bottom: 10px;
+  }
+
+  .modal-header {
+    border: none;
+    border-bottom: none !important;
+  }
+  .modal-body {
+    background: white;
+    padding: 10px;
+  }
+}
+
+
+
+.do-work {
+
+  .third {
+    width: 25%;
+    display: inline-block;
+    float: left;
+    min-height: 1px;
+  }
+
+  .main-third {
+    width: 50%;
+    display: inline-block;
+    float: left;
+    min-height: 1px;
+  }
+
+  .no-exercises{
+    font-weight: bold;
+    color: #9FA9BA;
+    width: 100%;
+    display: inline-block;
+  }
+
+  .no-hover {
+    &:hover {
+      text-decoration: none;
+      color: $purple;
+    }
+  }
+
+  .errors {
+    background-color: $red;
+    height: 34px;
+    color: white;
+    font-size: 18px;
+    letter-spacing: -0.4px;
+    padding-top: 3px;
+  }
+
+  .future {
+    background-color: $lightning;
+    height: auto;
+    color: $dark-purple;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    @media (max-width: 768px) {
+      font-size: 14px !important;
+    }
+  }
+
+  .last-row {
+    min-height: 94px;
+    background-color: $purple;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding: 20px 20px 10px 20px;
+    color: #fff;
+
+    .user-weight {
+      width: 46px;
+      margin-right: 10px;
+      margin-top: 13px;
+      color: black;
+    }
+
+    .error {
+      border: #d62020 1px solid;
+      background-color: #fdcdcd;
+    }
+
+    .reset-link {
+      font-size: 18px;
+      letter-spacing: -0.4px;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .workout-completed {
+      font-size: 18px;
+      letter-spacing: -0.4px;
+      margin-right: 10px;
+    }
+  }
+
+  .sprinting {
+    margin-bottom: 50px;
+  }
+
+  .leave-comment {
+    background-color: $gray1;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    width: 100%;
+    display: block;
+    height: 100px;
+  }
+
+  .comment-row {
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+
+  .add-ex {
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: -0.3px;
+    color: $light-gray;
+    padding-top: 12px;
+    float: right;
+    text-align: right;
+    padding-right: 20px;
+  }
+
+  .vert-circle-check {
+    margin-top: 20px;
+    display: block;
+    float: left;
+    label {
+      left: 7px;
+      width: 31px;
+      height: 31px;
+      border: 2px solid $purple;
+    }
+
+    .label-text {
+      font-size: 10px;
+      line-height: 1;
+      letter-spacing: -0.1px;
+      color: $light-gray;
+      margin-top: 20px
+    }
+
+    label:after {
+      width: 15px;
+      height: 8px;
+      top: 7px;
+      left: 6px;
+    }
+  }
+
+  .subnav {
+    height: 38px;
+    background-color: $gray1;
+    border: solid 1px $gray2;
+    padding-top: 6px;
+    .subnav-cluster {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    span:not(:last-child) {
+      margin-right: 40px;
+    }
+    span {
+      display: inline-block;
+      font-family: 'Open Sans', sans-serif;
+      color: $purple;
+      font-size: 12px;
+      letter-spacing: -0.3px;
+      font-weight: 600;
+      cursor: pointer;
+      img {
+        padding-right: 3px;
+        margin-top: -2px;
+      }
+    }
+    @media (max-width: 520px) {
+      span:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+    @media (max-width: 479px) {
+      span {
+        padding-top: 10px;
+      }
+    }
+  }
+
+  .sec {
+    margin-top: 40px;
+    display: block;
+    float: left;
+    width: 100%;
+    background-color: white;
+    border-radius: 3px;
+
+    .sec-header {
+      tet-align: left;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: -0.6px;
+      color: $dark-purple;
+      background: white;
+      height: 60px;
+      padding-top: 12px;
+      border-bottom: solid 2px $purple;
+    }
+  }
+
+  .main {
+    background-color: $gray2;
+  }
+
+  .comments {
+    margin-bottom: 100px;
+  }
+
+  .loading {
+    opacity: 0.5;
+  }
+
+  .exercise {
+    padding-bottom: 5px;
+    &:not(:first-child):before {
+      content: '';
+      display: block;
+      position: relative;
+      width: 79%;
+      top: 2px;
+      left: 18%;
+      border: 1px solid $gray2;
+    }
+
+    @media (max-width: 1200px) {
+      &:not(:first-child):before {
+        width: 77%;
+        left: 20.5%;
+      }
+    }
+
+    @media (max-width: 992px) {
+      &:not(:first-child):before {
+        width: 72%;
+        left: 27%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      &:not(:first-child):before {
+        width: 0%;
+      }
+    }
+  }
+
+  .top-border:before {
+    content: '';
+    display: block;
+    position: relative;
+    width: 85%;
+    top: 2px;
+    left: 150px;
+    border: 1px solid $gray2;
+  }
+
+  .exercise-section {
+    padding: 15px 10px 10px 0px;
+    min-height: 100px;
+  }
+
+  .ex-info {
+    float: left;
+    display: inline-block;
+    padding-top: 10px;
+    .link {
+      cursor: pointer;
+    }
+  }
+
+  .ex-name {
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: -0.2px;
+    color: $dark-purple;
+    font-weight: 600;
+  }
+
+  .ex-subtext {
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: -0.1px;
+    color: $light-gray;
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .ex-info {
+      margin-left: 20px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sec-header {
+      color: white !important;
+      background-color: $purple !important;
+      text-align: center;
+      height: 80px !important;
+    }
+
+    .add-ex {
+      color: white !important;
+      padding-top: 5px;
+      margin-top: 0px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) and (min-width: 481px) {
+    .sec-header {
+      color: white !important;
+      background-color: $purple !important;
+      text-align: center;
+      height: 70px;
+    }
+
+    .add-ex {
+      color: white !important;
+      padding-top: 0px;
+      margin-top: -15px;
+    }
+  }
+
+  @media (max-width: 768px) {
+
+    .cal-container {
+      overflow: hidden;
+    }
+
+    .exercise-section {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    .sec {
+      margin-top: 0px !important;
+    }
+
+    .no-exercises {
+      padding-top: 20px;
+    }
+
+    .last-row {
+      text-align: center;
+      .action-row {
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+      }
+
+      .reset-row {
+        margin-bottom: 30px;
+        .reset-link {
+          margin-right: 0px !important;
+        }
+        .workout-completed {
+          margin-right: 0px !important;
+        }
+      }
+    }
+
+    .comments {
+      margin-bottom: 0px !important;
+      .feed-item {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+    }
+
+    .leave-comment {
+      width: 100%;
+      float: none !important;
+      margin-right: auto !important;
+      margin-left: auto !important;
+    }
+
+    .comment-row {
+      padding: 20px !important;
+    }
+
+    .sprinting {
+      margin-bottom: 0px;
+      border-bottom: solid 2px white;
+    }
+  }
+  @media (max-width: 480px) {
+    .exercise-section {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    .subnav {
+      height: auto;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.footer {
+  background-color: $dark-purple;
+  height: 194px;
+  color: white;
+  padding-top: 60px;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  vertical-align: bottom;
+  .logo {
+    padding-left: 100px;
+  }
+  span {
+    margin-right: 30px;
+  }
+  .links {
+    padding-top: 30px;
+    padding-right: 70px;
+  }
+}

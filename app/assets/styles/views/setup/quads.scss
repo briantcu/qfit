@@ -1,0 +1,90 @@
+@import "../../common/common";
+
+body {
+  background: url(https://dwx350bwdtt59.cloudfront.net/SignupBackground.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.app {
+  height: auto !important;
+}
+
+.quads {
+  background: url(https://dwx350bwdtt59.cloudfront.net/lifting.png) no-repeat;
+  background-position: 10% 100%;
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+  padding-bottom: 50px;
+
+  h1 {
+    margin-top: 70px;
+  }
+
+  .col-xs-4 {
+    padding-left: 0 !important;
+  }
+
+  .header-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.7;
+    letter-spacing: -0.4px;
+    color: $gray3;
+  }
+
+  .continue-row {
+    margin-top: 30px;
+  }
+
+  .purple-bot-container {
+    @include border-bottom;
+    height: 70px;
+    display: block;
+  }
+
+  .purple-top-container {
+    border-top: 1px solid #7953aa;
+    margin-top: 30px;
+  }
+
+  .back-link {
+    margin-top: 20px;
+  }
+
+  @media (max-width: 768px) {
+    background: none;
+  }
+
+  @media (max-width: 768px) {
+    .check-container {
+      margin-bottom: 40px;
+    }
+
+    .first-check {
+      margin-top: 40px;
+    }
+    h1 {
+      margin-top: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header-text {
+      font-size: 14px;
+      text-align: center;
+    }
+    .label-text {
+      font-size: 16px;
+      line-height: 4.4;
+    }
+    .title {
+      text-align: center;
+    }
+  }
+}
+

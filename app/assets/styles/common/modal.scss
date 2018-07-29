@@ -1,0 +1,38 @@
+@import "colors";
+
+.modal-header {
+  border-bottom: none !important;
+  text-align: center;
+  h4 {
+    font-size: 24px;
+    font-weight: normal;
+    letter-spacing: -0.8px;
+    color: $purple;
+  }
+}
+.modal-body {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.modal-content {
+  border: none !important;
+  -webkit-border-radius:0px !important;
+  -moz-border-radius:0px !important;
+  border-radius: 0px !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+
+  h4 {
+    color: $dark-purple !important;
+  }
+  .close {
+    color: $dark-purple;
+    opacity: 1;
+    border: $dark-purple 1px solid;
+    border-radius: 15px;
+    width: 25px;
+  }
+}

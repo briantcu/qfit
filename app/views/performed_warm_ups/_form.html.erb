@@ -1,0 +1,37 @@
+<%= form_for(@performed_warm_up) do |f| %>
+  <% if @performed_warm_up.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@performed_warm_up.errors.count, "error") %> prohibited this performed_warm_up from being saved:</h2>
+
+      <ul>
+      <% @performed_warm_up.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :routine_id %><br>
+    <%= f.number_field :routine_id %>
+  </div>
+  <div class="field">
+    <%= f.label :warmup_id %><br>
+    <%= f.number_field :warmup_id %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :group_warmup_id %><br>
+    <%= f.number_field :group_warmup_id %>
+  </div>
+  <div class="field">
+    <%= f.label :completed %><br>
+    <%= f.check_box :completed %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

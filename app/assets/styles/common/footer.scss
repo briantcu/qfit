@@ -1,0 +1,48 @@
+@import '../common/common';
+
+.footer {
+  background-color: $dark-purple;
+  min-height: 194px;
+  color: white;
+  padding-top: 60px;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  vertical-align: bottom;
+  .logo {
+    padding-left: 100px;
+  }
+  span {
+    margin-right: 30px;
+  }
+  .links {
+    padding-top: 30px;
+    padding-right: 70px;
+  }
+
+  @media (max-width: 768px) {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    .logo {
+      padding-left: 0px !important;
+    }
+    span {
+      margin-right: 0px !important;
+    }
+    .links {
+      padding-right: 0px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+      text-align: center;
+    }
+    .links {
+      text-align: center;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+    }
+  }
+}

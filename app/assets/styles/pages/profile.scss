@@ -1,0 +1,167 @@
+@import '../common/common';
+
+.profile {
+  flex: 1 1 auto;
+
+  .workout-row {
+    font-size: 18px;
+    letter-spacing: -0.4px;
+    color: $dark-purple;
+    height: 70px;
+    padding-top: 20px;
+    &:not(:last-child) {
+      border-bottom: solid 1px $gray2;
+    }
+  }
+
+  .friend-row {
+    font-size: 18px;
+    letter-spacing: -0.4px;
+    color: $dark-purple;
+    height: 70px;
+    padding-top: 10px;
+    &:not(:last-child) {
+      border-bottom: solid 1px $gray2;
+    }
+    .friend-text {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+
+    .user-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.4px;
+      color: $dark-purple
+    }
+  }
+
+  .last-row {
+    margin-bottom: 50px;
+    margin-top: 0px !important;
+  }
+
+  .workout-section {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    min-height: 300px;
+
+    .nope {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  .profile-row {
+    margin-top: 50px;
+
+    .in-pod {
+      color: $purple;
+    }
+
+    .block-wrapper {
+      display: inline-block;
+      float: left;
+    }
+    .button-wrapper {
+      display: inline-block;
+      float: right;
+      margin-top: 30px;
+      margin-right: 10px;
+    }
+
+    .details {
+      font-size: 16px;
+      letter-spacing: -0.4px;
+      color: $dark-purple;
+      display: inline-block;
+      float: left;
+      margin-top: 5px;
+      margin-left: 30px;
+      .user-name {
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: -0.6px;
+        color: $purple;
+      }
+      .power-index {
+        font-weight: 600;
+      }
+
+      .user-info {
+        margin-right: 30px;
+      }
+      .user-bio {
+        max-width: 420px;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  .main {
+    background-color: $gray2;
+    color: $dark-purple;
+    min-height: 900px;
+    .p-header {
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: -1.1px;
+      padding-top: 30px;
+    }
+    .purple-bot-container {
+      @include border-bottom;
+      height: 50px;
+      display: block;
+    }
+
+    .p-section {
+      background-color: white;
+      margin-bottom: 30px;
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: -0.6px;
+      padding-top: 10px;
+      float: left;
+      width: 100%;
+      display: block;
+      border-radius: 3px;
+      .sec-header {
+        padding-left: 15px;
+        border-bottom: solid 2px $purple;
+        height: 50px;
+
+        .edit-link {
+          float: right;
+          font-size: 18px;
+          margin-right: 15px;
+        }
+      }
+      .sec-main {
+        padding: 30px 25px;
+        font-weight: 300;
+        letter-spacing: -0.6px;
+        float: left;
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  @media(max-width: 480px) {
+    .details {
+      margin-left: 0px !important;
+    }
+
+    .button-wrapper {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      margin-top: 30px !important;
+      float: none !important;
+    }
+
+    .invite-button-row {
+      text-align: center !important;
+    }
+  }
+
+}

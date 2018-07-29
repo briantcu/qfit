@@ -1,0 +1,6 @@
+Hey!,<br/><br/>
+<%= @inviter.first_name + ' (' + @inviter.user_name + ')' %> has invited you to join their Quad Pod on Quadfit.<br/>
+Quadfit is the free online personal trainer for athletes. You'll be able to share workouts and track each other's progress, among many other things.<br/>
+<a href="https://<%= Qfit::Application.config.action_mailer.default_url_options[:host] %>/sign-up?pod_t=<%= @token %>">Get started!</a><br/>
+<br/>
+- The Quadfit Team

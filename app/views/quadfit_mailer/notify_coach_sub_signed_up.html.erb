@@ -1,0 +1,5 @@
+Hey Coach,<br/>
+We just wanted to let you know that <%= @user.first_name + ' ' + @user.last_name %> just signed up for Quadfit using your sign
+up code. You can now manage their workouts on the <a href="https://<%= Qfit::Application.config.action_mailer.default_url_options[:host] %>/coach">Coach page</a>.<br/>
+<br/>
+- The Quadfit Team

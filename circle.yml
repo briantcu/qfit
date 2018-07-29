@@ -1,0 +1,33 @@
+test:
+  override:
+    - yarn run build
+    - bundle exec rake test
+    - bundle exec rspec --color --require spec_helper spec --format documentation
+
+deployment:
+  prod:
+    branch: master
+    commands:
+      - sed -i -e 's/<VERSION>/'"$CIRCLE_BUILD_NUM"'/g' ./config/environments/production.rb
+      - bash -x ./build/upload_assets.sh $CIRCLE_BUILD_NUM
+      - git add config/environments/production.rb
+      - eb deploy --staged --profile default
+
+dependencies:
+  override:
+      - yarn
+  cache_directories:
+      - ~/.cache/yarn
+  pre:
+    - sudo apt-get update
+    - sudo apt-get install python-dev
+    - sudo python -m pip install -U pip
+    - sudo -H pip install awsebcli --upgrade --ignore-installed
+    - bundle install
+
+machine:
+  node:
+    version: 8.2.0
+
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"

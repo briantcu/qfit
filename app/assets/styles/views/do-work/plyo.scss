@@ -1,0 +1,60 @@
+@import "../../common/common";
+
+.plyo {
+
+  @media (max-width: 768px) {
+    border-bottom: solid 2px #e6e6e6;
+    padding-top: 20px;
+    padding-bottom: 20px !important;
+
+    .ex-info {
+      float: none !important;
+    }
+
+    .thumb-col {
+      text-align: center;
+    }
+
+    .vert-circle-check {
+      float: none !important;
+    }
+    .first-check {
+      margin-left: 11%;
+    }
+
+    .input-col {
+      text-align: center;
+
+    }
+
+    .info-col {
+      text-align: center;
+
+    }
+  }
+
+  @media (max-width: 768px) and (min-width: 481px) {
+    .thumb {
+      width: 320px;
+      height: 180px;
+      float: none;
+      margin: auto;
+      img {
+        width: 320px;
+        height: 180px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .thumb {
+      width: 100%;
+      height: auto;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+}

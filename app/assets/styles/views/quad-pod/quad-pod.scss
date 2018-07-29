@@ -1,0 +1,165 @@
+@import "../../common/common";
+
+.quad-pod {
+  flex: 1 1 auto;
+  background-color: $gray2;
+  .nothing {
+    padding-top: 15px;
+    display: block;
+    float: left;
+  }
+
+  .header-link {
+    font-size: 18px;
+    float: right;
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 5px;
+  }
+
+  .actions-row {
+    button {
+      width: 110px;
+      margin-left: 30px;
+      font-size: 12px;
+      padding: 10px 10px;
+    }
+
+  }
+
+  .invite-item {
+    display: block;
+    float: left;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .poster-detes {
+      display: inline-block;
+      padding-left: 10px;
+      float: left;
+    }
+    a {
+      float: left;
+      display: inline-block;
+    }
+  }
+
+  .username {
+    font-size: 16px;
+    font-weight: 600;
+    color: #271b37;
+    padding-top: 10px;
+  }
+
+  .gray-border {
+    border-bottom: solid 1px $gray2;
+  }
+  .main {
+    color: $dark-purple;
+    .h1 {
+      padding-top: 30px;
+    }
+    .qp-sub {
+      padding-left: 5px;
+      padding-bottom: 30px;
+    }
+    .qp-section {
+      background-color: white;
+      margin-bottom: 30px;
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: -0.6px;
+      padding-top: 10px;
+      float: left;
+      width: 100%;
+      display: block;
+      border-radius: 3px;
+      .sec-header {
+        padding-left: 10px;
+        border-bottom: solid 2px $purple;
+        height: 50px;
+      }
+      .sec-main {
+        padding: 10px;
+        font-size: 15.6px;
+        line-height: 1.5;
+        letter-spacing: -0.2px;
+        float: left;
+        display: block;
+        width: 100%;
+      }
+    }
+    textarea {
+      resize: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .xs-padding {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+    .content {
+      .col-xs-12 {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+      }
+    }
+  }
+}
+
+.qp-fixed {
+  position: fixed;
+  top: 50px;
+  z-index: 100;
+  margin: 0;
+}
+
+.pod-invite-modal {
+
+  .qp-section {
+    display: block;
+    float: left;
+  }
+  input {
+    background-color: $gray1;
+    border: solid 1px $lavender;
+    width: 48%;
+    height: 35px;
+    padding-left: 5px;
+    &:first-child {
+      margin-right: 4%;
+    }
+  }
+  textarea {
+    resize: none;
+  }
+  .input-row {
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    &:nth-child(2) {
+      margin-top: 20px;
+    }
+  }
+  .submit-row {
+    float: right;
+    display: block;
+    margin-top: 15px;
+    margin-right: 10px;
+    padding-bottom: 20px;
+  }
+  .sec-main {
+    padding: 10px;
+    padding-bottom: 20px;
+    font-size: 15.6px;
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+    float: left;
+    display: block;
+    width: 100%;
+  }
+}

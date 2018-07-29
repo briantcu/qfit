@@ -1,0 +1,59 @@
+# == Schema Information
+#
+# Table name: exercise_types
+#
+#  id         :integer          not null, primary key
+#  type_name  :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+---
+ExerciseType_1:
+  id: 1
+  type_name: Power
+ExerciseType_2:
+  id: 2
+  type_name: Knee Dominant Unilateral
+ExerciseType_3:
+  id: 3
+  type_name: Knee Dominant Bilateral
+ExerciseType_4:
+  id: 4
+  type_name: Hip Dominant Unilateral
+ExerciseType_5:
+  id: 5
+  type_name: Hip Dominant Bilateral
+ExerciseType_6:
+  id: 6
+  type_name: Horizontal Push Unilateral
+ExerciseType_7:
+  id: 7
+  type_name: Horizontal Push Bilateral
+ExerciseType_8:
+  id: 8
+  type_name: Vertical Push Unilateral
+ExerciseType_9:
+  id: 9
+  type_name: Vertical Push Bilateral
+ExerciseType_10:
+  id: 10
+  type_name: Horizontal Pull Unilateral
+ExerciseType_11:
+  id: 11
+  type_name: Horizontal Pull Bilateral
+ExerciseType_12:
+  id: 12
+  type_name: Vertical Pull Unilateral
+ExerciseType_13:
+  id: 13
+  type_name: Vertical Pull Bilateral
+ExerciseType_14:
+  id: 14
+  type_name: Core, Rotational
+ExerciseType_15:
+  id: 15
+  type_name: Core, Bridging
+ExerciseType_16:
+  id: 16
+  type_name: Core

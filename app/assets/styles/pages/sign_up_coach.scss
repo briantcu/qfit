@@ -1,0 +1,179 @@
+@import "../common/common";
+
+.coach-sign-up {
+
+  .sign-up-error {
+    color: red;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+
+  .submitting {
+    border: solid 3px rgba(121, 83, 170, 0.5) !important;
+    color: rgba(121, 83, 170, 0.5) !important;
+  }
+
+  .buffer {
+    height: 80px;
+    padding-top: 30px;
+  }
+
+  .fb-button {
+    width: 100%;
+    height: 50px;
+    border-radius: 3px;
+    background-color: $fb-blue;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    display: block;
+    cursor: pointer;
+    margin-top: 35px;
+    padding-top: 11px;
+  }
+
+  .form {
+    max-width: 460px;
+  }
+
+  .purple-bot-container {
+    @include border-bottom;
+    height: 50px;
+    display: block;
+    overflow: hidden;
+  }
+
+  h1 {
+    margin-bottom: 4px;
+  }
+
+  hr.hr-left {
+    display: inline-block;
+    margin-top: 0.8em;
+    margin-bottom: 0.5em;
+    margin-right: 5px;
+    border-style: inset;
+    float: left;
+    width: 100px;
+    border-top: 1px solid $light-gray;
+  }
+
+  hr.hr-right {
+    display: inline-block;
+    margin-top: 0.8em;
+    margin-bottom: 0.5em;
+    margin-left: 5px;
+    border-style: inset;
+    border-top: 1px solid $light-gray;
+    float: right;
+    width: 100px;
+  }
+
+  .submit-button {
+    color: $purple;
+    width: 156px;
+    height: 48px;
+    border: solid 3px $purple;
+    margin-right: 30px;
+    display: inline-block;
+    padding-left: 41px;
+    padding-top: 8px;
+    cursor: pointer;
+    &:hover {
+      border: solid 3px $light-purple;
+      color: $light-purple
+    }
+  }
+
+  .submit-row {
+    margin-top: 20px;
+  }
+
+  .error {
+    border-bottom: 1px solid red;
+  }
+
+}
+
+body {
+  background: url(https://dwx350bwdtt59.cloudfront.net/backgrounds-coach.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.full-logo {
+  padding-top: 25px;
+  padding-left: 25px;
+}
+
+@media (max-width: 375px) {
+  .submit-button {
+    margin-right: 5px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  hr.hr-left {
+    width: 30px !important;
+  }
+
+  hr.hr-right {
+    width: 30px !important;
+  }
+}
+
+@media (max-width: 375px) and (min-width: 321px) {
+  hr.hr-left {
+    width: 60px !important;
+  }
+
+  hr.hr-right {
+    width: 60px !important;
+  }
+}
+
+@media (max-width: 450px) and (min-width: 376px){
+  hr.hr-left {
+    width: 80px !important;
+  }
+
+  hr.hr-right {
+    width: 80px !important;
+  }
+}
+
+@media all and (max-width: 768px)  {
+  body {
+    background: none;
+  }
+  body::after {
+    content: "";
+    background: url(https://dwx350bwdtt59.cloudfront.net/coaches-smalldevice.png);
+    opacity: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .form {
+    float: none !important;
+    margin: auto !important;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 769px) {
+  body {
+    background: url(https://dwx350bwdtt59.cloudfront.net/backgrounds-coach-tablet.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+

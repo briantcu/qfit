@@ -1,0 +1,616 @@
+@import "../common/common";
+
+#one {
+  min-height: 770px;
+  width: 100%;
+  background: url(https://dwx350bwdtt59.cloudfront.net/home-background1.png) no-repeat center center fixed;
+  background-size: cover;
+  border-bottom: 12px solid $lightning;
+  color: white;
+  .main-links {
+    &:first-child {
+      margin-right: 30px;
+    }
+  }
+}
+
+#two {
+  color: $gray3;
+  font-size: 20px;
+  margin-bottom: 90px;
+  .sub {
+    padding-top: 25px;
+    padding-bottom: 50px;
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+  }
+  .content {
+    line-height: 1.6;
+    letter-spacing: -0.2px;
+  }
+}
+
+#three {
+  border-bottom: 12px solid $lightning;
+  .brick {
+    height: 314px;
+    font-size: 36px;
+    letter-spacing: -0.3px;
+    text-align: center;
+    padding-top: 120px;
+  }
+  .quad-row {
+    background-color: $gray2;
+  }
+
+  .details {
+    font-size: 18px;
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+    background-color: $gray2;
+  }
+  .left {
+    padding-right: 5%;
+    padding-left: 20%;
+    text-align: right;
+  }
+  .right {
+    padding-left: 5%;
+    padding-right: 20%;
+    text-align: left;
+  }
+
+  #sprinting {
+    background: url(https://dwx350bwdtt59.cloudfront.net/background-quad-sprinting.png) no-repeat;
+    background-size: cover;
+  }
+  #plyos {
+    background: url(https://dwx350bwdtt59.cloudfront.net/background-quad-plyometrics.png) no-repeat;
+    background-size: cover;
+  }
+  #strength {
+    background: url(https://dwx350bwdtt59.cloudfront.net/background-quad-weightlifting.png) no-repeat;
+    background-size: cover;
+  }
+  #stretch {
+    background: url(https://dwx350bwdtt59.cloudfront.net/background-quad-stretch.png) no-repeat;
+    background-size: cover;
+  }
+}
+
+#four {
+  #view-and-share {
+    color: $purple;
+    font-size: 44px;
+    line-height: 1.1;
+    padding-top: 50px;
+  }
+
+  .sub {
+    font-size: 18px;
+    line-height: 1.6;
+    color: $gray3;
+    margin: auto;
+    max-width: 620px;
+    padding-top: 20px;
+    margin-bottom: 100px;
+  }
+  .workout {
+    background: url(https://dwx350bwdtt59.cloudfront.net/background-workout.png) no-repeat;
+    background-size: cover;
+    max-height: 374px;
+  }
+  .workout-img {
+    margin-top: -30px;
+    width: 100%;
+    max-width: 933px;
+  }
+}
+
+#five {
+  background: url(https://dwx350bwdtt59.cloudfront.net/background-tracking.png) no-repeat;
+  background-size: cover;
+  .tracking-img {
+    padding-top: 150px;
+    margin-left: -250px;
+    img {
+      width: 100%;
+    }
+  }
+  .details {
+    color: white;
+    padding-top: 75px;
+    margin: auto;
+    max-width: 900px;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .op {
+    opacity: 0.8;
+  }
+  .track {
+    font-size: 44px;
+    line-height: 1.1;
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom: 24px;
+  }
+  .sub-details {
+    margin-bottom: 50px;
+  }
+  .more {
+    padding-bottom: 50px;
+    max-width: 250px;
+  }
+  .icon {
+    padding-bottom: 15px;
+  }
+}
+
+#six {
+  background: $gray5 url(https://dwx350bwdtt59.cloudfront.net/image-quadpod.png) no-repeat 50% 300px;
+  overflow: hidden;
+  .title {
+    color: $purple;
+    font-size: 44px;
+    line-height: 1.1;
+    padding-top: 75px;
+    padding-bottom: 50px;
+    margin: auto;
+    max-width: 700px;
+  }
+  .first {
+    padding-top: 100px;
+  }
+  .share-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: $blackish;
+    line-height: 1.3;
+  }
+  .share {
+    color: $gray6;
+    font-size: 18px;
+    line-height: 1.6;
+    padding-bottom: 50px;
+  }
+}
+
+#seven {
+  color: white;
+  background: url(https://dwx350bwdtt59.cloudfront.net/background-coaches.png) no-repeat;
+  background-size: cover;
+  .title {
+    font-size: 44px;
+    line-height: 1.1;
+    padding-top: 85px;
+  }
+  .coach-img {
+    margin-bottom: -50px;
+    max-width: 932px;
+    width: 100%;
+  }
+  .sub {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 720px;
+    padding-top: 20px;
+    margin: auto auto 50px;
+    opacity: 0.8;
+  }
+}
+
+#pricing{
+  .title {
+    font-size: 44px;
+    line-height: 1.1;
+    padding-top: 85px;
+    padding-bottom: 10px;
+    color: $purple
+  }
+  .sub {
+    font-size: 18px;
+    line-height: 1.6;
+    color: $gray3;
+    max-width: 620px;
+    margin: auto auto 30px;
+  }
+  .table-wrapper {
+    margin: auto;
+    overflow-x: scroll;
+  }
+  table td:nth-child(odd) {
+    background-color: $gray1;
+  }
+  table td {
+    height: 50px;
+    text-align: center;
+    padding-top: 13px;
+  }
+  table {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    letter-spacing: -0.2px;
+    color: $gray3;
+    width: 820px;
+    margin: auto;
+  }
+  .coaches {
+    text-align: center;
+    background-color: $lightning !important;
+  }
+  .athletes {
+    text-align: center;
+    color: white;
+    background-color: $purple !important;
+  }
+  .labell {
+    padding-right: 15px;
+    text-align: right !important;
+  }
+}
+
+.get-started {
+  height: 130px;
+  background-color: $lightning;
+  margin-top: 80px;
+  color: $gray3;
+  padding-top: 40px;
+  .cta {
+    font-size: 34px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.2px;
+  }
+  .sign-up {
+    border: solid 1px $gray3;
+    margin-top: 5px;
+    color: $gray3 !important;
+    &:first-child {
+      margin-right: 20px;
+    }
+  }
+}
+
+.footer {
+  background-color: $dark-purple;
+  height: 194px;
+  color: white;
+  padding-top: 60px;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  vertical-align: bottom;
+  .logo {
+    padding-left: 100px;
+  }
+  span {
+    margin-right: 30px;
+  }
+  .links {
+    padding-top: 30px;
+    padding-right: 70px;
+  }
+
+  @media (max-width: 480px) {
+    .logo {
+      padding-left: 20px !important;
+    }
+    .links {
+      padding-right: 0 !important;
+    }
+  }
+}
+
+#header-row {
+  padding-top: 25px;
+  color: white;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.1px;
+  a {
+    color: white;
+    margin-right: 40px;
+  }
+  .logo {
+    a {
+      margin-right: 0 !important;
+    }
+  }
+
+}
+
+.about {
+  font-size: 64px;
+  letter-spacing: -0.6px;
+  padding-top: 50px;
+}
+
+.headline {
+  font-size: 64px;
+  color: $lightning;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.subline {
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
+  max-width: 850px;
+  margin: auto;
+}
+
+.header-links {
+  padding-top: 15px;
+}
+
+.main-row {
+  margin-bottom: 50px;
+  margin-top: 100px;
+}
+
+.sign-up {
+  border: solid 1px #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  height: 40px;
+  width: auto;
+  margin: auto;
+  font-size: 20px;
+  letter-spacing: -0.2px;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-block;
+  color: white !important;
+}
+
+
+.less-pad {
+  padding-top: 70px !important;
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+  .get-started {
+    padding-top: 20px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 979px) {
+  .main-row {
+    margin-top: 0px;
+  }
+
+  .headline {
+    font-size: 48px;
+  }
+
+  #two {
+    .about {
+      font-size: 48px;
+    }
+  }
+
+  .cta {
+    font-size: 30px !important;
+  }
+}
+
+@media (min-width: 980px) {
+  #five {
+    min-height: 800px;
+  }
+
+  #one {
+    min-height: 770px;
+    width: 100%;
+    background: url(https://dwx350bwdtt59.cloudfront.net/home-background1.png) no-repeat center center;
+    background-size: cover;
+  }
+
+  #six {
+    height: 850px;
+  }
+}
+
+@media (max-width: 979px) and (min-width: 768px) {
+  #five {
+    min-height: 800px;
+  }
+
+  #six {
+    height: 850px;
+  }
+  #one {
+    min-height: 500px;
+    width: 100%;
+    background: url(https://dwx350bwdtt59.cloudfront.net/home-background1.png) no-repeat center center;
+    background-size: cover;
+  }
+
+}
+
+@media (max-width: 767px)  {
+  #one {
+    min-height: 500px;
+    width: 100%;
+    background: url(https://dwx350bwdtt59.cloudfront.net/home-background1.png) no-repeat center center;
+    background-size: cover;
+  }
+
+  #two {
+    .about {
+      font-size: 36px;
+    }
+  }
+
+  #five {
+    .tracking-img {
+      margin-left: 0px;
+    }
+  }
+
+  #three {
+    .left {
+      padding-right: 0;
+      padding-left: 0;
+      text-align: center;
+    }
+    .right {
+      padding-left: 0;
+      padding-right: 0;
+      text-align: center;
+    }
+  }
+
+  #six {
+    height: 1200px;
+    background: #f4f4f4 url(https://dwx350bwdtt59.cloudfront.net/image-quadpod.png) no-repeat 50% 600px;
+    .title {
+      padding-top: 50px;
+    }
+
+    .first {
+      padding-top: 0px;
+    }
+  }
+
+  #seven {
+    .title {
+      padding-top: 50px;
+    }
+  }
+
+  .table-wrapper {
+    width: 100% !important;
+    .table {
+      width: 100% !important;
+    }
+  }
+
+  #pricing {
+    .title {
+      padding-top: 50px;
+    }
+  }
+
+  .get-started {
+    height: 180px;
+    .sign-up {
+      &:first-child {
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .secondary-headline {
+    font-size: 36px !important;
+  }
+
+}
+
+@media (max-width: 767px) and (min-width: 415px)  {
+  .headline {
+    font-size: 36px;
+  }
+
+  .subline {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 550px) {
+  .get-started {
+    padding-top: 20px !important;
+    height: 180px;
+    .sign-up {
+      &:first-child {
+        margin-right: 0px !important;
+        margin-bottom: 10px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px)  {
+  #one {
+    width: 100%;
+    background: url(https://dwx350bwdtt59.cloudfront.net/home-background1.png) no-repeat center center;
+    background-size: cover;
+    .subline {
+      font-size: 16px;
+    }
+    .main-links {
+      &:first-child {
+        margin-right: 0px;
+      }
+    }
+  }
+  .coach-img {
+    margin-bottom: 0px !important;
+  }
+  #six {
+    height: 1200px;
+    background: #f4f4f4 url(https://dwx350bwdtt59.cloudfront.net/image-quadpod.png) no-repeat 50% 700px;
+  }
+
+  #two {
+    .content {
+      line-height: 1.4;
+      font-size: 18px;
+    }
+  }
+
+  #three {
+    .brick {
+      padding-top: 80px;
+    }
+    .title {
+      padding-top: 120px !important;
+    }
+  }
+
+  .cta {
+    font-size: 26px !important;
+  }
+
+  #five {
+    .tracking-img {
+      padding-top: 50px;
+    }
+    .details {
+      padding-top: 15px;
+    }
+  }
+  
+  #seven {
+    .sub {
+      text-align: left;
+    }
+  }
+
+}
+
+@media (max-width: 414px)  {
+  .headline {
+    font-size: 26px;
+  }
+  .main-links {
+    &:first-child {
+      margin-bottom: 30px;
+    }
+  }
+  #six {
+    .share {
+      padding-bottom: 30px;
+      line-height: 1.4;
+    }
+  }
+}
+
+@media (max-width: 320px)  {
+  .headline {
+    font-size: 22px;
+  }
+  .cta {
+    font-size: 24px !important;
+  }
+}

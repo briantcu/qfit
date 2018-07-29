@@ -1,0 +1,58 @@
+@import "../../common/common";
+
+.team {
+  &:not(:first-child) {
+     &:before {
+       content: '';
+       left: 0px;
+       display: block;
+       width: 110%;
+       margin-left: -5%;
+       border-top: solid 5px #e6e6e6;
+     }
+  }
+
+  margin-bottom: 0px;
+
+  .team-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: $purple;
+  }
+
+  .team-actions {
+    color: $purple;
+    font-size: 16px;
+    line-height: 1.2;
+    .separator {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+
+  .row {
+    height: 70px;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    padding-top: 14px;
+    &:not(:last-child) {
+      border-bottom: solid 1px #c9c9c9;
+    }
+  }
+
+  .athlete {
+    &:last-child {
+      border-bottom: none !important;
+    }
+  }
+
+  .first {
+    padding-left: 0px !important;
+  }
+
+  .last {
+    padding-right: 0px !important;
+  }
+
+
+}

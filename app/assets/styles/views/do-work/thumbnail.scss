@@ -1,0 +1,13 @@
+@import "../../common/common";
+
+.thumb {
+  float: left;
+  display: inline-block;
+  width: 160px;
+  height: 90px;
+  cursor: pointer;
+  img {
+    width: 160px;
+    height: 90px;
+  }
+}

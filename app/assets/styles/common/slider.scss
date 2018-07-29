@@ -1,0 +1,101 @@
+@import "common";
+
+.slider {
+  .cmn-toggle {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+  }
+  .cmn-toggle + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .settings {
+    display: table;
+    width: 100%;
+  }
+  .settings .row {
+    display: table-row;
+  }
+  .switch {
+    display: table-cell;
+    vertical-align: middle;
+    padding-top: 9px;
+    float: left;
+  }
+
+  input.cmn-toggle-round-flat + label {
+    padding: 2px;
+    width: 60px;
+    height: 30px;
+    background-color: $purple;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border-radius: 30px;
+    -webkit-transition: background 0.4s;
+    -moz-transition: background 0.4s;
+    -o-transition: background 0.4s;
+    transition: background 0.4s;
+  }
+  input.cmn-toggle-round-flat + label:before, input.cmn-toggle-round-flat + label:after {
+    display: block;
+    position: absolute;
+    content: "";
+    height: 26px;
+  }
+  input.cmn-toggle-round-flat + label:before {
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    background-color: $purple;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border-radius: 30px;
+    -webkit-transition: background 0.4s;
+    -moz-transition: background 0.4s;
+    -o-transition: background 0.4s;
+    transition: background 0.4s;
+  }
+  input.cmn-toggle-round-flat + label:after {
+    top: 2px;
+    left: 2px;
+    bottom: 4px;
+    width: 28px;
+    background-color: white;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -ms-border-radius: 26px;
+    -o-border-radius: 26px;
+    border-radius: 26px;
+    -webkit-transition: margin 0.4s, background 0.4s;
+    -moz-transition: margin 0.4s, background 0.4s;
+    -o-transition: margin 0.4s, background 0.4s;
+    transition: margin 0.4s, background 0.4s;
+  }
+  input.cmn-toggle-round-flat:checked + label {
+    background-color: $purple;
+  }
+  input.cmn-toggle-round-flat:checked + label:after {
+    margin-left: 28px;
+    background-color: white;
+  }
+
+  .selected-text {
+    padding-left: 8px;
+    text-transform: capitalize;
+    padding-top: 13px;
+    display: inline-block;
+  }
+}

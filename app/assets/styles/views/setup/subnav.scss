@@ -1,0 +1,35 @@
+@import "../../common/common";
+
+.subnav {
+  flex: 0 1 52px;
+  background-color: $gray1;
+  border: solid 1px $gray2;
+  font-size: 18px;
+  line-height: 2.9;
+  letter-spacing: -0.4px;
+  color: $light-gray;
+  span {
+    &:not(:first-child) {
+      margin-left: 50px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    span {
+      &:not(:first-child) {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 375px) {
+    span {
+      font-size: 14px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    height: 58px;
+  }
+
+}

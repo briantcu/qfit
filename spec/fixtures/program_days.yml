@@ -1,0 +1,41 @@
+# == Schema Information
+#
+# Table name: program_days
+#
+#  id              :integer          not null, primary key
+#  day_enumeration :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
+---
+ProgramDay_1:
+  id: 1
+  day_enumeration: Full A
+ProgramDay_2:
+  id: 2
+  day_enumeration: Full B
+ProgramDay_3:
+  id: 3
+  day_enumeration: Half A1
+ProgramDay_4:
+  id: 4
+  day_enumeration: Half B1
+ProgramDay_5:
+  id: 5
+  day_enumeration: Half A2
+ProgramDay_6:
+  id: 6
+  day_enumeration: Half B2
+ProgramDay_7:
+  id: 7
+  day_enumeration: T4P A1
+ProgramDay_8:
+  id: 8
+  day_enumeration: T4P B1
+ProgramDay_9:
+  id: 9
+  day_enumeration: T4P A2
+ProgramDay_10:
+  id: 10
+  day_enumeration: T4P B2

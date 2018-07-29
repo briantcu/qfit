@@ -1,0 +1,91 @@
+@import "../../common/common";
+
+body {
+  background: url(https://dwx350bwdtt59.cloudfront.net/SignupBackground.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.video-modal {
+  .modal-body {
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .modal-dialog {
+      width: 768px;
+    }
+  }
+}
+
+.fitness {
+  flex: 1 1 auto;
+
+  .input-wrapper {
+    margin: auto;
+    float: none;
+    display: inline-block;
+  }
+
+  .input-buffer{
+    width: 30px;
+    display: inline-block;
+    float: left;
+    height: 10px;
+  }
+
+  h1 {
+    margin-top: 70px;
+  }
+
+  .select {
+    max-width: 300px;
+    margin: auto;
+  }
+
+  .question {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1.3;
+    letter-spacing: -0.8px;
+    color: $gray3;
+    margin-top: 100px;
+    margin-bottom: 35px;
+  }
+
+  .buttonRow {
+    margin-top: 70px;
+  }
+
+  .idk-buttonRow {
+    margin-top: 35px;
+  }
+
+  .idk {
+    margin-top: 35px;
+  }
+
+  .back-link {
+    padding-top: 20px;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      margin-top: 40px;
+    }
+
+    .question {
+      font-size: 24px;
+      margin-top: 60px;
+    }
+
+    .standard-text {
+      font-size: 16px;
+    }
+    .inputLabel {
+      font-size: 24px;
+      line-height: 1.2;
+    }
+  }
+
+}

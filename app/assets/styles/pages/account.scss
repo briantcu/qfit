@@ -1,0 +1,296 @@
+@import '../common/common';
+
+.banner-row {
+  background-color: $lightning;
+  flex: 0 1 48px;
+  font-size: 18px;
+  line-height: 1.3;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: $dark-purple;
+  .bold {
+    font-weight: 700;
+  }
+  @media (max-width: 768px) {
+    font-size: 14px !important;
+  }
+}
+.fixed {
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  width: 100%;
+  margin: 0;
+}
+
+.account {
+
+  .input-row {
+    height: 50px;
+  }
+  .experience-row {
+    height: 100px !important;
+    padding-top: 20px;
+  }
+
+  .update-wrapper {
+    float: right;
+  }
+
+  .bio-section {
+    height: 180px !important;
+    padding-top: 20px;
+    .bio-box {
+      background-color: $gray1;
+      border: solid 1px #d8d8d8;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      width: 100%;
+      float: left;
+      display: block;
+      height: 100px;
+      line-height: 1.3;
+      color: #747e80;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.1px;
+      padding: 10px;
+    }
+  }
+
+  .floatl--active .floatl__label {
+    top: -5px !important;
+  }
+
+  .avi-row {
+    padding-bottom: 30px;
+    .dropzone-wrapper div {
+      height: 100px !important;
+      width: 100px !important;
+      margin-right: auto;
+      margin-left: auto;
+      border: none;
+      border-style: none !important;
+    }
+  }
+
+  .submit-row {
+    padding-top: 20px;
+  }
+  .gray-border {
+    border-bottom: solid 1px $gray2;
+  }
+  .border-top {
+    border-top: 1px solid #7953aa;
+  }
+  .main {
+    background-color: $gray2;
+    color: $dark-purple;
+    min-height: 900px;
+    .p-header {
+      padding-top: 30px;
+    }
+    .purple-bot-container {
+      @include border-bottom;
+      height: 50px;
+      display: block;
+    }
+    .error {
+      border-bottom: 1px solid red;
+    }
+    .p-sub {
+      color: $purple;
+      padding-left: 5px;
+      padding-bottom: 30px;
+    }
+    .p-section {
+      background-color: white;
+      margin-bottom: 30px;
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: -0.6px;
+      padding-top: 10px;
+      float: left;
+      width: 100%;
+      display: block;
+      border-radius: 3px;
+      .sec-header {
+        padding-left: 15px;
+        border-bottom: solid 2px $purple;
+        height: 50px;
+      }
+      .sec-main {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        font-weight: 300;
+        letter-spacing: -0.6px;
+        float: left;
+        display: block;
+        width: 100%;
+      }
+    }
+    .button-wrap {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  }
+
+  .update-wrapper {
+    margin-top: -5px;
+    .StripeCheckout {
+      span {
+        border: none !important;
+        background-color: transparent !important;
+        &:focus {
+          background-color: transparent !important;
+          border: none !important;
+        }
+        &:hover {
+          background-color: transparent !important;
+          border: none !important;
+        }
+      }
+    }
+  }
+  @media (max-width: 414px) {
+    .update-wrapper {
+      .StripeCheckout {
+        overflow: hidden;
+        display: inline-block;
+        border: 0px;
+        padding: 0px !important;
+        text-decoration: none;
+        border-radius: 0px !important;
+        box-shadow: none !important;
+        background: none !important;
+        span {
+          padding: 12px 20px !important;
+        }
+      }
+    }
+  }
+
+
+  .StripeCheckout {
+    overflow: hidden;
+    display: inline-block;
+    border: 0px;
+    padding: 0px !important;
+    text-decoration: none;
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    background: none !important;
+    span {
+      padding: 12px 40px !important;
+      background-color: white !important;
+      background-image: none !important;
+      border: solid 3px $purple !important;
+      font-family: 'Open Sans', sans-serif !important;
+      font-size: 18px !important;
+      letter-spacing: -0.4px !important;
+      color: $purple !important;
+      display: inline-block;
+      margin-bottom: 0 !important;
+      font-weight: normal !important;
+      text-align: center;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      background-image: none !important;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.42857143 !important;
+      border-radius: 0px !important;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      height: auto !important;
+      box-shadow: none  !important;
+      text-shadow: none  !important;
+      &:focus {
+        color: #333 !important;
+        background-color: $gray2 !important;
+        border-color: #3c2954 !important;
+      }
+      &:hover {
+        color: #333 !important;
+        background-color: $gray2 !important;
+        border-color: #5c3f81 !important;
+      }
+    }
+  }
+  #pricing{
+    padding-top: 30px;
+    overflow-y: scroll;
+
+    .current {
+      color: $purple;
+      opacity: .65;
+    }
+
+    .title {
+      font-size: 44px;
+      line-height: 1.1;
+      padding-top: 85px;
+      padding-bottom: 10px;
+      color: $purple
+    }
+    .sub {
+      font-size: 18px;
+      line-height: 1.6;
+      color: $gray3;
+      max-width: 620px;
+      margin: auto auto 30px;
+    }
+    .table-wrapper {
+      margin: auto;
+      width: 820px;
+    }
+    table td:nth-child(even) {
+      background-color: $gray1;
+    }
+    table td {
+      height: 50px;
+      text-align: center;
+      padding-top: 13px;
+      font-size: 16px;
+      line-height: 3.2;
+      font-weight: 400;
+      letter-spacing: -0.4px;
+      color: $gray3;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .clear {
+      background-color: white !important;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    .monthly {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: rgba(74, 74, 74, 0.5);
+      position: relative;
+      top: -10px;
+      left: -4px;
+    }
+    table {
+      width: 100%;
+      min-width: 680px;
+    }
+  }
+  @media (max-width: 768px) {
+    .content {
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+@import '../../common/common';
+
+.feed {
+  .post-row {
+    margin-top: 20px;
+    display: block;
+    float: left;
+    width: 100%
+  }
+  .message-box {
+    height: 100%;
+    background-color: $gray5;
+    color: $gray6;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    padding: 10px;
+    border: none;
+    float: left;
+    width: 80%;
+    &:focus {
+      outline: none;
+    }
+  }
+  .submit {
+    background-color: $purple;
+    color: white;
+    cursor: pointer;
+    height: 100%;
+    width: 20%;
+    float: right;
+    padding-top: 17px;
+    text-align: center;
+  }
+  .input-wrap {
+    display: block;
+    width: 100%;
+    float: left;
+    height: 60px;
+  }
+
+}
+
+.loading {
+  opacity: 0.5;
+}

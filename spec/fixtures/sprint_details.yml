@@ -1,0 +1,44 @@
+# == Schema Information
+#
+# Table name: sprint_details
+#
+#  id         :integer          not null, primary key
+#  detail     :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+---
+SprintDetail_1:
+  id: 1
+  detail: Sprint 100 yards, rest 15-18 secs
+SprintDetail_2:
+  id: 2
+  detail: Sprint 100 yards
+SprintDetail_3:
+  id: 3
+  detail: Sprint 100 yards, rest 60 secs
+SprintDetail_4:
+  id: 4
+  detail: Sprint 200 yards, rest 33 secs
+SprintDetail_5:
+  id: 5
+  detail: Sprint 200 yards
+SprintDetail_6:
+  id: 6
+  detail: Sprint from 1 baseline to the other 3 times, rest 15-18 secs
+SprintDetail_7:
+  id: 7
+  detail: Sprint from 1 baseline to the other 3 times
+SprintDetail_8:
+  id: 8
+  detail: Sprint from 1 baseline to the other, rest 60 secs
+SprintDetail_9:
+  id: 9
+  detail: Sprint from 1 baseline to the other 6 times, rest 33 secs
+SprintDetail_10:
+  id: 10
+  detail: Sprint from 1 baseline to the other 6 times
+SprintDetail_11:
+  id: 11
+  detail: Jog for 1 minute, sprint for 30 seconds

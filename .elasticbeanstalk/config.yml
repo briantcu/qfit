@@ -1,0 +1,11 @@
+branch-defaults:
+  master:
+    environment: quadfit-env
+global:
+  application_name: quadfit
+  default_ec2_keyname: quadfit
+  default_platform: 64bit Amazon Linux 2016.09 v2.2.0 running Ruby 2.3 (Passenger
+    Standalone)
+  default_region: us-west-1
+  profile: eb-cli
+  sc: git

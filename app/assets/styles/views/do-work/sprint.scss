@@ -1,0 +1,16 @@
+@import "../../common/common";
+
+.sprint {
+  .vert-circle-check {
+    margin-top: 5px !important;
+  }
+
+  .sprint-title-row {
+    padding-bottom: 10px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px !important;
+  }
+
+}
